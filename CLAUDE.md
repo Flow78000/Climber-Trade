@@ -19,6 +19,18 @@ climber-trade/
 │   ├── ui-ux/                   ← questions interface
 │   ├── legal-compliance/        ← questions juridiques
 │   └── business/                ← questions tarifs, splits, affiliation
+├── mockups/                     ← maquettes et prototypes pour les devs
+│   ├── index.html               ← viewer HTML (ouvrir dans navigateur)
+│   ├── dashboard/               ← mockups Dashboard / Trade Desk
+│   ├── scoring/                 ← mockups Scoring & Metriques
+│   ├── wallet/                  ← mockups Wallet & Retraits
+│   ├── profile/                 ← mockups My Profile
+│   ├── affiliate/               ← mockups Affiliate & Parrainage
+│   ├── knowledge-hub/           ← mockups Knowledge Hub
+│   ├── leaderboard/             ← mockups Leaderboard
+│   ├── community/               ← mockups Community
+│   ├── support/                 ← mockups Support Center
+│   └── assets/                  ← images partagees (logos, icones)
 ├── src/
 │   ├── components/
 │   │   ├── Dashboard.tsx
