@@ -9,6 +9,28 @@ climber-trade/
 ├── CLAUDE.md                    ← mémoire projet (lu automatiquement par Claude Code)
 ├── .gitignore
 ├── docs/                        ← documents légaux (règlement, CGV, etc.)
+├── developer-exchanges/         ← suivi des echanges avec Alex (developpeur)
+│   ├── INDEX.md                 ← index central de tous les echanges
+│   ├── _TEMPLATE.md             ← template pour nouvel echange
+│   ├── scoring/                 ← questions notation / CLIMB Score
+│   ├── pool-liquidite/          ← questions pool de liquidite
+│   ├── trading-rules/           ← questions regles de trading
+│   ├── technique/               ← questions DB, API, infra
+│   ├── ui-ux/                   ← questions interface
+│   ├── legal-compliance/        ← questions juridiques
+│   └── business/                ← questions tarifs, splits, affiliation
+├── mockups/                     ← maquettes et prototypes pour les devs
+│   ├── index.html               ← viewer HTML (ouvrir dans navigateur)
+│   ├── dashboard/               ← mockups Dashboard / Trade Desk
+│   ├── scoring/                 ← mockups Scoring & Metriques
+│   ├── wallet/                  ← mockups Wallet & Retraits
+│   ├── profile/                 ← mockups My Profile
+│   ├── affiliate/               ← mockups Affiliate & Parrainage
+│   ├── knowledge-hub/           ← mockups Knowledge Hub
+│   ├── leaderboard/             ← mockups Leaderboard
+│   ├── community/               ← mockups Community
+│   ├── support/                 ← mockups Support Center
+│   └── assets/                  ← images partagees (logos, icones)
 ├── src/
 │   ├── components/
 │   │   ├── Dashboard.tsx
@@ -21,6 +43,7 @@ climber-trade/
 ## Notes
 - Claude Code lit ce fichier automatiquement à chaque session.
 - Ajouter ici toute information contextuelle importante pour le projet.
+- Les echanges avec Alex (developpeur) sont suivis dans `developer-exchanges/` — voir INDEX.md pour le recap complet.
 # 🏔️ CLIMBER TRADE — MÉMOIRE COMPLÈTE DU PROJET
 
 > **Fichier de référence exhaustif — Toutes décisions, spécifications, documents légaux et livrables**
