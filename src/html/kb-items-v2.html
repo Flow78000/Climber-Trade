@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowledge Base — Climber Trade</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0A0A0A;--surface:#0d0d0d;--card:#131313;--card2:#161616;
+  --border:#1c1c1c;--border2:#222;
+  --teal:#00D4FF;--teal-dim:#00D4FF15;
+  --green:#10B981;--red:#EF4444;--amber:#F59E0B;
+  --text:#F0F0F0;--text2:#8A8A8A;--text3:#444;
+  --font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.5;}
+/* Header */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:60px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,.95);backdrop-filter:blur(12px);
+}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{
+  width:32px;height:32px;background:linear-gradient(135deg,#00D4FF22,#00D4FF08);
+  border:1px solid #00D4FF33;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.logo-text{font-size:14px;font-weight:700;letter-spacing:-.2px;}
+.logo-sub{font-size:10px;color:var(--text3);letter-spacing:.5px;}
+.header-badge{
+  display:flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;
+  border:1px solid var(--border2);font-size:11px;color:var(--text2);
+}
+.header-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);}
+/* Layout */
+.layout{display:grid;grid-template-columns:256px 1fr;height:calc(100vh - 60px);}
+/* Sidebar */
+.sidebar{
+  border-right:1px solid var(--border);overflow-y:auto;
+  background:var(--surface);
+}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:#1c1c1c;}
+.pillar-section{padding:20px 14px 8px;}
+.pillar-section:first-child{padding-top:24px;}
+.pillar-header{
+  display:flex;align-items:center;gap:8px;margin-bottom:8px;padding:0 4px;
+}
+.pillar-indicator{
+  width:3px;height:28px;border-radius:2px;flex-shrink:0;
+}
+.pillar-info{}
+.pillar-label{font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--text3);display:block;}
+.pillar-coeff{font-size:9px;color:var(--text3);font-family:var(--mono);}
+.item-btn{
+  display:flex;align-items:center;gap:8px;
+  width:100%;text-align:left;padding:8px 10px;
+  font-size:12px;font-family:var(--font);color:var(--text2);
+  background:none;border:none;cursor:pointer;border-radius:6px;
+  transition:all .12s;margin-bottom:1px;
+}
+.item-btn:hover{color:var(--text);background:var(--card);}
+.item-btn.active{color:var(--teal);background:var(--teal-dim);}
+.item-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;opacity:.4;}
+.item-btn.active .item-dot{opacity:1;}
+/* Main */
+.main{overflow-y:auto;padding:36px 40px;}
+.main::-webkit-scrollbar{width:3px;}
+.main::-webkit-scrollbar-thumb{background:#1c1c1c;}
+.panel{display:none;animation:fi .2s ease;}
+.panel.active{display:block;}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+/* Metric top */
+.metric-top{margin-bottom:32px;}
+.pillar-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 14px;border-radius:20px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  margin-bottom:14px;
+}
+.chip-dot{width:6px;height:6px;border-radius:50%;}
+.metric-title{font-size:28px;font-weight:800;letter-spacing:-.8px;margin-bottom:14px;}
+.metric-lead{
+  font-size:14px;color:var(--text2);line-height:1.8;max-width:620px;
+  padding:16px 20px;background:var(--card);
+  border:1px solid var(--border);border-radius:10px;
+  border-left:3px solid var(--teal);
+}
+/* Section */
+.section{margin-bottom:28px;}
+.section-header{
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;
+}
+.sh-label{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text3);white-space:nowrap;}
+.sh-line{flex:1;height:1px;background:var(--border);}
+/* Description block */
+.desc-block{
+  font-size:13px;color:var(--text2);line-height:1.8;
+  max-width:640px;
+}
+/* Examples grid */
+.examples-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.example-card{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:16px 18px;
+}
+.ex-label{font-size:10px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:var(--text3);margin-bottom:6px;}
+.ex-value{font-size:22px;font-weight:700;font-family:var(--mono);color:var(--teal);margin-bottom:8px;letter-spacing:-.5px;}
+.ex-detail{font-size:12px;color:var(--text2);line-height:1.6;}
+/* Improvements */
+.improvements{display:flex;flex-direction:column;gap:10px;max-width:640px;}
+.improve-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:10px 14px;border-radius:8px;
+  background:var(--card);border:1px solid var(--border);
+  font-size:13px;color:var(--text2);line-height:1.6;
+}
+.improve-arrow{
+  width:18px;height:18px;border-radius:4px;
+  background:#00D4FF18;flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:var(--teal);font-weight:700;
+}
+/* Thresholds */
+.thresholds{display:flex;flex-direction:column;gap:8px;max-width:600px;}
+.threshold{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 16px;border-radius:8px;border:1px solid;
+}
+.threshold.Critical{border-color:#EF444433;background:#EF44440a;}
+.threshold.Needs{border-color:#F59E0B33;background:#F59E0B0a;}
+.threshold.Excellent{border-color:#10B98133;background:#10B9810a;}
+.thresh-badge{
+  font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  padding:3px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;
+}
+.Critical .thresh-badge{background:#EF44441a;color:#EF4444;}
+.Needs .thresh-badge{background:#F59E0B1a;color:#F59E0B;}
+.Excellent .thresh-badge{background:#10B9811a;color:#10B981;}
+.thresh-content{flex:1;}
+.thresh-value{font-size:13px;font-weight:600;font-family:var(--mono);color:var(--text);margin-bottom:2px;}
+.thresh-desc{font-size:12px;color:var(--text2);}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+    <div class="logo-icon">🏔</div>
+    <div>
+      <div class="logo-text">Climber Trade</div>
+      <div class="logo-sub">KNOWLEDGE BASE</div>
+    </div>
+  </div>
+  <div class="header-badge">CLIMB Score · Educational Guide</div>
+</div>
+<div class="layout">
+  <div class="sidebar" id="sidebar"></div>
+  <div class="main" id="main"></div>
+</div>
+<script>
+const PC={
+  risk:{label:"Risk Management",coeff:4,color:"#EF4444"},
+  perf:{label:"Performance",coeff:4,color:"#F59E0B"},
+  cons:{label:"Consistency & Style",coeff:3,color:"#00D4FF"},
+  qual:{label:"Quality Execution",coeff:2,color:"#8B5CF6"}
+};
+const KB=[
+  {id:"R_T_AFD",pillar:"risk",name:"Recovery Time After Drawdown",lead:"How quickly do you bounce back after a loss? Tracks the number of trading days it takes for your account to recover to its previous equity high. The score adapts to the drawdown size — larger drawdowns are expected to take longer.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"A fast, steady recovery shows discipline and emotional control. But recovering too fast can be just as bad — it often signals overleveraging or revenge trading. The scoring rewards the optimal pace: $600–$1,000/day recovery rate."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Optimal",value:"5–8 days",detail:"For a $5,000 drawdown on a $1M account — steady $600–$1,000/day recovery → 100 pts"},
+      {label:"Too Fast",value:"1–2 days",detail:"Recovering $5,000 in 1 day usually means overleveraging or revenge trading — penalized"},
+      {label:"Too Slow",value:"15+ days",detail:"Extended slump signals a strategy or mindset issue — score drops to 0"}]},
+    {type:"improve",title:"How to Improve",improvements:["After a drawdown, aim for $600–$1,000/day steady recovery — not one big trade","Set a rule to reduce position size during recovery","Define a hard daily loss limit and stop when you hit it","If recovery exceeds 10 days, review your strategy and reduce risk further"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"> 14 days",desc:"Extended recovery — high risk of compounding losses"},{level:"Needs",value:"9–14 days",desc:"Slower than expected — tighten your post-loss routine"},{level:"Excellent",value:"5–8 days",desc:"Professional-level recovery discipline"}]}
+  ]},
+  {id:"ABS_NPL",pillar:"risk",name:"Absolute Drawdown",lead:"The deepest your account has ever dropped below your starting capital. Unlike max drawdown (peak-to-trough), this tracks how far you fell below your initial balance — your true worst-case scenario from day one.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"A low absolute drawdown means you've consistently protected your starting capital. A high value signals that at some point your account was significantly underwater — both a financial and psychological blow."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Well Protected",value:"2%",detail:"Account never dipped more than 2% below starting capital — solid capital protection"},
+      {label:"Deep Drawdown",value:"8%+",detail:"Significant loss below starting capital — review early-stage risk management"}]},
+    {type:"improve",title:"How to Improve",improvements:["Reduce risk per trade and use stop-losses aligned with volatility","Never increase leverage during a losing streak","Set a hard stop: if account drops below a threshold, pause and reassess"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"> 8%",desc:"Capital severely at risk"},{level:"Needs",value:"4–8%",desc:"Tighten risk controls"},{level:"Excellent",value:"< 4%",desc:"Strong capital protection from day one"}]}
+  ]},
+  {id:"INPL",pillar:"risk",name:"Initial Drawdown",lead:"The worst loss you experienced before reaching your first new equity high. Captures how well you manage the critical early phase — when you're building your track record and haven't yet established a buffer.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"A high initial drawdown suggests you started too aggressively. A low value means you eased in carefully — protecting capital while building confidence and statistical evidence."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Cautious Start",value:"2%",detail:"Minimal drawdown before first new high — disciplined ramp-up"},
+      {label:"Rough Start",value:"9%",detail:"Deep hole to climb out of before making progress — too aggressive too early"}]},
+    {type:"improve",title:"How to Improve",improvements:["Start with reduced position sizes and only scale up after strategy proves profitable","Avoid going for big wins early — focus on consistency first","Treat the first weeks as a calibration period, not a sprint"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"> 8%",desc:"Starting phase too aggressive"},{level:"Needs",value:"4–8%",desc:"Reduce early-stage risk"},{level:"Excellent",value:"< 4%",desc:"Careful, disciplined start"}]}
+  ]},
+  {id:"MDD",pillar:"risk",name:"Maximum Drawdown",lead:"The largest peak-to-trough drop in your account equity. The single most important risk metric — it shows the worst decline from any high point to the following low. This is an informational metric — displayed for reference.",sections:[
+    {type:"examples",title:"Examples",examples:[
+      {label:"Controlled Risk",value:"8%",detail:"Professional-level risk management — worst dip was contained"},
+      {label:"Excessive Risk",value:"25%+",detail:"A quarter of peak equity was lost — dangerous territory"}]},
+    {type:"improve",title:"How to Improve",improvements:["Risk only 1–2% of your account per trade","Always use stop-losses on every position","Reduce leverage during volatile market periods","Set daily and weekly loss limits and stick to them"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"> 20%",desc:"Excessive risk exposure"},{level:"Needs",value:"10–20%",desc:"Review your risk parameters"},{level:"Excellent",value:"< 10%",desc:"Institutional-grade risk control"}]}
+  ]},
+  {id:"PI2",pillar:"perf",name:"Annualized Yield",lead:"Your annualized return projected over a full year. Includes a confidence factor that adjusts the score based on how long you've been trading — so short track records don't get inflated scores. Score 50 = 8% benchmark.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"A score of 50 means you're hitting the 8% annual benchmark. Above 50 = outperforming. Below 50 = underperforming. With fewer than 180 trading days, the confidence factor reduces your score to reflect statistical uncertainty."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Strong Performance",value:"Score 75",detail:"Significantly outperforming the 8% benchmark with enough track record"},
+      {label:"Early Stage",value:"Score 35",detail:"Below benchmark — confidence factor may also be reducing your score"}]},
+    {type:"improve",title:"How to Improve",improvements:["Prioritize consistency and capital protection before trying to boost returns","Avoid extreme days that increase volatility and reduce risk-adjusted performance","Build a track record of at least 180 trading days"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"Score < 25",desc:"Significantly underperforming"},{level:"Needs",value:"Score 25–50",desc:"Below the 8% annual benchmark"},{level:"Excellent",value:"Score > 50",desc:"Outperforming the benchmark"}]}
+  ]},
+  {id:"PROFIT_FACTOR",pillar:"perf",name:"Profit Factor",lead:"The ratio of your total gains to your total losses. For every dollar you lose, how many dollars do you make back? Above 1.0 = profitable. The score also factors in sample size — more trades = more reliable score.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"A direct measure of your trading edge. PF 1.5 = you earn $1.50 for every $1 lost. Below 1.0 = your losses outweigh your gains."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Strong Edge",value:"2.0",detail:"Earning $2 for every $1 lost — excellent efficiency"},
+      {label:"No Edge",value:"0.9",detail:"Losing money overall — losses exceed gains before costs"}]},
+    {type:"improve",title:"How to Improve",improvements:["Cut losing trades faster — don't let small losses turn into big ones","Avoid low-quality setups that dilute your overall edge","Let your winners run with trailing stops instead of exiting too early","Avoid revenge trading after losses"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"< 1.0",desc:"Losing money overall"},{level:"Needs",value:"1.0–1.5",desc:"Profitable but room to grow"},{level:"Excellent",value:"> 1.5",desc:"Strong, consistent trading edge"}]}
+  ]},
+  {id:"SHARPE",pillar:"perf",name:"Sharpe Ratio",lead:"The gold standard for measuring the quality of your returns. Are your profits worth the risk you're taking? A high Sharpe means returns are smooth and consistent relative to volatility. Provides up to +10 bonus pts.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"A high Sharpe = stable, reliable returns without wild swings. A low Sharpe = erratic results — even if profitable, the ride is rough. Professional managers typically target Sharpe above 1.5."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Smooth Equity Curve",value:"2.0",detail:"Consistent, reliable returns — institutional-quality performance"},
+      {label:"Choppy Results",value:"0.7",detail:"Erratic returns — profitable days mixed with heavy losing days"}]},
+    {type:"improve",title:"How to Improve",improvements:["Stabilize your daily results — reduce the gap between best and worst days","Keep position sizing consistent — avoid the temptation to 'go big'","Eliminate setups that add volatility without adding profit"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"< 1.0",desc:"Too volatile for the returns generated"},{level:"Needs",value:"1.0–1.5",desc:"Decent but not yet professional grade"},{level:"Excellent",value:"> 1.5",desc:"Professional-quality risk-adjusted returns"}]}
+  ]},
+  {id:"WIN_RATE",pillar:"cons",name:"Win Rate",lead:"The percentage of your trades that end in profit. Important: a high win rate alone doesn't guarantee profitability — it must be paired with a solid risk-to-reward ratio. Below 46%, scores go negative.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"A high win rate with a low Profit Factor can mean you win often but lose big when you're wrong. Always read this metric alongside your Profit Factor."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"High Frequency Wins",value:"65%",detail:"Winning 2 out of 3 trades — strong trade selection and execution"},
+      {label:"Trend Following",value:"38%",detail:"Fewer wins, but the winners are significantly larger than the losers"}]},
+    {type:"improve",title:"How to Improve",improvements:["Be more selective — quality entries over quantity","Wait for multiple confirmation signals before entering","Avoid impulsive trades that bring down your average"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"< 35%",desc:"Very low — review strategy viability"},{level:"Needs",value:"35–50%",desc:"Common for trend strategies, ensure R:R compensates"},{level:"Excellent",value:"> 55%",desc:"Strong trade selection and execution"}]}
+  ]},
+  {id:"CT2",pillar:"cons",name:"Days in Gain",lead:"The percentage of trading days that end positive. The simplest metric in the system: 60% green days = 60 points. Direct 1:1 mapping — no multiplier, no confidence factor.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"A high percentage of green days shows disciplined daily execution. Watch out for 'micro-gain' strategies where you scratch tiny profits most days but get crushed on the occasional bad day."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Consistent Trader",value:"65%",detail:"Two-thirds of trading days end in profit — strong daily discipline"},
+      {label:"Inconsistent Trader",value:"40%",detail:"More red days than green — review daily routine and risk controls"}]},
+    {type:"improve",title:"How to Improve",improvements:["Set a daily stop-loss and a clear end-of-session rule","Don't turn a flat day into a red day by overtrading","Standardize your routine: trading hours, checklist, required conditions"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"< 40%",desc:"More losing days than winning days"},{level:"Needs",value:"40–55%",desc:"Room to improve daily consistency"},{level:"Excellent",value:"> 55%",desc:"Reliable daily execution"}]}
+  ]},
+  {id:"LSR",pillar:"cons",name:"Position Size Stability",lead:"How consistent is your position sizing from trade to trade? LSR = Average lots ÷ Std deviation of lots. Higher ratio = more stable = higher score. This separates amateurs from professionals.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"Stable sizing (high score) means your risk is predictable and your strategy is scalable. Unstable sizing often signals emotional decisions — doubling down after losses, going big on 'sure things'."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Disciplined Sizing",value:"LSR ≥ 3.5",detail:"Very consistent lot sizes — professional, scalable approach"},
+      {label:"Erratic Sizing",value:"LSR < 1.5",detail:"Wild variations — suggests emotional or impulsive decisions"}]},
+    {type:"improve",title:"How to Improve",improvements:["Use a fixed risk rule (% of capital per trade) instead of sizing by feel","Never increase position size after a loss","Limit yourself to 2–3 predefined position size tiers maximum"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"< 1.5",desc:"Sizing is all over the place — high risk"},{level:"Needs",value:"1.5–2.5",desc:"Some consistency, but still too variable"},{level:"Excellent",value:"> 3.0",desc:"Professional, scalable position sizing"}]}
+  ]},
+  {id:"OF3",pillar:"cons",name:"Extreme Day Impact",lead:"How much do your extreme days dominate your overall results? Ratio = max(|Best Day|, |Worst Day|) / AvgAbsPnL. A low ratio means steady beats spectacular.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"A low ratio (close to 1–2) means results are well-distributed — no single day dominates. A high ratio (above 5) suggests performance depends on a few exceptional days, which is fragile and hard to replicate."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Balanced Results",value:"Ratio 1.5",detail:"Extreme days are close to your average — consistent, repeatable performance"},
+      {label:"Outlier-Driven",value:"Ratio 8+",detail:"Your best or worst day is 8× your average — fragile strategy"}]},
+    {type:"improve",title:"How to Improve",improvements:["Set strict daily loss limits to cap the downside of any single day","Keep position sizing stable — don't load up on a single trade","Avoid trading high-impact news events if your strategy isn't designed for it"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"> 6",desc:"Results dominated by extreme days"},{level:"Needs",value:"3–6",desc:"Outliers are too influential"},{level:"Excellent",value:"< 3",desc:"Well-balanced, consistent daily results"}]}
+  ]},
+  {id:"AVG_LVRG",pillar:"cons",name:"Average Leverage",lead:"Your average market exposure relative to your account size. The goal is to stay in a professional zone — neither underexposed (wasting capital) nor overexposed (gambling). Sweet spot: 2× to 5×.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"Leverage in the 2× to 5× range signals healthy exposure. Below 2× = capital underutilized. Above 5× = account swings are amplified — small market moves can cause large P&L changes."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Sweet Spot",value:"3×",detail:"Healthy exposure — strong returns potential with manageable risk"},
+      {label:"Over-Leveraged",value:"12×",detail:"Extreme exposure — an 8% market move could wipe your account"}]},
+    {type:"improve",title:"How to Improve",improvements:["Define a target leverage per product and stick to it","Size positions based on notional value, not just number of contracts","Automatically reduce leverage after a losing streak or when volatility spikes"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"> 10×",desc:"Dangerously high exposure"},{level:"Needs",value:"6–10×",desc:"Reduce for stability"},{level:"Excellent",value:"2–5×",desc:"Professional exposure range"}]}
+  ]},
+  {id:"BEST_WORST_DAY",pillar:"qual",name:"Best vs Worst Day",lead:"The ratio between your best trading day and your worst trading day. Shows whether you maintain the same level of discipline when things go well as when things go badly.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"A balanced ratio (close to 1–2) means you manage risk symmetrically. A very high ratio can mean you're overly aggressive on winning days or overly passive on losing days."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Balanced Control",value:"1.5",detail:"Best day: +$15k, Worst day: -$10k — symmetrical discipline"},
+      {label:"Unbalanced",value:"5.0",detail:"Best day: +$50k, Worst day: -$10k — inconsistent risk approach"}]},
+    {type:"improve",title:"How to Improve",improvements:["Set daily profit targets to avoid overconfidence-driven outliers","Enforce strict daily loss limits to cap your worst days","Take a break after any extreme day — both wins and losses"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"> 5.0",desc:"Extreme asymmetry between best and worst"},{level:"Needs",value:"2.5–5.0",desc:"Work on balancing risk symmetry"},{level:"Excellent",value:"< 2.5",desc:"Well-controlled risk in all conditions"}]}
+  ]},
+  {id:"OF1",pillar:"qual",name:"Return Symmetry (Skew)",lead:"How balanced is the shape of your returns? Measures whether daily results are evenly distributed, or skewed — for example, many small wins and rare devastating losses that wipe them out.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"A near-zero skew = your wins and losses are well-balanced. A strong negative skew (common trap) = you collect small profits regularly but suffer occasional large losses that erase them all."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Balanced Distribution",value:"|Skew| < 0.5",detail:"Returns are nicely symmetrical — no dangerous tail risk"},
+      {label:"Skewed Distribution",value:"|Skew| > 2.0",detail:"Returns are heavily one-sided — large losses or large gains dominate"}]},
+    {type:"improve",title:"How to Improve",improvements:["Balance your exits — don't cut winners early while letting losers run","Keep risk per trade consistent to avoid disproportionate outcomes","Review your worst days: are they caused by the same pattern? Fix the root cause"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"|Skew| > 2.0",desc:"Severely unbalanced — strategy may be fragile"},{level:"Needs",value:"|Skew| 1.0–2.0",desc:"Noticeable bias — monitor and adjust"},{level:"Excellent",value:"|Skew| < 1.0",desc:"Healthy, balanced return distribution"}]}
+  ]},
+  {id:"KURT",pillar:"qual",name:"Return Stability (Kurtosis)",lead:"How often do extreme days occur in your results? Measures the 'weight of the tails' in your return distribution. Low value = predictable. High value = outlier days happen more often than they should.",sections:[
+    {type:"reveals",title:"What This Reveals",content:"Low kurtosis = smooth equity curve, predictable results. High kurtosis = performance punctuated by spikes — big winning days AND big losing days that make results harder to trust and replicate."},
+    {type:"examples",title:"Examples",examples:[
+      {label:"Clean Profile",value:"Kurtosis < 1",detail:"Very few outliers — smooth, predictable results"},
+      {label:"Spiky Profile",value:"Kurtosis > 4",detail:"Frequent extreme days — sudden drawdowns or windfall profits"}]},
+    {type:"improve",title:"How to Improve",improvements:["Reduce exposure during major news events and low-liquidity periods","Set strict daily limits (both profit and loss) to cut the tails","Keep your position sizing constant — don't go 'all-in' on any setup"]},
+    {type:"thresholds",title:"Thresholds",thresholds:[{level:"Critical",value:"> 4",desc:"Unstable — frequent extreme events"},{level:"Needs",value:"2–4",desc:"Occasional spikes — work on consistency"},{level:"Excellent",value:"< 2",desc:"Smooth, predictable performance"}]}
+  ]}
+];
+const ORDER=["risk","perf","cons","qual"];
+const sidebar=document.getElementById('sidebar');
+const main=document.getElementById('main');
+let first=null;
+ORDER.forEach(pillar=>{
+  const items=KB.filter(k=>k.pillar===pillar);
+  if(!items.length)return;
+  const p=PC[pillar];
+  const sec=document.createElement('div');
+  sec.className='pillar-section';
+  sec.innerHTML=`<div class="pillar-header">
+    <div class="pillar-indicator" style="background:linear-gradient(180deg,${p.color},${p.color}44)"></div>
+    <div class="pillar-info">
+      <span class="pillar-label">${p.label}</span>
+      <span class="pillar-coeff">coefficient ×${p.coeff}</span>
+    </div>
+  </div>`;
+  items.forEach(item=>{
+    const btn=document.createElement('button');
+    btn.className='item-btn';
+    btn.innerHTML=`<span class="item-dot"></span>${item.name}`;
+    btn.onclick=()=>{
+      document.querySelectorAll('.item-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(pp=>pp.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('kb-'+item.id).classList.add('active');
+    };
+    sec.appendChild(btn);
+    if(!first)first={btn,id:item.id};
+    const panel=document.createElement('div');
+    panel.id='kb-'+item.id;
+    panel.className='panel';
+    let html=`<div class="metric-top">
+      <div class="pillar-chip" style="background:${p.color}18;color:${p.color};border:1px solid ${p.color}33">
+        <div class="chip-dot" style="background:${p.color}"></div>
+        ${p.label} &nbsp;·&nbsp; ×${p.coeff}
+      </div>
+      <div class="metric-title">${item.name}</div>
+      <div class="metric-lead">${item.lead}</div>
+    </div>`;
+    item.sections.forEach(s=>{
+      html+=`<div class="section"><div class="section-header"><div class="sh-label">${s.title}</div><div class="sh-line"></div></div>`;
+      if(s.type==='reveals'||s.type==='description'){
+        html+=`<div class="desc-block">${s.content}</div>`;
+      } else if(s.type==='examples'){
+        html+=`<div class="examples-grid">${s.examples.map(e=>`<div class="example-card">
+          <div class="ex-label">${e.label}</div>
+          <div class="ex-value">${e.value}</div>
+          <div class="ex-detail">${e.detail}</div>
+        </div>`).join('')}</div>`;
+      } else if(s.type==='improve'){
+        html+=`<div class="improvements">${s.improvements.map(i=>`<div class="improve-item">
+          <div class="improve-arrow">→</div><span>${i}</span>
+        </div>`).join('')}</div>`;
+      } else if(s.type==='thresholds'){
+        html+=`<div class="thresholds">${s.thresholds.map(t=>`<div class="threshold ${t.level}">
+          <span class="thresh-badge">${t.level==='Needs'?'Needs Work':t.level}</span>
+          <div class="thresh-content">
+            <div class="thresh-value">${t.value}</div>
+            <div class="thresh-desc">${t.desc}</div>
+          </div>
+        </div>`).join('')}</div>`;
+      }
+      html+=`</div>`;
+    });
+    panel.innerHTML=html;
+    main.appendChild(panel);
+  });
+  sidebar.appendChild(sec);
+});
+if(first){
+  document.getElementById('kb-'+first.id).classList.add('active');
+  first.btn.classList.add('active');
+}
+</script>
+</body>
+</html>

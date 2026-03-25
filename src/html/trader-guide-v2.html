@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trader Guide — Climber Trade</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0A0A0A;--surface:#0d0d0d;--card:#131313;--card2:#161616;
+  --border:#1c1c1c;--border2:#222;
+  --teal:#00D4FF;--teal-dim:#00D4FF15;
+  --green:#10B981;--red:#EF4444;--amber:#F59E0B;
+  --text:#F0F0F0;--text2:#8A8A8A;--text3:#444;
+  --font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;}
+/* Header */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:60px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,.95);backdrop-filter:blur(12px);
+}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{
+  width:32px;height:32px;background:linear-gradient(135deg,#00D4FF22,#00D4FF08);
+  border:1px solid #00D4FF33;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.logo-text{font-size:14px;font-weight:700;letter-spacing:-.2px;}
+.logo-sub{font-size:10px;color:var(--text3);letter-spacing:.5px;}
+.header-badge{
+  display:flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;
+  border:1px solid var(--border2);font-size:11px;color:var(--text2);
+}
+.header-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);}
+/* Nav */
+.nav{
+  display:flex;gap:0;border-bottom:1px solid var(--border);
+  padding:0 28px;background:var(--surface);overflow-x:auto;
+}
+.nav-tab{
+  padding:14px 20px;font-size:12px;font-weight:600;
+  cursor:pointer;border-bottom:2px solid transparent;
+  color:var(--text2);white-space:nowrap;transition:all .15s;
+}
+.nav-tab:hover{color:var(--text);}
+.nav-tab.active{color:var(--teal);border-bottom-color:var(--teal);}
+/* Content */
+.content{padding:32px 36px;max-width:1200px;}
+.panel{display:none;animation:fi .2s ease;}
+.panel.active{display:block;}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+/* ── PILLAR TARGETS ── */
+.score-selector{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+.ss-btn{
+  padding:6px 18px;border-radius:6px;border:1px solid var(--border2);
+  background:none;font-family:var(--font);font-size:13px;font-weight:600;
+  color:var(--text2);cursor:pointer;transition:all .15s;
+}
+.ss-btn:hover{border-color:var(--border);color:var(--text);}
+.ss-btn.active{border-color:var(--teal);color:var(--teal);background:var(--teal-dim);}
+.score-overview{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;
+}
+.final-score-card{
+  grid-column:1/-1;
+  background:var(--card);border:1px solid var(--teal)33;border-radius:12px;
+  padding:24px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.fsc-left{}
+.fsc-label{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.fsc-score{font-size:52px;font-weight:800;font-family:var(--mono);color:var(--teal);letter-spacing:-2px;line-height:1;}
+.fsc-note{font-size:12px;color:var(--text2);margin-top:8px;max-width:480px;line-height:1.6;}
+.fsc-right{
+  text-align:right;
+}
+.fsc-formula{
+  font-size:11px;color:var(--text3);font-family:var(--mono);
+  background:var(--card2);padding:10px 14px;border-radius:6px;border:1px solid var(--border);
+}
+.pillar-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;}
+.pillar-card{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:18px;position:relative;overflow:hidden;
+}
+.pillar-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--pc-color);
+}
+.pc-name{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);margin-bottom:4px;}
+.pc-coeff{font-size:10px;color:var(--text3);margin-bottom:12px;}
+.pc-score{font-size:36px;font-weight:800;font-family:var(--mono);letter-spacing:-1px;color:var(--pc-color);}
+.pc-max{font-size:14px;color:var(--text3);font-weight:400;}
+.metric-targets{display:flex;flex-direction:column;gap:8px;}
+.mt-row{
+  display:flex;align-items:stretch;gap:0;
+  background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;
+}
+.mt-pillar{
+  width:4px;flex-shrink:0;
+}
+.mt-content{padding:10px 14px;flex:1;}
+.mt-name{font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--text3);margin-bottom:3px;}
+.mt-target{font-size:13px;font-weight:600;color:var(--text);}
+.mt-detail{font-size:12px;color:var(--text2);margin-top:2px;line-height:1.5;}
+/* ── STARTER PROFILES ── */
+.profile-selector{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+.profile-hero{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:22px 26px;margin-bottom:20px;
+}
+.ph-header{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+.ph-badge{
+  width:48px;height:48px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:800;font-family:var(--mono);letter-spacing:-.5px;
+}
+.ph-title{font-size:20px;font-weight:700;}
+.ph-sub{font-size:12px;color:var(--text2);}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.pg-card{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:16px 18px;}
+.pgc-title{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);margin-bottom:12px;}
+.pgc-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);}
+.pgc-row:last-child{border:none;}
+.pgc-key{font-size:12px;color:var(--text2);}
+.pgc-val{font-size:12px;font-family:var(--mono);font-weight:600;color:var(--teal);}
+.tips-card{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:16px 18px;}
+.tips-title{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);margin-bottom:12px;}
+.tip-item{display:flex;gap:10px;margin-bottom:9px;font-size:13px;color:var(--text2);line-height:1.5;}
+.tip-item:last-child{margin:0;}
+.tip-num{
+  width:18px;height:18px;border-radius:4px;background:var(--teal-dim);
+  flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;color:var(--teal);font-family:var(--mono);margin-top:1px;
+}
+/* ── LEVERAGE TABLE ── */
+.lev-table-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px;}
+table{width:100%;border-collapse:collapse;}
+th{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;
+  color:var(--text3);padding:10px 16px;text-align:left;
+  border-bottom:1px solid var(--border);background:var(--card2);
+}
+td{padding:10px 16px;border-bottom:1px solid #0f0f0f;font-size:12px;}
+td:first-child{font-family:var(--mono);font-weight:600;color:var(--teal);}
+tr:last-child td{border:none;}
+tr:hover td{background:#111;}
+.lev-highlight{color:var(--teal);font-family:var(--mono);font-weight:600;}
+.lev-green{color:var(--green);font-family:var(--mono);}
+/* ── 30 DAYS ── */
+.phases{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.phase-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 22px;}
+.phase-top{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.phase-pill{
+  padding:3px 12px;border-radius:20px;font-size:10px;font-weight:700;
+  letter-spacing:.3px;text-transform:uppercase;
+  background:var(--teal-dim);color:var(--teal);border:1px solid var(--teal)33;
+}
+.phase-title{font-size:15px;font-weight:700;}
+.phase-items{display:flex;flex-direction:column;gap:8px;}
+.pi{display:flex;gap:10px;font-size:13px;color:var(--text2);line-height:1.6;}
+.pi-dot{
+  width:5px;height:5px;border-radius:50%;background:var(--teal);
+  flex-shrink:0;margin-top:7px;
+}
+/* ── METRICS ── */
+.metrics-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 22px;}
+.mc-pillar{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
+.mc-name{font-size:15px;font-weight:700;margin-bottom:8px;}
+.mc-what{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.score-picker{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap;}
+.sp-btn{
+  padding:3px 10px;border-radius:4px;border:1px solid var(--border);
+  background:none;font-family:var(--mono);font-size:10px;font-weight:600;
+  color:var(--text3);cursor:pointer;transition:all .12s;
+}
+.sp-btn.active{border-color:var(--teal);color:var(--teal);background:var(--teal-dim);}
+.target-display{background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:12px 14px;}
+.td-val{font-size:12px;font-weight:700;color:var(--teal);margin-bottom:4px;}
+.td-detail{font-size:11px;color:var(--text3);line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+    <div class="logo-icon">🏔</div>
+    <div>
+      <div class="logo-text">Climber Trade</div>
+      <div class="logo-sub">TRADER GUIDE</div>
+    </div>
+  </div>
+  <div class="header-badge">New Trader Playbook</div>
+</div>
+<div class="nav">
+  <div class="nav-tab active" onclick="show('pillar-targets',this)">Score Targets</div>
+  <div class="nav-tab" onclick="show('starter-profiles',this)">Starter Profiles</div>
+  <div class="nav-tab" onclick="show('leverage-table',this)">Leverage Table</div>
+  <div class="nav-tab" onclick="show('checklist',this)">30-Day Checklist</div>
+  <div class="nav-tab" onclick="show('playbook-metrics',this)">Playbook Metrics</div>
+</div>
+<div class="content">
+<!-- SCORE TARGETS -->
+<div id="pillar-targets" class="panel active">
+  <div class="score-selector" id="pt-selector"></div>
+  <div id="pt-content"></div>
+</div>
+<!-- PROFILES -->
+<div id="starter-profiles" class="panel">
+  <div class="profile-selector" id="prof-selector"></div>
+  <div id="prof-content"></div>
+</div>
+<!-- LEVERAGE TABLE -->
+<div id="leverage-table" class="panel">
+  <div class="lev-table-wrap">
+    <table>
+      <thead><tr>
+        <th>Symbol</th><th>Name</th><th>Exchange</th><th>Notional</th><th>Margin</th>
+        <th>Lev ×1</th><th>Lev ×2</th><th>Lev ×5</th>
+        <th>Lots @×2</th><th>Lots @×5</th><th>Note</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>NQ</td><td>E-mini Nasdaq-100</td><td>CME</td><td class="lev-green">$420,000</td><td>$40,435</td><td>0.42×</td><td class="lev-highlight">2.10×</td><td>4.20×</td><td class="lev-highlight">5 lots</td><td>10 lots</td><td style="color:#555;font-size:11px">Most popular tech-weighted index</td></tr>
+        <tr><td>ES</td><td>E-mini S&P 500</td><td>CME</td><td class="lev-green">$300,000</td><td>$26,586</td><td>0.30×</td><td class="lev-highlight">1.50×</td><td>3.00×</td><td class="lev-highlight">5 lots</td><td>10 lots</td><td style="color:#555;font-size:11px">The benchmark equity index</td></tr>
+        <tr><td>YM</td><td>E-mini Dow ($5)</td><td>CBOT</td><td class="lev-green">$215,000</td><td>$16,469</td><td>0.22×</td><td class="lev-highlight">2.15×</td><td>4.30×</td><td class="lev-highlight">10 lots</td><td>20 lots</td><td style="color:#555;font-size:11px">Dow Jones index — granular sizing</td></tr>
+        <tr><td>CL</td><td>Crude Oil (WTI)</td><td>NYMEX</td><td class="lev-green">$72,000</td><td>$4,747</td><td>0.07×</td><td class="lev-highlight">2.02×</td><td>5.04×</td><td class="lev-highlight">28 lots</td><td>70 lots</td><td style="color:#555;font-size:11px">High-volatility energy — size carefully</td></tr>
+        <tr><td>GC</td><td>Gold (100 oz)</td><td>COMEX</td><td class="lev-green">$450,000</td><td>$49,959</td><td>0.45×</td><td class="lev-highlight">1.80×</td><td>4.50×</td><td class="lev-highlight">4 lots</td><td>10 lots</td><td style="color:#555;font-size:11px">Safe-haven metal — high margin</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 20px;font-size:12px;color:var(--text2);line-height:1.7">
+    All calculations based on a <strong style="color:var(--teal)">$1,000,000</strong> evaluation account.
+    Leverage = Total Notional / Account Capital.
+    Sweet spot for scoring: <strong style="color:var(--green)">2× to 5×</strong> leverage = 100 pts per trade.
+    Lot counts shown are approximate for the sweet spot zone.
+  </div>
+</div>
+<!-- CHECKLIST -->
+<div id="checklist" class="panel">
+  <div class="phases" id="phases-grid"></div>
+</div>
+<!-- METRICS -->
+<div id="playbook-metrics" class="panel">
+  <div class="metrics-grid" id="metrics-grid"></div>
+</div>
+</div>
+<script>
+function show(id,tab){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+// PILLAR TARGETS
+const PT={
+  85:{risk:80,perf:78,cons:76,qual:75,boosted:"85.1",note:"Quality at 75 → ×1.05 multiplier. Boosts weighted average from 78.2 to 85.1"},
+  90:{risk:84,perf:83,cons:80,qual:82,boosted:"90.0",note:"Quality at 82 → ×1.064 multiplier. Boosts weighted average from 82.7 to 90.0"},
+  95:{risk:89,perf:87,cons:85,qual:88,boosted:"95.1",note:"Quality at 88 → ×1.076 multiplier. Boosts weighted average from 87.3 to 95.1"},
+  99:{risk:93,perf:91,cons:89,qual:93,boosted:"99.0",note:"Quality at 93 → ×1.086 multiplier. Boosts weighted average from 91.2 to 99.0"},
+  100:{risk:95,perf:94,cons:92,qual:95,boosted:"100",note:"Quality at 95 → ×1.09 multiplier. Capped at 100 — near-perfect across all pillars"}
+};
+const PILLARS=[
+  {id:"risk",label:"Risk",coeff:4,color:"#EF4444"},
+  {id:"perf",label:"Performance",coeff:4,color:"#F59E0B"},
+  {id:"cons",label:"Consistency",coeff:3,color:"#00D4FF"},
+  {id:"qual",label:"Quality Exec.",coeff:2,color:"#8B5CF6"}
+];
+let activeScore=85;
+const ptSel=document.getElementById('pt-selector');
+const ptContent=document.getElementById('pt-content');
+[85,90,95,99,100].forEach(s=>{
+  const btn=document.createElement('button');
+  btn.className='ss-btn'+(s===85?' active':'');
+  btn.textContent='Score '+s;
+  btn.onclick=()=>{
+    document.querySelectorAll('#pt-selector .ss-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');activeScore=s;renderPT();
+  };
+  ptSel.appendChild(btn);
+});
+const PT_METRICS=[
+  {pillar:"risk",id:"ABS_NPL",name:"Absolute Net P&L",targets:{85:{target:"Average +0.08%/day",detail:"Around +$800/day. Keep losses under -0.5% on bad days."},90:{target:"Average +0.09%/day",detail:"Around +$900/day. Keep losses under -0.5%."},95:{target:"Average +0.10%/day",detail:"+$1,000/day. Losing days must be rare (<0.3%)."},99:{target:"Average +0.10%/day",detail:"Steady $1,000/day with almost zero red days."},100:{target:"+0.10% every day",detail:"Theoretical: green every day at +$1,000."}}},
+  {pillar:"risk",id:"INPL",name:"Initial Net P&L",targets:{85:{target:"Initial dip < 1.5%",detail:"Never lose more than $15,000 before first new equity high."},90:{target:"Initial dip < 1.0%",detail:"Max $10,000 dip. Half sizes your first week."},95:{target:"Initial dip < 0.5%",detail:"Max $5,000 dip. Very cautious first entries."},99:{target:"Initial dip < 0.2%",detail:"Max $2,000 dip. Only high-conviction trades."},100:{target:"No initial dip",detail:"Your very first trade is profitable."}}},
+  {pillar:"perf",id:"PROFIT_FACTOR",name:"Profit Factor",targets:{85:{target:"PF ≥ 1.90 with 200+ trades",detail:"Build trade count while staying profitable."},90:{target:"PF ≥ 2.50 with 200+ trades",detail:"Earning $2.50 for every $1 lost. Very selective."},95:{target:"PF ≥ 3.00 with 200+ trades",detail:"Earning $3 for every $1 lost. Elite level."},99:{target:"PF ≥ 4.00 with 200+ trades",detail:"Maximum possible score on this metric."},100:{target:"PF ≥ 4.00 with 200+ trades",detail:"Same ceiling — other metrics must be near-perfect."}}},
+  {pillar:"cons",id:"WIN_RATE",name:"Win Rate",targets:{85:{target:"Win rate ≥ 88%",detail:"Win roughly 9 out of 10 trades."},90:{target:"Win rate ≥ 91%",detail:"Very selective — skip marginal setups."},95:{target:"Win rate ≥ 95%",detail:"Only enter when conditions are near-perfect."},99:{target:"Win rate ≥ 99%",detail:"Near-perfect entry accuracy."},100:{target:"Win rate = 100%",detail:"Every trade wins."}}},
+  {pillar:"cons",id:"LSR",name:"Lot Stability Ratio",targets:{85:{target:"LSR ≥ 3.30",detail:"Pick a standard lot size and stick to it."},90:{target:"LSR ≥ 3.50",detail:"Very tight sizing. Same 1–2 lot sizes."},95:{target:"LSR ≥ 3.80",detail:"Near-identical position size every time."},99:{target:"LSR ≥ 3.95",detail:"Virtually the same lot count every trade."},100:{target:"LSR ≥ 4.00",detail:"Zero variation. Same contracts, every trade."}}},
+  {pillar:"qual",id:"OF1",name:"Return Symmetry (Skew)",targets:{85:{target:"Skew < 0.8",detail:"Cut losses at roughly the same magnitude as profits."},90:{target:"Skew < 0.5",detail:"Very balanced — wins and losses look similar."},95:{target:"Skew < 0.3",detail:"Near-perfect symmetry."},99:{target:"Skew < 0.1",detail:"Virtually no asymmetry."},100:{target:"Skew ≈ 0",detail:"Perfect balance — textbook execution."}}}
+];
+function renderPT(){
+  const t=PT[activeScore];
+  ptContent.innerHTML=`
+    <div class="final-score-card" style="background:linear-gradient(135deg,var(--card),var(--card2));border-color:#00D4FF22">
+      <div class="fsc-left">
+        <div class="fsc-label">Final CLIMB Score</div>
+        <div class="fsc-score">${t.boosted}</div>
+        <div class="fsc-note">${t.note}</div>
+      </div>
+      <div class="fsc-right">
+        <div class="fsc-formula">
+          Score = [(Risk×4 + Perf×4 + Cons×3) / 11]<br>× Quality Multiplier
+        </div>
+      </div>
+    </div>
+    <div class="pillar-cards">${PILLARS.map(p=>`<div class="pillar-card" style="--pc-color:${p.color}">
+      <div class="pc-name">${p.label}</div>
+      <div class="pc-coeff">coefficient ×${p.coeff}</div>
+      <div class="pc-score">${t[p.id]}<span class="pc-max">/100</span></div>
+    </div>`).join('')}</div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text3);margin-bottom:12px;">Per-Metric Targets</div>
+    <div class="metric-targets">${PT_METRICS.map(m=>{
+      const pillar=PILLARS.find(p=>p.id===m.pillar);
+      const tgt=m.targets[activeScore];
+      return`<div class="mt-row">
+        <div class="mt-pillar" style="background:${pillar.color}"></div>
+        <div class="mt-content">
+          <div class="mt-name">${m.name}</div>
+          <div class="mt-target">${tgt.target}</div>
+          <div class="mt-detail">${tgt.detail}</div>
+        </div>
+      </div>`;
+    }).join('')}</div>`;
+}
+renderPT();
+// PROFILES
+const PROFILES={
+  85:{label:"Score 85",color:"#F59E0B",daily:{pnl:"+0.06% to +0.10%",dollars:"$600–$1,000/day",leverage:"2×–5×",maxLoss:"-$300/day",trades:"3–5/day"},monthly:{greenDays:"17/20 days",maxDD:"-$1,500 (-0.15%)",winRate:"88%+",profitFactor:"1.9+",recovery:"3–6 days"},tips:["Start with half position size for the first 5 trading days — protect your INPL metric early","Hard daily loss limit at -$300 — walk away if you hit it, no exceptions","Daily profit target: $600–$1,000 then reduce size or stop","Same lot size every single trade — consistency builds your LSR","Review Skew and Kurtosis weekly — outlier days signal overleveraging"]},
+  90:{label:"Score 90",color:"#26c6da",daily:{pnl:"+0.07% to +0.10%",dollars:"$700–$1,000/day",leverage:"3×–4×",maxLoss:"-$200/day",trades:"2–4/day"},monthly:{greenDays:"18/20 days",maxDD:"-$1,000 (-0.10%)",winRate:"91%+",profitFactor:"2.5+",recovery:"2–4 days"},tips:["Spend your first week at 50% size to qualify your strategy","Daily loss limit: -$200 hard stop — protect the daily average at all costs","Lock in gains at +$800 — reduce to half size after target is hit","Only take A-grade setups — the trades you skip are as important as the ones you take","Keep position size exactly the same on every trade — your LSR depends on it"]},
+  95:{label:"Score 95",color:"#00D4FF",daily:{pnl:"+0.08% to +0.10%",dollars:"$800–$1,000/day",leverage:"3×–4×",maxLoss:"-$100/day",trades:"2–3/day"},monthly:{greenDays:"19/20 days",maxDD:"-$500 (-0.05%)",winRate:"95%+",profitFactor:"3.0+",recovery:"1–2 days"},tips:["Only trade the best 2–3 setups per day — if nothing qualifies, don't trade","Daily loss limit: -$100 — stop immediately at the first sign of trouble","Profit target: $800–$1,000 then STOP — resist the urge to push","Same lot size every trade, every day — zero exceptions, zero improvisation","Avoid trading during high-impact news unless your strategy is designed for volatility"]},
+  99:{label:"Score 99",color:"#8B5CF6",daily:{pnl:"≈ +0.10%",dollars:"≈ $1,000/day",leverage:"3×",maxLoss:"-$50/day",trades:"1–2/day"},monthly:{greenDays:"20/20 days",maxDD:"-$200 (-0.02%)",winRate:"99%+",profitFactor:"4.0+",recovery:"Same day"},tips:["One setup, one trade, one target — build a machine-like daily routine","Stop on first loss — daily loss limit of -$50 means one bad trade and you're done","Pre-qualify each session: if conditions aren't perfect, don't trade at all","Trade only during your proven best time window — avoid early opens and late sessions","Zero improvisation — follow your plan letter by letter, day after day"]},
+  100:{label:"Score 100",color:"#e8edf2",daily:{pnl:"+0.10%",dollars:"$1,000/day",leverage:"3×",maxLoss:"$0 (no losses)",trades:"1–2/day"},monthly:{greenDays:"20/20 days",maxDD:"$0",winRate:"100%",profitFactor:"∞",recovery:"N/A"},tips:["A perfect score requires flawless execution sustained over 180+ trading days","Every trade wins, every day is green, no drawdowns — ever","This is a theoretical ceiling — aim for 95–99 as realistic targets","If you consistently achieve 95+, you're already at elite institutional level"]}
+};
+let activeProfile=85;
+const profSel=document.getElementById('prof-selector');
+const profContent=document.getElementById('prof-content');
+[85,90,95,99,100].forEach(s=>{
+  const btn=document.createElement('button');
+  btn.className='ss-btn'+(s===85?' active':'');
+  btn.textContent='Score '+s;
+  btn.onclick=()=>{
+    document.querySelectorAll('#prof-selector .ss-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');activeProfile=s;renderProfile();
+  };
+  profSel.appendChild(btn);
+});
+function renderProfile(){
+  const p=PROFILES[activeProfile];
+  profContent.innerHTML=`
+    <div class="profile-hero">
+      <div class="ph-header">
+        <div class="ph-badge" style="background:${p.color}18;color:${p.color};border:1px solid ${p.color}33">${activeProfile}</div>
+        <div><div class="ph-title">${p.label} — Daily Playbook</div><div class="ph-sub">Capital: $1,000,000</div></div>
+      </div>
+      <div class="profile-grid">
+        <div class="pg-card">
+          <div class="pgc-title">Daily Routine</div>
+          <div class="pgc-row"><span class="pgc-key">P&L Target</span><span class="pgc-val">${p.daily.pnl}</span></div>
+          <div class="pgc-row"><span class="pgc-key">In Dollars</span><span class="pgc-val">${p.daily.dollars}</span></div>
+          <div class="pgc-row"><span class="pgc-key">Leverage Zone</span><span class="pgc-val">${p.daily.leverage}</span></div>
+          <div class="pgc-row"><span class="pgc-key">Max Daily Loss</span><span class="pgc-val" style="color:var(--red)">${p.daily.maxLoss}</span></div>
+          <div class="pgc-row"><span class="pgc-key">Trades/Day</span><span class="pgc-val">${p.daily.trades}</span></div>
+        </div>
+        <div class="pg-card">
+          <div class="pgc-title">Monthly Targets</div>
+          <div class="pgc-row"><span class="pgc-key">Green Days</span><span class="pgc-val">${p.monthly.greenDays}</span></div>
+          <div class="pgc-row"><span class="pgc-key">Max Drawdown</span><span class="pgc-val" style="color:var(--red)">${p.monthly.maxDD}</span></div>
+          <div class="pgc-row"><span class="pgc-key">Win Rate</span><span class="pgc-val">${p.monthly.winRate}</span></div>
+          <div class="pgc-row"><span class="pgc-key">Profit Factor</span><span class="pgc-val">${p.monthly.profitFactor}</span></div>
+          <div class="pgc-row"><span class="pgc-key">DD Recovery</span><span class="pgc-val">${p.monthly.recovery}</span></div>
+        </div>
+      </div>
+      <div class="tips-card">
+        <div class="tips-title">Key Tips for Score ${activeProfile}</div>
+        ${p.tips.map((t,i)=>`<div class="tip-item"><div class="tip-num">${i+1}</div><span>${t}</span></div>`).join('')}
+      </div>
+    </div>`;
+}
+renderProfile();
+// CHECKLIST
+const PHASES=[
+  {days:"Days 1–5",title:"Calibration Phase",items:["Trade at half position size — protect your Initial P&L (INPL) metric which locks in early","Maximum 2 trades per day — focus on learning the rhythm, not making money","Daily loss limit: -$2,000 on $1M (0.2%) — walk away immediately if hit","Goal: end each day green, even if gains are small ($200–$500 is fine)","Write down your lot size — you'll use this same size for the next 25 days"]},
+  {days:"Days 6–15",title:"Build Your Rhythm",items:["Increase to your standard position size — the one you chose on day 5","Stick to the SAME lot size on every trade — this builds your LSR (Lot Stability Ratio)","Daily target: $600–$1,000 — then reduce size or stop for the day","Daily loss limit: $300–$500 — protect the average, don't chase breakeven","Keep your leverage in the 2–5× zone — check notional exposure before every trade"]},
+  {days:"Days 16–22",title:"Confidence Activation",items:["Win Rate confidence reaches 100% at day 22 — your score becomes fully reliable","Maintain your exact routine — no changes, no experiments, no 'testing new ideas'","If a drawdown occurs, recover at $600–$1,000/day pace — no rush","Check your Quality metrics: are your daily results balanced (Skew) and predictable (Kurtosis)?"]},
+  {days:"Days 23–30+",title:"Monitor & Optimize",items:["All short-term confidence factors are now active","Profit Factor builds confidence at 200 trades — keep accumulating quality trades","Annualized Yield reaches full confidence at 180 trading days — marathon, not sprint","Review your Extreme Day Impact — if one day is 3× your average, you're overleveraging big days","Make every day look the same. Boring is beautiful in Climber."]}
+];
+const phasesGrid=document.getElementById('phases-grid');
+phasesGrid.innerHTML=PHASES.map(ph=>`<div class="phase-card">
+  <div class="phase-top">
+    <div class="phase-pill">${ph.days}</div>
+    <div class="phase-title">${ph.title}</div>
+  </div>
+  <div class="phase-items">${ph.items.map(i=>`<div class="pi"><div class="pi-dot"></div><span>${i}</span></div>`).join('')}</div>
+</div>`).join('');
+// PLAYBOOK METRICS
+const METRICS=[
+  {id:"ABS_NPL",pillar:"risk",color:"#EF4444",name:"Absolute Net P&L",what:"Your daily P&L as a % of your capital. The sweet spot is +1%/day — gains above that are actually penalized because they often indicate excessive risk-taking.",targets:{85:{target:"Average daily P&L ≈ +0.08%",detail:"Around +$800/day on average. Some days higher, some lower — what matters is the average stays positive and controlled."},90:{target:"Average daily P&L ≈ +0.09%",detail:"Around +$900/day. Keep losses under -0.5% on bad days."},95:{target:"Average daily P&L ≈ +0.10%",detail:"+$1,000/day. Losing days must be rare."},99:{target:"Average daily P&L ≈ +0.10%",detail:"Steady $1,000/day with almost zero red days."},100:{target:"+0.10% every day",detail:"Theoretical: green every day."}}},
+  {id:"INPL",pillar:"risk",color:"#EF4444",name:"Initial Net P&L",what:"The worst your account dipped before reaching a new high for the first time. This score locks in early — your first days set the tone. Start conservatively.",targets:{85:{target:"Initial dip < 1.5%",detail:"Never lose more than $15,000 before your first new equity high. Start with small positions."},90:{target:"Initial dip < 1.0%",detail:"Max $10,000 dip. Use smaller sizes your first week."},95:{target:"Initial dip < 0.5%",detail:"Max $5,000 dip. Very cautious first entries."},99:{target:"Initial dip < 0.2%",detail:"Max $2,000 dip. Only high-conviction trades on your first days."},100:{target:"No initial dip",detail:"Your very first trade is profitable."}}},
+  {id:"PROFIT_FACTOR",pillar:"perf",color:"#F59E0B",name:"Profit Factor",what:"How much you earn for every dollar you lose. PF 2.0 = $2 won for every $1 lost. The score also depends on how many trades you've taken — more trades = higher confidence in the score.",targets:{85:{target:"PF ≥ 1.90 with 200+ trades",detail:"Build trade count while staying profitable."},90:{target:"PF ≥ 2.50 with 200+ trades",detail:"Earning $2.50 for every $1 lost. Very selective."},95:{target:"PF ≥ 3.00 with 200+ trades",detail:"Earning $3 for every $1 lost. Elite level."},99:{target:"PF ≥ 4.00 with 200+ trades",detail:"Maximum possible score on this metric."},100:{target:"PF ≥ 4.00 with 200+ trades",detail:"Same ceiling — other metrics must be near-perfect."}}},
+  {id:"WIN_RATE",pillar:"cons",color:"#00D4FF",name:"Win Rate",what:"% of trades that end in profit. Below 46%, the score goes negative — dragging down your entire Consistency pillar. Quality of entries is crucial.",targets:{85:{target:"Win rate ≥ 88%",detail:"Win roughly 9 out of 10 trades. Only take high-conviction setups."},90:{target:"Win rate ≥ 91%",detail:"Very selective — skip marginal setups. The trades you don't take matter."},95:{target:"Win rate ≥ 95%",detail:"Only enter when conditions are near-perfect. Tight stops + excellent timing."},99:{target:"Win rate ≥ 99%",detail:"Near-perfect entry accuracy."},100:{target:"Win rate = 100%",detail:"Every trade wins."}}},
+  {id:"LSR",pillar:"cons",color:"#00D4FF",name:"Lot Stability Ratio",what:"How consistent your position sizes are. Same number of contracts every trade = high score. Wild variation = low score. This separates amateurs from professionals.",targets:{85:{target:"LSR ≥ 3.30",detail:"Pick a standard lot size (e.g. 5 NQ contracts) and stick to it."},90:{target:"LSR ≥ 3.50",detail:"Very tight sizing. Same 1–2 lot sizes across all trades."},95:{target:"LSR ≥ 3.80",detail:"Near-identical position size every time. Almost no variation."},99:{target:"LSR ≥ 3.95",detail:"Virtually the same lot count on every trade."},100:{target:"LSR ≥ 4.00",detail:"Zero variation. Same contracts, every trade, no exceptions."}}},
+  {id:"OF1",pillar:"qual",color:"#8B5CF6",name:"Return Symmetry (Skew)",what:"Are your wins and losses balanced in shape? The system wants your good days and bad days to look like mirror images. Lots of small wins + occasional big losses = bad score.",targets:{85:{target:"Skew < 0.8",detail:"Cut your losses at roughly the same magnitude you take profits."},90:{target:"Skew < 0.5",detail:"Very balanced — wins and losses look similar in shape."},95:{target:"Skew < 0.3",detail:"Near-perfect symmetry. Loss distribution mirrors gain distribution."},99:{target:"Skew < 0.1",detail:"Virtually no asymmetry."},100:{target:"Skew ≈ 0",detail:"Perfect balance — textbook execution."}}}
+];
+const mgrid=document.getElementById('metrics-grid');
+METRICS.forEach(m=>{
+  const card=document.createElement('div');
+  card.className='metric-card';
+  let activeS=85;
+  card.innerHTML=`
+    <div class="mc-pillar" style="color:${m.color}">${m.pillar.toUpperCase()} PILLAR</div>
+    <div class="mc-name">${m.name}</div>
+    <div class="mc-what">${m.what}</div>
+    <div class="score-picker">${[85,90,95,99,100].map(s=>`<button class="sp-btn${s===85?' active':''}" data-s="${s}">${s}</button>`).join('')}</div>
+    <div class="target-display">
+      <div class="td-val"></div>
+      <div class="td-detail"></div>
+    </div>`;
+  card.querySelectorAll('.sp-btn').forEach(btn=>{
+    btn.onclick=()=>{
+      activeS=parseInt(btn.dataset.s);
+      card.querySelectorAll('.sp-btn').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.s)===activeS));
+      update();
+    };
+  });
+  function update(){
+    const t=m.targets[activeS];
+    card.querySelector('.td-val').textContent=t.target;
+    card.querySelector('.td-detail').textContent=t.detail;
+  }
+  update();
+  mgrid.appendChild(card);
+});
+</script>
+</body>
+</html>
