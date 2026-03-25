@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Margin Reference — Climber Trade</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0A0A0A;--surface:#0f0f0f;--card:#131313;--card2:#161616;
+  --border:#1c1c1c;--border2:#222;
+  --teal:#00D4FF;--teal-dim:#00D4FF18;
+  --green:#10B981;--text:#F0F0F0;--text2:#9A9A9A;--text3:#444;
+  --font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;
+  --r:8px;--r2:12px;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;}
+/* Header */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:60px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,.95);backdrop-filter:blur(12px);
+}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{
+  width:32px;height:32px;background:linear-gradient(135deg,#00D4FF22,#00D4FF08);
+  border:1px solid #00D4FF33;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.logo-text{font-size:14px;font-weight:700;letter-spacing:-.2px;}
+.logo-sub{font-size:10px;color:var(--text3);letter-spacing:.5px;}
+.header-right{display:flex;align-items:center;gap:12px;}
+.header-badge{
+  display:flex;align-items:center;gap:6px;padding:4px 12px;
+  border-radius:20px;border:1px solid var(--border2);font-size:11px;color:var(--text2);
+}
+.header-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);}
+/* Exchange tabs */
+.exchange-tabs{
+  display:flex;gap:0;border-bottom:1px solid var(--border);
+  padding:0 28px;background:var(--surface);overflow-x:auto;
+}
+.ex-tab{
+  display:flex;align-items:center;gap:8px;
+  padding:14px 20px;font-size:12px;font-weight:600;
+  cursor:pointer;border-bottom:2px solid transparent;
+  color:var(--text2);white-space:nowrap;transition:all .15s;letter-spacing:.3px;
+}
+.ex-tab:hover{color:var(--text);}
+.ex-tab.active{color:var(--text);border-bottom-color:var(--teal);}
+.ex-dot{width:8px;height:8px;border-radius:50%;}
+.ex-count{
+  font-size:10px;font-family:var(--mono);
+  padding:1px 6px;border-radius:3px;background:var(--card2);
+  color:var(--text3);
+}
+/* Content */
+.content{padding:28px;max-width:1300px;}
+.panel{display:none;animation:fadeIn .2s ease;}
+.panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.exchange-hero{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:24px;padding:20px 24px;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+}
+.exchange-emblem{
+  width:48px;height:48px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;font-family:var(--mono);letter-spacing:-.5px;
+}
+.exchange-info h2{font-size:16px;font-weight:700;margin-bottom:2px;}
+.exchange-info p{font-size:12px;color:var(--text2);}
+.exchange-stats{margin-left:auto;display:flex;gap:20px;}
+.stat{text-align:right;}
+.stat-val{font-size:20px;font-weight:700;font-family:var(--mono);}
+.stat-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;}
+/* Categories */
+.category{margin-bottom:32px;}
+.cat-header{
+  display:flex;align-items:center;gap:10px;margin-bottom:12px;
+}
+.cat-title{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text2);}
+.cat-count{font-size:10px;font-family:var(--mono);color:var(--text3);padding:1px 6px;border-radius:3px;border:1px solid var(--border2);}
+.cat-line{flex:1;height:1px;background:var(--border);}
+/* Table */
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;}
+table{width:100%;border-collapse:collapse;}
+th{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;
+  color:var(--text3);padding:10px 16px;text-align:left;
+  border-bottom:1px solid var(--border);background:var(--card2);
+}
+th:last-child{text-align:right;}
+td{padding:10px 16px;border-bottom:1px solid #0f0f0f;font-size:12px;vertical-align:middle;}
+td:first-child{font-family:var(--mono);font-weight:600;font-size:13px;color:var(--teal);}
+td:nth-child(2){color:var(--text);font-size:13px;}
+td.mono{font-family:var(--mono);color:var(--text2);}
+td.margin-val{font-family:var(--mono);font-weight:600;color:var(--green);text-align:right;}
+td:last-child{text-align:right;}
+tr:last-child td{border:none;}
+tr:hover td{background:#111;}
+.note-chip{
+  display:inline-block;padding:2px 8px;border-radius:4px;
+  font-size:10px;background:#F59E0B18;color:#F59E0B;border:1px solid #F59E0B33;
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+    <div class="logo-icon">🏔</div>
+    <div>
+      <div class="logo-text">Climber Trade</div>
+      <div class="logo-sub">MARGIN REFERENCE</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="header-badge">Q1 2026 · AMP Futures / CME Group</div>
+  </div>
+</div>
+<div class="exchange-tabs" id="tabs"></div>
+<div class="content" id="content"></div>
+<script>
+const EXCHANGES=[
+  {id:"cme",name:"CME",fullName:"Chicago Mercantile Exchange",color:"#00D4FF",categories:[
+    {name:"Equity Index — Micro",products:[
+      {sym:"MES",name:"Micro E-mini S&P 500",tick:"0.25",tickVal:"$1.25",pointVal:"$5",margin:"$2,659",notional:"~$30,000"},
+      {sym:"MNQ",name:"Micro E-mini Nasdaq-100",tick:"0.25",tickVal:"$0.50",pointVal:"$2",margin:"$4,044",notional:"~$42,000"},
+      {sym:"MYM",name:"Micro E-mini Dow",tick:"1",tickVal:"$0.50",pointVal:"$0.50",margin:"$1,649",notional:"~$21,000"},
+      {sym:"M2K",name:"Micro E-mini Russell 2000",tick:"0.10",tickVal:"$0.50",pointVal:"$5",margin:"$1,169",notional:"~$11,000"}]},
+    {name:"Equity Index — E-mini",products:[
+      {sym:"ES",name:"E-mini S&P 500",tick:"0.25",tickVal:"$12.50",pointVal:"$50",margin:"$26,586",notional:"~$300,000"},
+      {sym:"NQ",name:"E-mini Nasdaq-100",tick:"0.25",tickVal:"$5.00",pointVal:"$20",margin:"$40,435",notional:"~$420,000"},
+      {sym:"RTY",name:"E-mini Russell 2000",tick:"0.10",tickVal:"$5.00",pointVal:"$50",margin:"$11,690",notional:"~$110,000"},
+      {sym:"EMD",name:"E-mini S&P MidCap 400",tick:"0.10",tickVal:"$10.00",pointVal:"$100",margin:"$25,200",notional:"~$300,000"}]},
+    {name:"Equity Index — Other",products:[
+      {sym:"NKD",name:"Nikkei 225 (USD)",tick:"5",tickVal:"$25.00",pointVal:"$5",margin:"$19,213",notional:"~$195,000"},
+      {sym:"MNK",name:"Micro Nikkei (USD)",tick:"5",tickVal:"$2.50",pointVal:"$0.50",margin:"$1,921",notional:"~$19,500"}]},
+    {name:"Currencies — Standard",products:[
+      {sym:"6E",name:"Euro FX",tick:"0.00005",tickVal:"$6.25",pointVal:"$125,000",margin:"$2,970",notional:"~$135,000"},
+      {sym:"6B",name:"British Pound",tick:"0.0001",tickVal:"$6.25",pointVal:"$62,500",margin:"$2,200",notional:"~$82,000"},
+      {sym:"6J",name:"Japanese Yen",tick:"0.0000005",tickVal:"$6.25",pointVal:"$12,500,000",margin:"$3,080",notional:"~$83,000"},
+      {sym:"6A",name:"Australian Dollar",tick:"0.0001",tickVal:"$10.00",pointVal:"$100,000",margin:"$2,090",notional:"~$65,000"},
+      {sym:"6C",name:"Canadian Dollar",tick:"0.00005",tickVal:"$5.00",pointVal:"$100,000",margin:"$1,100",notional:"~$72,000"},
+      {sym:"6S",name:"Swiss Franc",tick:"0.0001",tickVal:"$12.50",pointVal:"$125,000",margin:"$4,950",notional:"~$140,000"},
+      {sym:"6N",name:"New Zealand Dollar",tick:"0.0001",tickVal:"$10.00",pointVal:"$100,000",margin:"$1,430",notional:"~$58,000"}]},
+    {name:"Currencies — Micro",products:[
+      {sym:"M6E",name:"Micro EUR/USD",tick:"0.0001",tickVal:"$1.25",pointVal:"$12,500",margin:"$297",notional:"~$13,500"},
+      {sym:"M6B",name:"Micro GBP/USD",tick:"0.0001",tickVal:"$0.625",pointVal:"$6,250",margin:"$220",notional:"~$8,200"},
+      {sym:"MJY",name:"Micro JPY/USD",tick:"0.000001",tickVal:"$0.625",pointVal:"$625,000",margin:"$308",notional:"~$8,300"},
+      {sym:"M6A",name:"Micro AUD/USD",tick:"0.0001",tickVal:"$1.00",pointVal:"$10,000",margin:"$209",notional:"~$6,500"},
+      {sym:"MCD",name:"Micro CAD/USD",tick:"0.0001",tickVal:"$0.50",pointVal:"$5,000",margin:"$110",notional:"~$3,600"},
+      {sym:"MSF",name:"Micro CHF/USD",tick:"0.0001",tickVal:"$1.25",pointVal:"$12,500",margin:"$495",notional:"~$14,000"}]},
+    {name:"Meats",products:[
+      {sym:"LE",name:"Live Cattle",tick:"0.025",tickVal:"$10.00",pointVal:"$400",margin:"$3,630",notional:"~$77,000"},
+      {sym:"GF",name:"Feeder Cattle",tick:"0.025",tickVal:"$12.50",pointVal:"$500",margin:"$6,600",notional:"~$140,000"},
+      {sym:"HE",name:"Lean Hog",tick:"0.025",tickVal:"$10.00",pointVal:"$400",margin:"$1,870",notional:"~$37,000"}]},
+    {name:"Interest Rates",products:[
+      {sym:"SR1",name:"One-Month SOFR",tick:"0.0025",tickVal:"$10.42",pointVal:"$4,167",margin:"$248",notional:"~$4,167,000"},
+      {sym:"SR3",name:"Three-Month SOFR",tick:"0.005",tickVal:"$12.50",pointVal:"$2,500",margin:"$539",notional:"~$1,000,000"}]},
+    {name:"Other",products:[
+      {sym:"DC",name:"Class III Milk",tick:"0.01",tickVal:"$20.00",pointVal:"$2,000",margin:"$1,100",notional:"~$40,000"},
+      {sym:"LBR",name:"Lumber",tick:"0.10",tickVal:"$1.10",pointVal:"$11",margin:"$990",notional:"~$7,000"}]}
+  ]},
+  {id:"cbot",name:"CBOT",fullName:"Chicago Board of Trade",color:"#F59E0B",categories:[
+    {name:"Equity Index",products:[
+      {sym:"YM",name:"E-mini Dow ($5)",tick:"1",tickVal:"$5.00",pointVal:"$5",margin:"$16,469",notional:"~$210,000"}]},
+    {name:"U.S. Treasuries",products:[
+      {sym:"ZB",name:"U.S. Treasury Bond (30Y)",tick:"1/32",tickVal:"$31.25",pointVal:"$1,000",margin:"$4,070",notional:"~$117,000"},
+      {sym:"UB",name:"Ultra U.S. Treasury Bond",tick:"1/32",tickVal:"$31.25",pointVal:"$1,000",margin:"$5,665",notional:"~$115,000"},
+      {sym:"ZN",name:"10-Year T-Note",tick:"1/64",tickVal:"$15.625",pointVal:"$1,000",margin:"$2,062",notional:"~$110,000"},
+      {sym:"TN",name:"Ultra 10-Year T-Note",tick:"1/64",tickVal:"$15.625",pointVal:"$1,000",margin:"$2,805",notional:"~$116,000"},
+      {sym:"ZF",name:"5-Year T-Note",tick:"1/128",tickVal:"$7.8125",pointVal:"$1,000",margin:"$1,375",notional:"~$108,000"},
+      {sym:"ZT",name:"2-Year T-Note",tick:"1/128",tickVal:"$15.625",pointVal:"$2,000",margin:"$1,320",notional:"~$205,000"},
+      {sym:"Z3N",name:"3-Year T-Note",tick:"1/128",tickVal:"$7.8125",pointVal:"$1,000",margin:"$1,980",notional:"~$100,000"}]},
+    {name:"Grains — Standard",products:[
+      {sym:"ZC",name:"Corn",tick:"0.25",tickVal:"$12.50",pointVal:"$50",margin:"$935",notional:"~$24,000"},
+      {sym:"ZW",name:"Chicago SRW Wheat",tick:"0.25",tickVal:"$12.50",pointVal:"$50",margin:"$1,815",notional:"~$28,000"},
+      {sym:"ZS",name:"Soybeans",tick:"0.25",tickVal:"$12.50",pointVal:"$50",margin:"$2,200",notional:"~$53,000"},
+      {sym:"ZL",name:"Soybean Oil",tick:"0.01",tickVal:"$6.00",pointVal:"$600",margin:"$1,870",notional:"~$28,000"},
+      {sym:"ZM",name:"Soybean Meal",tick:"0.10",tickVal:"$10.00",pointVal:"$100",margin:"$2,310",notional:"~$31,000"},
+      {sym:"ZO",name:"Oats",tick:"0.25",tickVal:"$12.50",pointVal:"$50",margin:"$1,210",notional:"~$17,000"},
+      {sym:"ZR",name:"Rough Rice",tick:"0.005",tickVal:"$10.00",pointVal:"$2,000",margin:"$1,540",notional:"~$26,000"}]},
+    {name:"Grains — Mini & Micro",products:[
+      {sym:"XC",name:"Mini Corn",tick:"0.125",tickVal:"$1.25",pointVal:"$10",margin:"$187",notional:"~$4,800"},
+      {sym:"MZC",name:"Micro Corn",tick:"0.125",tickVal:"$0.625",pointVal:"$5",margin:"$93",notional:"~$2,400"},
+      {sym:"XW",name:"Mini Wheat",tick:"0.125",tickVal:"$1.25",pointVal:"$10",margin:"$363",notional:"~$5,600"},
+      {sym:"MZW",name:"Micro Wheat",tick:"0.125",tickVal:"$0.625",pointVal:"$5",margin:"$181",notional:"~$2,800"},
+      {sym:"XK",name:"Mini Soybean",tick:"0.125",tickVal:"$1.25",pointVal:"$10",margin:"$440",notional:"~$10,600"},
+      {sym:"MZS",name:"Micro Soybean",tick:"0.125",tickVal:"$0.625",pointVal:"$5",margin:"$220",notional:"~$5,300"}]}
+  ]},
+  {id:"nymex",name:"NYMEX",fullName:"New York Mercantile Exchange",color:"#EF4444",categories:[
+    {name:"Energy — Crude Oil",products:[
+      {sym:"CL",name:"Crude Oil (WTI)",tick:"0.01",tickVal:"$10.00",pointVal:"$1,000",margin:"$4,747",notional:"~$72,000"},
+      {sym:"QM",name:"E-mini Crude Oil",tick:"0.025",tickVal:"$12.50",pointVal:"$500",margin:"$2,384",notional:"~$36,000"},
+      {sym:"MCL",name:"Micro WTI Crude Oil",tick:"0.01",tickVal:"$1.00",pointVal:"$100",margin:"$476",notional:"~$7,200"}]},
+    {name:"Energy — Natural Gas",products:[
+      {sym:"NG",name:"Natural Gas (Henry Hub)",tick:"0.001",tickVal:"$10.00",pointVal:"$10,000",margin:"$5,501",notional:"~$38,000"},
+      {sym:"QG",name:"E-mini Natural Gas",tick:"0.005",tickVal:"$12.50",pointVal:"$2,500",margin:"$1,381",notional:"~$9,500"},
+      {sym:"MNG",name:"Micro Henry Hub Nat Gas",tick:"0.001",tickVal:"$1.00",pointVal:"$1,000",margin:"$552",notional:"~$3,800"}]},
+    {name:"Energy — Refined Products",products:[
+      {sym:"RB",name:"RBOB Gasoline",tick:"0.0001",tickVal:"$4.20",pointVal:"$42,000",margin:"$4,871",notional:"~$90,000"},
+      {sym:"HO",name:"Heating Oil",tick:"0.0001",tickVal:"$4.20",pointVal:"$42,000",margin:"$6,644",notional:"~$100,000"}]},
+    {name:"Metals",products:[
+      {sym:"PL",name:"Platinum",tick:"0.10",tickVal:"$5.00",pointVal:"$50",margin:"$17,137",notional:"~$50,000"}]}
+  ]},
+  {id:"comex",name:"COMEX",fullName:"Commodity Exchange",color:"#F59E0B",categories:[
+    {name:"Gold",products:[
+      {sym:"GC",name:"Gold (100 oz)",tick:"0.10",tickVal:"$10.00",pointVal:"$100",margin:"$49,959",notional:"~$450,000",note:"5% maint. margin — Jan 2026"},
+      {sym:"QO",name:"E-mini Gold (50 oz)",tick:"0.25",tickVal:"$12.50",pointVal:"$50",margin:"$24,980",notional:"~$225,000"},
+      {sym:"MGC",name:"Micro Gold (10 oz)",tick:"0.10",tickVal:"$1.00",pointVal:"$10",margin:"$4,088",notional:"~$45,000"},
+      {sym:"1OZ",name:"1-Ounce Gold",tick:"0.25",tickVal:"$0.25",pointVal:"$1",margin:"$501",notional:"~$4,500"}]},
+    {name:"Silver",products:[
+      {sym:"SI",name:"Silver (5,000 oz)",tick:"0.005",tickVal:"$25.00",pointVal:"$5,000",margin:"$77,185",notional:"~$165,000",note:"9% maint. margin — Jan 2026"},
+      {sym:"QI",name:"E-mini Silver (2,500 oz)",tick:"0.0125",tickVal:"$31.25",pointVal:"$2,500",margin:"$38,592",notional:"~$82,500"},
+      {sym:"SIL",name:"E-micro Silver (1,000 oz)",tick:"0.01",tickVal:"$10.00",pointVal:"$1,000",margin:"$15,437",notional:"~$33,000"}]},
+    {name:"Copper",products:[
+      {sym:"HG",name:"Copper (25,000 lbs)",tick:"0.0005",tickVal:"$12.50",pointVal:"$25,000",margin:"$13,200",notional:"~$115,000"},
+      {sym:"QC",name:"E-mini Copper",tick:"0.001",tickVal:"$12.50",pointVal:"$12,500",margin:"$6,600",notional:"~$57,500"},
+      {sym:"MHG",name:"Micro Copper (2,500 lbs)",tick:"0.0005",tickVal:"$1.25",pointVal:"$2,500",margin:"$1,320",notional:"~$11,500"}]}
+  ]},
+  {id:"eurex",name:"EUREX",fullName:"European Exchange (Frankfurt)",color:"#8B5CF6",categories:[
+    {name:"Equity Index",products:[
+      {sym:"FDAX",name:"DAX",tick:"0.50",tickVal:"€12.50",pointVal:"€25",margin:"$53,250",notional:"~€530,000"},
+      {sym:"FDXM",name:"Mini-DAX",tick:"1",tickVal:"€5.00",pointVal:"€5",margin:"$10,650",notional:"~€106,000"},
+      {sym:"FDXS",name:"Micro-DAX",tick:"1",tickVal:"€1.00",pointVal:"€1",margin:"$2,130",notional:"~€21,000"},
+      {sym:"FESX",name:"EURO STOXX 50",tick:"1",tickVal:"€10.00",pointVal:"€10",margin:"$4,800",notional:"~€55,000"},
+      {sym:"FSXE",name:"Micro-EURO STOXX 50",tick:"1",tickVal:"€1.00",pointVal:"€1",margin:"$480",notional:"~€5,500"},
+      {sym:"FXXP",name:"STOXX Europe 600",tick:"0.10",tickVal:"€5.00",pointVal:"€50",margin:"$2,410",notional:"~€28,000"},
+      {sym:"FSTX",name:"STOXX Europe 50",tick:"1",tickVal:"€10.00",pointVal:"€10",margin:"$3,950",notional:"~€40,000"},
+      {sym:"FESB",name:"EURO STOXX Banks",tick:"0.01",tickVal:"€0.50",pointVal:"€50",margin:"$1,790",notional:"~€6,000"},
+      {sym:"FVS",name:"VSTOXX (Volatility)",tick:"0.05",tickVal:"€5.00",pointVal:"€100",margin:"$390",notional:"~€2,000"}]},
+    {name:"Fixed Income",products:[
+      {sym:"FGBL",name:"Euro-Bund (10Y German)",tick:"0.01",tickVal:"€10.00",pointVal:"€1,000",margin:"$2,980",notional:"~€130,000"},
+      {sym:"FGBM",name:"Euro-Bobl (5Y German)",tick:"0.01",tickVal:"€10.00",pointVal:"€1,000",margin:"$1,600",notional:"~€116,000"},
+      {sym:"FGBS",name:"Euro-Schatz (2Y German)",tick:"0.005",tickVal:"€5.00",pointVal:"€1,000",margin:"$550",notional:"~€107,000"},
+      {sym:"FGBX",name:"Euro-Buxl (30Y German)",tick:"0.02",tickVal:"€20.00",pointVal:"€1,000",margin:"$5,490",notional:"~€120,000"},
+      {sym:"FBTP",name:"Long-Term Euro-BTP (Italian)",tick:"0.01",tickVal:"€10.00",pointVal:"€1,000",margin:"$4,345",notional:"~€115,000"},
+      {sym:"FOAT",name:"Euro-OAT (French Govt)",tick:"0.01",tickVal:"€10.00",pointVal:"€1,000",margin:"$2,685",notional:"~€125,000"}]}
+  ]}
+];
+const tabs=document.getElementById('tabs');
+const content=document.getElementById('content');
+EXCHANGES.forEach((ex,i)=>{
+  // Count total products
+  const total=ex.categories.reduce((s,c)=>s+c.products.length,0);
+  const tab=document.createElement('div');
+  tab.className='ex-tab'+(i===0?' active':'');
+  tab.innerHTML=`<div class="ex-dot" style="background:${ex.color}"></div>${ex.name}<span class="ex-count">${total}</span>`;
+  tab.onclick=()=>{
+    document.querySelectorAll('.ex-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-'+ex.id).classList.add('active');
+  };
+  tabs.appendChild(tab);
+  const panel=document.createElement('div');
+  panel.id='panel-'+ex.id;
+  panel.className='panel'+(i===0?' active':'');
+  panel.innerHTML=`
+    <div class="exchange-hero">
+      <div class="exchange-emblem" style="background:${ex.color}18;border:1px solid ${ex.color}33;color:${ex.color}">${ex.name}</div>
+      <div class="exchange-info">
+        <h2>${ex.fullName}</h2>
+        <p>${ex.categories.length} categories · ${total} products</p>
+      </div>
+      <div class="exchange-stats">
+        <div class="stat"><div class="stat-val" style="color:${ex.color}">${ex.categories.length}</div><div class="stat-label">Categories</div></div>
+        <div class="stat"><div class="stat-val" style="color:var(--green)">${total}</div><div class="stat-label">Products</div></div>
+      </div>
+    </div>
+    ${ex.categories.map(cat=>`
+      <div class="category">
+        <div class="cat-header">
+          <div class="cat-title">${cat.name}</div>
+          <div class="cat-count">${cat.products.length}</div>
+          <div class="cat-line"></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>Symbol</th><th>Name</th><th>Tick Size</th><th>Tick Value</th>
+              <th>Point Value</th><th>Note</th><th>Notional</th><th>Margin</th>
+            </tr></thead>
+            <tbody>
+              ${cat.products.map(p=>`<tr>
+                <td>${p.sym}</td>
+                <td style="color:var(--text)">${p.name}</td>
+                <td class="mono">${p.tick}</td>
+                <td class="mono">${p.tickVal}</td>
+                <td class="mono">${p.pointVal}</td>
+                <td>${p.note?`<span class="note-chip">${p.note}</span>`:''}</td>
+                <td class="mono">${p.notional}</td>
+                <td class="margin-val">${p.margin}</td>
+              </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `).join('')}
+  `;
+  content.appendChild(panel);
+});
+</script>
+</body>
+</html>

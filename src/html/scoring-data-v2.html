@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scoring Reference — Climber Trade</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0A0A0A;
+  --surface:#0f0f0f;
+  --card:#131313;
+  --card2:#161616;
+  --border:#1c1c1c;
+  --border2:#222;
+  --teal:#00D4FF;
+  --teal-dim:#00D4FF18;
+  --teal-glow:#00D4FF08;
+  --green:#10B981;
+  --red:#EF4444;
+  --amber:#F59E0B;
+  --purple:#8B5CF6;
+  --text:#F0F0F0;
+  --text2:#9A9A9A;
+  --text3:#555;
+  --font:'Outfit',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --r:8px;
+  --r2:12px;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.5;overflow-x:hidden;}
+/* ─── HEADER ─── */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:60px;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,.95);
+  backdrop-filter:blur(12px);
+}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{
+  width:32px;height:32px;
+  background:linear-gradient(135deg,#00D4FF22,#00D4FF08);
+  border:1px solid #00D4FF33;
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+}
+.logo-text{font-size:14px;font-weight:700;letter-spacing:-.2px;}
+.logo-sub{font-size:10px;color:var(--text3);letter-spacing:.5px;font-weight:400;}
+.header-badge{
+  display:flex;align-items:center;gap:6px;
+  padding:4px 12px;border-radius:20px;
+  border:1px solid var(--border2);
+  font-size:11px;color:var(--text2);
+}
+.header-badge::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 6px var(--green);
+}
+/* ─── LAYOUT ─── */
+.layout{display:grid;grid-template-columns:240px 1fr;height:calc(100vh - 60px);}
+/* ─── SIDEBAR ─── */
+.sidebar{
+  border-right:1px solid var(--border);
+  overflow-y:auto;
+  background:var(--surface);
+}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:#222;}
+.sidebar-section{padding:20px 16px 8px;}
+.sidebar-section:first-child{padding-top:24px;}
+.pillar-header{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:6px;padding:0 4px;
+}
+.pillar-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.pillar-label{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text3);}
+.pillar-coeff{
+  margin-left:auto;font-family:var(--mono);font-size:9px;
+  padding:1px 6px;border-radius:3px;color:var(--text3);
+  border:1px solid var(--border);
+}
+.metric-btn{
+  display:flex;align-items:center;gap:8px;
+  width:100%;text-align:left;padding:8px 10px;
+  font-size:12px;font-family:var(--font);
+  background:none;border:none;color:var(--text2);
+  cursor:pointer;border-radius:6px;
+  transition:all .15s;margin-bottom:1px;
+}
+.metric-btn:hover{color:var(--text);background:var(--card);}
+.metric-btn.active{
+  color:var(--teal);background:var(--teal-dim);
+}
+.metric-btn .mbdot{
+  width:4px;height:4px;border-radius:50%;
+  background:currentColor;flex-shrink:0;opacity:.5;
+}
+.metric-btn.active .mbdot{opacity:1;}
+/* ─── MAIN ─── */
+.main{overflow-y:auto;padding:32px 36px;}
+.main::-webkit-scrollbar{width:3px;}
+.main::-webkit-scrollbar-thumb{background:#1c1c1c;}
+.panel{display:none;animation:fadeIn .2s ease;}
+.panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+/* ─── METRIC HEADER ─── */
+.metric-top{margin-bottom:28px;}
+.pillar-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 12px;border-radius:20px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  margin-bottom:14px;
+}
+.metric-title{font-size:26px;font-weight:700;letter-spacing:-.5px;margin-bottom:10px;color:var(--text);}
+.metric-summary{
+  font-size:13px;color:var(--text2);line-height:1.8;
+  max-width:600px;
+  padding:14px 18px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  border-left:3px solid var(--teal);
+}
+/* ─── TABLES ─── */
+.tables-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:20px;}
+.table-block{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r2);
+  overflow:hidden;
+}
+.table-title{
+  padding:12px 16px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--text3);
+  border-bottom:1px solid var(--border);
+  background:var(--card2);
+}
+table{width:100%;border-collapse:collapse;}
+th{
+  font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;
+  color:var(--text3);padding:10px 16px;text-align:left;
+  border-bottom:1px solid var(--border);background:var(--card2);
+}
+td{padding:8px 16px;border-bottom:1px solid #0f0f0f;font-size:12px;}
+td:first-child{font-family:var(--mono);font-weight:500;color:var(--text2);}
+td:last-child{font-family:var(--mono);}
+tr:last-child td{border:none;}
+tr:hover td{background:#111;}
+/* Score color coding */
+.score-cell{display:flex;align-items:center;gap:8px;}
+.score-bar{height:3px;border-radius:2px;background:var(--border);flex:1;max-width:60px;overflow:hidden;}
+.score-fill{height:100%;border-radius:2px;transition:width .3s;}
+.score-val{font-family:var(--mono);font-size:12px;min-width:32px;}
+/* ─── INFO BOX ─── */
+.info-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:20px 24px;
+  margin-bottom:20px;
+}
+.info-card p{font-size:13px;color:var(--text2);line-height:1.8;}
+/* ─── KEY POINTS ─── */
+.key-points{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:20px 24px;
+}
+.kp-title{
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--text3);margin-bottom:14px;
+}
+.kp-item{
+  display:flex;align-items:flex-start;gap:10px;
+  margin-bottom:10px;font-size:13px;color:var(--text2);line-height:1.6;
+}
+.kp-item:last-child{margin:0;}
+.kp-arrow{
+  width:16px;height:16px;border-radius:4px;
+  background:var(--teal-dim);flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:var(--teal);
+}
+/* ─── RECOVERY GRID ─── */
+.recovery-wrapper{overflow-x:auto;border-radius:var(--r2);border:1px solid var(--border);margin-bottom:20px;}
+.recovery-wrapper table{min-width:900px;}
+.tier-badge{
+  display:inline-block;padding:2px 8px;border-radius:4px;
+  font-family:var(--mono);font-size:10px;font-weight:600;
+  background:var(--teal-dim);color:var(--teal);
+  white-space:nowrap;
+}
+.tier-note{font-size:10px;color:var(--text3);margin-top:2px;}
+/* ─── SECTION DIVIDER ─── */
+.section-divider{
+  display:flex;align-items:center;gap:10px;
+  margin:24px 0 16px;
+}
+.sd-label{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);white-space:nowrap;}
+.sd-line{flex:1;height:1px;background:var(--border);}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+    <div class="logo-icon">🏔</div>
+    <div>
+      <div class="logo-text">Climber Trade</div>
+      <div class="logo-sub">SCORING REFERENCE</div>
+    </div>
+  </div>
+  <div class="header-badge">Sept 2025 Update</div>
+</div>
+<div class="layout">
+  <div class="sidebar" id="sidebar"></div>
+  <div class="main" id="main"></div>
+</div>
+<script>
+const PILLARS=[
+  {id:"risk",label:"Risk",coeff:4,color:"#EF4444"},
+  {id:"perf",label:"Performance",coeff:4,color:"#F59E0B"},
+  {id:"cons",label:"Consistency",coeff:3,color:"#00D4FF"},
+  {id:"qual",label:"Quality Exec.",coeff:2,color:"#8B5CF6"}
+];
+function scoreColor(v){
+  const n=parseInt(v);
+  if(isNaN(n))return'#555';
+  if(n<0)return'#EF4444';
+  if(n<40)return'#EF4444';
+  if(n<70)return'#F59E0B';
+  return'#10B981';
+}
+function scoreBarWidth(v){
+  const n=parseInt(v);
+  if(isNaN(n)||n<0)return'0%';
+  return Math.min(100,n)+'%';
+}
+function renderScoreCell(val){
+  const clean=val.replace(' (max)','').replace('+','').replace('→','');
+  const num=parseInt(clean);
+  const color=scoreColor(val);
+  const pct=scoreBarWidth(val);
+  return`<div class="score-cell">
+    <div class="score-bar"><div class="score-fill" style="width:${pct};background:${color}"></div></div>
+    <span class="score-val" style="color:${color}">${val}</span>
+  </div>`;
+}
+const METRICS=[
+  {id:"ABS_NPL",pillar:"risk",name:"Absolute Net P&L",summary:"Daily score based on your account's P&L as a percentage of starting capital. Negative scores are applied for the daily average calculation, but the displayed score never goes below 0.",tableType:"two-column",tables:[
+    {title:"Loss zone — negative P&L",headers:["Daily P&L %","Score"],rows:[["-10.0%","-100"],["-9.5%","-88"],["-9.0%","-76"],["-8.0%","-52"],["-7.0%","-28"],["-6.0%","-4"],["-5.8%","+1"],["-5.0%","+20"],["-4.0%","+30"],["-3.0%","+40"],["-2.0%","+60"],["-1.0%","+80"],["-0.5%","+90"],["0.0%","0"]]},
+    {title:"Gain zone — positive P&L",headers:["Daily P&L %","Score"],rows:[["+0.1%","10"],["+0.3%","30"],["+0.5%","50"],["+0.7%","70"],["+0.9%","90"],["+1.0%","100 (max)"],["+1.5%","95"],["+2.0%","90"],["+3.0%","75"],["+4.0%","60"],["+5.0%","45"],["+6.0%","18"],["+7.0%","5"],["+8.2%+","0"]]}],
+  keyPoints:["Peak score at +1.0% daily — the optimal daily gain","Scores decrease above +1.0% — excessive gains indicate overleveraging","Negative P&L generates negative scores that pull down the daily average","Displayed score is never below 0, but negative values are used in calculations"]},
+  {id:"INPL",pillar:"risk",name:"Initial Net P&L",summary:"Captures the worst loss before your first new equity high. The score is locked at the worst point and held until recovery. Over 10% loss = 0 points.",tableType:"info",
+  keyPoints:["Takes the deepest loss percentage before first new equity high","Score is held at its worst level until equity recovers past the initial high","No negative scores — minimum is 0","Loss exceeds 10% → 0 points (may be extended to 20% after testing)"]},
+  {id:"R_T_AFD",pillar:"risk",name:"Recovery Time After DD",summary:"Scores how efficiently you recover from each drawdown. Sept 2025 update: maximum day-by-day granularity across 9 drawdown tiers. Larger drawdowns allow more recovery days.",tableType:"recovery-grid",tiers:[
+    {range:"< 0.25%",maxScore:100,data:[[0,100],[1,98],[2,96],[3,94],[4,92],[5,90],[7,86],[10,76],[15,66],[20,54],[25,42],[30,32]],tail:[["31–40",25],["41–60",10],["61+",0]]},
+    {range:"0.25–0.5%",maxScore:100,data:[[0,100],[1,97],[2,94],[3,91],[5,85],[7,79],[10,68],[15,54],[20,39],[25,29],[30,19]],tail:[["31–45",15],["46–60",5],["61+",0]]},
+    {range:"0.5–1%",maxScore:100,data:[[0,100],[1,95],[2,90],[3,86],[5,78],[7,70],[10,58],[15,43],[20,26],[25,14],[30,4]],tail:[["31–40",2],["41+",0]]},
+    {range:"1–2%",maxScore:95,data:[[0,95],[1,88],[2,82],[3,76],[5,66],[7,58],[10,47],[15,32],[20,17],[25,6],[30,1]],tail:[["31+",0]]},
+    {range:"2–3%",maxScore:92,data:[[0,92],[1,85],[2,78],[3,72],[5,62],[7,54],[10,43],[15,28],[20,13],[25,5],[29,1],[30,0]],tail:[["31+",0]]},
+    {range:"3–5%",maxScore:88,data:[[0,88],[1,80],[2,73],[3,67],[5,57],[7,48],[10,38],[15,24],[20,9],[25,3],[27,1]],tail:[["28+",0]]},
+    {range:"5–7.5%",maxScore:80,data:[[0,80],[1,72],[2,65],[3,59],[5,49],[7,41],[10,33],[15,20],[20,8],[25,4],[28,1]],tail:[["29+",0]]},
+    {range:"7.5–10%",maxScore:70,data:[[0,70],[1,63],[2,57],[3,52],[5,43],[7,36],[10,29],[15,16],[20,6],[25,2],[26,1]],tail:[["27+",0]]},
+    {range:"> 10%",maxScore:55,note:"Day 0 = 0 (immediate penalty)",data:[[0,0],[1,55],[2,50],[3,45],[5,36],[7,29],[10,23],[15,14],[20,7],[25,3],[27,1]],tail:[["28+",0]]}],
+  keyPoints:["Larger drawdowns start with a lower maximum possible score","Each tier has a different cutoff day beyond which the score drops to 0","Day 0 recovery scores high for small drawdowns but 0 for >10%"]},
+  {id:"MDD",pillar:"risk",name:"Max Drawdown",summary:"Informational metric — not scored. Tracks the largest peak-to-trough decline in your equity curve. Used as context alongside the scored risk metrics.",tableType:"info",
+  keyPoints:["This metric is displayed for reference but does not contribute to your Risk score","Shows the biggest drop from any equity peak to the following trough"]},
+  {id:"PROFIT_FACTOR",pillar:"perf",name:"Profit Factor",summary:"Measures your gross profits divided by gross losses, scored on 100 points with a confidence multiplier based on total trade count. Final Score = Raw Score × Confidence Multiplier.",tableType:"two-column",tables:[
+    {title:"Profit Factor → Raw Score",headers:["PF","Raw Score"],rows:[["< 0.50","0"],["0.50–0.59","5"],["0.70–0.79","20"],["0.90–0.99","40"],["1.00–1.09","45"],["1.10–1.19","50"],["1.30–1.39","60"],["1.50–1.59","70"],["1.80–1.89","80"],["1.90–1.99","85"],["2.00–2.49","88"],["2.50–2.99","95"],["3.00–3.99","98"],["≥ 4.00","100"]]},
+    {title:"Confidence Factor — trade count",headers:["Total Trades","Multiplier"],rows:[["≥ 200 trades","× 1.00"],["100–199 trades","× 0.75"],["50–99 trades","× 0.50"],["< 50 trades","× 0.25"]]}],
+  keyPoints:["Final Score = Raw Score × Confidence Multiplier","Example: PF 2.8 with 150 trades → 95 × 0.75 = 71.3 pts","Calculated across entire track record, not per day"]},
+  {id:"SHARPE",pillar:"perf",name:"Sharpe Ratio (Bonus)",summary:"Provides up to +10 bonus points added to your Performance score. Rewards smooth, consistent returns relative to volatility. Risk-free rate Rf = 0.",tableType:"single",table:{headers:["Sharpe Ratio","Bonus Points"],rows:[["< 1.00","0"],["1.00–1.09","1"],["1.20–1.29","3"],["1.40–1.49","5"],["1.60–1.69","6.5"],["1.80–1.89","7.5"],["1.90–1.99","8"],["2.00–2.09","8.3"],["2.30–2.39","9.0"],["2.50–2.59","9.4"],["2.80–2.89","9.9"],["≥ 2.90","10"]]},
+  keyPoints:["Bonus added on top of Performance score (capped at 100 total)","Annualized Sharpe — no minimum day requirement","Rf = 0 for this calculation"]},
+  {id:"PI2",pillar:"perf",name:"Annualized Yield",summary:"Projects your return over a full year with a confidence factor. Score of 50 = 8% annual benchmark (S&P500 avg). Full confidence at 180+ trading days.",tableType:"single",table:{headers:["Score","Annual Return"],rows:[["0","-12.0%"],["10","-8.0%"],["20","-4.0%"],["30","0.0%"],["40","+4.0%"],["50 ← benchmark","+8.0%"],["60","+12.0%"],["70","+16.0%"],["80","+20.0%"],["90","+24.0%"],["100","+28.0%"]]},
+  keyPoints:["Confidence factor = min(1, Trading Days / 180)","Score 50 = matching the 8% annual benchmark","Each 2.5 points ≈ 1% annual return difference","Below 180 days, the score is proportionally reduced"]},
+  {id:"WIN_RATE",pillar:"cons",name:"Win Rate",summary:"Scored on 100 points with negative values possible for low win rates — they drag down the entire Consistency pillar. Confidence factor based on 22 trading days.",tableType:"single",table:{headers:["Win Rate %","Score"],rows:[["0–3%","-100"],["10%","-85"],["20%","-61"],["30%","-37"],["40%","-13"],["45%","-1"],["46%","+1.4"],["50%","+11"],["55%","+23"],["60%","+35"],["70%","+58.3"],["80%","+72.3"],["90%","+86.3"],["100%","+100"]]},
+  keyPoints:["Negative scores for win rates below ~46%","Confidence factor = min(1, Trading Days / 22)","Final Score = Raw Score × Confidence Factor"]},
+  {id:"CT2",pillar:"cons",name:"Days in Gain",summary:"Simple 1:1 mapping — your percentage of green trading days equals your score. No multiplier, no confidence factor. Scored 0 to 100.",tableType:"info",
+  keyPoints:["Score = % of trading days with positive P&L","60% green days = 60 points, 80% green days = 80 points","Direct mapping — the simplest metric in the system"]},
+  {id:"AVG_LVRG",pillar:"cons",name:"Average Leverage",summary:"Each trade is scored based on leverage used. Sweet spot is 2× to 5× = 100 pts per trade. Daily score = average across all trades. Negative scores possible above 18×.",tableType:"single",table:{headers:["Leverage","Score"],rows:[["0×","60"],["1×","80"],["2×","100 ✓"],["3×","100 ✓"],["4×","100 ✓"],["5×","100 ✓"],["6×","92"],["8×","76"],["10×","60"],["12×","44"],["15×","20"],["17×","4"],["18×","0"],["20×","-16"],["25×+","-100"]]},
+  keyPoints:["Sweet spot: 2× to 5× = 100 points per trade","Below 2×: underexposed, score drops but stays positive","Above 18×: negative scores drag down the daily average","Daily score = average of all trade scores for that day"]},
+  {id:"LSR",pillar:"cons",name:"Lot Stability Ratio",summary:"LSR = Average lots per trade ÷ Std deviation of lots per trade. Higher ratio = more consistent sizing = higher score. Mini = 1 lot, Micro = 0.1 lot (standardized).",tableType:"single",table:{headers:["LSR Range","Score"],rows:[["≥ 4.00","100"],["3.90–3.99","98"],["3.70–3.79","94"],["3.50–3.59","90"],["3.30–3.39","86"],["3.00–3.09","80"],["2.70–2.79","74"],["2.50–2.59","70"],["2.00–2.09","60"],["1.50–1.59","40"],["1.00–1.09","20"],["0.50–0.59","1"],["< 0.50","0"]]},
+  keyPoints:["LSR = Average lots ÷ Std deviation of lots","Above 3.5 = professional-grade sizing consistency","Example: [2,3,2,4,3] → avg 2.8, σ 0.75 → LSR 3.73 → 94 pts"]},
+  {id:"QUALITY_WEIGHT",pillar:"qual",name:"Quality — Pillar Weight",summary:"This pillar applies a multiplier (×0.90 to ×1.10) to the weighted average of the other 3 pillars. Score 50 = neutral (×1.00). Each point above/below 50 = ±0.002.",tableType:"info",
+  keyPoints:["Quality score 50 → multiplier 1.00 (neutral, no impact)","Score 100 → ×1.10 (+10% boost to final score)","Score 0 → ×0.90 (-10% penalty)","Example: 3-pillar avg 78.5, Quality 85 → 78.5 × 1.07 = 84.0"]},
+  {id:"OF1",pillar:"qual",name:"Return Symmetry (Skew)",summary:"Measures how balanced your return distribution is. Starts at 100/100 — score drops 2 points per 0.1 increase in skewness (absolute value).",tableType:"single",table:{headers:["|Skew|","Score"],rows:[["0.0–0.1","100"],["0.2–0.3","96"],["0.4–0.5","92"],["0.5–0.6","90"],["1.0–1.1","80"],["1.5–1.6","70"],["2.0–2.1","60"],["2.5–2.6","50"],["3.0–3.1","40"],["3.5–5.0","30→0"]]},
+  keyPoints:["Starts at 100 — decreases as asymmetry grows","Near-zero skew = wins and losses are mirror images","Above 3.5: distribution considered abnormal"]},
+  {id:"KURT",pillar:"qual",name:"Return Stability (Kurtosis)",summary:"Measures frequency of extreme days. Starts at 100/100 — drops 2 points per 0.1 increase in excess kurtosis. Rewards smooth, predictable equity curves.",tableType:"single",table:{headers:["Kurtosis","Score"],rows:[["0.0–0.1","100"],["0.5–0.6","90"],["1.0–1.1","80"],["1.5–1.6","70"],["2.0–2.1","60"],["2.5–2.6","50"],["3.0–3.1","40"],["4.0–4.1","20"],["4.5–4.6","10"],["> 5.0","0"]]},
+  keyPoints:["Starts at 100 — decreases as extreme days increase","Low kurtosis = smooth, predictable equity curve","Above 5.0: completely unstable — score drops to 0"]},
+  {id:"OF3",pillar:"qual",name:"Extreme Day Impact",summary:"ratio = max(|Best Day|, |Worst Day|) / AvgAbsPnL. Compares your biggest single day to your average day. Low ratio = balanced results = high score.",tableType:"single",table:{headers:["Ratio","Score"],rows:[["1.0–1.1","100"],["1.5–1.6","90"],["2.0–2.2","80"],["3.0–3.2","70"],["4.0–4.2","60"],["5.0–5.5","50"],["7.5–8.0","40"],["10.0–11.0","30"],["13.0–14.0","15"],["> 15.0","0"]]},
+  keyPoints:["Ratio = biggest absolute day ÷ average absolute P&L","Ratio 1.5 = biggest day only 1.5× your average — excellent","Above 15: erratic behavior, score drops to 0"]},
+  {id:"BEST_WORST_DAY",pillar:"qual",name:"Best vs Worst Day Ratio",summary:"Ratio = Best Day / |Worst Day|. Rewards balanced, symmetrical risk management on both sides — progressive scoring, no sudden cliffs.",tableType:"single",table:{headers:["Ratio","Score"],rows:[["≤ 0.50","0"],["0.70","24"],["0.90","48"],["1.00","60"],["1.30","66"],["1.50","70"],["2.00","80"],["2.50","87.5"],["3.00","95"],["≥ 4.30","100"]]},
+  keyPoints:["Below 0.50 = worst day 2× bigger than best day → 0 points","Around 1.0 = best and worst balanced → 60 points","Above 4.3 = best day far exceeds worst → 100 points"]}
+];
+// Build sidebar + panels
+const sidebar=document.getElementById('sidebar');
+const main=document.getElementById('main');
+let firstBtn=null;
+PILLARS.forEach(p=>{
+  const sec=document.createElement('div');
+  sec.className='sidebar-section';
+  sec.innerHTML=`<div class="pillar-header">
+    <div class="pillar-dot" style="background:${p.color}"></div>
+    <span class="pillar-label">${p.label}</span>
+    <span class="pillar-coeff">×${p.coeff}</span>
+  </div>`;
+  const metrics=METRICS.filter(m=>m.pillar===p.id);
+  metrics.forEach(m=>{
+    const btn=document.createElement('button');
+    btn.className='metric-btn';
+    btn.innerHTML=`<span class="mbdot"></span>${m.name}`;
+    btn.onclick=()=>{
+      document.querySelectorAll('.metric-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(pp=>pp.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('p-'+m.id).classList.add('active');
+    };
+    sec.appendChild(btn);
+    if(!firstBtn)firstBtn={btn,id:m.id};
+    // Build panel
+    const panel=document.createElement('div');
+    panel.id='p-'+m.id;
+    panel.className='panel';
+    let html=`<div class="metric-top">
+      <div class="pillar-tag" style="background:${p.color}18;color:${p.color};border:1px solid ${p.color}33">
+        <span style="width:6px;height:6px;border-radius:50%;background:${p.color};display:inline-block"></span>
+        ${p.label} &nbsp;·&nbsp; ×${p.coeff}
+      </div>
+      <div class="metric-title">${m.name}</div>
+      <div class="metric-summary">${m.summary}</div>
+    </div>`;
+    if(m.tableType==='info'){
+      // nothing extra, just keypoints
+    } else if(m.tableType==='single'&&m.table){
+      html+=`<div class="tables-grid"><div class="table-block">
+        <table><thead><tr>${m.table.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+        <tbody>${m.table.rows.map(r=>{
+          const isScoreCol = r[1]!==undefined;
+          return`<tr><td>${r[0]}</td><td>${isScoreCol?renderScoreCell(r[1]):r[1]}</td></tr>`;
+        }).join('')}</tbody></table>
+      </div></div>`;
+    } else if(m.tableType==='two-column'&&m.tables){
+      html+=`<div class="tables-grid">${m.tables.map(t=>`<div class="table-block">
+        <div class="table-title">${t.title}</div>
+        <table><thead><tr>${t.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+        <tbody>${t.rows.map(r=>`<tr><td>${r[0]}</td><td>${renderScoreCell(r[1])}</td></tr>`).join('')}</tbody>
+        </table></div>`).join('')}</div>`;
+    } else if(m.tableType==='recovery-grid'&&m.tiers){
+      const days=[0,1,2,3,5,7,10,15,20,25,30];
+      html+=`<div class="recovery-wrapper"><table>
+        <thead><tr>
+          <th>DD Tier</th><th>Max</th>
+          ${days.map(d=>`<th>Day ${d}</th>`).join('')}
+          <th>Tail</th>
+        </tr></thead>
+        <tbody>${m.tiers.map(t=>{
+          const get=d=>{const f=t.data.find(x=>x[0]===d);return f!=null?f[1]:null;};
+          return`<tr>
+            <td><span class="tier-badge">${t.range}</span>${t.note?`<div class="tier-note">${t.note}</div>`:''}</td>
+            <td style="color:#00D4FF;font-family:var(--mono);font-weight:600">${t.maxScore}</td>
+            ${days.map(d=>{const v=get(d);const c=v!=null?scoreColor(String(v)):'#333';return`<td style="color:${c};font-family:var(--mono)">${v!=null?v:'—'}</td>`}).join('')}
+            <td style="color:#444;font-size:11px">${t.tail.map(x=>`${x[0]}→${x[1]}`).join(', ')}</td>
+          </tr>`;
+        }).join('')}</tbody>
+      </table></div>`;
+    }
+    if(m.keyPoints){
+      html+=`<div class="section-divider"><div class="sd-label">Key Points</div><div class="sd-line"></div></div>
+      <div class="key-points">${m.keyPoints.map(k=>`<div class="kp-item"><div class="kp-arrow">→</div><span>${k}</span></div>`).join('')}</div>`;
+    }
+    panel.innerHTML=html;
+    main.appendChild(panel);
+  });
+  sidebar.appendChild(sec);
+});
+if(firstBtn){
+  document.querySelector('[id="p-'+firstBtn.id+'"]').classList.add('active');
+  firstBtn.btn.classList.add('active');
+}
+</script>
+</body>
+</html>
