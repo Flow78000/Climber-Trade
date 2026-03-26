@@ -142,7 +142,8 @@
 <nav class="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <img src="img/logo.svg" alt="Climber Trade" class="nav-logo-img" style="height:36px;width:auto;">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
     </a>
     <div class="nav-links">
       <a href="how-it-works.html" class="nav-link">How It Works</a>
@@ -178,8 +179,8 @@
     <div class="stat-cards fade-up fade-up-delay-2">
       <div class="stat-card">
         <div class="stat-card-label">Liquidity Funding Pool</div>
-        <div class="stat-card-value"><span data-count="250000" data-prefix="$">0</span></div>
-        <div class="stat-card-sub">↑ Live Updated</div>
+        <div class="stat-card-value"><span id="poolCounter" data-prefix="$">$250,000</span></div>
+        <div class="stat-card-sub" style="color:var(--green)">● Live — Growing every second</div>
       </div>
       <div class="stat-card">
         <div class="stat-card-label">Traders Building Careers</div>
@@ -519,7 +520,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:4px">
-          <img src="img/logo.svg" alt="Climber Trade" class="nav-logo-img" style="height:36px;width:auto;">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
         </div>
         <p>Revolutionary trader funding platform with 100% aligned interests.</p>
       <div class="footer-socials">
@@ -563,13 +564,13 @@
 
 <script src="js/shared.js"></script>
 <script>
-// ── FLOATING PARTICLES ──
+// ── FLOATING PARTICLES (enhanced visibility) ──
 (function(){
   const c=document.getElementById('heroParticles');
   if(!c)return;
   const ctx=c.getContext('2d');
   let W,H;
-  const PARTICLE_COUNT=45;
+  const PARTICLE_COUNT=120;
   const particles=[];
   function resize(){
     W=c.width=c.offsetWidth;
@@ -577,17 +578,18 @@
   }
   resize();
   window.addEventListener('resize',resize);
-  // Create particles
   for(let i=0;i<PARTICLE_COUNT;i++){
+    const isBright=Math.random()>0.7;
     particles.push({
       x:Math.random()*W,
       y:Math.random()*H,
-      r:Math.random()*1.2+0.5,           // radius 0.5-1.7px
-      vy:-(Math.random()*0.15+0.05),      // slow upward drift
-      vx:(Math.random()-0.5)*0.08,         // tiny horizontal sway
-      opacity:Math.random()*0.25+0.08,     // 0.08-0.33 opacity
-      pulse:Math.random()*Math.PI*2,       // phase offset for pulsing
-      pulseSpeed:Math.random()*0.008+0.003 // slow pulse
+      r:isBright?Math.random()*1.8+0.8:Math.random()*1.2+0.4,
+      vy:-(Math.random()*0.25+0.06),
+      vx:(Math.random()-0.5)*0.12,
+      opacity:isBright?Math.random()*0.5+0.25:Math.random()*0.3+0.1,
+      pulse:Math.random()*Math.PI*2,
+      pulseSpeed:Math.random()*0.01+0.004,
+      isWhite:Math.random()>0.75
     });
   }
   function draw(){
@@ -596,19 +598,30 @@
       p.x+=p.vx;
       p.y+=p.vy;
       p.pulse+=p.pulseSpeed;
-      // Wrap around
       if(p.y<-5){p.y=H+5;p.x=Math.random()*W;}
       if(p.x<-5)p.x=W+5;
       if(p.x>W+5)p.x=-5;
-      const alpha=p.opacity*(0.6+0.4*Math.sin(p.pulse));
+      const alpha=p.opacity*(0.5+0.5*Math.sin(p.pulse));
       ctx.beginPath();
       ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(0,212,255,${alpha})`;
+      ctx.fillStyle=p.isWhite?`rgba(220,240,255,${alpha})`:`rgba(0,212,255,${alpha})`;
       ctx.fill();
     }
     requestAnimationFrame(draw);
   }
   draw();
+})();
+// ── POOL COUNTER (increments every second) ──
+(function(){
+  const el=document.getElementById('poolCounter');
+  if(!el)return;
+  let value=250000;
+  function format(n){return'$'+n.toLocaleString('en-US');}
+  el.textContent=format(value);
+  setInterval(()=>{
+    value+=Math.floor(Math.random()*8)+2;
+    el.textContent=format(value);
+  },1000);
 })();
 // Hero title letter-by-letter animation + Thanos snap dust effect
 (function(){
@@ -693,18 +706,7 @@
         }
       },stagger);
     });
-    // After dust clears, show the line again solid (rebuilt)
-    setTimeout(()=>{
-      const newLine2=line2.split('').map(ch=>{
-        if(ch===' ')return'<span class="letter-space"></span>';
-        return`<span class="letter letter-teal" style="animation-delay:0ms;opacity:1;transform:none;color:var(--teal)">${ch}</span>`;
-      }).join('');
-      // Find the <br> and replace everything after it
-      const brIdx=el.innerHTML.indexOf('<br>');
-      if(brIdx>-1){
-        el.innerHTML=el.innerHTML.substring(0,brIdx+4)+newLine2;
-      }
-    },3000);
+    // Text stays gone — Thanos style, no rebuild
   },totalAnimTime+HOLD_DURATION);
 })();
 </script>
