@@ -8,7 +8,33 @@
 <link rel="stylesheet" href="css/shared.css">
 <style>
 /* Hero extras */
-.hero{text-align:center;padding:120px 0 80px;}
+.hero{text-align:center;padding:120px 0 80px;position:relative;overflow:hidden;}
+/* ── PARTICLES CANVAS ── */
+.hero-particles{
+  position:absolute;top:0;left:0;right:0;bottom:0;z-index:1;
+  pointer-events:none;
+}
+/* ── LETTER ANIMATION ── */
+.hero-title .letter{
+  display:inline-block;opacity:0;
+  transform:translateY(20px);
+  animation:letterIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+.hero-title .letter-space{display:inline-block;width:0.3em;}
+@keyframes letterIn{
+  0%{opacity:0;transform:translateY(20px);}
+  70%{opacity:1;transform:translateY(-1px);}
+  100%{opacity:1;transform:translateY(0);}
+}
+.hero-title .letter-teal{color:var(--teal);}
+.hero-title .letter-teal.arrived{
+  text-shadow:0 0 14px #00D4FF44;
+  animation:tealSettle 1.2s ease forwards;
+}
+@keyframes tealSettle{
+  0%{text-shadow:0 0 14px #00D4FF55;}
+  100%{text-shadow:none;}
+}
 .hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
 .hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
 /* Evolution section */
@@ -129,8 +155,10 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="container">
-    <h1 class="hero-title fade-up">Your Trading Partner For Success.<br><span class="teal">Get Funded Without Limits.</span></h1>
+  <!-- PARTICLES — subtle floating dust -->
+  <canvas class="hero-particles" id="heroParticles"></canvas>
+  <div class="container" style="position:relative;z-index:2;">
+    <h1 class="hero-title" id="heroTitle"></h1>
     <p class="hero-desc fade-up fade-up-delay-1">We grow when you grow. Unlike other prop firms, we don't profit when you fail — we succeed together. No rigged evaluations, no trick rules. Just real capital, transparent metrics and true partnership.</p>
     <div class="stat-cards fade-up fade-up-delay-2">
       <div class="stat-card">
@@ -156,59 +184,94 @@
   </div>
 </section>
 
-<!-- EVOLUTION OF FUNDING -->
+<!-- HOW IT WORKS — VISUAL FLOW -->
 <section class="section section-alt">
   <div class="container">
-    <div class="evo-header fade-up">
-      <div class="section-label">The Evolution</div>
-      <h2>The Evolution of Trader Funding</h2>
-      <p class="section-subtitle" style="margin-top:12px">From impossible barriers to trader's resounding success</p>
+    <div class="text-center fade-up" style="margin-bottom:48px">
+      <div class="section-label" style="justify-content:center">How It Works</div>
+      <h2>From Zero to Funded in 4 Steps</h2>
+      <p class="section-subtitle" style="margin-top:12px">A clear path — no tricks, no traps, no hidden rules</p>
     </div>
-    <div class="compare-grid">
-      <div class="compare-card negative fade-up">
-        <span class="compare-badge" style="background:#EF444418;color:var(--red)">Stage 1</span>
-        <h3>Traditional Brokers ✕</h3>
-        <p style="margin-bottom:12px;color:var(--text2)">Problems:</p>
-        <ul>
-          <li>You need $25,000+ just to start properly</li>
-          <li>Every loss comes from YOUR savings</li>
-          <li>The psychological weight of risking your own money</li>
-          <li>PDT rules limit your strategies</li>
-          <li>Most talented traders never get their shot</li>
-        </ul>
-        <div class="compare-quote">"Talent alone isn't enough when you can't afford to trade."</div>
+    <div class="flow-steps">
+      <div class="flow-step fade-up">
+        <div class="flow-num" style="background:#00D4FF18;color:var(--teal);border:1px solid #00D4FF33">01</div>
+        <div class="flow-content">
+          <h3>Subscribe & Start</h3>
+          <p style="color:var(--text2);line-height:1.7;margin-top:8px">Choose your plan — Standard ($199/mo) or Discovery ($49). Get immediate access to $1,000,000 in simulated capital on Volumetrica.</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <span class="badge badge-teal" style="font-size:10px">Instant Access</span>
+            <span class="badge badge-green" style="font-size:10px">$1M Capital</span>
+          </div>
+        </div>
       </div>
-      <div class="compare-card warning fade-up fade-up-delay-1">
-        <span class="compare-badge" style="background:#F59E0B18;color:var(--amber)">Stage 2</span>
-        <h3>Online Prop Firms ⚠</h3>
-        <p style="margin-bottom:12px;color:var(--amber)">Online props solved the capital problem but created a worse one: they bet against you.</p>
-        <ul>
-          <li>They profit when you fail (95% of evaluation fees are pure profit)</li>
-          <li>Designed-to-fail targets: Make $4K with $2K max loss</li>
-          <li>Sim accounts forever (real funding costs them money)</li>
-          <li>Rules designed to disqualify you</li>
-          <li>Business model collapses if too many traders succeed</li>
-        </ul>
-        <div class="compare-quote">"A funding partner who loses when you win isn't a partner — it's a casino."</div>
+      <div class="flow-connector"><div class="flow-line"></div><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2L6 10M6 10L2 6M6 10L10 6" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="flow-step fade-up fade-up-delay-1">
+        <div class="flow-num" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B33">02</div>
+        <div class="flow-content">
+          <h3>Trade & Get Scored</h3>
+          <p style="color:var(--text2);line-height:1.7;margin-top:8px">Trade any instrument, any style. Your CLIMB Score updates in real time across 13 metrics — Risk Management, Performance, Consistency, and Quality Execution.</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <span class="badge badge-amber" style="font-size:10px">13 Metrics</span>
+            <span class="badge badge-amber" style="font-size:10px">Real-time Score</span>
+          </div>
+        </div>
       </div>
-      <div class="compare-card positive fade-up fade-up-delay-2">
-        <span class="compare-badge badge-teal">Climber Trade</span>
-        <h3 class="teal">True Funding Partner ✓</h3>
-        <p style="margin-bottom:12px;color:var(--text2)">What if your funding partner actually wanted you to succeed?</p>
-        <ul>
-          <li style="color:var(--teal)">We fund you with real live capital because your success IS our business model</li>
-          <li style="color:var(--teal)">When you profit, we grow. When you succeed, we succeed.</li>
-          <li style="color:var(--teal)">Trade your way. No minimum days, no consistency rules.</li>
-          <li style="color:var(--teal)">Clear, objective funding criteria: 16+ metrics track true performance.</li>
-          <li style="color:var(--teal)">Stocks, futures, forex, crypto, CFDs. Your strategy, your career.</li>
-          <li style="color:var(--teal)">The better you trade, the more capital we give you. No caps. Ever.</li>
-        </ul>
-        <div class="compare-quote">"This is how trader funding should have worked from the beginning."</div>
-        <a href="how-it-works.html" style="display:inline-block;margin-top:16px;font-size:13px;color:var(--teal);text-decoration:none;font-weight:600;">Learn More &rarr;</a>
+      <div class="flow-connector"><div class="flow-line"></div><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2L6 10M6 10L2 6M6 10L10 6" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="flow-step fade-up fade-up-delay-2">
+        <div class="flow-num" style="background:#10B98118;color:var(--green);border:1px solid #10B98133">03</div>
+        <div class="flow-content">
+          <h3>Reach Score 85</h3>
+          <p style="color:var(--text2);line-height:1.7;margin-top:8px">Hit CLIMB Score 85+ for 7 consecutive trading days, with at least 30 days on your account and KYC validated. Qualification is automatic — no application needed.</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <span class="badge badge-green" style="font-size:10px">Automatic Validation</span>
+            <span class="badge badge-green" style="font-size:10px">24-48h Activation</span>
+          </div>
+        </div>
       </div>
+      <div class="flow-connector"><div class="flow-line"></div><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2L6 10M6 10L2 6M6 10L10 6" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="flow-step fade-up fade-up-delay-3" style="border-color:#00D4FF33">
+        <div class="flow-num" style="background:#00D4FF18;color:var(--teal);border:1px solid #00D4FF44">04</div>
+        <div class="flow-content">
+          <h3 style="color:var(--teal)">Get Funded & Grow</h3>
+          <p style="color:var(--text2);line-height:1.7;margin-top:8px">Receive real capital from our Liquidity Pool. Earn 50% to 60% of your profits. Your allocation scales monthly as your score improves — no ceiling, ever.</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <span class="badge badge-teal" style="font-size:10px">Real Capital</span>
+            <span class="badge badge-teal" style="font-size:10px">Up to 60% Profit Split</span>
+            <span class="badge badge-teal" style="font-size:10px">Monthly Scaling</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center fade-up" style="margin-top:36px">
+      <a href="how-it-works.html" class="btn btn-outline" style="font-size:13px">See Full Details &rarr;</a>
     </div>
   </div>
 </section>
+<style>
+.flow-steps{display:flex;flex-direction:column;gap:0;max-width:680px;margin:0 auto;}
+.flow-step{
+  display:flex;align-items:flex-start;gap:20px;
+  padding:24px 28px;border-radius:12px;
+  background:var(--card);border:1px solid var(--border);
+  transition:border-color .2s;
+}
+.flow-step:hover{border-color:var(--border2);}
+.flow-num{
+  width:44px;height:44px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:800;font-family:var(--mono);letter-spacing:-0.5px;
+}
+.flow-content h3{font-size:17px;font-weight:700;}
+.flow-connector{
+  display:flex;flex-direction:column;align-items:center;
+  padding:4px 0;margin-left:49px;
+}
+.flow-line{width:1px;height:16px;background:linear-gradient(180deg,var(--border2),#00D4FF44);}
+@media(max-width:768px){
+  .flow-step{flex-direction:column;gap:12px;padding:18px 20px;}
+  .flow-connector{margin-left:32px;}
+}
+</style>
 
 <!-- FUNDING PARTNER MODEL -->
 <section class="section">
@@ -452,5 +515,92 @@
 </footer>
 
 <script src="js/shared.js"></script>
+<script>
+// ── FLOATING PARTICLES ──
+(function(){
+  const c=document.getElementById('heroParticles');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let W,H;
+  const PARTICLE_COUNT=45;
+  const particles=[];
+  function resize(){
+    W=c.width=c.offsetWidth;
+    H=c.height=c.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize',resize);
+  // Create particles
+  for(let i=0;i<PARTICLE_COUNT;i++){
+    particles.push({
+      x:Math.random()*W,
+      y:Math.random()*H,
+      r:Math.random()*1.2+0.5,           // radius 0.5-1.7px
+      vy:-(Math.random()*0.15+0.05),      // slow upward drift
+      vx:(Math.random()-0.5)*0.08,         // tiny horizontal sway
+      opacity:Math.random()*0.25+0.08,     // 0.08-0.33 opacity
+      pulse:Math.random()*Math.PI*2,       // phase offset for pulsing
+      pulseSpeed:Math.random()*0.008+0.003 // slow pulse
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of particles){
+      p.x+=p.vx;
+      p.y+=p.vy;
+      p.pulse+=p.pulseSpeed;
+      // Wrap around
+      if(p.y<-5){p.y=H+5;p.x=Math.random()*W;}
+      if(p.x<-5)p.x=W+5;
+      if(p.x>W+5)p.x=-5;
+      const alpha=p.opacity*(0.6+0.4*Math.sin(p.pulse));
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(0,212,255,${alpha})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+// Hero title letter-by-letter animation
+(function(){
+  const el=document.getElementById('heroTitle');
+  if(!el)return;
+  const line1="Your Trading Partner For Success.";
+  const line2="Get Funded Without Limits.";
+  const BASE_DELAY=80; // ms between letters
+  let html='';
+  let idx=0;
+  // Line 1 — white
+  for(let i=0;i<line1.length;i++){
+    const ch=line1[i];
+    if(ch===' '){
+      html+='<span class="letter-space"></span>';
+    } else {
+      html+=`<span class="letter" style="animation-delay:${idx*35}ms">${ch}</span>`;
+    }
+    idx++;
+  }
+  html+='<br>';
+  // Small pause before line 2
+  const line2Start=idx+8;
+  // Line 2 — teal
+  for(let i=0;i<line2.length;i++){
+    const ch=line2[i];
+    if(ch===' '){
+      html+='<span class="letter-space"></span>';
+    } else {
+      html+=`<span class="letter letter-teal" style="animation-delay:${(line2Start+i)*35}ms">${ch}</span>`;
+    }
+  }
+  el.innerHTML=html;
+  // After all letters land, add "arrived" class for teal glow settle
+  const totalTime=(line2Start+line2.length)*35+500;
+  setTimeout(()=>{
+    el.querySelectorAll('.letter-teal').forEach(l=>l.classList.add('arrived'));
+  },totalTime);
+})();
+</script>
 </body>
 </html>
