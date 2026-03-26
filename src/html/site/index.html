@@ -17,35 +17,37 @@
 /* ── HERO TITLE ── */
 .hero-title{position:relative;overflow:visible;}
 .hero-title .teal{color:var(--teal);}
-/* Fade in on load */
-.hero-title.fade-in{
-  animation:heroFadeIn 1.2s cubic-bezier(.16,1,.3,1) forwards;
+/* Fade in */
+.hero-title.show{
+  animation:smokeIn 1.5s cubic-bezier(.16,1,.3,1) forwards;
 }
-@keyframes heroFadeIn{
-  0%{opacity:0;transform:translateY(30px);}
-  100%{opacity:1;transform:translateY(0);}
+@keyframes smokeIn{
+  0%{opacity:0;transform:scale(.96);filter:blur(6px);}
+  40%{opacity:.7;filter:blur(2px);}
+  100%{opacity:1;transform:scale(1);filter:blur(0);}
 }
-/* Wind dissolve — swept right */
-.hero-title.wind-out{
-  animation:windDissolve 3s cubic-bezier(.4,0,.15,1) forwards;
+/* Smoke out — dissolves in place like ash/smoke */
+.hero-title.smoke-out{
+  animation:smokeOut 3.5s cubic-bezier(.4,0,.2,1) forwards;
 }
-@keyframes windDissolve{
-  0%{opacity:1;transform:translate(0,0) scale(1);filter:blur(0);}
-  25%{opacity:.8;transform:translate(15px,-2px) scale(1);filter:blur(0.3px);}
-  50%{opacity:.35;transform:translate(60px,-6px) scale(.98);filter:blur(1.5px);}
-  75%{opacity:.08;transform:translate(140px,-10px) scale(.96);filter:blur(3px);}
-  100%{opacity:0;transform:translate(220px,-14px) scale(.94);filter:blur(5px);}
+@keyframes smokeOut{
+  0%{opacity:1;transform:scale(1);filter:blur(0);}
+  20%{opacity:.9;transform:scale(1.005);filter:blur(0.5px);}
+  45%{opacity:.45;transform:scale(1.01);filter:blur(3px);}
+  70%{opacity:.12;transform:scale(1.02);filter:blur(6px);}
+  90%{opacity:.02;filter:blur(10px);}
+  100%{opacity:0;transform:scale(1.03);filter:blur(12px);}
 }
-/* Wind embers — fly left to right */
-.wind-ember{
+/* Smoke/cinder particles — drift upward gently */
+.cinder{
   position:absolute;border-radius:50%;pointer-events:none;
-  animation:windEmberFly var(--d,2s) cubic-bezier(.3,0,.1,1) forwards;
+  animation:cinderRise var(--cd,2.5s) cubic-bezier(.2,.6,.3,1) forwards;
 }
-@keyframes windEmberFly{
-  0%{opacity:.9;transform:translate(0,0) scale(1);}
-  20%{opacity:.8;}
-  60%{opacity:.3;transform:translate(var(--wx),var(--wy)) scale(.5);filter:blur(1px);}
-  100%{opacity:0;transform:translate(calc(var(--wx)*1.8),calc(var(--wy)*1.2)) scale(0);filter:blur(2.5px);}
+@keyframes cinderRise{
+  0%{opacity:var(--co,.7);transform:translate(0,0) scale(1);}
+  30%{opacity:calc(var(--co,.7)*0.8);}
+  60%{opacity:calc(var(--co,.7)*0.3);transform:translate(var(--cx),var(--cy)) scale(.4);filter:blur(1.5px);}
+  100%{opacity:0;transform:translate(calc(var(--cx)*1.5),calc(var(--cy)*1.6)) scale(0);filter:blur(3px);}
 }
 .hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
 .hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
@@ -629,53 +631,52 @@
     },delay);
   })();
 })();
-// ── HERO TITLE — wind cinder effect (single block, left-to-right) ──
+// ── HERO TITLE — smoke/cinder cloud effect (infinite loop) ──
 (function(){
   var el=document.getElementById('heroTitle');
   if(!el)return;
 
-  var COLORS=['#00D4FF','#00D4FF','rgba(255,255,255,0.7)','rgba(0,190,230,0.6)','rgba(140,210,255,0.5)'];
+  var COLORS=['#00D4FF','#00D4FF','rgba(255,255,255,0.5)','rgba(0,180,220,0.4)','rgba(100,200,255,0.35)','rgba(200,230,255,0.3)'];
 
-  function spawnWindEmbers(){
+  function spawnSmoke(){
     var rect=el.getBoundingClientRect();
-    var count=50;
+    var count=60;
     for(var i=0;i<count;i++){
-      var em=document.createElement('span');
-      em.className='wind-ember';
-      // Start from random position within the title
+      var c=document.createElement('span');
+      c.className='cinder';
       var x=Math.random()*rect.width;
       var y=Math.random()*rect.height;
-      // Fly to the RIGHT (positive X) and slightly up
-      var wx=(80+Math.random()*200).toFixed(0);
-      var wy=(-30+Math.random()*60-30).toFixed(0);
-      var sz=(0.5+Math.random()*2.5).toFixed(1);
-      var dur=(1.5+Math.random()*1.5).toFixed(1);
-      var delay=(Math.random()*800).toFixed(0);
-      em.style.cssText='left:'+x+'px;top:'+y+'px;width:'+sz+'px;height:'+sz+'px;--wx:'+wx+'px;--wy:'+wy+'px;--d:'+dur+'s;background:'+COLORS[i%COLORS.length]+';animation-delay:'+delay+'ms;';
-      el.appendChild(em);
-      setTimeout(function(e){return function(){e.remove();};}(em),3500);
+      // Drift gently upward + slight random horizontal
+      var cx=(Math.random()*60-30).toFixed(0);
+      var cy=(-30-Math.random()*80).toFixed(0);
+      var sz=(0.5+Math.random()*2.8).toFixed(1);
+      var dur=(2+Math.random()*2).toFixed(1);
+      var delay=(Math.random()*1200).toFixed(0);
+      var opacity=(0.3+Math.random()*0.5).toFixed(2);
+      c.style.cssText='left:'+x+'px;top:'+y+'px;width:'+sz+'px;height:'+sz+'px;--cx:'+cx+'px;--cy:'+cy+'px;--cd:'+dur+'s;--co:'+opacity+';background:'+COLORS[i%COLORS.length]+';animation-delay:'+delay+'ms;';
+      el.appendChild(c);
+      setTimeout(function(e){return function(){e.remove();};}(c),4500);
     }
   }
 
   function cycle(){
-    // Reset — show title
     el.className='hero-title';
     void el.offsetHeight;
 
-    // Phase 1: Fade in (1.2s)
-    el.classList.add('fade-in');
+    // Phase 1: Materialize from smoke (1.5s)
+    el.classList.add('show');
 
-    // Phase 2: Hold for 5 seconds (visible, static)
+    // Phase 2: Hold visible for 5 seconds
 
-    // Phase 3: Wind dissolve + embers at 6.2s
+    // Phase 3: Smoke out + cinder particles at 6.5s
     setTimeout(function(){
-      spawnWindEmbers();
-      el.classList.remove('fade-in');
-      el.classList.add('wind-out');
-    },6200);
+      spawnSmoke();
+      el.classList.remove('show');
+      el.classList.add('smoke-out');
+    },6500);
 
-    // Phase 4: Fully gone at 9.2s, wait 2s, restart
-    setTimeout(function(){cycle();},6200+3200+2000);
+    // Phase 4: Smoke clears (3.5s) + pause (2s) then restart
+    setTimeout(function(){cycle();},6500+4000+2000);
   }
 
   cycle();
