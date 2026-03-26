@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Climber Trade — Ranks & Badges</title>
+<meta name="description" content="Discover the Climber Trade ranking system. Your CLIMB Score determines your rank, your access level, and your capital allocation. From No Rank to Diamond Elite.">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* Hero */
+.hero{text-align:center;padding:120px 0 80px;}
+.hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
+
+/* ─── RANK CARDS GRID ─── */
+.ranks-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;
+}
+.rank-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:32px 24px;text-align:center;transition:border-color .2s,transform .2s;
+  position:relative;overflow:hidden;
+}
+.rank-card:hover{
+  border-color:var(--border2);transform:translateY(-2px);
+}
+.rank-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--rank-color);opacity:.6;
+}
+
+/* Hexagonal badge (CSS only) */
+.rank-badge{
+  width:80px;height:80px;margin:0 auto 20px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.rank-badge-hex{
+  width:64px;height:64px;position:relative;
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  background:var(--card2);border:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.rank-badge-hex::before{
+  content:'';position:absolute;inset:-3px;
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  background:var(--rank-color);z-index:-1;
+}
+.rank-badge-inner{
+  font-size:20px;font-weight:800;font-family:var(--mono);
+  color:var(--rank-color);letter-spacing:-1px;line-height:1;
+}
+.rank-name{
+  font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px;
+}
+.rank-score{
+  font-size:14px;font-family:var(--mono);font-weight:600;
+  color:var(--rank-color);margin-bottom:12px;
+}
+.rank-access{
+  font-size:13px;color:var(--text2);line-height:1.6;
+}
+.rank-tag{
+  display:inline-block;padding:4px 12px;border-radius:6px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  margin-top:12px;
+}
+
+/* ─── LIVE THRESHOLD ─── */
+.threshold-card{
+  background:var(--card);border:1px solid #00D4FF22;border-radius:var(--r3);
+  padding:48px;margin-top:48px;
+}
+.threshold-header{
+  text-align:center;margin-bottom:40px;
+}
+.threshold-header h3{margin-bottom:8px;}
+.threshold-header p{font-size:14px;color:var(--text2);}
+
+/* Stepper */
+.stepper{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;
+}
+.stepper::before{
+  content:'';position:absolute;top:24px;left:calc(12.5% + 8px);right:calc(12.5% + 8px);
+  height:2px;background:var(--border);z-index:0;
+}
+.step{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  position:relative;z-index:1;
+}
+.step-circle{
+  width:48px;height:48px;border-radius:50%;
+  background:var(--card2);border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:700;font-family:var(--mono);
+  color:var(--text3);margin-bottom:14px;transition:all .3s;
+}
+.step.done .step-circle{
+  background:var(--teal-dim);border-color:var(--teal);color:var(--teal);
+}
+.step-title{
+  font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;
+}
+.step-desc{
+  font-size:12px;color:var(--text2);line-height:1.5;max-width:160px;
+}
+
+/* ─── PROFIT SPLIT TABLE ─── */
+.split-header{text-align:center;margin-bottom:32px;}
+.split-header p{font-size:14px;color:var(--text2);margin-top:8px;}
+td .badge{font-size:10px;padding:3px 10px;}
+.split-trader{color:var(--green);font-weight:600;}
+.split-climber{color:var(--text2);}
+
+/* ─── RELIABILITY TIMELINE ─── */
+.timeline{
+  display:flex;align-items:stretch;gap:0;margin-top:40px;position:relative;
+}
+.timeline::before{
+  content:'';position:absolute;top:50%;left:24px;right:24px;
+  height:2px;background:var(--border);transform:translateY(-50%);z-index:0;
+}
+.timeline-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  text-align:center;position:relative;z-index:1;
+}
+.timeline-dot{
+  width:16px;height:16px;border-radius:50%;
+  border:3px solid var(--border);background:var(--bg);
+  margin-bottom:16px;transition:all .3s;
+}
+.timeline-item.active .timeline-dot{
+  border-color:var(--teal);background:var(--teal);
+  box-shadow:0 0 12px rgba(0,212,255,.3);
+}
+.timeline-item.partial .timeline-dot{
+  border-color:var(--amber);background:var(--amber);
+}
+.timeline-label{
+  font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;
+}
+.timeline-range{
+  font-size:12px;font-family:var(--mono);color:var(--teal);margin-bottom:6px;
+}
+.timeline-desc{
+  font-size:12px;color:var(--text2);line-height:1.5;max-width:150px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .ranks-grid{grid-template-columns:repeat(2,1fr);}
+  .stepper{grid-template-columns:repeat(2,1fr);gap:32px;}
+  .stepper::before{display:none;}
+  .timeline{flex-wrap:wrap;gap:24px;}
+  .timeline::before{display:none;}
+  .timeline-item{min-width:140px;}
+}
+@media(max-width:768px){
+  .hero{padding:80px 0 60px;}
+  .ranks-grid{grid-template-columns:1fr;}
+  .stepper{grid-template-columns:1fr;gap:24px;}
+  .timeline{flex-direction:column;align-items:center;}
+  .threshold-card{padding:32px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="how-it-works.html" class="nav-link">How It Works</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="rules.html" class="nav-link">Rules</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="how-it-works.html" class="nav-link">How It Works</a>
+  <a href="pricing.html" class="nav-link">Pricing</a>
+  <a href="rules.html" class="nav-link">Rules</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-link">Contact</a>
+  <a href="pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- SECTION 1: HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="section-label fade-up" style="justify-content:center">Ranking System</div>
+    <h1 class="hero-title fade-up">Climb The Ranks</h1>
+    <p class="hero-desc fade-up fade-up-delay-1">Your CLIMB Score determines your rank, your access, and your capital allocation</p>
+  </div>
+</section>
+
+<!-- SECTION 2: RANK CARDS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">6 Ranks</div>
+      <h2>Every Score Has a Rank</h2>
+      <p class="section-subtitle" style="margin-top:12px">From beginner to elite. Your performance determines where you stand.</p>
+    </div>
+    <div class="ranks-grid">
+
+      <!-- No Rank -->
+      <div class="rank-card fade-up" style="--rank-color:#555555">
+        <div class="rank-badge">
+          <div class="rank-badge-hex">
+            <div class="rank-badge-inner">--</div>
+          </div>
+        </div>
+        <div class="rank-name">No Rank</div>
+        <div class="rank-score">0 &ndash; 29</div>
+        <div class="rank-access">Evaluation only</div>
+        <div class="rank-tag" style="background:#55555518;color:#888;border:1px solid #55555533;">Starting</div>
+      </div>
+
+      <!-- Bronze -->
+      <div class="rank-card fade-up fade-up-delay-1" style="--rank-color:#CD7F32">
+        <div class="rank-badge">
+          <div class="rank-badge-hex">
+            <div class="rank-badge-inner">B</div>
+          </div>
+        </div>
+        <div class="rank-name">Bronze</div>
+        <div class="rank-score">30 &ndash; 49</div>
+        <div class="rank-access">Evaluation only</div>
+        <div class="rank-tag" style="background:#CD7F3218;color:#CD7F32;border:1px solid #CD7F3233;">Evaluation</div>
+      </div>
+
+      <!-- Silver -->
+      <div class="rank-card fade-up fade-up-delay-2" style="--rank-color:#C0C0C0">
+        <div class="rank-badge">
+          <div class="rank-badge-hex">
+            <div class="rank-badge-inner">S</div>
+          </div>
+        </div>
+        <div class="rank-name">Silver</div>
+        <div class="rank-score">50 &ndash; 69</div>
+        <div class="rank-access">Evaluation &mdash; enters cohort statistics</div>
+        <div class="rank-tag" style="background:#C0C0C018;color:#C0C0C0;border:1px solid #C0C0C033;">Cohort Stats</div>
+      </div>
+
+      <!-- Gold -->
+      <div class="rank-card fade-up" style="--rank-color:#FFD700">
+        <div class="rank-badge">
+          <div class="rank-badge-hex">
+            <div class="rank-badge-inner">G</div>
+          </div>
+        </div>
+        <div class="rank-name">Gold</div>
+        <div class="rank-score">70 &ndash; 84</div>
+        <div class="rank-access">Evaluation &mdash; monitored if Live</div>
+        <div class="rank-tag" style="background:#FFD70018;color:#FFD700;border:1px solid #FFD70033;">Monitored</div>
+      </div>
+
+      <!-- Platinum -->
+      <div class="rank-card fade-up fade-up-delay-1" style="--rank-color:#E5E4E2">
+        <div class="rank-badge">
+          <div class="rank-badge-hex">
+            <div class="rank-badge-inner">P</div>
+          </div>
+        </div>
+        <div class="rank-name">Platinum</div>
+        <div class="rank-score">85 &ndash; 94</div>
+        <div class="rank-access">Eligible for Live &mdash; Standard / Expert</div>
+        <div class="rank-tag" style="background:#E5E4E218;color:#E5E4E2;border:1px solid #E5E4E233;">Live Eligible</div>
+      </div>
+
+      <!-- Diamond -->
+      <div class="rank-card fade-up fade-up-delay-2" style="--rank-color:#B9F2FF">
+        <div class="rank-badge">
+          <div class="rank-badge-hex">
+            <div class="rank-badge-inner">D</div>
+          </div>
+        </div>
+        <div class="rank-name" style="color:#B9F2FF">Diamond</div>
+        <div class="rank-score">95 &ndash; 100</div>
+        <div class="rank-access">Eligible for Live &mdash; Elite status</div>
+        <div class="rank-tag" style="background:#B9F2FF18;color:#B9F2FF;border:1px solid #B9F2FF33;">Elite</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: LIVE THRESHOLD -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Go Live</div>
+      <h2>Live Trading Requirements</h2>
+      <p class="section-subtitle" style="margin-top:12px">All four conditions must be met simultaneously to unlock Live trading</p>
+    </div>
+    <div class="threshold-card fade-up">
+      <div class="stepper">
+        <div class="step done">
+          <div class="step-circle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="step-title">CLIMB Score &ge; 85</div>
+          <div class="step-desc">Reach Platinum rank or above to qualify</div>
+        </div>
+        <div class="step done">
+          <div class="step-circle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="step-title">7 Consecutive Days</div>
+          <div class="step-desc">Maintain 85+ score for 7 consecutive trading days</div>
+        </div>
+        <div class="step done">
+          <div class="step-circle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="step-title">30 Calendar Days</div>
+          <div class="step-desc">Minimum 30 days since account creation</div>
+        </div>
+        <div class="step done">
+          <div class="step-circle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="step-title">KYC Validated</div>
+          <div class="step-desc">Complete identity verification process</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:36px;">
+        <p style="font-size:13px;color:var(--text2);line-height:1.7;max-width:520px;margin:0 auto;">Once all four conditions are met, Live activation is <strong style="color:var(--teal)">automatic and individual</strong>. No waiting for batch dates. Capital is allocated within 24&ndash;48h.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: PROFIT SPLIT TABLE -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="split-header fade-up">
+      <div class="section-label" style="justify-content:center">Profit Splits</div>
+      <h2>Your Rank Determines Your Split</h2>
+      <p>The higher your CLIMB Score, the larger your share of the profits</p>
+    </div>
+    <div class="table-wrap fade-up">
+      <table>
+        <thead>
+          <tr>
+            <th>CLIMB Score</th>
+            <th>Rank</th>
+            <th>Trader Share</th>
+            <th>Climber Share</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="mono" style="color:#B9F2FF;font-weight:600;">95 &ndash; 100</span></td>
+            <td><span class="badge" style="background:#B9F2FF18;color:#B9F2FF;border:1px solid #B9F2FF33;">Diamond</span></td>
+            <td class="split-trader">60%</td>
+            <td class="split-climber">40%</td>
+            <td><span class="badge badge-teal">Elite</span></td>
+          </tr>
+          <tr>
+            <td><span class="mono" style="color:#E5E4E2;font-weight:600;">90 &ndash; 94</span></td>
+            <td><span class="badge" style="background:#E5E4E218;color:#E5E4E2;border:1px solid #E5E4E233;">Platinum</span></td>
+            <td class="split-trader">55%</td>
+            <td class="split-climber">45%</td>
+            <td><span class="badge badge-green">Expert</span></td>
+          </tr>
+          <tr>
+            <td><span class="mono" style="color:#E5E4E2;font-weight:600;">85 &ndash; 89</span></td>
+            <td><span class="badge" style="background:#E5E4E218;color:#E5E4E2;border:1px solid #E5E4E233;">Platinum</span></td>
+            <td class="split-trader">50%</td>
+            <td class="split-climber">50%</td>
+            <td><span class="badge badge-teal">Standard</span></td>
+          </tr>
+          <tr>
+            <td><span class="mono" style="color:#FFD700;font-weight:600;">80 &ndash; 84</span></td>
+            <td><span class="badge" style="background:#FFD70018;color:#FFD700;border:1px solid #FFD70033;">Gold</span></td>
+            <td class="split-trader">45%</td>
+            <td class="split-climber">55%</td>
+            <td><span class="badge badge-amber">Watch</span></td>
+          </tr>
+          <tr>
+            <td><span class="mono" style="color:#FFD700;font-weight:600;">75 &ndash; 79</span></td>
+            <td><span class="badge" style="background:#FFD70018;color:#FFD700;border:1px solid #FFD70033;">Gold</span></td>
+            <td class="split-trader">40%</td>
+            <td class="split-climber">60%</td>
+            <td><span class="badge badge-red">Warning</span></td>
+          </tr>
+          <tr>
+            <td><span class="mono" style="color:var(--text3);font-weight:600;">&lt; 75</span></td>
+            <td><span style="font-size:13px;color:var(--text3);">&mdash;</span></td>
+            <td style="color:var(--text3);">0%</td>
+            <td style="color:var(--text3);">0%</td>
+            <td><span class="badge badge-red">7 days to recover</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="text-align:center;font-size:12px;color:var(--text3);margin-top:16px;line-height:1.6;">Scores below 50 result in account freeze and mandatory return to evaluation.</p>
+  </div>
+</section>
+
+<!-- SECTION 5: SCORE RELIABILITY TIMELINE -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Reliability</div>
+      <h2>Score Reliability Timeline</h2>
+      <p class="section-subtitle" style="margin-top:12px">Exceptional early performance is weighted less than consistent long-term results</p>
+    </div>
+    <div class="timeline fade-up">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-range">&lt; 30 days</div>
+        <div class="timeline-label">Indicative *</div>
+        <div class="timeline-desc">Score is provisional and may fluctuate significantly</div>
+      </div>
+      <div class="timeline-item partial">
+        <div class="timeline-dot"></div>
+        <div class="timeline-range">30 &ndash; 120 days</div>
+        <div class="timeline-label">Reliable</div>
+        <div class="timeline-desc">Score becomes statistically meaningful</div>
+      </div>
+      <div class="timeline-item active">
+        <div class="timeline-dot"></div>
+        <div class="timeline-range">120+ days</div>
+        <div class="timeline-label">Certified</div>
+        <div class="timeline-desc">Score is fully validated by consistent data</div>
+      </div>
+      <div class="timeline-item active">
+        <div class="timeline-dot"></div>
+        <div class="timeline-range">180+ days</div>
+        <div class="timeline-label">Certified MAX</div>
+        <div class="timeline-desc">Full confidence factor (1.0). Maximum score weight.</div>
+      </div>
+    </div>
+    <div class="card card-teal fade-up" style="max-width:640px;margin:40px auto 0;padding:28px 32px;text-align:center;">
+      <p style="font-size:14px;color:var(--text2);line-height:1.8;">A trader active for <strong style="color:var(--text)">200+ days</strong> with a steady score is valued more than a newcomer with exceptional early results. The system rewards <strong style="color:var(--teal)">long-term consistency</strong> over short-term spikes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: CTA -->
+<section class="cta-section">
+  <div class="container fade-up">
+    <h2 class="hero-title">Ready to Start Climbing?</h2>
+    <p style="font-size:18px;margin-top:12px;">Begin your evaluation today and work your way to Diamond.</p>
+    <div class="cta-row" style="margin-top:32px;">
+      <a href="pricing.html" class="btn btn-primary btn-lg">Start Your Evaluation &rarr;</a>
+      <a href="how-it-works.html" class="btn btn-outline btn-lg">How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+              <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="rules.html">Trading Rules</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About Us</a>
+        <a href="about.html#pool">Liquidity Pool</a>
+        <a href="about.html#splits">Profit Splits</a>
+        <a href="pool.html">Liquidity Pool Dashboard</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="legal/cgv.html">Terms & Conditions</a>
+        <a href="legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

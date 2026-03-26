@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Climber Trade — Referral & Affiliation Program</title>
+<meta name="description" content="Earn while you grow. Two programs to reward your network — referral discounts for traders and premium lifetime commissions for creators and community leaders.">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* Hero */
+.hero{text-align:center;padding:120px 0 80px;}
+.hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
+
+/* Program cards side by side */
+.programs-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;
+}
+.program-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r3);
+  padding:36px;position:relative;transition:border-color .2s;
+}
+.program-card:hover{border-color:var(--border2);}
+.program-card.featured{border-color:#00D4FF44;}
+.program-card.featured::before{
+  content:'PREMIUM';position:absolute;top:-12px;left:50%;
+  transform:translateX(-50%);padding:4px 16px;border-radius:20px;
+  background:var(--teal);color:#000;font-size:10px;font-weight:800;
+  letter-spacing:.8px;
+}
+.program-icon{
+  width:52px;height:52px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+}
+.program-card h3{margin-bottom:8px;}
+.program-card .subtitle{font-size:14px;color:var(--text2);margin-bottom:24px;line-height:1.6;}
+.program-detail{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 0;border-bottom:1px solid var(--border);
+}
+.program-detail:last-child{border:none;}
+.program-detail-icon{
+  width:28px;height:28px;border-radius:6px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  margin-top:2px;
+}
+.program-detail h5{font-size:14px;font-weight:600;margin-bottom:2px;}
+.program-detail p{font-size:13px;color:var(--text2);line-height:1.6;}
+
+/* Calculator */
+.calc-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;
+}
+.calc-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:24px;text-align:center;transition:border-color .2s,transform .2s;
+}
+.calc-card:hover{border-color:#00D4FF33;transform:translateY(-2px);}
+.calc-referrals{
+  font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:8px;
+}
+.calc-value{
+  font-size:clamp(28px,3vw,40px);font-weight:800;font-family:var(--mono);
+  color:var(--text);letter-spacing:-1px;
+}
+.calc-label{font-size:12px;color:var(--text3);margin-top:6px;}
+.calc-card.highlight{border-color:#10B98133;background:linear-gradient(180deg,#0a1a12,var(--card));}
+.calc-card.highlight .calc-value{color:var(--green);}
+
+/* Payout example */
+.payout-example{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:28px;margin-top:24px;
+}
+.payout-flow{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  flex-wrap:wrap;margin-top:16px;
+}
+.payout-step{
+  text-align:center;padding:16px 20px;
+  background:var(--surface2);border-radius:var(--r);
+  min-width:140px;
+}
+.payout-step-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.payout-step-value{font-size:20px;font-weight:800;font-family:var(--mono);}
+.payout-arrow{color:var(--text3);font-size:20px;}
+
+/* Code format */
+.code-box{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--card2);border:1px solid var(--border);border-radius:var(--r);
+  padding:10px 18px;font-family:var(--mono);font-size:14px;
+  color:var(--teal);margin-top:16px;
+}
+.code-box span{color:var(--text3);font-size:12px;font-family:var(--font);}
+
+/* Comparison table responsive */
+.compare-table-wrap{overflow-x:auto;margin-top:48px;}
+.compare-table{width:100%;min-width:640px;}
+.compare-table th:first-child{width:30%;}
+.compare-table td.ref-col{color:var(--text);font-weight:500;}
+.compare-table td.aff-col{color:var(--teal);font-weight:500;}
+
+/* Notice */
+.notice{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--card);border:1px solid #F59E0B33;border-radius:var(--r);
+  padding:16px 20px;margin-top:24px;font-size:13px;color:var(--text2);line-height:1.6;
+}
+.notice-icon{flex-shrink:0;color:var(--amber);margin-top:1px;}
+
+@media(max-width:1024px){
+  .programs-grid{grid-template-columns:1fr;}
+  .calc-grid{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .hero{padding:80px 0 60px;}
+  .payout-flow{flex-direction:column;}
+  .payout-arrow{transform:rotate(90deg);}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="how-it-works.html" class="nav-link">How It Works</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="rules.html" class="nav-link">Rules</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="how-it-works.html" class="nav-link">How It Works</a>
+  <a href="pricing.html" class="nav-link">Pricing</a>
+  <a href="rules.html" class="nav-link">Rules</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-link">Contact</a>
+  <a href="pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="section-label fade-up" style="justify-content:center">Referral & Affiliation</div>
+    <h1 class="hero-title fade-up">Earn While You <span class="teal">Grow.</span></h1>
+    <p class="hero-desc fade-up fade-up-delay-1">Two programs to reward your network — whether you're a trader or a content creator.</p>
+  </div>
+</section>
+
+<!-- PROGRAMS: REFERRAL + AFFILIATION -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Two Programs</div>
+      <h2>Choose Your Reward Path</h2>
+      <p class="section-subtitle" style="margin-top:12px">Whether you trade or create, there's a program designed for you.</p>
+    </div>
+
+    <div class="programs-grid">
+      <!-- Referral Program -->
+      <div class="program-card fade-up">
+        <div class="program-icon" style="background:#10B98118;border:1px solid #10B98133">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#10B981"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-1 2H7c-2.21 0-4 1.79-4 4v1h8v-1c0-.73-.2-1.41-.53-2H11zm10 0h-6c.35.59.53 1.27.53 2v1h8v-1c0-2.21-1.79-4-4-4zm-5-2c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/></svg>
+        </div>
+        <div class="badge badge-green" style="margin-bottom:16px">For All Traders</div>
+        <h3>Referral Program</h3>
+        <p class="subtitle">Refer traders, reduce your subscription. Simple, automatic, cumulative.</p>
+
+        <div class="program-detail">
+          <div class="program-detail-icon" style="background:#10B98118;border:1px solid #10B98133">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#10B981"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+          </div>
+          <div>
+            <h5>For You (Referrer)</h5>
+            <p><strong style="color:var(--green)">-$10/month</strong> per active referral for 6 months. Cumulative up to 20 referrals = <strong style="color:var(--green)">FREE subscription</strong>. Beyond 20: credit stored on your account.</p>
+          </div>
+        </div>
+
+        <div class="program-detail">
+          <div class="program-detail-icon" style="background:#8B5CF618;border:1px solid #8B5CF633">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#8B5CF6"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          </div>
+          <div>
+            <h5>For Your Referral</h5>
+            <p><strong style="color:var(--purple)">-20% on their first month</strong> — Standard $199 becomes <strong>$159</strong>.</p>
+          </div>
+        </div>
+
+        <div class="program-detail">
+          <div class="program-detail-icon" style="background:#00D4FF18;border:1px solid #00D4FF33">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#00D4FF"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
+          </div>
+          <div>
+            <h5>Your Referral Code</h5>
+            <p>Share your unique code or link to start earning immediately.</p>
+          </div>
+        </div>
+
+        <div class="code-box">
+          CLIMB-XXXXX <span>or</span> climbertrade.com/ref/XXXXX
+        </div>
+      </div>
+
+      <!-- Premium Affiliation -->
+      <div class="program-card featured fade-up fade-up-delay-1">
+        <div class="program-icon" style="background:#00D4FF18;border:1px solid #00D4FF33">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#00D4FF"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+        <div class="badge badge-teal" style="margin-bottom:16px">For Creators & Leaders</div>
+        <h3>Premium Affiliation</h3>
+        <p class="subtitle">Lifetime commissions for content creators, community leaders and fund managers.</p>
+
+        <div class="program-detail">
+          <div class="program-detail-icon" style="background:#00D4FF18;border:1px solid #00D4FF33">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#00D4FF"><path d="M19 14V6c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-9-1c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm13-6v11c0 1.1-.9 2-2 2H4v-2h17V7h2z"/></svg>
+          </div>
+          <div>
+            <h5>15% Recurring Commission</h5>
+            <p><strong style="color:var(--teal)">15% of every subscription</strong> your affiliates pay — for the entire lifetime of their account. No time limit.</p>
+          </div>
+        </div>
+
+        <div class="program-detail">
+          <div class="program-detail-icon" style="background:#10B98118;border:1px solid #10B98133">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#10B981"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+          </div>
+          <div>
+            <h5>1% on Every Payout</h5>
+            <p><strong style="color:var(--green)">1% of every profit payout</strong> your affiliate receives — paid by Climber Trade from its share, not the trader's.</p>
+          </div>
+        </div>
+
+        <div class="program-detail">
+          <div class="program-detail-icon" style="background:#F59E0B18;border:1px solid #F59E0B33">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B"><path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+          </div>
+          <div>
+            <h5>No Cap. Ever.</h5>
+            <p>Unlimited earnings that grow with the success of your affiliates. The better they trade, the more you earn.</p>
+          </div>
+        </div>
+
+        <!-- Payout example -->
+        <div class="payout-example">
+          <h5 style="font-size:13px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Example Payout</h5>
+          <p style="font-size:13px;color:var(--text2);line-height:1.6">Your affiliate generates $10,000 in profit with a 60% split.</p>
+          <div class="payout-flow">
+            <div class="payout-step">
+              <div class="payout-step-label">Trader Profit</div>
+              <div class="payout-step-value" style="color:var(--text)">$10,000</div>
+            </div>
+            <div class="payout-arrow">&rarr;</div>
+            <div class="payout-step">
+              <div class="payout-step-label">Trader Receives (60%)</div>
+              <div class="payout-step-value" style="color:var(--green)">$6,000</div>
+            </div>
+            <div class="payout-arrow">&rarr;</div>
+            <div class="payout-step">
+              <div class="payout-step-label">You Earn (1%)</div>
+              <div class="payout-step-value" style="color:var(--teal)">$60</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice fade-up">
+      <div class="notice-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+      </div>
+      <div>The Referral Program and Premium Affiliation are <strong style="color:var(--amber)">not cumulative</strong>. You must choose one program per account. Switching is possible by contacting support.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERRAL CALCULATOR -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Referral Calculator</div>
+      <h2>See How Fast You Save</h2>
+      <p class="section-subtitle" style="margin-top:12px">Every active referral saves you $10/month on your subscription. Stack them up.</p>
+    </div>
+    <div class="calc-grid fade-up fade-up-delay-1">
+      <div class="calc-card">
+        <div class="calc-referrals">5 Referrals</div>
+        <div class="calc-value">-$50<span style="font-size:16px;font-weight:400;color:var(--text2)">/mo</span></div>
+        <div class="calc-label">$149/mo instead of $199</div>
+      </div>
+      <div class="calc-card">
+        <div class="calc-referrals">10 Referrals</div>
+        <div class="calc-value">-$100<span style="font-size:16px;font-weight:400;color:var(--text2)">/mo</span></div>
+        <div class="calc-label">$99/mo instead of $199</div>
+      </div>
+      <div class="calc-card highlight">
+        <div class="calc-referrals" style="color:var(--green)">20 Referrals</div>
+        <div class="calc-value">FREE</div>
+        <div class="calc-label">$0/mo — subscription fully covered</div>
+      </div>
+    </div>
+    <p class="fade-up" style="text-align:center;font-size:13px;color:var(--text3);margin-top:20px;">Each referral discount lasts 6 fixed months. Beyond 20 referrals, credit is stored on your account.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Getting Started</div>
+      <h2>How It Works</h2>
+      <p class="section-subtitle" style="margin-top:12px">Three simple steps to start earning.</p>
+    </div>
+    <div class="steps-grid" style="margin-top:48px;max-width:800px;margin-left:auto;margin-right:auto;">
+      <div class="step-card fade-up">
+        <div class="step-num">01</div>
+        <div>
+          <h4>Sign Up or Apply</h4>
+          <p>Every trader automatically gets a referral code. For Premium Affiliation, apply through your dashboard or contact us — ideal for content creators, community leaders and fund managers.</p>
+        </div>
+      </div>
+      <div class="step-card fade-up fade-up-delay-1">
+        <div class="step-num">02</div>
+        <div>
+          <h4>Share Your Unique Code or Link</h4>
+          <p>Share your personal CLIMB-XXXXX code or climbertrade.com/ref/XXXXX link with your audience, community, or trading network.</p>
+        </div>
+      </div>
+      <div class="step-card fade-up fade-up-delay-2">
+        <div class="step-num">03</div>
+        <div>
+          <h4>Earn Automatically</h4>
+          <p>Track every referral and commission in real time from your dashboard. Payouts are automatic — no action needed on your part.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Side by Side</div>
+      <h2>Compare Both Programs</h2>
+      <p class="section-subtitle" style="margin-top:12px">Find the program that fits your profile.</p>
+    </div>
+    <div class="compare-table-wrap fade-up fade-up-delay-1">
+      <div class="table-wrap" style="margin-top:48px;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Referral Program</th>
+              <th>Premium Affiliation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color:var(--text);font-weight:500;">Who is it for</td>
+              <td class="ref-col">All traders</td>
+              <td class="aff-col">Creators, communities, managers</td>
+            </tr>
+            <tr>
+              <td style="color:var(--text);font-weight:500;">Earnings model</td>
+              <td class="ref-col">-$10/mo per active referral</td>
+              <td class="aff-col">15% recurring + 1% on payouts</td>
+            </tr>
+            <tr>
+              <td style="color:var(--text);font-weight:500;">Duration</td>
+              <td class="ref-col">6 months per referral</td>
+              <td class="aff-col">Lifetime</td>
+            </tr>
+            <tr>
+              <td style="color:var(--text);font-weight:500;">Cap</td>
+              <td class="ref-col">20 referrals (free subscription)</td>
+              <td class="aff-col">No cap</td>
+            </tr>
+            <tr>
+              <td style="color:var(--text);font-weight:500;">Cumulative with other program</td>
+              <td class="ref-col">No</td>
+              <td class="aff-col">No</td>
+            </tr>
+            <tr>
+              <td style="color:var(--text);font-weight:500;">Application required</td>
+              <td class="ref-col">No — automatic</td>
+              <td class="aff-col">Yes — apply via dashboard</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container fade-up">
+    <h2 class="hero-title">Ready to Earn While You Trade?</h2>
+    <p style="font-size:18px;margin-top:12px;">Start building your network today. Every referral counts.</p>
+    <div class="cta-row" style="margin-top:36px;">
+      <a href="contact.html" class="btn btn-primary btn-lg">Apply for Premium Affiliation</a>
+      <a href="pricing.html" class="btn btn-outline btn-lg">Start Referring</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+              <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="rules.html">Trading Rules</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About Us</a>
+        <a href="about.html#pool">Liquidity Pool</a>
+        <a href="about.html#splits">Profit Splits</a>
+        <a href="pool.html">Liquidity Pool Dashboard</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="legal/cgv.html">Terms & Conditions</a>
+        <a href="legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

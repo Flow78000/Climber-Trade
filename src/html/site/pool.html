@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liquidity Pool — Live | Climber Trade</title>
+<meta name="description" content="Complete transparency into the Climber Trade Liquidity Pool. Every dollar tracked, every trader counted. Real-time data on capital allocation, pool structure, and safety mechanisms.">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* ─── POOL HERO ─── */
+.pool-hero{
+  text-align:center;
+  padding:100px 0 60px;
+  background:linear-gradient(180deg,var(--bg) 0%,#060d10 50%,var(--bg) 100%);
+  position:relative;
+  overflow:hidden;
+}
+.pool-hero::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:800px;height:800px;border-radius:50%;
+  background:radial-gradient(circle,#00D4FF03 0%,transparent 70%);
+  pointer-events:none;
+}
+.pool-hero-label{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;border-radius:20px;
+  background:#10B98112;border:1px solid #10B98128;
+  font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--green);margin-bottom:24px;
+}
+.pool-hero-label::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 8px var(--green);
+  animation:pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot{
+  0%,100%{opacity:1;transform:scale(1);}
+  50%{opacity:.5;transform:scale(1.3);}
+}
+.pool-hero h1{
+  font-size:clamp(36px,5vw,58px);font-weight:800;
+  letter-spacing:-.03em;line-height:1.1;
+}
+.pool-hero-sub{
+  font-size:18px;color:var(--text2);max-width:600px;
+  margin:20px auto 0;line-height:1.7;
+}
+
+/* ─── LIVE STATS GRID (4 cols) ─── */
+.pool-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  margin-top:56px;
+}
+.pool-stat{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:28px 24px;text-align:center;
+  position:relative;overflow:hidden;
+  transition:border-color .2s,transform .2s;
+}
+.pool-stat:hover{border-color:var(--border2);transform:translateY(-2px);}
+.pool-stat-label{
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--text3);margin-bottom:10px;
+}
+.pool-stat-value{
+  font-size:clamp(28px,3.5vw,42px);font-weight:800;
+  font-family:var(--mono);letter-spacing:-1px;line-height:1;
+}
+.pool-stat-delta{
+  display:inline-flex;align-items:center;gap:4px;
+  margin-top:10px;font-size:11px;font-weight:600;
+  padding:3px 10px;border-radius:20px;
+}
+.pool-stat-delta.up{color:var(--green);background:#10B98112;}
+.pool-stat-delta.neutral{color:var(--text3);background:var(--surface2);}
+
+/* ─── POOL STRUCTURE (2 cols) ─── */
+.pool-structure{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;
+}
+.pool-structure-card{
+  background:var(--card);border-radius:var(--r2);padding:36px;
+  position:relative;overflow:hidden;
+}
+.pool-structure-card.standard{border:1px solid #00D4FF22;}
+.pool-structure-card.elite{border:1px solid #8B5CF622;}
+.pool-structure-pct{
+  font-size:56px;font-weight:800;font-family:var(--mono);
+  letter-spacing:-3px;line-height:1;margin-bottom:4px;
+}
+.pool-structure-card.standard .pool-structure-pct{color:var(--teal);}
+.pool-structure-card.elite .pool-structure-pct{color:var(--purple);}
+.pool-structure-card h3{margin-bottom:10px;}
+.pool-structure-card p{font-size:14px;color:var(--text2);line-height:1.7;}
+.pool-structure-badge{
+  display:inline-block;padding:4px 12px;border-radius:6px;
+  font-size:11px;font-weight:700;letter-spacing:.3px;
+  margin-top:16px;
+}
+.pool-structure-card.standard .pool-structure-badge{
+  background:var(--teal-dim);color:var(--teal);border:1px solid #00D4FF33;
+}
+.pool-structure-card.elite .pool-structure-badge{
+  background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;
+}
+.pool-structure-note{
+  display:flex;align-items:flex-start;gap:10px;
+  margin-top:20px;padding:14px 16px;border-radius:var(--r);
+  background:var(--surface2);font-size:13px;color:var(--text2);line-height:1.6;
+}
+.pool-structure-note svg{flex-shrink:0;margin-top:2px;}
+
+/* ─── FLOW DIAGRAM ─── */
+.flow-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;
+  margin:48px 0 0;position:relative;
+}
+.flow-step{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:28px 24px;text-align:center;
+  position:relative;z-index:1;
+}
+.flow-step-num{
+  width:36px;height:36px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;font-family:var(--mono);
+  margin-bottom:14px;
+}
+.flow-step:nth-child(1) .flow-step-num{background:#00D4FF18;color:var(--teal);border:1px solid #00D4FF33;}
+.flow-step:nth-child(2) .flow-step-num{background:#10B98118;color:var(--green);border:1px solid #10B98133;}
+.flow-step:nth-child(3) .flow-step-num{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}
+.flow-step h4{font-size:16px;margin-bottom:8px;}
+.flow-step p{font-size:13px;color:var(--text2);line-height:1.6;}
+.flow-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  right:-18px;z-index:2;
+  width:36px;height:36px;border-radius:50%;
+  background:var(--surface);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+}
+.flow-arrow svg{width:16px;height:16px;color:var(--teal);}
+
+/* ─── FORMULA CARDS ─── */
+.formula-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+  margin-top:40px;
+}
+.formula-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:24px;
+}
+.formula-card-label{
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--text3);margin-bottom:10px;
+}
+.formula-card code{
+  display:block;font-family:var(--mono);font-size:14px;
+  color:var(--teal);line-height:1.8;word-break:break-all;
+}
+.formula-card-desc{
+  font-size:12px;color:var(--text3);margin-top:10px;line-height:1.6;
+  border-top:1px solid var(--border);padding-top:10px;
+}
+
+/* ─── ALLOCATION TABLE ─── */
+.alloc-table-wrap{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);overflow:hidden;
+}
+.alloc-table-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 24px;border-bottom:1px solid var(--border);
+}
+.alloc-table-header h4{font-size:16px;}
+.alloc-table-params{
+  display:flex;gap:16px;font-size:11px;color:var(--text3);
+  font-family:var(--mono);
+}
+.alloc-table-params span{
+  padding:4px 10px;border-radius:4px;
+  background:var(--surface2);
+}
+table.alloc-table th{
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  color:var(--text3);padding:14px 20px;text-align:left;
+  border-bottom:1px solid var(--border);background:var(--card2);
+}
+table.alloc-table td{
+  padding:14px 20px;border-bottom:1px solid #0f0f0f;
+  font-size:14px;color:var(--text2);
+}
+table.alloc-table tr:last-child td{border:none;}
+table.alloc-table tr:hover td{background:var(--surface2);}
+table.alloc-table .score-cell{
+  font-family:var(--mono);font-weight:700;font-size:15px;
+}
+table.alloc-table .alloc-cell{
+  font-family:var(--mono);font-weight:700;font-size:15px;color:var(--green);
+}
+.alloc-bar{
+  height:4px;border-radius:2px;background:var(--border);
+  margin-top:6px;overflow:hidden;
+}
+.alloc-bar-fill{height:100%;border-radius:2px;background:var(--teal);}
+
+/* ─── SAFETY SECTION ─── */
+.safety-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+  margin-top:48px;
+}
+.safety-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:32px;
+}
+.safety-card h4{margin-bottom:12px;font-size:18px;}
+.safety-card p{font-size:14px;color:var(--text2);line-height:1.7;}
+.safety-principle{
+  margin-top:48px;padding:32px 40px;
+  background:linear-gradient(135deg,#0a1a1f,var(--card));
+  border:1px solid #00D4FF22;border-radius:var(--r2);
+  text-align:center;
+}
+.safety-principle h3{
+  font-size:24px;margin-bottom:12px;
+}
+.safety-principle p{
+  font-size:16px;color:var(--text2);max-width:600px;
+  margin:0 auto;line-height:1.7;
+}
+
+/* ─── FC VISUALIZATION ─── */
+.fc-viz{
+  margin-top:24px;
+}
+.fc-row{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 0;border-bottom:1px solid var(--border);
+}
+.fc-row:last-child{border:none;}
+.fc-row-label{
+  font-size:12px;font-family:var(--mono);color:var(--text2);
+  min-width:120px;
+}
+.fc-row-bar{
+  flex:1;height:6px;border-radius:3px;background:var(--border);
+  overflow:hidden;
+}
+.fc-row-bar-fill{
+  height:100%;border-radius:3px;
+  transition:width .6s ease;
+}
+.fc-row-val{
+  font-size:12px;font-family:var(--mono);font-weight:700;
+  color:var(--teal);min-width:50px;text-align:right;
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .pool-stats{grid-template-columns:repeat(2,1fr);}
+  .pool-structure{grid-template-columns:1fr;}
+  .flow-grid{grid-template-columns:1fr;gap:12px;}
+  .flow-arrow{display:none;}
+  .formula-grid{grid-template-columns:1fr;}
+  .safety-grid{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .pool-hero{padding:80px 0 48px;}
+  .pool-stats{grid-template-columns:1fr;}
+  .alloc-table-header{flex-direction:column;gap:12px;align-items:flex-start;}
+  .alloc-table-params{flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="how-it-works.html" class="nav-link">How It Works</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="rules.html" class="nav-link">Rules</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="how-it-works.html" class="nav-link">How It Works</a>
+  <a href="pricing.html" class="nav-link">Pricing</a>
+  <a href="rules.html" class="nav-link">Rules</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-link">Contact</a>
+  <a href="pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1 — HERO
+     ═══════════════════════════════════════════ -->
+<section class="pool-hero">
+  <div class="container">
+    <div class="pool-hero-label fade-up">Live Data</div>
+    <h1 class="fade-up">Liquidity Pool <span class="teal">&mdash; Live</span></h1>
+    <p class="pool-hero-sub fade-up fade-up-delay-1">Complete transparency. Every dollar tracked. Every trader counted.</p>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 2 — LIVE STATS
+         ═══════════════════════════════════════ -->
+    <div class="pool-stats fade-up fade-up-delay-2">
+      <div class="pool-stat">
+        <div class="pool-stat-label">Pool Size</div>
+        <div class="pool-stat-value teal"><span data-count="250000" data-prefix="$">0</span></div>
+        <div class="pool-stat-delta up">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14l5-5 5 5z"/></svg>
+          +12.4% this month
+        </div>
+      </div>
+      <div class="pool-stat">
+        <div class="pool-stat-label">Active Traders (Score &ge; 50)</div>
+        <div class="pool-stat-value"><span data-count="283">0</span></div>
+        <div class="pool-stat-delta up">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14l5-5 5 5z"/></svg>
+          +18 this month
+        </div>
+      </div>
+      <div class="pool-stat">
+        <div class="pool-stat-label">Capital Deployed</div>
+        <div class="pool-stat-value green"><span data-count="164500" data-prefix="$">0</span></div>
+        <div class="pool-stat-delta up">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14l5-5 5 5z"/></svg>
+          65.8% deployed
+        </div>
+      </div>
+      <div class="pool-stat">
+        <div class="pool-stat-label">Average CLIMB Score</div>
+        <div class="pool-stat-value"><span data-count="72" data-suffix=".4">0</span></div>
+        <div class="pool-stat-delta neutral">Cohorte &ge; 50</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 3 — POOL STRUCTURE
+     ═══════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Pool Architecture</div>
+      <h2>Dual-Pool Structure</h2>
+      <p class="section-subtitle" style="margin-top:12px">Capital is split between two pools to reward the highest performers while funding all qualified traders.</p>
+    </div>
+
+    <div class="pool-structure" style="margin-top:48px;">
+      <div class="pool-structure-card standard fade-up">
+        <div class="pool-structure-pct">90%</div>
+        <h3>Standard Pool</h3>
+        <p>Allocated to all traders with a CLIMB Score between 85 and 94. The majority of the pool ensures broad access to capital for every qualified trader.</p>
+        <span class="pool-structure-badge">Score 85 &ndash; 94</span>
+        <div class="pool-structure-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <span>Allocations scale with score. Higher score = larger share of the Standard Pool.</span>
+        </div>
+      </div>
+      <div class="pool-structure-card elite fade-up fade-up-delay-1">
+        <div class="pool-structure-pct">10%</div>
+        <h3>Elite Pool</h3>
+        <p>Reserved exclusively for traders scoring 95 and above. Elite traders receive allocations from both pools &mdash; a significant capital advantage.</p>
+        <span class="pool-structure-badge">Score 95 &ndash; 100</span>
+        <div class="pool-structure-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--purple)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <span>Elite traders get dual allocation: Standard Pool + Elite Pool for maximum capital.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 4 — HOW THE POOL WORKS
+     ═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Capital Flow</div>
+      <h2>How The Pool Works</h2>
+      <p class="section-subtitle" style="margin-top:12px">A self-sustaining cycle where trader success feeds back into more capital.</p>
+    </div>
+
+    <!-- Visual Flow -->
+    <div class="flow-grid fade-up fade-up-delay-1">
+      <div class="flow-step">
+        <div class="flow-step-num">1</div>
+        <h4>Subscriptions Fund The Pool</h4>
+        <p>Every $199/month evaluation subscription contributes 50% directly to the liquidity pool. More traders = larger pool.</p>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">2</div>
+        <h4>Profits Recycle Back</h4>
+        <p>When funded traders profit, 50% of Climber's commission share is reinvested back into the pool. Success compounds.</p>
+        <div class="flow-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">3</div>
+        <h4>Score-Based Allocation</h4>
+        <p>Capital is distributed algorithmically based on each trader's CLIMB Score, the FC factor, seniority bonus, and performance prime.</p>
+      </div>
+    </div>
+
+    <!-- Formulas -->
+    <div class="formula-grid fade-up fade-up-delay-2">
+      <div class="formula-card">
+        <div class="formula-card-label">Factor Cohorte (Auto-Protection)</div>
+        <code>FC = 1 / (1 + (N_cohorte / 50))</code>
+        <div class="formula-card-desc">Where N_cohorte = total traders with Score &ge; 50. Automatically reduces allocations as more traders qualify, protecting the pool at any scale.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-card-label">Score Allocation %</div>
+        <code>%Score(S) = 1% + ((S - 85) / 15) &times; 1%</code>
+        <div class="formula-card-desc">Maps a score range of 85&ndash;100 to a pool percentage of 1.00%&ndash;2.00%. Higher score = proportionally larger allocation.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-card-label">Performance Prime</div>
+        <code>Prime(S) = min(10%, max(0, (S - 85) &times; 1%))</code>
+        <div class="formula-card-desc">Bonus multiplier from 0% (score 85) to 10% (score 95+). Rewards sustained excellence with additional capital.</div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-card-label">Final Allocation</div>
+        <code>Alloc = Pool &times; %Score &times; FC &times; (1 + Prime + Seniority)</code>
+        <div class="formula-card-desc">Complete formula combining all factors. Seniority bonus accrues monthly, capped at +3% after 6 months in Live.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 5 — ALLOCATION EXAMPLES
+     ═══════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Allocation Simulator</div>
+      <h2>Example Allocations</h2>
+      <p class="section-subtitle" style="margin-top:12px">How much capital you could receive based on your CLIMB Score.</p>
+    </div>
+
+    <div class="alloc-table-wrap fade-up fade-up-delay-1" style="margin-top:48px;">
+      <div class="alloc-table-header">
+        <h4>Capital Allocation by Score</h4>
+        <div class="alloc-table-params">
+          <span>Pool: $250,000</span>
+          <span>N_cohorte: 50</span>
+          <span>FC: 0.667</span>
+        </div>
+      </div>
+      <table class="alloc-table" style="width:100%;border-collapse:collapse;">
+        <thead>
+          <tr>
+            <th>CLIMB Score</th>
+            <th>%Score</th>
+            <th>Prime</th>
+            <th>Seniority (6mo)</th>
+            <th>Allocation</th>
+            <th style="width:20%;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="score-cell">85</td>
+            <td><span class="mono">1.00%</span></td>
+            <td><span class="mono">0%</span></td>
+            <td><span class="mono">0%</span></td>
+            <td class="alloc-cell">~$1,668</td>
+            <td>
+              <div class="alloc-bar"><div class="alloc-bar-fill" style="width:42%;background:var(--teal)"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="score-cell" style="color:var(--teal)">90</td>
+            <td><span class="mono">1.33%</span></td>
+            <td><span class="mono">5%</span></td>
+            <td><span class="mono">1.5%</span></td>
+            <td class="alloc-cell">~$2,370</td>
+            <td>
+              <div class="alloc-bar"><div class="alloc-bar-fill" style="width:60%;background:var(--teal)"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="score-cell" style="color:var(--purple)">95</td>
+            <td><span class="mono">1.67%</span></td>
+            <td><span class="mono">10%</span></td>
+            <td><span class="mono">3%</span></td>
+            <td class="alloc-cell">~$3,150</td>
+            <td>
+              <div class="alloc-bar"><div class="alloc-bar-fill" style="width:80%;background:var(--purple)"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="score-cell" style="color:var(--amber)">100</td>
+            <td><span class="mono">2.00%</span></td>
+            <td><span class="mono">10%</span></td>
+            <td><span class="mono">3%</span></td>
+            <td class="alloc-cell">~$3,780</td>
+            <td>
+              <div class="alloc-bar"><div class="alloc-bar-fill" style="width:100%;background:var(--amber)"></div></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-center fade-up" style="margin-top:20px;font-size:12px;color:var(--text3);font-family:var(--mono);">
+      Figures are illustrative. Actual allocations depend on real-time pool size, trader count, and individual score.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 6 — SAFETY MECHANISM
+     ═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Safety Mechanism</div>
+      <h2>Auto-Protecting Factor Cohorte</h2>
+      <p class="section-subtitle" style="margin-top:12px">A mathematical guarantee that the pool remains sustainable at any scale.</p>
+    </div>
+
+    <div class="safety-grid">
+      <div class="safety-card fade-up">
+        <h4 style="color:var(--green);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--green)" style="vertical-align:-3px;margin-right:6px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          Few Traders
+        </h4>
+        <p>When the cohorte is small, FC approaches 1.0. Each trader receives a strong, meaningful allocation. The pool is concentrated among fewer participants.</p>
+        <div class="fc-viz">
+          <div class="fc-row">
+            <div class="fc-row-label">10 traders</div>
+            <div class="fc-row-bar"><div class="fc-row-bar-fill" style="width:83%;background:var(--green);"></div></div>
+            <div class="fc-row-val">0.833</div>
+          </div>
+          <div class="fc-row">
+            <div class="fc-row-label">25 traders</div>
+            <div class="fc-row-bar"><div class="fc-row-bar-fill" style="width:67%;background:var(--green);"></div></div>
+            <div class="fc-row-val">0.667</div>
+          </div>
+          <div class="fc-row">
+            <div class="fc-row-label">50 traders</div>
+            <div class="fc-row-bar"><div class="fc-row-bar-fill" style="width:50%;background:var(--teal);"></div></div>
+            <div class="fc-row-val">0.500</div>
+          </div>
+        </div>
+      </div>
+      <div class="safety-card fade-up fade-up-delay-1">
+        <h4 style="color:var(--amber);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--amber)" style="vertical-align:-3px;margin-right:6px;"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          Many Traders
+        </h4>
+        <p>As the cohorte grows, FC decreases automatically. Individual allocations shrink proportionally, preventing the pool from being overexposed regardless of scale.</p>
+        <div class="fc-viz">
+          <div class="fc-row">
+            <div class="fc-row-label">100 traders</div>
+            <div class="fc-row-bar"><div class="fc-row-bar-fill" style="width:33%;background:var(--amber);"></div></div>
+            <div class="fc-row-val">0.333</div>
+          </div>
+          <div class="fc-row">
+            <div class="fc-row-label">250 traders</div>
+            <div class="fc-row-bar"><div class="fc-row-bar-fill" style="width:17%;background:var(--amber);"></div></div>
+            <div class="fc-row-val">0.167</div>
+          </div>
+          <div class="fc-row">
+            <div class="fc-row-label">500 traders</div>
+            <div class="fc-row-bar"><div class="fc-row-bar-fill" style="width:9%;background:var(--red);"></div></div>
+            <div class="fc-row-val">0.091</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Principle -->
+    <div class="safety-principle fade-up">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--teal)" style="margin-bottom:16px;"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      <h3 class="teal">The Pool Can Never Be Exhausted</h3>
+      <p>The Factor Cohorte is a mathematical auto-regulator. As trader count increases, individual allocations decrease proportionally. Combined with subscription inflows and profit recycling, the pool is self-sustaining at any scale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 7 — CTA
+     ═══════════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container fade-up">
+    <h2 class="hero-title">Join The Pool</h2>
+    <p style="font-size:18px;margin-top:12px;color:var(--text2)">Start your evaluation. Prove your skill. Get funded with real capital.</p>
+    <div class="cta-row" style="margin-top:36px;">
+      <a href="pricing.html" class="btn btn-primary btn-lg">Start Your Evaluation &rarr;</a>
+      <a href="how-it-works.html" class="btn btn-outline btn-lg">How It Works</a>
+    </div>
+    <p style="font-size:12px;color:var(--text3);margin-top:16px;font-family:var(--mono);">Score &ge; 85 + 30 days + KYC = Live Funded</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+              <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="rules.html">Trading Rules</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About Us</a>
+        <a href="pool.html">Liquidity Pool</a>
+        <a href="about.html#splits">Profit Splits</a>
+        <a href="pool.html">Liquidity Pool Dashboard</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="legal/cgv.html">Terms & Conditions</a>
+        <a href="legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/shared.js"></script>
+<script>
+/* ─── POOL-SPECIFIC: Average Score counter with decimal ─── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-suffix]').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    const duration = 2000;
+    let start = null;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const animate = (timestamp) => {
+            if (!start) start = timestamp;
+            const progress = Math.min((timestamp - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(eased * target);
+            el.textContent = prefix + current.toLocaleString('en-US') + suffix;
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(el);
+  });
+});
+</script>
+</body>
+</html>
