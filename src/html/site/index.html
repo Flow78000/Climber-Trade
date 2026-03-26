@@ -14,49 +14,37 @@
   position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
   pointer-events:none;display:block;
 }
-/* ── LETTER ANIMATION ── */
-.hero-title .letter{
-  display:inline-block;opacity:0;
-  transform:translateY(20px);
-  animation:letterIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards;
+/* ── HERO TITLE ANIMATION ── */
+.hero-title{position:relative;min-height:1.2em;}
+.hero-title .line1{display:block;color:var(--text);}
+.hero-title .line2{display:block;color:var(--teal);position:relative;}
+/* Fade in */
+.hero-title .hero-line{
+  opacity:0;transform:translateY(18px);
+  transition:opacity .8s ease,transform .8s ease;
 }
-.hero-title .letter-space{display:inline-block;width:0.3em;}
-@keyframes letterIn{
-  0%{opacity:0;transform:translateY(20px);}
-  70%{opacity:1;transform:translateY(-1px);}
-  100%{opacity:1;transform:translateY(0);}
+.hero-title .hero-line.visible{opacity:1;transform:translateY(0);}
+.hero-title .line2.visible{text-shadow:0 0 10px #00D4FF33;}
+/* Ash disintegrate */
+.hero-title .hero-line.dusting{
+  animation:ashDisintegrate 2.5s ease forwards;
 }
-.hero-title .letter-teal{color:var(--teal);}
-.hero-title .letter-teal.arrived{
-  text-shadow:0 0 14px #00D4FF44;
-  animation:tealSettle 1.2s ease forwards;
+@keyframes ashDisintegrate{
+  0%{opacity:1;transform:translateY(0);filter:blur(0);}
+  20%{opacity:.85;transform:translateY(-2px);filter:blur(0);}
+  50%{opacity:.4;transform:translateY(-8px) scale(.97);filter:blur(1.5px);}
+  75%{opacity:.1;transform:translateY(-20px) scale(.93);filter:blur(3px);}
+  100%{opacity:0;transform:translateY(-35px) scale(.88);filter:blur(5px);}
 }
-@keyframes tealSettle{
-  0%{text-shadow:0 0 14px #00D4FF55;}
-  100%{text-shadow:0 0 6px #00D4FF22;}
+/* Ash particles */
+.ash{
+  position:absolute;border-radius:50%;pointer-events:none;
+  animation:ashFly var(--dur,2s) ease-out forwards;
 }
-/* ── SNAP / DUST EFFECT (Thanos) ── */
-.letter.dusting{
-  position:relative;
-  animation:dustOut 2.2s cubic-bezier(.3,0,.15,1) forwards;
-}
-@keyframes dustOut{
-  0%{opacity:1;transform:translate(0,0) scale(1);filter:blur(0);}
-  15%{opacity:.9;transform:translate(0,-1px) scale(1.02);filter:blur(0);}
-  40%{opacity:.5;transform:translate(var(--dx,3px),var(--dy,-10px)) scale(.85);filter:blur(0.8px);}
-  70%{opacity:.15;transform:translate(var(--dx2,10px),var(--dy2,-35px)) scale(.4) rotate(var(--rot,12deg));filter:blur(2px);}
-  100%{opacity:0;transform:translate(var(--dx2,12px),var(--dy2,-50px)) scale(.1) rotate(var(--rot,20deg));filter:blur(4px);}
-}
-.dust-particle{
-  position:absolute;border-radius:50%;
-  pointer-events:none;z-index:999;
-  animation:particleFly 2s cubic-bezier(.2,0,.1,1) forwards;
-}
-@keyframes particleFly{
-  0%{opacity:1;transform:translate(0,0) scale(1);}
-  30%{opacity:.9;}
-  60%{opacity:.4;transform:translate(calc(var(--px)*0.5),calc(var(--py)*0.4)) scale(.7);filter:blur(1px);}
-  100%{opacity:0;transform:translate(var(--px),var(--py)) scale(0);filter:blur(3px);}
+@keyframes ashFly{
+  0%{opacity:.9;transform:translate(0,0) scale(1);}
+  40%{opacity:.6;}
+  100%{opacity:0;transform:translate(var(--ax),var(--ay)) scale(0);filter:blur(2px);}
 }
 .hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
 .hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
@@ -178,7 +166,10 @@
   <!-- PARTICLES — subtle floating dust -->
   <canvas class="hero-particles" id="heroParticles"></canvas>
   <div class="container" style="position:relative;z-index:2;">
-    <h1 class="hero-title" id="heroTitle"></h1>
+    <h1 class="hero-title" id="heroTitle">
+      <span class="hero-line line1">Your Trading Partner For Success.</span>
+      <span class="hero-line line2">Get Funded Without Limits.</span>
+    </h1>
     <p class="hero-desc fade-up fade-up-delay-1" data-i18n="index_hero_desc">We grow when you grow. Unlike other prop firms, we don't profit when you fail — we succeed together. No rigged evaluations, no trick rules. Just real capital, transparent metrics and true partnership.</p>
     <div class="stat-cards fade-up fade-up-delay-2">
       <div class="stat-card">
@@ -640,77 +631,60 @@
     },delay);
   })();
 })();
-// ── HERO TITLE — letter animation + INFINITE Thanos ash loop ──
+// ── HERO TITLE — simple fade in + ash loop (both lines as one block) ──
 (function(){
   const el=document.getElementById('heroTitle');
   if(!el)return;
-  const L1="Your Trading Partner For Success.";
-  const L2="Get Funded Without Limits.";
+  const line1=el.querySelector('.line1');
+  const line2=el.querySelector('.line2');
+  if(!line1||!line2)return;
 
-  function buildLine1(){
-    let h='',i=0;
-    for(const ch of L1){
-      if(ch===' ')h+='<span class="letter-space"></span>';
-      else h+=`<span class="letter" style="animation-delay:${i*30}ms">${ch}</span>`;
-      i++;
-    }
-    return{html:h,count:i};
-  }
-
-  function buildLine2(startIdx){
-    let h='',i=0;
-    for(const ch of L2){
-      if(ch===' ')h+='<span class="letter-space"></span>';
-      else h+=`<span class="letter letter-teal" style="animation-delay:${(startIdx+i)*30}ms">${ch}</span>`;
-      i++;
-    }
-    return{html:h,count:i};
-  }
-
-  function spawnAsh(letter){
-    const rect=letter.getBoundingClientRect();
-    const heroRect=el.getBoundingClientRect();
-    const n=8+Math.floor(Math.random()*5);
-    const colors=['#00D4FF','rgba(255,255,255,0.6)','rgba(0,180,220,0.5)','rgba(100,200,255,0.4)'];
-    for(let p=0;p<n;p++){
-      const sp=document.createElement('span');
-      sp.className='dust-particle';
-      const px=(Math.random()*100-50).toFixed(1);
-      const py=(Math.random()*-100-15).toFixed(1);
-      const sz=0.8+Math.random()*2;
-      sp.style.cssText=`left:${rect.left-heroRect.left+rect.width*Math.random()}px;top:${rect.top-heroRect.top+rect.height*Math.random()}px;--px:${px}px;--py:${py}px;background:${colors[Math.floor(Math.random()*colors.length)]};width:${sz}px;height:${sz}px;animation-delay:${Math.random()*300}ms;animation-duration:${1.5+Math.random()*0.8}s;`;
-      el.appendChild(sp);
-      setTimeout(()=>sp.remove(),2800);
+  function spawnAshCloud(target){
+    const rect=target.getBoundingClientRect();
+    const parentRect=el.getBoundingClientRect();
+    const count=40;
+    const colors=['#00D4FF','#00D4FF','rgba(255,255,255,0.6)','rgba(0,180,220,0.5)','rgba(150,220,255,0.4)'];
+    for(let i=0;i<count;i++){
+      const ash=document.createElement('span');
+      ash.className='ash';
+      const x=rect.left-parentRect.left+Math.random()*rect.width;
+      const y=rect.top-parentRect.top+Math.random()*rect.height;
+      const ax=(Math.random()*160-80).toFixed(1);
+      const ay=(Math.random()*-120-20).toFixed(1);
+      const sz=0.8+Math.random()*2.5;
+      const dur=(1.5+Math.random()*1.2).toFixed(2);
+      ash.style.cssText=`left:${x}px;top:${y}px;width:${sz}px;height:${sz}px;--ax:${ax}px;--ay:${ay}px;--dur:${dur}s;background:${colors[i%colors.length]};animation-delay:${(Math.random()*500).toFixed(0)}ms;`;
+      el.appendChild(ash);
+      setTimeout(()=>ash.remove(),3000);
     }
   }
 
-  function snapLetters(){
-    const letters=[...el.querySelectorAll('.letter-teal')];
-    letters.sort(()=>Math.random()-0.5);
-    letters.forEach((letter,i)=>{
-      letter.style.setProperty('--dx',(Math.random()*24-12).toFixed(1)+'px');
-      letter.style.setProperty('--dy',(Math.random()*-20-5).toFixed(1)+'px');
-      letter.style.setProperty('--dx2',(Math.random()*50-25).toFixed(1)+'px');
-      letter.style.setProperty('--dy2',(Math.random()*-70-15).toFixed(1)+'px');
-      letter.style.setProperty('--rot',(Math.random()*40-20).toFixed(1)+'deg');
-      const delay=i*50+Math.random()*60;
-      setTimeout(()=>{letter.classList.add('dusting');spawnAsh(letter);},delay);
-    });
-  }
-
-  // === MAIN LOOP ===
   function cycle(){
-    const l1=buildLine1();
-    const l2=buildLine2(l1.count+6);
-    el.innerHTML=l1.html+'<br>'+l2.html;
-    const appearTime=(l1.count+6+L2.length)*30+400;
-    // Glow settle
-    setTimeout(()=>el.querySelectorAll('.letter-teal').forEach(l=>l.classList.add('arrived')),appearTime);
-    // Hold 4s then snap
-    setTimeout(()=>snapLetters(),appearTime+4000);
-    // After snap completes (2.5s), wait 2s then restart
-    setTimeout(()=>cycle(),appearTime+4000+2500+2000);
+    // Reset
+    line1.classList.remove('visible','dusting');
+    line2.classList.remove('visible','dusting');
+    line1.style.opacity='0';line1.style.transform='translateY(18px)';
+    line2.style.opacity='0';line2.style.transform='translateY(18px)';
+    // Force reflow
+    void el.offsetHeight;
+
+    // Phase 1: fade in line1 (0ms) then line2 (400ms)
+    setTimeout(()=>{line1.classList.add('visible');},100);
+    setTimeout(()=>{line2.classList.add('visible');},500);
+
+    // Phase 2: hold for 5 seconds
+    // Phase 3: ash disintegrate BOTH lines
+    setTimeout(()=>{
+      spawnAshCloud(line1);
+      spawnAshCloud(line2);
+      line1.classList.add('dusting');
+      setTimeout(()=>line2.classList.add('dusting'),200);
+    },5500);
+
+    // Phase 4: wait for ash to clear (3s) then restart
+    setTimeout(()=>cycle(),5500+3000+1500);
   }
+
   cycle();
 })();
 </script>
