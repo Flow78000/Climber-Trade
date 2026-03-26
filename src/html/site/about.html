@@ -120,33 +120,87 @@
     </div>
     <div class="pool-info fade-up">
       <h4>How Capital Is Allocated</h4>
-      <p><strong style="color:var(--text)">Cohorte</strong> &mdash; All traders with a CLIMB Score &ge; 50 form the statistical cohorte, including both evaluation and live traders.</p>
-      <p><strong style="color:var(--text)">Factor FC</strong> &mdash; The auto-regulating Cohorte Factor prevents pool overexposure at any scale. As the number of qualifying traders grows, each individual allocation shrinks proportionally.</p>
-      <code class="pool-code">FC = 1 / (1 + (N_cohorte / 50))
+      <p style="color:var(--text2);margin-bottom:24px">The higher your score, the more capital you receive. It's that simple. Here's what it looks like in practice:</p>
 
-N_cohorte = Total traders with Score &ge; 50
-Low N_cohorte  &rarr; FC close to 1 &rarr; larger allocations
-High N_cohorte &rarr; FC decreases  &rarr; smaller allocations</code>
-      <p><strong style="color:var(--text)">%Score</strong> &mdash; Your share of the pool scales with your score: 1% at score 85, up to 2% at score 100.</p>
-      <div class="pool-formula">%Score(S) = 1% + ((S - 85) / 15) &times; 1%</div>
-
-      <div class="pool-split">
-        <div class="pool-split-card">
-          <h5>Elite Pool</h5>
-          <div class="pool-pct" style="color:var(--purple)">10%</div>
-          <p>Reserved for traders with a CLIMB Score &ge; 95. Elite traders receive a <strong style="color:var(--text)">double allocation</strong> from both the Elite and Standard pools.</p>
+      <!-- Visual allocation examples -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 16px;text-align:center">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px">Score 85</div>
+          <div style="font-size:28px;font-weight:800;font-family:var(--mono);color:var(--teal);letter-spacing:-1px">~$1,600</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:6px">Starting allocation</div>
+          <div style="height:4px;border-radius:2px;background:var(--border);margin-top:12px;overflow:hidden"><div style="width:25%;height:100%;background:var(--teal);border-radius:2px"></div></div>
         </div>
-        <div class="pool-split-card">
-          <h5>Standard Pool</h5>
-          <div class="pool-pct" style="color:var(--green)">90%</div>
-          <p>Shared among all funded traders with a CLIMB Score &ge; 85, including Elite traders who also draw from this pool.</p>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 16px;text-align:center">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px">Score 90</div>
+          <div style="font-size:28px;font-weight:800;font-family:var(--mono);color:var(--green);letter-spacing:-1px">~$2,260</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:6px">+41% vs baseline</div>
+          <div style="height:4px;border-radius:2px;background:var(--border);margin-top:12px;overflow:hidden"><div style="width:45%;height:100%;background:var(--green);border-radius:2px"></div></div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 16px;text-align:center">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px">Score 95</div>
+          <div style="font-size:28px;font-weight:800;font-family:var(--mono);color:#F59E0B;letter-spacing:-1px">~$3,020</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:6px">+89% vs baseline</div>
+          <div style="height:4px;border-radius:2px;background:var(--border);margin-top:12px;overflow:hidden"><div style="width:70%;height:100%;background:#F59E0B;border-radius:2px"></div></div>
+        </div>
+        <div style="background:var(--card);border:1px solid #8B5CF633;border-radius:10px;padding:20px 16px;text-align:center">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#8B5CF6;margin-bottom:8px">Score 100</div>
+          <div style="font-size:28px;font-weight:800;font-family:var(--mono);color:#8B5CF6;letter-spacing:-1px">~$3,810</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:6px">+138% vs baseline</div>
+          <div style="height:4px;border-radius:2px;background:var(--border);margin-top:12px;overflow:hidden"><div style="width:100%;height:100%;background:#8B5CF6;border-radius:2px"></div></div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--text3);text-align:center;margin-bottom:28px">Based on a $250,000 pool with 50 qualifying traders &mdash; allocations scale automatically</div>
+
+      <!-- What makes it grow -->
+      <h5 style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:16px">Three things grow your allocation</h5>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px">
+          <div style="width:36px;height:36px;border-radius:8px;background:#00D4FF15;border:1px solid #00D4FF33;display:flex;align-items:center;justify-content:center;margin-bottom:12px">
+            <svg width="16" height="16" fill="none" stroke="#00D4FF" stroke-width="2"><path d="M2 14L8 4l6 10"/><path d="M5 9h6"/></svg>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px">Your Score</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.6">Score 85 = 1% of pool. Score 100 = 2%. Every point above 85 increases your share.</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px">
+          <div style="width:36px;height:36px;border-radius:8px;background:#10B98115;border:1px solid #10B98133;display:flex;align-items:center;justify-content:center;margin-bottom:12px">
+            <svg width="16" height="16" fill="none" stroke="#10B981" stroke-width="2"><path d="M2 14l4-4 3 3 5-7"/></svg>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px">Performance Bonus</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.6">Score 85+ unlocks up to +10% extra allocation. The better you trade, the more you get.</div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px">
+          <div style="width:36px;height:36px;border-radius:8px;background:#F59E0B15;border:1px solid #F59E0B33;display:flex;align-items:center;justify-content:center;margin-bottom:12px">
+            <svg width="16" height="16" fill="none" stroke="#F59E0B" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+          </div>
+          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px">Seniority</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.6">Stay funded and active &mdash; earn up to +3% bonus after 6 months. Loyalty is rewarded.</div>
         </div>
       </div>
 
-      <p><strong style="color:var(--text)">Seniority Bonus</strong> &mdash; Incremental monthly bonus for live traders, capped at <strong style="color:var(--green)">+3% after 6 months</strong> of continuous live trading. Loyalty and consistency are rewarded.</p>
+      <!-- Pool structure -->
+      <div class="pool-split">
+        <div class="pool-split-card">
+          <h5 style="color:var(--purple)">Elite Pool</h5>
+          <div class="pool-pct" style="color:var(--purple)">10%</div>
+          <p>For traders scoring 95+. Elite traders get a <strong style="color:var(--text)">double allocation</strong> &mdash; from both pools.</p>
+        </div>
+        <div class="pool-split-card">
+          <h5 style="color:var(--green)">Standard Pool</h5>
+          <div class="pool-pct" style="color:var(--green)">90%</div>
+          <p>Shared among all funded traders scoring 85+. The bigger pool, for consistent performers.</p>
+        </div>
+      </div>
 
-      <p><strong style="color:var(--text)">Final Allocation Formula:</strong></p>
-      <code class="pool-code">Alloc(S) = Pool_total &times; %Score(S) &times; FC &times; (1 + Prime(S) + Seniority_Bonus)</code>
+      <!-- Safety note -->
+      <div style="background:#10B98108;border:1px solid #10B98122;border-radius:10px;padding:16px 20px;margin-top:20px;display:flex;align-items:flex-start;gap:12px">
+        <div style="width:28px;height:28px;border-radius:6px;background:#10B98118;flex-shrink:0;display:flex;align-items:center;justify-content:center">
+          <svg width="14" height="14" fill="none" stroke="#10B981" stroke-width="2"><path d="M7 1l6 12H1L7 1z"/><path d="M7 5v3"/><circle cx="7" cy="10" r=".5" fill="#10B981"/></svg>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:4px">Built-in protection</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.6">The pool automatically adjusts allocations based on the number of traders. More traders = smaller individual shares. <strong style="color:var(--text)">The pool can never be exhausted.</strong></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

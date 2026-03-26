@@ -221,7 +221,7 @@
         <div class="flow-num" style="background:#10B98118;color:var(--green);border:1px solid #10B98133">03</div>
         <div class="flow-content">
           <h3>Reach Score 85</h3>
-          <p style="color:var(--text2);line-height:1.7;margin-top:8px">Hit CLIMB Score 85+ for 7 consecutive trading days, with at least 30 days on your account and KYC validated. Qualification is automatic — no application needed.</p>
+          <p style="color:var(--text2);line-height:1.7;margin-top:8px">Hit CLIMB Score 85+ for 7 consecutive trading days, with at least 30 days on your account. Qualification is automatic — no application, no committee, no waiting.</p>
           <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
             <span class="badge badge-green" style="font-size:10px">Automatic Validation</span>
             <span class="badge badge-green" style="font-size:10px">24-48h Activation</span>
@@ -253,9 +253,39 @@
   display:flex;align-items:flex-start;gap:20px;
   padding:24px 28px;border-radius:12px;
   background:var(--card);border:1px solid var(--border);
-  transition:border-color .2s;
+  transition:border-color .3s,box-shadow .3s;
+  position:relative;overflow:hidden;
 }
-.flow-step:hover{border-color:var(--border2);}
+.flow-step::before{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(1px 1px at 15% 20%,rgba(200,230,255,.18) 0%,transparent 100%),
+    radial-gradient(1px 1px at 45% 60%,rgba(200,230,255,.12) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 75% 15%,rgba(200,230,255,.15) 0%,transparent 100%),
+    radial-gradient(1px 1px at 88% 70%,rgba(200,230,255,.10) 0%,transparent 100%),
+    radial-gradient(1px 1px at 30% 85%,rgba(200,230,255,.12) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 60% 35%,rgba(200,230,255,.08) 0%,transparent 100%),
+    radial-gradient(1px 1px at 5% 50%,rgba(200,230,255,.14) 0%,transparent 100%),
+    radial-gradient(1px 1px at 92% 40%,rgba(200,230,255,.10) 0%,transparent 100%);
+  animation:frost-drift 12s ease-in-out infinite alternate;
+  pointer-events:none;z-index:0;
+}
+.flow-step::after{
+  content:'';position:absolute;top:-1px;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent 0%,rgba(200,230,255,.12) 20%,rgba(200,230,255,.20) 50%,rgba(200,230,255,.12) 80%,transparent 100%);
+  animation:frost-shimmer 6s ease-in-out infinite;
+  pointer-events:none;z-index:0;
+}
+.flow-step>*{position:relative;z-index:1;}
+.flow-step:hover{border-color:rgba(200,230,255,.15);box-shadow:0 0 20px rgba(200,230,255,.04),inset 0 0 30px rgba(200,230,255,.02);}
+@keyframes frost-drift{
+  0%{background-position:0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0;}
+  100%{background-position:3px -5px,-2px -4px,4px -6px,-3px -3px,2px -5px,-4px -7px,3px -4px,-2px -6px;}
+}
+@keyframes frost-shimmer{
+  0%,100%{opacity:.3;}
+  50%{opacity:.7;}
+}
 .flow-num{
   width:44px;height:44px;border-radius:10px;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;
