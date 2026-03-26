@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Climber Trade — Your Trading Partner For Success</title>
+<meta name="description" content="Finally, a funding partner that wants you to succeed. Real capital, transparent metrics, true partnership. Get funded without limits.">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* Hero extras */
+.hero{text-align:center;padding:120px 0 80px;}
+.hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
+.hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
+/* Evolution section */
+.evo-header{text-align:center;margin-bottom:48px;}
+/* Why section */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px;}
+.why-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:32px;transition:border-color .2s;
+}
+.why-card:hover{border-color:var(--border2);}
+.why-icon{
+  width:48px;height:48px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;
+}
+.why-card h4{margin-bottom:10px;font-size:18px;}
+.why-card p{font-size:14px;color:var(--text2);line-height:1.7;}
+/* Differentiators */
+.diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;}
+.diff-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:24px;
+}
+.diff-icon{
+  width:40px;height:40px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
+}
+.diff-card h5{margin-bottom:8px;}
+.diff-card p{font-size:13px;color:var(--text2);line-height:1.6;}
+/* Analytics section */
+.analytics-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;}
+.analytics-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:36px;
+}
+.analytics-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:20px;
+  font-size:11px;font-weight:700;letter-spacing:.5px;
+  margin-bottom:16px;
+}
+.analytics-card h3{margin-bottom:12px;}
+.analytics-card p{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:16px;}
+.analytics-list{display:flex;flex-direction:column;gap:6px;}
+.analytics-list li{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--text2);
+}
+.analytics-list li::before{content:'✓';color:var(--teal);font-weight:700;font-size:12px;}
+/* CTA email */
+.cta-email{
+  display:flex;gap:0;max-width:520px;margin:0 auto;
+  border-radius:var(--r);overflow:hidden;border:1px solid var(--border);
+}
+.cta-email input{
+  flex:1;padding:16px 20px;background:var(--card);border:none;
+  color:var(--text);font-family:var(--font);font-size:14px;outline:none;
+}
+.cta-email input::placeholder{color:var(--text3);}
+.cta-email button{
+  padding:16px 28px;background:var(--teal);color:#000;
+  font-family:var(--font);font-size:14px;font-weight:700;
+  border:none;cursor:pointer;white-space:nowrap;transition:background .2s;
+}
+.cta-email button:hover{background:#00bde6;}
+@media(max-width:1024px){
+  .diff-grid{grid-template-columns:repeat(2,1fr);}
+  .analytics-grid{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .hero{padding:80px 0 60px;}
+  .why-grid{grid-template-columns:1fr;}
+  .diff-grid{grid-template-columns:1fr;}
+  .cta-email{flex-direction:column;}
+  .cta-email button{padding:14px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="how-it-works.html" class="nav-link">How It Works</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="rules.html" class="nav-link">Rules</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="how-it-works.html" class="nav-link">How It Works</a>
+  <a href="pricing.html" class="nav-link">Pricing</a>
+  <a href="rules.html" class="nav-link">Rules</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-link">Contact</a>
+  <a href="pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1 class="hero-title fade-up">Your Trading Partner For Success.<br><span class="teal">Get Funded Without Limits.</span></h1>
+    <p class="hero-desc fade-up fade-up-delay-1">We grow when you grow. Unlike other prop firms, we don't profit when you fail — we succeed together. No rigged evaluations, no trick rules. Just real capital, transparent metrics and true partnership.</p>
+    <div class="stat-cards fade-up fade-up-delay-2">
+      <div class="stat-card">
+        <div class="stat-card-label">Liquidity Funding Pool</div>
+        <div class="stat-card-value"><span data-count="250000" data-prefix="$">0</span></div>
+        <div class="stat-card-sub">↑ Live Updated</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Traders Building Careers</div>
+        <div class="stat-card-value"><span data-count="283">0</span></div>
+        <div class="stat-card-sub">↑ Last 30 days</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Capital Deployed</div>
+        <div class="stat-card-value"><span data-count="164500" data-prefix="$">0</span></div>
+        <div class="stat-card-sub">↑ Since Beginning</div>
+      </div>
+    </div>
+    <div class="hero-btns fade-up fade-up-delay-3">
+      <a href="pricing.html" class="btn btn-primary btn-lg">Build Your Trading Career →</a>
+      <a href="how-it-works.html" class="btn btn-outline btn-lg">Watch How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- EVOLUTION OF FUNDING -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="evo-header fade-up">
+      <div class="section-label">The Evolution</div>
+      <h2>The Evolution of Trader Funding</h2>
+      <p class="section-subtitle" style="margin-top:12px">From impossible barriers to trader's resounding success</p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card negative fade-up">
+        <span class="compare-badge" style="background:#EF444418;color:var(--red)">Stage 1</span>
+        <h3>Traditional Brokers ✕</h3>
+        <p style="margin-bottom:12px;color:var(--text2)">Problems:</p>
+        <ul>
+          <li>You need $25,000+ just to start properly</li>
+          <li>Every loss comes from YOUR savings</li>
+          <li>The psychological weight of risking your own money</li>
+          <li>PDT rules limit your strategies</li>
+          <li>Most talented traders never get their shot</li>
+        </ul>
+        <div class="compare-quote">"Talent alone isn't enough when you can't afford to trade."</div>
+      </div>
+      <div class="compare-card warning fade-up fade-up-delay-1">
+        <span class="compare-badge" style="background:#F59E0B18;color:var(--amber)">Stage 2</span>
+        <h3>Online Prop Firms ⚠</h3>
+        <p style="margin-bottom:12px;color:var(--amber)">Online props solved the capital problem but created a worse one: they bet against you.</p>
+        <ul>
+          <li>They profit when you fail (95% of evaluation fees are pure profit)</li>
+          <li>Designed-to-fail targets: Make $4K with $2K max loss</li>
+          <li>Sim accounts forever (real funding costs them money)</li>
+          <li>Rules designed to disqualify you</li>
+          <li>Business model collapses if too many traders succeed</li>
+        </ul>
+        <div class="compare-quote">"A funding partner who loses when you win isn't a partner — it's a casino."</div>
+      </div>
+      <div class="compare-card positive fade-up fade-up-delay-2">
+        <span class="compare-badge badge-teal">Climber Trade</span>
+        <h3 class="teal">True Funding Partner ✓</h3>
+        <p style="margin-bottom:12px;color:var(--text2)">What if your funding partner actually wanted you to succeed?</p>
+        <ul>
+          <li style="color:var(--teal)">We fund you with real live capital because your success IS our business model</li>
+          <li style="color:var(--teal)">When you profit, we grow. When you succeed, we succeed.</li>
+          <li style="color:var(--teal)">Trade your way. No minimum days, no consistency rules.</li>
+          <li style="color:var(--teal)">Clear, objective funding criteria: 16+ metrics track true performance.</li>
+          <li style="color:var(--teal)">Stocks, futures, forex, crypto, CFDs. Your strategy, your career.</li>
+          <li style="color:var(--teal)">The better you trade, the more capital we give you. No caps. Ever.</li>
+        </ul>
+        <div class="compare-quote">"This is how trader funding should have worked from the beginning."</div>
+        <a href="how-it-works.html" style="display:inline-block;margin-top:16px;font-size:13px;color:var(--teal);text-decoration:none;font-weight:600;">Learn More &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNDING PARTNER MODEL -->
+<section class="section">
+  <div class="container text-center fade-up">
+    <div class="card card-teal" style="max-width:720px;margin:0 auto;padding:40px">
+      <div class="section-label" style="justify-content:center">Our Model</div>
+      <h3>The Funding Partner Model</h3>
+      <p style="color:var(--text2);margin-top:12px;line-height:1.8">A revolutionary funding model where trader success = firm's success. A true partnership.</p>
+      <div style="display:flex;justify-content:center;gap:32px;margin-top:28px;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div style="font-size:20px;font-weight:700;color:var(--teal);">50%</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:4px;">of subscriptions &rarr; Pool</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:20px;font-weight:700;color:var(--green);">Score-Based</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:4px;">Capital scales with your score</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:20px;font-weight:700;color:var(--amber);">No Cap</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:4px;">No cap on funding</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CLIMBER CHANGES EVERYTHING -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Why Us</div>
+      <h2>Why Climber Changes Everything</h2>
+      <p class="section-subtitle" style="margin-top:12px">Built by professional traders. A real partnership for your phenomenal success.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-icon" style="background:#10B98118;border:1px solid #10B98133">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#10B981"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <h4>We Profit When YOU Profit</h4>
+        <p>Funding Partner model means we profit from your success, not your failures. 50% of subscription fees grow the liquidity pool that funds YOU.</p>
+      </div>
+      <div class="why-card fade-up fade-up-delay-1">
+        <div class="why-icon" style="background:#00D4FF18;border:1px solid #00D4FF33">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#00D4FF"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        </div>
+        <h4>Build a Successful Career</h4>
+        <p>No Funding Limit. Top performers receive regular capital increases. You are in the real markets with real capital to generate massive uncapped profits.</p>
+      </div>
+      <div class="why-card fade-up fade-up-delay-2">
+        <div class="why-icon" style="background:#F59E0B18;border:1px solid #F59E0B33">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        </div>
+        <h4>True Personalized Evaluation</h4>
+        <p>We track 16+ metrics that adapt to YOUR strategy. Once you reach a 85/100 CLIMB Score, you are eligible for funding.</p>
+      </div>
+      <div class="why-card fade-up fade-up-delay-3">
+        <div class="why-icon" style="background:#8B5CF618;border:1px solid #8B5CF633">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#8B5CF6"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+        </div>
+        <h4>Trade Like a Professional</h4>
+        <p>Access professional grade trading tools, your own risk manager, performance coach and analyst all in one place inside your dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 DIFFERENTIATORS -->
+<section class="section">
+  <div class="container">
+    <div class="diff-grid">
+      <div class="diff-card fade-up">
+        <div class="diff-icon" style="background:#00D4FF18;border:1px solid #00D4FF33">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#00D4FF"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        </div>
+        <h5>All Assets Available</h5>
+        <p>Stocks, Forex, Futures, Crypto, CFDs. Trade any asset class within one platform.</p>
+      </div>
+      <div class="diff-card fade-up fade-up-delay-1">
+        <div class="diff-icon" style="background:#10B98118;border:1px solid #10B98133">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#10B981"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+        </div>
+        <h5>Real $1M Account Size</h5>
+        <p>Not a fake $50K evaluation. You are evaluated with a full $1M dollar account.</p>
+      </div>
+      <div class="diff-card fade-up fade-up-delay-2">
+        <div class="diff-icon" style="background:#F59E0B18;border:1px solid #F59E0B33">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+        </div>
+        <h5>Real Capital, Daily Access</h5>
+        <p>Once funded, you're trading live capital. Withdraw your profits. No payout rules.</p>
+      </div>
+      <div class="diff-card fade-up fade-up-delay-3">
+        <div class="diff-icon" style="background:#EF444418;border:1px solid #EF444433">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#EF4444"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </div>
+        <h5>No Trick Rules</h5>
+        <p>No trailing drawdowns, consistency rules, minimum trading days. Just trade with sound risk management.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALYTICS PREVIEW -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Dashboard</div>
+      <h2>See Your Trading Edge. In Real-Time.</h2>
+      <p class="section-subtitle" style="margin-top:12px">Institutional grade analytics that top traders pay thousands for. It's included in your dashboard.</p>
+      <span style="display:inline-block;margin-top:14px;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px;background:#10B98118;color:var(--green);border:1px solid #10B98133;">Available on all plans</span>
+    </div>
+    <div class="analytics-grid">
+      <div class="analytics-card fade-up">
+        <div class="analytics-badge" style="background:var(--teal-dim);color:var(--teal);border:1px solid #00D4FF33">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>
+          Live Analytics
+        </div>
+        <h3>Performance Metrics That Matter</h3>
+        <p>Track your CLIMB Score across 16+ metrics. Know exactly where you excel and where to improve.</p>
+        <ul class="analytics-list">
+          <li>Real-time trading performance tracking</li>
+          <li>Identify strengths & weaknesses instantly</li>
+          <li>Personalized improvement recommendations</li>
+          <li>Risk, Performance, Consistency, Quality metrics</li>
+        </ul>
+      </div>
+      <div class="analytics-card fade-up fade-up-delay-1">
+        <div class="analytics-badge" style="background:#10B98118;color:var(--green);border:1px solid #10B98133">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+          Personalized Insights
+        </div>
+        <h3>Your Trading Journal. Revolutionized.</h3>
+        <p>Metrics powered insights on every trade. Identify patterns, optimize strategies, and accelerate your growth.</p>
+        <ul class="analytics-list">
+          <li>Detailed calendar view of all your trades</li>
+          <li>Daily P&L with detailed breakdowns</li>
+          <li>Analytics by instrument, hour of day and more</li>
+          <li>Pattern recognition and insights</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Traders Trust Us</div>
+      <h2>What Our Traders Say</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-quote">"I've tried 3 other prop firms before. Climber is the first one where I feel like they actually want me to succeed. The scoring system is fair and transparent."</div>
+        <div class="testimonial-author"><div class="testimonial-avatar">M.R</div><div><div class="testimonial-name">Marcus R.</div><div class="testimonial-role">Futures Trader · 6 months</div></div></div>
+      </div>
+      <div class="testimonial fade-up fade-up-delay-1">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-quote">"The dashboard alone is worth the subscription. I can see exactly where I need to improve. Made it to Live in 47 days with a score of 89."</div>
+        <div class="testimonial-author"><div class="testimonial-avatar">S.K</div><div><div class="testimonial-name">Sophie K.</div><div class="testimonial-role">Forex Trader · 3 months</div></div></div>
+      </div>
+      <div class="testimonial fade-up fade-up-delay-2">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-quote">"No hidden rules, no tricks. Just trade well and you get funded. The pool model makes sense — when I profit, they profit. Finally aligned incentives."</div>
+        <div class="testimonial-author"><div class="testimonial-avatar">J.T</div><div><div class="testimonial-name">James T.</div><div class="testimonial-role">Multi-asset Trader · 4 months</div></div></div>
+      </div>
+    </div>
+    <!-- REFERRAL BANNER -->
+    <div class="referral-banner fade-up">
+      <div class="referral-banner-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="#00D4FF"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-1 2H7c-2.21 0-4 1.79-4 4v1h8v-1c0-.73-.2-1.41-.53-2H11zm10 0h-6c.35.59.53 1.27.53 2v1h8v-1c0-2.21-1.79-4-4-4zm-5-2c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/></svg></div>
+      <div class="referral-banner-content">
+        <h4>Refer a Trader, Save on Your Subscription</h4>
+        <p>Get <strong style="color:var(--teal)">-$10/month per active referral</strong> (up to 20 referrals = free subscription). Your referral gets <strong style="color:var(--green)">-20% on their first month</strong>. Code: CLIMB-XXXXX</p>
+      </div>
+      <a href="contact.html" class="btn btn-outline btn-sm" style="flex-shrink:0">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="container fade-up">
+    <h2 class="hero-title">Ready to Trade Without Limits?</h2>
+    <p style="font-size:18px;margin-top:12px">Join the revolution in trader funding. Start your evaluation today.</p>
+    <div style="margin-top:36px">
+      <div class="cta-email">
+        <input type="email" placeholder="Enter Your Email" required>
+        <button>Start Your Journey</button>
+      </div>
+      <p style="font-size:12px;color:var(--text3);margin-top:12px;">No credit card required for Discovery plan</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+              <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="rules.html">Trading Rules</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About Us</a>
+        <a href="about.html#pool">Liquidity Pool</a>
+        <a href="about.html#splits">Profit Splits</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="legal/cgv.html">Terms & Conditions</a>
+        <a href="legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

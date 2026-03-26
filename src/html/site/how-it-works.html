@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How It Works — Climber Trade</title>
+<meta name="description" content="Four simple steps from subscription to unlimited earning potential. Learn how the CLIMB Score works.">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* Steps progression connector */
+.steps-grid{position:relative;}
+.step-card{position:relative;}
+.step-connector{
+  display:flex;align-items:center;justify-content:center;
+  height:32px;position:relative;
+}
+.step-connector::before{
+  content:'';position:absolute;top:0;bottom:0;left:50%;
+  width:2px;background:linear-gradient(180deg,#00D4FF33,#00D4FF15);
+  transform:translateX(-50%);
+}
+.step-connector-arrow{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--card);border:1px solid #00D4FF33;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:1;
+}
+.step-connector-arrow svg{width:14px;height:14px;color:var(--teal);opacity:.6;}
+
+/* Pillars */
+.pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;}
+.pillar-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px;position:relative;overflow:hidden;}
+.pillar-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.pillar-bar{width:100%;height:6px;border-radius:3px;background:var(--card2);margin:12px 0;overflow:hidden;}
+.pillar-bar-fill{height:100%;border-radius:3px;}
+.pillar-label{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);}
+.pillar-name{font-size:16px;font-weight:700;margin:6px 0 4px;}
+.pillar-coeff{font-size:11px;font-family:var(--mono);color:var(--text3);}
+.pillar-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-top:12px;}
+
+/* Score formula card */
+.formula-card{
+  background:var(--card);border:1px solid #00D4FF22;border-radius:var(--r2);
+  padding:24px 32px;margin-top:32px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.formula-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--teal),transparent);
+}
+.formula-label{
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:10px;
+}
+.formula-text{
+  font-family:var(--mono);font-size:14px;font-weight:500;
+  color:var(--text);line-height:1.8;letter-spacing:-.2px;
+}
+.formula-text .op{color:var(--text3);}
+.formula-text .hl{color:var(--teal);}
+
+/* Score reliability */
+.reliability-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.reliability-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:24px;text-align:center;position:relative;overflow:hidden;
+}
+.reliability-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.reliability-icon{
+  width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 12px;font-size:18px;
+}
+.reliability-duration{font-size:14px;font-weight:700;margin-bottom:4px;}
+.reliability-status{font-size:13px;font-family:var(--mono);margin-bottom:8px;}
+.reliability-desc{font-size:12px;color:var(--text3);line-height:1.5;}
+
+/* Criteria */
+.criteria-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+.criteria-card{display:flex;align-items:flex-start;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px;}
+.criteria-num{width:44px;height:44px;border-radius:10px;background:var(--teal-dim);border:1px solid #00D4FF33;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;font-family:var(--mono);color:var(--teal);flex-shrink:0;}
+.criteria-card h4{font-size:15px;margin-bottom:4px;}
+.criteria-card p{font-size:13px;color:var(--text2);line-height:1.6;}
+
+/* After Live cards */
+.after-live-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.after-live-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:28px;text-align:center;transition:border-color .2s,transform .2s;
+}
+.after-live-card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.after-live-icon{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 16px;font-size:20px;
+}
+.after-live-card h4{font-size:16px;margin-bottom:8px;}
+.after-live-card p{font-size:13px;color:var(--text2);line-height:1.6;}
+.after-live-highlight{
+  display:inline-block;margin-top:12px;padding:4px 12px;
+  border-radius:6px;font-size:12px;font-weight:600;font-family:var(--mono);
+}
+
+@media(max-width:1024px){
+  .pillars-grid{grid-template-columns:repeat(2,1fr);}
+  .after-live-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:768px){
+  .pillars-grid{grid-template-columns:1fr;}
+  .criteria-grid{grid-template-columns:1fr;}
+  .reliability-grid{grid-template-columns:1fr;}
+  .after-live-grid{grid-template-columns:1fr;}
+  .formula-text{font-size:11px;}
+}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="36" height="36"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="how-it-works.html" class="nav-link">How It Works</a><a href="pricing.html" class="nav-link">Pricing</a><a href="rules.html" class="nav-link">Rules</a><a href="faq.html" class="nav-link">FAQ</a><a href="about.html" class="nav-link">About</a><a href="pricing.html" class="nav-cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-mobile"><a href="how-it-works.html" class="nav-link">How It Works</a><a href="pricing.html" class="nav-link">Pricing</a><a href="rules.html" class="nav-link">Rules</a><a href="faq.html" class="nav-link">FAQ</a><a href="about.html" class="nav-link">About</a><a href="contact.html" class="nav-link">Contact</a><a href="pricing.html" class="nav-cta">Start Trading</a></div>
+<div class="spacer-nav"></div>
+
+<!-- HERO -->
+<section class="section" style="padding-bottom:60px">
+  <div class="container text-center">
+    <div class="section-label fade-up" style="justify-content:center">How It Works</div>
+    <h1 class="hero-title fade-up">Your Path to Trading Wealth</h1>
+    <p class="section-subtitle fade-up fade-up-delay-1" style="margin-top:16px">Four simple steps from subscription to unlimited earning potential</p>
+  </div>
+</section>
+
+<!-- 4 STEPS WITH CONNECTORS -->
+<section class="section section-alt" style="padding-top:60px">
+  <div class="container">
+    <div class="steps-grid">
+      <div class="step-card fade-up">
+        <div class="step-num">01</div>
+        <div><h4>Subscribe & Start</h4><p>Choose your plan (Standard $199/mo or Discovery $49). 50% goes to the liquidity funding pool. Get instant access to your $1M evaluation account. Start trading immediately on Volumetrica.</p></div>
+      </div>
+      <div class="step-connector fade-up">
+        <div class="step-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="step-card fade-up fade-up-delay-1">
+        <div class="step-num">02</div>
+        <div><h4>Trade & Learn</h4><p>Trade any assets, any strategy. We track 16+ metrics across 4 pillars in real time. Your CLIMB Score updates continuously. Improve with actionable insights from your dashboard.</p></div>
+      </div>
+      <div class="step-connector fade-up fade-up-delay-1">
+        <div class="step-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="step-card fade-up fade-up-delay-2">
+        <div class="step-num">03</div>
+        <div><h4>Reach Funding Threshold</h4><p>No fixed profit targets. Your CLIMB Score determines eligibility. Reach 85/100, maintain it for 7 consecutive trading days, complete 30 calendar days and validate KYC.</p></div>
+      </div>
+      <div class="step-connector fade-up fade-up-delay-2">
+        <div class="step-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+      </div>
+      <div class="step-card fade-up fade-up-delay-3">
+        <div class="step-num">04</div>
+        <div><h4>Get Funded & Scale</h4><p>Start receiving real capital from the liquidity pool. Profit splits from 50/50 to 60/40 based on your score. Best performers get regular capital increases. No caps, no ceilings.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIMB SCORE PILLARS -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">CLIMB Score</div>
+      <h2>How You're Evaluated</h2>
+      <p class="section-subtitle" style="margin-top:12px">Your score is calculated across 4 pillars, weighted and combined into a single number out of 100.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card fade-up" style="--pc:#EF4444">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#EF4444"></div>
+        <div class="pillar-label">Pillar 1</div>
+        <div class="pillar-name">Risk Management</div>
+        <div class="pillar-coeff">coefficient ×4</div>
+        <div class="pillar-bar"><div class="pillar-bar-fill" style="width:100%;background:#EF4444"></div></div>
+        <div class="pillar-desc">Drawdown control, position sizing, recovery speed. How well do you protect capital?</div>
+      </div>
+      <div class="pillar-card fade-up fade-up-delay-1">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#F59E0B"></div>
+        <div class="pillar-label">Pillar 2</div>
+        <div class="pillar-name">Performance</div>
+        <div class="pillar-coeff">coefficient ×4</div>
+        <div class="pillar-bar"><div class="pillar-bar-fill" style="width:100%;background:#F59E0B"></div></div>
+        <div class="pillar-desc">Profit Factor, Sharpe Ratio, Annualized Yield. Are your returns worth the risk?</div>
+      </div>
+      <div class="pillar-card fade-up fade-up-delay-2">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#00D4FF"></div>
+        <div class="pillar-label">Pillar 3</div>
+        <div class="pillar-name">Consistency & Style</div>
+        <div class="pillar-coeff">coefficient ×3</div>
+        <div class="pillar-bar"><div class="pillar-bar-fill" style="width:75%;background:#00D4FF"></div></div>
+        <div class="pillar-desc">Win Rate, green days ratio, position sizing stability, leverage discipline.</div>
+      </div>
+      <div class="pillar-card fade-up fade-up-delay-3">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#8B5CF6"></div>
+        <div class="pillar-label">Pillar 4</div>
+        <div class="pillar-name">Quality Execution</div>
+        <div class="pillar-coeff">multiplier ×0.90–1.10</div>
+        <div class="pillar-bar"><div class="pillar-bar-fill" style="width:50%;background:#8B5CF6"></div></div>
+        <div class="pillar-desc">Return symmetry, kurtosis, extreme day impact. Adjusts final score ±10%.</div>
+      </div>
+    </div>
+
+    <!-- Score formula -->
+    <div class="formula-card fade-up">
+      <div class="formula-label">CLIMB Score Formula</div>
+      <div class="formula-text">
+        Score <span class="op">=</span> <span class="op">[</span><span class="op">(</span><span style="color:#EF4444">Risk</span> <span class="op">×</span> <span class="hl">4</span> <span class="op">+</span> <span style="color:#F59E0B">Performance</span> <span class="op">×</span> <span class="hl">4</span> <span class="op">+</span> <span style="color:#00D4FF">Consistency</span> <span class="op">×</span> <span class="hl">3</span><span class="op">)</span> <span class="op">/</span> <span class="hl">11</span><span class="op">]</span> <span class="op">×</span> <span style="color:#8B5CF6">Quality Multiplier</span> <span class="op">(</span>0.90<span class="op">–</span>1.10<span class="op">)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCORE RELIABILITY -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Score Maturity</div>
+      <h2>Score Reliability</h2>
+      <p class="section-subtitle" style="margin-top:12px">Your score gains credibility over time. Longer track records carry more weight.</p>
+    </div>
+    <div class="reliability-grid">
+      <div class="reliability-card fade-up">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--amber)"></div>
+        <div class="reliability-icon" style="background:#F59E0B18;border:1px solid #F59E0B33;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="reliability-duration">Less than 30 days</div>
+        <div class="reliability-status" style="color:var(--amber)">Indicative *</div>
+        <div class="reliability-desc">Score is preliminary and being calibrated. Metrics still building confidence factors.</div>
+      </div>
+      <div class="reliability-card fade-up fade-up-delay-1">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)"></div>
+        <div class="reliability-icon" style="background:#10B98118;border:1px solid #10B98133;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" width="20" height="20"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="reliability-duration">30 – 120 days</div>
+        <div class="reliability-status" style="color:var(--green)">Reliable</div>
+        <div class="reliability-desc">Score is statistically meaningful. Eligible for live funding at 85+.</div>
+      </div>
+      <div class="reliability-card fade-up fade-up-delay-2">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--teal)"></div>
+        <div class="reliability-icon" style="background:var(--teal-dim);border:1px solid #00D4FF33;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="2" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="reliability-duration">120+ days</div>
+        <div class="reliability-status" style="color:var(--teal)">Certified</div>
+        <div class="reliability-desc">Maximum confidence. Full weight applied to all metrics. Proven track record.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE PASSAGE CRITERIA -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Go Live</div>
+      <h2>Live Trading Criteria</h2>
+      <p class="section-subtitle" style="margin-top:12px">All four conditions must be met simultaneously. Passage is individual and instant.</p>
+    </div>
+    <div class="criteria-grid">
+      <div class="criteria-card fade-up"><div class="criteria-num">1</div><div><h4>CLIMB Score ≥ 85/100</h4><p>Composite score across all 4 pillars must reach and maintain 85 points.</p></div></div>
+      <div class="criteria-card fade-up fade-up-delay-1"><div class="criteria-num">2</div><div><h4>7 Consecutive Trading Days</h4><p>Score maintained at 85+ for 7 days with at least 1 executed trade per day.</p></div></div>
+      <div class="criteria-card fade-up fade-up-delay-2"><div class="criteria-num">3</div><div><h4>30 Calendar Days</h4><p>Minimum maturity period since account creation. No fast-tracking.</p></div></div>
+      <div class="criteria-card fade-up fade-up-delay-3"><div class="criteria-num">4</div><div><h4>KYC Validated</h4><p>Identity verification completed and approved before live activation.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT HAPPENS AFTER GOING LIVE -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">After Qualification</div>
+      <h2>What Happens After Going Live</h2>
+      <p class="section-subtitle" style="margin-top:12px">Your evaluation success unlocks real capital, real profits, and real growth.</p>
+    </div>
+    <div class="after-live-grid">
+      <div class="after-live-card fade-up">
+        <div class="after-live-icon" style="background:var(--teal-dim);border:1px solid #00D4FF33;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="2" width="22" height="22"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg>
+        </div>
+        <h4>Capital From the Pool</h4>
+        <p>You receive a percentage of the liquidity pool based on your CLIMB Score. Score 85 = 1.00% of pool. Score 100 = 2.00%. The higher you score, the more capital you manage.</p>
+        <div class="after-live-highlight" style="background:var(--teal-dim);color:var(--teal);border:1px solid #00D4FF33;">1.00% – 2.00% of pool</div>
+      </div>
+      <div class="after-live-card fade-up fade-up-delay-1">
+        <div class="after-live-icon" style="background:#10B98118;border:1px solid #10B98133;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" width="22" height="22"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h4>Dynamic Profit Splits</h4>
+        <p>Your profits are shared based on performance. Standard traders start at 50/50 and top performers reach 60/40 in your favor. Score drives everything.</p>
+        <div class="after-live-highlight" style="background:#10B98118;color:var(--green);border:1px solid #10B98133;">50/50 up to 60/40</div>
+      </div>
+      <div class="after-live-card fade-up fade-up-delay-2">
+        <div class="after-live-icon" style="background:#F59E0B18;border:1px solid #F59E0B33;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" width="22" height="22"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h4>Monthly Scaling</h4>
+        <p>Top performers see their capital allocation increase every month. Maintain a score of 95+ and unlock an additional 10% prime. No ceiling on growth.</p>
+        <div class="after-live-highlight" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B33;">Up to +10% monthly prime</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container fade-up">
+    <h2 class="hero-title">Ready to Start?</h2>
+    <p style="font-size:18px;margin-top:12px">Choose your plan and begin your evaluation today.</p>
+    <div class="cta-row" style="margin-top:32px">
+      <a href="pricing.html" class="btn btn-primary btn-lg">See Pricing →</a>
+      <a href="rules.html" class="btn btn-outline btn-lg">Read Trading Rules</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="nav-logo" style="margin-bottom:4px"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="32" height="32"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></div><p>Revolutionary trader funding platform with 100% aligned interests.</p></div><div class="footer-col"><div class="footer-col-title">Platform</div><a href="how-it-works.html">How It Works</a><a href="pricing.html">Pricing</a><a href="rules.html">Trading Rules</a><a href="faq.html">FAQ</a></div><div class="footer-col"><div class="footer-col-title">Company</div><a href="about.html">About Us</a><a href="about.html#pool">Liquidity Pool</a><a href="about.html#splits">Profit Splits</a><a href="contact.html">Contact</a></div><div class="footer-col"><div class="footer-col-title">Support</div><a href="contact.html">Help Center</a><a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a><a href="legal/cgv.html">Terms & Conditions</a><a href="legal/privacy.html">Privacy Policy</a></div></div><div class="footer-bottom"><span>&copy; 2026 Climber Trade. All rights reserved.</span><span class="footer-status">All Systems Operational</span></div></div></footer>
+<script src="js/shared.js"></script>
+</body>
+</html>

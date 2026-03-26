@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Rules — Climber Trade</title>
+<meta name="description" content="Complete reference for all trading rules governing evaluation and live trading at Climber Trade.">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+.rules-nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:32px 0 48px;}
+.rules-nav-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 18px;border-radius:var(--r);
+  background:var(--card);border:1px solid var(--border);
+  font-size:13px;font-weight:600;color:var(--text2);
+  cursor:pointer;transition:all .15s;
+}
+.rules-nav-btn:hover{border-color:var(--border2);color:var(--text);}
+.rules-nav-btn.active{border-color:var(--teal);color:var(--teal);background:var(--teal-dim);}
+.rules-nav-btn svg{width:14px;height:14px;}
+.rpanel{display:none;animation:rfi .2s ease;}
+.rpanel.active{display:block;}
+@keyframes rfi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.rule-section{margin-bottom:32px;}
+.rule-title{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text3);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.rule-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.rule-rows{display:flex;flex-direction:column;gap:8px;}
+.rule-row{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);}
+.rule-row-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;}
+.rule-row-content{flex:1;}
+.rule-row-key{font-size:13px;font-weight:600;}
+.rule-row-val{font-size:12px;color:var(--text2);margin-top:2px;}
+.tag-list{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.tag{padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;background:var(--card);border:1px solid var(--border);color:var(--text2);}
+.tag-green{border-color:#10B98133;color:var(--green);}
+.tag-red{border-color:#EF444433;color:var(--red);}
+.sev-bar{display:flex;border-radius:var(--r2);overflow:hidden;border:1px solid var(--border);margin:16px 0;}
+.sev-block{flex:1;padding:20px 16px;text-align:center;}
+.sev-block:not(:last-child){border-right:1px solid var(--border);}
+.sev-level{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
+.sev-time{font-size:18px;font-weight:700;font-family:var(--mono);margin-bottom:4px;}
+.sev-desc{font-size:11px;color:var(--text2);}
+.info-block{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:18px 22px;margin:12px 0;font-size:13px;color:var(--text2);line-height:1.8;}
+@media(max-width:768px){.sev-bar{flex-direction:column;}.sev-block:not(:last-child){border-right:none;border-bottom:1px solid var(--border);}}
+
+/* ─── Scoring Reference (KB deep-dive) styles ─── */
+.kb-metric{margin-bottom:36px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);}
+.kb-metric-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;}
+.kb-metric-badge{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;font-family:var(--mono);flex-shrink:0;
+}
+.kb-metric-info{flex:1;}
+.kb-metric-name{font-size:18px;font-weight:700;letter-spacing:-.3px;margin-bottom:4px;}
+.kb-metric-pillar{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;}
+.kb-metric-lead{
+  font-size:13px;color:var(--text2);line-height:1.7;
+  padding:12px 16px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);border-left:3px solid var(--teal);margin-bottom:16px;
+}
+.kb-sub-title{
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--text3);margin:16px 0 10px;display:flex;align-items:center;gap:8px;
+}
+.kb-sub-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.kb-thresholds{display:flex;flex-direction:column;gap:8px;}
+.kb-thresh{display:flex;align-items:center;gap:14px;padding:10px 14px;border-radius:var(--r);border:1px solid;}
+.kb-thresh.crit{border-color:#EF444433;background:#EF44440a;}
+.kb-thresh.needs{border-color:#F59E0B33;background:#F59E0B0a;}
+.kb-thresh.exc{border-color:#10B98133;background:#10B9810a;}
+.kb-thresh-badge{
+  font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  padding:3px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;
+}
+.crit .kb-thresh-badge{background:#EF44441a;color:#EF4444;}
+.needs .kb-thresh-badge{background:#F59E0B1a;color:#F59E0B;}
+.exc .kb-thresh-badge{background:#10B9811a;color:#10B981;}
+.kb-thresh-val{font-size:13px;font-weight:600;font-family:var(--mono);color:var(--text);}
+.kb-thresh-desc{font-size:12px;color:var(--text2);}
+.kb-examples{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;}
+.kb-example{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;}
+.kb-ex-label{font-size:10px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:var(--text3);margin-bottom:4px;}
+.kb-ex-value{font-size:20px;font-weight:700;font-family:var(--mono);color:var(--teal);margin-bottom:6px;letter-spacing:-.3px;}
+.kb-ex-detail{font-size:12px;color:var(--text2);line-height:1.5;}
+.kb-tips{display:flex;flex-direction:column;gap:8px;}
+.kb-tip{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:8px 12px;border-radius:6px;
+  background:var(--surface);border:1px solid var(--border);
+  font-size:12px;color:var(--text2);line-height:1.6;
+}
+.kb-tip-arrow{
+  width:16px;height:16px;border-radius:4px;
+  background:#00D4FF18;flex-shrink:0;margin-top:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;color:var(--teal);font-weight:700;
+}
+/* ─── Margin table helpers ─── */
+.margin-note{
+  display:inline-block;padding:2px 8px;border-radius:4px;
+  font-size:10px;background:#F59E0B18;color:#F59E0B;border:1px solid #F59E0B33;
+}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="36" height="36"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="how-it-works.html" class="nav-link">How It Works</a><a href="pricing.html" class="nav-link">Pricing</a><a href="rules.html" class="nav-link">Rules</a><a href="faq.html" class="nav-link">FAQ</a><a href="about.html" class="nav-link">About</a><a href="pricing.html" class="nav-cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-mobile"><a href="how-it-works.html" class="nav-link">How It Works</a><a href="pricing.html" class="nav-link">Pricing</a><a href="rules.html" class="nav-link">Rules</a><a href="faq.html" class="nav-link">FAQ</a><a href="about.html" class="nav-link">About</a><a href="contact.html" class="nav-link">Contact</a><a href="pricing.html" class="nav-cta">Start Trading</a></div>
+<div class="spacer-nav"></div>
+
+<section class="section" style="padding-bottom:0">
+  <div class="container text-center">
+    <div class="section-label fade-up" style="justify-content:center">Rules</div>
+    <h1 class="hero-title fade-up">Trading Rules</h1>
+    <p class="section-subtitle fade-up fade-up-delay-1" style="margin-top:16px">Complete reference for evaluation and live trading at Climber Trade</p>
+    <div class="rules-nav fade-up fade-up-delay-2" id="rnav"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="container" id="rpanels"></div>
+</section>
+
+<section class="cta-section">
+  <div class="container fade-up">
+    <h2 class="hero-title">Ready to Start Trading?</h2>
+    <p style="font-size:18px;margin-top:12px">Now that you know the rules, build your career.</p>
+    <div class="cta-row" style="margin-top:32px">
+      <a href="pricing.html" class="btn btn-primary btn-lg">See Pricing →</a>
+      <a href="how-it-works.html" class="btn btn-outline btn-lg">How It Works</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="nav-logo" style="margin-bottom:4px"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="32" height="32"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></div><p>Revolutionary trader funding platform with 100% aligned interests.</p></div><div class="footer-col"><div class="footer-col-title">Platform</div><a href="how-it-works.html">How It Works</a><a href="pricing.html">Pricing</a><a href="rules.html">Trading Rules</a><a href="faq.html">FAQ</a></div><div class="footer-col"><div class="footer-col-title">Company</div><a href="about.html">About Us</a><a href="about.html#pool">Liquidity Pool</a><a href="about.html#splits">Profit Splits</a><a href="contact.html">Contact</a></div><div class="footer-col"><div class="footer-col-title">Support</div><a href="contact.html">Help Center</a><a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a><a href="legal/cgv.html">Terms & Conditions</a><a href="legal/privacy.html">Privacy Policy</a></div></div><div class="footer-bottom"><span>&copy; 2026 Climber Trade. All rights reserved.</span><span class="footer-status">All Systems Operational</span></div></div></footer>
+
+<script src="js/shared.js"></script>
+<script>
+const TABS=[
+{id:"overview",label:"Overview",color:"#00D4FF",content:`
+  <div class="rule-section"><div class="rule-title">Key Parameters</div>
+  <div class="stat-cards"><div class="stat-card"><div class="stat-card-label">Evaluation Capital</div><div class="stat-card-value" style="color:var(--teal)">$1,000,000</div><div class="stat-card-sub">Simulated · USD only · All traders</div></div><div class="stat-card"><div class="stat-card-label">Minimum Duration</div><div class="stat-card-value" style="color:var(--amber)">30 days</div><div class="stat-card-sub">Calendar days before Live eligibility</div></div><div class="stat-card"><div class="stat-card-label">Live Threshold</div><div class="stat-card-value" style="color:var(--green)">Score 85+</div><div class="stat-card-sub">7 consecutive trading days + KYC</div></div></div></div>
+  <div class="rule-section"><div class="rule-title">Account Limits</div>
+  <div class="info-block"><strong style="color:var(--teal)">1 account per person</strong> maximum. +1 if company ownership (proof required). Multiple undeclared accounts + copy trading between accounts = permanent ban.</div></div>
+  <div class="rule-section"><div class="rule-title">Passage is Individual & Instant</div>
+  <div class="info-block">Each trader qualifies independently — no monthly batches. Activation within 24–48h (weekdays only, excluding Friday evening and weekends).</div></div>`},
+{id:"evaluation",label:"Evaluation",color:"#F59E0B",content:`
+  <div class="rule-section"><div class="rule-title">Evaluation Account</div>
+  <div class="rule-rows">
+    <div class="rule-row"><div class="rule-row-icon" style="background:#00D4FF18;border:1px solid #00D4FF33">💰</div><div class="rule-row-content"><div class="rule-row-key">Starting Capital</div><div class="rule-row-val">$1,000,000 USD — simulated, fixed for all traders</div></div></div>
+    <div class="rule-row"><div class="rule-row-icon" style="background:#F59E0B18;border:1px solid #F59E0B33">📊</div><div class="rule-row-content"><div class="rule-row-key">Scoring</div><div class="rule-row-val">Real-time CLIMB Score across 4 pillars · Updated continuously + daily consolidation</div></div></div>
+    <div class="rule-row"><div class="rule-row-icon" style="background:#8B5CF618;border:1px solid #8B5CF633">⏱</div><div class="rule-row-content"><div class="rule-row-key">Duration</div><div class="rule-row-val">Minimum 30 calendar days — no maximum</div></div></div>
+    <div class="rule-row"><div class="rule-row-icon" style="background:#10B98118;border:1px solid #10B98133">📅</div><div class="rule-row-content"><div class="rule-row-key">Activity</div><div class="rule-row-val">Minimum 4 trading days per 30 calendar days</div></div></div>
+  </div></div>`},
+{id:"live",label:"Live Trading",color:"#EF4444",content:`
+  <div class="rule-section"><div class="rule-title">Automated Risk Controls</div>
+  <div class="table-wrap"><table><thead><tr><th>Trigger</th><th>Threshold</th><th>Severity</th><th>Action</th></tr></thead><tbody>
+    <tr><td>Daily Drawdown</td><td style="font-family:var(--mono);color:var(--amber)">> 15%</td><td><span class="badge badge-amber">Alert</span></td><td style="color:var(--text2)">Automatic prevention email</td></tr>
+    <tr><td>Total Drawdown</td><td style="font-family:var(--mono);color:var(--amber)">> 20%</td><td><span class="badge badge-amber">VAR</span></td><td style="color:var(--text2)">Infraction notified</td></tr>
+    <tr><td>Intraday Drawdown</td><td style="font-family:var(--mono);color:var(--red)">> 50%</td><td><span class="badge badge-red">Stop</span></td><td style="color:var(--text2)">24h forced pause</td></tr>
+    <tr><td>Total Drawdown</td><td style="font-family:var(--mono);color:var(--red)">> 80%</td><td><span class="badge badge-red">Critical</span></td><td style="color:var(--text2)">5-day pause + 30 days consolidation</td></tr>
+    <tr><td>Score < 75</td><td style="font-family:var(--mono);color:var(--amber)">7 days</td><td><span class="badge badge-amber">Return</span></td><td style="color:var(--text2)">Scoring + consolidation ≥ 85 for 7 days</td></tr>
+    <tr><td>Score < 50</td><td style="font-family:var(--mono);color:var(--red)">Immediate</td><td><span class="badge badge-red">Freeze</span></td><td style="color:var(--text2)">Account frozen · Return to evaluation</td></tr>
+  </tbody></table></div></div>
+  <div class="rule-section"><div class="rule-title">Profit Splits</div>
+  <div class="table-wrap"><table><thead><tr><th>CLIMB Score</th><th>Trader</th><th>Climber</th><th>Status</th></tr></thead><tbody>
+    <tr><td style="font-family:var(--mono)">95–100</td><td style="font-family:var(--mono);color:var(--green)">60%</td><td style="font-family:var(--mono)">40%</td><td><span class="badge badge-teal">Elite</span></td></tr>
+    <tr><td style="font-family:var(--mono)">90–94</td><td style="font-family:var(--mono);color:var(--green)">55%</td><td style="font-family:var(--mono)">45%</td><td><span class="badge badge-teal">Expert</span></td></tr>
+    <tr><td style="font-family:var(--mono)">85–89</td><td style="font-family:var(--mono);color:var(--teal)">50%</td><td style="font-family:var(--mono)">50%</td><td><span class="badge badge-green">Standard</span></td></tr>
+    <tr><td style="font-family:var(--mono)">80–84</td><td style="font-family:var(--mono);color:var(--amber)">45%</td><td style="font-family:var(--mono)">55%</td><td><span class="badge badge-amber">Watch</span></td></tr>
+    <tr><td style="font-family:var(--mono)">75–79</td><td style="font-family:var(--mono);color:var(--amber)">40%</td><td style="font-family:var(--mono)">60%</td><td><span class="badge badge-amber">Warning</span></td></tr>
+    <tr><td style="font-family:var(--mono)">< 75</td><td style="font-family:var(--mono);color:var(--red)">0%</td><td style="font-family:var(--mono)">0%</td><td><span class="badge badge-red">7 days</span></td></tr>
+  </tbody></table></div></div>`},
+{id:"instruments",label:"Instruments",color:"#10B981",content:`
+  <div class="rule-section"><div class="rule-title">Futures — CME / CBOT / NYMEX / COMEX / EUREX</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div class="info-block"><strong style="color:var(--teal)">Equity Indices</strong><div class="tag-list"><span class="tag tag-green">ES</span><span class="tag tag-green">NQ</span><span class="tag tag-green">YM</span><span class="tag tag-green">RTY</span><span class="tag tag-green">FDAX</span><span class="tag tag-green">FESX</span></div></div>
+    <div class="info-block"><strong style="color:var(--teal)">FX Futures</strong><div class="tag-list"><span class="tag tag-green">6E</span><span class="tag tag-green">6B</span><span class="tag tag-green">6J</span><span class="tag tag-green">6A</span><span class="tag tag-green">6C</span></div></div>
+    <div class="info-block"><strong style="color:var(--teal)">Commodities</strong><div class="tag-list"><span class="tag tag-green">CL</span><span class="tag tag-green">GC</span><span class="tag tag-green">SI</span><span class="tag tag-green">NG</span></div></div>
+    <div class="info-block"><strong style="color:var(--teal)">Interest Rates</strong><div class="tag-list"><span class="tag tag-green">ZN</span><span class="tag tag-green">ZB</span><span class="tag tag-green">ZF</span><span class="tag tag-green">ZT</span></div></div>
+  </div></div>
+  <div class="rule-section"><div class="rule-title">Forex</div>
+  <div class="info-block"><strong style="color:var(--teal)">28 pairs</strong> — All major and minor pairs including EUR/USD, GBP/USD, USD/JPY, AUD/USD, USD/CAD, NZD/USD, USD/CHF + crosses.</div></div>
+  <div class="rule-section"><div class="rule-title">Equities & ETFs</div>
+  <div class="info-block">NYSE / NASDAQ (market cap > $500M). ETFs: SPY, QQQ, TLT, GLD. Commission: $0.005/share (min $1) — pending confirmation.</div></div>
+  <div class="rule-section"><div class="rule-title">CFD & Crypto</div>
+  <div class="info-block">CFD on global indices and commodities. Crypto: <span class="tag" style="border-color:#F59E0B33;color:var(--amber);display:inline">BTC</span> and <span class="tag" style="border-color:#8B5CF633;color:var(--purple);display:inline">ETH</span> only (via CFD).</div></div>`},
+{id:"styles",label:"Styles",color:"#8B5CF6",content:`
+  <div class="rule-section"><div class="rule-title">Authorized Trading Styles</div>
+  <div class="tag-list"><span class="tag tag-green">Scalping</span><span class="tag tag-green">Day Trading</span><span class="tag tag-green">Swing Trading</span><span class="tag tag-green">Position Trading</span><span class="tag tag-green">Algorithmic / HFT</span><span class="tag tag-green">Hedging</span><span class="tag tag-green">Arbitrage</span><span class="tag tag-green">News Trading</span><span class="tag tag-green">AI-assisted</span><span class="tag tag-green">Multi-strategy</span></div></div>
+  <div class="rule-section"><div class="rule-title">Strictly Prohibited</div>
+  <div class="rule-rows">
+    <div class="rule-row" style="border-color:#EF444433"><div class="rule-row-icon" style="background:#EF444418;border:1px solid #EF444433">🚫</div><div class="rule-row-content"><div class="rule-row-key" style="color:var(--red)">Copy Trading Between Accounts</div><div class="rule-row-val">Replicating trades between your own accounts or with others</div></div></div>
+    <div class="rule-row" style="border-color:#EF444433"><div class="rule-row-icon" style="background:#EF444418;border:1px solid #EF444433">🚫</div><div class="rule-row-content"><div class="rule-row-key" style="color:var(--red)">Insider Information</div><div class="rule-row-val">Trading on non-public material information</div></div></div>
+    <div class="rule-row" style="border-color:#EF444433"><div class="rule-row-icon" style="background:#EF444418;border:1px solid #EF444433">🚫</div><div class="rule-row-content"><div class="rule-row-key" style="color:var(--red)">Coordinated Group Trading</div><div class="rule-row-val">Synchronized trading with other participants</div></div></div>
+    <div class="rule-row" style="border-color:#EF444433"><div class="rule-row-icon" style="background:#EF444418;border:1px solid #EF444433">🚫</div><div class="rule-row-content"><div class="rule-row-key" style="color:var(--red)">Market Manipulation</div><div class="rule-row-val">Spoofing, layering, wash trading</div></div></div>
+    <div class="rule-row" style="border-color:#EF444433"><div class="rule-row-icon" style="background:#EF444418;border:1px solid #EF444433">🚫</div><div class="rule-row-content"><div class="rule-row-key" style="color:var(--red)">Latency Arbitrage</div><div class="rule-row-val">Exploiting speed advantages or price feed delays</div></div></div>
+  </div></div>`},
+{id:"positions",label:"Positions",color:"#00D4FF",content:`
+  <div class="rule-section"><div class="rule-title">Exposure Limits</div>
+  <div class="table-wrap"><table><thead><tr><th>Condition</th><th>Max Exposure</th><th>Additional</th><th>Phase</th></tr></thead><tbody>
+    <tr><td>Intraday</td><td style="font-family:var(--mono);color:var(--green)">No hard limit</td><td style="color:var(--text2)">Leverage 2×-5× optimal</td><td><span class="badge badge-teal">Both</span></td></tr>
+    <tr><td>Overnight</td><td style="font-family:var(--mono);color:var(--amber)">≤ 5:1 notional</td><td style="color:var(--text2)">Notional value calculation</td><td><span class="badge badge-teal">Both</span></td></tr>
+    <tr><td>Weekend</td><td style="font-family:var(--mono);color:var(--red)">≤ 1:1 notional</td><td style="color:var(--text2)">Balance ≥ $50,000</td><td><span class="badge badge-teal">Both</span></td></tr>
+  </tbody></table></div></div>
+  <div class="rule-section"><div class="rule-title">Leverage Scoring</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+    <div class="info-block" style="text-align:center;border-color:#EF444433"><div style="font-size:24px;font-weight:800;font-family:var(--mono);color:var(--text3)">0×–1×</div><div style="font-size:11px;color:var(--text3);margin-top:4px">60–80 pts</div></div>
+    <div class="info-block" style="text-align:center;border-color:#10B98133"><div style="font-size:24px;font-weight:800;font-family:var(--mono);color:var(--green)">2×–5×</div><div style="font-size:11px;color:var(--green);margin-top:4px">100 pts ✓</div></div>
+    <div class="info-block" style="text-align:center;border-color:#F59E0B33"><div style="font-size:24px;font-weight:800;font-family:var(--mono);color:var(--amber)">6×–17×</div><div style="font-size:11px;color:var(--amber);margin-top:4px">92→4 pts</div></div>
+    <div class="info-block" style="text-align:center;border-color:#EF444433"><div style="font-size:24px;font-weight:800;font-family:var(--mono);color:var(--red)">18×+</div><div style="font-size:11px;color:var(--red);margin-top:4px">0 to -100 pts</div></div>
+  </div></div>`},
+{id:"sanctions",label:"Sanctions",color:"#EF4444",content:`
+  <div class="rule-section"><div class="rule-title">Sanctions Scale</div>
+  <div class="sev-bar">
+    <div class="sev-block" style="background:#F59E0B0a"><div class="sev-level" style="color:var(--amber)">Level 1</div><div class="sev-time" style="color:var(--amber)">48h</div><div class="sev-desc">Written warning — 48 hours to correct</div></div>
+    <div class="sev-block" style="background:#EF44440a"><div class="sev-level" style="color:var(--red)">Level 2</div><div class="sev-time" style="color:var(--red)">7–30 days</div><div class="sev-desc">Temporary suspension</div></div>
+    <div class="sev-block" style="background:#EF44441a"><div class="sev-level" style="color:#ff6b6b">Level 3</div><div class="sev-time" style="color:#ff6b6b">Permanent</div><div class="sev-desc">Definitive exclusion</div></div>
+  </div></div>
+  <div class="rule-section"><div class="rule-title">Appeals Process</div>
+  <div class="rule-rows">
+    <div class="rule-row"><div class="rule-row-icon" style="background:var(--teal-dim);border:1px solid #00D4FF33;font-family:var(--mono);font-weight:800;color:var(--teal);font-size:13px">1</div><div class="rule-row-content"><div class="rule-row-key">Submit Appeal</div><div class="rule-row-val">Written request within 7 calendar days to contact@climbertrade.com</div></div></div>
+    <div class="rule-row"><div class="rule-row-icon" style="background:var(--teal-dim);border:1px solid #00D4FF33;font-family:var(--mono);font-weight:800;color:var(--teal);font-size:13px">2</div><div class="rule-row-content"><div class="rule-row-key">Review Period</div><div class="rule-row-val">Decision rendered within 14 calendar days</div></div></div>
+    <div class="rule-row"><div class="rule-row-icon" style="background:var(--teal-dim);border:1px solid #00D4FF33;font-family:var(--mono);font-weight:800;color:var(--teal);font-size:13px">3</div><div class="rule-row-content"><div class="rule-row-key">Final Decision</div><div class="rule-row-val">Definitive and without further appeal</div></div></div>
+  </div></div>`},
+{id:"scoring",label:"Scoring",color:"#F59E0B",content:`
+  <div class="rule-section"><div class="rule-title">CLIMB Score Formula</div>
+  <div class="info-block"><strong style="color:var(--teal)">Final Score = [(Risk×4 + Performance×4 + Consistency×3) / 11] × Quality Multiplier</strong><br><br>Denominator = 11 (sum of coefficients: 4+4+3). Quality Execution generates a multiplier between ×0.90 and ×1.10. Negative metric scores included in calculation, displayed with floor at 0.</div></div>
+
+  <div class="rule-section"><div class="rule-title">Pillar 1 — Risk Management (×4)</div>
+  <div class="table-wrap"><table><thead><tr><th>Metric</th><th>What It Measures</th><th>Sweet Spot</th><th>Key Detail</th></tr></thead><tbody>
+    <tr><td style="color:var(--teal);font-weight:600">ABS_NPL</td><td>Daily P&L as % of capital</td><td style="font-family:var(--mono);color:var(--green)">+1.0%/day = 100 pts</td><td style="color:var(--text2)">Decreases above +1% (penalizes over-performance)</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600">INPL</td><td>Initial drawdown before first equity high</td><td style="font-family:var(--mono);color:var(--green)">&lt; 1.5% = high score</td><td style="color:var(--text2)">Locked at worst point until recovery. &gt;10% = 0 pts</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600">R_T_AFD</td><td>Recovery time after drawdown</td><td style="font-family:var(--mono);color:var(--green)">5–8 days optimal</td><td style="color:var(--text2)">9 DD tiers with day-by-day granularity</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600">CT4</td><td>Average leverage per trade</td><td style="font-family:var(--mono);color:var(--green)">2×–5× = 100 pts</td><td style="color:var(--text2)">18×+ = negative scores</td></tr>
+  </tbody></table></div></div>
+
+  <div class="rule-section"><div class="rule-title">Pillar 2 — Performance (×4)</div>
+  <div class="table-wrap"><table><thead><tr><th>Metric</th><th>What It Measures</th><th>Key Scoring</th><th>Confidence</th></tr></thead><tbody>
+    <tr><td style="color:var(--amber);font-weight:600">Profit Factor</td><td>Gross gains ÷ gross losses</td><td style="color:var(--text2)">PF ≥ 1.90 = 85 pts, ≥ 4.00 = 100 pts</td><td style="font-family:var(--mono);color:var(--text3)">200+ trades = ×1.00</td></tr>
+    <tr><td style="color:var(--amber);font-weight:600">Sharpe Ratio</td><td>Risk-adjusted returns quality</td><td style="color:var(--text2)">Bonus up to +10 pts (Rf = 0)</td><td style="font-family:var(--mono);color:var(--text3)">No minimum</td></tr>
+    <tr><td style="color:var(--amber);font-weight:600">Annualized Yield</td><td>Projected annual return</td><td style="color:var(--text2)">Score 50 = 8% benchmark (S&P avg)</td><td style="font-family:var(--mono);color:var(--text3)">180 days full</td></tr>
+  </tbody></table></div></div>
+
+  <div class="rule-section"><div class="rule-title">Pillar 3 — Consistency & Style (×3)</div>
+  <div class="table-wrap"><table><thead><tr><th>Metric</th><th>What It Measures</th><th>Key Scoring</th><th>Confidence</th></tr></thead><tbody>
+    <tr><td style="color:var(--teal);font-weight:600">Win Rate</td><td>% trades ending in profit</td><td style="color:var(--text2)">Below 46% = negative scores</td><td style="font-family:var(--mono);color:var(--text3)">22 days</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600">Days in Gain</td><td>% of green trading days</td><td style="color:var(--text2)">Direct 1:1 mapping (60% = 60 pts)</td><td style="font-family:var(--mono);color:var(--text3)">None</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600">LSR</td><td>Position size stability</td><td style="color:var(--text2)">≥ 4.0 = 100 pts, &lt; 0.5 = 0 pts</td><td style="font-family:var(--mono);color:var(--text3)">None</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600">Avg Leverage</td><td>Exposure level per trade</td><td style="color:var(--text2)">2×–5× = 100 pts per trade</td><td style="font-family:var(--mono);color:var(--text3)">Daily avg</td></tr>
+  </tbody></table></div></div>
+
+  <div class="rule-section"><div class="rule-title">Pillar 4 — Quality Execution (Multiplier ×0.90–1.10)</div>
+  <div class="table-wrap"><table><thead><tr><th>Metric</th><th>What It Measures</th><th>Scoring</th></tr></thead><tbody>
+    <tr><td style="color:var(--purple);font-weight:600">Skew (OF1)</td><td>Return distribution symmetry</td><td style="color:var(--text2)">Starts 100, -2 pts per 0.1 increase in |Skew|</td></tr>
+    <tr><td style="color:var(--purple);font-weight:600">Kurtosis (OF2)</td><td>Frequency of extreme days</td><td style="color:var(--text2)">Starts 100, -2 pts per 0.1 increase. &gt;5 = 0</td></tr>
+    <tr><td style="color:var(--purple);font-weight:600">Extreme Day (OF3)</td><td>Biggest day vs average day</td><td style="color:var(--text2)">Ratio 1.0 = 100 pts, &gt;15 = 0 pts</td></tr>
+    <tr><td style="color:var(--purple);font-weight:600">Best/Worst Day</td><td>Best day ÷ |Worst day|</td><td style="color:var(--text2)">≤ 0.50 = 0, 1.0 = 60, ≥ 4.30 = 100 pts</td></tr>
+  </tbody></table></div></div>
+
+  <div class="rule-section"><div class="rule-title">Score Confidence Over Time</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+    <div class="info-block" style="text-align:center"><div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">< 30 days</div><div style="font-size:16px;font-weight:700;color:var(--amber);margin-top:6px">Indicative *</div></div>
+    <div class="info-block" style="text-align:center"><div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">30–120 days</div><div style="font-size:16px;font-weight:700;color:var(--teal);margin-top:6px">Reliable</div></div>
+    <div class="info-block" style="text-align:center"><div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">120+ days</div><div style="font-size:16px;font-weight:700;color:var(--green);margin-top:6px">Certified</div></div>
+    <div class="info-block" style="text-align:center"><div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">180+ days</div><div style="font-size:16px;font-weight:700;color:var(--green);margin-top:6px">Maximum ✓</div></div>
+  </div></div>`},
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTION 8 — SCORING REFERENCE (Deep KB content)
+   ═══════════════════════════════════════════════════════════════ */
+{id:"scoring-ref",label:"Scoring Reference",color:"#8B5CF6",content:`
+  <div class="rule-section"><div class="rule-title">About This Reference</div>
+  <div class="info-block">This section provides detailed educational guidance for each key CLIMB Score metric — what it measures, concrete examples with real numbers, threshold levels (Critical / Needs Work / Excellent), and actionable improvement tips. Use this as your playbook to systematically improve your score.</div></div>
+
+  <!-- ═══ RISK MANAGEMENT METRICS ═══ -->
+  <div class="rule-section"><div class="rule-title">Pillar 1 — Risk Management (×4)</div></div>
+
+  <!-- R_T_AFD -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#EF444418;border:1px solid #EF444433;color:var(--red)">R1</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Recovery Time After Drawdown</div>
+        <div class="kb-metric-pillar" style="color:var(--red)">Risk Management · R_T_AFD</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">How quickly do you bounce back after a loss? Tracks the number of trading days it takes for your account to recover to its previous equity high. The score adapts to the drawdown size — larger drawdowns are expected to take longer.</div>
+    <div class="kb-sub-title">What This Reveals</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:8px">A fast, steady recovery shows discipline and emotional control. But recovering too fast can be just as bad — it often signals overleveraging or revenge trading. The scoring rewards the optimal pace: $600–$1,000/day recovery rate.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Optimal</div><div class="kb-ex-value">5–8 days</div><div class="kb-ex-detail">For a $5,000 drawdown on a $1M account — steady $600–$1,000/day recovery = 100 pts</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Too Fast</div><div class="kb-ex-value">1–2 days</div><div class="kb-ex-detail">Recovering $5,000 in 1 day usually means overleveraging or revenge trading — penalized</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Too Slow</div><div class="kb-ex-value">15+ days</div><div class="kb-ex-detail">Extended slump signals a strategy or mindset issue — score drops to 0</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">> 14 days</div><div class="kb-thresh-desc">Extended recovery — high risk of compounding losses</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">9–14 days</div><div class="kb-thresh-desc">Slower than expected — tighten your post-loss routine</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">5–8 days</div><div class="kb-thresh-desc">Professional-level recovery discipline</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>After a drawdown, aim for $600–$1,000/day steady recovery — not one big trade</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Set a rule to reduce position size during recovery periods</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Define a hard daily loss limit and stop when you hit it</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>If recovery exceeds 10 days, review your strategy and reduce risk further</span></div>
+    </div>
+  </div>
+
+  <!-- ABS_NPL -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#EF444418;border:1px solid #EF444433;color:var(--red)">R2</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Absolute Drawdown</div>
+        <div class="kb-metric-pillar" style="color:var(--red)">Risk Management · ABS_NPL</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">The deepest your account has ever dropped below your starting capital. Unlike max drawdown (peak-to-trough), this tracks how far you fell below your initial balance — your true worst-case scenario from day one.</div>
+    <div class="kb-sub-title">What This Reveals</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:8px">A low absolute drawdown means you have consistently protected your starting capital. A high value signals that at some point your account was significantly underwater — both a financial and psychological blow.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Well Protected</div><div class="kb-ex-value">2%</div><div class="kb-ex-detail">Account never dipped more than 2% below starting capital — solid capital protection</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Deep Drawdown</div><div class="kb-ex-value">8%+</div><div class="kb-ex-detail">Significant loss below starting capital — review early-stage risk management</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">> 8%</div><div class="kb-thresh-desc">Capital severely at risk</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">4–8%</div><div class="kb-thresh-desc">Tighten risk controls</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">< 4%</div><div class="kb-thresh-desc">Strong capital protection from day one</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Reduce risk per trade and use stop-losses aligned with volatility</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Never increase leverage during a losing streak</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Set a hard stop: if account drops below a threshold, pause and reassess</span></div>
+    </div>
+  </div>
+
+  <!-- INPL -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#EF444418;border:1px solid #EF444433;color:var(--red)">R3</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Initial Drawdown</div>
+        <div class="kb-metric-pillar" style="color:var(--red)">Risk Management · INPL</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">The worst loss you experienced before reaching your first new equity high. Captures how well you manage the critical early phase — when you are building your track record and have not yet established a buffer.</div>
+    <div class="kb-sub-title">What This Reveals</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:8px">A high initial drawdown suggests you started too aggressively. A low value means you eased in carefully — protecting capital while building confidence and statistical evidence.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Cautious Start</div><div class="kb-ex-value">2%</div><div class="kb-ex-detail">Minimal drawdown before first new high — disciplined ramp-up</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Rough Start</div><div class="kb-ex-value">9%</div><div class="kb-ex-detail">Deep hole to climb out of before making progress — too aggressive too early</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">> 8%</div><div class="kb-thresh-desc">Starting phase too aggressive</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">4–8%</div><div class="kb-thresh-desc">Reduce early-stage risk</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">< 4%</div><div class="kb-thresh-desc">Careful, disciplined start</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Start with reduced position sizes and only scale up after strategy proves profitable</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Treat the first weeks as a calibration period, not a sprint</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ PERFORMANCE METRICS ═══ -->
+  <div class="rule-section" style="margin-top:40px"><div class="rule-title">Pillar 2 — Performance (×4)</div></div>
+
+  <!-- PROFIT FACTOR -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#F59E0B18;border:1px solid #F59E0B33;color:var(--amber)">P1</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Profit Factor</div>
+        <div class="kb-metric-pillar" style="color:var(--amber)">Performance · PI3</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">The ratio of your total gains to your total losses. For every dollar you lose, how many dollars do you make back? Above 1.0 = profitable. The score also factors in sample size — more trades = more reliable score.</div>
+    <div class="kb-sub-title">What This Reveals</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:8px">A direct measure of your trading edge. PF 1.5 = you earn $1.50 for every $1 lost. Below 1.0 = your losses outweigh your gains. Confidence multiplier: 200+ trades = x1.00, 100-199 = x0.75, 50-99 = x0.50, &lt;50 = x0.25.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Strong Edge</div><div class="kb-ex-value">2.0</div><div class="kb-ex-detail">Earning $2 for every $1 lost — excellent efficiency</div></div>
+      <div class="kb-example"><div class="kb-ex-label">No Edge</div><div class="kb-ex-value">0.9</div><div class="kb-ex-detail">Losing money overall — losses exceed gains before costs</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">< 1.0</div><div class="kb-thresh-desc">Losing money overall</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">1.0–1.5</div><div class="kb-thresh-desc">Profitable but room to grow</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">> 1.5</div><div class="kb-thresh-desc">Strong, consistent trading edge</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Cut losing trades faster — do not let small losses turn into big ones</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Let your winners run with trailing stops instead of exiting too early</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Avoid revenge trading after losses — it destroys your edge</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Build trade count to 200+ for the full confidence multiplier (x1.00)</span></div>
+    </div>
+  </div>
+
+  <!-- SHARPE -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#F59E0B18;border:1px solid #F59E0B33;color:var(--amber)">P2</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Sharpe Ratio</div>
+        <div class="kb-metric-pillar" style="color:var(--amber)">Performance · PI1</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">The gold standard for measuring the quality of your returns. Are your profits worth the risk you are taking? A high Sharpe means returns are smooth and consistent relative to volatility. Provides up to +10 bonus points.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Smooth Equity Curve</div><div class="kb-ex-value">2.0</div><div class="kb-ex-detail">Consistent, reliable returns — institutional-quality performance</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Choppy Results</div><div class="kb-ex-value">0.7</div><div class="kb-ex-detail">Erratic returns — profitable days mixed with heavy losing days</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">< 1.0</div><div class="kb-thresh-desc">Too volatile for the returns generated</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">1.0–1.5</div><div class="kb-thresh-desc">Decent but not yet professional grade</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">> 1.5</div><div class="kb-thresh-desc">Professional-quality risk-adjusted returns</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Stabilize your daily results — reduce the gap between best and worst days</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Keep position sizing consistent — avoid the temptation to go big</span></div>
+    </div>
+  </div>
+
+  <!-- YIELD -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#F59E0B18;border:1px solid #F59E0B33;color:var(--amber)">P3</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Annualized Yield</div>
+        <div class="kb-metric-pillar" style="color:var(--amber)">Performance · PI2</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">Your annualized return projected over a full year. Includes a confidence factor that adjusts the score based on how long you have been trading — so short track records do not get inflated scores. Score 50 = 8% benchmark.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Strong Performance</div><div class="kb-ex-value">Score 75</div><div class="kb-ex-detail">Significantly outperforming the 8% benchmark with enough track record</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Early Stage</div><div class="kb-ex-value">Score 35</div><div class="kb-ex-detail">Below benchmark — confidence factor may also be reducing your score</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">Score < 25</div><div class="kb-thresh-desc">Significantly underperforming</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">Score 25–50</div><div class="kb-thresh-desc">Below the 8% annual benchmark</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">Score > 50</div><div class="kb-thresh-desc">Outperforming the benchmark</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Prioritize consistency and capital protection before trying to boost returns</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Build a track record of at least 180 trading days for full confidence factor</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ CONSISTENCY METRICS ═══ -->
+  <div class="rule-section" style="margin-top:40px"><div class="rule-title">Pillar 3 — Consistency & Style (×3)</div></div>
+
+  <!-- WIN RATE -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#00D4FF18;border:1px solid #00D4FF33;color:var(--teal)">C1</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Win Rate</div>
+        <div class="kb-metric-pillar" style="color:var(--teal)">Consistency & Style · CT1</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">The percentage of your trades that end in profit. Important: a high win rate alone does not guarantee profitability — it must be paired with a solid risk-to-reward ratio. Below 46%, scores go negative.</div>
+    <div class="kb-sub-title">What This Reveals</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:8px">A high win rate with a low Profit Factor can mean you win often but lose big when you are wrong. Always read this metric alongside your Profit Factor. Confidence factor: 22 trading days for full reliability.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">High Frequency Wins</div><div class="kb-ex-value">65%</div><div class="kb-ex-detail">Winning 2 out of 3 trades — strong trade selection and execution</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Trend Following</div><div class="kb-ex-value">38%</div><div class="kb-ex-detail">Fewer wins, but the winners are significantly larger than the losers</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">< 35%</div><div class="kb-thresh-desc">Very low — review strategy viability</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">35–50%</div><div class="kb-thresh-desc">Common for trend strategies, ensure R:R compensates</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">> 55%</div><div class="kb-thresh-desc">Strong trade selection and execution</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Be more selective — quality entries over quantity</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Wait for multiple confirmation signals before entering</span></div>
+    </div>
+  </div>
+
+  <!-- DAYS IN GAIN -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#00D4FF18;border:1px solid #00D4FF33;color:var(--teal)">C2</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Days in Gain</div>
+        <div class="kb-metric-pillar" style="color:var(--teal)">Consistency & Style · CT2</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">The percentage of trading days that end positive. The simplest metric in the system: 60% green days = 60 points. Direct 1:1 mapping — no multiplier, no confidence factor.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Consistent Trader</div><div class="kb-ex-value">65%</div><div class="kb-ex-detail">Two-thirds of trading days end in profit — strong daily discipline</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Inconsistent Trader</div><div class="kb-ex-value">40%</div><div class="kb-ex-detail">More red days than green — review daily routine and risk controls</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">< 40%</div><div class="kb-thresh-desc">More losing days than winning days</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">40–55%</div><div class="kb-thresh-desc">Room to improve daily consistency</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">> 55%</div><div class="kb-thresh-desc">Reliable daily execution</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Set a daily stop-loss and a clear end-of-session rule</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Do not turn a flat day into a red day by overtrading</span></div>
+    </div>
+  </div>
+
+  <!-- LSR -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#00D4FF18;border:1px solid #00D4FF33;color:var(--teal)">C3</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Position Size Stability (LSR)</div>
+        <div class="kb-metric-pillar" style="color:var(--teal)">Consistency & Style · CT5</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">How consistent is your position sizing from trade to trade? LSR = Average lots / Std deviation of lots. Higher ratio = more stable = higher score. This separates amateurs from professionals.</div>
+    <div class="kb-sub-title">What This Reveals</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:8px">Stable sizing (high score) means your risk is predictable and your strategy is scalable. Unstable sizing often signals emotional decisions — doubling down after losses, going big on sure things.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Disciplined Sizing</div><div class="kb-ex-value">LSR ≥ 3.5</div><div class="kb-ex-detail">Very consistent lot sizes — professional, scalable approach</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Erratic Sizing</div><div class="kb-ex-value">LSR < 1.5</div><div class="kb-ex-detail">Wild variations — suggests emotional or impulsive decisions</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">< 1.5</div><div class="kb-thresh-desc">Sizing is all over the place — high risk</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">1.5–2.5</div><div class="kb-thresh-desc">Some consistency, but still too variable</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">> 3.0</div><div class="kb-thresh-desc">Professional, scalable position sizing</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Use a fixed risk rule (% of capital per trade) instead of sizing by feel</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Never increase position size after a loss</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Limit yourself to 2–3 predefined position size tiers maximum</span></div>
+    </div>
+  </div>
+
+  <!-- AVG LEVERAGE -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#00D4FF18;border:1px solid #00D4FF33;color:var(--teal)">C4</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Average Leverage</div>
+        <div class="kb-metric-pillar" style="color:var(--teal)">Consistency & Style · CT4</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">Your average market exposure relative to your account size. The goal is to stay in a professional zone — neither underexposed (wasting capital) nor overexposed (gambling). Sweet spot: 2x to 5x.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Sweet Spot</div><div class="kb-ex-value">3x</div><div class="kb-ex-detail">Healthy exposure — strong returns potential with manageable risk</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Over-Leveraged</div><div class="kb-ex-value">12x</div><div class="kb-ex-detail">Extreme exposure — an 8% market move could wipe your account</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">> 10x</div><div class="kb-thresh-desc">Dangerously high exposure</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">6–10x</div><div class="kb-thresh-desc">Reduce for stability</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">2–5x</div><div class="kb-thresh-desc">Professional exposure range</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Size positions based on notional value, not just number of contracts</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Automatically reduce leverage after a losing streak or when volatility spikes</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ QUALITY EXECUTION METRICS ═══ -->
+  <div class="rule-section" style="margin-top:40px"><div class="rule-title">Pillar 4 — Quality Execution (Multiplier ×0.90–1.10)</div></div>
+
+  <!-- SKEW -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#8B5CF618;border:1px solid #8B5CF633;color:var(--purple)">Q1</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Return Symmetry (Skew)</div>
+        <div class="kb-metric-pillar" style="color:var(--purple)">Quality Execution · OF1</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">How balanced is the shape of your returns? Measures whether daily results are evenly distributed, or skewed — for example, many small wins and rare devastating losses that wipe them out. Starts at 100/100.</div>
+    <div class="kb-sub-title">What This Reveals</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:8px">A near-zero skew = your wins and losses are well-balanced. A strong negative skew (common trap) = you collect small profits regularly but suffer occasional large losses that erase them all.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Balanced Distribution</div><div class="kb-ex-value">|Skew| < 0.5</div><div class="kb-ex-detail">Returns are nicely symmetrical — no dangerous tail risk</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Skewed Distribution</div><div class="kb-ex-value">|Skew| > 2.0</div><div class="kb-ex-detail">Returns are heavily one-sided — large losses or large gains dominate</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">|Skew| > 2.0</div><div class="kb-thresh-desc">Severely unbalanced — strategy may be fragile</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">|Skew| 1.0–2.0</div><div class="kb-thresh-desc">Noticeable bias — monitor and adjust</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">|Skew| < 1.0</div><div class="kb-thresh-desc">Healthy, balanced return distribution</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Balance your exits — do not cut winners early while letting losers run</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Keep risk per trade consistent to avoid disproportionate outcomes</span></div>
+    </div>
+  </div>
+
+  <!-- KURTOSIS -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#8B5CF618;border:1px solid #8B5CF633;color:var(--purple)">Q2</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Return Stability (Kurtosis)</div>
+        <div class="kb-metric-pillar" style="color:var(--purple)">Quality Execution · OF2</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">How often do extreme days occur in your results? Measures the weight of the tails in your return distribution. Low value = predictable. High value = outlier days happen more often than they should. Starts at 100/100.</div>
+    <div class="kb-sub-title">What This Reveals</div>
+    <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:8px">Low kurtosis = smooth equity curve, predictable results. High kurtosis = performance punctuated by spikes — big winning days AND big losing days that make results harder to trust and replicate.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Clean Profile</div><div class="kb-ex-value">Kurtosis < 1</div><div class="kb-ex-detail">Very few outliers — smooth, predictable results</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Spiky Profile</div><div class="kb-ex-value">Kurtosis > 4</div><div class="kb-ex-detail">Frequent extreme days — sudden drawdowns or windfall profits</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">> 4</div><div class="kb-thresh-desc">Unstable — frequent extreme events</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">2–4</div><div class="kb-thresh-desc">Occasional spikes — work on consistency</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">< 2</div><div class="kb-thresh-desc">Smooth, predictable performance</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Reduce exposure during major news events and low-liquidity periods</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Set strict daily limits (both profit and loss) to cut the tails</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Keep your position sizing constant — do not go all-in on any setup</span></div>
+    </div>
+  </div>
+
+  <!-- EXTREME DAY IMPACT -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#8B5CF618;border:1px solid #8B5CF633;color:var(--purple)">Q3</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Extreme Day Impact</div>
+        <div class="kb-metric-pillar" style="color:var(--purple)">Quality Execution · OF3</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">How much do your extreme days dominate your overall results? Ratio = max(|Best Day|, |Worst Day|) / AvgAbsPnL. A low ratio means steady beats spectacular.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Balanced Results</div><div class="kb-ex-value">Ratio 1.5</div><div class="kb-ex-detail">Extreme days are close to your average — consistent, repeatable performance</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Outlier-Driven</div><div class="kb-ex-value">Ratio 8+</div><div class="kb-ex-detail">Your best or worst day is 8x your average — fragile strategy</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">> 6</div><div class="kb-thresh-desc">Results dominated by extreme days</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">3–6</div><div class="kb-thresh-desc">Outliers are too influential</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">< 3</div><div class="kb-thresh-desc">Well-balanced, consistent daily results</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Set strict daily loss limits to cap the downside of any single day</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Keep position sizing stable — do not load up on a single trade</span></div>
+    </div>
+  </div>
+
+  <!-- BEST/WORST DAY -->
+  <div class="kb-metric">
+    <div class="kb-metric-header">
+      <div class="kb-metric-badge" style="background:#8B5CF618;border:1px solid #8B5CF633;color:var(--purple)">Q4</div>
+      <div class="kb-metric-info">
+        <div class="kb-metric-name">Best vs Worst Day</div>
+        <div class="kb-metric-pillar" style="color:var(--purple)">Quality Execution · OF4</div>
+      </div>
+    </div>
+    <div class="kb-metric-lead">The ratio between your best trading day and your worst trading day. Shows whether you maintain the same level of discipline when things go well as when things go badly.</div>
+    <div class="kb-sub-title">Examples</div>
+    <div class="kb-examples">
+      <div class="kb-example"><div class="kb-ex-label">Balanced Control</div><div class="kb-ex-value">1.5</div><div class="kb-ex-detail">Best day: +$15k, Worst day: -$10k — symmetrical discipline</div></div>
+      <div class="kb-example"><div class="kb-ex-label">Unbalanced</div><div class="kb-ex-value">5.0</div><div class="kb-ex-detail">Best day: +$50k, Worst day: -$10k — inconsistent risk approach</div></div>
+    </div>
+    <div class="kb-sub-title">Thresholds</div>
+    <div class="kb-thresholds">
+      <div class="kb-thresh crit"><span class="kb-thresh-badge">Critical</span><div><div class="kb-thresh-val">> 5.0</div><div class="kb-thresh-desc">Extreme asymmetry between best and worst</div></div></div>
+      <div class="kb-thresh needs"><span class="kb-thresh-badge">Needs Work</span><div><div class="kb-thresh-val">2.5–5.0</div><div class="kb-thresh-desc">Work on balancing risk symmetry</div></div></div>
+      <div class="kb-thresh exc"><span class="kb-thresh-badge">Excellent</span><div><div class="kb-thresh-val">< 2.5</div><div class="kb-thresh-desc">Well-controlled risk in all conditions</div></div></div>
+    </div>
+    <div class="kb-sub-title">How to Improve</div>
+    <div class="kb-tips">
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Set daily profit targets to avoid overconfidence-driven outliers</span></div>
+      <div class="kb-tip"><div class="kb-tip-arrow">→</div><span>Enforce strict daily loss limits to cap your worst days</span></div>
+    </div>
+  </div>`},
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTION 9 — MARGIN REFERENCE (Top instruments from margin-data-v2)
+   ═══════════════════════════════════════════════════════════════ */
+{id:"margins",label:"Margin Reference",color:"#10B981",content:`
+  <div class="rule-section"><div class="rule-title">Margin Reference — Key Instruments (Q1 2026 · AMP Futures / CME Group)</div>
+  <div class="info-block">Margins shown are day-trade margins. All lot calculations based on a <strong style="color:var(--teal)">$1,000,000</strong> evaluation account. Leverage sweet spot for scoring: <strong style="color:var(--green)">2x to 5x</strong>. Formula: Lots = (Capital x Leverage) / Notional value.</div></div>
+
+  <div class="rule-section"><div class="rule-title">Top 10 Most Traded — Equity Indices</div>
+  <div class="table-wrap"><table><thead><tr><th>Symbol</th><th>Name</th><th>Exchange</th><th>Tick Value</th><th>Point Value</th><th>Notional</th><th>Margin</th></tr></thead><tbody>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">ES</td><td>E-mini S&P 500</td><td>CME</td><td style="font-family:var(--mono);color:var(--text2)">$12.50</td><td style="font-family:var(--mono);color:var(--text2)">$50</td><td style="font-family:var(--mono)">~$300K</td><td style="font-family:var(--mono);color:var(--green)">$26,586</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">NQ</td><td>E-mini Nasdaq-100</td><td>CME</td><td style="font-family:var(--mono);color:var(--text2)">$5.00</td><td style="font-family:var(--mono);color:var(--text2)">$20</td><td style="font-family:var(--mono)">~$420K</td><td style="font-family:var(--mono);color:var(--green)">$40,435</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">YM</td><td>E-mini Dow ($5)</td><td>CBOT</td><td style="font-family:var(--mono);color:var(--text2)">$5.00</td><td style="font-family:var(--mono);color:var(--text2)">$5</td><td style="font-family:var(--mono)">~$215K</td><td style="font-family:var(--mono);color:var(--green)">$16,469</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">RTY</td><td>E-mini Russell 2000</td><td>CME</td><td style="font-family:var(--mono);color:var(--text2)">$5.00</td><td style="font-family:var(--mono);color:var(--text2)">$50</td><td style="font-family:var(--mono)">~$110K</td><td style="font-family:var(--mono);color:var(--green)">$11,690</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">MES</td><td>Micro E-mini S&P 500</td><td>CME</td><td style="font-family:var(--mono);color:var(--text2)">$1.25</td><td style="font-family:var(--mono);color:var(--text2)">$5</td><td style="font-family:var(--mono)">~$30K</td><td style="font-family:var(--mono);color:var(--green)">$2,659</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">MNQ</td><td>Micro E-mini Nasdaq-100</td><td>CME</td><td style="font-family:var(--mono);color:var(--text2)">$0.50</td><td style="font-family:var(--mono);color:var(--text2)">$2</td><td style="font-family:var(--mono)">~$42K</td><td style="font-family:var(--mono);color:var(--green)">$4,044</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">FDAX</td><td>DAX</td><td>EUREX</td><td style="font-family:var(--mono);color:var(--text2)">&euro;12.50</td><td style="font-family:var(--mono);color:var(--text2)">&euro;25</td><td style="font-family:var(--mono)">~&euro;530K</td><td style="font-family:var(--mono);color:var(--green)">$53,250</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">FESX</td><td>EURO STOXX 50</td><td>EUREX</td><td style="font-family:var(--mono);color:var(--text2)">&euro;10.00</td><td style="font-family:var(--mono);color:var(--text2)">&euro;10</td><td style="font-family:var(--mono)">~&euro;55K</td><td style="font-family:var(--mono);color:var(--green)">$4,800</td></tr>
+  </tbody></table></div></div>
+
+  <div class="rule-section"><div class="rule-title">Energy & Metals — Most Traded</div>
+  <div class="table-wrap"><table><thead><tr><th>Symbol</th><th>Name</th><th>Exchange</th><th>Tick Value</th><th>Point Value</th><th>Notional</th><th>Margin</th></tr></thead><tbody>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">CL</td><td>Crude Oil (WTI)</td><td>NYMEX</td><td style="font-family:var(--mono);color:var(--text2)">$10.00</td><td style="font-family:var(--mono);color:var(--text2)">$1,000</td><td style="font-family:var(--mono)">~$72K</td><td style="font-family:var(--mono);color:var(--green)">$4,747</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">GC</td><td>Gold (100 oz)</td><td>COMEX</td><td style="font-family:var(--mono);color:var(--text2)">$10.00</td><td style="font-family:var(--mono);color:var(--text2)">$100</td><td style="font-family:var(--mono)">~$450K</td><td style="font-family:var(--mono);color:var(--green)">$49,959</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">SI</td><td>Silver (5,000 oz)</td><td>COMEX</td><td style="font-family:var(--mono);color:var(--text2)">$25.00</td><td style="font-family:var(--mono);color:var(--text2)">$5,000</td><td style="font-family:var(--mono)">~$165K</td><td style="font-family:var(--mono);color:var(--green)">$77,185</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">NG</td><td>Natural Gas (Henry Hub)</td><td>NYMEX</td><td style="font-family:var(--mono);color:var(--text2)">$10.00</td><td style="font-family:var(--mono);color:var(--text2)">$10,000</td><td style="font-family:var(--mono)">~$38K</td><td style="font-family:var(--mono);color:var(--green)">$5,501</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">MCL</td><td>Micro WTI Crude Oil</td><td>NYMEX</td><td style="font-family:var(--mono);color:var(--text2)">$1.00</td><td style="font-family:var(--mono);color:var(--text2)">$100</td><td style="font-family:var(--mono)">~$7.2K</td><td style="font-family:var(--mono);color:var(--green)">$476</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">MGC</td><td>Micro Gold (10 oz)</td><td>COMEX</td><td style="font-family:var(--mono);color:var(--text2)">$1.00</td><td style="font-family:var(--mono);color:var(--text2)">$10</td><td style="font-family:var(--mono)">~$45K</td><td style="font-family:var(--mono);color:var(--green)">$4,088</td></tr>
+  </tbody></table></div></div>
+
+  <div class="rule-section"><div class="rule-title">Currencies (Futures) — Most Traded</div>
+  <div class="table-wrap"><table><thead><tr><th>Symbol</th><th>Name</th><th>Exchange</th><th>Tick Value</th><th>Point Value</th><th>Notional</th><th>Margin</th></tr></thead><tbody>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">6E</td><td>Euro FX</td><td>CME</td><td style="font-family:var(--mono);color:var(--text2)">$6.25</td><td style="font-family:var(--mono);color:var(--text2)">$125,000</td><td style="font-family:var(--mono)">~$135K</td><td style="font-family:var(--mono);color:var(--green)">$2,970</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">6B</td><td>British Pound</td><td>CME</td><td style="font-family:var(--mono);color:var(--text2)">$6.25</td><td style="font-family:var(--mono);color:var(--text2)">$62,500</td><td style="font-family:var(--mono)">~$82K</td><td style="font-family:var(--mono);color:var(--green)">$2,200</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">6J</td><td>Japanese Yen</td><td>CME</td><td style="font-family:var(--mono);color:var(--text2)">$6.25</td><td style="font-family:var(--mono);color:var(--text2)">$12,500,000</td><td style="font-family:var(--mono)">~$83K</td><td style="font-family:var(--mono);color:var(--green)">$3,080</td></tr>
+  </tbody></table></div></div>
+
+  <div class="rule-section"><div class="rule-title">U.S. Treasuries — Most Traded</div>
+  <div class="table-wrap"><table><thead><tr><th>Symbol</th><th>Name</th><th>Exchange</th><th>Tick Value</th><th>Point Value</th><th>Notional</th><th>Margin</th></tr></thead><tbody>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">ZN</td><td>10-Year T-Note</td><td>CBOT</td><td style="font-family:var(--mono);color:var(--text2)">$15.625</td><td style="font-family:var(--mono);color:var(--text2)">$1,000</td><td style="font-family:var(--mono)">~$110K</td><td style="font-family:var(--mono);color:var(--green)">$2,062</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">ZB</td><td>U.S. Treasury Bond 30Y</td><td>CBOT</td><td style="font-family:var(--mono);color:var(--text2)">$31.25</td><td style="font-family:var(--mono);color:var(--text2)">$1,000</td><td style="font-family:var(--mono)">~$117K</td><td style="font-family:var(--mono);color:var(--green)">$4,070</td></tr>
+    <tr><td style="color:var(--teal);font-weight:600;font-family:var(--mono)">ZF</td><td>5-Year T-Note</td><td>CBOT</td><td style="font-family:var(--mono);color:var(--text2)">$7.8125</td><td style="font-family:var(--mono);color:var(--text2)">$1,000</td><td style="font-family:var(--mono)">~$108K</td><td style="font-family:var(--mono);color:var(--green)">$1,375</td></tr>
+  </tbody></table></div></div>
+
+  <div class="rule-section"><div class="rule-title">Leverage Quick Reference — $1M Account</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+    <div class="info-block" style="text-align:center;border-color:#10B98133">
+      <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">2x Leverage</div>
+      <div style="font-size:22px;font-weight:800;font-family:var(--mono);color:var(--green);margin-top:6px">$2M</div>
+      <div style="font-size:11px;color:var(--text2);margin-top:4px">Notional exposure</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px">ES: ~7 lots · NQ: ~5 lots</div>
+    </div>
+    <div class="info-block" style="text-align:center;border-color:#00D4FF33">
+      <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">3x Leverage</div>
+      <div style="font-size:22px;font-weight:800;font-family:var(--mono);color:var(--teal);margin-top:6px">$3M</div>
+      <div style="font-size:11px;color:var(--text2);margin-top:4px">Notional exposure</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px">ES: ~10 lots · NQ: ~7 lots</div>
+    </div>
+    <div class="info-block" style="text-align:center;border-color:#F59E0B33">
+      <div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">5x Leverage</div>
+      <div style="font-size:22px;font-weight:800;font-family:var(--mono);color:var(--amber);margin-top:6px">$5M</div>
+      <div style="font-size:11px;color:var(--text2);margin-top:4px">Notional exposure</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px">ES: ~17 lots · NQ: ~12 lots</div>
+    </div>
+  </div></div>
+
+  <div class="info-block" style="margin-top:16px">For the complete margin reference with 108+ products across CME, CBOT, NYMEX, COMEX, and EUREX — including micro contracts, grains, meats, and fixed income — see the full <strong style="color:var(--teal)">Margin Reference</strong> document in your dashboard.</div>`}
+];
+const nav=document.getElementById('rnav'),panels=document.getElementById('rpanels');
+TABS.forEach((t,i)=>{
+  const btn=document.createElement('button');
+  btn.className='rules-nav-btn'+(i===0?' active':'');
+  btn.textContent=t.label;
+  btn.style.setProperty('--c',t.color);
+  btn.onclick=()=>{
+    document.querySelectorAll('.rules-nav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.rpanel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('rp-'+t.id).classList.add('active');
+  };
+  nav.appendChild(btn);
+  const panel=document.createElement('div');
+  panel.id='rp-'+t.id;
+  panel.className='rpanel'+(i===0?' active':'');
+  panel.innerHTML=t.content;
+  panels.appendChild(panel);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Rules — Climber Trade</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0A0A0A;--surface:#0d0d0d;--card:#131313;--card2:#161616;
+  --border:#1c1c1c;--border2:#222;
+  --teal:#00D4FF;--teal-dim:#00D4FF15;
+  --green:#10B981;--red:#EF4444;--amber:#F59E0B;--purple:#8B5CF6;
+  --text:#F0F0F0;--text2:#8A8A8A;--text3:#444;
+  --font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.5;}
+/* Header */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:60px;border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,10,10,.95);backdrop-filter:blur(12px);
+}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{
+  width:32px;height:32px;background:linear-gradient(135deg,#00D4FF22,#00D4FF08);
+  border:1px solid #00D4FF33;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.logo-text{font-size:14px;font-weight:700;letter-spacing:-.2px;}
+.logo-sub{font-size:10px;color:var(--text3);letter-spacing:.5px;}
+.header-badge{
+  display:flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;
+  border:1px solid var(--border2);font-size:11px;color:var(--text2);
+}
+.header-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);}
+/* Layout */
+.layout{display:grid;grid-template-columns:250px 1fr;height:calc(100vh - 60px);}
+/* Sidebar */
+.sidebar{
+  border-right:1px solid var(--border);overflow-y:auto;
+  background:var(--surface);padding:20px 12px;
+}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:#1c1c1c;}
+.sidebar-title{
+  font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--text3);padding:0 8px;margin-bottom:12px;
+}
+.nav-btn{
+  display:flex;align-items:center;gap:10px;
+  width:100%;text-align:left;padding:10px 12px;
+  font-size:12px;font-weight:500;font-family:var(--font);color:var(--text2);
+  background:none;border:none;cursor:pointer;border-radius:8px;
+  transition:all .12s;margin-bottom:2px;
+}
+.nav-btn:hover{color:var(--text);background:var(--card);}
+.nav-btn.active{color:var(--teal);background:var(--teal-dim);}
+.nav-icon{
+  width:28px;height:28px;border-radius:6px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;
+}
+.nav-btn.active .nav-icon{border-color:var(--teal)44;}
+.nav-label{font-size:12px;font-weight:600;}
+.nav-sub{font-size:10px;color:var(--text3);font-weight:400;}
+/* Main */
+.main{overflow-y:auto;padding:32px 36px;}
+.main::-webkit-scrollbar{width:3px;}
+.main::-webkit-scrollbar-thumb{background:#1c1c1c;}
+.panel{display:none;animation:fi .2s ease;}
+.panel.active{display:block;}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+/* Section header */
+.section-top{margin-bottom:28px;}
+.section-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 14px;border-radius:20px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  margin-bottom:14px;
+}
+.chip-dot{width:6px;height:6px;border-radius:50%;}
+.section-title{font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:12px;}
+.section-lead{
+  font-size:13px;color:var(--text2);line-height:1.8;max-width:640px;
+  padding:14px 18px;background:var(--card);
+  border:1px solid var(--border);border-radius:10px;
+  border-left:3px solid var(--teal);
+}
+/* Divider */
+.divider{display:flex;align-items:center;gap:10px;margin:28px 0 16px;}
+.div-label{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text3);white-space:nowrap;}
+.div-line{flex:1;height:1px;background:var(--border);}
+/* Cards grid */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:20px;}
+.card{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:18px 20px;
+}
+.card-label{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.card-value{font-size:24px;font-weight:800;font-family:var(--mono);letter-spacing:-1px;margin-bottom:6px;}
+.card-desc{font-size:12px;color:var(--text2);line-height:1.6;}
+/* Stat row */
+.stat-rows{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.stat-row{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 16px;border-radius:8px;
+  background:var(--card);border:1px solid var(--border);
+}
+.stat-icon{
+  width:32px;height:32px;border-radius:6px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;
+}
+.stat-content{flex:1;}
+.stat-key{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.stat-val{font-size:11px;color:var(--text2);}
+.stat-badge{
+  font-size:10px;font-weight:700;letter-spacing:.3px;
+  padding:4px 10px;border-radius:5px;white-space:nowrap;
+}
+/* Tables */
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px;}
+.table-title{
+  padding:12px 16px;font-size:10px;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--text3);
+  border-bottom:1px solid var(--border);background:var(--card2);
+}
+table{width:100%;border-collapse:collapse;}
+th{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;
+  color:var(--text3);padding:10px 16px;text-align:left;
+  border-bottom:1px solid var(--border);background:var(--card2);
+}
+td{padding:10px 16px;border-bottom:1px solid #0f0f0f;font-size:12px;color:var(--text2);}
+tr:last-child td{border:none;}
+tr:hover td{background:#111;}
+.td-mono{font-family:var(--mono);font-weight:500;}
+.td-green{color:var(--green);font-weight:600;}
+.td-red{color:var(--red);font-weight:600;}
+.td-amber{color:var(--amber);font-weight:600;}
+/* Badge */
+.badge{
+  display:inline-block;padding:3px 10px;border-radius:5px;
+  font-size:10px;font-weight:700;letter-spacing:.3px;
+}
+.badge-green{background:#10B98118;color:var(--green);border:1px solid #10B98133;}
+.badge-red{background:#EF444418;color:var(--red);border:1px solid #EF444433;}
+.badge-amber{background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B33;}
+.badge-teal{background:var(--teal-dim);color:var(--teal);border:1px solid #00D4FF33;}
+.badge-purple{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}
+/* Tag list */
+.tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.tag{
+  padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;
+  background:var(--card);border:1px solid var(--border);color:var(--text2);
+}
+.tag-green{border-color:#10B98133;color:var(--green);}
+.tag-red{border-color:#EF444433;color:var(--red);}
+/* Info block */
+.info-block{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:18px 22px;margin-bottom:16px;
+}
+.info-block p{font-size:13px;color:var(--text2);line-height:1.8;}
+/* Steps */
+.steps{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.step{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:14px 18px;border-radius:8px;
+  background:var(--card);border:1px solid var(--border);
+}
+.step-num{
+  width:28px;height:28px;border-radius:6px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;font-family:var(--mono);
+  background:var(--teal-dim);color:var(--teal);border:1px solid #00D4FF33;
+}
+.step-content{flex:1;}
+.step-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.step-desc{font-size:12px;color:var(--text2);line-height:1.6;}
+/* Two-col */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+/* Severity scale */
+.severity{
+  display:flex;align-items:stretch;gap:0;border-radius:10px;overflow:hidden;
+  border:1px solid var(--border);margin-bottom:20px;
+}
+.sev-block{flex:1;padding:18px 16px;text-align:center;}
+.sev-block:not(:last-child){border-right:1px solid var(--border);}
+.sev-level{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;}
+.sev-time{font-size:16px;font-weight:700;font-family:var(--mono);margin-bottom:6px;}
+.sev-desc{font-size:11px;color:var(--text2);line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">
+    <div class="logo-icon">🏔</div>
+    <div>
+      <div class="logo-text">Climber Trade</div>
+      <div class="logo-sub">TRADING RULES</div>
+    </div>
+  </div>
+  <div class="header-badge">Evaluation & Live — March 2026</div>
+</div>
+<div class="layout">
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-title">Rule Sections</div>
+  </div>
+  <div class="main" id="main"></div>
+</div>
+<script>
+const SECTIONS=[
+{id:"overview",icon:`<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>`,color:"#00D4FF",label:"Overview",sub:"Key rules at a glance",
+  render:()=>`
+    <div class="section-top">
+      <div class="section-chip" style="background:#00D4FF18;color:#00D4FF;border:1px solid #00D4FF33">
+        <div class="chip-dot" style="background:#00D4FF"></div>Overview
+      </div>
+      <div class="section-title">Trading Rules — Overview</div>
+      <div class="section-lead">Complete reference for all trading rules governing the Climber Trade evaluation and live trading programs. These rules ensure fair, transparent, and professional conditions for all traders.</div>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-label">Evaluation Capital</div>
+        <div class="card-value" style="color:var(--teal)">$1,000,000</div>
+        <div class="card-desc">Simulated capital — identical for all traders, USD only</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Minimum Duration</div>
+        <div class="card-value" style="color:var(--amber)">30 days</div>
+        <div class="card-desc">Calendar days since account creation before Live eligibility</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Live Threshold</div>
+        <div class="card-value" style="color:var(--green)">Score 85+</div>
+        <div class="card-desc">CLIMB Score ≥ 85 maintained 7 consecutive trading days + KYC</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Account Limit</div>
+        <div class="card-value" style="color:var(--purple)">1 per person</div>
+        <div class="card-desc">+1 if company ownership (proof required). Multi-account = ban</div>
+      </div>
+    </div>
+    <div class="divider"><div class="div-label">Live Passage Criteria</div><div class="div-line"></div></div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">CLIMB Score ≥ 85/100</div><div class="step-desc">Your composite score across Risk, Performance, Consistency, and Quality pillars must reach 85.</div></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">7 consecutive trading days at 85+</div><div class="step-desc">The score must be maintained for 7 days with at least 1 executed trade per day.</div></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">30 calendar days since account creation</div><div class="step-desc">Minimum maturity period — no fast-tracking regardless of performance.</div></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><div class="step-title">KYC validated</div><div class="step-desc">Identity verification completed and approved before live activation.</div></div></div>
+    </div>
+    <div class="info-block"><p><strong style="color:var(--teal)">Individual & instant:</strong> Each trader qualifies independently — no monthly batches. Activation within 24–48h (weekdays only, excluding Friday evening and weekends).</p></div>
+  `},
+{id:"evaluation",icon:`<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><circle cx="12" cy="12" r="5"/></svg>`,color:"#F59E0B",label:"Evaluation Phase",sub:"Simulated trading rules",
+  render:()=>`
+    <div class="section-top">
+      <div class="section-chip" style="background:#F59E0B18;color:#F59E0B;border:1px solid #F59E0B33">
+        <div class="chip-dot" style="background:#F59E0B"></div>Phase 1
+      </div>
+      <div class="section-title">Evaluation Phase Rules</div>
+      <div class="section-lead">The evaluation phase uses $1,000,000 in simulated capital. Your performance is scored algorithmically in real time. The goal: prove you can trade professionally and consistently before accessing real capital.</div>
+    </div>
+    <div class="divider"><div class="div-label">Account Parameters</div><div class="div-line"></div></div>
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="stat-icon" style="background:#00D4FF18;border:1px solid #00D4FF33;">💰</div>
+        <div class="stat-content"><div class="stat-key">Starting Capital</div><div class="stat-val">$1,000,000 USD — simulated, fixed for all traders</div></div>
+        <div class="stat-badge badge-teal">Same for all</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-icon" style="background:#F59E0B18;border:1px solid #F59E0B33;">💵</div>
+        <div class="stat-content"><div class="stat-key">Account Currency</div><div class="stat-val">USD exclusively — no multi-currency accounts</div></div>
+        <div class="stat-badge badge-amber">USD only</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-icon" style="background:#10B98118;border:1px solid #10B98133;">📊</div>
+        <div class="stat-content"><div class="stat-key">Scoring</div><div class="stat-val">Real-time algorithmic CLIMB Score across 4 pillars (Risk, Performance, Consistency, Quality)</div></div>
+        <div class="stat-badge badge-green">Real-time</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-icon" style="background:#8B5CF618;border:1px solid #8B5CF633;">⏱️</div>
+        <div class="stat-content"><div class="stat-key">Duration</div><div class="stat-val">Minimum 30 calendar days — no maximum, trade as long as needed</div></div>
+        <div class="stat-badge badge-purple">Unlimited</div>
+      </div>
+    </div>
+    <div class="divider"><div class="div-label">Pricing</div><div class="div-line"></div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Plan</th><th>Price</th><th>Duration</th><th>Capital</th><th>Live Access</th></tr></thead>
+        <tbody>
+          <tr><td class="td-mono" style="color:var(--teal);font-weight:600">Standard</td><td class="td-mono">$199/mo</td><td>Auto-renewable</td><td class="td-mono">$1,000,000</td><td><span class="badge badge-green">Yes</span></td></tr>
+          <tr><td class="td-mono" style="color:var(--amber);font-weight:600">Discovery</td><td class="td-mono">$49</td><td>30 days, non-renewable</td><td class="td-mono">$1,000,000</td><td><span class="badge badge-red">No</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="divider"><div class="div-label">Reset Options</div><div class="div-line"></div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Type</th><th>Price</th><th>Condition</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td class="td-mono td-green">Free</td><td class="td-mono">$0</td><td>1 per calendar month, balance at $0, not yet Live</td><td>Full reset — capital restored, score wiped, history archived</td></tr>
+          <tr><td class="td-mono td-amber">Standard</td><td class="td-mono">$99</td><td>Anytime</td><td>Full reset — capital restored, score wiped, history archived</td></tr>
+          <tr><td class="td-mono" style="color:var(--purple)">Near-fail</td><td class="td-mono">$79</td><td>Score between 80–84</td><td>Full reset — capital restored, score wiped, history archived</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="info-block"><p><strong style="color:var(--amber)">Reset effects:</strong> Capital restored to $1M, CLIMB Score reset to 0, trade history archived (not deleted), all metrics cleared. Subscription date unchanged.</p></div>
+  `},
+{id:"live",icon:`<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>`,color:"#EF4444",label:"Live Trading",sub:"Risk limits & drawdown rules",
+  render:()=>`
+    <div class="section-top">
+      <div class="section-chip" style="background:#EF444418;color:#EF4444;border:1px solid #EF444433">
+        <div class="chip-dot" style="background:#EF4444"></div>Phase 2
+      </div>
+      <div class="section-title">Live Trading Rules</div>
+      <div class="section-lead">Once qualified, you trade with real capital allocated from the Liquidity Pool. Strict automated risk controls protect both you and the pool. Violations trigger graduated responses — from alerts to account freezes.</div>
+    </div>
+    <div class="divider"><div class="div-label">Automated Risk Controls</div><div class="div-line"></div></div>
+    <div class="table-wrap">
+      <div class="table-title">Drawdown Thresholds & Automatic Actions</div>
+      <table>
+        <thead><tr><th>Trigger</th><th>Threshold</th><th>Severity</th><th>Automatic Action</th></tr></thead>
+        <tbody>
+          <tr><td>Daily Drawdown</td><td class="td-mono td-amber">> 15%</td><td><span class="badge badge-amber">Alert</span></td><td>Automatic prevention email sent</td></tr>
+          <tr><td>Total Drawdown</td><td class="td-mono td-amber">> 20%</td><td><span class="badge badge-amber">VAR Alert</span></td><td>Infraction notified to trader</td></tr>
+          <tr><td>Intraday Drawdown</td><td class="td-mono td-red">> 50%</td><td><span class="badge badge-red">Hard Stop</span></td><td>24-hour forced trading pause</td></tr>
+          <tr><td>Total Drawdown</td><td class="td-mono td-red">> 80%</td><td><span class="badge badge-red">Critical</span></td><td>5-day pause + return to scoring (30 days consolidation)</td></tr>
+          <tr><td>Score below 75</td><td class="td-mono td-amber">7 consecutive days</td><td><span class="badge badge-amber">Return</span></td><td>Return to scoring + consolidation ≥ 85 for 7 days</td></tr>
+          <tr><td>Score below 50</td><td class="td-mono td-red">Immediate</td><td><span class="badge badge-red">Freeze</span></td><td>Live account frozen — mandatory return to evaluation</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="divider"><div class="div-label">Profit Split by Score</div><div class="div-line"></div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>CLIMB Score</th><th>Trader Share</th><th>Climber Share</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="td-mono">95–100</td><td class="td-mono td-green">60%</td><td class="td-mono">40%</td><td><span class="badge badge-purple">Elite</span></td></tr>
+          <tr><td class="td-mono">90–94</td><td class="td-mono td-green">55%</td><td class="td-mono">45%</td><td><span class="badge badge-teal">Expert</span></td></tr>
+          <tr><td class="td-mono">85–89</td><td class="td-mono" style="color:var(--teal)">50%</td><td class="td-mono">50%</td><td><span class="badge badge-green">Standard</span></td></tr>
+          <tr><td class="td-mono">80–84</td><td class="td-mono td-amber">45%</td><td class="td-mono">55%</td><td><span class="badge badge-amber">Watch</span></td></tr>
+          <tr><td class="td-mono">75–79</td><td class="td-mono td-amber">40%</td><td class="td-mono">60%</td><td><span class="badge badge-amber">Warning</span></td></tr>
+          <tr><td class="td-mono">< 75</td><td class="td-mono td-red">0%</td><td class="td-mono">0%</td><td><span class="badge badge-red">7 days to recover</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="divider"><div class="div-label">Maintenance Requirements</div><div class="div-line"></div></div>
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="stat-icon" style="background:#10B98118;border:1px solid #10B98133;">✅</div>
+        <div class="stat-content"><div class="stat-key">Minimum Score</div><div class="stat-val">CLIMB Score ≥ 75 to maintain profit split</div></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-icon" style="background:#F59E0B18;border:1px solid #F59E0B33;">📅</div>
+        <div class="stat-content"><div class="stat-key">Activity Requirement</div><div class="stat-val">Minimum 4 trading days per 30 calendar days</div></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-icon" style="background:#00D4FF18;border:1px solid #00D4FF33;">💸</div>
+        <div class="stat-content"><div class="stat-key">First Payout Eligibility</div><div class="stat-val">7 days of live trading before first withdrawal</div></div>
+      </div>
+    </div>
+  `},
+{id:"instruments",icon:`<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9h-4v4h-2v-4H9V9h4V5h2v4h4v2z"/></svg>`,color:"#10B981",label:"Instruments",sub:"Authorized markets & products",
+  render:()=>`
+    <div class="section-top">
+      <div class="section-chip" style="background:#10B98118;color:#10B981;border:1px solid #10B98133">
+        <div class="chip-dot" style="background:#10B981"></div>Markets
+      </div>
+      <div class="section-title">Authorized Instruments</div>
+      <div class="section-lead">Climber Trade supports a wide range of regulated instruments across major global exchanges. The same instruments are available in both evaluation and live phases.</div>
+    </div>
+    <div class="divider"><div class="div-label">Futures — CME / CBOT / NYMEX / COMEX / EUREX</div><div class="div-line"></div></div>
+    <div class="two-col">
+      <div class="info-block">
+        <div class="card-label" style="margin-bottom:10px">Equity Indices</div>
+        <div class="tag-list">
+          <div class="tag tag-green">ES</div><div class="tag tag-green">NQ</div><div class="tag tag-green">YM</div>
+          <div class="tag tag-green">RTY</div><div class="tag tag-green">FDAX</div><div class="tag tag-green">FESX</div>
+        </div>
+        <p style="font-size:12px;color:var(--text2)">E-mini S&P, Nasdaq, Dow, Russell + DAX, EURO STOXX</p>
+      </div>
+      <div class="info-block">
+        <div class="card-label" style="margin-bottom:10px">FX Futures</div>
+        <div class="tag-list">
+          <div class="tag tag-green">6E</div><div class="tag tag-green">6B</div><div class="tag tag-green">6J</div>
+          <div class="tag tag-green">6A</div><div class="tag tag-green">6C</div>
+        </div>
+        <p style="font-size:12px;color:var(--text2)">EUR, GBP, JPY, AUD, CAD futures</p>
+      </div>
+      <div class="info-block">
+        <div class="card-label" style="margin-bottom:10px">Commodities</div>
+        <div class="tag-list">
+          <div class="tag tag-green">CL</div><div class="tag tag-green">GC</div><div class="tag tag-green">SI</div>
+          <div class="tag tag-green">NG</div>
+        </div>
+        <p style="font-size:12px;color:var(--text2)">Crude Oil, Gold, Silver, Natural Gas</p>
+      </div>
+      <div class="info-block">
+        <div class="card-label" style="margin-bottom:10px">Interest Rates</div>
+        <div class="tag-list">
+          <div class="tag tag-green">ZN</div><div class="tag tag-green">ZB</div><div class="tag tag-green">ZF</div>
+          <div class="tag tag-green">ZT</div>
+        </div>
+        <p style="font-size:12px;color:var(--text2)">10Y, 30Y, 5Y, 2Y U.S. Treasuries</p>
+      </div>
+    </div>
+    <div class="divider"><div class="div-label">Forex</div><div class="div-line"></div></div>
+    <div class="info-block">
+      <p><strong style="color:var(--teal)">28 pairs</strong> — All major and minor pairs. Includes EUR/USD, GBP/USD, USD/JPY, AUD/USD, USD/CAD, NZD/USD, USD/CHF + crosses.</p>
+    </div>
+    <div class="divider"><div class="div-label">Equities</div><div class="div-line"></div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Market</th><th>Scope</th><th>Commission</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--teal);font-weight:600">NYSE / NASDAQ</td><td>Market cap > $500M</td><td class="td-mono">$0.005/share (min $1)</td><td><span class="badge badge-amber">Pending confirmation</span></td></tr>
+          <tr><td style="color:var(--teal);font-weight:600">ETFs</td><td>SPY, QQQ, TLT, GLD</td><td class="td-mono">$0.005/share (min $1)</td><td><span class="badge badge-amber">Pending confirmation</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="divider"><div class="div-label">CFD & Crypto</div><div class="div-line"></div></div>
+    <div class="two-col">
+      <div class="info-block">
+        <div class="card-label" style="margin-bottom:8px">CFD</div>
+        <p style="font-size:12px;color:var(--text2)">Global indices, commodities — mirror of futures markets via CFD contracts</p>
+      </div>
+      <div class="info-block">
+        <div class="card-label" style="margin-bottom:8px">Crypto (CFD only)</div>
+        <div class="tag-list" style="margin-top:4px">
+          <div class="tag" style="border-color:#F59E0B33;color:var(--amber)">BTC</div>
+          <div class="tag" style="border-color:#8B5CF633;color:var(--purple)">ETH</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-block"><p style="color:var(--text3)"><strong>Options & Spot Bonds:</strong> Under consideration — not yet available.</p></div>
+  `},
+{id:"styles",icon:`<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>`,color:"#8B5CF6",label:"Styles & Restrictions",sub:"Allowed and prohibited practices",
+  render:()=>`
+    <div class="section-top">
+      <div class="section-chip" style="background:#8B5CF618;color:#8B5CF6;border:1px solid #8B5CF633">
+        <div class="chip-dot" style="background:#8B5CF6"></div>Trading Styles
+      </div>
+      <div class="section-title">Styles & Restrictions</div>
+      <div class="section-lead">Climber Trade is strategy-agnostic — any legitimate trading approach is welcome. However, manipulative or deceptive practices are strictly prohibited and will result in immediate sanctions.</div>
+    </div>
+    <div class="divider"><div class="div-label">Authorized Trading Styles</div><div class="div-line"></div></div>
+    <div class="tag-list">
+      <div class="tag tag-green">Scalping</div>
+      <div class="tag tag-green">Day Trading</div>
+      <div class="tag tag-green">Swing Trading</div>
+      <div class="tag tag-green">Position Trading</div>
+      <div class="tag tag-green">Algorithmic / HFT</div>
+      <div class="tag tag-green">Hedging</div>
+      <div class="tag tag-green">Arbitrage</div>
+      <div class="tag tag-green">News Trading</div>
+      <div class="tag tag-green">AI-assisted</div>
+      <div class="tag tag-green">Multi-strategy</div>
+    </div>
+    <div class="divider"><div class="div-label">Strictly Prohibited</div><div class="div-line"></div></div>
+    <div class="stat-rows">
+      <div class="stat-row" style="border-color:#EF444433">
+        <div class="stat-icon" style="background:#EF444418;border:1px solid #EF444433;">🚫</div>
+        <div class="stat-content"><div class="stat-key" style="color:var(--red)">Copy Trading Between Accounts</div><div class="stat-val">Replicating trades between your own accounts or with other traders</div></div>
+        <div class="stat-badge badge-red">Ban</div>
+      </div>
+      <div class="stat-row" style="border-color:#EF444433">
+        <div class="stat-icon" style="background:#EF444418;border:1px solid #EF444433;">🚫</div>
+        <div class="stat-content"><div class="stat-key" style="color:var(--red)">Insider Information</div><div class="stat-val">Trading on non-public material information</div></div>
+        <div class="stat-badge badge-red">Ban</div>
+      </div>
+      <div class="stat-row" style="border-color:#EF444433">
+        <div class="stat-icon" style="background:#EF444418;border:1px solid #EF444433;">🚫</div>
+        <div class="stat-content"><div class="stat-key" style="color:var(--red)">Coordinated Group Trading</div><div class="stat-val">Synchronized trading with other participants to manipulate outcomes</div></div>
+        <div class="stat-badge badge-red">Ban</div>
+      </div>
+      <div class="stat-row" style="border-color:#EF444433">
+        <div class="stat-icon" style="background:#EF444418;border:1px solid #EF444433;">🚫</div>
+        <div class="stat-content"><div class="stat-key" style="color:var(--red)">Market Manipulation</div><div class="stat-val">Spoofing, layering, wash trading, or any form of price manipulation</div></div>
+        <div class="stat-badge badge-red">Ban</div>
+      </div>
+      <div class="stat-row" style="border-color:#EF444433">
+        <div class="stat-icon" style="background:#EF444418;border:1px solid #EF444433;">🚫</div>
+        <div class="stat-content"><div class="stat-key" style="color:var(--red)">Latency Arbitrage</div><div class="stat-val">Exploiting infrastructure speed advantages or price feed delays</div></div>
+        <div class="stat-badge badge-red">Ban</div>
+      </div>
+    </div>
+  `},
+{id:"positions",icon:`<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>`,color:"#00D4FF",label:"Position Limits",sub:"Overnight, weekend & leverage",
+  render:()=>`
+    <div class="section-top">
+      <div class="section-chip" style="background:#00D4FF18;color:#00D4FF;border:1px solid #00D4FF33">
+        <div class="chip-dot" style="background:#00D4FF"></div>Limits
+      </div>
+      <div class="section-title">Position Limits</div>
+      <div class="section-lead">Position limits govern your maximum exposure during different market conditions. These apply to both evaluation and live phases unless otherwise noted.</div>
+    </div>
+    <div class="divider"><div class="div-label">Exposure Limits</div><div class="div-line"></div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Condition</th><th>Max Exposure</th><th>Additional Requirement</th><th>Phase</th></tr></thead>
+        <tbody>
+          <tr><td>Intraday</td><td class="td-mono td-green">No hard limit</td><td>Leverage scoring applies (2×–5× optimal zone)</td><td><span class="badge badge-teal">Both</span></td></tr>
+          <tr><td>Overnight</td><td class="td-mono td-amber">≤ 5:1 notional</td><td>Exposure calculated on total notional value</td><td><span class="badge badge-teal">Both</span></td></tr>
+          <tr><td>Weekend</td><td class="td-mono td-red">≤ 1:1 notional</td><td>Account balance must be ≥ $50,000</td><td><span class="badge badge-teal">Both</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="divider"><div class="div-label">Leverage Scoring Impact</div><div class="div-line"></div></div>
+    <div class="cards-grid">
+      <div class="card" style="border-color:#EF444433">
+        <div class="card-label">Under-Leveraged</div>
+        <div class="card-value" style="color:var(--text2)">0×–1×</div>
+        <div class="card-desc">Score 60–80 pts — capital underutilized, low efficiency</div>
+      </div>
+      <div class="card" style="border-color:#10B98133">
+        <div class="card-label">Optimal Zone</div>
+        <div class="card-value" style="color:var(--green)">2×–5×</div>
+        <div class="card-desc">Score 100 pts — professional exposure, maximum score</div>
+      </div>
+      <div class="card" style="border-color:#F59E0B33">
+        <div class="card-label">Over-Leveraged</div>
+        <div class="card-value" style="color:var(--amber)">6×–17×</div>
+        <div class="card-desc">Score 92→4 pts — decreasing score, increasing risk</div>
+      </div>
+      <div class="card" style="border-color:#EF444433">
+        <div class="card-label">Danger Zone</div>
+        <div class="card-value" style="color:var(--red)">18×+</div>
+        <div class="card-desc">Score 0 to -100 pts — negative scoring, drags down daily average</div>
+      </div>
+    </div>
+    <div class="divider"><div class="div-label">Activity Requirements</div><div class="div-line"></div></div>
+    <div class="stat-rows">
+      <div class="stat-row">
+        <div class="stat-icon" style="background:#F59E0B18;border:1px solid #F59E0B33;">📊</div>
+        <div class="stat-content"><div class="stat-key">Minimum Trading Activity</div><div class="stat-val">At least 4 trading days within any rolling 30 calendar days</div></div>
+        <div class="stat-badge badge-amber">Mandatory</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-icon" style="background:#10B98118;border:1px solid #10B98133;">📈</div>
+        <div class="stat-content"><div class="stat-key">Optimal for Scoring</div><div class="stat-val">Regular daily activity builds confidence factors in Win Rate (22 days) and Yield (180 days)</div></div>
+        <div class="stat-badge badge-green">Recommended</div>
+      </div>
+    </div>
+  `},
+{id:"sanctions",icon:`<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>`,color:"#EF4444",label:"Sanctions & Appeals",sub:"Violation scale & process",
+  render:()=>`
+    <div class="section-top">
+      <div class="section-chip" style="background:#EF444418;color:#EF4444;border:1px solid #EF444433">
+        <div class="chip-dot" style="background:#EF4444"></div>Compliance
+      </div>
+      <div class="section-title">Sanctions & Appeals</div>
+      <div class="section-lead">Climber Trade enforces a graduated sanctions system. Violations are handled proportionally — from warnings to permanent exclusion. Every trader has the right to appeal through a formal process.</div>
+    </div>
+    <div class="divider"><div class="div-label">Sanctions Scale</div><div class="div-line"></div></div>
+    <div class="severity">
+      <div class="sev-block" style="background:#F59E0B0a">
+        <div class="sev-level" style="color:var(--amber)">Level 1</div>
+        <div class="sev-time" style="color:var(--amber)">48h</div>
+        <div class="sev-desc">Written warning — 48 hours to correct the violation</div>
+      </div>
+      <div class="sev-block" style="background:#EF44440a">
+        <div class="sev-level" style="color:var(--red)">Level 2</div>
+        <div class="sev-time" style="color:var(--red)">7–30 days</div>
+        <div class="sev-desc">Temporary suspension — account frozen for 7 to 30 days</div>
+      </div>
+      <div class="sev-block" style="background:#EF44441a">
+        <div class="sev-level" style="color:#ff6b6b">Level 3</div>
+        <div class="sev-time" style="color:#ff6b6b">Permanent</div>
+        <div class="sev-desc">Definitive exclusion — account terminated, no reinstatement</div>
+      </div>
+    </div>
+    <div class="divider"><div class="div-label">Return to Evaluation Triggers</div><div class="div-line"></div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Trigger</th><th>Consequence</th><th>Recovery Path</th></tr></thead>
+        <tbody>
+          <tr><td>Score < 75 for 7 days</td><td class="td-amber">Return to scoring mode</td><td>Consolidate score ≥ 85 for 7 consecutive days</td></tr>
+          <tr><td>Drawdown > 80% of capital</td><td class="td-red">5-day trading pause</td><td>Return to scoring + 30 days consolidation period</td></tr>
+          <tr><td>Score < 50</td><td class="td-red">Live account frozen</td><td>Full return to evaluation — start scoring from scratch</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="divider"><div class="div-label">Appeals Process</div><div class="div-line"></div></div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><div class="step-title">Submit Appeal</div><div class="step-desc">Written request within 7 calendar days of the sanction notification. Send to contact@climbertrade.com with supporting evidence.</div></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><div class="step-title">Review Period</div><div class="step-desc">Climber Trade reviews the appeal and renders a decision within 14 calendar days.</div></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><div class="step-title">Final Decision</div><div class="step-desc">The decision is definitive and without further appeal. The trader is notified by email.</div></div></div>
+    </div>
+    <div class="info-block"><p><strong style="color:var(--red)">Important:</strong> Appeals must be submitted within 7 days. After this period, the sanction becomes final automatically. All decisions rendered through the appeals process are binding and cannot be contested further.</p></div>
+  `}
+];
+const sidebar=document.getElementById('sidebar');
+const main=document.getElementById('main');
+SECTIONS.forEach((sec,i)=>{
+  const btn=document.createElement('button');
+  btn.className='nav-btn'+(i===0?' active':'');
+  btn.innerHTML=`
+    <div class="nav-icon" style="background:${sec.color}18;border:1px solid ${sec.color}33">${sec.icon}</div>
+    <div><div class="nav-label">${sec.label}</div><div class="nav-sub">${sec.sub}</div></div>`;
+  btn.onclick=()=>{
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('sec-'+sec.id).classList.add('active');
+  };
+  sidebar.appendChild(btn);
+  const panel=document.createElement('div');
+  panel.id='sec-'+sec.id;
+  panel.className='panel'+(i===0?' active':'');
+  panel.innerHTML=sec.render();
+  main.appendChild(panel);
+});
+</script>
+</body>
+</html>

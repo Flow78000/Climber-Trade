@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Climber Trade</title>
+<meta name="description" content="Discover the Climber Trade funding model. Transparent liquidity pool, merit-based profit splits, and real capital for talented traders.">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+.values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;}
+.values-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:32px;text-align:center;}
+.values-card h4{color:var(--teal);margin-bottom:12px;font-size:20px;}
+.values-card p{font-size:14px;color:var(--text2);line-height:1.7;}
+.values-icon{font-size:32px;margin-bottom:16px;}
+.pool-info{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:32px;margin-top:48px;}
+.pool-info h4{color:var(--teal);margin-bottom:16px;font-size:18px;}
+.pool-info p{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:12px;}
+.pool-info p:last-child{margin-bottom:0;}
+.pool-formula{font-family:var(--mono);font-size:13px;color:var(--teal);background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin:12px 0;display:inline-block;}
+.pool-code{display:block;background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin:16px 0;font-family:var(--mono);font-size:13px;color:var(--teal);line-height:1.8;white-space:pre;overflow-x:auto;}
+.withdraw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:40px;}
+.withdraw-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px;text-align:center;}
+.withdraw-card h4{font-size:14px;color:var(--teal);margin-bottom:8px;letter-spacing:.3px;}
+.withdraw-card p{font-size:14px;color:var(--text2);line-height:1.7;}
+.scaling-list{margin-top:32px;display:flex;flex-direction:column;gap:16px;}
+.scaling-item{display:flex;align-items:flex-start;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px;}
+.scaling-dot{width:10px;height:10px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:6px;}
+.scaling-item h4{font-size:15px;margin-bottom:4px;}
+.scaling-item p{font-size:14px;color:var(--text2);line-height:1.6;}
+.badge-purple{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}
+.pool-split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;}
+.pool-split-card{background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;}
+.pool-split-card h5{font-size:14px;color:var(--teal);margin-bottom:6px;letter-spacing:.3px;}
+.pool-split-card .pool-pct{font-family:var(--mono);font-size:28px;font-weight:700;margin-bottom:6px;}
+.pool-split-card p{font-size:13px;color:var(--text2);line-height:1.6;}
+@media(max-width:1024px){
+  .values-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:768px){
+  .values-grid{grid-template-columns:1fr;}
+  .withdraw-grid{grid-template-columns:1fr;}
+  .pool-split{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="36" height="36"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="how-it-works.html" class="nav-link">How It Works</a><a href="pricing.html" class="nav-link">Pricing</a><a href="rules.html" class="nav-link">Rules</a><a href="faq.html" class="nav-link">FAQ</a><a href="about.html" class="nav-link">About</a><a href="pricing.html" class="nav-cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-mobile"><a href="how-it-works.html" class="nav-link">How It Works</a><a href="pricing.html" class="nav-link">Pricing</a><a href="rules.html" class="nav-link">Rules</a><a href="faq.html" class="nav-link">FAQ</a><a href="about.html" class="nav-link">About</a><a href="contact.html" class="nav-link">Contact</a><a href="pricing.html" class="nav-cta">Start Trading</a></div>
+<div class="spacer-nav"></div>
+
+<!-- HERO -->
+<section class="section" style="padding-bottom:60px">
+  <div class="container text-center">
+    <div class="section-label fade-up" style="justify-content:center">About Us</div>
+    <h1 class="hero-title fade-up">The Funding Partner Model</h1>
+    <p class="section-subtitle fade-up fade-up-delay-1" style="margin-top:16px">We built Climber Trade because the industry needed a firm that actually wants traders to succeed.</p>
+  </div>
+</section>
+
+<!-- OUR VALUES -->
+<section class="section section-alt" id="values" style="padding-top:60px">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Our Foundation</div>
+      <h2>Our Values</h2>
+    </div>
+    <div class="values-grid">
+      <div class="values-card fade-up">
+        <div class="values-icon">&#9678;</div>
+        <h4>Transparency</h4>
+        <p>Public liquidity pool, open metrics, dashboard visible to all. No hidden numbers, no black boxes. Every dollar is accounted for.</p>
+      </div>
+      <div class="values-card fade-up fade-up-delay-1">
+        <div class="values-icon">&#9733;</div>
+        <h4>Meritocracy</h4>
+        <p>Only performance matters. No misleading marketing, no empty promises. Your CLIMB Score is the only thing that determines your future.</p>
+      </div>
+      <div class="values-card fade-up fade-up-delay-2">
+        <div class="values-icon">&#9650;</div>
+        <h4>Real Funding</h4>
+        <p>Access real live capital, not simulated promises. Your allocated capital grows with your results. No ceiling on what you can achieve.</p>
+      </div>
+      <div class="values-card fade-up fade-up-delay-3">
+        <div class="values-icon">&#8679;</div>
+        <h4>Continuous Growth</h4>
+        <p>Monthly automatic scaling, seniority bonuses, and no capital ceiling. Your career evolves with your performance, not arbitrary limits.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW THE POOL WORKS -->
+<section class="section" id="pool">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">The Engine</div>
+      <h2>The Liquidity Pool</h2>
+      <p class="section-subtitle" style="margin-top:12px">50% of subscription revenues + 50% of Climber's commission on profits feed the pool</p>
+    </div>
+    <div class="stat-cards fade-up">
+      <div class="stat-card">
+        <div class="stat-card-label">Pool Size</div>
+        <div class="stat-card-value">$250,000</div>
+        <div class="stat-card-sub">Live Updated</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Active Traders</div>
+        <div class="stat-card-value">283</div>
+        <div class="stat-card-sub">In Cohorte</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Capital Deployed</div>
+        <div class="stat-card-value">$164,500</div>
+        <div class="stat-card-sub">Allocated to Live Traders</div>
+      </div>
+    </div>
+    <div class="pool-info fade-up">
+      <h4>How Capital Is Allocated</h4>
+      <p><strong style="color:var(--text)">Cohorte</strong> &mdash; All traders with a CLIMB Score &ge; 50 form the statistical cohorte, including both evaluation and live traders.</p>
+      <p><strong style="color:var(--text)">Factor FC</strong> &mdash; The auto-regulating Cohorte Factor prevents pool overexposure at any scale. As the number of qualifying traders grows, each individual allocation shrinks proportionally.</p>
+      <code class="pool-code">FC = 1 / (1 + (N_cohorte / 50))
+
+N_cohorte = Total traders with Score &ge; 50
+Low N_cohorte  &rarr; FC close to 1 &rarr; larger allocations
+High N_cohorte &rarr; FC decreases  &rarr; smaller allocations</code>
+      <p><strong style="color:var(--text)">%Score</strong> &mdash; Your share of the pool scales with your score: 1% at score 85, up to 2% at score 100.</p>
+      <div class="pool-formula">%Score(S) = 1% + ((S - 85) / 15) &times; 1%</div>
+
+      <div class="pool-split">
+        <div class="pool-split-card">
+          <h5>Elite Pool</h5>
+          <div class="pool-pct" style="color:var(--purple)">10%</div>
+          <p>Reserved for traders with a CLIMB Score &ge; 95. Elite traders receive a <strong style="color:var(--text)">double allocation</strong> from both the Elite and Standard pools.</p>
+        </div>
+        <div class="pool-split-card">
+          <h5>Standard Pool</h5>
+          <div class="pool-pct" style="color:var(--green)">90%</div>
+          <p>Shared among all funded traders with a CLIMB Score &ge; 85, including Elite traders who also draw from this pool.</p>
+        </div>
+      </div>
+
+      <p><strong style="color:var(--text)">Seniority Bonus</strong> &mdash; Incremental monthly bonus for live traders, capped at <strong style="color:var(--green)">+3% after 6 months</strong> of continuous live trading. Loyalty and consistency are rewarded.</p>
+
+      <p><strong style="color:var(--text)">Final Allocation Formula:</strong></p>
+      <code class="pool-code">Alloc(S) = Pool_total &times; %Score(S) &times; FC &times; (1 + Prime(S) + Seniority_Bonus)</code>
+    </div>
+  </div>
+</section>
+
+<!-- PROFIT SPLITS -->
+<section class="section section-alt" id="splits">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Revenue Sharing</div>
+      <h2>Profit Splits</h2>
+      <p class="section-subtitle" style="margin-top:12px">Your split improves as your score rises. Performance is rewarded at every level.</p>
+    </div>
+    <div class="table-wrap fade-up" style="margin-top:48px">
+      <table>
+        <thead>
+          <tr>
+            <th>CLIMB Score</th>
+            <th>Trader Share</th>
+            <th>Climber Share</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--text);font-weight:700;font-family:var(--mono)">95 &ndash; 100</td>
+            <td style="color:var(--green);font-weight:700;font-family:var(--mono)">60%</td>
+            <td style="font-family:var(--mono)">40%</td>
+            <td><span class="badge badge-purple">Elite</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--text);font-weight:700;font-family:var(--mono)">90 &ndash; 94</td>
+            <td style="color:var(--green);font-weight:700;font-family:var(--mono)">55%</td>
+            <td style="font-family:var(--mono)">45%</td>
+            <td><span class="badge badge-teal">Expert</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--text);font-weight:700;font-family:var(--mono)">85 &ndash; 89</td>
+            <td style="color:var(--green);font-weight:700;font-family:var(--mono)">50%</td>
+            <td style="font-family:var(--mono)">50%</td>
+            <td><span class="badge badge-green">Standard</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--text);font-weight:700;font-family:var(--mono)">80 &ndash; 84</td>
+            <td style="font-weight:700;font-family:var(--mono)">45%</td>
+            <td style="font-family:var(--mono)">55%</td>
+            <td><span class="badge badge-amber">Watch</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--text);font-weight:700;font-family:var(--mono)">75 &ndash; 79</td>
+            <td style="font-weight:700;font-family:var(--mono)">40%</td>
+            <td style="font-family:var(--mono)">60%</td>
+            <td><span class="badge badge-amber">Warning</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--text);font-weight:700;font-family:var(--mono)">&lt; 75</td>
+            <td style="font-weight:700;font-family:var(--mono)">0%</td>
+            <td style="font-family:var(--mono)">0%</td>
+            <td><span class="badge badge-red">7 days to recover</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- WITHDRAWALS -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Payouts</div>
+      <h2>Withdrawals</h2>
+      <p class="section-subtitle" style="margin-top:12px">Transparent, predictable payout cycles. Only closed, consolidated positions are withdrawable.</p>
+    </div>
+    <div class="withdraw-grid">
+      <div class="withdraw-card fade-up">
+        <h4>Calendar</h4>
+        <p>5th and 20th of each month (automatic cycles), or daily on request with 24h notice.</p>
+      </div>
+      <div class="withdraw-card fade-up fade-up-delay-1">
+        <h4>Minimum</h4>
+        <p>$500 per withdrawal. Amounts below this threshold remain on the trading account.</p>
+      </div>
+      <div class="withdraw-card fade-up fade-up-delay-2">
+        <h4>Method</h4>
+        <p>Wallet Climber + RISE WORKS exclusively. Secure, auditable, documented.</p>
+      </div>
+      <div class="withdraw-card fade-up fade-up-delay-3">
+        <h4>Processing</h4>
+        <p>Calculation at J+1. Wire transfer within J+3 to J+5 business days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCALING -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Growth</div>
+      <h2>Scaling</h2>
+      <p class="section-subtitle" style="margin-top:12px">Your capital grows with you. Monthly automatic scaling based on sustained performance.</p>
+    </div>
+    <div class="scaling-list">
+      <div class="scaling-item fade-up">
+        <div class="scaling-dot"></div>
+        <div>
+          <h4>Monthly Automatic Scaling</h4>
+          <p>Capital allocation is recalculated every month based on your current CLIMB Score and pool availability.</p>
+        </div>
+      </div>
+      <div class="scaling-item fade-up fade-up-delay-1">
+        <div class="scaling-dot" style="background:var(--purple)"></div>
+        <div>
+          <h4>Score &ge; 95: Elite Bonus</h4>
+          <p>+10% of the pool shared among top-tier traders. Elite performers receive allocations from both the Elite and Standard pools.</p>
+        </div>
+      </div>
+      <div class="scaling-item fade-up fade-up-delay-2">
+        <div class="scaling-dot" style="background:var(--green)"></div>
+        <div>
+          <h4>Seniority Bonus: +3% After 6 Months</h4>
+          <p>Incremental monthly bonus, capped at +3% after 6 months of continuous live trading. Loyalty is rewarded.</p>
+        </div>
+      </div>
+      <div class="scaling-item fade-up fade-up-delay-3">
+        <div class="scaling-dot" style="background:var(--amber)"></div>
+        <div>
+          <h4>No Capital Ceiling</h4>
+          <p>There is no maximum allocation. As the pool grows and your score improves, your capital grows with it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container fade-up">
+    <h2 class="hero-title">Join the Revolution</h2>
+    <p style="font-size:18px;margin-top:12px">Your talent deserves real capital. Let's prove it together.</p>
+    <div class="cta-row" style="margin-top:32px">
+      <a href="pricing.html" class="btn btn-primary btn-lg">See Pricing &rarr;</a>
+      <a href="contact.html" class="btn btn-outline btn-lg">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="nav-logo" style="margin-bottom:4px"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="32" height="32"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></div><p>Revolutionary trader funding platform with 100% aligned interests.</p></div><div class="footer-col"><div class="footer-col-title">Platform</div><a href="how-it-works.html">How It Works</a><a href="pricing.html">Pricing</a><a href="rules.html">Trading Rules</a><a href="faq.html">FAQ</a></div><div class="footer-col"><div class="footer-col-title">Company</div><a href="about.html">About Us</a><a href="about.html#pool">Liquidity Pool</a><a href="about.html#splits">Profit Splits</a><a href="contact.html">Contact</a></div><div class="footer-col"><div class="footer-col-title">Support</div><a href="contact.html">Help Center</a><a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a><a href="legal/cgv.html">Terms & Conditions</a><a href="legal/privacy.html">Privacy Policy</a></div></div><div class="footer-bottom"><span>&copy; 2026 Climber Trade. All rights reserved.</span><span class="footer-status">All Systems Operational</span></div></div></footer>
+<script src="js/shared.js"></script>
+</body>
+</html>
