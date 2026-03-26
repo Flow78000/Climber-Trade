@@ -15,36 +15,49 @@
   pointer-events:none;display:block;
 }
 /* ── HERO TITLE ANIMATION ── */
-.hero-title{position:relative;min-height:1.2em;}
-.hero-title .line1{display:block;color:var(--text);}
-.hero-title .line2{display:block;color:var(--teal);position:relative;}
-/* Fade in */
-.hero-title .hero-line{
-  opacity:0;transform:translateY(18px);
-  transition:opacity .8s ease,transform .8s ease;
+.hero-title{position:relative;min-height:1.4em;overflow:visible;}
+.hero-title .line1{
+  display:block;color:var(--text);
+  opacity:0;transform:translateY(24px);
+  transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1);
+}
+.hero-title .line2{
+  display:block;color:var(--teal);position:relative;
+  opacity:0;transform:translateY(24px);
+  transition:opacity 1s cubic-bezier(.16,1,.3,1) .3s,transform 1s cubic-bezier(.16,1,.3,1) .3s;
 }
 .hero-title .hero-line.visible{opacity:1;transform:translateY(0);}
-.hero-title .line2.visible{text-shadow:0 0 10px #00D4FF33;}
-/* Ash disintegrate */
-.hero-title .hero-line.dusting{
-  animation:ashDisintegrate 2.5s ease forwards;
+.hero-title .line2.visible{text-shadow:0 0 20px #00D4FF22;}
+/* Glow pulse while visible */
+.hero-title .line2.glow{
+  animation:tealGlow 3s ease-in-out infinite;
 }
-@keyframes ashDisintegrate{
-  0%{opacity:1;transform:translateY(0);filter:blur(0);}
-  20%{opacity:.85;transform:translateY(-2px);filter:blur(0);}
-  50%{opacity:.4;transform:translateY(-8px) scale(.97);filter:blur(1.5px);}
-  75%{opacity:.1;transform:translateY(-20px) scale(.93);filter:blur(3px);}
-  100%{opacity:0;transform:translateY(-35px) scale(.88);filter:blur(5px);}
+@keyframes tealGlow{
+  0%,100%{text-shadow:0 0 15px #00D4FF22,0 0 40px #00D4FF08;}
+  50%{text-shadow:0 0 25px #00D4FF33,0 0 60px #00D4FF11;}
 }
-/* Ash particles */
-.ash{
+/* Dissolve — elegant fade + drift upward + blur */
+.hero-title .hero-line.dissolve{
+  transition:none;
+  animation:heroDissolve 3s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes heroDissolve{
+  0%{opacity:1;transform:translateY(0) scale(1);filter:blur(0);}
+  30%{opacity:.7;transform:translateY(-3px) scale(1);filter:blur(0.5px);}
+  60%{opacity:.25;transform:translateY(-12px) scale(.98);filter:blur(2px);}
+  85%{opacity:.05;transform:translateY(-25px) scale(.96);filter:blur(4px);}
+  100%{opacity:0;transform:translateY(-40px) scale(.94);filter:blur(6px);}
+}
+/* Ash/ember particles */
+.ember{
   position:absolute;border-radius:50%;pointer-events:none;
-  animation:ashFly var(--dur,2s) ease-out forwards;
+  animation:emberFly var(--dur,2.2s) cubic-bezier(.2,0,.1,1) forwards;
 }
-@keyframes ashFly{
-  0%{opacity:.9;transform:translate(0,0) scale(1);}
-  40%{opacity:.6;}
-  100%{opacity:0;transform:translate(var(--ax),var(--ay)) scale(0);filter:blur(2px);}
+@keyframes emberFly{
+  0%{opacity:.8;transform:translate(0,0) scale(1);}
+  30%{opacity:.7;}
+  70%{opacity:.2;transform:translate(calc(var(--ex)*0.6),calc(var(--ey)*0.6)) scale(.5);filter:blur(1px);}
+  100%{opacity:0;transform:translate(var(--ex),var(--ey)) scale(0);filter:blur(3px);}
 }
 .hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
 .hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
@@ -167,8 +180,8 @@
   <canvas class="hero-particles" id="heroParticles"></canvas>
   <div class="container" style="position:relative;z-index:2;">
     <h1 class="hero-title" id="heroTitle">
-      <span class="hero-line line1" data-i18n="index_hero_line1">Your Trading Partner For Success.</span>
-      <span class="hero-line line2" data-i18n="index_hero_line2">Get Funded Without Limits.</span>
+      <span class="hero-line line1">Your Trading Partner For Success.</span>
+      <span class="hero-line line2">Get Funded Without Limits.</span>
     </h1>
     <p class="hero-desc fade-up fade-up-delay-1" data-i18n="index_hero_desc">We grow when you grow. Unlike other prop firms, we don't profit when you fail — we succeed together. No rigged evaluations, no trick rules. Just real capital, transparent metrics and true partnership.</p>
     <div class="stat-cards fade-up fade-up-delay-2">
@@ -631,7 +644,7 @@
     },delay);
   })();
 })();
-// ── HERO TITLE — simple fade in + ash loop (both lines as one block) ──
+// ── HERO TITLE — premium animation (always English, infinite loop) ──
 (function(){
   const el=document.getElementById('heroTitle');
   if(!el)return;
@@ -639,59 +652,58 @@
   const line2=el.querySelector('.line2');
   if(!line1||!line2)return;
 
-  function spawnAshCloud(target){
-    const rect=target.getBoundingClientRect();
-    const parentRect=el.getBoundingClientRect();
-    const count=40;
-    const colors=['#00D4FF','#00D4FF','rgba(255,255,255,0.6)','rgba(0,180,220,0.5)','rgba(150,220,255,0.4)'];
+  const EMB_COLORS=['#00D4FF','#00D4FF','#00D4FF','rgba(255,255,255,0.7)','rgba(100,200,255,0.5)'];
+
+  function spawnEmbers(target,count){
+    const r=target.getBoundingClientRect();
+    const p=el.getBoundingClientRect();
     for(let i=0;i<count;i++){
-      const ash=document.createElement('span');
-      ash.className='ash';
-      const x=rect.left-parentRect.left+Math.random()*rect.width;
-      const y=rect.top-parentRect.top+Math.random()*rect.height;
-      const ax=(Math.random()*160-80).toFixed(1);
-      const ay=(Math.random()*-120-20).toFixed(1);
-      const sz=0.8+Math.random()*2.5;
-      const dur=(1.5+Math.random()*1.2).toFixed(2);
-      ash.style.cssText=`left:${x}px;top:${y}px;width:${sz}px;height:${sz}px;--ax:${ax}px;--ay:${ay}px;--dur:${dur}s;background:${colors[i%colors.length]};animation-delay:${(Math.random()*500).toFixed(0)}ms;`;
-      el.appendChild(ash);
-      setTimeout(()=>ash.remove(),3000);
+      const e=document.createElement('span');
+      e.className='ember';
+      const x=r.left-p.left+Math.random()*r.width;
+      const y=r.top-p.top+Math.random()*r.height;
+      const ex=(Math.random()*140-70).toFixed(0);
+      const ey=(-20-Math.random()*100).toFixed(0);
+      const sz=(0.6+Math.random()*2.2).toFixed(1);
+      const dur=(1.8+Math.random()*1.4).toFixed(1);
+      const delay=(Math.random()*600).toFixed(0);
+      e.style.cssText='left:'+x+'px;top:'+y+'px;width:'+sz+'px;height:'+sz+'px;--ex:'+ex+'px;--ey:'+ey+'px;--dur:'+dur+'s;background:'+EMB_COLORS[i%EMB_COLORS.length]+';animation-delay:'+delay+'ms;';
+      el.appendChild(e);
+      setTimeout(function(){e.remove();},3500);
     }
   }
 
   function cycle(){
-    // Apply translated text if available
-    if(typeof TRANSLATIONS!=='undefined'){
-      var lang=(typeof getSavedLang==='function')?getSavedLang():'en';
-      var dict=TRANSLATIONS[lang];
-      if(dict){
-        if(dict.index_hero_line1) line1.textContent=dict.index_hero_line1;
-        if(dict.index_hero_line2) line2.textContent=dict.index_hero_line2;
-      }
-    }
-    // Reset
-    line1.classList.remove('visible','dusting');
-    line2.classList.remove('visible','dusting');
-    line1.style.opacity='0';line1.style.transform='translateY(18px)';
-    line2.style.opacity='0';line2.style.transform='translateY(18px)';
-    // Force reflow
+    // Always English text (brand signature)
+    line1.textContent='Your Trading Partner For Success.';
+    line2.textContent='Get Funded Without Limits.';
+    // Reset classes
+    line1.className='hero-line line1';
+    line2.className='hero-line line2';
     void el.offsetHeight;
 
-    // Phase 1: fade in line1 (0ms) then line2 (400ms)
-    setTimeout(()=>{line1.classList.add('visible');},100);
-    setTimeout(()=>{line2.classList.add('visible');},500);
+    // Phase 1: Slide in with stagger
+    requestAnimationFrame(function(){
+      line1.classList.add('visible');
+      setTimeout(function(){
+        line2.classList.add('visible');
+        setTimeout(function(){line2.classList.add('glow');},800);
+      },300);
+    });
 
-    // Phase 2: hold for 5 seconds
-    // Phase 3: ash disintegrate BOTH lines
-    setTimeout(()=>{
-      spawnAshCloud(line1);
-      spawnAshCloud(line2);
-      line1.classList.add('dusting');
-      setTimeout(()=>line2.classList.add('dusting'),200);
-    },5500);
+    // Phase 2: Hold 5s with glow pulse on line2
 
-    // Phase 4: wait for ash to clear (3s) then restart
-    setTimeout(()=>cycle(),5500+3000+1500);
+    // Phase 3: Dissolve with embers at 6s
+    setTimeout(function(){
+      line2.classList.remove('glow');
+      spawnEmbers(line1,25);
+      spawnEmbers(line2,35);
+      line2.classList.add('dissolve');
+      setTimeout(function(){line1.classList.add('dissolve');},400);
+    },6000);
+
+    // Phase 4: Wait for dissolve + pause then restart
+    setTimeout(function(){cycle();},6000+3500+2000);
   }
 
   cycle();
