@@ -111,7 +111,8 @@
     </a>
     <div class="nav-links">
       <a href="index.html" class="nav-link">Back to Home</a>
-      <a href="signup.html" class="nav-cta">Sign Up</a>
+      <div class="lang-switcher"><button class="lang-btn" data-lang="en" title="English">EN</button><button class="lang-btn" data-lang="fr" title="Français">FR</button><button class="lang-btn" data-lang="es" title="Español">ES</button></div>
+      <a href="signup.html" class="nav-cta" data-i18n="btn_sign_up">Sign Up</a>
     </div>
     <button class="nav-toggle" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -120,7 +121,8 @@
 </nav>
 <div class="nav-mobile">
   <a href="index.html" class="nav-link">Back to Home</a>
-  <a href="signup.html" class="nav-cta">Sign Up</a>
+  <div class="lang-switcher"><button class="lang-btn" data-lang="en" title="English">EN</button><button class="lang-btn" data-lang="fr" title="Français">FR</button><button class="lang-btn" data-lang="es" title="Español">ES</button></div>
+  <a href="signup.html" class="nav-cta" data-i18n="btn_sign_up">Sign Up</a>
 </div>
 <div class="spacer-nav"></div>
 
@@ -237,6 +239,8 @@
   </div>
 </footer>
 
+<script src="js/translations.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/shared.js"></script>
 <script>
 /* ─── Password Toggle ─── */
