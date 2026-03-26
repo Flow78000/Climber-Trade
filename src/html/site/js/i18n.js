@@ -1,14 +1,12 @@
 /* ═══════════════════════════════════════════
    CLIMBER TRADE — i18n Language Dropdown
-   Reads/saves language preference in localStorage
-   Auto-applies saved language on page load
    ═══════════════════════════════════════════ */
 
 const STORAGE_KEY = 'climber-lang';
 const DEFAULT_LANG = 'en';
 const SUPPORTED = ['en', 'fr', 'es'];
 const LANG_LABELS = { en: 'EN', fr: 'FR', es: 'ES' };
-const LANG_FLAGS = { en: '🌐', fr: '🇫🇷', es: '🇪🇸' };
+const LANG_FLAGS = { en: '\u{1F310}', fr: '\u{1F1EB}\u{1F1F7}', es: '\u{1F1EA}\u{1F1F8}' };
 
 function getSavedLang() {
   try {
@@ -40,29 +38,21 @@ function applyTranslations(lang) {
 
 function updateDropdownUI(lang) {
   document.querySelectorAll('.lang-dropdown').forEach(function (dd) {
-    // Update current button text
-    const cur = dd.querySelector('.lang-current');
+    var cur = dd.querySelector('.lang-current');
     if (cur) {
-      const flag = cur.querySelector('.lang-flag');
-      if (flag) flag.textContent = LANG_FLAGS[lang] || '🌐';
-      // Update the text node (between flag and chevron)
-      const nodes = cur.childNodes;
-      for (let i = 0; i < nodes.length; i++) {
-        if (nodes[i].nodeType === 3 && nodes[i].textContent.trim()) {
-          nodes[i].textContent = LANG_LABELS[lang] || 'EN';
-        }
-      }
+      var flag = cur.querySelector('.lang-flag');
+      if (flag) flag.textContent = LANG_FLAGS[lang] || '\u{1F310}';
+      cur.childNodes.forEach(function(n) {
+        if (n.nodeType === 3 && n.textContent.trim()) n.textContent = LANG_LABELS[lang] || 'EN';
+      });
     }
-    // Update active state in menu
     dd.querySelectorAll('.lang-option').forEach(function (opt) {
       opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
     });
-    // Close dropdown
     dd.classList.remove('open');
   });
 }
 
-// Global function called by onclick
 function setLang(lang) {
   if (!SUPPORTED.includes(lang)) return;
   saveLang(lang);
@@ -70,19 +60,45 @@ function setLang(lang) {
   updateDropdownUI(lang);
 }
 
-// Close dropdown when clicking outside
-document.addEventListener('click', function (e) {
-  if (!e.target.closest('.lang-dropdown')) {
-    document.querySelectorAll('.lang-dropdown.open').forEach(function (dd) {
-      dd.classList.remove('open');
+// Bind all events via JS (not inline onclick — which can be blocked by CSP)
+function bindLangEvents() {
+  // Toggle dropdowns
+  document.querySelectorAll('.lang-current').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var dd = btn.closest('.lang-dropdown');
+      // Close all other dropdowns
+      document.querySelectorAll('.lang-dropdown.open').forEach(function(d) {
+        if (d !== dd) d.classList.remove('open');
+      });
+      dd.classList.toggle('open');
     });
-  }
-});
+  });
 
-// Init on load
+  // Language options
+  document.querySelectorAll('.lang-option').forEach(function(opt) {
+    opt.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var lang = opt.getAttribute('data-lang');
+      if (lang) setLang(lang);
+    });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.lang-dropdown')) {
+      document.querySelectorAll('.lang-dropdown.open').forEach(function(dd) {
+        dd.classList.remove('open');
+      });
+    }
+  });
+}
+
+// Init
 (function () {
   function init() {
-    const lang = getSavedLang();
+    bindLangEvents();
+    var lang = getSavedLang();
     applyTranslations(lang);
     updateDropdownUI(lang);
   }
