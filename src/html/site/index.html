@@ -35,26 +35,28 @@
   0%{text-shadow:0 0 14px #00D4FF55;}
   100%{text-shadow:0 0 6px #00D4FF22;}
 }
-/* ── SNAP / DUST EFFECT ── */
+/* ── SNAP / DUST EFFECT (Thanos) ── */
 .letter.dusting{
   position:relative;
-  animation:dustOut 1.8s cubic-bezier(.4,0,.2,1) forwards;
+  animation:dustOut 2.2s cubic-bezier(.3,0,.15,1) forwards;
 }
 @keyframes dustOut{
   0%{opacity:1;transform:translate(0,0) scale(1);filter:blur(0);}
-  30%{opacity:1;transform:translate(0,0) scale(1);filter:blur(0);}
-  60%{opacity:.6;transform:translate(var(--dx,3px),var(--dy,-8px)) scale(.9);filter:blur(1px);}
-  100%{opacity:0;transform:translate(var(--dx2,8px),var(--dy2,-30px)) scale(.3) rotate(var(--rot,15deg));filter:blur(3px);}
+  15%{opacity:.9;transform:translate(0,-1px) scale(1.02);filter:blur(0);}
+  40%{opacity:.5;transform:translate(var(--dx,3px),var(--dy,-10px)) scale(.85);filter:blur(0.8px);}
+  70%{opacity:.15;transform:translate(var(--dx2,10px),var(--dy2,-35px)) scale(.4) rotate(var(--rot,12deg));filter:blur(2px);}
+  100%{opacity:0;transform:translate(var(--dx2,12px),var(--dy2,-50px)) scale(.1) rotate(var(--rot,20deg));filter:blur(4px);}
 }
 .dust-particle{
-  position:absolute;width:2px;height:2px;border-radius:50%;
+  position:absolute;border-radius:50%;
   pointer-events:none;z-index:999;
-  animation:particleFly 1.6s cubic-bezier(.3,0,.2,1) forwards;
+  animation:particleFly 2s cubic-bezier(.2,0,.1,1) forwards;
 }
 @keyframes particleFly{
   0%{opacity:1;transform:translate(0,0) scale(1);}
-  40%{opacity:.8;}
-  100%{opacity:0;transform:translate(var(--px),var(--py)) scale(0);filter:blur(2px);}
+  30%{opacity:.9;}
+  60%{opacity:.4;transform:translate(calc(var(--px)*0.5),calc(var(--py)*0.4)) scale(.7);filter:blur(1px);}
+  100%{opacity:0;transform:translate(var(--px),var(--py)) scale(0);filter:blur(3px);}
 }
 .hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
 .hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
@@ -146,12 +148,13 @@
       <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
     </a>
     <div class="nav-links">
-      <a href="how-it-works.html" class="nav-link">How It Works</a>
-      <a href="pricing.html" class="nav-link">Pricing</a>
-      <a href="rules.html" class="nav-link">Rules</a>
-      <a href="faq.html" class="nav-link">FAQ</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="pricing.html" class="nav-cta">Start Trading</a>
+      <a href="how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a>
+      <a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a>
+      <a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a>
+      <a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a>
+      <a href="about.html" class="nav-link" data-i18n="nav_about">About</a>
+      <div class="lang-switcher"><button class="lang-btn" data-lang="en" title="English">EN</button><button class="lang-btn" data-lang="fr" title="Français">FR</button><button class="lang-btn" data-lang="es" title="Español">ES</button></div>
+      <a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a>
     </div>
     <button class="nav-toggle" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -159,13 +162,14 @@
   </div>
 </nav>
 <div class="nav-mobile">
-  <a href="how-it-works.html" class="nav-link">How It Works</a>
-  <a href="pricing.html" class="nav-link">Pricing</a>
-  <a href="rules.html" class="nav-link">Rules</a>
-  <a href="faq.html" class="nav-link">FAQ</a>
-  <a href="about.html" class="nav-link">About</a>
-  <a href="contact.html" class="nav-link">Contact</a>
-  <a href="pricing.html" class="nav-cta">Start Trading</a>
+  <a href="how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a>
+  <a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a>
+  <a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a>
+  <a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a>
+  <a href="about.html" class="nav-link" data-i18n="nav_about">About</a>
+  <a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
+  <div class="lang-switcher"><button class="lang-btn" data-lang="en" title="English">EN</button><button class="lang-btn" data-lang="fr" title="Français">FR</button><button class="lang-btn" data-lang="es" title="Español">ES</button></div>
+  <a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a>
 </div>
 <div class="spacer-nav"></div>
 
@@ -175,27 +179,27 @@
   <canvas class="hero-particles" id="heroParticles"></canvas>
   <div class="container" style="position:relative;z-index:2;">
     <h1 class="hero-title" id="heroTitle"></h1>
-    <p class="hero-desc fade-up fade-up-delay-1">We grow when you grow. Unlike other prop firms, we don't profit when you fail — we succeed together. No rigged evaluations, no trick rules. Just real capital, transparent metrics and true partnership.</p>
+    <p class="hero-desc fade-up fade-up-delay-1" data-i18n="index_hero_desc">We grow when you grow. Unlike other prop firms, we don't profit when you fail — we succeed together. No rigged evaluations, no trick rules. Just real capital, transparent metrics and true partnership.</p>
     <div class="stat-cards fade-up fade-up-delay-2">
       <div class="stat-card">
-        <div class="stat-card-label">Liquidity Funding Pool</div>
-        <div class="stat-card-value"><span id="poolCounter" data-prefix="$">$250,000</span></div>
+        <div class="stat-card-label" data-i18n="index_stat_pool">Liquidity Funding Pool</div>
+        <div class="stat-card-value"><span id="poolCounter">$1,000,000</span></div>
         <div class="stat-card-sub" style="color:var(--green)">● Live — Growing every second</div>
       </div>
       <div class="stat-card">
-        <div class="stat-card-label">Traders Building Careers</div>
-        <div class="stat-card-value"><span data-count="283">0</span></div>
-        <div class="stat-card-sub">↑ Last 30 days</div>
+        <div class="stat-card-label" data-i18n="index_stat_traders">Traders Building Careers</div>
+        <div class="stat-card-value"><span id="tradersCounter">283</span></div>
+        <div class="stat-card-sub" style="color:var(--green)">● Live — Growing</div>
       </div>
       <div class="stat-card">
-        <div class="stat-card-label">Capital Deployed</div>
-        <div class="stat-card-value"><span data-count="164500" data-prefix="$">0</span></div>
-        <div class="stat-card-sub">↑ Since Beginning</div>
+        <div class="stat-card-label" data-i18n="index_stat_capital">Capital Deployed</div>
+        <div class="stat-card-value"><span id="capitalCounter">$3,500,000</span></div>
+        <div class="stat-card-sub" style="color:var(--green)">● Live — Growing every second</div>
       </div>
     </div>
     <div class="hero-btns fade-up fade-up-delay-3">
-      <a href="pricing.html" class="btn btn-primary btn-lg">Build Your Trading Career →</a>
-      <a href="how-it-works.html" class="btn btn-outline btn-lg">Watch How It Works</a>
+      <a href="pricing.html" class="btn btn-primary btn-lg" data-i18n="btn_start_career">Build Your Trading Career →</a>
+      <a href="how-it-works.html" class="btn btn-outline btn-lg" data-i18n="btn_watch_how">Watch How It Works</a>
     </div>
   </div>
 </section>
@@ -204,9 +208,9 @@
 <section class="section section-alt">
   <div class="container">
     <div class="text-center fade-up" style="margin-bottom:48px">
-      <div class="section-label" style="justify-content:center">How It Works</div>
-      <h2>From Zero to Funded in 4 Steps</h2>
-      <p class="section-subtitle" style="margin-top:12px">A clear path — no tricks, no traps, no hidden rules</p>
+      <div class="section-label" style="justify-content:center" data-i18n="section_how">How It Works</div>
+      <h2 data-i18n="index_how_title">Score 85. Get Funded. Unlimited Payouts.</h2>
+      <p class="section-subtitle" style="margin-top:12px" data-i18n="index_how_subtitle">One threshold, instant funding, no cap on earnings — ever</p>
     </div>
     <div class="flow-steps">
       <div class="flow-step fade-up">
@@ -323,8 +327,8 @@
 <section class="section">
   <div class="container text-center fade-up">
     <div class="card card-teal" style="max-width:720px;margin:0 auto;padding:40px">
-      <div class="section-label" style="justify-content:center">Our Model</div>
-      <h3>The Funding Partner Model</h3>
+      <div class="section-label" style="justify-content:center" data-i18n="section_our_model">Our Model</div>
+      <h3 data-i18n="index_model_title">The Funding Partner Model</h3>
       <p style="color:var(--text2);margin-top:12px;line-height:1.8">A revolutionary funding model where trader success = firm's success. A true partnership.</p>
       <div style="display:flex;justify-content:center;gap:32px;margin-top:28px;flex-wrap:wrap;">
         <div style="text-align:center;">
@@ -348,9 +352,9 @@
 <section class="section section-alt">
   <div class="container">
     <div class="text-center fade-up">
-      <div class="section-label" style="justify-content:center">Why Us</div>
-      <h2>Why Climber Changes Everything</h2>
-      <p class="section-subtitle" style="margin-top:12px">Built by professional traders. A real partnership for your phenomenal success.</p>
+      <div class="section-label" style="justify-content:center" data-i18n="section_why_us">Why Us</div>
+      <h2 data-i18n="index_why_title">Why Climber Changes Everything</h2>
+      <p class="section-subtitle" style="margin-top:12px" data-i18n="index_why_subtitle">Built by professional traders. A real partnership for your phenomenal success.</p>
     </div>
     <div class="why-grid">
       <div class="why-card fade-up">
@@ -425,9 +429,9 @@
 <section class="section section-alt">
   <div class="container">
     <div class="text-center fade-up">
-      <div class="section-label" style="justify-content:center">Dashboard</div>
-      <h2>See Your Trading Edge. In Real-Time.</h2>
-      <p class="section-subtitle" style="margin-top:12px">Institutional grade analytics that top traders pay thousands for. It's included in your dashboard.</p>
+      <div class="section-label" style="justify-content:center" data-i18n="section_dashboard">Dashboard</div>
+      <h2 data-i18n="index_analytics_title">See Your Trading Edge. In Real-Time.</h2>
+      <p class="section-subtitle" style="margin-top:12px" data-i18n="index_analytics_subtitle">Institutional grade analytics that top traders pay thousands for. It's included in your dashboard.</p>
       <span style="display:inline-block;margin-top:14px;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px;background:#10B98118;color:var(--green);border:1px solid #10B98133;">Available on all plans</span>
     </div>
     <div class="analytics-grid">
@@ -467,8 +471,8 @@
 <section class="section">
   <div class="container">
     <div class="text-center fade-up">
-      <div class="section-label" style="justify-content:center">Traders Trust Us</div>
-      <h2>What Our Traders Say</h2>
+      <div class="section-label" style="justify-content:center" data-i18n="section_traders_trust">Traders Trust Us</div>
+      <h2 data-i18n="index_testimonials_title">What Our Traders Say</h2>
     </div>
     <div class="testimonial-grid">
       <div class="testimonial fade-up">
@@ -502,8 +506,8 @@
 <!-- CTA FINAL -->
 <section class="cta-section">
   <div class="container fade-up">
-    <h2 class="hero-title">Ready to Trade Without Limits?</h2>
-    <p style="font-size:18px;margin-top:12px">Join the revolution in trader funding. Start your evaluation today.</p>
+    <h2 class="hero-title" data-i18n="index_cta_title">Ready to Trade Without Limits?</h2>
+    <p style="font-size:18px;margin-top:12px" data-i18n="index_cta_desc">Join the revolution in trader funding. Start your evaluation today.</p>
     <div style="margin-top:36px">
       <div class="cta-email">
         <input type="email" placeholder="Enter Your Email" required>
@@ -522,7 +526,7 @@
         <div class="nav-logo" style="margin-bottom:4px">
           <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
         </div>
-        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+        <p data-i18n="footer_brand_desc">Revolutionary trader funding platform with 100% aligned interests.</p>
       <div class="footer-socials">
         <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
         <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
@@ -533,181 +537,191 @@
       </div>
       </div>
       <div class="footer-col">
-        <div class="footer-col-title">Platform</div>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="rules.html">Trading Rules</a>
-        <a href="faq.html">FAQ</a>
+        <div class="footer-col-title" data-i18n="footer_platform">Platform</div>
+        <a href="how-it-works.html" data-i18n="footer_how">How It Works</a>
+        <a href="pricing.html" data-i18n="footer_pricing">Pricing</a>
+        <a href="rules.html" data-i18n="footer_rules">Trading Rules</a>
+        <a href="faq.html" data-i18n="footer_faq">FAQ</a>
       </div>
       <div class="footer-col">
-        <div class="footer-col-title">Company</div>
-        <a href="about.html">About Us</a>
-        <a href="about.html#pool">Liquidity Pool</a>
-        <a href="about.html#splits">Profit Splits</a>
-        <a href="pool.html">Liquidity Pool Dashboard</a>
-        <a href="contact.html">Contact</a>
+        <div class="footer-col-title" data-i18n="footer_company">Company</div>
+        <a href="about.html" data-i18n="footer_about">About Us</a>
+        <a href="about.html#pool" data-i18n="footer_pool">Liquidity Pool</a>
+        <a href="about.html#splits" data-i18n="footer_splits">Profit Splits</a>
+        <a href="pool.html" data-i18n="footer_pool_dashboard">Liquidity Pool Dashboard</a>
+        <a href="contact.html" data-i18n="footer_contact">Contact</a>
       </div>
       <div class="footer-col">
-        <div class="footer-col-title">Support</div>
-        <a href="contact.html">Help Center</a>
+        <div class="footer-col-title" data-i18n="footer_support">Support</div>
+        <a href="contact.html" data-i18n="footer_help">Help Center</a>
         <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
-        <a href="legal/cgv.html">Terms & Conditions</a>
-        <a href="legal/privacy.html">Privacy Policy</a>
+        <a href="legal/cgv.html" data-i18n="footer_terms">Terms & Conditions</a>
+        <a href="legal/privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
-      <span class="footer-status">All Systems Operational</span>
+      <span data-i18n="footer_rights">&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status" data-i18n="footer_status">All Systems Operational</span>
     </div>
   </div>
 </footer>
 
+<script src="js/translations.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/shared.js"></script>
 <script>
-// ── FLOATING PARTICLES (enhanced visibility) ──
+// ── FLOATING PARTICLES (intense + larger) ──
 (function(){
   const c=document.getElementById('heroParticles');
   if(!c)return;
   const ctx=c.getContext('2d');
   let W,H;
-  const PARTICLE_COUNT=120;
-  const particles=[];
-  function resize(){
-    W=c.width=c.offsetWidth;
-    H=c.height=c.offsetHeight;
-  }
+  const COUNT=180;
+  const P=[];
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
   resize();
   window.addEventListener('resize',resize);
-  for(let i=0;i<PARTICLE_COUNT;i++){
-    const isBright=Math.random()>0.7;
-    particles.push({
-      x:Math.random()*W,
-      y:Math.random()*H,
-      r:isBright?Math.random()*1.8+0.8:Math.random()*1.2+0.4,
-      vy:-(Math.random()*0.25+0.06),
-      vx:(Math.random()-0.5)*0.12,
-      opacity:isBright?Math.random()*0.5+0.25:Math.random()*0.3+0.1,
-      pulse:Math.random()*Math.PI*2,
-      pulseSpeed:Math.random()*0.01+0.004,
-      isWhite:Math.random()>0.75
+  for(let i=0;i<COUNT;i++){
+    const star=Math.random()>0.6;
+    P.push({
+      x:Math.random()*W,y:Math.random()*H,
+      r:star?Math.random()*2.5+1.5:Math.random()*1.5+0.5,
+      vy:-(Math.random()*0.3+0.05),
+      vx:(Math.random()-0.5)*0.15,
+      o:star?Math.random()*0.6+0.3:Math.random()*0.35+0.12,
+      ph:Math.random()*6.28,
+      ps:Math.random()*0.012+0.005,
+      w:Math.random()>0.7
     });
   }
   function draw(){
     ctx.clearRect(0,0,W,H);
-    for(const p of particles){
-      p.x+=p.vx;
-      p.y+=p.vy;
-      p.pulse+=p.pulseSpeed;
-      if(p.y<-5){p.y=H+5;p.x=Math.random()*W;}
-      if(p.x<-5)p.x=W+5;
-      if(p.x>W+5)p.x=-5;
-      const alpha=p.opacity*(0.5+0.5*Math.sin(p.pulse));
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=p.isWhite?`rgba(220,240,255,${alpha})`:`rgba(0,212,255,${alpha})`;
+    for(const p of P){
+      p.x+=p.vx;p.y+=p.vy;p.ph+=p.ps;
+      if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
+      if(p.x<-10)p.x=W+10;if(p.x>W+10)p.x=-10;
+      const a=p.o*(0.4+0.6*Math.sin(p.ph));
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);
+      ctx.fillStyle=p.w?`rgba(230,245,255,${a})`:`rgba(0,212,255,${a})`;
       ctx.fill();
+      // Add subtle glow for bright stars
+      if(p.r>2&&a>0.3){
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r*2.5,0,6.28);
+        ctx.fillStyle=p.w?`rgba(230,245,255,${a*0.12})`:`rgba(0,212,255,${a*0.15})`;
+        ctx.fill();
+      }
     }
     requestAnimationFrame(draw);
   }
   draw();
 })();
-// ── POOL COUNTER (increments every second) ──
+// ── LIVE COUNTERS (all 3 increment every second) ──
 (function(){
-  const el=document.getElementById('poolCounter');
-  if(!el)return;
-  let value=250000;
-  function format(n){return'$'+n.toLocaleString('en-US');}
-  el.textContent=format(value);
+  const poolEl=document.getElementById('poolCounter');
+  const tradersEl=document.getElementById('tradersCounter');
+  const capitalEl=document.getElementById('capitalCounter');
+  if(!poolEl)return;
+  let pool=1000000;
+  let traders=283;
+  let capital=3500000;
+  function fmtDollar(n){return'$'+n.toLocaleString('en-US');}
+  function fmtNum(n){return n.toLocaleString('en-US');}
+  poolEl.textContent=fmtDollar(pool);
+  tradersEl.textContent=fmtNum(traders);
+  capitalEl.textContent=fmtDollar(capital);
   setInterval(()=>{
-    value+=Math.floor(Math.random()*8)+2;
-    el.textContent=format(value);
+    // Pool grows $5-$15 per second
+    pool+=Math.floor(Math.random()*11)+5;
+    poolEl.textContent=fmtDollar(pool);
+    // Capital grows $10-$30 per second
+    capital+=Math.floor(Math.random()*21)+10;
+    capitalEl.textContent=fmtDollar(capital);
   },1000);
+  // Traders increment slower — 1 new trader every 15-45 seconds
+  (function addTrader(){
+    const delay=15000+Math.random()*30000;
+    setTimeout(()=>{
+      traders++;
+      tradersEl.textContent=fmtNum(traders);
+      addTrader();
+    },delay);
+  })();
 })();
-// Hero title letter-by-letter animation + Thanos snap dust effect
+// ── HERO TITLE — letter animation + Thanos snap ──
 (function(){
   const el=document.getElementById('heroTitle');
   if(!el)return;
-  const line1="Your Trading Partner For Success.";
-  const line2="Get Funded Without Limits.";
-  let html='';
-  let idx=0;
+  const L1="Your Trading Partner For Success.";
+  const L2="Get Funded Without Limits.";
+  let html='',idx=0;
   // Line 1 — white
-  for(let i=0;i<line1.length;i++){
-    const ch=line1[i];
-    if(ch===' '){
-      html+='<span class="letter-space"></span>';
-    } else {
-      html+=`<span class="letter" style="animation-delay:${idx*35}ms">${ch}</span>`;
-    }
+  for(const ch of L1){
+    if(ch===' ') html+='<span class="letter-space"></span>';
+    else html+=`<span class="letter" style="animation-delay:${idx*35}ms">${ch}</span>`;
     idx++;
   }
   html+='<br>';
-  const line2Start=idx+8;
+  const l2s=idx+8;
   // Line 2 — teal
-  for(let i=0;i<line2.length;i++){
-    const ch=line2[i];
-    if(ch===' '){
-      html+='<span class="letter-space"></span>';
-    } else {
-      html+=`<span class="letter letter-teal" data-dust-idx="${i}" style="animation-delay:${(line2Start+i)*35}ms">${ch}</span>`;
-    }
+  let l2i=0;
+  for(const ch of L2){
+    if(ch===' ') html+='<span class="letter-space"></span>';
+    else html+=`<span class="letter letter-teal" style="animation-delay:${(l2s+l2i)*35}ms">${ch}</span>`;
+    l2i++;
   }
   el.innerHTML=html;
+  const animDone=(l2s+L2.length)*35+600;
 
-  const totalAnimTime=(line2Start+line2.length)*35+500;
+  // Phase 1: glow settle
+  setTimeout(()=>el.querySelectorAll('.letter-teal').forEach(l=>l.classList.add('arrived')),animDone);
 
-  // Phase 1: teal glow settle
+  // Phase 2: HOLD 5 seconds then Thanos snap
   setTimeout(()=>{
-    el.querySelectorAll('.letter-teal').forEach(l=>l.classList.add('arrived'));
-  },totalAnimTime);
-
-  // Phase 2: HOLD for 4 seconds, then snap/dust
-  const HOLD_DURATION=4000;
-  setTimeout(()=>{
-    const tealLetters=el.querySelectorAll('.letter-teal');
-    tealLetters.forEach((letter,i)=>{
-      // Random dust direction per letter
-      const dx=(Math.random()*20-10).toFixed(1);
-      const dy=(Math.random()*-25-10).toFixed(1);
-      const dx2=(Math.random()*40-20).toFixed(1);
-      const dy2=(Math.random()*-60-20).toFixed(1);
-      const rot=(Math.random()*40-20).toFixed(1);
-      letter.style.setProperty('--dx',dx+'px');
-      letter.style.setProperty('--dy',dy+'px');
-      letter.style.setProperty('--dx2',dx2+'px');
-      letter.style.setProperty('--dy2',dy2+'px');
+    const letters=[...el.querySelectorAll('.letter-teal')];
+    // Shuffle order for random disintegration
+    letters.sort(()=>Math.random()-0.5);
+    letters.forEach((letter,i)=>{
+      const d1x=(Math.random()*30-15).toFixed(1);
+      const d1y=(Math.random()*-30-5).toFixed(1);
+      const d2x=(Math.random()*60-30).toFixed(1);
+      const d2y=(Math.random()*-80-20).toFixed(1);
+      const rot=(Math.random()*50-25).toFixed(1);
+      letter.style.setProperty('--dx',d1x+'px');
+      letter.style.setProperty('--dy',d1y+'px');
+      letter.style.setProperty('--dx2',d2x+'px');
+      letter.style.setProperty('--dy2',d2y+'px');
       letter.style.setProperty('--rot',rot+'deg');
-
-      // Stagger: each letter dusts slightly after the previous
-      const stagger=i*60+Math.random()*120;
+      // Stagger across ~1.5s
+      const delay=i*55+Math.random()*80;
       setTimeout(()=>{
         letter.classList.add('dusting');
-        // Spawn 5-8 dust particles per letter
+        // Spawn 10-15 ash/dust particles per letter
         const rect=letter.getBoundingClientRect();
         const heroRect=el.getBoundingClientRect();
-        const numParticles=5+Math.floor(Math.random()*4);
-        for(let p=0;p<numParticles;p++){
-          const particle=document.createElement('span');
-          particle.className='dust-particle';
-          const px=(Math.random()*80-40).toFixed(1);
-          const py=(Math.random()*-80-20).toFixed(1);
-          particle.style.cssText=`
-            left:${rect.left-heroRect.left+rect.width/2}px;
-            top:${rect.top-heroRect.top+rect.height/2}px;
+        const n=10+Math.floor(Math.random()*6);
+        for(let p=0;p<n;p++){
+          const sp=document.createElement('span');
+          sp.className='dust-particle';
+          const px=(Math.random()*120-60).toFixed(1);
+          const py=(Math.random()*-120-10).toFixed(1);
+          const sz=1+Math.random()*3;
+          const colors=['#00D4FF','#00D4FF','rgba(255,255,255,0.7)','rgba(0,180,220,0.6)','rgba(100,200,255,0.5)'];
+          sp.style.cssText=`
+            left:${rect.left-heroRect.left+rect.width*Math.random()}px;
+            top:${rect.top-heroRect.top+rect.height*Math.random()}px;
             --px:${px}px;--py:${py}px;
-            background:${Math.random()>.3?'#00D4FF':'rgba(255,255,255,0.6)'};
-            width:${1+Math.random()*2}px;
-            height:${1+Math.random()*2}px;
-            animation-delay:${Math.random()*300}ms;
-            animation-duration:${1.2+Math.random()*0.8}s;
+            background:${colors[Math.floor(Math.random()*colors.length)]};
+            width:${sz}px;height:${sz}px;
+            animation-delay:${Math.random()*400}ms;
+            animation-duration:${1.5+Math.random()*1}s;
           `;
-          el.appendChild(particle);
-          setTimeout(()=>particle.remove(),2200);
+          el.appendChild(sp);
+          setTimeout(()=>sp.remove(),3000);
         }
-      },stagger);
+      },delay);
     });
-    // Text stays gone — Thanos style, no rebuild
-  },totalAnimTime+HOLD_DURATION);
+    // Text stays gone forever — Thanos style
+  },animDone+5000);
 })();
 </script>
 </body>
