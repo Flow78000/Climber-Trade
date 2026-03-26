@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How We Compare — Climber Trade vs Traditional Prop Firms</title>
+<meta name="description" content="An honest comparison of Climber Trade and traditional prop firms. See how aligned incentives, real capital, and transparent scoring create a better path to funded trading.">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* Hero */
+.hero{text-align:center;padding:120px 0 80px;}
+.hero-desc{font-size:18px;color:var(--text2);max-width:680px;margin:24px auto 0;line-height:1.8;}
+
+/* Problem cards */
+.problems-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;
+}
+.problem-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:32px;transition:border-color .2s;
+}
+.problem-card:hover{border-color:var(--border2);}
+.problem-icon{
+  width:48px;height:48px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;background:#EF444418;border:1px solid #EF444433;
+}
+.problem-card h4{margin-bottom:10px;font-size:18px;}
+.problem-card p{font-size:14px;color:var(--text2);line-height:1.7;}
+
+/* Comparison table */
+.comparison-wrap{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);overflow:hidden;margin-top:48px;
+}
+.comparison-wrap table{width:100%;border-collapse:collapse;}
+.comparison-wrap th{
+  font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+  padding:16px 24px;text-align:left;
+  border-bottom:1px solid var(--border);background:var(--card2);
+}
+.comparison-wrap th:first-child{color:var(--text2);}
+.comparison-wrap th:nth-child(2){color:var(--text3);}
+.comparison-wrap th:nth-child(3){color:var(--teal);}
+.comparison-wrap td{
+  padding:16px 24px;border-bottom:1px solid #0f0f0f;
+  font-size:14px;color:var(--text2);vertical-align:top;
+}
+.comparison-wrap tr:last-child td{border:none;}
+.comparison-wrap tr:hover td{background:var(--surface2);}
+.comparison-wrap td:first-child{
+  font-weight:600;color:var(--text);font-size:13px;white-space:nowrap;
+}
+.comparison-wrap td:nth-child(3){color:var(--text);}
+.check-icon{color:var(--green);margin-right:6px;font-weight:700;}
+.neutral-icon{color:var(--text3);margin-right:6px;}
+
+/* Incentive section */
+.incentive-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;
+}
+.incentive-card{
+  border-radius:var(--r2);padding:36px;border:1px solid var(--border);
+  position:relative;
+}
+.incentive-card.misaligned{
+  background:linear-gradient(180deg,#1a0e0e,var(--card));
+  border-color:#EF444422;
+}
+.incentive-card.aligned{
+  background:linear-gradient(180deg,#0a1a1f,var(--card));
+  border-color:#00D4FF33;
+}
+.incentive-label{
+  display:inline-block;padding:4px 14px;border-radius:20px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;margin-bottom:20px;
+}
+.incentive-card h4{margin-bottom:12px;font-size:20px;}
+.incentive-card p{font-size:14px;color:var(--text2);line-height:1.7;}
+.incentive-arrow{
+  font-size:28px;margin:16px 0;display:block;
+}
+.incentive-result{
+  font-size:15px;font-weight:700;line-height:1.6;
+}
+.incentive-math{
+  margin-top:24px;padding:20px;
+  background:var(--surface2);border-radius:var(--r);
+  font-size:13px;color:var(--text2);line-height:1.8;
+}
+.incentive-math strong{color:var(--teal);}
+
+/* Numbers cards */
+.numbers-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;
+}
+.number-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:28px;text-align:center;
+  transition:border-color .2s,transform .2s;
+}
+.number-card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.number-card-metric{
+  font-size:12px;font-weight:700;letter-spacing:.6px;
+  text-transform:uppercase;color:var(--text2);margin-bottom:16px;
+}
+.number-card-row{
+  display:flex;flex-direction:column;gap:12px;margin-top:12px;
+}
+.number-card-industry{
+  font-size:13px;color:var(--text3);
+}
+.number-card-industry span{
+  display:block;font-size:22px;font-weight:800;font-family:var(--mono);
+  color:var(--text3);letter-spacing:-.5px;margin-top:4px;
+}
+.number-card-climber{
+  font-size:13px;color:var(--teal);
+}
+.number-card-climber span{
+  display:block;font-size:22px;font-weight:800;font-family:var(--mono);
+  color:var(--teal);letter-spacing:-.5px;margin-top:4px;
+}
+.number-divider{
+  width:40px;height:1px;background:var(--border);margin:4px auto;
+}
+
+/* Responsive */
+@media(max-width:1024px){
+  .problems-grid{grid-template-columns:1fr;}
+  .incentive-grid{grid-template-columns:1fr;}
+  .numbers-grid{grid-template-columns:repeat(2,1fr);}
+  .comparison-wrap{overflow-x:auto;}
+}
+@media(max-width:768px){
+  .hero{padding:80px 0 60px;}
+  .numbers-grid{grid-template-columns:1fr;}
+  .comparison-wrap table{min-width:640px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="how-it-works.html" class="nav-link">How It Works</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="rules.html" class="nav-link">Rules</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="how-it-works.html" class="nav-link">How It Works</a>
+  <a href="pricing.html" class="nav-link">Pricing</a>
+  <a href="rules.html" class="nav-link">Rules</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-link">Contact</a>
+  <a href="pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- SECTION 1: HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="breadcrumb fade-up">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>Compare</span>
+    </div>
+    <h1 class="hero-title fade-up">How We <span class="teal">Compare</span></h1>
+    <p class="hero-desc fade-up fade-up-delay-1">An honest look at what makes Climber Trade different from traditional prop firms. No spin, no competitor bashing. Just the facts so you can make the right decision for your trading career.</p>
+  </div>
+</section>
+
+<!-- SECTION 2: THE INDUSTRY PROBLEM -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">The Industry Problem</div>
+      <h2>What's Wrong With Traditional Prop Firms</h2>
+      <p class="section-subtitle" style="margin-top:12px">Three structural issues that work against traders</p>
+    </div>
+    <div class="problems-grid">
+      <div class="problem-card fade-up">
+        <div class="problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#EF4444"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+        </div>
+        <h4>Profit From Failures</h4>
+        <p>Most prop firms make money from failed evaluations, not from trading profits. Their incentive is for you to fail and rebuy. When 90%+ of traders fail, the business model depends on that failure rate continuing.</p>
+      </div>
+      <div class="problem-card fade-up fade-up-delay-1">
+        <div class="problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#EF4444"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+        </div>
+        <h4>Arbitrary Rules</h4>
+        <p>Hidden daily loss limits, time pressure, and artificial constraints designed to trip you up. Many firms use trailing drawdowns, consistency rules, and minimum day requirements that have nothing to do with real trading skill.</p>
+      </div>
+      <div class="problem-card fade-up fade-up-delay-2">
+        <div class="problem-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#EF4444"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </div>
+        <h4>No Real Capital</h4>
+        <p>Many firms never allocate real capital. You trade on simulated accounts even after passing the evaluation. The "funded account" is still a demo with payouts coming from evaluation fees collected from other traders.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: FEATURE COMPARISON TABLE -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Feature Comparison</div>
+      <h2>The Climber Difference</h2>
+      <p class="section-subtitle" style="margin-top:12px">A transparent side-by-side look at what matters</p>
+    </div>
+    <div class="comparison-wrap fade-up fade-up-delay-1">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Traditional Prop Firms</th>
+            <th>Climber Trade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Revenue model</td>
+            <td><span class="neutral-icon">&#8212;</span>Evaluation fees (profit from failures)</td>
+            <td><span class="check-icon">&#10003;</span>Shared profits (we grow when you grow)</td>
+          </tr>
+          <tr>
+            <td>Capital</td>
+            <td><span class="neutral-icon">&#8212;</span>Often simulated even post-evaluation</td>
+            <td><span class="check-icon">&#10003;</span>Real capital from Liquidity Pool</td>
+          </tr>
+          <tr>
+            <td>Evaluation scoring</td>
+            <td><span class="neutral-icon">&#8212;</span>Pass/fail with hidden rules</td>
+            <td><span class="check-icon">&#10003;</span>Transparent 100-point CLIMB Score</td>
+          </tr>
+          <tr>
+            <td>Time limit</td>
+            <td><span class="neutral-icon">&#8212;</span>30-60 day pressure</td>
+            <td><span class="check-icon">&#10003;</span>No time limit (min 30 days, no maximum)</td>
+          </tr>
+          <tr>
+            <td>Daily loss limit</td>
+            <td><span class="neutral-icon">&#8212;</span>Hard 5% daily (instant fail)</td>
+            <td><span class="check-icon">&#10003;</span>Scored, not instant failure</td>
+          </tr>
+          <tr>
+            <td>Profit split</td>
+            <td><span class="neutral-icon">&#8212;</span>Fixed 80/20</td>
+            <td><span class="check-icon">&#10003;</span>Dynamic 50/50 to 60/40 based on score</td>
+          </tr>
+          <tr>
+            <td>Scaling</td>
+            <td><span class="neutral-icon">&#8212;</span>Manual application</td>
+            <td><span class="check-icon">&#10003;</span>Automatic monthly based on score</td>
+          </tr>
+          <tr>
+            <td>Instruments</td>
+            <td><span class="neutral-icon">&#8212;</span>Limited to Forex or futures</td>
+            <td><span class="check-icon">&#10003;</span>Futures, Forex, Stocks, CFD, Crypto</td>
+          </tr>
+          <tr>
+            <td>Transparency</td>
+            <td><span class="neutral-icon">&#8212;</span>Opaque pool / funding</td>
+            <td><span class="check-icon">&#10003;</span>Public Liquidity Pool dashboard</td>
+          </tr>
+          <tr>
+            <td>Education</td>
+            <td><span class="neutral-icon">&#8212;</span>None or paid extra</td>
+            <td><span class="check-icon">&#10003;</span>Academy included with all plans</td>
+          </tr>
+          <tr>
+            <td>Capital allocation</td>
+            <td><span class="neutral-icon">&#8212;</span>Fixed amount</td>
+            <td><span class="check-icon">&#10003;</span>Score-based from real pool</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: ALIGNED INCENTIVE MODEL -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Incentive Model</div>
+      <h2>The Aligned Incentive Model</h2>
+      <p class="section-subtitle" style="margin-top:12px">The fundamental difference in how revenue is generated</p>
+    </div>
+    <div class="incentive-grid">
+      <div class="incentive-card misaligned fade-up">
+        <span class="incentive-label" style="background:#EF444418;color:var(--red)">Traditional Model</span>
+        <h4>Firm profits when you <span class="red">FAIL</span> and rebuy</h4>
+        <p>Revenue comes primarily from evaluation fees. The more traders fail and repurchase evaluations, the more the firm earns. There is no financial incentive to help traders succeed.</p>
+        <span class="incentive-arrow red">&#8595;</span>
+        <div class="incentive-result red">Misaligned incentives</div>
+      </div>
+      <div class="incentive-card aligned fade-up fade-up-delay-1">
+        <span class="incentive-label" style="background:#00D4FF18;color:var(--teal)">Climber Model</span>
+        <h4>Firm profits when you <span class="teal">SUCCEED</span> and trade live</h4>
+        <p>Revenue comes from profit sharing with successful funded traders. The more traders succeed and generate profits, the more Climber earns. Your success is our success.</p>
+        <span class="incentive-arrow teal">&#8595;</span>
+        <div class="incentive-result teal">Aligned incentives</div>
+        <div class="incentive-math">
+          <strong>50%</strong> of subscription revenue funds the Liquidity Pool.<br>
+          <strong>50%</strong> of Climber's profit share goes back to the pool.<br>
+          We literally invest in your success.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: TESTIMONIALS -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Trader Feedback</div>
+      <h2>What Real Traders Say</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial fade-up">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="testimonial-quote">"After failing 3 evaluations at another firm, I realized the system was designed against me. Climber's scoring actually helps me improve. The 16 metrics showed me exactly where I was going wrong."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">D.L</div>
+          <div>
+            <div class="testimonial-name">Daniel L.</div>
+            <div class="testimonial-role">Futures Trader &middot; 5 months</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial fade-up fade-up-delay-1">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="testimonial-quote">"The public pool dashboard was what convinced me. No other firm shows you where the money actually is. That level of transparency told me everything I needed to know about their integrity."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A.M</div>
+          <div>
+            <div class="testimonial-name">Aisha M.</div>
+            <div class="testimonial-role">Forex &amp; CFD Trader &middot; 7 months</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial fade-up fade-up-delay-2">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="testimonial-quote">"Getting scored on 13 metrics instead of just 'don't hit the loss limit' made me a genuinely better trader. I improved my Sharpe ratio and risk management before even going live."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">R.C</div>
+          <div>
+            <div class="testimonial-name">Roberto C.</div>
+            <div class="testimonial-role">Multi-asset Trader &middot; 4 months</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: SIDE-BY-SIDE NUMBERS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">By The Numbers</div>
+      <h2>Side-by-Side Numbers</h2>
+      <p class="section-subtitle" style="margin-top:12px">Key metrics that matter when choosing a funding partner</p>
+    </div>
+    <div class="numbers-grid">
+      <div class="number-card fade-up">
+        <div class="number-card-metric">Eval Pass Rate</div>
+        <div class="number-card-row">
+          <div class="number-card-industry">Industry Average<span>5-10%</span></div>
+          <div class="number-divider"></div>
+          <div class="number-card-climber">Climber Trade<span>~15%</span></div>
+        </div>
+      </div>
+      <div class="number-card fade-up fade-up-delay-1">
+        <div class="number-card-metric">Profit Split</div>
+        <div class="number-card-row">
+          <div class="number-card-industry">Industry Average<span>80/20</span></div>
+          <div class="number-divider"></div>
+          <div class="number-card-climber">Climber Trade<span>50-60%</span></div>
+        </div>
+      </div>
+      <div class="number-card fade-up fade-up-delay-2">
+        <div class="number-card-metric">Eval Capital</div>
+        <div class="number-card-row">
+          <div class="number-card-industry">Industry Average<span>$100-200K</span></div>
+          <div class="number-divider"></div>
+          <div class="number-card-climber">Climber Trade<span>$1,000,000</span></div>
+        </div>
+      </div>
+      <div class="number-card fade-up fade-up-delay-3">
+        <div class="number-card-metric">Education</div>
+        <div class="number-card-row">
+          <div class="number-card-industry">Industry Average<span>None</span></div>
+          <div class="number-divider"></div>
+          <div class="number-card-climber">Climber Trade<span>Included</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: CTA -->
+<section class="cta-section">
+  <div class="container fade-up">
+    <h2 class="hero-title">Ready to Try the Difference?</h2>
+    <p style="font-size:18px;margin-top:12px">Join a funding partner that succeeds when you succeed.</p>
+    <div class="cta-row" style="margin-top:36px">
+      <a href="pricing.html" class="btn btn-primary btn-lg">Start Your Evaluation &rarr;</a>
+      <a href="pricing.html" class="btn btn-outline btn-lg">See Our Pricing &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+              <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="rules.html">Trading Rules</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About Us</a>
+        <a href="about.html#pool">Liquidity Pool</a>
+        <a href="about.html#splits">Profit Splits</a>
+        <a href="pool.html">Liquidity Pool Dashboard</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="legal/cgv.html">Terms & Conditions</a>
+        <a href="legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Climber Academy — Master the CLIMB Score | Climber Trade</title>
+<meta name="description" content="Free educational hub for Climber Trade traders. Learn to master the CLIMB Score with structured learning paths, live webinars, and an interactive score simulator.">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* ─── HERO ─── */
+.academy-hero{text-align:center;padding:120px 0 80px;}
+.academy-hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 20px;border-radius:24px;
+  background:#10B98118;border:1px solid #10B98133;
+  font-size:12px;font-weight:700;letter-spacing:.5px;
+  color:var(--green);margin-bottom:28px;
+}
+.academy-hero-badge svg{width:14px;height:14px;}
+.academy-hero h1{margin-bottom:20px;}
+.academy-hero-sub{
+  font-size:18px;color:var(--text2);max-width:640px;
+  margin:0 auto;line-height:1.8;
+}
+
+/* ─── LEARNING PATHS ─── */
+.paths-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:24px;margin-top:48px;
+}
+.path-card{
+  background:var(--card);border-radius:var(--r3);
+  padding:0;overflow:hidden;border:1px solid var(--border);
+  transition:border-color .2s,transform .2s;
+  display:flex;flex-direction:column;
+}
+.path-card:hover{transform:translateY(-3px);}
+.path-card.path-green:hover{border-color:#10B98144;}
+.path-card.path-teal:hover{border-color:#00D4FF44;}
+.path-card.path-purple:hover{border-color:#8B5CF644;}
+.path-header{padding:28px 28px 0;}
+.path-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 14px;border-radius:20px;
+  font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  margin-bottom:16px;
+}
+.path-green .path-badge{background:#10B98118;color:var(--green);border:1px solid #10B98133;}
+.path-teal .path-badge{background:var(--teal-dim);color:var(--teal);border:1px solid #00D4FF33;}
+.path-purple .path-badge{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}
+.path-card h3{font-size:22px;margin-bottom:6px;}
+.path-audience{font-size:13px;color:var(--text2);margin-bottom:20px;}
+.path-lessons{
+  padding:0 28px 28px;flex:1;
+  display:flex;flex-direction:column;gap:0;
+}
+.path-lesson{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 0;border-bottom:1px solid var(--border);
+  font-size:14px;color:var(--text2);
+}
+.path-lesson:last-child{border:none;}
+.path-lesson-num{
+  width:24px;height:24px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;flex-shrink:0;
+}
+.path-green .path-lesson-num{background:#10B98118;color:var(--green);}
+.path-teal .path-lesson-num{background:var(--teal-dim);color:var(--teal);}
+.path-purple .path-lesson-num{background:#8B5CF618;color:var(--purple);}
+.path-footer{
+  padding:20px 28px;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.path-count{font-size:12px;font-weight:700;color:var(--text3);letter-spacing:.5px;}
+.path-progress{
+  width:100px;height:4px;background:var(--border);
+  border-radius:2px;overflow:hidden;
+}
+.path-progress-bar{height:100%;border-radius:2px;width:0%;}
+.path-green .path-progress-bar{background:var(--green);}
+.path-teal .path-progress-bar{background:var(--teal);}
+.path-purple .path-progress-bar{background:var(--purple);}
+
+/* ─── LIVE EVENTS ─── */
+.events-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:24px;margin-top:48px;
+}
+.event-type-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:32px;
+}
+.event-type-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 14px;border-radius:20px;
+  font-size:11px;font-weight:700;letter-spacing:.5px;
+  margin-bottom:20px;
+}
+.event-type-card h3{margin-bottom:8px;}
+.event-type-card>p{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:24px;}
+.event-item{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:16px 0;border-top:1px solid var(--border);
+}
+.event-date{
+  flex-shrink:0;width:52px;text-align:center;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--r);padding:8px 6px;
+}
+.event-date-month{
+  font-size:9px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:var(--teal);
+}
+.event-date-day{
+  font-size:22px;font-weight:800;font-family:var(--mono);
+  letter-spacing:-1px;color:var(--text);line-height:1.2;
+}
+.event-info h5{font-size:14px;font-weight:600;margin-bottom:4px;}
+.event-info p{font-size:12px;color:var(--text3);line-height:1.5;}
+.event-time{
+  font-size:11px;font-family:var(--mono);color:var(--teal);
+  margin-top:4px;
+}
+
+/* ─── KNOWLEDGE HUB PREVIEW ─── */
+.kb-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:20px;margin-top:48px;
+}
+.kb-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:24px;
+  transition:border-color .2s,transform .2s;
+}
+.kb-card:hover{
+  border-color:var(--border2);transform:translateY(-2px);
+}
+.kb-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
+}
+.kb-card h5{margin-bottom:8px;font-size:15px;}
+.kb-card p{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:14px;}
+.kb-link{
+  font-size:12px;font-weight:700;color:var(--teal);
+  transition:color .15s;
+}
+.kb-link:hover{color:#00bde6;}
+
+/* ─── SIMULATOR ─── */
+.sim-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:40px;margin-top:48px;align-items:start;
+}
+.sim-controls{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:32px;
+}
+.sim-group{margin-bottom:28px;}
+.sim-group:last-child{margin-bottom:0;}
+.sim-group-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:10px;
+}
+.sim-group-label{font-size:13px;font-weight:600;color:var(--text);}
+.sim-group-value{
+  font-size:14px;font-weight:700;font-family:var(--mono);
+  color:var(--teal);
+}
+.sim-slider{
+  -webkit-appearance:none;appearance:none;
+  width:100%;height:6px;border-radius:3px;
+  background:var(--border);outline:none;cursor:pointer;
+}
+.sim-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:20px;height:20px;border-radius:50%;
+  background:var(--teal);border:2px solid var(--bg);
+  cursor:pointer;box-shadow:0 2px 8px rgba(0,212,255,.3);
+}
+.sim-slider::-moz-range-thumb{
+  width:20px;height:20px;border-radius:50%;
+  background:var(--teal);border:2px solid var(--bg);
+  cursor:pointer;box-shadow:0 2px 8px rgba(0,212,255,.3);
+}
+.sim-results{
+  background:var(--card);border:1px solid #00D4FF22;
+  border-radius:var(--r2);padding:36px;
+  text-align:center;position:sticky;top:calc(var(--nav-h) + 24px);
+}
+.sim-score{
+  font-size:72px;font-weight:800;font-family:var(--mono);
+  letter-spacing:-3px;line-height:1;margin:24px 0 8px;
+}
+.sim-rank{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 18px;border-radius:20px;
+  font-size:13px;font-weight:700;letter-spacing:.3px;
+  margin-bottom:24px;
+}
+.sim-formula{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--r);padding:16px;
+  font-family:var(--mono);font-size:11px;
+  color:var(--text2);line-height:1.8;text-align:left;
+  margin-bottom:24px;word-break:break-all;
+}
+.sim-split-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  text-align:center;
+}
+.sim-split-card{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--r);padding:16px;
+}
+.sim-split-label{
+  font-size:10px;font-weight:700;letter-spacing:.8px;
+  text-transform:uppercase;color:var(--text3);margin-bottom:6px;
+}
+.sim-split-value{
+  font-size:24px;font-weight:800;font-family:var(--mono);
+  letter-spacing:-1px;
+}
+.sim-live-status{
+  margin-top:20px;padding:12px 16px;border-radius:var(--r);
+  font-size:13px;font-weight:600;
+}
+
+/* ─── RESOURCES ─── */
+.resources-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;margin-top:48px;
+}
+.resource-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:24px;
+  transition:border-color .2s,transform .2s;
+  display:flex;flex-direction:column;align-items:flex-start;
+}
+.resource-card:hover{
+  border-color:#00D4FF33;transform:translateY(-2px);
+}
+.resource-icon{
+  width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:16px;background:var(--teal-dim);border:1px solid #00D4FF33;
+}
+.resource-card h5{margin-bottom:6px;}
+.resource-card p{font-size:12px;color:var(--text3);line-height:1.5;margin-bottom:12px;}
+.resource-link{
+  font-size:12px;font-weight:700;color:var(--teal);
+  margin-top:auto;
+}
+
+/* ─── CTA ─── */
+.academy-cta-sub{
+  font-size:14px;color:var(--text2);margin-top:12px;
+}
+.academy-cta-sub a{color:var(--teal);font-weight:600;transition:color .15s;}
+.academy-cta-sub a:hover{color:#00bde6;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .paths-grid{grid-template-columns:1fr;}
+  .events-grid{grid-template-columns:1fr;}
+  .sim-wrap{grid-template-columns:1fr;}
+  .sim-results{position:static;}
+  .resources-grid{grid-template-columns:repeat(2,1fr);}
+  .kb-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:768px){
+  .academy-hero{padding:80px 0 60px;}
+  .resources-grid{grid-template-columns:1fr;}
+  .kb-grid{grid-template-columns:1fr;}
+  .sim-split-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="how-it-works.html" class="nav-link">How It Works</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="rules.html" class="nav-link">Rules</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="how-it-works.html" class="nav-link">How It Works</a>
+  <a href="pricing.html" class="nav-link">Pricing</a>
+  <a href="rules.html" class="nav-link">Rules</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-link">Contact</a>
+  <a href="pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1 — HERO
+     ═══════════════════════════════════════════ -->
+<section class="academy-hero">
+  <div class="container">
+    <div class="academy-hero-badge fade-up">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      Included with all plans
+    </div>
+    <h1 class="hero-title fade-up">Climber <span class="teal">Academy</span></h1>
+    <p class="academy-hero-sub fade-up fade-up-delay-1">Master the CLIMB Score. Become the trader institutions want to fund.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2 — LEARNING PATHS
+     ═══════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Learning Paths</div>
+      <h2>Structured Tracks for Every Level</h2>
+      <p class="section-subtitle" style="margin-top:12px">From your first trade to Elite funded status. Follow the track that matches your current level.</p>
+    </div>
+    <div class="paths-grid">
+
+      <!-- Foundation Track -->
+      <div class="path-card path-green fade-up">
+        <div class="path-header">
+          <div class="path-badge">Foundation Track</div>
+          <h3>Build Your Base</h3>
+          <p class="path-audience">For new traders starting their evaluation journey</p>
+        </div>
+        <div class="path-lessons">
+          <div class="path-lesson">
+            <div class="path-lesson-num">01</div>
+            Understanding the CLIMB Score
+          </div>
+          <div class="path-lesson">
+            <div class="path-lesson-num">02</div>
+            Risk Management fundamentals
+          </div>
+          <div class="path-lesson">
+            <div class="path-lesson-num">03</div>
+            Position sizing &amp; leverage
+          </div>
+          <div class="path-lesson">
+            <div class="path-lesson-num">04</div>
+            Your first 30 days playbook
+          </div>
+        </div>
+        <div class="path-footer">
+          <span class="path-count">8 LESSONS</span>
+          <div class="path-progress"><div class="path-progress-bar" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <!-- Advanced Track -->
+      <div class="path-card path-teal fade-up fade-up-delay-1">
+        <div class="path-header">
+          <div class="path-badge">Advanced Track</div>
+          <h3>Optimize Your Edge</h3>
+          <p class="path-audience">For traders with a CLIMB Score of 50 or higher</p>
+        </div>
+        <div class="path-lessons">
+          <div class="path-lesson">
+            <div class="path-lesson-num">01</div>
+            Optimizing Profit Factor
+          </div>
+          <div class="path-lesson">
+            <div class="path-lesson-num">02</div>
+            Mastering Win Rate vs Risk:Reward
+          </div>
+          <div class="path-lesson">
+            <div class="path-lesson-num">03</div>
+            Consistency &amp; lot stability
+          </div>
+          <div class="path-lesson">
+            <div class="path-lesson-num">04</div>
+            Quality Execution deep dive
+          </div>
+        </div>
+        <div class="path-footer">
+          <span class="path-count">10 LESSONS</span>
+          <div class="path-progress"><div class="path-progress-bar" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <!-- Elite Track -->
+      <div class="path-card path-purple fade-up fade-up-delay-2">
+        <div class="path-header">
+          <div class="path-badge">Elite Track</div>
+          <h3>Trade Like a Pro</h3>
+          <p class="path-audience">For traders with a CLIMB Score of 85 or higher</p>
+        </div>
+        <div class="path-lessons">
+          <div class="path-lesson">
+            <div class="path-lesson-num">01</div>
+            From evaluation to Live trading
+          </div>
+          <div class="path-lesson">
+            <div class="path-lesson-num">02</div>
+            Capital allocation strategy
+          </div>
+          <div class="path-lesson">
+            <div class="path-lesson-num">03</div>
+            Scaling your funded account
+          </div>
+          <div class="path-lesson">
+            <div class="path-lesson-num">04</div>
+            Psychology of funded trading
+          </div>
+        </div>
+        <div class="path-footer">
+          <span class="path-count">6 LESSONS</span>
+          <div class="path-progress"><div class="path-progress-bar" style="width:0%"></div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 3 — LIVE EVENTS
+     ═══════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Live Events</div>
+      <h2>Learn from the Best, Live</h2>
+      <p class="section-subtitle" style="margin-top:12px">Interactive sessions with professional traders and market analysts. Included with every subscription.</p>
+    </div>
+    <div class="events-grid">
+
+      <!-- Webinaires Live -->
+      <div class="event-type-card fade-up">
+        <div class="event-type-badge" style="background:var(--teal-dim);color:var(--teal);border:1px solid #00D4FF33">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          Live
+        </div>
+        <h3>Webinaires Live</h3>
+        <p>Bi-monthly deep dives into CLIMB Score optimization, trading psychology, and market structure. Q&amp;A included.</p>
+
+        <div class="event-item">
+          <div class="event-date">
+            <div class="event-date-month">Apr</div>
+            <div class="event-date-day">02</div>
+          </div>
+          <div class="event-info">
+            <h5>Mastering Risk Management Metrics</h5>
+            <p>Deep dive into ABS_NPL, INPL, and Recovery Time scoring</p>
+            <div class="event-time">18:00 CET &middot; Flo, Founder</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">
+            <div class="event-date-month">Apr</div>
+            <div class="event-date-day">16</div>
+          </div>
+          <div class="event-info">
+            <h5>From Score 70 to 85: The Roadmap</h5>
+            <p>Practical strategies for crossing the Live trading threshold</p>
+            <div class="event-time">18:00 CET &middot; Flo, Founder</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Market Analysis -->
+      <div class="event-type-card fade-up fade-up-delay-1">
+        <div class="event-type-badge" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B33">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>
+          Weekly
+        </div>
+        <h3>Market Analysis Sessions</h3>
+        <p>Weekly breakdown of key instruments, macro context, and trading opportunities across futures, forex, and equities.</p>
+
+        <div class="event-item">
+          <div class="event-date">
+            <div class="event-date-month">Mar</div>
+            <div class="event-date-day">31</div>
+          </div>
+          <div class="event-info">
+            <h5>Weekly Market Outlook: Q2 Preview</h5>
+            <p>NQ, ES, EUR/USD key levels &amp; macro catalysts</p>
+            <div class="event-time">09:00 CET &middot; Market Desk</div>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">
+            <div class="event-date-month">Apr</div>
+            <div class="event-date-day">07</div>
+          </div>
+          <div class="event-info">
+            <h5>Futures Focus: Energy &amp; Metals</h5>
+            <p>CL, GC, SI technicals and positioning data</p>
+            <div class="event-time">09:00 CET &middot; Market Desk</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 4 — KNOWLEDGE HUB PREVIEW
+     ═══════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Knowledge Hub</div>
+      <h2>Understand Every Metric</h2>
+      <p class="section-subtitle" style="margin-top:12px">Each CLIMB Score metric explained with benchmarks, formulas, and actionable improvement tips.</p>
+    </div>
+    <div class="kb-grid">
+
+      <div class="kb-card fade-up">
+        <div class="kb-icon" style="background:#EF444418;border:1px solid #EF444433">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#EF4444"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+        </div>
+        <h5>Recovery Time After DD</h5>
+        <p>How quickly you recover from drawdowns matters as much as the drawdown itself.</p>
+        <a href="rules.html#scoring-ref" class="kb-link">Learn more &rarr;</a>
+      </div>
+
+      <div class="kb-card fade-up fade-up-delay-1">
+        <div class="kb-icon" style="background:#10B98118;border:1px solid #10B98133">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#10B981"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        </div>
+        <h5>Profit Factor</h5>
+        <p>The ratio of gross profits to gross losses. Measures the efficiency of your strategy overall.</p>
+        <a href="rules.html#scoring-ref" class="kb-link">Learn more &rarr;</a>
+      </div>
+
+      <div class="kb-card fade-up fade-up-delay-2">
+        <div class="kb-icon" style="background:var(--teal-dim);border:1px solid #00D4FF33">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#00D4FF"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+        </div>
+        <h5>Win Rate</h5>
+        <p>Percentage of winning trades. Evaluated with a 22-day confidence factor for statistical reliability.</p>
+        <a href="rules.html#scoring-ref" class="kb-link">Learn more &rarr;</a>
+      </div>
+
+      <div class="kb-card fade-up">
+        <div class="kb-icon" style="background:#F59E0B18;border:1px solid #F59E0B33">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        </div>
+        <h5>Lot Stability (LSR)</h5>
+        <p>Measures how consistent your position sizing is across trades. Higher LSR means better discipline.</p>
+        <a href="rules.html#scoring-ref" class="kb-link">Learn more &rarr;</a>
+      </div>
+
+      <div class="kb-card fade-up fade-up-delay-1">
+        <div class="kb-icon" style="background:#8B5CF618;border:1px solid #8B5CF633">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#8B5CF6"><path d="M7.5 21H2V9h5.5v12zm7.25-18h-5.5v18h5.5V3zM22 11h-5.5v10H22V11z"/></svg>
+        </div>
+        <h5>Return Symmetry (Skew)</h5>
+        <p>Measures the asymmetry of your return distribution. Lower skew indicates more balanced outcomes.</p>
+        <a href="rules.html#scoring-ref" class="kb-link">Learn more &rarr;</a>
+      </div>
+
+      <div class="kb-card fade-up fade-up-delay-2">
+        <div class="kb-icon" style="background:#EF444418;border:1px solid #EF444433">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#EF4444"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+        </div>
+        <h5>Leverage Guide</h5>
+        <p>Optimal leverage zones (2x-5x) and how intraday lot sizing directly impacts your Risk pillar score.</p>
+        <a href="rules.html#scoring-ref" class="kb-link">Learn more &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 5 — CLIMB SCORE SIMULATOR
+     ═══════════════════════════════════════════ -->
+<section class="section" id="simulator">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Score Simulator</div>
+      <h2>Estimate Your CLIMB Score</h2>
+      <p class="section-subtitle" style="margin-top:12px">Adjust the pillar targets below and see your projected score, rank, and profit split in real time.</p>
+    </div>
+    <div class="sim-wrap">
+
+      <!-- Controls -->
+      <div class="sim-controls fade-up">
+        <div class="sim-group">
+          <div class="sim-group-header">
+            <span class="sim-group-label">Pillar 1 &mdash; Risk Management (x4)</span>
+            <span class="sim-group-value" id="risk-val">75</span>
+          </div>
+          <input type="range" min="0" max="100" value="75" class="sim-slider" id="risk-slider">
+        </div>
+        <div class="sim-group">
+          <div class="sim-group-header">
+            <span class="sim-group-label">Pillar 2 &mdash; Performance (x4)</span>
+            <span class="sim-group-value" id="perf-val">70</span>
+          </div>
+          <input type="range" min="0" max="100" value="70" class="sim-slider" id="perf-slider">
+        </div>
+        <div class="sim-group">
+          <div class="sim-group-header">
+            <span class="sim-group-label">Pillar 3 &mdash; Consistency &amp; Style (x3)</span>
+            <span class="sim-group-value" id="cons-val">65</span>
+          </div>
+          <input type="range" min="0" max="100" value="65" class="sim-slider" id="cons-slider">
+        </div>
+        <div class="sim-group">
+          <div class="sim-group-header">
+            <span class="sim-group-label">Pillar 4 &mdash; Quality Execution</span>
+            <span class="sim-group-value" id="qual-val">50</span>
+          </div>
+          <input type="range" min="0" max="100" value="50" class="sim-slider" id="qual-slider">
+        </div>
+        <p style="font-size:12px;color:var(--text3);margin-top:8px;line-height:1.6;">Quality Execution acts as a multiplier (0.90x to 1.10x) on the weighted average of the other three pillars. A value of 50 is neutral (1.00x).</p>
+      </div>
+
+      <!-- Results -->
+      <div class="sim-results fade-up fade-up-delay-1">
+        <div class="section-label" style="justify-content:center">Estimated Score</div>
+        <div class="sim-score" id="sim-score">70.5</div>
+        <div class="sim-rank" id="sim-rank">Gold</div>
+
+        <div class="sim-formula" id="sim-formula">
+          Avg = [(75 x 4) + (70 x 4) + (65 x 3)] / 11 = 70.5<br>
+          QE = 1 + ((50 - 50) / 500) = 1.000<br>
+          Score = 70.5 x 1.000 = <strong>70.5</strong>
+        </div>
+
+        <div class="sim-split-grid">
+          <div class="sim-split-card">
+            <div class="sim-split-label">Your Split</div>
+            <div class="sim-split-value teal" id="sim-trader-split">--</div>
+          </div>
+          <div class="sim-split-card">
+            <div class="sim-split-label">Climber Split</div>
+            <div class="sim-split-value" id="sim-climber-split" style="color:var(--text2)">--</div>
+          </div>
+        </div>
+
+        <div class="sim-live-status" id="sim-live-status"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 6 — RESOURCES
+     ═══════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Resources</div>
+      <h2>Reference Documents</h2>
+      <p class="section-subtitle" style="margin-top:12px">All the data you need to understand how the CLIMB Score works and how you get funded.</p>
+    </div>
+    <div class="resources-grid">
+
+      <a href="../trader-guide-v2.html" class="resource-card fade-up">
+        <div class="resource-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#00D4FF"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        </div>
+        <h5>Trader Guide</h5>
+        <p>Complete guide covering the evaluation process, Live trading, and your path to funding.</p>
+        <span class="resource-link">Open Guide &rarr;</span>
+      </a>
+
+      <a href="../scoring-data-v2.html" class="resource-card fade-up fade-up-delay-1">
+        <div class="resource-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#00D4FF"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+        </div>
+        <h5>Scoring Reference</h5>
+        <p>Full scoring tables for every metric. See exactly how each value translates to points.</p>
+        <span class="resource-link">View Scoring &rarr;</span>
+      </a>
+
+      <a href="../margin-data-v2.html" class="resource-card fade-up fade-up-delay-2">
+        <div class="resource-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#00D4FF"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+        </div>
+        <h5>Margin Data</h5>
+        <p>Margin requirements and notional values for all tradable instruments on the platform.</p>
+        <span class="resource-link">View Margins &rarr;</span>
+      </a>
+
+      <a href="../kb-items-v2.html" class="resource-card fade-up fade-up-delay-3">
+        <div class="resource-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#00D4FF"><path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-8H3v8zm2-6h4v4H5v-4z"/></svg>
+        </div>
+        <h5>Knowledge Base</h5>
+        <p>In-depth articles for every CLIMB Score metric with formulas, benchmarks, and tips.</p>
+        <span class="resource-link">Browse Articles &rarr;</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 7 — CTA
+     ═══════════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container fade-up">
+    <h2 class="hero-title">Start Learning Today</h2>
+    <p style="font-size:18px;margin-top:12px;color:var(--text2)">Every plan includes full Academy access. Build the skills that get you funded.</p>
+    <div class="cta-row" style="margin-top:32px;">
+      <a href="pricing.html" class="btn btn-primary btn-lg">Begin Your Evaluation &rarr;</a>
+      <a href="how-it-works.html" class="btn btn-outline btn-lg">How It Works</a>
+    </div>
+    <p class="academy-cta-sub" style="margin-top:20px;">Already trading? <a href="rules.html#scoring-ref">Check your stats &rarr;</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+              <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="rules.html">Trading Rules</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About Us</a>
+        <a href="about.html#pool">Liquidity Pool</a>
+        <a href="about.html#splits">Profit Splits</a>
+        <a href="pool.html">Liquidity Pool Dashboard</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="legal/cgv.html">Terms & Conditions</a>
+        <a href="legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/shared.js"></script>
+<script>
+/* ═══════════════════════════════════════════
+   CLIMB SCORE SIMULATOR
+   Actual formula from CLAUDE.md:
+   Avg = [(Risk x 4) + (Perf x 4) + (Cons x 3)] / 11
+   Score = Avg x (1 + ((Quality - 50) / 500))
+   ═══════════════════════════════════════════ */
+(function() {
+  const riskSlider = document.getElementById('risk-slider');
+  const perfSlider = document.getElementById('perf-slider');
+  const consSlider = document.getElementById('cons-slider');
+  const qualSlider = document.getElementById('qual-slider');
+
+  const riskVal = document.getElementById('risk-val');
+  const perfVal = document.getElementById('perf-val');
+  const consVal = document.getElementById('cons-val');
+  const qualVal = document.getElementById('qual-val');
+
+  const scoreEl = document.getElementById('sim-score');
+  const rankEl = document.getElementById('sim-rank');
+  const formulaEl = document.getElementById('sim-formula');
+  const traderSplitEl = document.getElementById('sim-trader-split');
+  const climberSplitEl = document.getElementById('sim-climber-split');
+  const liveStatusEl = document.getElementById('sim-live-status');
+
+  function getRank(score) {
+    if (score >= 95) return { name: 'Diamond', color: '#00D4FF', bg: '#00D4FF18', border: '#00D4FF33' };
+    if (score >= 85) return { name: 'Platinum', color: '#8B5CF6', bg: '#8B5CF618', border: '#8B5CF633' };
+    if (score >= 70) return { name: 'Gold', color: '#F59E0B', bg: '#F59E0B18', border: '#F59E0B33' };
+    if (score >= 50) return { name: 'Silver', color: '#8A8A8A', bg: '#8A8A8A18', border: '#8A8A8A33' };
+    if (score >= 30) return { name: 'Bronze', color: '#CD7F32', bg: '#CD7F3218', border: '#CD7F3233' };
+    return { name: 'No Rank', color: '#444', bg: '#44444418', border: '#44444433' };
+  }
+
+  function getSplit(score) {
+    if (score >= 95) return { trader: '60%', climber: '40%', status: 'Elite' };
+    if (score >= 90) return { trader: '55%', climber: '45%', status: 'Expert' };
+    if (score >= 85) return { trader: '50%', climber: '50%', status: 'Standard' };
+    if (score >= 80) return { trader: '45%', climber: '55%', status: 'Surveillance' };
+    if (score >= 75) return { trader: '40%', climber: '60%', status: 'Warning' };
+    return { trader: '--', climber: '--', status: 'Not eligible' };
+  }
+
+  function update() {
+    var risk = parseInt(riskSlider.value);
+    var perf = parseInt(perfSlider.value);
+    var cons = parseInt(consSlider.value);
+    var qual = parseInt(qualSlider.value);
+
+    riskVal.textContent = risk;
+    perfVal.textContent = perf;
+    consVal.textContent = cons;
+    qualVal.textContent = qual;
+
+    // Weighted average of pillars 1-3
+    var avg = ((risk * 4) + (perf * 4) + (cons * 3)) / 11;
+
+    // Quality Execution multiplier (0.90 to 1.10)
+    var qeMultiplier = 1 + ((qual - 50) / 500);
+
+    // Final score
+    var score = avg * qeMultiplier;
+
+    // Clamp between 0 and 100
+    score = Math.max(0, Math.min(100, score));
+    var scoreRounded = Math.round(score * 10) / 10;
+
+    scoreEl.textContent = scoreRounded.toFixed(1);
+
+    // Color the score
+    var rank = getRank(scoreRounded);
+    scoreEl.style.color = rank.color;
+
+    // Rank badge
+    rankEl.textContent = rank.name;
+    rankEl.style.background = rank.bg;
+    rankEl.style.color = rank.color;
+    rankEl.style.border = '1px solid ' + rank.border;
+
+    // Formula display
+    formulaEl.innerHTML =
+      'Avg = [(' + risk + ' x 4) + (' + perf + ' x 4) + (' + cons + ' x 3)] / 11 = ' + avg.toFixed(1) + '<br>' +
+      'QE = 1 + ((' + qual + ' - 50) / 500) = ' + qeMultiplier.toFixed(3) + '<br>' +
+      'Score = ' + avg.toFixed(1) + ' x ' + qeMultiplier.toFixed(3) + ' = <strong>' + scoreRounded.toFixed(1) + '</strong>';
+
+    // Profit split
+    var split = getSplit(scoreRounded);
+    traderSplitEl.textContent = split.trader;
+    climberSplitEl.textContent = split.climber;
+
+    // Live status
+    if (scoreRounded >= 85) {
+      liveStatusEl.style.background = '#10B98118';
+      liveStatusEl.style.border = '1px solid #10B98133';
+      liveStatusEl.style.color = '#10B981';
+      liveStatusEl.innerHTML = '&#10003; Eligible for Live Trading &mdash; ' + split.status;
+    } else if (scoreRounded >= 75) {
+      liveStatusEl.style.background = '#F59E0B18';
+      liveStatusEl.style.border = '1px solid #F59E0B33';
+      liveStatusEl.style.color = '#F59E0B';
+      liveStatusEl.innerHTML = '&#9888; ' + (85 - scoreRounded).toFixed(1) + ' points to Live eligibility';
+    } else {
+      liveStatusEl.style.background = '#EF444418';
+      liveStatusEl.style.border = '1px solid #EF444433';
+      liveStatusEl.style.color = '#EF4444';
+      liveStatusEl.innerHTML = '&#10005; Score 85+ required for Live Trading';
+    }
+  }
+
+  riskSlider.addEventListener('input', update);
+  perfSlider.addEventListener('input', update);
+  consSlider.addEventListener('input', update);
+  qualSlider.addEventListener('input', update);
+
+  // Initial calculation
+  update();
+})();
+</script>
+</body>
+</html>
