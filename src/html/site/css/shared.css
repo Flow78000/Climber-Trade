@@ -509,19 +509,41 @@ button:focus-visible,a:focus-visible{
   clip:rect(0,0,0,0);border:0;
 }
 
-/* ─── LANGUAGE SWITCHER ─── */
-.lang-switcher{
-  display:flex;align-items:center;gap:4px;margin-right:12px;
+/* ─── LANGUAGE DROPDOWN ─── */
+.lang-dropdown{position:relative;margin-left:auto;margin-right:12px;}
+.lang-current{
+  display:flex;align-items:center;gap:6px;
+  padding:5px 10px;border-radius:6px;border:1px solid var(--border);
+  background:none;cursor:pointer;font-family:var(--font);
+  font-size:12px;font-weight:600;color:var(--text2);transition:all .15s;
 }
-.lang-btn{
-  padding:4px 8px;border-radius:4px;border:1px solid transparent;
-  font-size:14px;cursor:pointer;background:none;color:var(--text2);
-  transition:all .15s;line-height:1;
+.lang-current:hover{border-color:var(--border2);color:var(--text);}
+.lang-current .lang-chevron{transition:transform .2s;width:10px;height:10px;}
+.lang-dropdown.open .lang-current{border-color:var(--teal);color:var(--text);}
+.lang-dropdown.open .lang-chevron{transform:rotate(180deg);}
+.lang-menu{
+  display:none;position:absolute;top:calc(100% + 6px);right:0;
+  min-width:140px;background:var(--card);border:1px solid var(--border);
+  border-radius:8px;overflow:hidden;z-index:200;
+  box-shadow:0 8px 24px rgba(0,0,0,.5);
 }
-.lang-btn:hover{border-color:var(--border2);color:var(--text);}
-.lang-btn.active{border-color:var(--teal);background:var(--teal-dim);color:var(--text);}
-/* Mobile lang switcher */
-.nav-mobile .lang-switcher{margin:4px 0 8px;justify-content:flex-start;}
+.lang-dropdown.open .lang-menu{display:block;animation:langIn .15s ease;}
+@keyframes langIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.lang-option{
+  display:flex;align-items:center;gap:8px;width:100%;
+  padding:10px 14px;border:none;background:none;cursor:pointer;
+  font-family:var(--font);font-size:12px;font-weight:500;color:var(--text2);
+  transition:all .12s;text-align:left;
+}
+.lang-option:hover{background:var(--card2);color:var(--text);}
+.lang-option.active{color:var(--teal);}
+.lang-option:not(:last-child){border-bottom:1px solid var(--border);}
+.lang-flag{font-size:15px;line-height:1;}
+/* Mobile */
+.nav-mobile .lang-dropdown{margin:8px 0;margin-left:0;}
+.nav-mobile .lang-menu{position:static;box-shadow:none;margin-top:6px;}
+/* Hide old flat switcher */
+.lang-switcher{display:none!important;}
 
 /* ─── MISSING BADGE ─── */
 .badge-purple{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}

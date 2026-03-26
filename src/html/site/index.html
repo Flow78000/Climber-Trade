@@ -11,8 +11,8 @@
 .hero{text-align:center;padding:120px 0 80px;position:relative;overflow:hidden;}
 /* ── PARTICLES CANVAS ── */
 .hero-particles{
-  position:absolute;top:0;left:0;right:0;bottom:0;z-index:1;
-  pointer-events:none;
+  position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
+  pointer-events:none;display:block;
 }
 /* ── LETTER ANIMATION ── */
 .hero-title .letter{
@@ -153,7 +153,7 @@
       <a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a>
       <a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a>
       <a href="about.html" class="nav-link" data-i18n="nav_about">About</a>
-      <div class="lang-switcher"><button class="lang-btn" data-lang="en" title="English">EN</button><button class="lang-btn" data-lang="fr" title="Français">FR</button><button class="lang-btn" data-lang="es" title="Español">ES</button></div>
+      <div class="lang-dropdown"><button class="lang-current" onclick="this.parentElement.classList.toggle('open')"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en" onclick="setLang('en')"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr" onclick="setLang('fr')"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es" onclick="setLang('es')"><span class="lang-flag">🇪🇸</span>Español</button></div></div>
       <a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a>
     </div>
     <button class="nav-toggle" aria-label="Menu">
@@ -168,7 +168,7 @@
   <a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a>
   <a href="about.html" class="nav-link" data-i18n="nav_about">About</a>
   <a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
-  <div class="lang-switcher"><button class="lang-btn" data-lang="en" title="English">EN</button><button class="lang-btn" data-lang="fr" title="Français">FR</button><button class="lang-btn" data-lang="es" title="Español">ES</button></div>
+  <div class="lang-dropdown"><button class="lang-current" onclick="this.parentElement.classList.toggle('open')"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en" onclick="setLang('en')"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr" onclick="setLang('fr')"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es" onclick="setLang('es')"><span class="lang-flag">🇪🇸</span>Español</button></div></div>
   <a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a>
 </div>
 <div class="spacer-nav"></div>
@@ -570,46 +570,39 @@
 <script src="js/i18n.js"></script>
 <script src="js/shared.js"></script>
 <script>
-// ── FLOATING PARTICLES (intense + larger) ──
+// ── STARFIELD — twinkling stars spread across entire hero ──
 (function(){
   const c=document.getElementById('heroParticles');
   if(!c)return;
   const ctx=c.getContext('2d');
   let W,H;
-  const COUNT=180;
-  const P=[];
   function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
-  resize();
-  window.addEventListener('resize',resize);
+  resize();window.addEventListener('resize',resize);
+  const STARS=[];
+  const COUNT=250;
   for(let i=0;i<COUNT;i++){
-    const star=Math.random()>0.6;
-    P.push({
-      x:Math.random()*W,y:Math.random()*H,
-      r:star?Math.random()*2.5+1.5:Math.random()*1.5+0.5,
-      vy:-(Math.random()*0.3+0.05),
-      vx:(Math.random()-0.5)*0.15,
-      o:star?Math.random()*0.6+0.3:Math.random()*0.35+0.12,
+    STARS.push({
+      x:Math.random()*2000,y:Math.random()*1200,
+      r:Math.random()*1.3+0.3,
+      baseO:Math.random()*0.4+0.1,
       ph:Math.random()*6.28,
-      ps:Math.random()*0.012+0.005,
-      w:Math.random()>0.7
+      speed:Math.random()*0.015+0.005,
+      twinkle:Math.random()>0.7,
+      w:Math.random()>0.6
     });
   }
   function draw(){
     ctx.clearRect(0,0,W,H);
-    for(const p of P){
-      p.x+=p.vx;p.y+=p.vy;p.ph+=p.ps;
-      if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
-      if(p.x<-10)p.x=W+10;if(p.x>W+10)p.x=-10;
-      const a=p.o*(0.4+0.6*Math.sin(p.ph));
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);
-      ctx.fillStyle=p.w?`rgba(230,245,255,${a})`:`rgba(0,212,255,${a})`;
+    for(const s of STARS){
+      s.ph+=s.speed;
+      const flicker=s.twinkle?Math.abs(Math.sin(s.ph*3)):1;
+      const a=s.baseO*(0.3+0.7*Math.sin(s.ph))*flicker;
+      if(a<0.02)continue;
+      const x=(s.x/2000)*W;
+      const y=(s.y/1200)*H;
+      ctx.beginPath();ctx.arc(x,y,s.r,0,6.28);
+      ctx.fillStyle=s.w?`rgba(220,235,255,${a})`:`rgba(0,212,255,${a})`;
       ctx.fill();
-      // Add subtle glow for bright stars
-      if(p.r>2&&a>0.3){
-        ctx.beginPath();ctx.arc(p.x,p.y,p.r*2.5,0,6.28);
-        ctx.fillStyle=p.w?`rgba(230,245,255,${a*0.12})`:`rgba(0,212,255,${a*0.15})`;
-        ctx.fill();
-      }
     }
     requestAnimationFrame(draw);
   }
@@ -647,81 +640,78 @@
     },delay);
   })();
 })();
-// ── HERO TITLE — letter animation + Thanos snap ──
+// ── HERO TITLE — letter animation + INFINITE Thanos ash loop ──
 (function(){
   const el=document.getElementById('heroTitle');
   if(!el)return;
   const L1="Your Trading Partner For Success.";
   const L2="Get Funded Without Limits.";
-  let html='',idx=0;
-  // Line 1 — white
-  for(const ch of L1){
-    if(ch===' ') html+='<span class="letter-space"></span>';
-    else html+=`<span class="letter" style="animation-delay:${idx*35}ms">${ch}</span>`;
-    idx++;
-  }
-  html+='<br>';
-  const l2s=idx+8;
-  // Line 2 — teal
-  let l2i=0;
-  for(const ch of L2){
-    if(ch===' ') html+='<span class="letter-space"></span>';
-    else html+=`<span class="letter letter-teal" style="animation-delay:${(l2s+l2i)*35}ms">${ch}</span>`;
-    l2i++;
-  }
-  el.innerHTML=html;
-  const animDone=(l2s+L2.length)*35+600;
 
-  // Phase 1: glow settle
-  setTimeout(()=>el.querySelectorAll('.letter-teal').forEach(l=>l.classList.add('arrived')),animDone);
+  function buildLine1(){
+    let h='',i=0;
+    for(const ch of L1){
+      if(ch===' ')h+='<span class="letter-space"></span>';
+      else h+=`<span class="letter" style="animation-delay:${i*30}ms">${ch}</span>`;
+      i++;
+    }
+    return{html:h,count:i};
+  }
 
-  // Phase 2: HOLD 5 seconds then Thanos snap
-  setTimeout(()=>{
+  function buildLine2(startIdx){
+    let h='',i=0;
+    for(const ch of L2){
+      if(ch===' ')h+='<span class="letter-space"></span>';
+      else h+=`<span class="letter letter-teal" style="animation-delay:${(startIdx+i)*30}ms">${ch}</span>`;
+      i++;
+    }
+    return{html:h,count:i};
+  }
+
+  function spawnAsh(letter){
+    const rect=letter.getBoundingClientRect();
+    const heroRect=el.getBoundingClientRect();
+    const n=8+Math.floor(Math.random()*5);
+    const colors=['#00D4FF','rgba(255,255,255,0.6)','rgba(0,180,220,0.5)','rgba(100,200,255,0.4)'];
+    for(let p=0;p<n;p++){
+      const sp=document.createElement('span');
+      sp.className='dust-particle';
+      const px=(Math.random()*100-50).toFixed(1);
+      const py=(Math.random()*-100-15).toFixed(1);
+      const sz=0.8+Math.random()*2;
+      sp.style.cssText=`left:${rect.left-heroRect.left+rect.width*Math.random()}px;top:${rect.top-heroRect.top+rect.height*Math.random()}px;--px:${px}px;--py:${py}px;background:${colors[Math.floor(Math.random()*colors.length)]};width:${sz}px;height:${sz}px;animation-delay:${Math.random()*300}ms;animation-duration:${1.5+Math.random()*0.8}s;`;
+      el.appendChild(sp);
+      setTimeout(()=>sp.remove(),2800);
+    }
+  }
+
+  function snapLetters(){
     const letters=[...el.querySelectorAll('.letter-teal')];
-    // Shuffle order for random disintegration
     letters.sort(()=>Math.random()-0.5);
     letters.forEach((letter,i)=>{
-      const d1x=(Math.random()*30-15).toFixed(1);
-      const d1y=(Math.random()*-30-5).toFixed(1);
-      const d2x=(Math.random()*60-30).toFixed(1);
-      const d2y=(Math.random()*-80-20).toFixed(1);
-      const rot=(Math.random()*50-25).toFixed(1);
-      letter.style.setProperty('--dx',d1x+'px');
-      letter.style.setProperty('--dy',d1y+'px');
-      letter.style.setProperty('--dx2',d2x+'px');
-      letter.style.setProperty('--dy2',d2y+'px');
-      letter.style.setProperty('--rot',rot+'deg');
-      // Stagger across ~1.5s
-      const delay=i*55+Math.random()*80;
-      setTimeout(()=>{
-        letter.classList.add('dusting');
-        // Spawn 10-15 ash/dust particles per letter
-        const rect=letter.getBoundingClientRect();
-        const heroRect=el.getBoundingClientRect();
-        const n=10+Math.floor(Math.random()*6);
-        for(let p=0;p<n;p++){
-          const sp=document.createElement('span');
-          sp.className='dust-particle';
-          const px=(Math.random()*120-60).toFixed(1);
-          const py=(Math.random()*-120-10).toFixed(1);
-          const sz=1+Math.random()*3;
-          const colors=['#00D4FF','#00D4FF','rgba(255,255,255,0.7)','rgba(0,180,220,0.6)','rgba(100,200,255,0.5)'];
-          sp.style.cssText=`
-            left:${rect.left-heroRect.left+rect.width*Math.random()}px;
-            top:${rect.top-heroRect.top+rect.height*Math.random()}px;
-            --px:${px}px;--py:${py}px;
-            background:${colors[Math.floor(Math.random()*colors.length)]};
-            width:${sz}px;height:${sz}px;
-            animation-delay:${Math.random()*400}ms;
-            animation-duration:${1.5+Math.random()*1}s;
-          `;
-          el.appendChild(sp);
-          setTimeout(()=>sp.remove(),3000);
-        }
-      },delay);
+      letter.style.setProperty('--dx',(Math.random()*24-12).toFixed(1)+'px');
+      letter.style.setProperty('--dy',(Math.random()*-20-5).toFixed(1)+'px');
+      letter.style.setProperty('--dx2',(Math.random()*50-25).toFixed(1)+'px');
+      letter.style.setProperty('--dy2',(Math.random()*-70-15).toFixed(1)+'px');
+      letter.style.setProperty('--rot',(Math.random()*40-20).toFixed(1)+'deg');
+      const delay=i*50+Math.random()*60;
+      setTimeout(()=>{letter.classList.add('dusting');spawnAsh(letter);},delay);
     });
-    // Text stays gone forever — Thanos style
-  },animDone+5000);
+  }
+
+  // === MAIN LOOP ===
+  function cycle(){
+    const l1=buildLine1();
+    const l2=buildLine2(l1.count+6);
+    el.innerHTML=l1.html+'<br>'+l2.html;
+    const appearTime=(l1.count+6+L2.length)*30+400;
+    // Glow settle
+    setTimeout(()=>el.querySelectorAll('.letter-teal').forEach(l=>l.classList.add('arrived')),appearTime);
+    // Hold 4s then snap
+    setTimeout(()=>snapLetters(),appearTime+4000);
+    // After snap completes (2.5s), wait 2s then restart
+    setTimeout(()=>cycle(),appearTime+4000+2500+2000);
+  }
+  cycle();
 })();
 </script>
 </body>
