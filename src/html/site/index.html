@@ -14,50 +14,38 @@
   position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;
   pointer-events:none;display:block;
 }
-/* ── HERO TITLE ANIMATION ── */
-.hero-title{position:relative;min-height:1.4em;overflow:visible;}
-.hero-title .line1{
-  display:block;color:var(--text);
-  opacity:0;transform:translateY(24px);
-  transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1);
+/* ── HERO TITLE ── */
+.hero-title{position:relative;overflow:visible;}
+.hero-title .teal{color:var(--teal);}
+/* Fade in on load */
+.hero-title.fade-in{
+  animation:heroFadeIn 1.2s cubic-bezier(.16,1,.3,1) forwards;
 }
-.hero-title .line2{
-  display:block;color:var(--teal);position:relative;
-  opacity:0;transform:translateY(24px);
-  transition:opacity 1s cubic-bezier(.16,1,.3,1) .3s,transform 1s cubic-bezier(.16,1,.3,1) .3s;
+@keyframes heroFadeIn{
+  0%{opacity:0;transform:translateY(30px);}
+  100%{opacity:1;transform:translateY(0);}
 }
-.hero-title .hero-line.visible{opacity:1;transform:translateY(0);}
-.hero-title .line2.visible{text-shadow:0 0 20px #00D4FF22;}
-/* Glow pulse while visible */
-.hero-title .line2.glow{
-  animation:tealGlow 3s ease-in-out infinite;
+/* Wind dissolve — swept right */
+.hero-title.wind-out{
+  animation:windDissolve 3s cubic-bezier(.4,0,.15,1) forwards;
 }
-@keyframes tealGlow{
-  0%,100%{text-shadow:0 0 15px #00D4FF22,0 0 40px #00D4FF08;}
-  50%{text-shadow:0 0 25px #00D4FF33,0 0 60px #00D4FF11;}
+@keyframes windDissolve{
+  0%{opacity:1;transform:translate(0,0) scale(1);filter:blur(0);}
+  25%{opacity:.8;transform:translate(15px,-2px) scale(1);filter:blur(0.3px);}
+  50%{opacity:.35;transform:translate(60px,-6px) scale(.98);filter:blur(1.5px);}
+  75%{opacity:.08;transform:translate(140px,-10px) scale(.96);filter:blur(3px);}
+  100%{opacity:0;transform:translate(220px,-14px) scale(.94);filter:blur(5px);}
 }
-/* Dissolve — elegant fade + drift upward + blur */
-.hero-title .hero-line.dissolve{
-  transition:none;
-  animation:heroDissolve 3s cubic-bezier(.4,0,.2,1) forwards;
-}
-@keyframes heroDissolve{
-  0%{opacity:1;transform:translateY(0) scale(1);filter:blur(0);}
-  30%{opacity:.7;transform:translateY(-3px) scale(1);filter:blur(0.5px);}
-  60%{opacity:.25;transform:translateY(-12px) scale(.98);filter:blur(2px);}
-  85%{opacity:.05;transform:translateY(-25px) scale(.96);filter:blur(4px);}
-  100%{opacity:0;transform:translateY(-40px) scale(.94);filter:blur(6px);}
-}
-/* Ash/ember particles */
-.ember{
+/* Wind embers — fly left to right */
+.wind-ember{
   position:absolute;border-radius:50%;pointer-events:none;
-  animation:emberFly var(--dur,2.2s) cubic-bezier(.2,0,.1,1) forwards;
+  animation:windEmberFly var(--d,2s) cubic-bezier(.3,0,.1,1) forwards;
 }
-@keyframes emberFly{
-  0%{opacity:.8;transform:translate(0,0) scale(1);}
-  30%{opacity:.7;}
-  70%{opacity:.2;transform:translate(calc(var(--ex)*0.6),calc(var(--ey)*0.6)) scale(.5);filter:blur(1px);}
-  100%{opacity:0;transform:translate(var(--ex),var(--ey)) scale(0);filter:blur(3px);}
+@keyframes windEmberFly{
+  0%{opacity:.9;transform:translate(0,0) scale(1);}
+  20%{opacity:.8;}
+  60%{opacity:.3;transform:translate(var(--wx),var(--wy)) scale(.5);filter:blur(1px);}
+  100%{opacity:0;transform:translate(calc(var(--wx)*1.8),calc(var(--wy)*1.2)) scale(0);filter:blur(2.5px);}
 }
 .hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
 .hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
@@ -179,10 +167,7 @@
   <!-- PARTICLES — subtle floating dust -->
   <canvas class="hero-particles" id="heroParticles"></canvas>
   <div class="container" style="position:relative;z-index:2;">
-    <h1 class="hero-title" id="heroTitle">
-      <span class="hero-line line1">Your Trading Partner For Success.</span>
-      <span class="hero-line line2">Get Funded Without Limits.</span>
-    </h1>
+    <h1 class="hero-title" id="heroTitle">Your Trading Partner For Success.<br><span class="teal">Get Funded Without Limits.</span></h1>
     <p class="hero-desc fade-up fade-up-delay-1" data-i18n="index_hero_desc">We grow when you grow. Unlike other prop firms, we don't profit when you fail — we succeed together. No rigged evaluations, no trick rules. Just real capital, transparent metrics and true partnership.</p>
     <div class="stat-cards fade-up fade-up-delay-2">
       <div class="stat-card">
@@ -644,66 +629,53 @@
     },delay);
   })();
 })();
-// ── HERO TITLE — premium animation (always English, infinite loop) ──
+// ── HERO TITLE — wind cinder effect (single block, left-to-right) ──
 (function(){
-  const el=document.getElementById('heroTitle');
+  var el=document.getElementById('heroTitle');
   if(!el)return;
-  const line1=el.querySelector('.line1');
-  const line2=el.querySelector('.line2');
-  if(!line1||!line2)return;
 
-  const EMB_COLORS=['#00D4FF','#00D4FF','#00D4FF','rgba(255,255,255,0.7)','rgba(100,200,255,0.5)'];
+  var COLORS=['#00D4FF','#00D4FF','rgba(255,255,255,0.7)','rgba(0,190,230,0.6)','rgba(140,210,255,0.5)'];
 
-  function spawnEmbers(target,count){
-    const r=target.getBoundingClientRect();
-    const p=el.getBoundingClientRect();
-    for(let i=0;i<count;i++){
-      const e=document.createElement('span');
-      e.className='ember';
-      const x=r.left-p.left+Math.random()*r.width;
-      const y=r.top-p.top+Math.random()*r.height;
-      const ex=(Math.random()*140-70).toFixed(0);
-      const ey=(-20-Math.random()*100).toFixed(0);
-      const sz=(0.6+Math.random()*2.2).toFixed(1);
-      const dur=(1.8+Math.random()*1.4).toFixed(1);
-      const delay=(Math.random()*600).toFixed(0);
-      e.style.cssText='left:'+x+'px;top:'+y+'px;width:'+sz+'px;height:'+sz+'px;--ex:'+ex+'px;--ey:'+ey+'px;--dur:'+dur+'s;background:'+EMB_COLORS[i%EMB_COLORS.length]+';animation-delay:'+delay+'ms;';
-      el.appendChild(e);
-      setTimeout(function(){e.remove();},3500);
+  function spawnWindEmbers(){
+    var rect=el.getBoundingClientRect();
+    var count=50;
+    for(var i=0;i<count;i++){
+      var em=document.createElement('span');
+      em.className='wind-ember';
+      // Start from random position within the title
+      var x=Math.random()*rect.width;
+      var y=Math.random()*rect.height;
+      // Fly to the RIGHT (positive X) and slightly up
+      var wx=(80+Math.random()*200).toFixed(0);
+      var wy=(-30+Math.random()*60-30).toFixed(0);
+      var sz=(0.5+Math.random()*2.5).toFixed(1);
+      var dur=(1.5+Math.random()*1.5).toFixed(1);
+      var delay=(Math.random()*800).toFixed(0);
+      em.style.cssText='left:'+x+'px;top:'+y+'px;width:'+sz+'px;height:'+sz+'px;--wx:'+wx+'px;--wy:'+wy+'px;--d:'+dur+'s;background:'+COLORS[i%COLORS.length]+';animation-delay:'+delay+'ms;';
+      el.appendChild(em);
+      setTimeout(function(e){return function(){e.remove();};}(em),3500);
     }
   }
 
   function cycle(){
-    // Always English text (brand signature)
-    line1.textContent='Your Trading Partner For Success.';
-    line2.textContent='Get Funded Without Limits.';
-    // Reset classes
-    line1.className='hero-line line1';
-    line2.className='hero-line line2';
+    // Reset — show title
+    el.className='hero-title';
     void el.offsetHeight;
 
-    // Phase 1: Slide in with stagger
-    requestAnimationFrame(function(){
-      line1.classList.add('visible');
-      setTimeout(function(){
-        line2.classList.add('visible');
-        setTimeout(function(){line2.classList.add('glow');},800);
-      },300);
-    });
+    // Phase 1: Fade in (1.2s)
+    el.classList.add('fade-in');
 
-    // Phase 2: Hold 5s with glow pulse on line2
+    // Phase 2: Hold for 5 seconds (visible, static)
 
-    // Phase 3: Dissolve with embers at 6s
+    // Phase 3: Wind dissolve + embers at 6.2s
     setTimeout(function(){
-      line2.classList.remove('glow');
-      spawnEmbers(line1,25);
-      spawnEmbers(line2,35);
-      line2.classList.add('dissolve');
-      setTimeout(function(){line1.classList.add('dissolve');},400);
-    },6000);
+      spawnWindEmbers();
+      el.classList.remove('fade-in');
+      el.classList.add('wind-out');
+    },6200);
 
-    // Phase 4: Wait for dissolve + pause then restart
-    setTimeout(function(){cycle();},6000+3500+2000);
+    // Phase 4: Fully gone at 9.2s, wait 2s, restart
+    setTimeout(function(){cycle();},6200+3200+2000);
   }
 
   cycle();
