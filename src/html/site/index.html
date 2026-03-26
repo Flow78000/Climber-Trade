@@ -33,7 +33,28 @@
 }
 @keyframes tealSettle{
   0%{text-shadow:0 0 14px #00D4FF55;}
-  100%{text-shadow:none;}
+  100%{text-shadow:0 0 6px #00D4FF22;}
+}
+/* ── SNAP / DUST EFFECT ── */
+.letter.dusting{
+  position:relative;
+  animation:dustOut 1.8s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes dustOut{
+  0%{opacity:1;transform:translate(0,0) scale(1);filter:blur(0);}
+  30%{opacity:1;transform:translate(0,0) scale(1);filter:blur(0);}
+  60%{opacity:.6;transform:translate(var(--dx,3px),var(--dy,-8px)) scale(.9);filter:blur(1px);}
+  100%{opacity:0;transform:translate(var(--dx2,8px),var(--dy2,-30px)) scale(.3) rotate(var(--rot,15deg));filter:blur(3px);}
+}
+.dust-particle{
+  position:absolute;width:2px;height:2px;border-radius:50%;
+  pointer-events:none;z-index:999;
+  animation:particleFly 1.6s cubic-bezier(.3,0,.2,1) forwards;
+}
+@keyframes particleFly{
+  0%{opacity:1;transform:translate(0,0) scale(1);}
+  40%{opacity:.8;}
+  100%{opacity:0;transform:translate(var(--px),var(--py)) scale(0);filter:blur(2px);}
 }
 .hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
 .hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
@@ -121,13 +142,7 @@
 <nav class="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <div class="nav-logo-icon">
-        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+      <img src="img/logo.svg" alt="Climber Trade" class="nav-logo-img" style="height:36px;width:auto;">
     </a>
     <div class="nav-links">
       <a href="how-it-works.html" class="nav-link">How It Works</a>
@@ -504,13 +519,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:4px">
-          <div class="nav-logo-icon">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
-              <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+          <img src="img/logo.svg" alt="Climber Trade" class="nav-logo-img" style="height:36px;width:auto;">
         </div>
         <p>Revolutionary trader funding platform with 100% aligned interests.</p>
       </div>
@@ -593,13 +602,12 @@
   }
   draw();
 })();
-// Hero title letter-by-letter animation
+// Hero title letter-by-letter animation + Thanos snap dust effect
 (function(){
   const el=document.getElementById('heroTitle');
   if(!el)return;
   const line1="Your Trading Partner For Success.";
   const line2="Get Funded Without Limits.";
-  const BASE_DELAY=80; // ms between letters
   let html='';
   let idx=0;
   // Line 1 — white
@@ -613,7 +621,6 @@
     idx++;
   }
   html+='<br>';
-  // Small pause before line 2
   const line2Start=idx+8;
   // Line 2 — teal
   for(let i=0;i<line2.length;i++){
@@ -621,15 +628,76 @@
     if(ch===' '){
       html+='<span class="letter-space"></span>';
     } else {
-      html+=`<span class="letter letter-teal" style="animation-delay:${(line2Start+i)*35}ms">${ch}</span>`;
+      html+=`<span class="letter letter-teal" data-dust-idx="${i}" style="animation-delay:${(line2Start+i)*35}ms">${ch}</span>`;
     }
   }
   el.innerHTML=html;
-  // After all letters land, add "arrived" class for teal glow settle
-  const totalTime=(line2Start+line2.length)*35+500;
+
+  const totalAnimTime=(line2Start+line2.length)*35+500;
+
+  // Phase 1: teal glow settle
   setTimeout(()=>{
     el.querySelectorAll('.letter-teal').forEach(l=>l.classList.add('arrived'));
-  },totalTime);
+  },totalAnimTime);
+
+  // Phase 2: HOLD for 4 seconds, then snap/dust
+  const HOLD_DURATION=4000;
+  setTimeout(()=>{
+    const tealLetters=el.querySelectorAll('.letter-teal');
+    tealLetters.forEach((letter,i)=>{
+      // Random dust direction per letter
+      const dx=(Math.random()*20-10).toFixed(1);
+      const dy=(Math.random()*-25-10).toFixed(1);
+      const dx2=(Math.random()*40-20).toFixed(1);
+      const dy2=(Math.random()*-60-20).toFixed(1);
+      const rot=(Math.random()*40-20).toFixed(1);
+      letter.style.setProperty('--dx',dx+'px');
+      letter.style.setProperty('--dy',dy+'px');
+      letter.style.setProperty('--dx2',dx2+'px');
+      letter.style.setProperty('--dy2',dy2+'px');
+      letter.style.setProperty('--rot',rot+'deg');
+
+      // Stagger: each letter dusts slightly after the previous
+      const stagger=i*60+Math.random()*120;
+      setTimeout(()=>{
+        letter.classList.add('dusting');
+        // Spawn 5-8 dust particles per letter
+        const rect=letter.getBoundingClientRect();
+        const heroRect=el.getBoundingClientRect();
+        const numParticles=5+Math.floor(Math.random()*4);
+        for(let p=0;p<numParticles;p++){
+          const particle=document.createElement('span');
+          particle.className='dust-particle';
+          const px=(Math.random()*80-40).toFixed(1);
+          const py=(Math.random()*-80-20).toFixed(1);
+          particle.style.cssText=`
+            left:${rect.left-heroRect.left+rect.width/2}px;
+            top:${rect.top-heroRect.top+rect.height/2}px;
+            --px:${px}px;--py:${py}px;
+            background:${Math.random()>.3?'#00D4FF':'rgba(255,255,255,0.6)'};
+            width:${1+Math.random()*2}px;
+            height:${1+Math.random()*2}px;
+            animation-delay:${Math.random()*300}ms;
+            animation-duration:${1.2+Math.random()*0.8}s;
+          `;
+          el.appendChild(particle);
+          setTimeout(()=>particle.remove(),2200);
+        }
+      },stagger);
+    });
+    // After dust clears, show the line again solid (rebuilt)
+    setTimeout(()=>{
+      const newLine2=line2.split('').map(ch=>{
+        if(ch===' ')return'<span class="letter-space"></span>';
+        return`<span class="letter letter-teal" style="animation-delay:0ms;opacity:1;transform:none;color:var(--teal)">${ch}</span>`;
+      }).join('');
+      // Find the <br> and replace everything after it
+      const brIdx=el.innerHTML.indexOf('<br>');
+      if(brIdx>-1){
+        el.innerHTML=el.innerHTML.substring(0,brIdx+4)+newLine2;
+      }
+    },3000);
+  },totalAnimTime+HOLD_DURATION);
 })();
 </script>
 </body>
