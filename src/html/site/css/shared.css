@@ -205,6 +205,17 @@ h5{font-size:16px;}
   background:var(--green);box-shadow:0 0 6px var(--green);
 }
 
+/* ─── SOCIAL ICONS ─── */
+.footer-socials{display:flex;align-items:center;gap:10px;margin-top:16px;}
+.footer-social{
+  display:flex;align-items:center;justify-content:center;
+  width:32px;height:32px;border-radius:8px;
+  background:var(--card2);border:1px solid var(--border);
+  color:var(--text3);transition:all .2s;
+}
+.footer-social:hover{color:var(--teal);border-color:var(--teal);background:#00D4FF08;}
+.footer-social svg{width:16px;height:16px;}
+
 /* ─── BUTTONS ─── */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
