@@ -217,4 +217,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // ─── NEWSLETTER BAR (injected before footer-bottom) ───
+  const footerBottom = document.querySelector('.footer-bottom');
+  if (footerBottom && !document.querySelector('.newsletter-bar')) {
+    const newsletter = document.createElement('div');
+    newsletter.className = 'newsletter-bar';
+    newsletter.innerHTML = `
+      <h4>Stay in the Loop</h4>
+      <form class="newsletter-form" action="#" onsubmit="return false">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-sub">Join 1,200+ traders getting weekly insights</p>
+    `;
+    footerBottom.parentNode.insertBefore(newsletter, footerBottom);
+  }
+
+  // ─── COOKIE CONSENT BANNER ───
+  if (!localStorage.getItem('cookie-consent')) {
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.innerHTML = `
+      <p class="cookie-text">We use cookies to improve your experience and analyze site traffic. By continuing, you agree to our <a href="${window.location.pathname.includes('/legal/') || window.location.pathname.includes('/education/') ? '../legal/privacy.html' : 'legal/privacy.html'}">Privacy Policy</a>.</p>
+      <div class="cookie-btns">
+        <button class="cookie-accept">Accept</button>
+        <button class="cookie-decline">Decline</button>
+      </div>
+    `;
+    document.body.appendChild(banner);
+
+    setTimeout(() => {
+      banner.classList.add('visible');
+    }, 2000);
+
+    banner.querySelector('.cookie-accept').addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'accepted');
+      banner.classList.remove('visible');
+      setTimeout(() => banner.classList.add('hidden'), 400);
+    });
+
+    banner.querySelector('.cookie-decline').addEventListener('click', () => {
+      localStorage.setItem('cookie-consent', 'declined');
+      banner.classList.remove('visible');
+      setTimeout(() => banner.classList.add('hidden'), 400);
+    });
+  }
+
 });

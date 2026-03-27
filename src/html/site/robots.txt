@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /legal-internal/
+Sitemap: https://www.climbertrade.com/sitemap.xml

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trader Knowledge Center — Climber Trade</title>
 <meta name="description" content="Master every metric, understand your CLIMB Score, and learn the rules of the game. Free access to our complete trader education hub.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#00D4FF">
 <link rel="stylesheet" href="css/shared.css">
 <style>
 /* ── EMAIL GATE ── */
@@ -253,6 +255,7 @@
       <a href="pricing.html" class="nav-link">Pricing</a>
       <a href="rules.html" class="nav-link">Rules</a>
       <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="education/index.html" class="nav-link">Education</a>
       <a href="about.html" class="nav-link">About</a>
       <div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">&#127760;</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">&#127760;</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">&#127467;&#127479;</span>Fran&ccedil;ais</button><button class="lang-option" data-lang="es"><span class="lang-flag">&#127466;&#127480;</span>Espa&ntilde;ol</button></div></div>
       <a href="pricing.html" class="nav-cta">Start Trading</a>
@@ -265,6 +268,7 @@
   <a href="pricing.html" class="nav-link">Pricing</a>
   <a href="rules.html" class="nav-link">Rules</a>
   <a href="faq.html" class="nav-link">FAQ</a>
+  <a href="education/index.html" class="nav-link">Education</a>
   <a href="about.html" class="nav-link">About</a>
   <a href="contact.html" class="nav-link">Contact</a>
   <a href="pricing.html" class="nav-cta">Start Trading</a>
@@ -1436,6 +1440,8 @@
   <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 12 10 7 15 12"/></svg>
 </button>
 
+<script src="js/translations.js"></script>
+<script src="js/i18n.js"></script>
 <script src="js/shared.js"></script>
 <script>
 /* ── EMAIL GATE ── */
@@ -1532,20 +1538,7 @@
   btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 })();
 
-/* ── LANG DROPDOWN ── */
-(function(){
-  document.querySelectorAll('.lang-dropdown').forEach(function(dd){
-    var btn=dd.querySelector('.lang-current');
-    if(!btn)return;
-    btn.addEventListener('click',function(e){e.stopPropagation();dd.classList.toggle('open');});
-    dd.querySelectorAll('.lang-option').forEach(function(opt){
-      opt.addEventListener('click',function(){dd.classList.remove('open');});
-    });
-  });
-  document.addEventListener('click',function(){
-    document.querySelectorAll('.lang-dropdown.open').forEach(function(d){d.classList.remove('open');});
-  });
-})();
+/* ── LANG DROPDOWN — now handled by i18n.js ── */
 </script>
 </body>
 </html>

@@ -21,17 +21,28 @@ function saveLang(lang) {
 }
 
 function applyTranslations(lang) {
-  if (typeof TRANSLATIONS === 'undefined') return;
-  const dict = TRANSLATIONS[lang];
-  if (!dict) return;
+  if (typeof TRANSLATIONS === 'undefined') {
+    console.warn('[i18n] TRANSLATIONS not defined — is translations.js loaded?');
+    return;
+  }
+  var dict = TRANSLATIONS[lang];
+  if (!dict) {
+    console.warn('[i18n] No dictionary for lang:', lang);
+    return;
+  }
   document.querySelectorAll('[data-i18n]').forEach(function (el) {
-    const key = el.getAttribute('data-i18n');
+    var key = el.getAttribute('data-i18n');
     if (!dict[key]) return;
     if (el.hasAttribute('data-i18n-placeholder')) {
       el.setAttribute('placeholder', dict[key]);
       return;
     }
-    el.textContent = dict[key];
+    // Use innerHTML when element has data-i18n-html attribute (for tags inside)
+    if (el.hasAttribute('data-i18n-html')) {
+      el.innerHTML = dict[key];
+    } else {
+      el.textContent = dict[key];
+    }
   });
   document.documentElement.setAttribute('lang', lang);
 }

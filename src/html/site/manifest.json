@@ -1,0 +1,9 @@
+{
+  "name": "Climber Trade",
+  "short_name": "Climber",
+  "description": "Your Trading Partner For Success",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#00D4FF"
+}

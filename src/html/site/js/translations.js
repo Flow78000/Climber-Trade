@@ -17,6 +17,7 @@ const TRANSLATIONS = {
     nav_faq: "FAQ",
     nav_about: "About",
     nav_contact: "Contact",
+    nav_education: "Education",
     nav_cta: "Start Trading",
 
     // ── FOOTER — Column titles ──
@@ -106,6 +107,7 @@ const TRANSLATIONS = {
     // ════════════════════════════════════════
     // PAGE-SPECIFIC: INDEX
     // ════════════════════════════════════════
+    index_hero_title: "Your Trading Partner For Success.<br><span class=\"teal\">Get Funded Without Limits.</span>",
     index_hero_desc: "We grow when you grow. Unlike other prop firms, we don't profit when you fail \u2014 we succeed together. No rigged evaluations, no trick rules. Just real capital, transparent metrics and true partnership.",
     index_stat_pool: "Liquidity Funding Pool",
     index_stat_traders: "Traders Building Careers",
@@ -278,6 +280,9 @@ const TRANSLATIONS = {
     pricing_guarantee1: "No hidden fees",
     pricing_guarantee2: "Cancel anytime",
     pricing_guarantee3: "100% simulated capital",
+    pricing_payout_title: "Your Earnings, Your Rules",
+    pricing_payout_subtitle: "No caps, no tricks, no delays. Just real payouts tied to real performance.",
+    pricing_reset_label: "Account Reset",
     pricing_cta_title: "Start Your Trading Career Today",
     pricing_cta_desc: "Join hundreds of traders building real careers with Climber Trade.",
 
@@ -286,6 +291,8 @@ const TRANSLATIONS = {
     // ════════════════════════════════════════
     rules_hero_title: "Trading Rules",
     rules_hero_subtitle: "Complete reference for evaluation and live trading regulations",
+    rules_cta_title: "Ready to Start Trading?",
+    rules_cta_desc: "Now that you know the rules, build your career.",
     rules_tab_eval: "Evaluation Rules",
     rules_tab_live: "Live Trading Rules",
     rules_tab_scoring: "Scoring Reference",
@@ -295,6 +302,8 @@ const TRANSLATIONS = {
     // ════════════════════════════════════════
     faq_hero_title: "Your Questions, Answered",
     faq_hero_subtitle: "Everything you need to know about Climber Trade \u2014 33 questions across 8 categories",
+    faq_cta_title: "Still Have Questions?",
+    faq_cta_desc: "Our team is here to help. Reach out or explore our pricing plans.",
     faq_search_placeholder: "Search questions...",
     faq_no_results: "No questions match your search. Try different keywords.",
     faq_cat_getting_started: "Getting Started",
@@ -328,7 +337,10 @@ const TRANSLATIONS = {
     about_payouts_subtitle: "Transparent, predictable payout cycles. Only closed, consolidated positions are withdrawable.",
     about_growth_title: "Scaling Mechanism",
     about_growth_subtitle: "Your capital grows with you. Monthly automatic scaling based on sustained performance.",
+    about_scaling_title: "Scaling",
+    about_scaling_subtitle: "Your capital grows with you. Monthly automatic scaling based on sustained performance.",
     about_cta_title: "Join the Revolution",
+    about_cta_desc: "Your talent deserves real capital. Let's prove it together.",
 
     // ════════════════════════════════════════
     // PAGE-SPECIFIC: CONTACT
@@ -345,6 +357,9 @@ const TRANSLATIONS = {
     contact_form_placeholder_subject: "How can we help?",
     contact_form_placeholder_message: "Describe your question or issue...",
     contact_form_success: "Message sent successfully! We'll get back to you within 24 hours.",
+    contact_cta_title: "Still Have Questions?",
+    contact_cta_desc: "Our team is ready to help you succeed.",
+    contact_browse_faq: "Browse Full FAQ",
     contact_info_title: "Contact Information",
     contact_info_email_label: "Email",
     contact_info_hours_label: "Live Chat",
@@ -526,6 +541,7 @@ const TRANSLATIONS = {
     nav_faq: "FAQ",
     nav_about: "\u00C0 propos",
     nav_contact: "Contact",
+    nav_education: "\u00C9ducation",
     nav_cta: "Commencer",
 
     // ── FOOTER — Column titles ──
@@ -615,6 +631,7 @@ const TRANSLATIONS = {
     // ════════════════════════════════════════
     // PAGE: INDEX
     // ════════════════════════════════════════
+    index_hero_title: "Votre partenaire de trading pour r\u00E9ussir.<br><span class=\"teal\">Financ\u00E9 sans limites.</span>",
     index_hero_desc: "Nous grandissons quand vous grandissez. Contrairement aux autres prop firms, nous ne profitons pas de vos \u00E9checs \u2014 nous r\u00E9ussissons ensemble. Pas d'\u00E9valuations truqu\u00E9es, pas de r\u00E8gles pi\u00E8ges. Du vrai capital, des m\u00E9triques transparentes et un vrai partenariat.",
     index_stat_pool: "Pool de financement",
     index_stat_traders: "Traders en carri\u00E8re",
@@ -787,6 +804,9 @@ const TRANSLATIONS = {
     pricing_guarantee1: "Aucun frais cach\u00E9",
     pricing_guarantee2: "Annulation \u00E0 tout moment",
     pricing_guarantee3: "Capital 100% simul\u00E9",
+    pricing_payout_title: "Vos gains, vos r\u00E8gles",
+    pricing_payout_subtitle: "Pas de plafond, pas d'astuces, pas de retards. De vrais paiements li\u00E9s \u00E0 de vraies performances.",
+    pricing_reset_label: "R\u00E9initialisation du compte",
     pricing_cta_title: "Lancez votre carri\u00E8re de trader aujourd'hui",
     pricing_cta_desc: "Rejoignez des centaines de traders qui construisent de vraies carri\u00E8res avec Climber Trade.",
 
@@ -795,6 +815,8 @@ const TRANSLATIONS = {
     // ════════════════════════════════════════
     rules_hero_title: "R\u00E8gles de trading",
     rules_hero_subtitle: "R\u00E9f\u00E9rence compl\u00E8te des r\u00E8gles d'\u00E9valuation et de trading live",
+    rules_cta_title: "Pr\u00EAt \u00E0 commencer \u00E0 trader ?",
+    rules_cta_desc: "Maintenant que vous connaissez les r\u00E8gles, construisez votre carri\u00E8re.",
     rules_tab_eval: "R\u00E8gles d'\u00E9valuation",
     rules_tab_live: "R\u00E8gles de trading live",
     rules_tab_scoring: "R\u00E9f\u00E9rence de notation",
@@ -804,6 +826,8 @@ const TRANSLATIONS = {
     // ════════════════════════════════════════
     faq_hero_title: "Vos questions, nos r\u00E9ponses",
     faq_hero_subtitle: "Tout ce que vous devez savoir sur Climber Trade \u2014 33 questions en 8 cat\u00E9gories",
+    faq_cta_title: "Encore des questions ?",
+    faq_cta_desc: "Notre \u00E9quipe est l\u00E0 pour vous aider. Contactez-nous ou explorez nos plans.",
     faq_search_placeholder: "Rechercher une question...",
     faq_no_results: "Aucune question ne correspond \u00E0 votre recherche. Essayez d'autres mots-cl\u00E9s.",
     faq_cat_getting_started: "D\u00E9marrage",
@@ -837,7 +861,10 @@ const TRANSLATIONS = {
     about_payouts_subtitle: "Des cycles de paiement transparents et pr\u00E9visibles. Seules les positions cl\u00F4tur\u00E9es et consolid\u00E9es sont retirables.",
     about_growth_title: "M\u00E9canisme de scaling",
     about_growth_subtitle: "Votre capital grandit avec vous. Scaling mensuel automatique bas\u00E9 sur des performances soutenues.",
+    about_scaling_title: "Scaling",
+    about_scaling_subtitle: "Votre capital grandit avec vous. Scaling mensuel automatique bas\u00E9 sur des performances soutenues.",
     about_cta_title: "Rejoignez la r\u00E9volution",
+    about_cta_desc: "Votre talent m\u00E9rite du vrai capital. Prouvons-le ensemble.",
 
     // ════════════════════════════════════════
     // PAGE: CONTACT
@@ -854,6 +881,9 @@ const TRANSLATIONS = {
     contact_form_placeholder_subject: "Comment pouvons-nous vous aider ?",
     contact_form_placeholder_message: "D\u00E9crivez votre question ou probl\u00E8me...",
     contact_form_success: "Message envoy\u00E9 avec succ\u00E8s ! Nous vous r\u00E9pondrons sous 24 heures.",
+    contact_cta_title: "Encore des questions ?",
+    contact_cta_desc: "Notre \u00E9quipe est pr\u00EAte \u00E0 vous aider \u00E0 r\u00E9ussir.",
+    contact_browse_faq: "Parcourir la FAQ compl\u00E8te",
     contact_info_title: "Coordonn\u00E9es",
     contact_info_email_label: "Email",
     contact_info_hours_label: "Chat en direct",
@@ -1035,6 +1065,7 @@ const TRANSLATIONS = {
     nav_faq: "FAQ",
     nav_about: "Acerca de",
     nav_contact: "Contacto",
+    nav_education: "Educaci\u00F3n",
     nav_cta: "Empezar",
 
     // ── FOOTER — Column titles ──
@@ -1124,7 +1155,8 @@ const TRANSLATIONS = {
     // ════════════════════════════════════════
     // PAGE: INDEX
     // ════════════════════════════════════════
-    index_hero_desc: "Crecemos cuando t\u00FA creces. A diferencia de otras prop firms, no ganamos cuando fallas \u2014 triunfamos juntos. Sin evaluaciones amac1adas, sin reglas trampa. Solo capital real, m\u00E9tricas transparentes y verdadera asociaci\u00F3n.",
+    index_hero_title: "Tu socio de trading para el \u00E9xito.<br><span class=\"teal\">Financiado sin l\u00EDmites.</span>",
+    index_hero_desc: "Crecemos cuando t\u00FA creces. A diferencia de otras prop firms, no ganamos cuando fallas \u2014 triunfamos juntos. Sin evaluaciones ama\u00F1adas, sin reglas trampa. Solo capital real, m\u00E9tricas transparentes y verdadera asociaci\u00F3n.",
     index_stat_pool: "Pool de financiaci\u00F3n",
     index_stat_traders: "Traders en carrera",
     index_stat_capital: "Capital desplegado",
@@ -1296,6 +1328,9 @@ const TRANSLATIONS = {
     pricing_guarantee1: "Sin comisiones ocultas",
     pricing_guarantee2: "Cancela en cualquier momento",
     pricing_guarantee3: "Capital 100% simulado",
+    pricing_payout_title: "Tus ganancias, tus reglas",
+    pricing_payout_subtitle: "Sin l\u00EDmites, sin trucos, sin retrasos. Pagos reales vinculados a rendimiento real.",
+    pricing_reset_label: "Reinicio de cuenta",
     pricing_cta_title: "Comienza tu carrera de trader hoy",
     pricing_cta_desc: "\u00DAnete a cientos de traders que construyen carreras reales con Climber Trade.",
 
@@ -1304,6 +1339,8 @@ const TRANSLATIONS = {
     // ════════════════════════════════════════
     rules_hero_title: "Reglas de trading",
     rules_hero_subtitle: "Referencia completa de las reglas de evaluaci\u00F3n y trading live",
+    rules_cta_title: "\u00BFListo para empezar a operar?",
+    rules_cta_desc: "Ahora que conoces las reglas, construye tu carrera.",
     rules_tab_eval: "Reglas de evaluaci\u00F3n",
     rules_tab_live: "Reglas de trading live",
     rules_tab_scoring: "Referencia de puntuaci\u00F3n",
@@ -1313,6 +1350,8 @@ const TRANSLATIONS = {
     // ════════════════════════════════════════
     faq_hero_title: "Tus preguntas, respondidas",
     faq_hero_subtitle: "Todo lo que necesitas saber sobre Climber Trade \u2014 33 preguntas en 8 categor\u00EDas",
+    faq_cta_title: "\u00BFA\u00FAn tienes preguntas?",
+    faq_cta_desc: "Nuestro equipo est\u00E1 aqu\u00ED para ayudarte. Cont\u00E1ctanos o explora nuestros planes.",
     faq_search_placeholder: "Buscar preguntas...",
     faq_no_results: "Ninguna pregunta coincide con tu b\u00FAsqueda. Prueba con otras palabras clave.",
     faq_cat_getting_started: "Primeros pasos",
@@ -1346,7 +1385,10 @@ const TRANSLATIONS = {
     about_payouts_subtitle: "Ciclos de pago transparentes y predecibles. Solo las posiciones cerradas y consolidadas son retirables.",
     about_growth_title: "Mecanismo de escalado",
     about_growth_subtitle: "Tu capital crece contigo. Escalado mensual autom\u00E1tico basado en rendimiento sostenido.",
+    about_scaling_title: "Escalado",
+    about_scaling_subtitle: "Tu capital crece contigo. Escalado mensual autom\u00E1tico basado en rendimiento sostenido.",
     about_cta_title: "\u00DAnete a la revoluci\u00F3n",
+    about_cta_desc: "Tu talento merece capital real. Demostr\u00E9moslo juntos.",
 
     // ════════════════════════════════════════
     // PAGE: CONTACT
@@ -1363,6 +1405,9 @@ const TRANSLATIONS = {
     contact_form_placeholder_subject: "\u00BFC\u00F3mo podemos ayudarte?",
     contact_form_placeholder_message: "Describe tu pregunta o problema...",
     contact_form_success: "\u00A1Mensaje enviado con \u00E9xito! Te responderemos en 24 horas.",
+    contact_cta_title: "\u00BFA\u00FAn tienes preguntas?",
+    contact_cta_desc: "Nuestro equipo est\u00E1 listo para ayudarte a tener \u00E9xito.",
+    contact_browse_faq: "Ver FAQ completa",
     contact_info_title: "Informaci\u00F3n de contacto",
     contact_info_email_label: "Email",
     contact_info_hours_label: "Chat en vivo",

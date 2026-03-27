@@ -480,9 +480,12 @@ tr:hover td{background:var(--surface2);}
   .stat-cards{grid-template-columns:1fr;}
 }
 @media(max-width:768px){
+  .container{padding:0 16px;}
   .section{padding:64px 0;}
   .nav-links{display:none;}
   .nav-toggle{display:flex;}
+  .nav-inner{padding:0 16px;}
+  .nav-mobile{padding:24px 16px;}
   .footer-grid{grid-template-columns:1fr;gap:32px;}
   .stat-cards{grid-template-columns:1fr;}
   .pricing-grid{grid-template-columns:1fr;}
@@ -491,6 +494,30 @@ tr:hover td{background:var(--surface2);}
   .cta-row{flex-direction:column;}
   .cta-row .btn{width:100%;}
   .features-grid{grid-template-columns:1fr;}
+  /* Tables: horizontal scroll on mobile */
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  /* Card padding reduction */
+  .card{padding:20px;}
+  .feature-card{padding:20px;}
+  .pricing-card{padding:24px;}
+  .step-card{padding:20px;}
+  /* Buttons: full-width on mobile */
+  .btn-lg{width:100%;text-align:center;}
+  /* Footer bottom stacking */
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center;}
+  /* Footer padding */
+  .footer{padding:48px 0 24px;}
+  /* Section subtitle readability */
+  .section-subtitle{font-size:16px;}
+  /* Accordion trigger padding */
+  .accordion-trigger{padding:16px 20px;}
+  .accordion-content-inner{padding:0 20px 16px;}
+  /* CTA section */
+  .cta-section{padding:60px 0;}
+  /* Referral banner */
+  .referral-banner{padding:20px 16px;}
+  /* Testimonials */
+  .testimonial{padding:20px;}
 }
 
 /* ─── FOCUS & ACCESSIBILITY ─── */
@@ -625,4 +652,69 @@ button:focus-visible,a:focus-visible{
 @media(max-width:768px){
   .referral-banner{flex-direction:column;text-align:center;}
   .testimonial-grid{grid-template-columns:1fr;}
+}
+
+/* ─── COOKIE BANNER ─── */
+.cookie-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:var(--card);border-top:1px solid var(--border);
+  padding:20px 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  transform:translateY(100%);opacity:0;
+  transition:transform .4s ease,opacity .4s ease;
+  box-shadow:0 -4px 24px rgba(0,0,0,.4);
+}
+.cookie-banner.visible{transform:translateY(0);opacity:1;}
+.cookie-banner.hidden{display:none;}
+.cookie-text{font-size:14px;color:var(--text2);line-height:1.6;flex:1;}
+.cookie-text a{color:var(--teal);text-decoration:underline;}
+.cookie-btns{display:flex;gap:10px;flex-shrink:0;}
+.cookie-accept{
+  padding:10px 24px;border-radius:var(--r);
+  background:var(--teal);color:#000;font-family:var(--font);
+  font-size:13px;font-weight:700;border:none;cursor:pointer;
+  transition:background .2s;
+}
+.cookie-accept:hover{background:#00bde6;}
+.cookie-decline{
+  padding:10px 24px;border-radius:var(--r);
+  background:transparent;color:var(--text2);font-family:var(--font);
+  font-size:13px;font-weight:600;border:1px solid var(--border);
+  cursor:pointer;transition:all .2s;
+}
+.cookie-decline:hover{border-color:var(--text2);color:var(--text);}
+@media(max-width:768px){
+  .cookie-banner{flex-direction:column;padding:16px;text-align:center;}
+  .cookie-btns{width:100%;justify-content:center;}
+  .cookie-accept,.cookie-decline{flex:1;}
+}
+
+/* ─── NEWSLETTER BAR (Footer) ─── */
+.newsletter-bar{
+  border-top:1px solid var(--border);
+  padding:40px 0;margin-bottom:32px;text-align:center;
+}
+.newsletter-bar h4{font-size:20px;font-weight:700;margin-bottom:8px;}
+.newsletter-form{
+  display:flex;gap:0;max-width:480px;margin:16px auto 0;
+  border-radius:var(--r);overflow:hidden;border:1px solid var(--border);
+}
+.newsletter-form input{
+  flex:1;padding:14px 18px;background:var(--card2);border:none;
+  color:var(--text);font-family:var(--font);font-size:14px;outline:none;
+  min-width:0;
+}
+.newsletter-form input::placeholder{color:var(--text3);}
+.newsletter-form button{
+  padding:14px 24px;background:var(--teal);color:#000;
+  font-family:var(--font);font-size:14px;font-weight:700;
+  border:none;cursor:pointer;white-space:nowrap;transition:background .2s;
+}
+.newsletter-form button:hover{background:#00bde6;}
+.newsletter-sub{font-size:13px;color:var(--text3);margin-top:10px;}
+@media(max-width:768px){
+  .newsletter-bar{padding:32px 0;}
+  .newsletter-form{flex-direction:column;border:none;gap:10px;}
+  .newsletter-form input{border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;}
+  .newsletter-form button{border-radius:var(--r);padding:14px;}
 }

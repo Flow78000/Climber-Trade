@@ -15,35 +15,11 @@
   pointer-events:none;display:block;
 }
 /* ── HERO TITLE ── */
-.hero-title{position:relative;overflow:visible;}
+.hero-title{position:relative;overflow:visible;transition:opacity 0.8s ease;}
 .hero-title .teal{color:var(--teal);}
-/* Fade in — gentle materialization */
-.hero-title.show{animation:ashIn 1.4s ease-out forwards;}
-@keyframes ashIn{
-  0%{opacity:0;filter:blur(4px);}
-  50%{opacity:.8;filter:blur(1px);}
-  100%{opacity:1;filter:blur(0);}
-}
-/* Ash out — fades while grains escape */
-.hero-title.ash-out{animation:ashOut 3s ease-in forwards;}
-@keyframes ashOut{
-  0%{opacity:1;filter:blur(0);}
-  30%{opacity:.7;filter:blur(0.5px);}
-  60%{opacity:.3;filter:blur(1.5px);}
-  85%{opacity:.06;filter:blur(3px);}
-  100%{opacity:0;filter:blur(5px);}
-}
-/* Fine ash grains — tiny, drift right-to-left like snow/ash in wind */
-.ash-grain{
-  position:absolute;border-radius:50%;pointer-events:none;
-  animation:grainDrift var(--gd,3s) linear forwards;
-}
-@keyframes grainDrift{
-  0%{opacity:var(--go,.5);transform:translate(0,0);}
-  20%{opacity:var(--go,.5);}
-  50%{opacity:calc(var(--go,.5)*0.6);transform:translate(calc(var(--gx)*0.5),calc(var(--gy)*0.4));}
-  80%{opacity:calc(var(--go,.5)*0.15);transform:translate(calc(var(--gx)*0.85),calc(var(--gy)*0.75));filter:blur(1px);}
-  100%{opacity:0;transform:translate(var(--gx),var(--gy));filter:blur(1.5px);}
+/* ── ASH CANVAS (overlaid on hero title) ── */
+.ash-canvas{
+  position:absolute;top:0;left:0;pointer-events:none;z-index:10;
 }
 .hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
 .hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
@@ -139,6 +115,7 @@
       <a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a>
       <a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a>
       <a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a>
+      <a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a>
       <a href="about.html" class="nav-link" data-i18n="nav_about">About</a>
       <div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div>
       <a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a>
@@ -153,6 +130,7 @@
   <a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a>
   <a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a>
   <a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a>
+  <a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a>
   <a href="about.html" class="nav-link" data-i18n="nav_about">About</a>
   <a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
   <div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div>
@@ -165,7 +143,10 @@
   <!-- PARTICLES — subtle floating dust -->
   <canvas class="hero-particles" id="heroParticles"></canvas>
   <div class="container" style="position:relative;z-index:2;">
-    <h1 class="hero-title" id="heroTitle">Your Trading Partner For Success.<br><span class="teal">Get Funded Without Limits.</span></h1>
+    <div id="heroTitleWrap" style="position:relative;display:inline-block;">
+      <h1 class="hero-title" id="heroTitle" style="opacity:1;">Your Trading Partner For Success.<br><span class="teal">Get Funded Without Limits.</span></h1>
+      <canvas class="ash-canvas" id="ashCanvas"></canvas>
+    </div>
     <p class="hero-desc fade-up fade-up-delay-1" data-i18n="index_hero_desc">We grow when you grow. Unlike other prop firms, we don't profit when you fail — we succeed together. No rigged evaluations, no trick rules. Just real capital, transparent metrics and true partnership.</p>
     <div class="stat-cards fade-up fade-up-delay-2">
       <div class="stat-card">
@@ -557,126 +538,292 @@
 <script src="js/i18n.js"></script>
 <script src="js/shared.js"></script>
 <script>
-// ── STARFIELD — twinkling stars spread across entire hero ──
+// ── BACKGROUND PARTICLES — teal floating dust with twinkling ──
 (function(){
-  const c=document.getElementById('heroParticles');
-  if(!c)return;
-  const ctx=c.getContext('2d');
-  let W,H;
-  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
-  resize();window.addEventListener('resize',resize);
-  const STARS=[];
-  const COUNT=250;
-  for(let i=0;i<COUNT;i++){
-    STARS.push({
-      x:Math.random()*2000,y:Math.random()*1200,
-      r:Math.random()*1.3+0.3,
-      baseO:Math.random()*0.4+0.1,
-      ph:Math.random()*6.28,
-      speed:Math.random()*0.015+0.005,
-      twinkle:Math.random()>0.7,
-      w:Math.random()>0.6
+  var c = document.getElementById('heroParticles');
+  if (!c) return;
+  var ctx = c.getContext('2d');
+  var W, H;
+  function resize() { W = c.width = c.offsetWidth; H = c.height = c.offsetHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  var PARTICLES = [];
+  var COUNT = 60;
+  for (var i = 0; i < COUNT; i++) {
+    // 20% are larger (2-3px), 80% are small (0.8-1.5px)
+    var size = Math.random() < 0.2 ? (2 + Math.random()) : (0.8 + Math.random() * 0.7);
+    PARTICLES.push({
+      x: Math.random() * 2000,
+      y: Math.random() * 1200,
+      r: size,
+      baseO: 0.2 + Math.random() * 0.3, // opacity range 0.2-0.5
+      ph: Math.random() * 6.28,
+      speed: 0.003 + Math.random() * 0.007,
+      dy: -0.05 - Math.random() * 0.15, // gentle upward drift
+      // Twinkling: ~40% of particles pulse on a 3-5s cycle
+      twinkle: Math.random() < 0.4,
+      twinkleSpeed: 0.3 + Math.random() * 0.4,
+      twinklePh: Math.random() * 6.28
     });
   }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    for(const s of STARS){
-      s.ph+=s.speed;
-      const flicker=s.twinkle?Math.abs(Math.sin(s.ph*3)):1;
-      const a=s.baseO*(0.3+0.7*Math.sin(s.ph))*flicker;
-      if(a<0.02)continue;
-      const x=(s.x/2000)*W;
-      const y=(s.y/1200)*H;
-      ctx.beginPath();ctx.arc(x,y,s.r,0,6.28);
-      ctx.fillStyle=s.w?`rgba(220,235,255,${a})`:`rgba(0,212,255,${a})`;
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < PARTICLES.length; i++) {
+      var s = PARTICLES[i];
+      s.ph += s.speed;
+      s.y += s.dy;
+      if (s.y < -20) s.y = 1200 + Math.random() * 100;
+
+      var twinkleFactor = 1;
+      if (s.twinkle) {
+        s.twinklePh += 0.02;
+        twinkleFactor = 0.4 + 0.6 * Math.abs(Math.sin(s.twinklePh * s.twinkleSpeed));
+      }
+      var a = s.baseO * twinkleFactor * (0.6 + 0.4 * Math.sin(s.ph));
+      if (a < 0.03) continue;
+
+      var x = (s.x / 2000) * W;
+      var y = (s.y / 1200) * H;
+      ctx.beginPath();
+      ctx.arc(x, y, s.r, 0, 6.28);
+      ctx.fillStyle = 'rgba(0,212,255,' + a.toFixed(3) + ')';
       ctx.fill();
     }
     requestAnimationFrame(draw);
   }
   draw();
 })();
+
 // ── LIVE COUNTERS (all 3 increment every second) ──
 (function(){
-  const poolEl=document.getElementById('poolCounter');
-  const tradersEl=document.getElementById('tradersCounter');
-  const capitalEl=document.getElementById('capitalCounter');
-  if(!poolEl)return;
-  let pool=1000000;
-  let traders=283;
-  let capital=3500000;
-  function fmtDollar(n){return'$'+n.toLocaleString('en-US');}
-  function fmtNum(n){return n.toLocaleString('en-US');}
-  poolEl.textContent=fmtDollar(pool);
-  tradersEl.textContent=fmtNum(traders);
-  capitalEl.textContent=fmtDollar(capital);
-  setInterval(()=>{
-    // Pool grows $5-$15 per second
-    pool+=Math.floor(Math.random()*11)+5;
-    poolEl.textContent=fmtDollar(pool);
-    // Capital grows $10-$30 per second
-    capital+=Math.floor(Math.random()*21)+10;
-    capitalEl.textContent=fmtDollar(capital);
-  },1000);
-  // Traders increment slower — 1 new trader every 15-45 seconds
+  var poolEl = document.getElementById('poolCounter');
+  var tradersEl = document.getElementById('tradersCounter');
+  var capitalEl = document.getElementById('capitalCounter');
+  if (!poolEl) return;
+  var pool = 1000000;
+  var traders = 283;
+  var capital = 3500000;
+  function fmtDollar(n) { return '$' + n.toLocaleString('en-US'); }
+  function fmtNum(n) { return n.toLocaleString('en-US'); }
+  poolEl.textContent = fmtDollar(pool);
+  tradersEl.textContent = fmtNum(traders);
+  capitalEl.textContent = fmtDollar(capital);
+  setInterval(function(){
+    pool += Math.floor(Math.random() * 11) + 5;
+    poolEl.textContent = fmtDollar(pool);
+    capital += Math.floor(Math.random() * 21) + 10;
+    capitalEl.textContent = fmtDollar(capital);
+  }, 1000);
   (function addTrader(){
-    const delay=15000+Math.random()*30000;
-    setTimeout(()=>{
+    var delay = 15000 + Math.random() * 30000;
+    setTimeout(function(){
       traders++;
-      tradersEl.textContent=fmtNum(traders);
+      tradersEl.textContent = fmtNum(traders);
       addTrader();
-    },delay);
+    }, delay);
   })();
 })();
-// ── HERO TITLE — fine ash grain effect (right-to-left like snow) ──
+
+// ── HERO TITLE — Canvas-based fine ash/cinder dissolution (right-to-left) ──
 (function(){
-  var el=document.getElementById('heroTitle');
-  if(!el)return;
+  var titleEl = document.getElementById('heroTitle');
+  var ashCanvas = document.getElementById('ashCanvas');
+  var wrap = document.getElementById('heroTitleWrap');
+  if (!titleEl || !ashCanvas || !wrap) return;
 
-  var GRAIN_COLORS=['rgba(0,212,255,0.4)','rgba(0,212,255,0.3)','rgba(255,255,255,0.25)','rgba(180,220,255,0.2)','rgba(0,190,230,0.3)'];
+  var ctx = ashCanvas.getContext('2d');
+  var particles = [];
+  var animId = null;
+  var dpr = window.devicePixelRatio || 1;
 
-  function spawnAshGrains(){
-    var rect=el.getBoundingClientRect();
-    var count=100; // lots of tiny grains
-    for(var i=0;i<count;i++){
-      var g=document.createElement('span');
-      g.className='ash-grain';
-      // Start scattered across the title area
-      var x=Math.random()*rect.width;
-      var y=Math.random()*rect.height;
-      // Drift RIGHT to LEFT (negative X) + slight upward drift — like wind-blown snow
-      var gx=(-60-Math.random()*180).toFixed(0); // always leftward
-      var gy=(-10-Math.random()*40+Math.random()*20).toFixed(0); // mostly up, some down
-      var sz=(0.4+Math.random()*1.2).toFixed(1); // tiny: 0.4 to 1.6px
-      var dur=(2.5+Math.random()*2.5).toFixed(1); // 2.5 to 5s
-      var delay=(Math.random()*1500).toFixed(0); // stagger over 1.5s
-      var opacity=(0.2+Math.random()*0.45).toFixed(2);
-      g.style.cssText='left:'+x+'px;top:'+y+'px;width:'+sz+'px;height:'+sz+'px;--gx:'+gx+'px;--gy:'+gy+'px;--gd:'+dur+'s;--go:'+opacity+';background:'+GRAIN_COLORS[i%GRAIN_COLORS.length]+';animation-delay:'+delay+'ms;';
-      el.appendChild(g);
-      setTimeout(function(e){return function(){e.remove();};}(g),6000);
+  function syncSize() {
+    var rect = titleEl.getBoundingClientRect();
+    ashCanvas.style.width = rect.width + 'px';
+    ashCanvas.style.height = rect.height + 'px';
+    ashCanvas.width = Math.round(rect.width * dpr);
+    ashCanvas.height = Math.round(rect.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  // Capture text pixels by rendering into an offscreen canvas
+  function captureTextPixels() {
+    syncSize();
+    var rect = titleEl.getBoundingClientRect();
+    var w = Math.round(rect.width);
+    var h = Math.round(rect.height);
+    if (w === 0 || h === 0) return [];
+
+    var offCanvas = document.createElement('canvas');
+    offCanvas.width = w;
+    offCanvas.height = h;
+    var offCtx = offCanvas.getContext('2d');
+
+    var cs = getComputedStyle(titleEl);
+    var fontSize = parseFloat(cs.fontSize);
+    var fontWeight = cs.fontWeight;
+    var fontFamily = cs.fontFamily;
+    var lineHeight = parseFloat(cs.lineHeight) || fontSize * 1.3;
+
+    offCtx.fillStyle = '#ffffff';
+    offCtx.font = fontWeight + ' ' + fontSize + 'px ' + fontFamily;
+    offCtx.textAlign = 'center';
+    offCtx.textBaseline = 'top';
+
+    // Extract lines from the title
+    var rawText = titleEl.innerText || titleEl.textContent || '';
+    var lines = rawText.split('\n').filter(function(l) { return l.trim().length > 0; });
+    if (lines.length < 2) {
+      var fullText = rawText.trim();
+      var idx = fullText.indexOf('Get Funded');
+      if (idx > 0) {
+        lines = [fullText.substring(0, idx).trim(), fullText.substring(idx).trim()];
+      }
+    }
+
+    var totalTextHeight = lines.length * lineHeight;
+    var startY = (h - totalTextHeight) / 2;
+    for (var i = 0; i < lines.length; i++) {
+      offCtx.fillText(lines[i].trim(), w / 2, startY + i * lineHeight);
+    }
+
+    var imageData = offCtx.getImageData(0, 0, w, h);
+    var data = imageData.data;
+    var points = [];
+    var step = 2;
+    for (var y = 0; y < h; y += step) {
+      for (var x = 0; x < w; x += step) {
+        var idx2 = (y * w + x) * 4;
+        if (data[idx2 + 3] > 30) {
+          points.push({ x: x, y: y, a: data[idx2 + 3] / 255 });
+        }
+      }
+    }
+    return points;
+  }
+
+  function createParticles() {
+    var points = captureTextPixels();
+    particles = [];
+    var maxParticles = 1000;
+    var skipRate = Math.max(1, Math.floor(points.length / maxParticles));
+
+    for (var i = 0; i < points.length; i += skipRate) {
+      var p = points[i];
+      var size = 0.5 + Math.random() * 1.5; // 0.5-2px fine grain
+      var colorIdx = Math.random();
+      var color;
+      if (colorIdx < 0.35) color = '0,212,255';      // teal
+      else if (colorIdx < 0.6) color = '180,220,255'; // light blue
+      else if (colorIdx < 0.8) color = '255,255,255'; // white
+      else color = '0,190,230';                        // darker teal
+
+      particles.push({
+        x: p.x, y: p.y,
+        ox: p.x, oy: p.y,
+        size: size,
+        color: color,
+        alpha: 0.3 + Math.random() * 0.5,
+        // Drift RIGHT to LEFT
+        vx: -(1.5 + Math.random() * 3),
+        vy: (Math.random() - 0.5) * 0.8,
+        delay: Math.random() * 800,
+        life: 0,
+        maxLife: 1500 + Math.random() * 1000,
+        started: false
+      });
     }
   }
 
-  function cycle(){
-    el.className='hero-title';
-    void el.offsetHeight;
+  var dissolveStartTime = 0;
+  var dissolving = false;
 
-    // Phase 1: Materialize (1.4s)
-    el.classList.add('show');
+  function animateDissolve() {
+    var now = performance.now();
+    var elapsed = now - dissolveStartTime;
+    var rect = titleEl.getBoundingClientRect();
+    var w = rect.width;
+    var h = rect.height;
+    ctx.clearRect(0, 0, w, h);
+    var allDone = true;
 
-    // Phase 2: Hold for 5 seconds
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      if (elapsed < p.delay) {
+        ctx.beginPath();
+        ctx.arc(p.ox, p.oy, p.size, 0, 6.28);
+        ctx.fillStyle = 'rgba(' + p.color + ',' + p.alpha.toFixed(2) + ')';
+        ctx.fill();
+        allDone = false;
+        continue;
+      }
+      if (!p.started) {
+        p.started = true;
+        p.life = 0;
+        p.x = p.ox;
+        p.y = p.oy;
+      }
+      p.life = elapsed - p.delay;
+      if (p.life > p.maxLife) continue;
+      allDone = false;
 
-    // Phase 3: Ash out + grain particles at 6.4s
-    setTimeout(function(){
-      spawnAshGrains();
-      el.classList.remove('show');
-      el.classList.add('ash-out');
-    },6400);
+      var progress = p.life / p.maxLife;
+      var ease = progress * progress * 0.5 + progress * 0.5;
+      p.x = p.ox + p.vx * ease * (p.maxLife / 16);
+      p.y = p.oy + p.vy * ease * (p.maxLife / 16) + Math.sin(p.life * 0.005) * 2;
 
-    // Phase 4: Fully gone (3s) + pause (2s) then restart
-    setTimeout(function(){cycle();},6400+3500+2000);
+      var fadeAlpha;
+      if (progress < 0.15) fadeAlpha = p.alpha;
+      else fadeAlpha = p.alpha * (1 - ((progress - 0.15) / 0.85));
+      if (fadeAlpha < 0.01) continue;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * (1 - progress * 0.3), 0, 6.28);
+      ctx.fillStyle = 'rgba(' + p.color + ',' + fadeAlpha.toFixed(3) + ')';
+      ctx.fill();
+    }
+
+    if (!allDone) {
+      animId = requestAnimationFrame(animateDissolve);
+    } else {
+      ctx.clearRect(0, 0, w, h);
+      dissolving = false;
+    }
+  }
+
+  function startDissolve() {
+    if (dissolving) return;
+    dissolving = true;
+    createParticles();
+    titleEl.style.opacity = '0';
+    dissolveStartTime = performance.now();
+    animateDissolve();
+  }
+
+  function cycle() {
+    // Phase 1: Show text (fade in over 0.8s)
+    titleEl.style.transition = 'opacity 0.8s ease';
+    titleEl.style.opacity = '1';
+    syncSize();
+    ctx.clearRect(0, 0, ashCanvas.width / dpr, ashCanvas.height / dpr);
+    if (animId) { cancelAnimationFrame(animId); animId = null; }
+
+    // Phase 2: Hold visible for 4.5 seconds, then dissolve
+    setTimeout(function() {
+      startDissolve();
+    }, 4500);
+
+    // Phase 3: After dissolution (~2.5s) + pause (1s), restart
+    // Total cycle: 4.5s visible + 3.5s dissolve + 1s pause = 9s
+    setTimeout(function() {
+      cycle();
+    }, 4500 + 3500 + 1000);
   }
 
   cycle();
+
+  window.addEventListener('resize', function() { syncSize(); });
 })();
 </script>
 </body>

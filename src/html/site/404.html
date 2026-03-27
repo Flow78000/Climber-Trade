@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page Not Found | Climber Trade</title>
+<meta name="description" content="The page you're looking for doesn't exist. Navigate back to Climber Trade.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#00D4FF">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* 404 Hero */
+.error-section{
+  min-height:calc(100vh - var(--nav-h) - 200px);
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;
+  padding:80px 0;
+}
+.error-particles{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  z-index:1;pointer-events:none;
+}
+.error-content{position:relative;z-index:2;}
+.error-code{
+  font-family:var(--mono);font-size:clamp(120px,18vw,200px);
+  font-weight:800;letter-spacing:-6px;line-height:1;
+  color:var(--teal);opacity:.15;margin-bottom:-20px;
+  user-select:none;
+}
+.error-title{
+  font-size:clamp(28px,4vw,44px);font-weight:800;
+  letter-spacing:-.02em;margin-bottom:16px;
+}
+.error-desc{
+  font-size:17px;color:var(--text2);max-width:520px;
+  margin:0 auto 40px;line-height:1.7;
+}
+.error-btns{
+  display:flex;align-items:center;justify-content:center;
+  gap:16px;flex-wrap:wrap;
+}
+/* Mountain silhouette */
+.mountain-illustration{
+  margin:0 auto 32px;display:block;
+  width:280px;max-width:60vw;opacity:.6;
+}
+/* Compass ring */
+.compass-ring{
+  width:100px;height:100px;margin:0 auto 28px;
+  border:2px solid var(--border2);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.compass-ring::before{
+  content:'';position:absolute;width:100%;height:100%;
+  border:1px dashed #00D4FF22;border-radius:50%;
+  animation:compassSpin 20s linear infinite;
+}
+@keyframes compassSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.compass-needle{color:var(--teal);}
+/* Trail markers */
+.trail-markers{
+  display:flex;align-items:center;justify-content:center;
+  gap:8px;margin-bottom:32px;
+}
+.trail-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--border2);
+}
+.trail-dot.active{background:var(--teal);box-shadow:0 0 8px rgba(0,212,255,.4);}
+@media(max-width:768px){
+  .error-btns{flex-direction:column;}
+  .error-btns .btn{width:100%;}
+  .error-code{letter-spacing:-3px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="how-it-works.html" class="nav-link">How It Works</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="rules.html" class="nav-link">Rules</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="education/index.html" class="nav-link">Education</a>
+      <a href="about.html" class="nav-link">About</a>
+      <div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">&#127760;</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">&#127760;</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">&#127467;&#127479;</span>Fran&ccedil;ais</button><button class="lang-option" data-lang="es"><span class="lang-flag">&#127466;&#127480;</span>Espa&ntilde;ol</button></div></div>
+      <a href="pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="how-it-works.html" class="nav-link">How It Works</a>
+  <a href="pricing.html" class="nav-link">Pricing</a>
+  <a href="rules.html" class="nav-link">Rules</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <a href="education/index.html" class="nav-link">Education</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-link">Contact</a>
+  <div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">&#127760;</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">&#127760;</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">&#127467;&#127479;</span>Fran&ccedil;ais</button><button class="lang-option" data-lang="es"><span class="lang-flag">&#127466;&#127480;</span>Espa&ntilde;ol</button></div></div>
+  <a href="pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- 404 CONTENT -->
+<section class="error-section">
+  <canvas class="error-particles" id="errorParticles"></canvas>
+  <div class="error-content container">
+
+    <!-- Mountain silhouette SVG -->
+    <svg class="mountain-illustration" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Back range -->
+      <path d="M0 160 L60 80 L90 100 L140 40 L180 90 L220 50 L260 85 L310 30 L350 75 L400 55 L400 160Z" fill="#111111"/>
+      <!-- Front range -->
+      <path d="M0 160 L40 110 L80 130 L130 70 L170 115 L210 80 L250 110 L300 60 L340 100 L380 85 L400 95 L400 160Z" fill="#161616"/>
+      <!-- Snow caps -->
+      <path d="M130 70 L140 78 L120 78Z" fill="#1c1c1c"/>
+      <path d="M300 60 L310 68 L290 68Z" fill="#1c1c1c"/>
+      <!-- Teal accent peaks -->
+      <path d="M140 40 L144 44 L136 44Z" fill="#00D4FF" opacity="0.3"/>
+      <path d="M310 30 L314 34 L306 34Z" fill="#00D4FF" opacity="0.4"/>
+      <!-- Flag on highest peak -->
+      <line x1="310" y1="30" x2="310" y2="16" stroke="#00D4FF" stroke-width="1.5" opacity="0.6"/>
+      <path d="M310 16 L322 20 L310 24Z" fill="#00D4FF" opacity="0.4"/>
+    </svg>
+
+    <!-- Compass -->
+    <div class="compass-ring">
+      <svg class="compass-needle" width="32" height="32" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L15 10L12 22L9 10L12 2Z" fill="#00D4FF" opacity="0.6"/>
+        <path d="M12 2L15 10L12 12L9 10L12 2Z" fill="#00D4FF"/>
+        <circle cx="12" cy="12" r="2" fill="#0A0A0A" stroke="#00D4FF" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <!-- Trail dots -->
+    <div class="trail-markers">
+      <div class="trail-dot active"></div>
+      <div class="trail-dot"></div>
+      <div class="trail-dot"></div>
+      <div class="trail-dot"></div>
+      <div class="trail-dot"></div>
+    </div>
+
+    <div class="error-code">404</div>
+    <h1 class="error-title">Page Not Found</h1>
+    <p class="error-desc">The trail you're looking for doesn't exist. Let's get you back on track.</p>
+    <div class="error-btns">
+      <a href="index.html" class="btn btn-primary btn-lg">Back to Home</a>
+      <a href="contact.html" class="btn btn-outline btn-lg">Contact Support</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+        <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+      </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="rules.html">Trading Rules</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About Us</a>
+        <a href="about.html#pool">Liquidity Pool</a>
+        <a href="about.html#splits">Profit Splits</a>
+        <a href="pool.html">Liquidity Pool Dashboard</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="legal/cgv.html">Terms & Conditions</a>
+        <a href="legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/shared.js"></script>
+<script>
+// Starfield particles (same as home page)
+(function(){
+  const c=document.getElementById('errorParticles');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let W,H;
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
+  resize();window.addEventListener('resize',resize);
+  const STARS=[];
+  const COUNT=180;
+  for(let i=0;i<COUNT;i++){
+    STARS.push({
+      x:Math.random()*2000,y:Math.random()*1200,
+      r:Math.random()*1.3+0.3,
+      baseO:Math.random()*0.4+0.1,
+      ph:Math.random()*6.28,
+      speed:Math.random()*0.015+0.005,
+      twinkle:Math.random()>0.7,
+      w:Math.random()>0.6
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(const s of STARS){
+      s.ph+=s.speed;
+      const flicker=s.twinkle?Math.abs(Math.sin(s.ph*3)):1;
+      const a=s.baseO*(0.3+0.7*Math.sin(s.ph))*flicker;
+      if(a<0.02)continue;
+      const x=(s.x/2000)*W;
+      const y=(s.y/1200)*H;
+      ctx.beginPath();ctx.arc(x,y,s.r,0,6.28);
+      ctx.fillStyle=s.w?`rgba(220,235,255,${a})`:`rgba(0,212,255,${a})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+</body>
+</html>
