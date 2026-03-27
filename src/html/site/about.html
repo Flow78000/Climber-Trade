@@ -20,8 +20,6 @@
 .pool-info h4{color:var(--teal);margin-bottom:16px;font-size:18px;}
 .pool-info p{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:12px;}
 .pool-info p:last-child{margin-bottom:0;}
-.pool-formula{font-family:var(--mono);font-size:13px;color:var(--teal);background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin:12px 0;display:inline-block;}
-.pool-code{display:block;background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin:16px 0;font-family:var(--mono);font-size:13px;color:var(--teal);line-height:1.8;white-space:pre;overflow-x:auto;}
 .withdraw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:40px;}
 .withdraw-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px;text-align:center;}
 .withdraw-card h4{font-size:14px;color:var(--teal);margin-bottom:8px;letter-spacing:.3px;}
@@ -32,18 +30,61 @@
 .scaling-item h4{font-size:15px;margin-bottom:4px;}
 .scaling-item p{font-size:14px;color:var(--text2);line-height:1.6;}
 .badge-purple{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}
-.pool-split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0;}
-.pool-split-card{background:var(--card2);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;}
-.pool-split-card h5{font-size:14px;color:var(--teal);margin-bottom:6px;letter-spacing:.3px;}
-.pool-split-card .pool-pct{font-family:var(--mono);font-size:28px;font-weight:700;margin-bottom:6px;}
-.pool-split-card p{font-size:13px;color:var(--text2);line-height:1.6;}
+
+/* Equity Growth Charts */
+.equity-profiles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;}
+.equity-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;position:relative;overflow:hidden;}
+.equity-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.equity-card.eq-standard::before{background:#00D4FF;}
+.equity-card.eq-expert::before{background:#10B981;}
+.equity-card.eq-elite::before{background:#8B5CF6;}
+.equity-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.equity-badge{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:6px;}
+.equity-months{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.equity-month{display:flex;flex-direction:column;gap:4px;}
+.equity-month-label{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.3px;display:flex;justify-content:space-between;}
+.equity-bar-track{height:28px;background:var(--card2);border-radius:6px;position:relative;overflow:hidden;}
+.equity-bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;transition:width .6s ease;}
+.equity-bar-fill span{font-size:11px;font-weight:700;font-family:var(--mono);color:rgba(255,255,255,.9);}
+.equity-total{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--card2);border-radius:8px;border:1px solid var(--border);}
+.equity-total-label{font-size:12px;color:var(--text2);font-weight:600;}
+.equity-total-val{font-size:20px;font-weight:800;font-family:var(--mono);}
+.equity-6mo{margin-top:12px;padding:12px 16px;border-radius:8px;text-align:center;}
+.equity-6mo-label{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;}
+.equity-6mo-val{font-size:18px;font-weight:800;font-family:var(--mono);}
+
+/* Payout Flow */
+.payout-flow{display:flex;align-items:center;justify-content:center;gap:12px;margin:32px 0;flex-wrap:wrap;}
+.payout-flow-step{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;text-align:center;min-width:140px;}
+.payout-flow-step .pf-icon{width:40px;height:40px;border-radius:10px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;}
+.payout-flow-step .pf-label{font-size:13px;font-weight:700;color:var(--text);}
+.payout-flow-step .pf-sub{font-size:11px;color:var(--text3);margin-top:2px;}
+.payout-flow-arrow{color:var(--teal);font-size:20px;font-weight:700;flex-shrink:0;}
+.payout-options{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;}
+.payout-opt{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;}
+.payout-opt .po-icon{width:44px;height:44px;border-radius:10px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;}
+.payout-opt h4{font-size:15px;font-weight:700;margin-bottom:6px;}
+.payout-opt p{font-size:13px;color:var(--text2);line-height:1.6;}
+.payout-details{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;}
+.payout-detail{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;}
+.payout-detail .pd-val{font-size:14px;font-weight:800;font-family:var(--mono);margin-bottom:4px;}
+.payout-detail .pd-label{font-size:11px;color:var(--text3);}
+.payout-selling-point{margin-top:24px;background:linear-gradient(135deg,#10B98108,#10B98103);border:1px solid #10B98133;border-radius:12px;padding:24px;text-align:center;}
+.payout-selling-point h4{font-size:16px;font-weight:700;color:var(--green);margin-bottom:8px;}
+.payout-selling-point p{font-size:14px;color:var(--text2);line-height:1.7;max-width:600px;margin:0 auto;}
+
 @media(max-width:1024px){
   .values-grid{grid-template-columns:repeat(2,1fr);}
+  .equity-profiles{grid-template-columns:1fr;}
+  .payout-options{grid-template-columns:1fr;}
+  .payout-details{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-width:768px){
   .values-grid{grid-template-columns:1fr;}
   .withdraw-grid{grid-template-columns:1fr;}
-  .pool-split{grid-template-columns:1fr;}
+  .payout-flow{flex-direction:column;}
+  .payout-flow-arrow{transform:rotate(90deg);}
+  .payout-details{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -118,55 +159,155 @@
         <div class="stat-card-sub" style="color:var(--green)">&#9679; Live &mdash; Growing every second</div>
       </div>
     </div>
+
+    <!-- YOUR CAPITAL GROWTH OVER TIME -->
     <div class="pool-info fade-up">
-      <h4>How Your Capital Grows Over Time</h4>
-      <p style="color:var(--text2);margin-bottom:8px">Your allocation depends on the <strong style="color:var(--teal)">Liquidity Pool size</strong>, your <strong style="color:var(--teal)">CLIMB Score</strong>, and how long you've been funded. The longer you stay, the more you earn.</p>
+      <h4>Your Capital Growth Over Time</h4>
+      <p style="color:var(--text2);margin-bottom:8px">Your allocation depends on the <strong style="color:var(--teal)">Liquidity Pool size</strong>, your <strong style="color:var(--teal)">CLIMB Score</strong>, and how long you've been funded. The higher you score, the faster you grow.</p>
       <p style="color:var(--text3);font-size:12px;margin-bottom:32px">As the pool grows, so does every trader's allocation. There is no fixed cap.</p>
 
-      <!-- EQUITY GROWTH CURVES -->
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 24px;margin-bottom:28px">
-        <div style="font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text3);margin-bottom:20px">Capital Growth by Score &mdash; Over 6 Months</div>
+      <!-- EQUITY GROWTH BAR CHARTS — 3 profiles -->
+      <div class="equity-profiles">
 
-        <!-- SVG Equity Curves -->
+        <!-- SCORE 85 — Standard -->
+        <div class="equity-card eq-standard fade-up">
+          <div class="equity-header">
+            <div>
+              <div style="font-size:22px;font-weight:800;font-family:var(--mono);color:#00D4FF">Score 85</div>
+              <div style="font-size:12px;color:var(--text3);margin-top:2px">Standard Trader</div>
+            </div>
+            <div class="equity-badge" style="background:#00D4FF15;color:#00D4FF;border:1px solid #00D4FF33">50/50 Split</div>
+          </div>
+          <div class="equity-months">
+            <div class="equity-month">
+              <div class="equity-month-label"><span>Month 1</span><span style="color:#00D4FF;font-family:var(--mono)">$625</span></div>
+              <div class="equity-bar-track"><div class="equity-bar-fill" style="width:31%;background:linear-gradient(90deg,#00D4FF88,#00D4FF)"><span>$2.5K</span></div></div>
+            </div>
+            <div class="equity-month">
+              <div class="equity-month-label"><span>Month 2 <span style="font-size:9px;color:var(--text3)">+6%</span></span><span style="color:#00D4FF;font-family:var(--mono)">$662</span></div>
+              <div class="equity-bar-track"><div class="equity-bar-fill" style="width:33%;background:linear-gradient(90deg,#00D4FF88,#00D4FF)"><span>$2.65K</span></div></div>
+            </div>
+            <div class="equity-month">
+              <div class="equity-month-label"><span>Month 3 <span style="font-size:9px;color:var(--text3)">+6%</span></span><span style="color:#00D4FF;font-family:var(--mono)">$702</span></div>
+              <div class="equity-bar-track"><div class="equity-bar-fill" style="width:35%;background:linear-gradient(90deg,#00D4FF88,#00D4FF)"><span>$2.81K</span></div></div>
+            </div>
+          </div>
+          <div class="equity-total">
+            <div class="equity-total-label">3-Month Earnings</div>
+            <div class="equity-total-val" style="color:#00D4FF">~$1,989</div>
+          </div>
+          <div class="equity-6mo" style="background:#00D4FF08;border:1px solid #00D4FF22">
+            <div class="equity-6mo-label" style="color:var(--text3)">After 6 months (with seniority)</div>
+            <div class="equity-6mo-val" style="color:#00D4FF">~$4,500</div>
+          </div>
+        </div>
+
+        <!-- SCORE 90 — Expert -->
+        <div class="equity-card eq-expert fade-up fade-up-delay-1">
+          <div class="equity-header">
+            <div>
+              <div style="font-size:22px;font-weight:800;font-family:var(--mono);color:#10B981">Score 90</div>
+              <div style="font-size:12px;color:var(--text3);margin-top:2px">Expert Trader</div>
+            </div>
+            <div class="equity-badge" style="background:#10B98115;color:#10B981;border:1px solid #10B98133">55/45 Split</div>
+          </div>
+          <div class="equity-months">
+            <div class="equity-month">
+              <div class="equity-month-label"><span>Month 1</span><span style="color:#10B981;font-family:var(--mono)">$962</span></div>
+              <div class="equity-bar-track"><div class="equity-bar-fill" style="width:44%;background:linear-gradient(90deg,#10B98188,#10B981)"><span>$3.5K</span></div></div>
+            </div>
+            <div class="equity-month">
+              <div class="equity-month-label"><span>Month 2 <span style="font-size:9px;color:var(--text3)">+10%</span></span><span style="color:#10B981;font-family:var(--mono)">$1,164</span></div>
+              <div class="equity-bar-track"><div class="equity-bar-fill" style="width:48%;background:linear-gradient(90deg,#10B98188,#10B981)"><span>$3.85K</span></div></div>
+            </div>
+            <div class="equity-month">
+              <div class="equity-month-label"><span>Month 3 <span style="font-size:9px;color:var(--text3)">+10%</span></span><span style="color:#10B981;font-family:var(--mono)">$1,281</span></div>
+              <div class="equity-bar-track"><div class="equity-bar-fill" style="width:53%;background:linear-gradient(90deg,#10B98188,#10B981)"><span>$4.24K</span></div></div>
+            </div>
+          </div>
+          <div class="equity-total">
+            <div class="equity-total-label">3-Month Earnings</div>
+            <div class="equity-total-val" style="color:#10B981">~$3,407</div>
+          </div>
+          <div class="equity-6mo" style="background:#10B98108;border:1px solid #10B98122">
+            <div class="equity-6mo-label" style="color:var(--text3)">After 6 months (with seniority)</div>
+            <div class="equity-6mo-val" style="color:#10B981">~$8,200</div>
+          </div>
+        </div>
+
+        <!-- SCORE 95 — Elite -->
+        <div class="equity-card eq-elite fade-up fade-up-delay-2">
+          <div class="equity-header">
+            <div>
+              <div style="font-size:22px;font-weight:800;font-family:var(--mono);color:#8B5CF6">Score 95</div>
+              <div style="font-size:12px;color:var(--text3);margin-top:2px">Elite Trader</div>
+            </div>
+            <div class="equity-badge" style="background:#8B5CF615;color:#8B5CF6;border:1px solid #8B5CF633">60/40 Split</div>
+          </div>
+          <div class="equity-months">
+            <div class="equity-month">
+              <div class="equity-month-label"><span>Month 1</span><span style="color:#8B5CF6;font-family:var(--mono)">$1,500</span></div>
+              <div class="equity-bar-track"><div class="equity-bar-fill" style="width:62%;background:linear-gradient(90deg,#8B5CF688,#8B5CF6)"><span>$5K</span></div></div>
+            </div>
+            <div class="equity-month">
+              <div class="equity-month-label"><span>Month 2 <span style="font-size:9px;color:var(--text3)">+15%</span></span><span style="color:#8B5CF6;font-family:var(--mono)">$1,725</span></div>
+              <div class="equity-bar-track"><div class="equity-bar-fill" style="width:72%;background:linear-gradient(90deg,#8B5CF688,#8B5CF6)"><span>$5.75K</span></div></div>
+            </div>
+            <div class="equity-month">
+              <div class="equity-month-label"><span>Month 3 <span style="font-size:9px;color:var(--text3)">+15%</span></span><span style="color:#8B5CF6;font-family:var(--mono)">$1,983</span></div>
+              <div class="equity-bar-track"><div class="equity-bar-fill" style="width:83%;background:linear-gradient(90deg,#8B5CF688,#8B5CF6)"><span>$6.61K</span></div></div>
+            </div>
+          </div>
+          <div class="equity-total">
+            <div class="equity-total-label">3-Month Earnings</div>
+            <div class="equity-total-val" style="color:#8B5CF6">~$5,208</div>
+          </div>
+          <div class="equity-6mo" style="background:#8B5CF608;border:1px solid #8B5CF622">
+            <div class="equity-6mo-label" style="color:var(--text3)">After 6 months (with seniority)</div>
+            <div class="equity-6mo-val" style="color:#8B5CF6">~$13,500</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SVG Equity Curves Graph -->
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 24px;margin-top:28px;margin-bottom:28px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text3);margin-bottom:20px">Cumulative Earnings Over 6 Months</div>
         <div style="position:relative;height:220px;margin-bottom:20px">
           <!-- Y-axis labels -->
           <div style="position:absolute;left:0;top:0;height:100%;display:flex;flex-direction:column;justify-content:space-between;font-size:10px;color:var(--text3);font-family:var(--mono)">
-            <span>MAX</span><span></span><span></span><span>START</span>
+            <span>$13.5K</span><span>$9K</span><span>$4.5K</span><span>$0</span>
           </div>
           <!-- Grid lines -->
-          <div style="position:absolute;left:48px;right:0;top:0;height:100%">
+          <div style="position:absolute;left:52px;right:0;top:0;height:100%">
             <div style="position:absolute;top:0;left:0;right:0;height:1px;background:var(--border)"></div>
             <div style="position:absolute;top:33%;left:0;right:0;height:1px;background:var(--border);opacity:.5"></div>
             <div style="position:absolute;top:66%;left:0;right:0;height:1px;background:var(--border);opacity:.5"></div>
             <div style="position:absolute;top:100%;left:0;right:0;height:1px;background:var(--border)"></div>
           </div>
           <!-- Curves -->
-          <svg viewBox="0 0 500 200" style="position:absolute;left:48px;right:0;top:0;width:calc(100% - 48px);height:100%" preserveAspectRatio="none">
-            <!-- Score 100 (purple) — steepest growth -->
-            <polyline points="0,180 80,155 160,120 240,85 320,55 400,30 500,5" fill="none" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Score 95 (amber) -->
-            <polyline points="0,180 80,160 160,132 240,105 320,80 400,60 500,35" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg viewBox="0 0 500 200" style="position:absolute;left:52px;right:0;top:0;width:calc(100% - 52px);height:100%" preserveAspectRatio="none">
+            <!-- Score 95 (purple) — steepest growth -->
+            <polyline points="0,195 83,170 166,135 250,100 333,65 416,35 500,5" fill="none" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
             <!-- Score 90 (green) -->
-            <polyline points="0,180 80,165 160,145 240,125 320,105 400,88 500,65" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Score 85 (teal) — slowest but steady -->
-            <polyline points="0,180 80,172 160,158 240,145 320,130 400,118 500,100" fill="none" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="0,195 83,175 166,152 250,128 333,105 416,82 500,68" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Score 85 (teal) — steady -->
+            <polyline points="0,195 83,182 166,168 250,154 333,140 416,126 500,112" fill="none" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <!-- X-axis labels -->
-          <div style="position:absolute;bottom:-24px;left:48px;right:0;display:flex;justify-content:space-between;font-size:10px;color:var(--text3)">
-            <span>Start</span><span>Month 1</span><span>Month 2</span><span>Month 3</span><span>Month 4</span><span>Month 5</span><span>Month 6</span>
+          <div style="position:absolute;bottom:-24px;left:52px;right:0;display:flex;justify-content:space-between;font-size:10px;color:var(--text3)">
+            <span>Start</span><span>Mo 1</span><span>Mo 2</span><span>Mo 3</span><span>Mo 4</span><span>Mo 5</span><span>Mo 6</span>
           </div>
         </div>
-
         <!-- Legend -->
         <div style="display:flex;gap:24px;justify-content:center;margin-top:36px;flex-wrap:wrap">
-          <div style="display:flex;align-items:center;gap:8px"><div style="width:20px;height:3px;border-radius:2px;background:#8B5CF6"></div><span style="font-size:12px;color:#8B5CF6;font-weight:600">Score 100 &mdash; Maximum growth + Elite pool</span></div>
-          <div style="display:flex;align-items:center;gap:8px"><div style="width:20px;height:3px;border-radius:2px;background:#F59E0B"></div><span style="font-size:12px;color:#F59E0B;font-weight:600">Score 95 &mdash; Elite pool + Performance bonus</span></div>
-          <div style="display:flex;align-items:center;gap:8px"><div style="width:20px;height:3px;border-radius:2px;background:#10B981"></div><span style="font-size:12px;color:#10B981;font-weight:600">Score 90 &mdash; Expert level + bonus</span></div>
-          <div style="display:flex;align-items:center;gap:8px"><div style="width:20px;height:3px;border-radius:2px;background:#00D4FF"></div><span style="font-size:12px;color:#00D4FF;font-weight:600">Score 85 &mdash; Standard allocation</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:20px;height:3px;border-radius:2px;background:#8B5CF6"></div><span style="font-size:12px;color:#8B5CF6;font-weight:600">Score 95 &mdash; Elite ($13,500)</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:20px;height:3px;border-radius:2px;background:#10B981"></div><span style="font-size:12px;color:#10B981;font-weight:600">Score 90 &mdash; Expert ($8,200)</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:20px;height:3px;border-radius:2px;background:#00D4FF"></div><span style="font-size:12px;color:#00D4FF;font-weight:600">Score 85 &mdash; Standard ($4,500)</span></div>
         </div>
       </div>
 
-      <!-- GROWTH FACTORS — large, prominent cards -->
+      <!-- GROWTH FACTORS -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px">
         <div style="background:linear-gradient(135deg,#10B98108,#10B98103);border:1px solid #10B98133;border-radius:12px;padding:28px 24px">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
@@ -190,14 +331,13 @@
               <div style="font-size:24px;font-weight:800;font-family:var(--mono);color:var(--amber)">+3%</div>
             </div>
           </div>
-          <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0">Every month you stay funded and active, your bonus grows. After <strong style="color:var(--text)">6 months of continuous live trading</strong>, you earn the maximum +3% seniority bonus. Loyalty and consistency are rewarded at every step.</p>
+          <p style="font-size:14px;color:var(--text2);line-height:1.7;margin:0">Every month you stay funded and active, your bonus grows. After <strong style="color:var(--text)">6 months of continuous Funded trading</strong>, you earn the maximum +3% seniority bonus. Loyalty and consistency are rewarded at every step.</p>
         </div>
       </div>
 
-      <!-- POOL STRUCTURE — simple visual diagram -->
+      <!-- POOL STRUCTURE -->
       <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:20px">
         <div style="font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text3);margin-bottom:20px">How the Pool is Divided</div>
-        <!-- Visual bar representation -->
         <div style="display:flex;height:56px;border-radius:10px;overflow:hidden;margin-bottom:20px;border:1px solid var(--border)">
           <div style="flex:9;background:linear-gradient(135deg,#00D4FF15,#00D4FF08);display:flex;align-items:center;justify-content:center;border-right:2px solid var(--bg)">
             <div style="text-align:center">
@@ -212,7 +352,6 @@
             </div>
           </div>
         </div>
-        <!-- Explanation cards -->
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
           <div style="background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:16px">
             <div style="font-size:13px;font-weight:700;color:var(--teal);margin-bottom:6px">Standard Pool &mdash; Score 85+</div>
@@ -225,8 +364,17 @@
         </div>
       </div>
 
+      <!-- No ceiling note -->
+      <div style="background:linear-gradient(135deg,#00D4FF08,#00D4FF03);border:1px solid #00D4FF33;border-radius:10px;padding:20px 24px;margin-top:8px;text-align:center">
+        <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px">
+          <svg width="18" height="18" fill="none" stroke="#00D4FF" stroke-width="2"><polyline points="1 13 5 9 9 12 17 3"/><polyline points="11 3 17 3 17 9"/></svg>
+          <span style="font-size:15px;font-weight:800;color:var(--teal)">Your allocation grows every month as long as your score is maintained.</span>
+        </div>
+        <div style="font-size:14px;color:var(--text2)">There is <strong style="color:var(--text)">no ceiling on capital</strong>. As the pool grows and your score improves, your allocation grows with it.</div>
+      </div>
+
       <!-- Safety note -->
-      <div style="background:#10B98108;border:1px solid #10B98122;border-radius:10px;padding:16px 20px;margin-top:8px;display:flex;align-items:flex-start;gap:12px">
+      <div style="background:#10B98108;border:1px solid #10B98122;border-radius:10px;padding:16px 20px;margin-top:16px;display:flex;align-items:flex-start;gap:12px">
         <div style="width:28px;height:28px;border-radius:6px;background:#10B98118;flex-shrink:0;display:flex;align-items:center;justify-content:center">
           <svg width="14" height="14" fill="none" stroke="#10B981" stroke-width="2"><path d="M7 1l6 12H1L7 1z"/><path d="M7 5v3"/><circle cx="7" cy="10" r=".5" fill="#10B981"/></svg>
         </div>
@@ -300,31 +448,110 @@
   </div>
 </section>
 
-<!-- WITHDRAWALS -->
-<section class="section">
+<!-- HOW PAYOUTS WORK -->
+<section class="section" id="payouts">
   <div class="container">
     <div class="text-center fade-up">
       <div class="section-label" style="justify-content:center">Payouts</div>
-      <h2>Withdrawals</h2>
-      <p class="section-subtitle" style="margin-top:12px">Transparent, predictable payout cycles. Only closed, consolidated positions are withdrawable.</p>
+      <h2>How Payouts Work</h2>
+      <p class="section-subtitle" style="margin-top:12px">Transparent, predictable payout cycles. Your profits, your way.</p>
     </div>
-    <div class="withdraw-grid">
-      <div class="withdraw-card fade-up">
-        <h4>Calendar</h4>
-        <p>5th and 20th of each month (automatic cycles), or daily on request with 24h notice.</p>
+
+    <!-- Payout Flow Visual -->
+    <div class="payout-flow fade-up">
+      <div class="payout-flow-step">
+        <div class="pf-icon" style="background:#10B98115;border:1px solid #10B98128">
+          <svg width="20" height="20" fill="none" stroke="#10B981" stroke-width="2"><path d="M2 16l4-4 3 3 7-9"/></svg>
+        </div>
+        <div class="pf-label">Your Profit</div>
+        <div class="pf-sub">Closed positions</div>
       </div>
-      <div class="withdraw-card fade-up fade-up-delay-1">
-        <h4>Minimum</h4>
-        <p>$500 per withdrawal. Amounts below this threshold remain on the trading account.</p>
+      <div class="payout-flow-arrow">&rarr;</div>
+      <div class="payout-flow-step">
+        <div class="pf-icon" style="background:#00D4FF15;border:1px solid #00D4FF28">
+          <svg width="20" height="20" fill="none" stroke="#00D4FF" stroke-width="2"><path d="M4 10h12M10 4v12"/></svg>
+        </div>
+        <div class="pf-label">Profit Split</div>
+        <div class="pf-sub">50-60% to you</div>
       </div>
-      <div class="withdraw-card fade-up fade-up-delay-2">
-        <h4>Method</h4>
-        <p>Wallet Climber + RISE WORKS exclusively. Secure, auditable, documented.</p>
+      <div class="payout-flow-arrow">&rarr;</div>
+      <div class="payout-flow-step">
+        <div class="pf-icon" style="background:#F59E0B15;border:1px solid #F59E0B28">
+          <svg width="20" height="20" fill="none" stroke="#F59E0B" stroke-width="2"><rect x="3" y="5" width="14" height="10" rx="2"/><path d="M3 9h14"/></svg>
+        </div>
+        <div class="pf-label">Wallet (CC)</div>
+        <div class="pf-sub">ClimbCoin balance</div>
       </div>
-      <div class="withdraw-card fade-up fade-up-delay-3">
-        <h4>Processing</h4>
-        <p>Instant calculation. Fast-tracked wire transfer &mdash; typically processed within 24 to 48 hours.</p>
+      <div class="payout-flow-arrow">&rarr;</div>
+      <div class="payout-flow-step">
+        <div class="pf-icon" style="background:#8B5CF615;border:1px solid #8B5CF628">
+          <svg width="20" height="20" fill="none" stroke="#8B5CF6" stroke-width="2"><path d="M10 2v16M6 6l4-4 4 4M3 18h14"/></svg>
+        </div>
+        <div class="pf-label">Withdraw</div>
+        <div class="pf-sub">Via RISE WORKS</div>
       </div>
+    </div>
+
+    <!-- 3 Payout Options -->
+    <div class="payout-options fade-up">
+      <div class="payout-opt">
+        <div class="po-icon" style="background:#10B98115;border:1px solid #10B98128">
+          <svg width="22" height="22" fill="none" stroke="#10B981" stroke-width="2"><rect x="3" y="4" width="16" height="14" rx="2"/><path d="M3 8h16"/><path d="M8 12h2"/></svg>
+        </div>
+        <h4 style="color:var(--green)">Automatic</h4>
+        <p>5th &amp; 20th of each month. Profits are calculated and deposited into your wallet automatically on schedule.</p>
+      </div>
+      <div class="payout-opt">
+        <div class="po-icon" style="background:#00D4FF15;border:1px solid #00D4FF28">
+          <svg width="22" height="22" fill="none" stroke="#00D4FF" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M11 7v4l3 2"/></svg>
+        </div>
+        <h4 style="color:var(--teal)">On Demand</h4>
+        <p>Request a withdrawal any day. 24-hour notice required. Perfect for when you need funds outside the regular cycle.</p>
+      </div>
+      <div class="payout-opt">
+        <div class="po-icon" style="background:#F59E0B15;border:1px solid #F59E0B28">
+          <svg width="22" height="22" fill="none" stroke="#F59E0B" stroke-width="2"><polyline points="1 13 5 9 9 12 21 3"/><polyline points="15 3 21 3 21 9"/></svg>
+        </div>
+        <h4 style="color:var(--amber)">Accumulate</h4>
+        <p>Leave your profits on the account to increase your trading capital. Your share stays invested and compounds your growth.</p>
+      </div>
+    </div>
+
+    <!-- Payout Details -->
+    <div class="payout-details fade-up">
+      <div class="payout-detail">
+        <div class="pd-val" style="color:var(--green)">$500</div>
+        <div class="pd-label">Minimum withdrawal</div>
+      </div>
+      <div class="payout-detail">
+        <div class="pd-val" style="color:var(--teal)">J+1</div>
+        <div class="pd-label">Calculation speed</div>
+      </div>
+      <div class="payout-detail">
+        <div class="pd-val" style="color:var(--amber)">J+3 to J+5</div>
+        <div class="pd-label">Wire transfer</div>
+      </div>
+      <div class="payout-detail">
+        <div class="pd-val" style="color:#8B5CF6">RISE WORKS</div>
+        <div class="pd-label">Payment provider</div>
+      </div>
+    </div>
+
+    <!-- Important note -->
+    <div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 20px;display:flex;align-items:flex-start;gap:12px" class="fade-up">
+      <div style="width:28px;height:28px;border-radius:6px;background:#F59E0B18;flex-shrink:0;display:flex;align-items:center;justify-content:center">
+        <svg width="14" height="14" fill="none" stroke="#F59E0B" stroke-width="2"><circle cx="7" cy="7" r="6"/><path d="M7 4v3"/><circle cx="7" cy="9.5" r=".5" fill="#F59E0B"/></svg>
+      </div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6"><strong style="color:var(--text)">Only closed &amp; consolidated positions count.</strong> Open positions with unrealized P&amp;L are excluded from payout calculations until they are closed and settled.</div>
+    </div>
+
+    <!-- Selling Point Card -->
+    <div class="payout-selling-point fade-up">
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px">
+        <svg width="20" height="20" fill="none" stroke="#10B981" stroke-width="2"><path d="M10 1l2.5 5 5.5.8-4 3.9.9 5.5L10 13.5 5.1 16.2l.9-5.5-4-3.9 5.5-.8z"/></svg>
+        <h4 style="margin:0">One Simple Rule to Stay Funded</h4>
+      </div>
+      <p>Your only condition to keep trading live: <strong style="color:var(--green)">maintain your CLIMB Score</strong>. If your score drops below 75 for 7 days, you return to Scoring phase to rebuild. Once back at 85+ for 7 consecutive days, you are funded again. No permanent bans, no tricks.</p>
     </div>
   </div>
 </section>
@@ -356,7 +583,7 @@
         <div class="scaling-dot" style="background:var(--green)"></div>
         <div>
           <h4>Seniority Bonus: +3% After 6 Months</h4>
-          <p>Incremental monthly bonus, capped at +3% after 6 months of continuous live trading. Loyalty is rewarded.</p>
+          <p>Incremental monthly bonus, capped at +3% after 6 months of continuous Funded trading. Loyalty is rewarded.</p>
         </div>
       </div>
       <div class="scaling-item fade-up fade-up-delay-3">

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pricing — Climber Trade</title>
-<meta name="description" content="Choose your evaluation plan. Standard $199/mo with live access or Discovery $49 for 30 days.">
+<meta name="description" content="Choose your plan. Standard $199/mo with Funded access or Discovery $49 for 30 days.">
 <link rel="stylesheet" href="css/shared.css">
 <style>
 .check-svg{width:16px;height:16px;color:var(--teal);}
@@ -73,11 +73,23 @@
   background:var(--teal-dim);padding:2px 6px;border-radius:4px;
 }
 
+/* Payout Freedom */
+.payout-freedom-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px;}
+.pf-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 24px;text-align:center;transition:border-color .2s;}
+.pf-card:hover{border-color:var(--teal);}
+.pf-card-icon{width:48px;height:48px;border-radius:12px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;}
+.pf-card h4{font-size:16px;font-weight:700;margin-bottom:8px;}
+.pf-card p{font-size:13px;color:var(--text2);line-height:1.7;}
+
+@media(max-width:1024px){
+  .payout-freedom-grid{grid-template-columns:repeat(2,1fr);}
+}
 @media(max-width:768px){
   .reset-grid{grid-template-columns:1fr;}
   .guarantees{flex-direction:column;align-items:center;}
   .compare-table-wrap{font-size:13px;}
   .compare-table-wrap th,.compare-table-wrap td{padding:10px 14px;}
+  .payout-freedom-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -103,9 +115,9 @@
         <div class="pricing-price">$199<span>/mo</span></div>
         <div class="pricing-pool">$99.50 → liquidity pool</div>
         <ul class="pricing-features">
-          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>$1M evaluation account</li>
+          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>$1M simulated account</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Auto-renewable monthly</li>
-          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Live trading access when qualified</li>
+          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Funded trading access when qualified</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>All instruments (Futures, Forex, Stocks, CFD, Crypto)</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Full dashboard & 16+ metrics</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>1 free reset per month</li>
@@ -120,9 +132,9 @@
         <div class="pricing-price">$49<span> one-time</span></div>
         <div class="pricing-pool">$24.50 → liquidity pool</div>
         <ul class="pricing-features">
-          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>$1M evaluation account</li>
+          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>$1M simulated account</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>30 days, non-renewable</li>
-          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--red)"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span style="color:var(--text3)">No live trading access</span></li>
+          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--red)"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span style="color:var(--text3)">No Funded phase access</span></li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>All instruments</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Full dashboard & 16+ metrics</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Score preserved if upgrading to Standard</li>
@@ -153,8 +165,8 @@
             <svg width="16" height="16" fill="none" stroke="#10B981" stroke-width="2"><line x1="8" y1="1" x2="8" y2="15"/><path d="M12 4H6a2.5 2.5 0 000 5h4a2.5 2.5 0 010 5H4"/></svg>
           </div>
           <div>
-            <div style="font-size:14px;font-weight:700;color:var(--green)">Unlimited Payouts</div>
-            <div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.6">No payout cap, no payout delay tricks. Withdraw on the 5th, 20th, or any day you want. Minimum $500.</div>
+            <div style="font-size:14px;font-weight:700;color:var(--green)">Unlimited Payouts via ClimbCoin</div>
+            <div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.6">All profits are credited in ClimbCoin (CC) &mdash; your Climber Trade wallet currency. Withdraw on the 5th, 20th, or any day you want. Minimum $500.</div>
           </div>
         </div>
         <div style="background:var(--card);border:1px solid #F59E0B22;border-radius:10px;padding:20px;display:flex;gap:14px;align-items:flex-start">
@@ -172,7 +184,7 @@
           </div>
           <div>
             <div style="font-size:14px;font-weight:700;color:#8B5CF6">Second Chance Built In</div>
-            <div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.6">Score drops below threshold? You return to evaluation mode. Rebuild your score, prove yourself again, and get re-funded. No permanent ban.</div>
+            <div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.6">Score drops below threshold? You return to Scoring phase. Rebuild your score, prove yourself again, and get re-funded. No permanent ban.</div>
           </div>
         </div>
       </div>
@@ -195,7 +207,7 @@
             <td>30 days</td>
           </tr>
           <tr>
-            <td>Live Trading Access</td>
+            <td>Funded Phase Access</td>
             <td><span class="compare-check">&#10003;</span></td>
             <td><span class="compare-cross">&#10005;</span></td>
           </tr>
@@ -263,7 +275,7 @@
             </div>
             <div style="font-size:10px;padding:3px 8px;border-radius:4px;background:#10B98115;color:var(--green);border:1px solid #10B98122;font-weight:600">Compliant</div>
           </div>
-          <div style="font-size:12px;color:var(--text2);line-height:1.6">All payouts via <strong style="color:var(--text)">RISE WORKS</strong> — professional payments platform. Wire transfer J+3 to J+5.</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.6">Convert your ClimbCoins (CC) to USD via <strong style="color:var(--text)">RISE WORKS</strong> &mdash; professional payments platform. Wire transfer J+3 to J+5.</div>
         </div>
       </div>
     </div>
@@ -279,6 +291,51 @@
   </div>
 </section>
 
+<!-- PAYOUT FREEDOM -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Payout Freedom</div>
+      <h2>Your Earnings, Your Rules</h2>
+      <p class="section-subtitle" style="margin-top:12px">No caps, no tricks, no delays. Just real payouts tied to real performance.</p>
+    </div>
+    <div class="payout-freedom-grid">
+      <!-- Unlimited Capital -->
+      <div class="pf-card fade-up">
+        <div class="pf-card-icon" style="background:#00D4FF12;border:1px solid #00D4FF22">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <h4 style="color:var(--teal)">Unlimited Capital</h4>
+        <p>No fixed allocation. Your capital grows with your score, every month. As the pool expands, so does your share. There is no ceiling.</p>
+      </div>
+      <!-- Unlimited Payouts -->
+      <div class="pf-card fade-up fade-up-delay-1">
+        <div class="pf-card-icon" style="background:#10B98112;border:1px solid #10B98122">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h4 style="color:var(--green)">Unlimited Payouts</h4>
+        <p>Withdraw on the 5th, 20th, or any day you choose. Minimum $500 per withdrawal. No cap on total payouts, ever.</p>
+      </div>
+      <!-- Simple Rule -->
+      <div class="pf-card fade-up fade-up-delay-2">
+        <div class="pf-card-icon" style="background:#F59E0B12;border:1px solid #F59E0B22">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <h4 style="color:var(--amber)">Simple Rule</h4>
+        <p>Maintain your score and stay funded. That's it. No daily loss insta-fail, no hidden traps, no time pressure. Just performance.</p>
+      </div>
+      <!-- Second Chance -->
+      <div class="pf-card fade-up fade-up-delay-3">
+        <div class="pf-card-icon" style="background:#8B5CF612;border:1px solid #8B5CF622">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 105.64-12.36L1 10"/></svg>
+        </div>
+        <h4 style="color:#8B5CF6">Second Chance</h4>
+        <p>Score drops? Return to Scoring phase. Rebuild to 85+ for 7 consecutive days and you are back in with real capital. No permanent bans.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WHAT HAPPENS NEXT -->
 <section class="section">
   <div class="container">
@@ -287,9 +344,9 @@
       <h2>What Happens Next?</h2>
     </div>
     <div class="steps-grid" style="max-width:700px;margin:32px auto 0">
-      <div class="step-card fade-up"><div class="step-num">01</div><div><h4>Instant Access</h4><p>Your $1M evaluation account is activated immediately. No waiting period, no approval process.</p></div></div>
-      <div class="step-card fade-up fade-up-delay-1"><div class="step-num">02</div><div><h4>Start Trading</h4><p>Connect to Volumetrica and start trading any instrument. Your CLIMB Score begins tracking in real time.</p></div></div>
-      <div class="step-card fade-up fade-up-delay-2"><div class="step-num">03</div><div><h4>Get Evaluated</h4><p>16+ metrics across 4 pillars score your performance. Reach 85/100 and maintain it for 7 days to qualify for live capital.</p></div></div>
+      <div class="step-card fade-up"><div class="step-num">01</div><div><h4>Incubation Begins</h4><p>Your $1M simulated account is activated immediately. No waiting period, no approval process. Welcome to the Incubation phase.</p></div></div>
+      <div class="step-card fade-up fade-up-delay-1"><div class="step-num">02</div><div><h4>Scoring Phase</h4><p>Connect to Volumetrica and start trading any instrument. Your CLIMB Score begins tracking in real time across 14 metrics and 4 pillars.</p></div></div>
+      <div class="step-card fade-up fade-up-delay-2"><div class="step-num">03</div><div><h4>Get Funded</h4><p>Reach 85/100 and maintain it for 7 consecutive trading days to complete your Scoring phase and enter the Funded phase with real capital.</p></div></div>
     </div>
   </div>
 </section>
@@ -330,7 +387,7 @@
       <div class="reset-card fade-up">
         <div style="font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px">Free Reset</div>
         <div class="reset-price green">$0</div>
-        <div class="reset-cond">1 per calendar month<br>Balance at $0 · Not yet Live</div>
+        <div class="reset-cond">1 per calendar month<br>Balance at $0 · Not yet Funded</div>
       </div>
       <div class="reset-card fade-up fade-up-delay-1">
         <div style="font-size:12px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.5px">Standard Reset</div>
