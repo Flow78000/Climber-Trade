@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal & Contracts — Climber Trade</title>
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+.legal-hero{text-align:center;padding:80px 0 60px;}
+.legal-hero h1{font-size:clamp(32px,4vw,48px);margin-bottom:12px;}
+.legal-hero p{font-size:18px;color:var(--text2);max-width:540px;margin:0 auto;line-height:1.7;}
+.doc-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+  margin-bottom:80px;
+}
+.doc-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:32px 28px;display:flex;flex-direction:column;gap:16px;
+  transition:border-color .2s,transform .2s;
+}
+.doc-card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.doc-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.doc-icon{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--teal-dim);border:1px solid #00D4FF22;flex-shrink:0;
+}
+.doc-icon svg{width:22px;height:22px;color:var(--teal);}
+.doc-status{
+  display:inline-block;padding:4px 10px;border-radius:6px;
+  font-size:10px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;
+  white-space:nowrap;flex-shrink:0;
+}
+.doc-status.active{background:#10B98118;color:var(--green);border:1px solid #10B98133;}
+.doc-status.required{background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B33;}
+.doc-status.reference{background:var(--teal-dim);color:var(--teal);border:1px solid #00D4FF33;}
+.doc-card h3{font-size:18px;margin:0;line-height:1.3;}
+.doc-card .doc-desc{font-size:13px;color:var(--text2);line-height:1.6;flex:1;}
+.doc-card .doc-meta{font-size:11px;color:var(--text3);font-family:var(--mono);}
+.doc-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:600;color:var(--teal);
+  transition:gap .15s;
+}
+.doc-link:hover{gap:10px;}
+.doc-link svg{width:14px;height:14px;}
+
+.principles-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+  margin-top:40px;
+}
+.principle-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:28px 24px;
+}
+.principle-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--teal-dim);border:1px solid #00D4FF22;
+  margin-bottom:16px;
+}
+.principle-icon svg{width:20px;height:20px;color:var(--teal);}
+.principle-card h4{font-size:15px;margin-bottom:8px;}
+.principle-card p{font-size:13px;color:var(--text2);line-height:1.7;}
+
+@media(max-width:1024px){
+  .doc-grid{grid-template-columns:repeat(2,1fr);}
+  .principles-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:768px){
+  .doc-grid{grid-template-columns:1fr;}
+  .principles-grid{grid-template-columns:1fr;}
+  .legal-hero{padding:48px 0 40px;}
+}
+</style>
+</head>
+<body>
+<nav class="navbar"><div class="nav-inner"><a href="../index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="../how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="../pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="../rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="../faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="../about.html" class="nav-link" data-i18n="nav_about">About</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="../pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-mobile"><a href="../how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="../pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="../rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="../faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="../about.html" class="nav-link" data-i18n="nav_about">About</a><a href="../contact.html" class="nav-link" data-i18n="nav_contact">Contact</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="../pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div>
+<div class="spacer-nav"></div>
+
+<section class="section" style="padding-bottom:0">
+<div class="container">
+  <nav class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">/</span><span>Legal</span></nav>
+  <div class="legal-hero">
+    <div class="section-label">Legal</div>
+    <h1>Legal &amp; Contracts</h1>
+    <p>Complete transparency. Every document, every rule, every obligation &mdash; accessible and clear.</p>
+  </div>
+</div>
+</section>
+
+<section class="section" style="padding-top:0">
+<div class="container">
+  <div class="doc-grid">
+
+    <!-- 1. Terms & Conditions -->
+    <div class="doc-card">
+      <div class="doc-card-top">
+        <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+        <span class="doc-status active">Active</span>
+      </div>
+      <h3>Terms &amp; Conditions</h3>
+      <p class="doc-desc">Evaluation subscription terms, account resets, payment conditions, and cancellation policy.</p>
+      <p class="doc-meta">Last updated: March 2026</p>
+      <a href="cgv.html" class="doc-link">View Document <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+    <!-- 2. Professional Trader Contract -->
+    <div class="doc-card">
+      <div class="doc-card-top">
+        <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <span class="doc-status required">Required</span>
+      </div>
+      <h3>Professional Trader Contract</h3>
+      <p class="doc-desc">Live trading agreement covering profit splits, obligations, intellectual property, and termination.</p>
+      <p class="doc-meta">Last updated: March 2026</p>
+      <a href="trader-contract.html" class="doc-link">View Document <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+    <!-- 3. Trading Regulations -->
+    <div class="doc-card">
+      <div class="doc-card-top">
+        <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+        <span class="doc-status active">Active</span>
+      </div>
+      <h3>Trading Regulations</h3>
+      <p class="doc-desc">Complete rules for evaluation and live phases: instruments, limits, sanctions, and appeals.</p>
+      <p class="doc-meta">Last updated: March 2026</p>
+      <a href="trading-rules.html" class="doc-link">View Document <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+    <!-- 4. NDA Beta Testers -->
+    <div class="doc-card">
+      <div class="doc-card-top">
+        <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <span class="doc-status required">Required</span>
+      </div>
+      <h3>NDA &mdash; Beta Testers</h3>
+      <p class="doc-desc">Confidentiality agreement for beta participants covering all platform-related information.</p>
+      <p class="doc-meta">Last updated: March 2026</p>
+      <a href="nda.html" class="doc-link">View Document <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+    <!-- 5. Privacy Policy -->
+    <div class="doc-card">
+      <div class="doc-card-top">
+        <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <span class="doc-status active">Active</span>
+      </div>
+      <h3>Privacy Policy</h3>
+      <p class="doc-desc">Data collection practices, KYC processing, RISE WORKS integration, and your rights.</p>
+      <p class="doc-meta">Last updated: March 2026</p>
+      <a href="privacy.html" class="doc-link">View Document <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+    <!-- 6. Legal Notice -->
+    <div class="doc-card">
+      <div class="doc-card-top">
+        <div class="doc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+        <span class="doc-status reference">Reference</span>
+      </div>
+      <h3>Legal Notice</h3>
+      <p class="doc-desc">Publisher information, hosting, intellectual property, liability limitations.</p>
+      <p class="doc-meta">Last updated: March 2026</p>
+      <a href="mentions.html" class="doc-link">View Document <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<section class="section section-alt">
+<div class="container">
+  <div class="text-center" style="margin-bottom:16px">
+    <div class="section-label">Foundation</div>
+    <h2>Key Principles</h2>
+    <p class="section-subtitle">Non-negotiable commitments that govern every aspect of Climber Trade.</p>
+  </div>
+  <div class="principles-grid">
+
+    <div class="principle-card">
+      <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h4>Pool Cannot Be Exhausted</h4>
+      <p>The Cohort Factor (FC) auto-regulates allocation at any scale. The liquidity pool is mathematically protected against depletion regardless of trader count.</p>
+    </div>
+
+    <div class="principle-card">
+      <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+      <h4>Real Capital Allocation</h4>
+      <p>Live traders receive real capital from the liquidity pool based on their CLIMB Score. No simulated promises &mdash; genuine funding tied to verified performance.</p>
+    </div>
+
+    <div class="principle-card">
+      <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <h4>Transparent Metrics</h4>
+      <p>Every scoring metric is documented, explained, and visible in real time. The public pool dashboard shows total size, trader count, and anonymized distributions.</p>
+    </div>
+
+    <div class="principle-card">
+      <div class="principle-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <h4>Pure Meritocracy</h4>
+      <p>Only performance determines outcomes. Capital allocation, profit splits, and scaling are entirely driven by the CLIMB Score &mdash; no favoritism, no shortcuts.</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<section class="cta-section">
+<div class="container text-center">
+  <h2>Questions about our legal framework?</h2>
+  <p>Our team is available to clarify any aspect of our contracts and policies.</p>
+  <div class="cta-row">
+    <a href="../contact.html" class="btn btn-primary">Contact Us</a>
+    <a href="../faq.html" class="btn btn-outline">Read the FAQ</a>
+  </div>
+</div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="nav-logo" style="margin-bottom:4px"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></div><p>Revolutionary trader funding platform with 100% aligned interests.</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+        <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+      </div></div><div class="footer-col"><div class="footer-col-title">Platform</div><a href="../how-it-works.html">How It Works</a><a href="../pricing.html">Pricing</a><a href="../rules.html">Trading Rules</a><a href="../faq.html">FAQ</a></div><div class="footer-col"><div class="footer-col-title">Company</div><a href="../about.html">About Us</a><a href="../about.html#pool">Liquidity Pool</a><a href="../contact.html">Contact</a></div><div class="footer-col"><div class="footer-col-title">Support</div><a href="../contact.html">Help Center</a><a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a><a href="cgv.html">Terms &amp; Conditions</a><a href="privacy.html">Privacy Policy</a></div></div><div class="footer-bottom"><span>&copy; 2026 Climber Trade. All rights reserved.</span><span class="footer-status">All Systems Operational</span></div></div></footer>
+<script src="../js/translations.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/shared.js"></script>
+</body>
+</html>

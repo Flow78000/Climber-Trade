@@ -17,37 +17,33 @@
 /* ── HERO TITLE ── */
 .hero-title{position:relative;overflow:visible;}
 .hero-title .teal{color:var(--teal);}
-/* Fade in */
-.hero-title.show{
-  animation:smokeIn 1.5s cubic-bezier(.16,1,.3,1) forwards;
+/* Fade in — gentle materialization */
+.hero-title.show{animation:ashIn 1.4s ease-out forwards;}
+@keyframes ashIn{
+  0%{opacity:0;filter:blur(4px);}
+  50%{opacity:.8;filter:blur(1px);}
+  100%{opacity:1;filter:blur(0);}
 }
-@keyframes smokeIn{
-  0%{opacity:0;transform:scale(.96);filter:blur(6px);}
-  40%{opacity:.7;filter:blur(2px);}
-  100%{opacity:1;transform:scale(1);filter:blur(0);}
+/* Ash out — fades while grains escape */
+.hero-title.ash-out{animation:ashOut 3s ease-in forwards;}
+@keyframes ashOut{
+  0%{opacity:1;filter:blur(0);}
+  30%{opacity:.7;filter:blur(0.5px);}
+  60%{opacity:.3;filter:blur(1.5px);}
+  85%{opacity:.06;filter:blur(3px);}
+  100%{opacity:0;filter:blur(5px);}
 }
-/* Smoke out — dissolves in place like ash/smoke */
-.hero-title.smoke-out{
-  animation:smokeOut 3.5s cubic-bezier(.4,0,.2,1) forwards;
-}
-@keyframes smokeOut{
-  0%{opacity:1;transform:scale(1);filter:blur(0);}
-  20%{opacity:.9;transform:scale(1.005);filter:blur(0.5px);}
-  45%{opacity:.45;transform:scale(1.01);filter:blur(3px);}
-  70%{opacity:.12;transform:scale(1.02);filter:blur(6px);}
-  90%{opacity:.02;filter:blur(10px);}
-  100%{opacity:0;transform:scale(1.03);filter:blur(12px);}
-}
-/* Smoke/cinder particles — drift upward gently */
-.cinder{
+/* Fine ash grains — tiny, drift right-to-left like snow/ash in wind */
+.ash-grain{
   position:absolute;border-radius:50%;pointer-events:none;
-  animation:cinderRise var(--cd,2.5s) cubic-bezier(.2,.6,.3,1) forwards;
+  animation:grainDrift var(--gd,3s) linear forwards;
 }
-@keyframes cinderRise{
-  0%{opacity:var(--co,.7);transform:translate(0,0) scale(1);}
-  30%{opacity:calc(var(--co,.7)*0.8);}
-  60%{opacity:calc(var(--co,.7)*0.3);transform:translate(var(--cx),var(--cy)) scale(.4);filter:blur(1.5px);}
-  100%{opacity:0;transform:translate(calc(var(--cx)*1.5),calc(var(--cy)*1.6)) scale(0);filter:blur(3px);}
+@keyframes grainDrift{
+  0%{opacity:var(--go,.5);transform:translate(0,0);}
+  20%{opacity:var(--go,.5);}
+  50%{opacity:calc(var(--go,.5)*0.6);transform:translate(calc(var(--gx)*0.5),calc(var(--gy)*0.4));}
+  80%{opacity:calc(var(--go,.5)*0.15);transform:translate(calc(var(--gx)*0.85),calc(var(--gy)*0.75));filter:blur(1px);}
+  100%{opacity:0;transform:translate(var(--gx),var(--gy));filter:blur(1.5px);}
 }
 .hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
 .hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
@@ -631,31 +627,32 @@
     },delay);
   })();
 })();
-// ── HERO TITLE — smoke/cinder cloud effect (infinite loop) ──
+// ── HERO TITLE — fine ash grain effect (right-to-left like snow) ──
 (function(){
   var el=document.getElementById('heroTitle');
   if(!el)return;
 
-  var COLORS=['#00D4FF','#00D4FF','rgba(255,255,255,0.5)','rgba(0,180,220,0.4)','rgba(100,200,255,0.35)','rgba(200,230,255,0.3)'];
+  var GRAIN_COLORS=['rgba(0,212,255,0.4)','rgba(0,212,255,0.3)','rgba(255,255,255,0.25)','rgba(180,220,255,0.2)','rgba(0,190,230,0.3)'];
 
-  function spawnSmoke(){
+  function spawnAshGrains(){
     var rect=el.getBoundingClientRect();
-    var count=60;
+    var count=100; // lots of tiny grains
     for(var i=0;i<count;i++){
-      var c=document.createElement('span');
-      c.className='cinder';
+      var g=document.createElement('span');
+      g.className='ash-grain';
+      // Start scattered across the title area
       var x=Math.random()*rect.width;
       var y=Math.random()*rect.height;
-      // Drift gently upward + slight random horizontal
-      var cx=(Math.random()*60-30).toFixed(0);
-      var cy=(-30-Math.random()*80).toFixed(0);
-      var sz=(0.5+Math.random()*2.8).toFixed(1);
-      var dur=(2+Math.random()*2).toFixed(1);
-      var delay=(Math.random()*1200).toFixed(0);
-      var opacity=(0.3+Math.random()*0.5).toFixed(2);
-      c.style.cssText='left:'+x+'px;top:'+y+'px;width:'+sz+'px;height:'+sz+'px;--cx:'+cx+'px;--cy:'+cy+'px;--cd:'+dur+'s;--co:'+opacity+';background:'+COLORS[i%COLORS.length]+';animation-delay:'+delay+'ms;';
-      el.appendChild(c);
-      setTimeout(function(e){return function(){e.remove();};}(c),4500);
+      // Drift RIGHT to LEFT (negative X) + slight upward drift — like wind-blown snow
+      var gx=(-60-Math.random()*180).toFixed(0); // always leftward
+      var gy=(-10-Math.random()*40+Math.random()*20).toFixed(0); // mostly up, some down
+      var sz=(0.4+Math.random()*1.2).toFixed(1); // tiny: 0.4 to 1.6px
+      var dur=(2.5+Math.random()*2.5).toFixed(1); // 2.5 to 5s
+      var delay=(Math.random()*1500).toFixed(0); // stagger over 1.5s
+      var opacity=(0.2+Math.random()*0.45).toFixed(2);
+      g.style.cssText='left:'+x+'px;top:'+y+'px;width:'+sz+'px;height:'+sz+'px;--gx:'+gx+'px;--gy:'+gy+'px;--gd:'+dur+'s;--go:'+opacity+';background:'+GRAIN_COLORS[i%GRAIN_COLORS.length]+';animation-delay:'+delay+'ms;';
+      el.appendChild(g);
+      setTimeout(function(e){return function(){e.remove();};}(g),6000);
     }
   }
 
@@ -663,20 +660,20 @@
     el.className='hero-title';
     void el.offsetHeight;
 
-    // Phase 1: Materialize from smoke (1.5s)
+    // Phase 1: Materialize (1.4s)
     el.classList.add('show');
 
-    // Phase 2: Hold visible for 5 seconds
+    // Phase 2: Hold for 5 seconds
 
-    // Phase 3: Smoke out + cinder particles at 6.5s
+    // Phase 3: Ash out + grain particles at 6.4s
     setTimeout(function(){
-      spawnSmoke();
+      spawnAshGrains();
       el.classList.remove('show');
-      el.classList.add('smoke-out');
-    },6500);
+      el.classList.add('ash-out');
+    },6400);
 
-    // Phase 4: Smoke clears (3.5s) + pause (2s) then restart
-    setTimeout(function(){cycle();},6500+4000+2000);
+    // Phase 4: Fully gone (3s) + pause (2s) then restart
+    setTimeout(function(){cycle();},6400+3500+2000);
   }
 
   cycle();
