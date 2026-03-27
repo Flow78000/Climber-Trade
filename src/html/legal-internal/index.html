@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Climber Trade — Internal Legal Documents</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0A0A0A;--surface:#0d0d0d;--card:#131313;--card2:#161616;
+  --border:#1c1c1c;--border2:#222;
+  --teal:#00D4FF;--teal-dim:#00D4FF15;
+  --green:#10B981;--red:#EF4444;--amber:#F59E0B;--purple:#8B5CF6;
+  --text:#F0F0F0;--text2:#8A8A8A;--text3:#444;
+  --font:'Outfit',sans-serif;--mono:'JetBrains Mono',monospace;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.5;}
+.container{max-width:1100px;margin:0 auto;padding:0 32px;}
+
+/* Header */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 32px;border-bottom:1px solid var(--border);
+  max-width:1100px;margin:0 auto;
+}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo svg{width:28px;height:28px;}
+.logo-text{font-size:14px;font-weight:700;letter-spacing:-.2px;}
+.logo-text span{color:var(--teal);}
+.internal-badge{
+  padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;
+  background:#EF444418;color:var(--red);border:1px solid #EF444433;
+}
+
+/* Hero */
+.hero{text-align:center;padding:60px 0 40px;}
+.hero h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin-bottom:10px;}
+.hero p{font-size:16px;color:var(--text2);max-width:500px;margin:0 auto;line-height:1.7;}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:48px;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center;}
+.stat-num{font-size:28px;font-weight:800;font-family:var(--mono);color:var(--teal);letter-spacing:-1px;}
+.stat-label{font-size:11px;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+
+/* Document cards */
+.docs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:48px;}
+.doc{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:24px;display:flex;flex-direction:column;gap:12px;
+  transition:border-color .2s;
+}
+.doc:hover{border-color:var(--border2);}
+.doc-top{display:flex;align-items:center;justify-content:space-between;}
+.doc-type{
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  padding:3px 10px;border-radius:5px;
+}
+.doc-type.contract{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}
+.doc-type.regulation{background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B33;}
+.doc-type.legal{background:#00D4FF15;color:var(--teal);border:1px solid #00D4FF33;}
+.doc-type.nda{background:#EF444418;color:var(--red);border:1px solid #EF444433;}
+.doc-type.program{background:#10B98118;color:var(--green);border:1px solid #10B98133;}
+.doc-date{font-size:11px;color:var(--text3);font-family:var(--mono);}
+.doc h3{font-size:16px;font-weight:700;}
+.doc p{font-size:13px;color:var(--text2);line-height:1.6;}
+.doc-actions{display:flex;gap:8px;margin-top:auto;padding-top:8px;}
+.doc-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:6px;font-size:12px;font-weight:600;
+  text-decoration:none;transition:all .15s;font-family:var(--font);
+  border:none;cursor:pointer;
+}
+.doc-btn.view{background:var(--teal-dim);color:var(--teal);border:1px solid #00D4FF33;}
+.doc-btn.view:hover{background:#00D4FF22;}
+.doc-btn.download{background:var(--card2);color:var(--text2);border:1px solid var(--border);}
+.doc-btn.download:hover{color:var(--text);border-color:var(--border2);}
+.doc-btn svg{width:14px;height:14px;}
+
+/* Section */
+.section-title{
+  font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--text3);margin-bottom:16px;display:flex;align-items:center;gap:10px;
+}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* Footer */
+.footer{
+  border-top:1px solid var(--border);padding:24px 0;margin-top:48px;
+  text-align:center;font-size:12px;color:var(--text3);
+}
+
+@media(max-width:768px){
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .docs{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">
+      <svg viewBox="0 0 40 40" fill="none"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="logo-text">CLI<span>MB</span>ER TRADE</div>
+    </div>
+    <div class="internal-badge">INTERNAL — Not for distribution</div>
+  </div>
+
+  <div class="hero">
+    <h1>Legal Document Center</h1>
+    <p>All contracts, regulations, and legal frameworks. View online or download.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Documents</div></div>
+    <div class="stat"><div class="stat-num">14</div><div class="stat-label">Metrics Covered</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Contract Types</div></div>
+    <div class="stat"><div class="stat-num">Mar 26</div><div class="stat-label">Last Updated</div></div>
+  </div>
+
+  <!-- CONTRACTS -->
+  <div class="section-title">Contracts & Agreements</div>
+  <div class="docs">
+    <div class="doc">
+      <div class="doc-top">
+        <span class="doc-type contract">Contract</span>
+        <span class="doc-date">March 2026</span>
+      </div>
+      <h3>Professional Trader Contract</h3>
+      <p>Live trading agreement — profit splits, capital allocation, scaling, withdrawals, IP, KYC, termination. The core agreement between Climber Trade and funded traders.</p>
+      <div class="doc-actions">
+        <a href="docs/trader-contract.html" class="doc-btn view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View</a>
+        <a href="docs/trader-contract.html" class="doc-btn download" download="Climber-Trade-Trader-Contract.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download HTML</a>
+      </div>
+    </div>
+
+    <div class="doc">
+      <div class="doc-top">
+        <span class="doc-type nda">NDA</span>
+        <span class="doc-date">March 2026</span>
+      </div>
+      <h3>NDA — Beta Testers</h3>
+      <p>Confidentiality agreement for beta participants. Indefinite confidentiality, communication restrictions, sanctions for breach.</p>
+      <div class="doc-actions">
+        <a href="docs/nda.html" class="doc-btn view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View</a>
+        <a href="docs/nda.html" class="doc-btn download" download="Climber-Trade-NDA-Beta.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download HTML</a>
+      </div>
+    </div>
+
+    <div class="doc">
+      <div class="doc-top">
+        <span class="doc-type program">Program</span>
+        <span class="doc-date">March 2026</span>
+      </div>
+      <h3>Referral & Affiliation Program</h3>
+      <p>Referral (-$10/mo per referral, up to free subscription) + Premium Affiliation (15% recurring + 1% payouts, lifetime).</p>
+      <div class="doc-actions">
+        <a href="docs/referral-program.html" class="doc-btn view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View</a>
+        <a href="docs/referral-program.html" class="doc-btn download" download="Climber-Trade-Referral-Program.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download HTML</a>
+      </div>
+    </div>
+
+    <div class="doc">
+      <div class="doc-top">
+        <span class="doc-type contract">Contract</span>
+        <span class="doc-date">March 2026</span>
+      </div>
+      <h3>Liquidity Pool — Technical Spec</h3>
+      <p>Pool funding model, FC formula, %Score allocation, Elite/Standard pools, seniority bonus, scaling mechanism.</p>
+      <div class="doc-actions">
+        <a href="docs/pool-spec.html" class="doc-btn view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View</a>
+        <a href="docs/pool-spec.html" class="doc-btn download" download="Climber-Trade-Pool-Spec.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download HTML</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGULATIONS -->
+  <div class="section-title">Regulations & Rules</div>
+  <div class="docs">
+    <div class="doc">
+      <div class="doc-top">
+        <span class="doc-type regulation">Regulation</span>
+        <span class="doc-date">March 2026</span>
+      </div>
+      <h3>Trading Regulations — Evaluation & Live</h3>
+      <p>Complete trading rules: instruments, styles, position limits, drawdown thresholds, sanctions scale, appeals process.</p>
+      <div class="doc-actions">
+        <a href="docs/trading-rules.html" class="doc-btn view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View</a>
+        <a href="docs/trading-rules.html" class="doc-btn download" download="Climber-Trade-Trading-Rules.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download HTML</a>
+      </div>
+    </div>
+
+    <div class="doc">
+      <div class="doc-top">
+        <span class="doc-type regulation">Regulation</span>
+        <span class="doc-date">March 2026</span>
+      </div>
+      <h3>CLIMB Score — Complete Scoring Reference</h3>
+      <p>All 14 metrics across 4 pillars with barèmes, formulas, confidence factors, and scoring tables.</p>
+      <div class="doc-actions">
+        <a href="../scoring-data-v2.html" class="doc-btn view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View</a>
+        <a href="../scoring-data-v2.html" class="doc-btn download" download="Climber-Trade-Scoring-Reference.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download HTML</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PUBLIC LEGAL -->
+  <div class="section-title">Public Legal Pages (on website)</div>
+  <div class="docs">
+    <div class="doc">
+      <div class="doc-top">
+        <span class="doc-type legal">Legal</span>
+        <span class="doc-date">March 2026</span>
+      </div>
+      <h3>Terms & Conditions (CGV)</h3>
+      <p>Evaluation subscription, resets, payment conditions, cancellation. Published on public website.</p>
+      <div class="doc-actions">
+        <a href="../site/legal/cgv.html" class="doc-btn view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View</a>
+        <a href="../site/legal/cgv.html" class="doc-btn download" download="Climber-Trade-CGV.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</a>
+      </div>
+    </div>
+
+    <div class="doc">
+      <div class="doc-top">
+        <span class="doc-type legal">Legal</span>
+        <span class="doc-date">March 2026</span>
+      </div>
+      <h3>Privacy Policy</h3>
+      <p>Data collection, KYC, RISE WORKS, cookies. Published on public website.</p>
+      <div class="doc-actions">
+        <a href="../site/legal/privacy.html" class="doc-btn view" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View</a>
+        <a href="../site/legal/privacy.html" class="doc-btn download" download="Climber-Trade-Privacy.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2026 Climber Trade — Internal document center. Not for public distribution.</p>
+    <p style="margin-top:6px">Contact: <a href="mailto:contact@climbertrade.com" style="color:var(--teal)">contact@climbertrade.com</a></p>
+  </div>
+</div>
+</body>
+</html>
