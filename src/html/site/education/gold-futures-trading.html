@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gold Futures (GC) Trading Guide: Margins, Strategies, and Tips — Climber Trade</title>
+<meta name="description" content="Complete gold futures (GC) trading guide. 100oz contract, $100/point value, $49,959 margin, safe-haven dynamics, USD correlation, and sizing for funded accounts.">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+.article{max-width:740px;margin:0 auto;}
+.article h2{font-size:22px;font-weight:700;margin:32px 0 12px;color:var(--text);}
+.article h3{font-size:17px;font-weight:600;margin:24px 0 8px;color:var(--teal);}
+.article p{font-size:15px;color:var(--text2);line-height:1.9;margin-bottom:16px;}
+.article ul,.article ol{padding-left:24px;margin-bottom:16px;}
+.article li{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:8px;}
+.article strong{color:var(--text);}
+.article blockquote{border-left:3px solid var(--teal);padding:12px 20px;margin:20px 0;background:var(--card);border-radius:0 var(--r) var(--r) 0;font-style:italic;color:var(--text2);}
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:13px;color:var(--text3);}
+.article-category{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+.article-hero{padding:60px 0 20px;}
+.article-subtitle{font-size:17px;color:var(--text2);line-height:1.7;margin-top:12px;max-width:640px;}
+.cta-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:32px;text-align:center;margin:40px 0 0;}
+.cta-box h3{color:var(--text);font-size:20px;margin-bottom:8px;}
+.cta-box p{font-size:14px;color:var(--text2);margin-bottom:20px;}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="../how-it-works.html" class="nav-link">How It Works</a>
+      <a href="../pricing.html" class="nav-link">Pricing</a>
+      <a href="../rules.html" class="nav-link">Rules</a>
+      <a href="../faq.html" class="nav-link">FAQ</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../how-it-works.html" class="nav-link">How It Works</a>
+  <a href="../pricing.html" class="nav-link">Pricing</a>
+  <a href="../rules.html" class="nav-link">Rules</a>
+  <a href="../faq.html" class="nav-link">FAQ</a>
+  <a href="../about.html" class="nav-link">About</a>
+  <a href="../contact.html" class="nav-link">Contact</a>
+  <a href="../pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- ARTICLE -->
+<section class="article-hero">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="../index.html">Home</a><span class="breadcrumb-sep">/</span>
+      <a href="../academy.html">Education</a><span class="breadcrumb-sep">/</span>
+      <span>Gold Futures (GC) Trading Guide</span>
+    </nav>
+    <span class="article-category" style="background:#10B98118;color:var(--green);border:1px solid #10B98133;">Futures Trading</span>
+    <h1 style="margin-top:12px;font-size:clamp(28px,4vw,42px);">Gold Futures (GC) Trading Guide: Margins, Strategies, and Tips</h1>
+    <p class="article-subtitle">Gold is the ultimate safe-haven asset and one of the most technically clean futures contracts to trade. Here is everything funded traders need to know.</p>
+    <div class="article-meta">
+      <span>10 min read</span>
+      <span>March 2026</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 80px;">
+  <div class="container">
+    <div class="article">
+
+      <h2>Understanding Gold Futures</h2>
+      <p>Gold futures (GC) trade on the COMEX division of the CME Group and represent one of the most liquid commodity contracts globally. Gold occupies a unique space in financial markets: it is simultaneously a commodity, a currency alternative, a safe-haven asset, and an inflation hedge. This multi-dimensional role means gold responds to a wide variety of economic forces, giving traders numerous catalysts and setups throughout every trading session.</p>
+      <p>For prop firm traders, gold offers a compelling combination of moderate volatility, clean technical levels, and strong trending behavior. Unlike crude oil, which can be whipsawed by sudden supply disruptions, gold tends to trend smoothly when directional moves begin, making it well-suited to both trend-following and swing trading approaches.</p>
+
+      <h2>GC Contract Specifications</h2>
+      <ul>
+        <li><strong>Contract Size:</strong> 100 troy ounces of gold.</li>
+        <li><strong>Point Value:</strong> $100 per dollar move. If gold moves from $2,000 to $2,001, that is $100 per contract.</li>
+        <li><strong>Tick Size:</strong> $0.10 per ounce, worth $10.00 per tick.</li>
+        <li><strong>Notional Value:</strong> At $2,000/oz, one contract controls $200,000 worth of gold.</li>
+        <li><strong>Overnight Margin:</strong> Approximately $49,959 — one of the highest margin requirements among major futures contracts.</li>
+        <li><strong>Day Trading Margin:</strong> Typically $5,000 to $10,000 depending on the broker.</li>
+        <li><strong>Trading Hours:</strong> Sunday 6:00 PM ET to Friday 5:00 PM ET, with a daily halt from 5:00 to 6:00 PM ET.</li>
+        <li><strong>Expiration:</strong> Monthly contracts are available, with February, April, June, August, October, and December being the most active months.</li>
+      </ul>
+
+      <h3>Micro Gold (MGC)</h3>
+      <p>The Micro Gold contract (MGC) represents 10 troy ounces — one-tenth the size of the standard GC contract. At $10 per dollar move and $1 per tick, MGC is ideal for traders who want gold exposure with smaller capital commitment. On a Climber Trade <a href="../how-it-works.html" style="color:var(--teal);">funded evaluation account</a>, MGC enables precise position sizing without overshooting your leverage targets.</p>
+
+      <h2>What Drives Gold Prices</h2>
+
+      <h3>The U.S. Dollar Inverse Correlation</h3>
+      <p>Gold and the U.S. dollar share one of the strongest inverse correlations in financial markets. When the dollar strengthens, gold typically falls because it becomes more expensive in other currencies. When the dollar weakens, gold rises as global demand increases. Monitoring the DXY (U.S. Dollar Index) is essential for gold traders — a breakout in the DXY often signals the direction of gold's next major move.</p>
+
+      <h3>Real Interest Rates</h3>
+      <p>Gold pays no yield, so it competes with interest-bearing assets like Treasury bonds. When real interest rates (nominal rates minus inflation) rise, gold becomes less attractive. When real rates fall or go negative, gold becomes more appealing. This is why Fed rate decisions and inflation data are among the most important catalysts for gold. Traders who understand the relationship between the Fed Funds rate, inflation expectations, and gold positioning have a significant edge.</p>
+
+      <h3>Safe-Haven Demand</h3>
+      <p>During periods of geopolitical uncertainty, financial crises, or systemic market stress, capital flows into gold as a store of value. These safe-haven flows can produce rapid, powerful rallies that override all technical analysis. The key for funded traders is to recognize when the market shifts into risk-off mode and position accordingly, while being disciplined enough to exit when the panic subsides.</p>
+
+      <h3>Central Bank Purchases</h3>
+      <p>Central banks around the world have been net buyers of gold in recent years, adding a structural demand floor. When central bank purchases are reported by the World Gold Council, it can reinforce bullish sentiment and support prices during pullbacks.</p>
+
+      <h2>Best Trading Hours for Gold</h2>
+      <p>Gold trades nearly 23 hours a day, but the best opportunities cluster in specific windows:</p>
+      <ul>
+        <li><strong>London Session (3:00 AM - 8:00 AM ET):</strong> The London Bullion Market is the world's primary physical gold market. The London AM Fix (10:30 AM London time / 5:30 AM ET) often sets the tone for the day. This session produces clean directional moves.</li>
+        <li><strong>London-New York Overlap (8:00 AM - 12:00 PM ET):</strong> The highest-volume window. Economic data releases, Fed speakers, and equity market dynamics all converge. This is where professional gold traders focus their attention.</li>
+        <li><strong>U.S. Afternoon (12:00 PM - 2:30 PM ET):</strong> Volume declines but trends established during the overlap tend to continue or consolidate.</li>
+        <li><strong>Asian Session (7:00 PM - 3:00 AM ET):</strong> Generally quieter, though Chinese economic data and physical demand from Asia can create overnight moves worth monitoring.</li>
+      </ul>
+
+      <h2>Why Gold Demands Careful Sizing on Funded Accounts</h2>
+      <p>Gold's high notional value per contract ($200,000 at $2,000/oz) means that even a few contracts on a $1,000,000 account create meaningful leverage:</p>
+      <ul>
+        <li><strong>5 contracts:</strong> $1,000,000 notional = 1x leverage</li>
+        <li><strong>10 contracts:</strong> $2,000,000 notional = 2x leverage (entering the optimal zone)</li>
+        <li><strong>25 contracts:</strong> $5,000,000 notional = 5x leverage (top of optimal zone)</li>
+      </ul>
+      <p>The overnight margin of nearly $50,000 per contract is another critical constraint. If you are holding 10 GC contracts overnight, that ties up $500,000 in margin on a $1M account. Climber Trade's <a href="../rules.html" style="color:var(--teal);">overnight exposure rules</a> limit leverage to 5:1 notional, so plan your end-of-day positions carefully.</p>
+
+      <h2>Strategies for Gold Futures</h2>
+
+      <h3>Trend Following with Moving Averages</h3>
+      <p>Gold is one of the best-trending assets in the futures universe. When a directional move begins, it often persists for days or weeks. A simple strategy uses the 20-period and 50-period exponential moving averages on a 4-hour or daily chart. When the 20 EMA crosses above the 50 EMA, the bias shifts bullish. Traders enter on pullbacks to the 20 EMA with a stop below the 50 EMA. This approach captures multi-day gold trends while keeping risk defined.</p>
+
+      <h3>Fed Announcement Trading</h3>
+      <p>FOMC rate decisions and the accompanying press conference are the most impactful events for gold. The initial reaction in the first 5 minutes after the announcement often reverses, creating a two-phase trade: the knee-jerk reaction and the subsequent true directional move. Experienced gold traders wait 15 to 30 minutes after the announcement before committing to a position, allowing the noise to settle and the institutional direction to emerge.</p>
+
+      <h3>London Breakout</h3>
+      <p>Gold often establishes a narrow range during the Asian session (approximately 7 PM to 3 AM ET). When London opens and volume surges, the first breakout from this range frequently defines the direction for the European and early U.S. session. Traders mark the Asian session high and low, then enter when price breaks through one side with conviction.</p>
+
+      <h3>Gold-Silver Ratio Trades</h3>
+      <p>The gold-to-silver ratio (GC price divided by SI price) fluctuates between approximately 60 and 90 over market cycles. When the ratio reaches extremes, mean reversion traders take positions expecting it to normalize. This is a more advanced strategy suited to swing traders with longer holding periods.</p>
+
+      <h2>Common Mistakes with Gold Trading</h2>
+      <p>The single biggest mistake is underestimating gold's ability to trend without meaningful pullbacks. During strong macro-driven rallies or sell-offs, gold can move $50 to $100 ($5,000 to $10,000 per contract) in a single session with barely a pause. Fading these moves is extremely costly. If you do not have a clear technical reason to be contrarian, respect the trend.</p>
+      <p>Another error is ignoring the overnight margin requirement. Traders who build large intraday positions and forget to flatten before the close can face margin calls when overnight requirements kick in. On a funded account, a forced liquidation at unfavorable prices is devastating to your <a href="max-drawdown-explained.html" style="color:var(--teal);">drawdown metrics</a>.</p>
+
+      <blockquote>Gold rewards patience and macro awareness. The best gold traders think in days and weeks, not minutes and hours, even when executing intraday.</blockquote>
+
+      <!-- CTA -->
+      <div class="cta-box">
+        <h3>Trade Gold Futures on a $1M Evaluation Account</h3>
+        <p>Access professional-grade gold trading with real-time CLIMB Score feedback on every metric.</p>
+        <a href="../signup.html" class="btn btn-primary">Start Your Evaluation</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+          <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="../how-it-works.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../rules.html">Trading Rules</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="../about.html">About Us</a>
+        <a href="../about.html#pool">Liquidity Pool</a>
+        <a href="../about.html#splits">Profit Splits</a>
+        <a href="../pool.html">Liquidity Pool Dashboard</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="../contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="../legal/cgv.html">Terms & Conditions</a>
+        <a href="../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

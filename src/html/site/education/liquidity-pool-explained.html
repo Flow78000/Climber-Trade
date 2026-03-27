@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liquidity Pool Model: How Transparent Prop Firms Allocate Capital — Climber Trade</title>
+<meta name="description" content="Deep dive into how liquidity pool models work at prop firms. Understand Climber Trade's transparent pool funding, allocation formulas, and why pools are safer than fixed guarantees.">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+.article{max-width:740px;margin:0 auto;}
+.article h2{font-size:22px;font-weight:700;margin:32px 0 12px;color:var(--text);}
+.article h3{font-size:17px;font-weight:600;margin:24px 0 8px;color:var(--teal);}
+.article p{font-size:15px;color:var(--text2);line-height:1.9;margin-bottom:16px;}
+.article ul,.article ol{padding-left:24px;margin-bottom:16px;}
+.article li{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:8px;}
+.article strong{color:var(--text);}
+.article blockquote{border-left:3px solid var(--teal);padding:12px 20px;margin:20px 0;background:var(--card);border-radius:0 var(--r) var(--r) 0;font-style:italic;color:var(--text2);}
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:13px;color:var(--text3);}
+.article-category{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="../how-it-works.html" class="nav-link">How It Works</a>
+      <a href="../pricing.html" class="nav-link">Pricing</a>
+      <a href="../rules.html" class="nav-link">Rules</a>
+      <a href="../faq.html" class="nav-link">FAQ</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../how-it-works.html" class="nav-link">How It Works</a>
+  <a href="../pricing.html" class="nav-link">Pricing</a>
+  <a href="../rules.html" class="nav-link">Rules</a>
+  <a href="../faq.html" class="nav-link">FAQ</a>
+  <a href="../about.html" class="nav-link">About</a>
+  <a href="../contact.html" class="nav-link">Contact</a>
+  <a href="../pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<section class="section">
+  <div class="container">
+    <div class="article">
+      <nav class="breadcrumb">
+        <a href="../index.html">Home</a><span class="breadcrumb-sep">/</span>
+        <a href="../faq.html">Education</a><span class="breadcrumb-sep">/</span>
+        <span>Liquidity Pool Explained</span>
+      </nav>
+      <span class="article-category" style="background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;">Advanced</span>
+      <h1 style="margin:16px 0 8px;">Liquidity Pool Model: How Transparent Prop Firms Allocate Capital</h1>
+      <p style="font-size:17px;color:var(--text2);margin-bottom:16px;">Understanding the mechanics behind real capital allocation — and why transparency changes everything.</p>
+      <div class="article-meta">
+        <span>March 2026</span>
+        <span>·</span>
+        <span>10 min read</span>
+      </div>
+
+      <h2>What Is a Liquidity Pool?</h2>
+      <p>In the context of prop firm trading, a liquidity pool is a centralized pool of real capital from which funded traders receive their allocations. Rather than each trader being assigned a separate, fixed account with a predetermined balance, all funded capital exists in a shared pool. Each trader's allocation is a calculated percentage of that pool, determined by their performance metrics.</p>
+      <p>This concept is borrowed from institutional finance, where asset managers allocate capital dynamically across strategies based on performance, risk, and capacity. The pool model aligns the firm's interests with the trader's interests in a way that fixed accounts cannot.</p>
+
+      <h2>The Problem With Traditional Prop Firm Capital</h2>
+      <p>Most prop firms promise a specific account size — $50K, $100K, $200K. But where does that money actually come from? In many cases, the capital is simulated on paper while the firm profits primarily from evaluation fees. When traders request payouts, the firm pays from fee revenue rather than from actual trading profits. This creates a fragile model where a wave of profitable traders can threaten the firm's solvency.</p>
+      <p>Other firms do use real capital but allocate it in fixed blocks without any mechanism to adjust based on performance, pool capacity, or the number of active traders. This leads to overallocation during growth phases and sudden account terminations when the firm realizes it has committed more capital than it can support.</p>
+      <p>The liquidity pool model solves both problems by making allocations dynamic, transparent, and mathematically self-regulating.</p>
+
+      <h2>How Climber Trade's Pool Works</h2>
+      <p>Climber Trade's liquidity pool is funded from two sources, creating a sustainable growth engine that scales with the platform.</p>
+
+      <h3>Funding Source 1: Subscription Revenue</h3>
+      <p>Fifty percent of all evaluation subscription revenue flows directly into the liquidity pool. When a trader pays $199/month for their Standard evaluation, approximately $100 goes toward building the capital pool that funds live traders. This creates a direct link between the number of traders evaluating and the capital available for funding.</p>
+
+      <h3>Funding Source 2: Trading Profits</h3>
+      <p>When a live trader generates profits, the split between trader and firm (50/50 at the base level) sends the firm's portion partially back into the pool. Specifically, 50% of Climber Trade's commission on profits feeds back into the pool. This means profitable trading directly grows the pool, creating a virtuous cycle where trader success increases the capital available for all funded traders.</p>
+
+      <h3>The Cohort Factor</h3>
+      <p>The Cohort Factor (FC) is perhaps the most important safety mechanism in the system. It is calculated based on the total number of traders with a CLIMB Score of 50 or above (the statistical cohort). As this number grows, the FC decreases, automatically reducing individual allocations to prevent the pool from being overextended.</p>
+      <p>The formula is elegantly simple: FC = 1 / (1 + (N_cohort / 50)). With 50 qualifying traders, FC is 0.50. With 200 traders, FC drops to 0.20. This mathematical guardrail means the pool can never be exhausted regardless of how many traders qualify for funding. It self-regulates at every scale.</p>
+
+      <h3>Score-Based Allocation</h3>
+      <p>Within the pool, each trader's share is determined by their CLIMB Score. A trader at the minimum funded threshold of 85 receives a base allocation of 1.00% of the pool. This increases linearly to 2.00% at a perfect score of 100. Additional bonuses for score improvement (the Evolution Prime) and sustained performance (Seniority Bonus) stack on top of this base allocation.</p>
+
+      <blockquote>The pool cannot be exhausted. As more traders qualify, individual allocations adjust automatically. As the platform grows, the pool grows. The math is self-balancing at every scale.</blockquote>
+
+      <h2>Why Pools Are Safer Than Fixed Guarantees</h2>
+      <p>Fixed capital guarantees create fragility. If a firm promises $100K accounts to every trader who passes, and 500 traders pass in a month, the firm suddenly owes $50 million in capital commitments. This is why many firms with fixed models quietly change their rules, add hidden restrictions, or simply stop paying when too many traders succeed.</p>
+      <p>A pool model avoids this entirely because allocations are always a percentage of what actually exists. The total commitments can never exceed 100% of the pool. As more traders qualify, the per-trader allocation adjusts, but every allocation is backed by real capital. There is no scenario where the firm has committed more than it has.</p>
+
+      <h3>Transparency Creates Trust</h3>
+      <p>Climber Trade publishes its pool data on a public dashboard visible to all traders — funded or in evaluation. You can see the total pool size, the number of funded traders, the distribution of allocations (anonymized), and the historical growth of the pool over time. This level of transparency is unprecedented in the prop firm industry and serves as a constant proof that the capital is real.</p>
+
+      <h2>The Elite and Standard Pool Structure</h2>
+      <p>The pool is divided into two tiers. The Standard Pool contains 90% of total capital and serves all funded traders scoring 85 and above. The Elite Pool contains the remaining 10% and is exclusively accessible to traders scoring 95 and above.</p>
+      <p>Elite traders draw from both pools simultaneously. This dual allocation is a powerful incentive to push beyond 85 toward the highest possible score. Because the Elite Pool is shared among far fewer traders, the per-person allocation from this tier can be substantial even though it represents a smaller portion of total capital.</p>
+      <p>For more details on how this translates to actual capital growth, see our guide on <a href="scaling-funded-account.html" style="color:var(--teal);">scaling your funded account</a>.</p>
+
+      <h2>Comparing Capital Models Across the Industry</h2>
+      <p>Understanding how different prop firms handle capital allocation helps you evaluate which model best protects your interests as a trader.</p>
+
+      <h3>Simulated Capital Firms</h3>
+      <p>These firms never deploy real capital. Traders trade on demo accounts, and payouts come from subscription fee revenue. The risk to the trader is that payouts depend entirely on the firm's fee income. If subscriptions decline or too many traders profit simultaneously, the firm cannot pay. Several high-profile closures in 2024 and 2025 followed exactly this pattern.</p>
+
+      <h3>Fixed Real Capital Firms</h3>
+      <p>These firms allocate fixed account sizes funded by real capital but lack dynamic adjustment mechanisms. The risk is over-commitment. If the firm scales too quickly without sufficient capital reserves, it must either restrict new funding or reduce existing accounts. The lack of transparency makes it difficult for traders to assess this risk.</p>
+
+      <h3>Pool-Based Firms</h3>
+      <p>Pool models like Climber Trade's offer the most sustainable structure. Allocations are dynamic, the math is self-regulating, and transparency provides ongoing verification. The trade-off is that your allocation is not a fixed number — it fluctuates with pool size, your score, and the cohort. For most traders, this variability is a small price for the security of knowing the capital is real and the model is sustainable.</p>
+
+      <h2>How to Monitor Your Pool Allocation</h2>
+      <p>Climber Trade's Wallet and Liquidity Pool dashboard provides real-time visibility into your position within the pool. You can see:</p>
+      <ul>
+        <li><strong>Total pool size</strong> and its growth trajectory</li>
+        <li><strong>Your current allocation percentage</strong> and dollar value</li>
+        <li><strong>Your profit split tier</strong> based on current CLIMB Score</li>
+        <li><strong>Cohort statistics</strong> showing total qualified traders</li>
+        <li><strong>Historical pool data</strong> showing month-over-month growth</li>
+      </ul>
+      <p>Monitoring these metrics helps you understand how your trading performance translates into capital allocation and income potential. When you see the pool growing while maintaining a strong CLIMB Score, you know your dollar allocation is increasing even if your percentage stays constant.</p>
+
+      <h2>The Virtuous Cycle</h2>
+      <p>The pool model creates a self-reinforcing positive cycle. More subscribers fund a larger pool. A larger pool attracts better traders. Better traders generate profits. Profits feed back into the pool. The growing pool funds more traders. Each element strengthens the others.</p>
+      <p>This is fundamentally different from the extractive model where the firm profits most when traders fail. At Climber Trade, every participant in the ecosystem benefits from every other participant's success. The <a href="future-of-prop-trading.html" style="color:var(--teal);">future of prop trading</a> is built on this alignment of interests.</p>
+
+      <div style="margin-top:48px;padding:32px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);text-align:center;">
+        <h3 style="color:var(--text);margin-bottom:8px;">Real Capital. Full Transparency.</h3>
+        <p style="margin-bottom:20px;">See the pool dashboard yourself. Join the platform where the capital is real and the numbers are public.</p>
+        <a href="../signup.html" class="btn btn-primary">Start Your Evaluation →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="../how-it-works.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../rules.html">Trading Rules</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="../about.html">About Us</a>
+        <a href="../about.html#pool">Liquidity Pool</a>
+        <a href="../about.html#splits">Profit Splits</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="../contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="../legal/cgv.html">Terms & Conditions</a>
+        <a href="../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

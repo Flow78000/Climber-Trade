@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overnight Positions: Risk Management for Funded Traders | Climber Trade</title>
+<meta name="description" content="Master overnight and weekend position risk management. Learn Climber Trade's exposure limits (5:1 overnight, 1:1 weekend), gap risk strategies, and when to stay flat.">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+.article{max-width:740px;margin:0 auto;}
+.article h2{font-size:22px;font-weight:700;margin:32px 0 12px;color:var(--text);}
+.article h3{font-size:17px;font-weight:600;margin:24px 0 8px;color:var(--teal);}
+.article p{font-size:15px;color:var(--text2);line-height:1.9;margin-bottom:16px;}
+.article ul,.article ol{padding-left:24px;margin-bottom:16px;}
+.article li{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:8px;}
+.article strong{color:var(--text);}
+.article blockquote{border-left:3px solid var(--teal);padding:12px 20px;margin:20px 0;background:var(--card);border-radius:0 var(--r) var(--r) 0;font-style:italic;color:var(--text2);}
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:13px;color:var(--text3);}
+.article-category{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+.article-hero{padding:80px 0 40px;}
+.article-cta{text-align:center;padding:48px 0;}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="../how-it-works.html" class="nav-link">How It Works</a>
+      <a href="../pricing.html" class="nav-link">Pricing</a>
+      <a href="../rules.html" class="nav-link">Rules</a>
+      <a href="../faq.html" class="nav-link">FAQ</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../how-it-works.html" class="nav-link">How It Works</a>
+  <a href="../pricing.html" class="nav-link">Pricing</a>
+  <a href="../rules.html" class="nav-link">Rules</a>
+  <a href="../faq.html" class="nav-link">FAQ</a>
+  <a href="../about.html" class="nav-link">About</a>
+  <a href="../contact.html" class="nav-link">Contact</a>
+  <a href="../pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<section class="article-hero">
+  <div class="container">
+    <div class="article">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="../academy.html">Education</a>
+        <span class="breadcrumb-sep">/</span>
+        <span>Overnight Positions</span>
+      </div>
+      <span class="article-category" style="background:#EF444418;color:var(--red);border:1px solid #EF444433;">Risk Management</span>
+      <h1 style="margin:16px 0 12px;font-size:clamp(28px,4vw,40px);">Overnight Positions: Risk Management for Funded Traders</h1>
+      <p style="font-size:17px;color:var(--text2);margin-bottom:0;">Gap risk is the silent account killer. Here is how funded traders manage it.</p>
+      <div class="article-meta" style="margin-top:16px;">
+        <span>11 min read</span>
+        <span>|</span>
+        <span>Updated March 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 80px;">
+  <div class="container">
+    <div class="article">
+
+      <p>Holding a position overnight introduces a category of risk that does not exist during regular trading hours: gap risk. When markets close, you lose the ability to exit. When they reopen, the price may be materially different from where it closed. For funded traders managing significant capital, understanding and controlling overnight exposure is not optional. It is a core risk management skill.</p>
+
+      <p>Climber Trade allows overnight and weekend positions but enforces strict exposure limits to protect both the trader and the liquidity pool. Knowing these limits and building them into your trading plan is essential for maintaining a strong CLIMB Score.</p>
+
+      <h2>Understanding Gap Risk</h2>
+
+      <p>A gap occurs when a market opens at a price significantly different from its previous close. Gaps are caused by events that occur while markets are shut: earnings announcements, economic data releases, geopolitical events, central bank decisions, or simply the accumulation of order flow that could not be executed during closed hours.</p>
+
+      <p>Gap risk is particularly dangerous because stop losses do not protect you. If you have a stop at $20,000 on a futures contract and the market gaps down to $19,800 at the open, your stop executes at $19,800, not $20,000. The slippage can be substantial, and in extreme events, catastrophic.</p>
+
+      <h3>Historical Gap Examples</h3>
+
+      <p>Major gaps happen more often than most traders realize. Index futures regularly gap 0.5% to 1% after overnight economic data. Commodity markets can gap 2% to 5% following OPEC decisions or weather events. Currency pairs can move 1% to 3% on central bank surprises. In the most extreme cases, like the Swiss franc floor removal in January 2015, gaps of 15% to 30% occurred with no ability to exit.</p>
+
+      <p>For a trader holding $5M notional in a futures position, even a 1% gap represents a $50,000 loss that no stop loss could have prevented. This is why exposure limits exist.</p>
+
+      <h2>Climber Trade Overnight Exposure Rules</h2>
+
+      <p>Climber Trade has clear rules for overnight and weekend exposure that apply to both evaluation and live phases:</p>
+
+      <h3>Overnight Positions (Monday to Thursday)</h3>
+
+      <p>Maximum notional exposure: <strong>5:1 relative to your account equity</strong>. On a $1M account, this means your total overnight notional position cannot exceed $5,000,000.</p>
+
+      <p>To calculate your notional exposure, use the formula:</p>
+
+      <blockquote>Notional = Value per point x Price of asset x Number of contracts</blockquote>
+
+      <p>For example, trading NQ (Nasdaq 100 futures) where the value per point is $20 and the price is approximately 21,000: one contract equals $420,000 notional. At 5:1 on a $1M account, you could hold a maximum of approximately 11 NQ contracts overnight. However, holding that many contracts at 5:1 leverage is aggressive and leaves no room for error. Most professional traders target 2:1 to 3:1 overnight exposure.</p>
+
+      <h3>Weekend Positions (Friday Close to Sunday Open)</h3>
+
+      <p>Maximum notional exposure: <strong>1:1 relative to your account equity</strong>, with an additional requirement that your account balance must be at least <strong>$50,000</strong>.</p>
+
+      <p>The weekend limit is significantly stricter because markets are closed for roughly 48 hours, during which geopolitical events, natural disasters, or policy announcements can occur without any ability to adjust positions. At 1:1 on a $1M account, you can hold a maximum of $1,000,000 notional, which is approximately 2 NQ contracts.</p>
+
+      <h2>Strategies for Managing Overnight Exposure</h2>
+
+      <h3>Reduce Position Size Before the Close</h3>
+
+      <p>The simplest approach is to reduce your position size before the close to meet overnight limits. If you are carrying 8 NQ contracts during the day (approximately 3.4:1 leverage), you might trim to 4 contracts (approximately 1.7:1) before the session ends. This locks in partial profits while keeping directional exposure within safe limits.</p>
+
+      <h3>Use Options as Overnight Hedges</h3>
+
+      <p>If your platform supports options, purchasing a protective put or call against your futures position creates a defined risk profile overnight. The cost of the option is your maximum additional loss beyond the strike price, effectively transforming undefined gap risk into a known, bounded cost.</p>
+
+      <h3>Set Conditional Orders for the Open</h3>
+
+      <p>Place resting orders to reduce or close your position at the next open if the market gaps beyond a certain threshold. While these orders will execute at the gap price rather than your target, they prevent the common mistake of freezing and holding through a gap that continues to move against you.</p>
+
+      <h3>Trade Instruments with Limited Gap Risk</h3>
+
+      <p>Forex markets trade nearly 24 hours from Sunday evening to Friday evening, making significant gaps rare outside of weekends. Similarly, some commodity markets have extended hours that reduce the window for gaps. If overnight holding is central to your strategy, choosing instruments with longer trading hours reduces gap exposure naturally.</p>
+
+      <h2>When to Stay Completely Flat</h2>
+
+      <p>There are specific scenarios where the right decision is to carry zero overnight exposure:</p>
+
+      <ul>
+        <li><strong>Before major economic releases:</strong> Non-Farm Payrolls, CPI, FOMC decisions, and GDP reports can cause gaps of 1% or more on equity indices</li>
+        <li><strong>Before earnings season:</strong> If you trade individual stocks or equity index futures, the cluster of earnings reports can create unpredictable overnight moves</li>
+        <li><strong>During geopolitical uncertainty:</strong> Active conflicts, elections, or policy crises make overnight holding a coinflip rather than a calculated risk</li>
+        <li><strong>When your drawdown is elevated:</strong> If you are already in a <a href="recovery-after-drawdown.html" style="color:var(--teal);">drawdown recovery</a> phase, adding overnight risk is counterproductive</li>
+        <li><strong>On Fridays before long weekends:</strong> Three-day weekends amplify all gap risks</li>
+      </ul>
+
+      <h2>Impact on Your CLIMB Score</h2>
+
+      <p>Overnight positions interact with several CLIMB Score metrics:</p>
+
+      <ul>
+        <li><strong>ABS_NPL:</strong> A gap against your position can create a large negative daily return, which scores poorly. A -3% day from an overnight gap scores approximately 30 points, dragging your cumulative average down significantly.</li>
+        <li><strong>CT4 (Leverage):</strong> If your overnight leverage exceeds the 5:1 limit, this is flagged as a rule violation. Even within limits, overnight leverage above 5x impacts your leverage scoring.</li>
+        <li><strong>INPL (Initial Drawdown):</strong> A gap that pushes your equity significantly below the peak creates a drawdown event that is tracked until you recover to a new high.</li>
+        <li><strong>R_T_AFD:</strong> The <a href="recovery-after-drawdown.html" style="color:var(--teal);">recovery time clock</a> starts immediately when a drawdown occurs, and gap-induced drawdowns are no different. A large overnight gap can put you on the clock for weeks.</li>
+      </ul>
+
+      <h3>The Smart Overnight Strategy</h3>
+
+      <p>Professional funded traders who hold overnight typically follow this framework:</p>
+
+      <ol>
+        <li>Check the economic calendar for any overnight or pre-market events</li>
+        <li>Reduce position size to 2:1 or less notional exposure</li>
+        <li>Set protective stops at levels that, even with slippage, limit losses to 0.5% of equity</li>
+        <li>Only hold positions with a clear multi-day thesis supported by technical and fundamental analysis</li>
+        <li>Never hold overnight during the first 30 days of evaluation when your score history is thin</li>
+      </ol>
+
+      <h2>Weekend Positions: Extra Caution Required</h2>
+
+      <p>The 1:1 notional limit for weekend positions reflects the substantially higher risk of 48-hour exposure. Even within this limit, consider whether the potential upside justifies the risk. A weekend position that generates $2,000 in profit if it works but could cost $15,000 on a gap is not a favorable risk-reward proposition.</p>
+
+      <p>The $50,000 balance requirement for weekend positions serves as an additional safety net. Traders whose accounts have been drawn down significantly are automatically prevented from adding weekend risk on top of existing losses.</p>
+
+      <p>If your strategy requires holding through weekends, ensure you have a clear catalyst thesis and that the position size is conservative enough that even a 3% gap would not meaningfully damage your <a href="daily-loss-limit.html" style="color:var(--teal);">daily performance metrics</a>.</p>
+
+      <h2>Key Takeaways</h2>
+
+      <ul>
+        <li>Gap risk is the primary danger of overnight and weekend positions. Stop losses cannot protect you from gaps.</li>
+        <li>Climber Trade allows overnight positions at 5:1 maximum notional exposure and weekend positions at 1:1 with a $50K balance minimum.</li>
+        <li>Professional traders typically hold overnight at 2:1 to 3:1, well below the maximum limit.</li>
+        <li>Stay flat before major economic events, during elevated drawdowns, and on Fridays before long weekends.</li>
+        <li>A single overnight gap can undo weeks of careful trading. Size positions assuming the worst-case gap scenario.</li>
+        <li>The best overnight position is often no position at all.</li>
+      </ul>
+
+      <div class="article-cta">
+        <h3 style="color:var(--text);font-size:22px;margin-bottom:12px;">Trade smart. Manage risk. Get funded.</h3>
+        <p>Climber Trade rewards traders who respect overnight risk limits. Begin your evaluation and demonstrate professional risk management.</p>
+        <a href="../signup.html" class="btn btn-primary" style="margin-top:16px;">Start Your Evaluation &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+          <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="../how-it-works.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../rules.html">Trading Rules</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="../about.html">About Us</a>
+        <a href="../about.html#pool">Liquidity Pool</a>
+        <a href="../about.html#splits">Profit Splits</a>
+        <a href="../pool.html">Liquidity Pool Dashboard</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="../contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="../legal/cgv.html">Terms & Conditions</a>
+        <a href="../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

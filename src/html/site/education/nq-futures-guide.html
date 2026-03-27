@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nasdaq-100 (NQ) Futures: Why Every Prop Trader Should Know This Contract — Climber Trade</title>
+<meta name="description" content="Complete NQ futures trading guide. $20/point contract specs, $40K+ margin, tech-weighted volatility, momentum strategies, and leverage calculations for funded accounts.">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+.article{max-width:740px;margin:0 auto;}
+.article h2{font-size:22px;font-weight:700;margin:32px 0 12px;color:var(--text);}
+.article h3{font-size:17px;font-weight:600;margin:24px 0 8px;color:var(--teal);}
+.article p{font-size:15px;color:var(--text2);line-height:1.9;margin-bottom:16px;}
+.article ul,.article ol{padding-left:24px;margin-bottom:16px;}
+.article li{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:8px;}
+.article strong{color:var(--text);}
+.article blockquote{border-left:3px solid var(--teal);padding:12px 20px;margin:20px 0;background:var(--card);border-radius:0 var(--r) var(--r) 0;font-style:italic;color:var(--text2);}
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:13px;color:var(--text3);}
+.article-category{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+.article-hero{padding:60px 0 20px;}
+.article-subtitle{font-size:17px;color:var(--text2);line-height:1.7;margin-top:12px;max-width:640px;}
+.cta-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:32px;text-align:center;margin:40px 0 0;}
+.cta-box h3{color:var(--text);font-size:20px;margin-bottom:8px;}
+.cta-box p{font-size:14px;color:var(--text2);margin-bottom:20px;}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="../how-it-works.html" class="nav-link">How It Works</a>
+      <a href="../pricing.html" class="nav-link">Pricing</a>
+      <a href="../rules.html" class="nav-link">Rules</a>
+      <a href="../faq.html" class="nav-link">FAQ</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../how-it-works.html" class="nav-link">How It Works</a>
+  <a href="../pricing.html" class="nav-link">Pricing</a>
+  <a href="../rules.html" class="nav-link">Rules</a>
+  <a href="../faq.html" class="nav-link">FAQ</a>
+  <a href="../about.html" class="nav-link">About</a>
+  <a href="../contact.html" class="nav-link">Contact</a>
+  <a href="../pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- ARTICLE -->
+<section class="article-hero">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="../index.html">Home</a><span class="breadcrumb-sep">/</span>
+      <a href="../academy.html">Education</a><span class="breadcrumb-sep">/</span>
+      <span>Nasdaq-100 (NQ) Futures Guide</span>
+    </nav>
+    <span class="article-category" style="background:#10B98118;color:var(--green);border:1px solid #10B98133;">Futures Trading</span>
+    <h1 style="margin-top:12px;font-size:clamp(28px,4vw,42px);">Nasdaq-100 (NQ) Futures: Why Every Prop Trader Should Know This Contract</h1>
+    <p class="article-subtitle">High volatility, tech-sector exposure, and outsized moves make NQ the favorite futures contract for momentum traders seeking funded capital.</p>
+    <div class="article-meta">
+      <span>11 min read</span>
+      <span>March 2026</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 80px;">
+  <div class="container">
+    <div class="article">
+
+      <h2>What Makes NQ Different from Other Index Futures?</h2>
+      <p>The Nasdaq-100 (NQ) futures contract tracks the 100 largest non-financial companies listed on the Nasdaq exchange. Unlike the broad-based S&P 500, NQ is heavily concentrated in technology stocks — names like Apple, Microsoft, NVIDIA, Amazon, and Meta collectively represent a massive portion of the index weight. This concentration creates a unique trading profile: higher volatility, larger intraday ranges, and stronger momentum characteristics than any other major equity index future.</p>
+      <p>For traders who thrive on movement, NQ delivers. On an average day, NQ produces a range of 200 to 400 points, translating to $4,000 to $8,000 per contract in potential opportunity. On high-volatility days driven by earnings, Fed announcements, or tech sector catalysts, that range can double or triple.</p>
+
+      <h2>NQ Contract Specifications</h2>
+      <p>Knowing these numbers by heart is a prerequisite for any serious NQ trader:</p>
+      <ul>
+        <li><strong>Point Value:</strong> $20 per index point. A 100-point move equals $2,000 per contract.</li>
+        <li><strong>Tick Size:</strong> 0.25 points, worth $5.00 per tick. Four ticks make one full point.</li>
+        <li><strong>Notional Value:</strong> Approximately $420,000 per contract at an index level of 21,000 (calculated as 21,000 x $20).</li>
+        <li><strong>Overnight Margin:</strong> Approximately $40,435. Day trading margins are typically around $18,000 to $20,000 depending on your broker.</li>
+        <li><strong>Expiration:</strong> Quarterly — March, June, September, December. Rollover occurs on the second Thursday of the expiration month.</li>
+        <li><strong>Trading Hours:</strong> Sunday 6:00 PM ET to Friday 5:00 PM ET, with a daily halt from 5:00 to 6:00 PM ET.</li>
+      </ul>
+
+      <h3>The Micro Alternative: MNQ</h3>
+      <p>The Micro E-mini Nasdaq-100 (MNQ) is one-tenth the size of the full NQ contract: $2 per point and $0.50 per tick. For funded traders who want NQ exposure without committing full contract size, MNQ provides surgical precision in position sizing. On a Climber Trade evaluation account, you might use a combination of NQ and MNQ contracts to hit exact leverage targets.</p>
+
+      <h2>NQ Volatility: Opportunity and Risk</h2>
+      <p>NQ's higher volatility compared to ES is both its greatest attraction and its biggest danger. Consider this: a typical NQ daily range of 300 points at $20/point means $6,000 of range per contract. For ES at a 50-point range and $50/point, that is only $2,500. NQ routinely offers more than double the dollar movement of ES.</p>
+      <p>This volatility comes from the tech sector's sensitivity to earnings, interest rate expectations, and growth sentiment. When the Fed signals rate cuts, tech stocks rally aggressively and NQ leads the market higher. When rates rise or growth concerns emerge, NQ sells off harder and faster than ES. Understanding these macro drivers is essential for timing NQ trades correctly.</p>
+
+      <h3>Volatility and Your CLIMB Score</h3>
+      <p>Higher volatility means your daily profit and loss swings will be larger. The <a href="../how-it-works.html" style="color:var(--teal);">CLIMB Score</a> evaluates your daily P&L through the ABS_NPL metric, which penalizes both excessive daily losses and excessive daily gains. A single NQ contract producing a +3% day on your account sounds great, but it actually reduces your Risk Management score because the system rewards consistent, controlled returns rather than outlier days. Plan your NQ position sizes accordingly.</p>
+
+      <h2>Leverage Calculation for a $1M Funded Account</h2>
+      <p>Let us walk through the math that every funded NQ trader needs to understand. On Climber Trade's $1,000,000 evaluation account with NQ at an index level of 21,000:</p>
+      <ul>
+        <li><strong>Notional per contract:</strong> $20 x 21,000 = $420,000</li>
+        <li><strong>1 contract:</strong> 0.42x leverage — conservative but under-leveraged</li>
+        <li><strong>5 contracts:</strong> 2.1x leverage — inside the optimal 2-5x scoring zone</li>
+        <li><strong>12 contracts:</strong> 5.04x leverage — at the upper boundary of optimal</li>
+        <li><strong>24 contracts:</strong> 10.08x leverage — scoring drops to 60/100 for leverage</li>
+      </ul>
+      <p>The sweet spot for NQ on a $1M account is approximately 5 to 12 contracts. This keeps your leverage within the 2x to 5x range that earns the maximum 100/100 on the <a href="leverage-sweet-spot.html" style="color:var(--teal);">leverage scoring metric</a>. Because NQ's notional value per contract is larger than ES, you will naturally trade fewer contracts to achieve similar leverage levels.</p>
+
+      <h2>Strategies Built for NQ's Character</h2>
+
+      <h3>Momentum Breakouts</h3>
+      <p>NQ's tech-driven nature makes it prone to strong directional breakouts, especially after earnings from major components or macroeconomic data releases. Breakout traders identify consolidation ranges on the 5-minute or 15-minute chart, set entry orders at the range boundaries, and ride the move with a trailing stop. NQ breakouts tend to extend further than ES breakouts because momentum traders pile in and short squeezes amplify moves in the tech-heavy index.</p>
+
+      <h3>Opening Range Strategy</h3>
+      <p>The first 15 to 30 minutes after the 9:30 AM ET cash open define the opening range. NQ frequently tests one side of this range and then moves decisively through the other side. Traders who identify whether the opening range break is a genuine directional move or a false breakout can capture substantial gains. A confirmed break of the opening range high with above-average volume is a classic NQ setup.</p>
+
+      <h3>Tech Earnings Catalysts</h3>
+      <p>When mega-cap tech companies report earnings after hours, NQ futures react immediately in the overnight session. A strong earnings beat from a top-5 Nasdaq component can move NQ 200+ points before the next session opens. Experienced traders position ahead of these events with defined risk, or trade the reaction in the overnight session when the move is unfolding. The key is sizing down because overnight volatility is unpredictable.</p>
+
+      <h3>NQ vs. ES Relative Value</h3>
+      <p>Some traders monitor the NQ/ES ratio to identify when tech is outperforming or underperforming the broader market. When NQ leads ES higher, it signals risk-on sentiment and tech strength. When NQ lags or diverges, it suggests rotation into value or defensive sectors. This intermarket analysis adds a layer of conviction to directional NQ trades.</p>
+
+      <h2>Risk Management Specifics for NQ</h2>
+      <p>Because NQ moves faster and further than ES, your stop losses need to account for the instrument's volatility. A 10-point stop on ES ($500) represents a normal tight stop. A 10-point stop on NQ ($200) is extremely tight and likely to get hit by noise. Most professional NQ traders use stops of 20 to 50 points ($400 to $1,000 per contract), calibrated to the current session's volatility.</p>
+      <p>Daily loss limits become especially important with NQ. A <a href="trading-risk-management.html" style="color:var(--teal);">risk management framework</a> that caps daily losses at 1-2% of account value means your NQ position size must be calculated backward from that limit. If your daily loss cap is $10,000 (1% of $1M), and your stop is 40 NQ points ($800 per contract), you can trade a maximum of 12 contracts before hitting your limit on a single losing trade.</p>
+
+      <h2>Common Pitfalls with NQ Trading</h2>
+      <p>The most dangerous mistake NQ traders make is treating it like ES. The two contracts have fundamentally different volatility profiles, and strategies that work on ES often produce outsized losses on NQ. Tight scalping with small stops that works on ES gets destroyed by NQ's wider swings. Conversely, NQ rewards traders who give their positions room to work and focus on catching larger moves.</p>
+      <p>Another frequent error is ignoring sector rotation signals. NQ can diverge sharply from ES when money flows out of tech and into energy, financials, or healthcare. Trading NQ long in a tech-negative environment is fighting a headwind that no amount of chart analysis can overcome. Always check the sector context before committing to a directional NQ bias.</p>
+
+      <blockquote>NQ futures are not for everyone, but for traders with the discipline to manage higher volatility, they offer the most dynamic and rewarding opportunities in the index futures space.</blockquote>
+
+      <h2>Start Trading NQ with Climber Trade</h2>
+      <p>Nasdaq-100 futures are fully supported on the Climber Trade platform across both evaluation and live trading phases. With $1,000,000 in evaluation capital and real-time CLIMB Score feedback, you can develop and refine your NQ strategies while building a track record that leads to <a href="../how-it-works.html" style="color:var(--teal);">funded live capital</a>. The combination of NQ's outsized opportunities and Climber's institutional-grade risk metrics creates an environment where skilled momentum traders can thrive.</p>
+
+      <!-- CTA -->
+      <div class="cta-box">
+        <h3>Ready to Trade NQ Futures on a Funded Account?</h3>
+        <p>Get access to $1,000,000 in simulated capital and prove your trading edge with real-time scoring.</p>
+        <a href="../signup.html" class="btn btn-primary">Start Your Evaluation</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+          <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="../how-it-works.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../rules.html">Trading Rules</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="../about.html">About Us</a>
+        <a href="../about.html#pool">Liquidity Pool</a>
+        <a href="../about.html#splits">Profit Splits</a>
+        <a href="../pool.html">Liquidity Pool Dashboard</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="../contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="../legal/cgv.html">Terms & Conditions</a>
+        <a href="../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

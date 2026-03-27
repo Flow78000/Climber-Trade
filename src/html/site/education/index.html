@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Education Hub — Climber Trade | Guides, Strategies & Insights</title>
+<meta name="description" content="Expert trading guides, prop firm comparisons, futures strategies, risk management techniques, and performance insights. Free education to help you become a funded trader.">
+<meta name="keywords" content="prop trading education, funded trader guide, futures trading, risk management, prop firm comparison, trading strategies">
+<link rel="canonical" href="https://www.climbertrade.com/education/">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+/* ─── EDUCATION HUB ─── */
+.edu-hero{text-align:center;padding:80px 0 48px;}
+.edu-hero h1{margin-bottom:16px;}
+.edu-hero p{font-size:18px;color:var(--text2);max-width:640px;margin:0 auto;line-height:1.7;}
+/* Search */
+.edu-search{max-width:480px;margin:32px auto 0;position:relative;}
+.edu-search input{
+  width:100%;padding:14px 20px 14px 44px;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  color:var(--text);font-family:var(--font);font-size:14px;outline:none;
+  transition:border-color .15s;
+}
+.edu-search input:focus{border-color:var(--teal);}
+.edu-search input::placeholder{color:var(--text3);}
+.edu-search-icon{
+  position:absolute;left:16px;top:50%;transform:translateY(-50%);
+  color:var(--text3);pointer-events:none;
+}
+/* Tabs */
+.edu-tabs{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  justify-content:center;margin:32px 0 40px;
+}
+.edu-tab{
+  padding:8px 18px;border-radius:20px;font-size:13px;font-weight:600;
+  color:var(--text2);background:var(--card);border:1px solid var(--border);
+  cursor:pointer;transition:all .15s;white-space:nowrap;
+}
+.edu-tab:hover{color:var(--text);border-color:var(--border2);}
+.edu-tab.active{color:#000;background:var(--teal);border-color:var(--teal);}
+/* Grid */
+.edu-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+/* Article card */
+.edu-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:28px;display:flex;flex-direction:column;
+  transition:border-color .2s,transform .2s;
+}
+.edu-card:hover{border-color:var(--border2);transform:translateY(-3px);}
+.edu-card-cat{
+  display:inline-block;padding:4px 10px;border-radius:6px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  margin-bottom:14px;width:fit-content;
+}
+.cat-getting-started{background:#10B98118;color:var(--green);border:1px solid #10B98133;}
+.cat-prop-firms{background:var(--teal-dim);color:var(--teal);border:1px solid #00D4FF33;}
+.cat-futures{background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B33;}
+.cat-risk{background:#EF444418;color:var(--red);border:1px solid #EF444433;}
+.cat-performance{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}
+.cat-strategy{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}
+.cat-advanced{background:#06B6D418;color:#06B6D4;border:1px solid #06B6D433;}
+.edu-card h3{font-size:17px;line-height:1.35;margin-bottom:10px;font-weight:700;}
+.edu-card h3 a{transition:color .15s;}
+.edu-card h3 a:hover{color:var(--teal);}
+.edu-card-excerpt{font-size:13px;color:var(--text2);line-height:1.65;flex:1;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.edu-card-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--border);
+}
+.edu-card-time{font-size:11px;color:var(--text3);}
+.edu-card-link{
+  font-size:13px;font-weight:600;color:var(--teal);transition:opacity .15s;
+}
+.edu-card-link:hover{opacity:.8;}
+/* Count */
+.edu-count{text-align:center;font-size:13px;color:var(--text3);margin-bottom:24px;}
+.edu-count span{color:var(--teal);font-weight:700;}
+/* No results */
+.edu-empty{display:none;text-align:center;padding:60px 20px;color:var(--text2);}
+.edu-empty.show{display:block;}
+/* Responsive */
+@media(max-width:1024px){.edu-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){
+  .edu-hero{padding:60px 0 32px;}
+  .edu-grid{grid-template-columns:1fr;}
+  .edu-tabs{gap:6px;}
+  .edu-tab{padding:6px 14px;font-size:12px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="../how-it-works.html" class="nav-link">How It Works</a>
+      <a href="../pricing.html" class="nav-link">Pricing</a>
+      <a href="../rules.html" class="nav-link">Rules</a>
+      <a href="../faq.html" class="nav-link">FAQ</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">&#127760;</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">&#127760;</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">&#127467;&#127479;</span>Fran&ccedil;ais</button><button class="lang-option" data-lang="es"><span class="lang-flag">&#127466;&#127480;</span>Espa&ntilde;ol</button></div></div>
+      <a href="../pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../how-it-works.html" class="nav-link">How It Works</a>
+  <a href="../pricing.html" class="nav-link">Pricing</a>
+  <a href="../rules.html" class="nav-link">Rules</a>
+  <a href="../faq.html" class="nav-link">FAQ</a>
+  <a href="../about.html" class="nav-link">About</a>
+  <a href="../contact.html" class="nav-link">Contact</a>
+  <a href="../pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- HERO -->
+<section class="edu-hero">
+  <div class="container">
+    <div class="section-label" style="justify-content:center">Education</div>
+    <h1>Trading Education <span class="teal">Hub</span></h1>
+    <p>Expert guides, strategies, and insights to help you become a funded trader. From beginner fundamentals to advanced performance optimization.</p>
+    <div class="edu-search">
+      <svg class="edu-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="eduSearch" placeholder="Search articles...">
+    </div>
+  </div>
+</section>
+
+<!-- FILTERS + GRID -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="edu-tabs" id="eduTabs">
+      <button class="edu-tab active" data-cat="all">All</button>
+      <button class="edu-tab" data-cat="getting-started">Getting Started</button>
+      <button class="edu-tab" data-cat="prop-firms">Prop Firms</button>
+      <button class="edu-tab" data-cat="futures">Futures Trading</button>
+      <button class="edu-tab" data-cat="risk">Risk Management</button>
+      <button class="edu-tab" data-cat="performance">Performance</button>
+      <button class="edu-tab" data-cat="strategy">Strategy</button>
+      <button class="edu-tab" data-cat="advanced">Advanced</button>
+    </div>
+    <div class="edu-count" id="eduCount">Showing <span>50</span> articles</div>
+
+    <div class="edu-grid" id="eduGrid">
+
+      <!-- ═══ GETTING STARTED (1-8) ═══ -->
+      <article class="edu-card" data-cat="getting-started" data-title="what is prop trading the complete 2026 guide for beginners">
+        <span class="edu-card-cat cat-getting-started">Getting Started</span>
+        <h3><a href="what-is-prop-trading.html">What Is Prop Trading? The Complete 2026 Guide for Beginners</a></h3>
+        <p class="edu-card-excerpt">Learn what proprietary trading is, how it differs from retail trading, and why prop firms are changing how talented traders access capital.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="what-is-prop-trading.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="getting-started" data-title="how prop firms actually work the truth behind funded trading">
+        <span class="edu-card-cat cat-getting-started">Getting Started</span>
+        <h3><a href="how-prop-firms-work.html">How Prop Firms Actually Work: The Truth Behind Funded Trading</a></h3>
+        <p class="edu-card-excerpt">Go beyond the marketing. Understand the real business model behind prop firms, how they make money, and what that means for your funding.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="how-prop-firms-work.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="getting-started" data-title="prop trading vs retail trading which path is right for you">
+        <span class="edu-card-cat cat-getting-started">Getting Started</span>
+        <h3><a href="prop-trading-vs-retail.html">Prop Trading vs Retail Trading: Which Path Is Right for You?</a></h3>
+        <p class="edu-card-excerpt">Compare the advantages and limitations of trading your own money versus getting funded through a prop firm. Capital, risk, and freedom analyzed.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="prop-trading-vs-retail.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="getting-started" data-title="how to get funded as a trader in 2026 step by step guide">
+        <span class="edu-card-cat cat-getting-started">Getting Started</span>
+        <h3><a href="how-to-get-funded.html">How to Get Funded as a Trader in 2026: Step-by-Step Guide</a></h3>
+        <p class="edu-card-excerpt">A practical roadmap from zero to funded status. Covers choosing a firm, passing evaluation, and managing your first funded account.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">11 min read</span><a href="how-to-get-funded.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="getting-started" data-title="prop firm evaluation process explained what to expect">
+        <span class="edu-card-cat cat-getting-started">Getting Started</span>
+        <h3><a href="evaluation-process-explained.html">Prop Firm Evaluation Process Explained: What to Expect</a></h3>
+        <p class="edu-card-excerpt">Demystifying the evaluation phase. What firms look for, how scoring works, common mistakes, and how to maximize your chances of passing.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="evaluation-process-explained.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="getting-started" data-title="your first 30 days as a funded trader the survival guide">
+        <span class="edu-card-cat cat-getting-started">Getting Started</span>
+        <h3><a href="first-30-days-funded-trader.html">Your First 30 Days as a Funded Trader: The Survival Guide</a></h3>
+        <p class="edu-card-excerpt">The transition from evaluation to live capital is where most traders stumble. Here is what to focus on during the critical first month.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="first-30-days-funded-trader.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="getting-started" data-title="climb score explained how algorithmic scoring changes everything">
+        <span class="edu-card-cat cat-getting-started">Getting Started</span>
+        <h3><a href="climb-score-explained.html">CLIMB Score Explained: How Algorithmic Scoring Changes Everything</a></h3>
+        <p class="edu-card-excerpt">Understand the 4-pillar scoring system that replaces arbitrary pass/fail rules with a transparent, continuous performance rating.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">12 min read</span><a href="climb-score-explained.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="getting-started" data-title="how much can you really earn with a prop firm realistic numbers">
+        <span class="edu-card-cat cat-getting-started">Getting Started</span>
+        <h3><a href="how-much-can-you-earn.html">How Much Can You Really Earn With a Prop Firm? Realistic Numbers</a></h3>
+        <p class="edu-card-excerpt">No hype, no screenshots of cherry-picked results. A data-driven look at realistic income ranges based on score tiers and capital allocation.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="how-much-can-you-earn.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <!-- ═══ PROP FIRM COMPARISONS (9-18) ═══ -->
+      <article class="edu-card" data-cat="prop-firms" data-title="best prop firms in 2026 honest comparison for serious traders">
+        <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
+        <h3><a href="best-prop-firms-2026.html">Best Prop Firms in 2026: Honest Comparison for Serious Traders</a></h3>
+        <p class="edu-card-excerpt">An objective breakdown of the top prop firms by evaluation model, profit splits, instruments, and transparency. No affiliate bias.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">14 min read</span><a href="best-prop-firms-2026.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="prop-firms" data-title="looking for an ftmo alternative heres what to consider in 2026">
+        <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
+        <h3><a href="ftmo-alternative.html">Looking for an FTMO Alternative? Here's What to Consider in 2026</a></h3>
+        <p class="edu-card-excerpt">FTMO set the standard, but the industry has evolved. Explore what newer firms offer that legacy models cannot, from scoring to splits.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="ftmo-alternative.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="prop-firms" data-title="darwinex alternative why traders are switching to score-based funding">
+        <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
+        <h3><a href="darwinex-alternative.html">Darwinex Alternative: Why Traders Are Switching to Score-Based Funding</a></h3>
+        <p class="edu-card-excerpt">Darwinex pioneered investor-trader matching, but score-based models offer simpler paths to real capital without investor dependency.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="darwinex-alternative.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="prop-firms" data-title="topstep vs score-based prop firms a new approach to funded trading">
+        <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
+        <h3><a href="topstep-vs-climber.html">TopStep vs Score-Based Prop Firms: A New Approach to Funded Trading</a></h3>
+        <p class="edu-card-excerpt">TopStep focuses on futures with a combine model. See how score-based systems differ in evaluation length, instruments, and scaling.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="topstep-vs-climber.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="prop-firms" data-title="prop firm scams 7 red flags every trader must know">
+        <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
+        <h3><a href="prop-firm-scams.html">Prop Firm Scams: 7 Red Flags Every Trader Must Know</a></h3>
+        <p class="edu-card-excerpt">The prop firm industry has bad actors. Learn the warning signs that separate legitimate funding platforms from schemes designed to take your money.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="prop-firm-scams.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="prop-firms" data-title="prop firm profit splits explained fixed vs dynamic models">
+        <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
+        <h3><a href="prop-firm-profit-split.html">Prop Firm Profit Splits Explained: Fixed vs Dynamic Models</a></h3>
+        <p class="edu-card-excerpt">Not all 80/20 splits are equal. Understand the mechanics behind fixed and dynamic profit sharing and how it affects your real take-home.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="prop-firm-profit-split.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="prop-firms" data-title="cheapest prop firms in 2026 is cheap actually better">
+        <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
+        <h3><a href="cheapest-prop-firms.html">Cheapest Prop Firms in 2026: Is Cheap Actually Better?</a></h3>
+        <p class="edu-card-excerpt">Low fees attract traders, but cost alone says nothing about value. Analyze what you actually get at each price point and where the real cost lies.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">7 min read</span><a href="cheapest-prop-firms.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="prop-firms" data-title="prop firms that actually pay how to verify before you subscribe">
+        <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
+        <h3><a href="prop-firms-that-actually-pay.html">Prop Firms That Actually Pay: How to Verify Before You Subscribe</a></h3>
+        <p class="edu-card-excerpt">Payment verification is the single most important due diligence step. Learn exactly how to confirm a firm pays before committing your money.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="prop-firms-that-actually-pay.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="prop-firms" data-title="best prop firm for beginners what to look for in 2026">
+        <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
+        <h3><a href="prop-firm-for-beginners.html">Best Prop Firm for Beginners: What to Look for in 2026</a></h3>
+        <p class="edu-card-excerpt">If you are new to funded trading, choosing the wrong firm can cost you months. Here are the criteria that actually matter for beginners.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="prop-firm-for-beginners.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="prop-firms" data-title="why most prop firms are designed for you to fail and how to win">
+        <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
+        <h3><a href="why-prop-firms-fail-traders.html">Why Most Prop Firms Are Designed for You to Fail (And How to Win)</a></h3>
+        <p class="edu-card-excerpt">The uncomfortable truth about prop firm business models, how failure rates are engineered, and the structural changes that fix this.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="why-prop-firms-fail-traders.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <!-- ═══ FUTURES TRADING (19-26) ═══ -->
+      <article class="edu-card" data-cat="futures" data-title="futures trading for beginners everything you need to know">
+        <span class="edu-card-cat cat-futures">Futures Trading</span>
+        <h3><a href="futures-trading-beginners.html">Futures Trading for Beginners: Everything You Need to Know</a></h3>
+        <p class="edu-card-excerpt">A ground-up introduction to futures markets: what they are, how margin works, contract specifications, and why traders prefer them.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">12 min read</span><a href="futures-trading-beginners.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="futures" data-title="best futures contracts to trade in 2026 es nq cl gc compared">
+        <span class="edu-card-cat cat-futures">Futures Trading</span>
+        <h3><a href="best-futures-to-trade.html">Best Futures Contracts to Trade in 2026: ES, NQ, CL, GC Compared</a></h3>
+        <p class="edu-card-excerpt">Side-by-side comparison of the most popular futures contracts. Liquidity, volatility, margin requirements, and which suits your style.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="best-futures-to-trade.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="futures" data-title="e-mini sp 500 es futures the complete trading guide">
+        <span class="edu-card-cat cat-futures">Futures Trading</span>
+        <h3><a href="es-futures-guide.html">E-mini S&amp;P 500 (ES) Futures: The Complete Trading Guide</a></h3>
+        <p class="edu-card-excerpt">The most liquid futures contract in the world. Everything you need to know about trading ES: tick value, sessions, strategies, and tips.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">11 min read</span><a href="es-futures-guide.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="futures" data-title="nasdaq 100 nq futures why every prop trader should know this contract">
+        <span class="edu-card-cat cat-futures">Futures Trading</span>
+        <h3><a href="nq-futures-guide.html">Nasdaq-100 (NQ) Futures: Why Every Prop Trader Should Know This Contract</a></h3>
+        <p class="edu-card-excerpt">NQ offers some of the biggest intraday moves in futures markets. Learn the contract specs, ideal sessions, and risk considerations.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="nq-futures-guide.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="futures" data-title="crude oil cl futures trading margin volatility and strategy">
+        <span class="edu-card-cat cat-futures">Futures Trading</span>
+        <h3><a href="crude-oil-futures.html">Crude Oil (CL) Futures Trading: Margin, Volatility, and Strategy</a></h3>
+        <p class="edu-card-excerpt">Oil futures combine geopolitical sensitivity with high liquidity. Understand what drives CL, how to manage risk, and optimal trade windows.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="crude-oil-futures.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="futures" data-title="gold futures gc trading guide margins strategies and tips">
+        <span class="edu-card-cat cat-futures">Futures Trading</span>
+        <h3><a href="gold-futures-trading.html">Gold Futures (GC) Trading Guide: Margins, Strategies, and Tips</a></h3>
+        <p class="edu-card-excerpt">Gold remains the ultimate safe-haven trade. This guide covers GC contract details, seasonal patterns, and how to trade it on a funded account.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="gold-futures-trading.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="futures" data-title="futures vs forex which market should funded traders choose">
+        <span class="edu-card-cat cat-futures">Futures Trading</span>
+        <h3><a href="futures-vs-forex.html">Futures vs Forex: Which Market Should Funded Traders Choose?</a></h3>
+        <p class="edu-card-excerpt">Both markets offer leverage and liquidity, but the structural differences matter. Transparency, regulation, and execution compared head to head.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="futures-vs-forex.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="futures" data-title="futures margin explained initial maintenance and day trading margins">
+        <span class="edu-card-cat cat-futures">Futures Trading</span>
+        <h3><a href="futures-margin-explained.html">Futures Margin Explained: Initial, Maintenance, and Day Trading Margins</a></h3>
+        <p class="edu-card-excerpt">Margin in futures is not a down payment. Understand the three types of margin, how margin calls work, and how to size positions properly.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="futures-margin-explained.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <!-- ═══ RISK MANAGEMENT (27-34) ═══ -->
+      <article class="edu-card" data-cat="risk" data-title="trading risk management the number one skill that separates winners from losers">
+        <span class="edu-card-cat cat-risk">Risk Management</span>
+        <h3><a href="trading-risk-management.html">Trading Risk Management: The #1 Skill That Separates Winners from Losers</a></h3>
+        <p class="edu-card-excerpt">Every profitable trader has one thing in common: disciplined risk management. Learn the frameworks that protect capital and compound returns.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="trading-risk-management.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="risk" data-title="position sizing for funded traders the complete formula">
+        <span class="edu-card-cat cat-risk">Risk Management</span>
+        <h3><a href="position-sizing-guide.html">Position Sizing for Funded Traders: The Complete Formula</a></h3>
+        <p class="edu-card-excerpt">Position sizing is the mechanical bridge between strategy and survival. Calculate exact lot sizes based on risk tolerance and account capital.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="position-sizing-guide.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="risk" data-title="maximum drawdown explained why its the most important risk metric">
+        <span class="edu-card-cat cat-risk">Risk Management</span>
+        <h3><a href="max-drawdown-explained.html">Maximum Drawdown Explained: Why It's the Most Important Risk Metric</a></h3>
+        <p class="edu-card-excerpt">Drawdown reveals the true risk of any trading strategy. Learn how it is calculated, what levels are acceptable, and how to minimize it.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="max-drawdown-explained.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="risk" data-title="the leverage sweet spot why 2x 5x outperforms everything else">
+        <span class="edu-card-cat cat-risk">Risk Management</span>
+        <h3><a href="leverage-sweet-spot.html">The Leverage Sweet Spot: Why 2x-5x Outperforms Everything Else</a></h3>
+        <p class="edu-card-excerpt">More leverage does not mean more profit. The data shows a clear optimal zone, and going beyond it destroys returns. Here is the evidence.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="leverage-sweet-spot.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="risk" data-title="how to recover after a trading drawdown without revenge trading">
+        <span class="edu-card-cat cat-risk">Risk Management</span>
+        <h3><a href="recovery-after-drawdown.html">How to Recover After a Trading Drawdown Without Revenge Trading</a></h3>
+        <p class="edu-card-excerpt">A drawdown tests both your system and your psychology. This guide provides a structured recovery protocol that keeps emotions out of it.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="recovery-after-drawdown.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="risk" data-title="setting a daily loss limit the rule that saves trading careers">
+        <span class="edu-card-cat cat-risk">Risk Management</span>
+        <h3><a href="daily-loss-limit.html">Setting a Daily Loss Limit: The Rule That Saves Trading Careers</a></h3>
+        <p class="edu-card-excerpt">One bad day can erase a month of gains. Learn how to define, implement, and stick to a daily loss limit that protects your account.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">7 min read</span><a href="daily-loss-limit.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="risk" data-title="overnight positions risk management for funded traders">
+        <span class="edu-card-cat cat-risk">Risk Management</span>
+        <h3><a href="overnight-positions-risk.html">Overnight Positions: Risk Management for Funded Traders</a></h3>
+        <p class="edu-card-excerpt">Holding positions overnight introduces gap risk and margin requirements most day traders overlook. Here is how to manage it properly.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="overnight-positions-risk.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="risk" data-title="trading psychology how to handle losses like a professional">
+        <span class="edu-card-cat cat-risk">Risk Management</span>
+        <h3><a href="trading-psychology-losses.html">Trading Psychology: How to Handle Losses Like a Professional</a></h3>
+        <p class="edu-card-excerpt">Losses are not the problem. Your reaction to losses is. Build the mental frameworks that institutional traders use to stay disciplined.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="trading-psychology-losses.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <!-- ═══ PERFORMANCE & STRATEGY (35-42) ═══ -->
+      <article class="edu-card" data-cat="performance" data-title="profit factor explained the metric that reveals your true edge">
+        <span class="edu-card-cat cat-performance">Performance</span>
+        <h3><a href="profit-factor-explained.html">Profit Factor Explained: The Metric That Reveals Your True Edge</a></h3>
+        <p class="edu-card-excerpt">Profit Factor is the ratio of gross profit to gross loss. Learn what scores are good, great, and suspicious, and how to improve yours.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="profit-factor-explained.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="performance" data-title="sharpe ratio for traders what it means and why it matters">
+        <span class="edu-card-cat cat-performance">Performance</span>
+        <h3><a href="sharpe-ratio-traders.html">Sharpe Ratio for Traders: What It Means and Why It Matters</a></h3>
+        <p class="edu-card-excerpt">The Sharpe Ratio measures risk-adjusted returns. Understand how it is calculated, what scores fund managers target, and how to optimize it.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="sharpe-ratio-traders.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="performance" data-title="win rate vs risk to reward finding your optimal balance">
+        <span class="edu-card-cat cat-performance">Performance</span>
+        <h3><a href="win-rate-vs-risk-reward.html">Win Rate vs Risk-to-Reward: Finding Your Optimal Balance</a></h3>
+        <p class="edu-card-excerpt">High win rate or high R:R? The answer depends on your strategy. Learn the mathematical relationship and find your sweet spot.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="win-rate-vs-risk-reward.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="strategy" data-title="consistency in trading why boring traders make the most money">
+        <span class="edu-card-cat cat-strategy">Strategy</span>
+        <h3><a href="consistency-in-trading.html">Consistency in Trading: Why Boring Traders Make the Most Money</a></h3>
+        <p class="edu-card-excerpt">The market rewards repetition, not heroics. Discover why the most funded traders are the most predictable ones.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="consistency-in-trading.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="strategy" data-title="scalping vs swing trading which style fits your personality">
+        <span class="edu-card-cat cat-strategy">Strategy</span>
+        <h3><a href="scalping-vs-swing-trading.html">Scalping vs Swing Trading: Which Style Fits Your Personality?</a></h3>
+        <p class="edu-card-excerpt">Your trading style must match your temperament. Compare time commitment, stress levels, capital needs, and expected returns for each approach.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="scalping-vs-swing-trading.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="strategy" data-title="algorithmic trading with prop firms rules tips and best practices">
+        <span class="edu-card-cat cat-strategy">Strategy</span>
+        <h3><a href="algorithmic-trading-prop-firms.html">Algorithmic Trading with Prop Firms: Rules, Tips, and Best Practices</a></h3>
+        <p class="edu-card-excerpt">Algo trading on funded accounts has specific considerations. Understand what is allowed, how to comply with rules, and optimize your bots.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="algorithmic-trading-prop-firms.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="strategy" data-title="news trading strategy how to trade high impact events safely">
+        <span class="edu-card-cat cat-strategy">Strategy</span>
+        <h3><a href="news-trading-strategy.html">News Trading Strategy: How to Trade High-Impact Events Safely</a></h3>
+        <p class="edu-card-excerpt">Economic releases create massive volatility. Learn to identify tradable events, manage slippage risk, and protect your funded account.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="news-trading-strategy.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="strategy" data-title="trading journal guide track your way to funded status">
+        <span class="edu-card-cat cat-strategy">Strategy</span>
+        <h3><a href="trading-journal-guide.html">Trading Journal Guide: Track Your Way to Funded Status</a></h3>
+        <p class="edu-card-excerpt">A trading journal is not optional. It is the single most effective tool for identifying patterns, fixing leaks, and accelerating your progress.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="trading-journal-guide.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <!-- ═══ ADVANCED & BUSINESS (43-50) ═══ -->
+      <article class="edu-card" data-cat="advanced" data-title="scaling your funded account from 1m to unlimited capital">
+        <span class="edu-card-cat cat-advanced">Advanced</span>
+        <h3><a href="scaling-funded-account.html">Scaling Your Funded Account: From $1M to Unlimited Capital</a></h3>
+        <p class="edu-card-excerpt">Getting funded is step one. Learn the mechanics of capital scaling, how performance-based allocation works, and what drives account growth.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="scaling-funded-account.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="advanced" data-title="prop firm taxes how funded traders handle tax obligations in 2026">
+        <span class="edu-card-cat cat-advanced">Advanced</span>
+        <h3><a href="prop-firm-taxes.html">Prop Firm Taxes: How Funded Traders Handle Tax Obligations in 2026</a></h3>
+        <p class="edu-card-excerpt">Funded trading income has specific tax implications. Understand your status, reporting requirements, and strategies for different jurisdictions.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="prop-firm-taxes.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="advanced" data-title="trading as a career can you actually make a living from prop firms">
+        <span class="edu-card-cat cat-advanced">Advanced</span>
+        <h3><a href="trading-as-career.html">Trading as a Career: Can You Actually Make a Living From Prop Firms?</a></h3>
+        <p class="edu-card-excerpt">The honest assessment of whether prop firm trading can replace a salary. Income stability, time horizons, and what the successful minority does differently.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">11 min read</span><a href="trading-as-career.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="advanced" data-title="liquidity pool model how transparent prop firms allocate capital">
+        <span class="edu-card-cat cat-advanced">Advanced</span>
+        <h3><a href="liquidity-pool-explained.html">Liquidity Pool Model: How Transparent Prop Firms Allocate Capital</a></h3>
+        <p class="edu-card-excerpt">The pool model replaces opaque fixed allocations with a transparent, self-regulating capital distribution system. Here is how it works.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="liquidity-pool-explained.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="advanced" data-title="building passive income through trading referral programs">
+        <span class="edu-card-cat cat-advanced">Advanced</span>
+        <h3><a href="referral-income-trading.html">Building Passive Income Through Trading Referral Programs</a></h3>
+        <p class="edu-card-excerpt">Referral and affiliate programs can generate recurring income alongside your trading. Understand the models and maximize your earnings.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">7 min read</span><a href="referral-income-trading.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="advanced" data-title="crypto prop trading in 2026 btc and eth on funded accounts">
+        <span class="edu-card-cat cat-advanced">Advanced</span>
+        <h3><a href="crypto-prop-trading.html">Crypto Prop Trading in 2026: BTC and ETH on Funded Accounts</a></h3>
+        <p class="edu-card-excerpt">Cryptocurrency is entering the prop firm space. Learn which firms support BTC and ETH trading, the unique risks, and how to adapt your strategy.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="crypto-prop-trading.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="advanced" data-title="prop firm rules decoded whats really prohibited and why">
+        <span class="edu-card-cat cat-advanced">Advanced</span>
+        <h3><a href="prop-firm-rules-decoded.html">Prop Firm Rules Decoded: What's Really Prohibited and Why</a></h3>
+        <p class="edu-card-excerpt">Most rule violations are accidental. Decode the reasoning behind common restrictions and learn how to trade freely within the boundaries.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="prop-firm-rules-decoded.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+      <article class="edu-card" data-cat="advanced" data-title="the future of prop trading 5 trends reshaping the industry in 2026">
+        <span class="edu-card-cat cat-advanced">Advanced</span>
+        <h3><a href="future-of-prop-trading.html">The Future of Prop Trading: 5 Trends Reshaping the Industry in 2026</a></h3>
+        <p class="edu-card-excerpt">The prop trading landscape is evolving fast. From AI-driven scoring to decentralized pools, these five trends will define the next era.</p>
+        <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="future-of-prop-trading.html" class="edu-card-link">Read &rarr;</a></div>
+      </article>
+
+    </div>
+
+    <div class="edu-empty" id="eduEmpty">
+      <h3>No articles found</h3>
+      <p style="margin-top:8px;color:var(--text3);">Try a different search term or category.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="section-label" style="justify-content:center">Ready?</div>
+    <h2>Start Your Trading <span class="teal">Career</span></h2>
+    <p>Apply what you have learned. Get evaluated, get scored, get funded.</p>
+    <div class="cta-row">
+      <a href="../pricing.html" class="btn btn-primary btn-lg">Start Your Evaluation &rarr;</a>
+      <a href="../how-it-works.html" class="btn btn-outline btn-lg">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+        <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+      </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="../how-it-works.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../rules.html">Trading Rules</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="../about.html">About Us</a>
+        <a href="../about.html#pool">Liquidity Pool</a>
+        <a href="../about.html#splits">Profit Splits</a>
+        <a href="../pool.html">Liquidity Pool Dashboard</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="../contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="../legal/cgv.html">Terms & Conditions</a>
+        <a href="../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/shared.js"></script>
+<script>
+// ─── EDUCATION HUB FILTERING ───
+(function(){
+  const tabs = document.querySelectorAll('.edu-tab');
+  const cards = document.querySelectorAll('.edu-card');
+  const search = document.getElementById('eduSearch');
+  const countEl = document.getElementById('eduCount');
+  const emptyEl = document.getElementById('eduEmpty');
+  const grid = document.getElementById('eduGrid');
+  let activeCat = 'all';
+
+  function updateCount(){
+    const visible = grid.querySelectorAll('.edu-card:not([style*="display: none"])');
+    countEl.querySelector('span').textContent = visible.length;
+    emptyEl.classList.toggle('show', visible.length === 0);
+  }
+
+  function filterCards(){
+    const q = search.value.toLowerCase().trim();
+    cards.forEach(card => {
+      const cat = card.dataset.cat;
+      const title = card.dataset.title;
+      const matchCat = activeCat === 'all' || cat === activeCat;
+      const matchSearch = !q || title.includes(q);
+      card.style.display = matchCat && matchSearch ? '' : 'none';
+    });
+    updateCount();
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeCat = tab.dataset.cat;
+      filterCards();
+    });
+  });
+
+  search.addEventListener('input', filterCards);
+  updateCount();
+})();
+</script>
+</body>
+</html>

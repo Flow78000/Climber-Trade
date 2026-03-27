@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Win Rate vs Risk-to-Reward: Finding Your Optimal Balance | Climber Trade</title>
+<meta name="description" content="Understand the tradeoff between win rate and risk-to-reward ratio. Learn breakeven analysis, why Climber scores win rate separately, and how to find your optimal combination.">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+.article{max-width:740px;margin:0 auto;}
+.article h2{font-size:22px;font-weight:700;margin:32px 0 12px;color:var(--text);}
+.article h3{font-size:17px;font-weight:600;margin:24px 0 8px;color:var(--teal);}
+.article p{font-size:15px;color:var(--text2);line-height:1.9;margin-bottom:16px;}
+.article ul,.article ol{padding-left:24px;margin-bottom:16px;}
+.article li{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:8px;}
+.article strong{color:var(--text);}
+.article blockquote{border-left:3px solid var(--teal);padding:12px 20px;margin:20px 0;background:var(--card);border-radius:0 var(--r) var(--r) 0;font-style:italic;color:var(--text2);}
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:13px;color:var(--text3);}
+.article-category{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+.article-hero{padding:80px 0 40px;}
+.article-cta{text-align:center;padding:48px 0;}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="../how-it-works.html" class="nav-link">How It Works</a>
+      <a href="../pricing.html" class="nav-link">Pricing</a>
+      <a href="../rules.html" class="nav-link">Rules</a>
+      <a href="../faq.html" class="nav-link">FAQ</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../how-it-works.html" class="nav-link">How It Works</a>
+  <a href="../pricing.html" class="nav-link">Pricing</a>
+  <a href="../rules.html" class="nav-link">Rules</a>
+  <a href="../faq.html" class="nav-link">FAQ</a>
+  <a href="../about.html" class="nav-link">About</a>
+  <a href="../contact.html" class="nav-link">Contact</a>
+  <a href="../pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<section class="article-hero">
+  <div class="container">
+    <div class="article">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="../academy.html">Education</a>
+        <span class="breadcrumb-sep">/</span>
+        <span>Win Rate vs R:R</span>
+      </div>
+      <span class="article-category" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B33;">Performance</span>
+      <h1 style="margin:16px 0 12px;font-size:clamp(28px,4vw,40px);">Win Rate vs Risk-to-Reward: Finding Your Optimal Balance</h1>
+      <p style="font-size:17px;color:var(--text2);margin-bottom:0;">Two levers, one equation. Understanding the tradeoff that defines every trading strategy.</p>
+      <div class="article-meta" style="margin-top:16px;">
+        <span>11 min read</span>
+        <span>|</span>
+        <span>Updated March 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 80px;">
+  <div class="container">
+    <div class="article">
+
+      <p>Every trading strategy sits somewhere on a spectrum defined by two variables: how often you win and how much you win relative to how much you lose. These two variables, win rate and risk-to-reward ratio, are inversely related. Strategies with very high win rates tend to have small average wins relative to average losses. Strategies with large risk-to-reward ratios tend to win less frequently. Neither approach is inherently better. What matters is finding the combination that matches your personality, your market, and your scoring goals.</p>
+
+      <h2>The Fundamental Tradeoff</h2>
+
+      <p>Win rate and risk-to-reward are linked by a basic mathematical relationship. If you tighten your profit target (take profits sooner), your win rate goes up because the market has to move less to reach your target. But your average win shrinks. If you widen your profit target, your average win grows but your win rate drops because fewer trades reach the extended target.</p>
+
+      <p>The same dynamic works on the loss side. A tight stop loss reduces your average loss but increases the frequency of being stopped out (lower win rate). A wide stop loss means fewer stop-outs (higher win rate) but larger average losses when they occur.</p>
+
+      <h3>Two Valid Approaches</h3>
+
+      <p><strong>High Win Rate + Small R:R (The Scalper Approach):</strong> Win 70% of trades with an average win of $400 and an average loss of $600. This creates a Profit Factor of (0.70 x 400) / (0.30 x 600) = 280 / 180 = 1.56. Profitable, with the psychological comfort of winning frequently.</p>
+
+      <p><strong>Low Win Rate + Big R:R (The Trend Follower Approach):</strong> Win 35% of trades with an average win of $2,500 and an average loss of $500. This creates a Profit Factor of (0.35 x 2500) / (0.65 x 500) = 875 / 325 = 2.69. More profitable per trade, but psychologically demanding because you lose more often than you win.</p>
+
+      <p>Both are profitable. Both are valid. The choice depends on execution capability, market conditions, and temperament.</p>
+
+      <h2>Breakeven Analysis: The Math You Need</h2>
+
+      <p>The breakeven win rate is the minimum win rate you need to avoid losing money at a given risk-to-reward ratio. The formula is:</p>
+
+      <blockquote>Breakeven Win Rate = 1 / (1 + Risk-to-Reward Ratio)</blockquote>
+
+      <p>Here is the breakeven table that every trader should memorize:</p>
+
+      <ul>
+        <li><strong>R:R 0.5:1</strong> (risking $1 to make $0.50) = Breakeven at 66.7% win rate</li>
+        <li><strong>R:R 1:1</strong> (risking $1 to make $1) = Breakeven at 50.0% win rate</li>
+        <li><strong>R:R 1.5:1</strong> (risking $1 to make $1.50) = Breakeven at 40.0% win rate</li>
+        <li><strong>R:R 2:1</strong> (risking $1 to make $2) = Breakeven at 33.3% win rate</li>
+        <li><strong>R:R 3:1</strong> (risking $1 to make $3) = Breakeven at 25.0% win rate</li>
+        <li><strong>R:R 5:1</strong> (risking $1 to make $5) = Breakeven at 16.7% win rate</li>
+      </ul>
+
+      <p>To be profitable, your actual win rate must exceed the breakeven rate for your R:R. The margin between your actual win rate and breakeven is your edge. A wider margin means a stronger edge and more room for error.</p>
+
+      <h2>How Climber Trade Scores Win Rate</h2>
+
+      <p>Climber Trade tracks win rate as the <strong>CT1 metric</strong> within the Consistency and Trading Style pillar. The scoring reveals important design decisions about what constitutes professional performance:</p>
+
+      <ul>
+        <li><strong>Win rate below 45%:</strong> Negative score (-1 point at 45%)</li>
+        <li><strong>Win rate 46%:</strong> Approximately breakeven (near 0 points)</li>
+        <li><strong>Win rate 50%:</strong> +11 points</li>
+        <li><strong>Win rate 55%:</strong> +23 points</li>
+        <li><strong>Win rate 60%:</strong> +35 points</li>
+        <li><strong>Win rate 70%:</strong> +58.3 points</li>
+        <li><strong>Win rate 80%:</strong> +72.3 points</li>
+        <li><strong>Win rate 100%:</strong> +100 points</li>
+      </ul>
+
+      <p>The scoring system assigns negative points below 46%. This is a critical threshold. It means that if your strategy relies on a very low win rate compensated by large risk-to-reward ratios, the CT1 metric will penalize you even if your overall profitability is strong.</p>
+
+      <h3>The Confidence Factor</h3>
+
+      <p>The CT1 metric applies a confidence factor based on trading days:</p>
+
+      <blockquote>Confidence Index = min(1, Total Trading Days / 22)</blockquote>
+
+      <p>Your raw win rate score is multiplied by this factor. A trader with only 10 days of trading history receives approximately 45% of their full win rate score. Full weight is achieved after 22 trading days. This prevents a small sample of wins from inflating the score.</p>
+
+      <h2>Finding YOUR Optimal Combination</h2>
+
+      <p>The best win rate and R:R combination for you depends on several factors that go beyond pure mathematics.</p>
+
+      <h3>Personality and Stress Tolerance</h3>
+
+      <p>Be honest with yourself. If losing 6 out of 10 trades causes you significant <a href="trading-psychology-losses.html" style="color:var(--teal);">psychological distress</a>, a trend-following strategy with a 40% win rate will be difficult to execute consistently, no matter how profitable it is on paper. You will second-guess entries, cut winners short, and deviate from the plan exactly when discipline matters most.</p>
+
+      <p>Conversely, if you are patient and analytical, a high win rate scalping approach may feel frantic and draining. Your execution quality will deteriorate with fatigue, and the thin margins leave little room for error.</p>
+
+      <h3>Market Conditions</h3>
+
+      <p>Trending markets favor low win rate, high R:R approaches because extended moves are available. Range-bound markets favor high win rate, low R:R approaches because prices oscillate between predictable boundaries. The best traders adapt their approach to the current market regime rather than forcing one style onto all conditions.</p>
+
+      <h3>Time Commitment</h3>
+
+      <p>High win rate strategies typically require more screen time because they involve frequent entries with tight management. Low win rate, high R:R strategies often require less active monitoring because positions are held longer with wider stops. Match your strategy to the time you can realistically commit.</p>
+
+      <h2>The Scoring Optimization Framework</h2>
+
+      <p>Given how the CLIMB Score weights different metrics, here is a framework for optimizing your win rate and R:R combination:</p>
+
+      <h3>Target Win Rate: 55% to 65%</h3>
+
+      <p>This range scores well on CT1 (23 to 42 points) without requiring an unsustainably high hit rate. It also supports a healthy <a href="profit-factor-explained.html" style="color:var(--teal);">Profit Factor</a> when combined with a reasonable R:R.</p>
+
+      <h3>Target R:R: 1.5:1 to 2.5:1</h3>
+
+      <p>This range means your average win is 1.5 to 2.5 times your average loss. Combined with a 55-65% win rate, it produces Profit Factors in the 1.5 to 3.0 range, which scores 70 to 95 points on the PI3 metric.</p>
+
+      <h3>The Sweet Spot</h3>
+
+      <p>A trader with a 58% win rate and a 2:1 average R:R has:</p>
+
+      <ul>
+        <li><strong>Profit Factor:</strong> (0.58 x 2) / (0.42 x 1) = 1.16 / 0.42 = 2.76 (scores approximately 95)</li>
+        <li><strong>Win Rate Score:</strong> Approximately 28 points on CT1</li>
+        <li><strong>Psychological comfort:</strong> Winning more than half the time while still having meaningful upside per trade</li>
+      </ul>
+
+      <p>This combination produces strong scores across multiple metrics while being psychologically sustainable for most traders.</p>
+
+      <h2>Common Mistakes in the Win Rate / R:R Balance</h2>
+
+      <h3>Chasing a High Win Rate by Taking Profits Too Early</h3>
+
+      <p>Some traders become addicted to the feeling of winning and consistently take profits at minimal levels. They might win 80% of their trades but with average wins of $200 against average losses of $800. The Profit Factor is only 0.80, meaning they are losing money despite winning constantly. Do not let the emotional comfort of a high win rate mask a negative expectancy.</p>
+
+      <h3>Refusing to Take Losses</h3>
+
+      <p>Holding losing trades indefinitely in the hope they reverse artificially inflates your win rate (because you never realize losses) while creating catastrophic tail risk. Eventually, one position will not recover, and the loss will wipe out months of small gains.</p>
+
+      <h3>Inconsistent Application</h3>
+
+      <p>Some traders alternate between tight and wide stops, small and large targets, depending on how they feel that day. This inconsistency makes it impossible to develop a reliable win rate or R:R ratio. The <a href="consistency-in-trading.html" style="color:var(--teal);">consistency metrics</a> in the CLIMB Score specifically detect and penalize this behavior through the LSR and Kurtosis measurements.</p>
+
+      <h2>Building Your Personal Profile</h2>
+
+      <p>After 100 trades, analyze your actual data:</p>
+
+      <ol>
+        <li>Calculate your real win rate (winning trades / total trades)</li>
+        <li>Calculate your actual R:R (average win / average loss)</li>
+        <li>Plot these against the breakeven table to measure your edge margin</li>
+        <li>Calculate your <a href="profit-factor-explained.html" style="color:var(--teal);">Profit Factor</a> to confirm profitability</li>
+        <li>Identify which metric is weaker (win rate or R:R) and focus improvement there</li>
+      </ol>
+
+      <p>Most traders find that one side of the equation is significantly stronger than the other. A trader with a 70% win rate but 0.8:1 R:R should focus on improving R:R by letting winners run longer. A trader with a 3:1 R:R but 30% win rate should focus on filtering setups to improve the hit rate.</p>
+
+      <blockquote>The goal is not the highest win rate or the highest R:R. The goal is the combination that produces the strongest Profit Factor and the highest CLIMB Score while remaining psychologically executable day after day.</blockquote>
+
+      <h2>Key Takeaways</h2>
+
+      <ul>
+        <li>Win rate and risk-to-reward are inversely related. Optimizing one usually comes at the expense of the other.</li>
+        <li>The breakeven formula (1 / (1 + R:R)) tells you the minimum win rate you need to be profitable.</li>
+        <li>Climber Trade scores win rate below 46% as negative. This penalizes strategies that rely on very low win rates.</li>
+        <li>The optimal range for most traders is 55-65% win rate with 1.5:1 to 2.5:1 risk-to-reward.</li>
+        <li>Match your win rate / R:R profile to your personality, market conditions, and available time.</li>
+        <li>After 100+ trades, use real data to identify whether to improve win rate or R:R for the biggest scoring impact.</li>
+      </ul>
+
+      <div class="article-cta">
+        <h3 style="color:var(--text);font-size:22px;margin-bottom:12px;">Find your edge. Prove it with data.</h3>
+        <p>Climber Trade's CLIMB Score measures both your win rate and your profitability independently. Start your evaluation and discover your optimal trading profile.</p>
+        <a href="../signup.html" class="btn btn-primary" style="margin-top:16px;">Start Your Evaluation &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+          <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="../how-it-works.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../rules.html">Trading Rules</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="../about.html">About Us</a>
+        <a href="../about.html#pool">Liquidity Pool</a>
+        <a href="../about.html#splits">Profit Splits</a>
+        <a href="../pool.html">Liquidity Pool Dashboard</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="../contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="../legal/cgv.html">Terms & Conditions</a>
+        <a href="../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

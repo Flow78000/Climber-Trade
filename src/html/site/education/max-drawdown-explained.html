@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maximum Drawdown Explained: Why It's the Most Important Risk Metric — Climber Trade</title>
+<meta name="description" content="Understand maximum drawdown: peak-to-trough calculation, absolute vs relative DD, recovery time, and how Climber Trade tracks MDD, INPL, and ABS_NPL drawdown metrics.">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+.article{max-width:740px;margin:0 auto;}
+.article h2{font-size:22px;font-weight:700;margin:32px 0 12px;color:var(--text);}
+.article h3{font-size:17px;font-weight:600;margin:24px 0 8px;color:var(--teal);}
+.article p{font-size:15px;color:var(--text2);line-height:1.9;margin-bottom:16px;}
+.article ul,.article ol{padding-left:24px;margin-bottom:16px;}
+.article li{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:8px;}
+.article strong{color:var(--text);}
+.article blockquote{border-left:3px solid var(--teal);padding:12px 20px;margin:20px 0;background:var(--card);border-radius:0 var(--r) var(--r) 0;font-style:italic;color:var(--text2);}
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:13px;color:var(--text3);}
+.article-category{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+.article-hero{padding:60px 0 20px;}
+.article-subtitle{font-size:17px;color:var(--text2);line-height:1.7;margin-top:12px;max-width:640px;}
+.cta-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:32px;text-align:center;margin:40px 0 0;}
+.cta-box h3{color:var(--text);font-size:20px;margin-bottom:8px;}
+.cta-box p{font-size:14px;color:var(--text2);margin-bottom:20px;}
+.formula-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin:16px 0;font-family:var(--mono);font-size:14px;color:var(--teal);overflow-x:auto;}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px;margin:16px 0;}
+.metric-card h4{color:var(--teal);font-size:16px;margin-bottom:8px;}
+.metric-card p{margin-bottom:8px;}
+.metric-card p:last-child{margin-bottom:0;}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="../how-it-works.html" class="nav-link">How It Works</a>
+      <a href="../pricing.html" class="nav-link">Pricing</a>
+      <a href="../rules.html" class="nav-link">Rules</a>
+      <a href="../faq.html" class="nav-link">FAQ</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../how-it-works.html" class="nav-link">How It Works</a>
+  <a href="../pricing.html" class="nav-link">Pricing</a>
+  <a href="../rules.html" class="nav-link">Rules</a>
+  <a href="../faq.html" class="nav-link">FAQ</a>
+  <a href="../about.html" class="nav-link">About</a>
+  <a href="../contact.html" class="nav-link">Contact</a>
+  <a href="../pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- ARTICLE -->
+<section class="article-hero">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="../index.html">Home</a><span class="breadcrumb-sep">/</span>
+      <a href="../academy.html">Education</a><span class="breadcrumb-sep">/</span>
+      <span>Maximum Drawdown Explained</span>
+    </nav>
+    <span class="article-category" style="background:#EF444418;color:var(--red);border:1px solid #EF444433;">Risk Management</span>
+    <h1 style="margin-top:12px;font-size:clamp(28px,4vw,42px);">Maximum Drawdown Explained: Why It's the Most Important Risk Metric</h1>
+    <p class="article-subtitle">Drawdown is the truest measure of a trader's risk profile. Understanding it deeply is the difference between getting funded and watching from the sidelines.</p>
+    <div class="article-meta">
+      <span>11 min read</span>
+      <span>March 2026</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 80px;">
+  <div class="container">
+    <div class="article">
+
+      <h2>What Is Maximum Drawdown?</h2>
+      <p>Maximum drawdown (MDD) measures the largest peak-to-trough decline in your account value before a new peak is reached. It answers a simple but critical question: what is the worst losing period you have experienced? While most traders obsess over returns, sophisticated capital allocators — including prop firms like Climber Trade — focus on drawdown because it reveals the true risk embedded in a trader's approach.</p>
+      <p>A trader who generates 20% annual returns with a 5% maximum drawdown is fundamentally different from a trader who generates 20% returns with a 40% maximum drawdown. The returns are identical, but the risk profiles are worlds apart. The first trader demonstrates controlled, sustainable risk-taking. The second is gambling and getting lucky.</p>
+
+      <h2>The Peak-to-Trough Calculation</h2>
+      <p>The calculation for maximum drawdown is straightforward in concept:</p>
+      <div class="formula-box">MDD = (Peak Value - Trough Value) / Peak Value x 100%</div>
+      <p>Let us trace through an example. Suppose your account follows this path:</p>
+      <ol>
+        <li>Account starts at $1,000,000</li>
+        <li>Rises to $1,050,000 (new peak)</li>
+        <li>Falls to $990,000 (drawdown of $60,000 from peak)</li>
+        <li>Rises to $1,020,000 (partial recovery, but not a new peak)</li>
+        <li>Falls to $970,000 (drawdown of $80,000 from the $1,050,000 peak)</li>
+        <li>Rises to $1,100,000 (new peak, drawdown period is over)</li>
+      </ol>
+      <p>The maximum drawdown in this sequence is $80,000 / $1,050,000 = 7.62%. This measures the worst decline from the highest point reached. Critically, the drawdown is measured from the peak, not from the starting balance. If your account ran up to $1,050,000 and then dropped to $970,000, you experienced a 7.62% drawdown even though your account is technically still below its starting value at that point.</p>
+
+      <h2>Absolute vs. Relative Drawdown</h2>
+
+      <h3>Absolute Drawdown</h3>
+      <p>Absolute drawdown measures how far your account has fallen below its initial starting balance. If you start with $1,000,000 and your account drops to $960,000, your absolute drawdown is $40,000 or 4%. This metric is particularly relevant for funded accounts because it shows how much of the original capital has been lost.</p>
+
+      <h3>Relative Drawdown (MDD)</h3>
+      <p>Relative drawdown (maximum drawdown) measures the decline from the highest equity point, regardless of starting balance. This is the more commonly used metric because it captures risk throughout the entire trading history, not just from the starting point. A trader who builds their account to $1,200,000 and then drops to $1,050,000 has a relative drawdown of 12.5%, even though they are still profitable from the initial balance.</p>
+
+      <h2>Why Recovery Time Matters as Much as Depth</h2>
+      <p>Two traders can have identical maximum drawdowns of 5%, but if one recovers in 3 days and the other takes 45 days, they represent very different risk profiles. The first trader experienced a brief dip and quickly returned to new highs. The second spent six weeks grinding through a losing period, suggesting either a deeper problem with their strategy or an inability to adapt to changing market conditions.</p>
+      <p>Climber Trade's scoring system recognizes this distinction through the R_T_AFD (Recovery Time After Drawdown) metric. This granular metric scores you based on both the depth of the drawdown and how many trading days it takes to recover:</p>
+      <ul>
+        <li>A drawdown under 0.25% recovered on Day 0 scores 100/100</li>
+        <li>A drawdown of 1-2% recovered by Day 5 scores 66/100</li>
+        <li>A drawdown of 3-5% still unrecovered after 20 days scores 9/100</li>
+        <li>Any drawdown unrecovered after 61+ days scores 0/100</li>
+      </ul>
+      <p>The message is clear: small drawdowns recovered quickly are expected and acceptable. Large drawdowns that persist are a serious red flag. The scoring progressively penalizes both deeper drawdowns and longer recovery times.</p>
+
+      <h2>How Climber Trade Tracks Three Types of Drawdown</h2>
+      <p>Rather than relying on a single drawdown number, the <a href="../how-it-works.html" style="color:var(--teal);">CLIMB Score</a> tracks three distinct drawdown metrics, each measuring a different dimension of risk:</p>
+
+      <div class="metric-card">
+        <h4>ABS_NPL — Absolute Net Profit/Loss</h4>
+        <p>This is a daily metric that scores your net P&L each trading day. It uses a bell-curve approach: modest gains (around +1% of account per day) earn the highest score (100 points). Larger gains are penalized because they indicate over-leverage or outsized risk-taking. Daily losses of 5% or more produce scores near zero. The score is calculated daily and averaged over your entire history.</p>
+        <p>ABS_NPL prevents the behavior where a trader takes massive risks on a single day, gets lucky, and then coasts on that gain. The system rewards consistent, moderate daily returns.</p>
+      </div>
+
+      <div class="metric-card">
+        <h4>INPL — Initial Net PnL Drawdown</h4>
+        <p>INPL tracks the largest cumulative loss from your initial account balance. It scores on a 0-100 scale where no drawdown from the initial balance earns 100/100, and a drawdown exceeding 10% from initial balance earns 0/100. Crucially, points lost due to drawdown are not restored until your equity surpasses its previous maximum. This means a deep early drawdown will weigh on your score for the entire recovery period.</p>
+        <p>INPL is particularly important in the early weeks of an evaluation. Starting with a losing streak creates a hole that is difficult to climb out of because the metric remembers the depth of the initial loss even as you recover.</p>
+      </div>
+
+      <div class="metric-card">
+        <h4>R_T_AFD — Recovery Time After Drawdown</h4>
+        <p>This metric scores how quickly you recover from each drawdown episode. It uses a granular matrix that crosses drawdown depth (8 ranges from &lt;0.25% to 7.5-10%) with recovery time (from Day 0 to Day 61+). Smaller drawdowns have more generous time allowances. Larger drawdowns must be recovered faster to maintain a decent score. A 7.5-10% drawdown starts at only 70/100 even at Day 0, reflecting the severity of the initial loss.</p>
+      </div>
+
+      <h2>The Mathematics of Drawdown Recovery</h2>
+      <p>One of the most important concepts for traders to understand is that drawdown recovery is asymmetric. Losing 10% requires an 11.1% gain to break even. Losing 20% requires a 25% gain. Losing 50% requires a 100% gain — you need to double your remaining capital just to get back to where you started.</p>
+      <p>This asymmetry is why the entire professional trading world is obsessed with limiting drawdowns. Here is the recovery requirement for common drawdown levels:</p>
+      <ul>
+        <li><strong>5% drawdown:</strong> requires 5.3% gain to recover</li>
+        <li><strong>10% drawdown:</strong> requires 11.1% gain to recover</li>
+        <li><strong>20% drawdown:</strong> requires 25.0% gain to recover</li>
+        <li><strong>30% drawdown:</strong> requires 42.9% gain to recover</li>
+        <li><strong>50% drawdown:</strong> requires 100.0% gain to recover</li>
+      </ul>
+      <p>Beyond the mathematical challenge, deep drawdowns also create psychological damage. A trader sitting in a 30% drawdown is under enormous emotional pressure. They are likely to either freeze (stop trading entirely) or take excessive risks to recover quickly (revenge trading). Both responses make the situation worse. This is why Climber Trade's live trading rules enforce automatic interventions at specific drawdown thresholds — a drawdown exceeding 80% of allocated capital triggers a mandatory 5-day pause and scoring reassessment.</p>
+
+      <h2>How to Minimize Drawdowns</h2>
+
+      <h3>Strict Position Sizing</h3>
+      <p>The single most effective drawdown control is disciplined <a href="position-sizing-guide.html" style="color:var(--teal);">position sizing</a>. If your maximum per-trade risk is 1% of your account, a losing streak of 5 consecutive trades produces a drawdown of approximately 4.9%. Painful, but recoverable. If your per-trade risk is 5%, the same losing streak produces a 22.6% drawdown — nearly catastrophic.</p>
+
+      <h3>Daily Loss Limits</h3>
+      <p>Setting a daily loss limit of 2-3% prevents any single bad day from becoming a significant drawdown event. When you hit your daily limit, you stop trading. This simple rule eliminates the tail risk of emotional spirals during difficult sessions.</p>
+
+      <h3>Correlation Awareness</h3>
+      <p>Multiple correlated positions amplify drawdowns because they tend to lose money simultaneously. Before adding positions, verify that your new trade is not simply adding more exposure to a bet you have already made. Trading across uncorrelated instruments (indices, commodities, and currencies) naturally limits portfolio-level drawdowns.</p>
+
+      <h3>Reduce Size During Drawdowns</h3>
+      <p>When you are in an active drawdown, reducing your position size is one of the most effective responses. Smaller positions limit further damage while you diagnose whether the drawdown is caused by market conditions or a flaw in your strategy. Once you have identified and addressed the issue, you can gradually return to normal sizing.</p>
+
+      <blockquote>Maximum drawdown tells you the cost of your strategy. Return tells you the reward. Professional traders never accept a reward without first understanding the cost.</blockquote>
+
+      <!-- CTA -->
+      <div class="cta-box">
+        <h3>Track Your Drawdown Metrics in Real Time</h3>
+        <p>The CLIMB Score monitors three dimensions of drawdown so you always know where you stand.</p>
+        <a href="../signup.html" class="btn btn-primary">Start Your Evaluation</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+          <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="../how-it-works.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../rules.html">Trading Rules</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="../about.html">About Us</a>
+        <a href="../about.html#pool">Liquidity Pool</a>
+        <a href="../about.html#splits">Profit Splits</a>
+        <a href="../pool.html">Liquidity Pool Dashboard</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="../contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="../legal/cgv.html">Terms & Conditions</a>
+        <a href="../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

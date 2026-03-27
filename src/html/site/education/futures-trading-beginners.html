@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futures Trading for Beginners: Everything You Need to Know — Climber Trade</title>
+<meta name="description" content="Complete beginner guide to futures trading. Learn how contracts work, margin, tick values, major contracts like ES and NQ, trading hours, and who trades futures.">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+.article{max-width:740px;margin:0 auto;}
+.article h2{font-size:22px;font-weight:700;margin:32px 0 12px;color:var(--text);}
+.article h3{font-size:17px;font-weight:600;margin:24px 0 8px;color:var(--teal);}
+.article p{font-size:15px;color:var(--text2);line-height:1.9;margin-bottom:16px;}
+.article ul,.article ol{padding-left:24px;margin-bottom:16px;}
+.article li{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:8px;}
+.article strong{color:var(--text);}
+.article blockquote{border-left:3px solid var(--teal);padding:12px 20px;margin:20px 0;background:var(--card);border-radius:0 var(--r) var(--r) 0;font-style:italic;color:var(--text2);}
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:13px;color:var(--text3);}
+.article-category{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+.article-hero{padding:60px 0 20px;}
+.article-cta{text-align:center;padding:60px 0;margin-top:48px;border-top:1px solid var(--border);}
+.article-cta h2{margin-bottom:12px;}
+.article-cta p{color:var(--text2);margin-bottom:24px;font-size:15px;}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="../how-it-works.html" class="nav-link">How It Works</a>
+      <a href="../pricing.html" class="nav-link">Pricing</a>
+      <a href="../rules.html" class="nav-link">Rules</a>
+      <a href="../faq.html" class="nav-link">FAQ</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../how-it-works.html" class="nav-link">How It Works</a>
+  <a href="../pricing.html" class="nav-link">Pricing</a>
+  <a href="../rules.html" class="nav-link">Rules</a>
+  <a href="../faq.html" class="nav-link">FAQ</a>
+  <a href="../about.html" class="nav-link">About</a>
+  <a href="../contact.html" class="nav-link">Contact</a>
+  <a href="../pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- ARTICLE -->
+<section class="article-hero">
+  <div class="container">
+    <div class="article">
+      <nav class="breadcrumb">
+        <a href="../index.html">Home</a><span class="breadcrumb-sep">/</span>
+        <a href="../academy.html">Education</a><span class="breadcrumb-sep">/</span>
+        <span>Futures Trading for Beginners</span>
+      </nav>
+      <span class="article-category" style="background:#10B98122;color:var(--green);border:1px solid #10B98144;">Futures Trading</span>
+      <h1 style="margin:16px 0 8px;">Futures Trading for Beginners: Everything You Need to Know</h1>
+      <p style="font-size:17px;color:var(--text2);margin-bottom:0;">A plain-language guide to futures contracts, margin, tick values, the major exchanges, and why futures are the instrument of choice for professional day traders.</p>
+      <div class="article-meta">
+        <span>13 min read</span>
+        <span>March 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 80px;">
+  <div class="container">
+    <div class="article">
+
+      <p>Futures markets are where professional traders operate. They offer some of the deepest liquidity, most transparent pricing, and most efficient execution available to retail traders. Yet for beginners, futures can seem intimidating. Contracts, expiration dates, margin requirements, tick values, and exchange terminology create a barrier to entry that keeps many traders confined to simpler instruments.</p>
+
+      <p>This guide breaks down everything you need to know about futures trading in practical, non-technical language. By the end, you will understand what futures are, how they work, and why so many serious traders choose them.</p>
+
+      <h2>What Is a Futures Contract?</h2>
+
+      <p>A futures contract is a standardized agreement to buy or sell a specific asset at a predetermined price on a specific future date. The key word is <strong>standardized</strong>. Unlike a private agreement between two parties, every futures contract on a given exchange has identical specifications: the same quantity, quality, delivery date, and pricing convention.</p>
+
+      <p>For example, one E-mini S&P 500 futures contract (ticker: ES) represents an agreement to buy or sell the S&P 500 index at a specified price. The contract size is $50 multiplied by the index value. If the S&P 500 is at 5,200, one ES contract has a notional value of $260,000.</p>
+
+      <h3>You do not need to hold until expiration</h3>
+      <p>A common misconception is that you must hold a futures contract until its delivery date. In reality, nearly all retail futures traders close their positions well before expiration. You are trading the price movement of the contract, not taking delivery of a physical commodity. When you buy an ES contract and sell it an hour later at a higher price, you pocket the difference. That is it.</p>
+
+      <h2>Key Concepts Every Beginner Must Understand</h2>
+
+      <h3>Tick size and tick value</h3>
+      <p>Every futures contract has a minimum price movement called a <strong>tick</strong>. The monetary value of that tick determines how much you gain or lose per contract for each tick of price movement.</p>
+
+      <ul>
+        <li><strong>ES (E-mini S&P 500):</strong> Tick size = 0.25 index points. Tick value = $12.50 per contract.</li>
+        <li><strong>NQ (E-mini Nasdaq-100):</strong> Tick size = 0.25 index points. Tick value = $5.00 per contract.</li>
+        <li><strong>CL (Crude Oil):</strong> Tick size = $0.01 per barrel. Tick value = $10.00 per contract.</li>
+        <li><strong>GC (Gold):</strong> Tick size = $0.10 per troy ounce. Tick value = $10.00 per contract.</li>
+      </ul>
+
+      <p>Understanding tick values is fundamental because they determine your profit and loss. If you buy 1 ES contract and the market moves 10 points in your favor, that is 40 ticks (10 / 0.25), and your profit is 40 x $12.50 = $500.</p>
+
+      <h3>Margin</h3>
+      <p>Margin in futures is different from margin in stock trading. In stocks, margin is a loan. In futures, margin is a <strong>performance bond</strong>, a good-faith deposit that ensures you can cover potential losses. You do not pay interest on futures margin because you are not borrowing money.</p>
+
+      <p>There are two types of margin:</p>
+      <ul>
+        <li><strong>Initial margin:</strong> The amount required to open a position. Typically set by the exchange (CME, for example) and can vary by broker.</li>
+        <li><strong>Maintenance margin:</strong> The minimum balance you must maintain while a position is open. If your account drops below this level, you receive a margin call and must add funds or close positions.</li>
+      </ul>
+
+      <p>Because margin requirements are a fraction of the contract's notional value, futures provide significant leverage. One ES contract with a notional value of $260,000 might require only $12,000 to $15,000 in margin. This leverage is powerful but must be respected, which is why risk management is paramount in futures trading.</p>
+
+      <h3>Long and short with equal ease</h3>
+      <p>Unlike stocks, where shorting requires borrowing shares, futures allow you to go long (buy) or short (sell) with identical ease and identical costs. This symmetry makes futures particularly suitable for traders who want to profit from price declines as readily as from price increases.</p>
+
+      <h2>The Major Futures Contracts</h2>
+
+      <h3>Stock index futures</h3>
+      <p>These are the most popular futures contracts among retail day traders. They track major stock market indices:</p>
+      <ul>
+        <li><strong>ES (E-mini S&P 500):</strong> The most traded futures contract in the world. Tracks the S&P 500 index. Massive liquidity, tight spreads, active nearly 24 hours. The standard starting point for futures traders.</li>
+        <li><strong>NQ (E-mini Nasdaq-100):</strong> Tracks the Nasdaq-100 index. More volatile than ES, which means larger daily ranges but also larger risk per trade. Popular with traders who prefer momentum and technology sector exposure.</li>
+        <li><strong>YM (E-mini Dow):</strong> Tracks the Dow Jones Industrial Average. Less volatile than NQ, similar to ES. Tick value of $5.00 makes position sizing very granular.</li>
+        <li><strong>RTY (E-mini Russell 2000):</strong> Tracks the Russell 2000 small-cap index. Higher volatility than ES, different sector exposure. Less liquid than ES or NQ but still very tradable.</li>
+      </ul>
+
+      <h3>Energy futures</h3>
+      <ul>
+        <li><strong>CL (Crude Oil):</strong> Highly liquid, volatile, driven by geopolitics, OPEC decisions, and inventory data. One of the most actively traded commodity futures. Requires understanding of energy market fundamentals.</li>
+        <li><strong>NG (Natural Gas):</strong> Extremely volatile. Weather-dependent. Not recommended for beginners due to large and unpredictable price swings.</li>
+      </ul>
+
+      <h3>Metals futures</h3>
+      <ul>
+        <li><strong>GC (Gold):</strong> Popular as both a trading vehicle and a hedging instrument. Responds to interest rates, dollar strength, and geopolitical uncertainty. Moderate volatility, good liquidity.</li>
+        <li><strong>SI (Silver):</strong> More volatile than gold with lower liquidity. Follows gold directionally but with amplified moves.</li>
+      </ul>
+
+      <h3>Interest rate futures</h3>
+      <ul>
+        <li><strong>ZN (10-Year T-Note), ZB (30-Year T-Bond):</strong> Trade based on expectations of Federal Reserve policy, inflation, and economic data. Less intuitive for beginners but critically important for institutional traders.</li>
+      </ul>
+
+      <h2>Micro Contracts: The Beginner's On-Ramp</h2>
+
+      <p>If full-size E-mini contracts feel too large for your account, micro contracts are an excellent alternative. Micro contracts are typically one-tenth the size of their E-mini counterparts:</p>
+
+      <ul>
+        <li><strong>MES (Micro E-mini S&P 500):</strong> $5 per point instead of $50. Tick value = $1.25.</li>
+        <li><strong>MNQ (Micro E-mini Nasdaq-100):</strong> $2 per point instead of $20. Tick value = $0.50.</li>
+        <li><strong>MCL (Micro Crude Oil):</strong> 100 barrels instead of 1,000. Tick value = $1.00.</li>
+        <li><strong>MGC (Micro Gold):</strong> 10 troy ounces instead of 100. Tick value = $1.00.</li>
+      </ul>
+
+      <p>Micro contracts let you learn futures mechanics, develop your strategy, and build confidence without the financial impact of full-size contracts. Many professional traders also use micros for precise position sizing.</p>
+
+      <h2>Trading Hours</h2>
+
+      <p>Futures markets operate nearly around the clock from Sunday evening to Friday afternoon (US Eastern Time). The key sessions are:</p>
+
+      <ul>
+        <li><strong>Globex (electronic):</strong> Opens Sunday 6:00 PM ET through Friday 5:00 PM ET, with a daily trading halt from 5:00 PM to 6:00 PM ET.</li>
+        <li><strong>Regular Trading Hours (RTH):</strong> 9:30 AM to 4:15 PM ET for equity index futures. This is when volume is highest and spreads are tightest.</li>
+        <li><strong>Extended hours:</strong> Trading outside RTH (often called overnight or globex session) has lower volume and wider spreads but can present opportunities during Asian and European market hours.</li>
+      </ul>
+
+      <p>For beginners, focusing on Regular Trading Hours is strongly recommended. The liquidity is highest, the pricing is most efficient, and the market behavior is most predictable during this window.</p>
+
+      <h2>Who Trades Futures?</h2>
+
+      <p>Futures markets attract a diverse set of participants:</p>
+
+      <ul>
+        <li><strong>Hedgers:</strong> Companies and funds that use futures to protect against adverse price movements in assets they own or need to purchase.</li>
+        <li><strong>Speculators:</strong> Traders (retail and institutional) who seek to profit from price movements without any interest in the underlying asset.</li>
+        <li><strong>Market makers:</strong> Firms that provide liquidity by quoting both buy and sell prices, earning the spread.</li>
+        <li><strong>Algorithmic traders:</strong> Automated systems that execute strategies at speeds and frequencies impossible for human traders.</li>
+      </ul>
+
+      <p>The presence of all these participants creates deep, liquid markets where individual orders have minimal impact on price. This is one of the primary advantages of futures over less liquid markets.</p>
+
+      <h2>Why Futures for Prop Firm Trading?</h2>
+
+      <p>Futures are the backbone of many prop firm evaluations, and for good reason. They offer centralized exchange pricing (no dealing desk conflicts), transparent order books, tight spreads on major contracts, and the ability to trade long or short without restriction. The <a href="../instruments.html" style="color:var(--teal);">instruments available</a> at Climber Trade include all major CME/CBOT/NYMEX/COMEX futures contracts, giving you access to the same markets that institutional traders use.</p>
+
+      <p>For evaluation purposes, futures provide clean data for scoring metrics. Every trade executes at a transparent, exchange-reported price, which eliminates disputes about fill quality. Metrics like Profit Factor, Sharpe Ratio, and drawdown calculations are all more reliable with exchange-traded data.</p>
+
+      <h2>Getting Started: A Practical Roadmap</h2>
+
+      <ol>
+        <li><strong>Learn the basics.</strong> Understand tick values, margin, and contract specifications for the instruments you want to trade.</li>
+        <li><strong>Start with micro contracts.</strong> Use MES or MNQ to develop your strategy and build screen time without significant financial risk.</li>
+        <li><strong>Focus on one or two contracts.</strong> Do not try to trade everything at once. Master one instrument before adding another.</li>
+        <li><strong>Trade during Regular Trading Hours.</strong> The best liquidity and most predictable market behavior occurs during RTH.</li>
+        <li><strong>Keep a trading journal.</strong> Document every trade, your reasoning, and the outcome. Review weekly.</li>
+        <li><strong>Consider a prop firm evaluation.</strong> Once you have a consistent strategy on micros, a <a href="../how-it-works.html" style="color:var(--teal);">prop firm evaluation</a> lets you prove your skills on simulated capital before trading real money.</li>
+      </ol>
+
+      <blockquote>Futures are not inherently risky. They are leveraged, which magnifies both good decisions and bad ones. Master risk management first, and futures become one of the most efficient trading instruments available.</blockquote>
+
+      <!-- CTA -->
+      <div class="article-cta">
+        <h2>Ready to Start?</h2>
+        <p>Trade futures, forex, equities, and CFDs in a single evaluation. Score-based, no profit target.</p>
+        <a href="../signup.html" class="btn btn-primary">Start Your Evaluation &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+          <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="../how-it-works.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../rules.html">Trading Rules</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="../about.html">About Us</a>
+        <a href="../about.html#pool">Liquidity Pool</a>
+        <a href="../about.html#splits">Profit Splits</a>
+        <a href="../pool.html">Pool Dashboard</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="../contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="../legal/cgv.html">Terms & Conditions</a>
+        <a href="../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

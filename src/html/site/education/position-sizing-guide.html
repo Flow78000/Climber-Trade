@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Position Sizing for Funded Traders: The Complete Formula — Climber Trade</title>
+<meta name="description" content="Master position sizing for funded trading. Fixed fractional, volatility-based, and ATR methods. Leverage formula, 2-5x sweet spot, and practical calculator examples.">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+.article{max-width:740px;margin:0 auto;}
+.article h2{font-size:22px;font-weight:700;margin:32px 0 12px;color:var(--text);}
+.article h3{font-size:17px;font-weight:600;margin:24px 0 8px;color:var(--teal);}
+.article p{font-size:15px;color:var(--text2);line-height:1.9;margin-bottom:16px;}
+.article ul,.article ol{padding-left:24px;margin-bottom:16px;}
+.article li{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:8px;}
+.article strong{color:var(--text);}
+.article blockquote{border-left:3px solid var(--teal);padding:12px 20px;margin:20px 0;background:var(--card);border-radius:0 var(--r) var(--r) 0;font-style:italic;color:var(--text2);}
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:13px;color:var(--text3);}
+.article-category{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+.article-hero{padding:60px 0 20px;}
+.article-subtitle{font-size:17px;color:var(--text2);line-height:1.7;margin-top:12px;max-width:640px;}
+.cta-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:32px;text-align:center;margin:40px 0 0;}
+.cta-box h3{color:var(--text);font-size:20px;margin-bottom:8px;}
+.cta-box p{font-size:14px;color:var(--text2);margin-bottom:20px;}
+.formula-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin:16px 0;font-family:var(--mono);font-size:14px;color:var(--teal);overflow-x:auto;}
+.calc-example{background:var(--card);border:1px solid #00D4FF22;border-radius:var(--r2);padding:24px;margin:20px 0;}
+.calc-example h4{color:var(--teal);font-size:15px;margin-bottom:12px;}
+.calc-example p{margin-bottom:8px;}
+.calc-example p:last-child{margin-bottom:0;}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="../how-it-works.html" class="nav-link">How It Works</a>
+      <a href="../pricing.html" class="nav-link">Pricing</a>
+      <a href="../rules.html" class="nav-link">Rules</a>
+      <a href="../faq.html" class="nav-link">FAQ</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../how-it-works.html" class="nav-link">How It Works</a>
+  <a href="../pricing.html" class="nav-link">Pricing</a>
+  <a href="../rules.html" class="nav-link">Rules</a>
+  <a href="../faq.html" class="nav-link">FAQ</a>
+  <a href="../about.html" class="nav-link">About</a>
+  <a href="../contact.html" class="nav-link">Contact</a>
+  <a href="../pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- ARTICLE -->
+<section class="article-hero">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="../index.html">Home</a><span class="breadcrumb-sep">/</span>
+      <a href="../academy.html">Education</a><span class="breadcrumb-sep">/</span>
+      <span>Position Sizing Guide</span>
+    </nav>
+    <span class="article-category" style="background:#EF444418;color:var(--red);border:1px solid #EF444433;">Risk Management</span>
+    <h1 style="margin-top:12px;font-size:clamp(28px,4vw,42px);">Position Sizing for Funded Traders: The Complete Formula</h1>
+    <p class="article-subtitle">Position sizing is the bridge between your trading strategy and your risk management framework. Get it right, and everything else becomes easier.</p>
+    <div class="article-meta">
+      <span>11 min read</span>
+      <span>March 2026</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 80px;">
+  <div class="container">
+    <div class="article">
+
+      <h2>Why Position Sizing Determines Your Success</h2>
+      <p>You can have the best entry signals, the most accurate market analysis, and perfect timing — and still lose money if your position sizing is wrong. Position sizing answers the most important question in trading: how many contracts or lots should you trade on each setup? Too many, and a normal losing trade becomes a catastrophic drawdown. Too few, and your winning trades do not generate enough return to justify the time and mental energy you invest.</p>
+      <p>On a <a href="../how-it-works.html" style="color:var(--teal);">Climber Trade funded account</a>, position sizing directly affects multiple scoring dimensions: your leverage score (CT4), your daily P&L distribution (ABS_NPL), your drawdown metrics (INPL), and your lot stability ratio (LSR). Mastering position sizing is not just about protecting capital — it is about maximizing your CLIMB Score across every pillar.</p>
+
+      <h2>The Core Formula: Fixed Fractional Position Sizing</h2>
+      <p>The fixed fractional method is the most widely used position sizing approach among professional traders. It defines position size as a function of three variables:</p>
+      <div class="formula-box">Contracts = (Account Value x Risk %) / Risk Per Contract</div>
+      <p>Where:</p>
+      <ul>
+        <li><strong>Account Value:</strong> Your current account balance (e.g., $1,000,000)</li>
+        <li><strong>Risk %:</strong> The maximum percentage of your account you are willing to lose on this trade (typically 0.5% to 2%)</li>
+        <li><strong>Risk Per Contract:</strong> The dollar amount you will lose per contract if your stop loss is hit</li>
+      </ul>
+
+      <div class="calc-example">
+        <h4>Example: ES Futures Trade</h4>
+        <p><strong>Account:</strong> $1,000,000 | <strong>Risk:</strong> 1% = $10,000 | <strong>Stop:</strong> 10 ES points ($500/contract)</p>
+        <p><strong>Position size:</strong> $10,000 / $500 = <strong>20 ES contracts</strong></p>
+        <p><strong>Notional exposure:</strong> 20 x $260,000 = $5,200,000 = <strong>5.2x leverage</strong></p>
+        <p>This sits just above the optimal 2-5x range, so you might reduce to 15 contracts (3.9x leverage) to optimize your CLIMB Score.</p>
+      </div>
+
+      <div class="calc-example">
+        <h4>Example: Crude Oil Trade</h4>
+        <p><strong>Account:</strong> $1,000,000 | <strong>Risk:</strong> 1% = $10,000 | <strong>Stop:</strong> $0.80 per barrel ($800/contract)</p>
+        <p><strong>Position size:</strong> $10,000 / $800 = <strong>12 CL contracts</strong></p>
+        <p><strong>Notional exposure:</strong> 12 x $75,000 = $900,000 = <strong>0.9x leverage</strong></p>
+        <p>This is below the optimal range. You could widen your risk to 1.5% or tighten your stop to increase contracts.</p>
+      </div>
+
+      <h2>Volatility-Based Position Sizing</h2>
+      <p>Fixed fractional sizing treats every trade identically, but markets do not behave identically every day. Volatility-based sizing adjusts your position size according to current market conditions. When volatility is high, you trade smaller. When volatility is low, you trade larger. This keeps your actual dollar risk consistent even as market conditions change.</p>
+
+      <h3>The ATR Method</h3>
+      <p>The Average True Range (ATR) measures an instrument's average daily range over a specified period (commonly 14 days). You can use it to set dynamic stop-loss distances and, consequently, dynamic position sizes.</p>
+      <div class="formula-box">Stop Distance = ATR x Multiplier (typically 1.5 to 3.0)<br>Contracts = (Account x Risk %) / (Stop Distance x Point Value)</div>
+
+      <div class="calc-example">
+        <h4>Example: NQ Futures with ATR Sizing</h4>
+        <p><strong>14-day ATR of NQ:</strong> 280 points | <strong>Stop multiplier:</strong> 2x = 560 points</p>
+        <p><strong>Risk per contract:</strong> 560 x $20 = $11,200</p>
+        <p><strong>Position size:</strong> $10,000 / $11,200 = <strong>0.89 (round down to 0 or use MNQ)</strong></p>
+        <p>This reveals that on high-volatility days, a single NQ contract may exceed your 1% risk budget with a 2x ATR stop. The solution is either to reduce the ATR multiplier, increase your risk percentage, or use <a href="nq-futures-guide.html" style="color:var(--teal);">Micro NQ (MNQ)</a> contracts for finer sizing.</p>
+      </div>
+
+      <h2>The Leverage Calculation: Notional Value</h2>
+      <p>Beyond risk per trade, you must also consider your total notional exposure. The CLIMB Score's CT4 metric evaluates leverage using a specific formula:</p>
+      <div class="formula-box">Notional = Contracts x Point Value x Current Price<br>Leverage = Notional / Account Balance</div>
+      <p>The scoring curve is clear: 2x to 5x earns 100/100, while deviations in either direction reduce your score. This means that position sizing on a funded account is a two-variable optimization problem: you need your risk per trade to be within your risk budget AND your total notional leverage to be within the 2-5x optimal range.</p>
+
+      <h3>Finding the Sweet Spot</h3>
+      <p>Here is a reference table for common instruments on a $1,000,000 account, showing the contract range that keeps leverage in the 2-5x zone:</p>
+      <ul>
+        <li><strong>ES (at 5,200):</strong> 8 to 19 contracts (2.08x to 4.94x leverage)</li>
+        <li><strong>NQ (at 21,000):</strong> 5 to 12 contracts (2.1x to 5.04x leverage)</li>
+        <li><strong>CL (at $75):</strong> 27 to 67 contracts (2.03x to 5.03x leverage)</li>
+        <li><strong>GC (at $2,000):</strong> 10 to 25 contracts (2.0x to 5.0x leverage)</li>
+      </ul>
+      <p>These ranges give you a starting framework. Your actual size should also account for your stop distance and risk percentage. If the risk calculation produces a position size outside the leverage sweet spot, you need to adjust either your stop distance or your risk percentage to reconcile the two constraints.</p>
+
+      <h2>Lot Stability: Why Consistency in Sizing Matters</h2>
+      <p>The CLIMB Score includes a Lot Stability Ratio (LSR) metric that measures how consistent your position sizes are across trades. It is calculated as:</p>
+      <div class="formula-box">LSR = Average Lot Size / Standard Deviation of Lot Sizes</div>
+      <p>A high LSR (4.0 or above) earns 100/100 and signals a disciplined trader who uses systematic position sizing. A low LSR (below 1.0) earns 20/100 or less and suggests erratic sizing driven by emotion or overconfidence.</p>
+      <p>This does not mean you should always trade the exact same number of contracts. It means your sizing should be consistent and methodical. If you normally trade 10 ES contracts and occasionally trade 8 or 12 based on volatility adjustments, your LSR will remain high. If you trade 2 contracts one day and 30 the next, your LSR will collapse.</p>
+
+      <h2>Common Position Sizing Mistakes</h2>
+
+      <h3>Sizing Up After Wins</h3>
+      <p>The temptation to increase size after a winning streak is powerful. You feel confident, the account is growing, and you want to accelerate returns. The problem is that winning streaks end, and if your first loss comes on your largest position, it can wipe out multiple previous gains. Professional traders increase size gradually — typically by no more than 10-20% at a time — and only after a sustained period of consistent performance.</p>
+
+      <h3>Sizing Up to Recover Losses</h3>
+      <p>This is the inverse mistake and far more dangerous. After a series of losses, the emotional urge to double or triple your size to quickly recover is overwhelming. But increasing size during a losing period dramatically increases the probability of a catastrophic drawdown. If your <a href="trading-risk-management.html" style="color:var(--teal);">risk management framework</a> is sound, normal-sized trades will recover the loss over time without amplifying risk.</p>
+
+      <h3>Ignoring Notional Across Multiple Positions</h3>
+      <p>A trader might size each individual trade correctly at 1% risk, but if they have five trades open simultaneously, their total portfolio risk is 5% and their aggregate notional leverage might be 15x or higher. Always calculate your total exposure across all open positions, not just the risk on each individual trade.</p>
+
+      <h2>A Practical Position Sizing Workflow</h2>
+      <ol>
+        <li><strong>Check your account balance.</strong> Use the current value, not the starting value, especially after profits or losses.</li>
+        <li><strong>Determine your risk budget.</strong> Fixed percentage: 0.5% to 2% per trade, 2% to 3% daily maximum.</li>
+        <li><strong>Identify your stop-loss level.</strong> Base it on market structure (support/resistance) or volatility (ATR).</li>
+        <li><strong>Calculate contracts.</strong> Risk budget divided by risk per contract.</li>
+        <li><strong>Verify leverage.</strong> Multiply contracts by notional value per contract. Divide by account balance. Ensure the result falls between 2x and 5x.</li>
+        <li><strong>Adjust if needed.</strong> If leverage is too high, reduce contracts. If too low, consider tightening your stop or increasing risk percentage slightly.</li>
+        <li><strong>Check total portfolio exposure.</strong> Sum the notional value of all open positions. Ensure total leverage remains within acceptable bounds.</li>
+      </ol>
+
+      <blockquote>Position sizing is not a creative exercise. It is an arithmetic discipline. The numbers tell you exactly how many contracts to trade. Follow them.</blockquote>
+
+      <!-- CTA -->
+      <div class="cta-box">
+        <h3>Apply Professional Position Sizing on a $1M Account</h3>
+        <p>Your CLIMB Score tracks leverage and lot stability in real time. Start optimizing your sizing today.</p>
+        <a href="../signup.html" class="btn btn-primary">Start Your Evaluation</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+          <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="../how-it-works.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../rules.html">Trading Rules</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="../about.html">About Us</a>
+        <a href="../about.html#pool">Liquidity Pool</a>
+        <a href="../about.html#splits">Profit Splits</a>
+        <a href="../pool.html">Liquidity Pool Dashboard</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="../contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="../legal/cgv.html">Terms & Conditions</a>
+        <a href="../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

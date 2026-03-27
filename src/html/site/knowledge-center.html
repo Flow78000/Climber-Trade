@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trader Knowledge Center — Climber Trade</title>
+<meta name="description" content="Master every metric, understand your CLIMB Score, and learn the rules of the game. Free access to our complete trader education hub.">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* ── EMAIL GATE ── */
+.gate-overlay{
+  position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;
+  background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .5s ease;
+}
+.gate-overlay.hidden{opacity:0;pointer-events:none;}
+.gate-box{
+  max-width:480px;width:90%;text-align:center;padding:48px 36px;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r3);
+}
+.gate-box h2{margin-bottom:12px;font-size:28px;}
+.gate-box .gate-sub{font-size:16px;color:var(--text2);line-height:1.7;margin-bottom:32px;}
+.gate-form{display:flex;gap:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--border);}
+.gate-form input{
+  flex:1;padding:14px 18px;background:var(--surface);border:none;
+  color:var(--text);font-family:var(--font);font-size:15px;outline:none;
+}
+.gate-form input::placeholder{color:var(--text3);}
+.gate-form button{
+  padding:14px 24px;background:var(--teal);color:#000;border:none;
+  font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;
+  white-space:nowrap;transition:background .2s;
+}
+.gate-form button:hover{background:#00bde6;}
+.gate-error{font-size:12px;color:var(--red);margin-top:8px;display:none;}
+.gate-fine{font-size:12px;color:var(--text3);margin-top:16px;}
+
+/* ── PAGE HERO ── */
+.kc-hero{text-align:center;padding:80px 0 48px;}
+.kc-hero h1{margin-bottom:16px;}
+.kc-hero p{font-size:18px;color:var(--text2);max-width:700px;margin:0 auto;line-height:1.8;}
+
+/* ── SECTION HEADERS ── */
+.kc-section{padding:64px 0;}
+.kc-section:nth-child(even){background:var(--surface);}
+.kc-section-head{margin-bottom:32px;}
+.kc-section-head h2{font-size:clamp(24px,3vw,36px);margin-bottom:8px;}
+.kc-section-head p{font-size:16px;color:var(--text2);max-width:700px;line-height:1.7;}
+
+/* ── PILLAR BORDER COLORS ── */
+.pillar-risk{border-left:4px solid var(--red);}
+.pillar-perf{border-left:4px solid var(--amber);}
+.pillar-consistency{border-left:4px solid var(--teal);}
+.pillar-quality{border-left:4px solid var(--purple);}
+.pillar-path{border-left:4px solid var(--green);}
+.pillar-contracts{border-left:4px solid var(--text3);}
+.pillar-faq{border-left:4px solid var(--amber);}
+.pillar-score{border-left:4px solid var(--teal);}
+
+/* ── ACCORDION FULL-WIDTH ── */
+.kc-accordion{max-width:100%;}
+.kc-accordion .accordion-item{
+  border-radius:var(--r2);margin-bottom:12px;
+  background:var(--card);border:1px solid var(--border);
+  overflow:hidden;
+}
+.kc-accordion .accordion-item.open{border-color:var(--border2);}
+.kc-accordion .accordion-trigger{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:20px 24px;font-size:16px;font-weight:600;color:var(--text);
+  text-align:left;transition:color .15s;
+}
+.kc-accordion .accordion-trigger:hover{color:var(--teal);}
+.kc-accordion .accordion-content{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.kc-accordion .accordion-content-inner{padding:0 24px 28px;font-size:16px;color:var(--text2);line-height:1.8;}
+.kc-accordion .accordion-content-inner h4{color:var(--text);margin:20px 0 10px;font-size:18px;}
+.kc-accordion .accordion-content-inner p{margin-bottom:12px;}
+
+/* ── VISUAL SCHEMA (CLIMB Score diagram) ── */
+.score-diagram{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  flex-wrap:wrap;margin:24px 0;
+}
+.score-pillar-box{
+  padding:16px 20px;border-radius:var(--r);text-align:center;
+  font-size:14px;font-weight:700;color:#000;min-width:140px;
+}
+.score-pillar-box span{display:block;font-size:11px;font-weight:500;margin-top:4px;opacity:.7;}
+.score-arrow{font-size:24px;color:var(--text3);flex-shrink:0;}
+.score-final-box{
+  padding:20px 28px;border-radius:var(--r2);text-align:center;
+  background:var(--teal);color:#000;font-size:18px;font-weight:800;
+}
+.score-final-box span{display:block;font-size:12px;font-weight:500;margin-top:4px;opacity:.7;}
+
+/* ── FORMULA CALLOUT ── */
+.formula-callout{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--r);padding:20px 24px;margin:16px 0;
+  font-family:var(--mono);font-size:14px;color:var(--teal);
+  line-height:1.8;overflow-x:auto;
+}
+
+/* ── EXAMPLE CALLOUT ── */
+.example-box{
+  background:#10B98110;border:1px solid #10B98133;border-radius:var(--r);
+  padding:16px 20px;margin:16px 0;font-size:15px;line-height:1.7;
+}
+.example-box strong{color:var(--green);}
+
+/* ── VISUAL BARS ── */
+.visual-bars{display:flex;flex-direction:column;gap:8px;margin:16px 0;}
+.vbar{display:flex;align-items:center;gap:12px;font-size:14px;}
+.vbar-label{min-width:120px;text-align:right;color:var(--text2);font-size:13px;}
+.vbar-track{flex:1;height:28px;background:var(--surface2);border-radius:4px;position:relative;overflow:hidden;}
+.vbar-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:10px;font-size:12px;font-weight:700;color:#000;white-space:nowrap;}
+.vbar-value{min-width:60px;font-family:var(--mono);font-size:13px;font-weight:700;}
+
+/* ── ZONE CHART ── */
+.zone-chart{display:flex;border-radius:var(--r);overflow:hidden;margin:16px 0;height:48px;font-size:12px;font-weight:700;}
+.zone-chart div{display:flex;align-items:center;justify-content:center;color:#000;}
+
+/* ── TIMELINE VISUAL ── */
+.timeline{display:flex;align-items:center;gap:0;margin:20px 0;flex-wrap:wrap;}
+.timeline-node{
+  text-align:center;padding:12px 16px;position:relative;min-width:120px;
+}
+.timeline-node .tl-dot{
+  width:16px;height:16px;border-radius:50%;margin:0 auto 8px;border:3px solid var(--teal);
+  background:var(--bg);
+}
+.timeline-node.active .tl-dot{background:var(--teal);}
+.timeline-node .tl-label{font-size:13px;font-weight:600;color:var(--text);}
+.timeline-node .tl-sub{font-size:11px;color:var(--text3);margin-top:2px;}
+.timeline-line{width:40px;height:2px;background:var(--border);flex-shrink:0;}
+
+/* ── TRADE GRID (Win Rate) ── */
+.trade-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin:16px 0;max-width:400px;}
+.trade-cell{
+  width:100%;aspect-ratio:1;border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:#000;
+}
+
+/* ── CALENDAR GRID ── */
+.cal-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin:16px 0;max-width:400px;}
+.cal-cell{
+  width:100%;aspect-ratio:1;border-radius:3px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:600;color:#000;
+}
+
+/* ── LOT BARS (consistency) ── */
+.lot-compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:16px 0;}
+.lot-compare-col h5{font-size:14px;margin-bottom:10px;text-align:center;}
+.lot-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.lot-bar{height:16px;border-radius:3px;min-width:4px;}
+.lot-bar-label{font-size:11px;color:var(--text3);min-width:32px;}
+
+/* ── BELL CURVE (Quality) ── */
+.curve-compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:16px 0;}
+.curve-box{
+  background:var(--surface2);border-radius:var(--r);padding:20px;text-align:center;
+}
+.curve-box h5{font-size:14px;margin-bottom:12px;}
+.curve-bars{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:80px;}
+.curve-bar{width:12px;border-radius:2px 2px 0 0;min-height:4px;}
+
+/* ── STEPPER ── */
+.stepper{display:flex;flex-direction:column;gap:0;margin:24px 0;}
+.stepper-item{display:flex;gap:20px;position:relative;}
+.stepper-marker{
+  display:flex;flex-direction:column;align-items:center;flex-shrink:0;
+}
+.stepper-dot{
+  width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;color:#000;background:var(--teal);flex-shrink:0;
+}
+.stepper-line{width:2px;flex:1;background:var(--border);min-height:24px;}
+.stepper-body{padding:4px 0 32px;}
+.stepper-body h4{font-size:18px;margin-bottom:6px;color:var(--text);}
+.stepper-body p{font-size:15px;color:var(--text2);line-height:1.7;}
+
+/* ── SPLITS TABLE ── */
+.splits-table{width:100%;border-collapse:collapse;margin:16px 0;}
+.splits-table th{
+  font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  color:var(--text3);padding:10px 16px;text-align:left;
+  border-bottom:1px solid var(--border);background:var(--card2);
+}
+.splits-table td{
+  padding:10px 16px;border-bottom:1px solid #0f0f0f;font-size:14px;color:var(--text2);
+}
+
+/* ── TIPS LIST ── */
+.tips-list{list-style:none;margin:12px 0;padding:0;}
+.tips-list li{
+  padding:8px 0 8px 24px;position:relative;font-size:15px;color:var(--text2);line-height:1.6;
+}
+.tips-list li::before{
+  content:'';position:absolute;left:0;top:14px;
+  width:8px;height:8px;border-radius:50%;background:var(--teal);
+}
+
+/* ── THRESHOLD BADGES ── */
+.threshold-row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;}
+.threshold-item{
+  padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600;
+  display:flex;align-items:center;gap:8px;
+}
+.threshold-item .thr-val{font-family:var(--mono);font-weight:800;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .kc-hero{padding:48px 0 32px;}
+  .score-diagram{flex-direction:column;}
+  .score-arrow{transform:rotate(90deg);}
+  .lot-compare,.curve-compare{grid-template-columns:1fr;}
+  .timeline{flex-direction:column;align-items:flex-start;}
+  .timeline-line{width:2px;height:20px;}
+  .gate-form{flex-direction:column;}
+  .gate-form button{padding:14px;}
+  .stepper-item{gap:12px;}
+}
+</style>
+</head>
+<body>
+
+<!-- EMAIL GATE -->
+<div class="gate-overlay" id="emailGate">
+  <div class="gate-box">
+    <h2>Unlock the Trader<br>Knowledge Center</h2>
+    <p class="gate-sub">Free access to our complete guide &mdash; metrics, scoring, contracts, and more. Just enter your email to get started.</p>
+    <div class="gate-form" id="gateForm">
+      <input type="email" id="gateEmail" placeholder="your@email.com" required>
+      <button type="button" id="gateBtn">Get Free Access</button>
+    </div>
+    <div class="gate-error" id="gateError">Please enter a valid email address.</div>
+    <p class="gate-fine">No spam. No payment. Just knowledge.</p>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="how-it-works.html" class="nav-link">How It Works</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="rules.html" class="nav-link">Rules</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link">About</a>
+      <div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">&#127760;</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">&#127760;</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">&#127467;&#127479;</span>Fran&ccedil;ais</button><button class="lang-option" data-lang="es"><span class="lang-flag">&#127466;&#127480;</span>Espa&ntilde;ol</button></div></div>
+      <a href="pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="how-it-works.html" class="nav-link">How It Works</a>
+  <a href="pricing.html" class="nav-link">Pricing</a>
+  <a href="rules.html" class="nav-link">Rules</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <a href="about.html" class="nav-link">About</a>
+  <a href="contact.html" class="nav-link">Contact</a>
+  <a href="pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- HERO -->
+<section class="kc-hero">
+  <div class="container fade-up">
+    <div class="section-label" style="justify-content:center;">Trader Knowledge Center</div>
+    <h1>Master Every Metric.<br><span class="teal">Understand Your Score.</span></h1>
+    <p>Everything you need to know about the CLIMB Score, trading rules, contracts, and how to get funded &mdash; explained simply, with visual examples.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1: THE CLIMB SCORE
+     ═══════════════════════════════════════════ -->
+<section class="kc-section">
+  <div class="container">
+    <div class="kc-section-head fade-up">
+      <div class="section-label">Section 1</div>
+      <h2>The CLIMB Score</h2>
+      <p>Your single number from 0 to 100 that determines your rank, your funding, and your career progression.</p>
+    </div>
+
+    <div class="kc-accordion">
+      <!-- What is the CLIMB Score? -->
+      <div class="accordion-item pillar-score fade-up">
+        <button class="accordion-trigger">
+          What is the CLIMB Score?
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p>The CLIMB Score is your overall trading rating on a scale of <strong style="color:var(--teal)">0 to 100</strong>. It measures how well you trade across four dimensions: risk control, profitability, consistency, and execution quality.</p>
+          <p>Think of it like a credit score, but for trading. The higher your score, the more capital you receive and the better your profit split becomes. It updates in real-time as you trade, with a daily consolidation at end of day.</p>
+
+          <h4>The 4 Pillars</h4>
+          <div class="score-diagram">
+            <div class="score-pillar-box" style="background:var(--red);">Risk Management<span>Weight: x4</span></div>
+            <div class="score-arrow">+</div>
+            <div class="score-pillar-box" style="background:var(--amber);">Performance<span>Weight: x4</span></div>
+            <div class="score-arrow">+</div>
+            <div class="score-pillar-box" style="background:var(--teal);">Consistency<span>Weight: x3</span></div>
+            <div class="score-arrow">&rarr;</div>
+            <div class="score-pillar-box" style="background:var(--purple);">Quality<span>Multiplier: x0.90&ndash;1.10</span></div>
+            <div class="score-arrow">=</div>
+            <div class="score-final-box">CLIMB Score<span>/100</span></div>
+          </div>
+
+          <p>The first three pillars are averaged together (weighted), and then the Quality Execution pillar acts as a multiplier that can adjust your final score up or down by up to 10%.</p>
+        </div></div>
+      </div>
+
+      <!-- The Formula -->
+      <div class="accordion-item pillar-score fade-up">
+        <button class="accordion-trigger">
+          The Formula &mdash; How Your Score Is Calculated
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p><strong>In plain English:</strong> We take your Risk score, Performance score, and Consistency score, give extra weight to Risk and Performance (x4 each) and slightly less to Consistency (x3), average them together, then multiply by your Quality Execution factor.</p>
+
+          <div class="formula-callout">
+            Average = [(Risk x 4) + (Performance x 4) + (Consistency x 3)] / 11<br>
+            Final Score = Average x (1 + ((Quality - 50) / 500))
+          </div>
+
+          <p>The denominator is <strong>11</strong> because 4 + 4 + 3 = 11. The Quality pillar creates a multiplier between 0.90 (bad execution) and 1.10 (excellent execution).</p>
+
+          <div class="example-box">
+            <strong>Worked example:</strong> Risk = 80, Performance = 78, Consistency = 76, Quality = 75.<br>
+            Average = [(80 x 4) + (78 x 4) + (76 x 3)] / 11 = [320 + 312 + 228] / 11 = 860 / 11 = <strong>78.2</strong><br>
+            Multiplier = 1 + ((75 - 50) / 500) = 1 + 0.05 = <strong>1.05</strong><br>
+            Final Score = 78.2 x 1.05 = <strong>82.1</strong>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Score Reliability -->
+      <div class="accordion-item pillar-score fade-up">
+        <button class="accordion-trigger">
+          Score Reliability &mdash; How Trust Builds Over Time
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p>A score from 5 days of trading is not as trustworthy as one from 200 days. That is why we mark your score with a reliability level based on how long you have been trading.</p>
+
+          <div class="timeline">
+            <div class="timeline-node">
+              <div class="tl-dot"></div>
+              <div class="tl-label">< 30 days</div>
+              <div class="tl-sub" style="color:var(--amber);">Indicative *</div>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-node">
+              <div class="tl-dot"></div>
+              <div class="tl-label">30&ndash;120 days</div>
+              <div class="tl-sub" style="color:var(--teal);">Reliable</div>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-node active">
+              <div class="tl-dot"></div>
+              <div class="tl-label">120+ days</div>
+              <div class="tl-sub" style="color:var(--green);">Certified</div>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-node active">
+              <div class="tl-dot"></div>
+              <div class="tl-label">180+ days</div>
+              <div class="tl-sub" style="color:var(--green);">MAX Confidence</div>
+            </div>
+          </div>
+
+          <p>Exceptional early results are valued less than steady long-term performance. A trader active for 200+ days with a score of 88 is considered more reliable than a trader with 92 after just 10 days.</p>
+        </div></div>
+      </div>
+    </div><!-- /accordion -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2: RISK MANAGEMENT (x4)
+     ═══════════════════════════════════════════ -->
+<section class="kc-section">
+  <div class="container">
+    <div class="kc-section-head fade-up">
+      <div class="section-label">Section 2</div>
+      <h2>Risk Management Metrics <span class="badge badge-red" style="font-size:13px;vertical-align:middle;">Weight x4</span></h2>
+      <p>The most important pillar. How well do you protect capital? These four metrics carry the heaviest weight in your score.</p>
+    </div>
+
+    <div class="kc-accordion">
+      <!-- ABS_NPL -->
+      <div class="accordion-item pillar-risk fade-up">
+        <button class="accordion-trigger">
+          ABS_NPL &mdash; Daily P&L Score
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>Your net profit or loss each day, scored individually and then averaged across all trading days. The sweet spot is <strong style="color:var(--green)">+1% per day</strong>, which earns the maximum 100 points. Go higher, and your score actually drops &mdash; this protects against overleveraging and encourages sustainable gains.</p>
+
+          <h4>Visual Example</h4>
+          <div class="visual-bars">
+            <div class="vbar">
+              <div class="vbar-label">-5.0%</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:20%;background:var(--red);">20 pts</div></div>
+              <div class="vbar-value red">20/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">0.0%</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:0%;background:var(--text3);"></div></div>
+              <div class="vbar-value" style="color:var(--text3);">0/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">+0.8%</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:80%;background:var(--green);">80 pts</div></div>
+              <div class="vbar-value green">80/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label" style="color:var(--green);font-weight:700;">+1.0%</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:100%;background:var(--green);">100 pts MAX</div></div>
+              <div class="vbar-value green">100/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">+2.0%</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:90%;background:var(--amber);">~90 pts</div></div>
+              <div class="vbar-value amber">~90/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">+5.0%</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:45%;background:var(--amber);">45 pts</div></div>
+              <div class="vbar-value amber">45/100</div>
+            </div>
+          </div>
+
+          <h4>Scoring Thresholds</h4>
+          <div class="threshold-row">
+            <div class="threshold-item badge-red"><span class="thr-val">-10%</span> = -100 pts (Critical)</div>
+            <div class="threshold-item badge-amber"><span class="thr-val">+5%</span> = 45 pts (Penalty)</div>
+            <div class="threshold-item badge-green"><span class="thr-val">+1%</span> = 100 pts (Optimal)</div>
+          </div>
+
+          <h4>How to Improve</h4>
+          <ul class="tips-list">
+            <li>Target consistent daily gains around 0.5% to 1.0% of your account</li>
+            <li>Avoid "home run" days &mdash; the system penalizes over-performance because it usually signals excessive risk</li>
+            <li>If you are up 1% for the day, consider stopping &mdash; you already have the maximum score</li>
+            <li>Negative days happen &mdash; keep them small (under -1%) to minimize score damage</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <!-- INPL -->
+      <div class="accordion-item pillar-risk fade-up">
+        <button class="accordion-trigger">
+          INPL &mdash; Initial Drawdown from Starting Capital
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>The deepest loss you experienced before your account first reached a new high above starting capital. It captures how much pain you went through before proving yourself. The smaller this drawdown, the higher your score. Loss beyond 10% of capital equals 0 points.</p>
+
+          <h4>Visual Example</h4>
+          <div class="visual-bars">
+            <div class="vbar">
+              <div class="vbar-label">0% DD</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:100%;background:var(--green);">100 pts &mdash; Never dipped</div></div>
+              <div class="vbar-value green">100/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">-1.5% DD</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:75%;background:var(--green);">~75 pts</div></div>
+              <div class="vbar-value green">~75/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">-5% DD</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:40%;background:var(--amber);">~40 pts</div></div>
+              <div class="vbar-value amber">~40/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">-10%+ DD</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:0%;background:var(--red);"></div></div>
+              <div class="vbar-value red">0/100</div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Example:</strong> You started at $1,000,000. Your account dipped to $985,000 before climbing to $1,010,000. That is a 1.5% initial drawdown &mdash; a solid score around 75/100.
+          </div>
+
+          <h4>How to Improve</h4>
+          <ul class="tips-list">
+            <li>Start cautiously &mdash; use smaller position sizes in your first few days</li>
+            <li>Build a cushion of profits before taking on bigger trades</li>
+            <li>Once lost, points stay lost until your account reaches a new equity high</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <!-- R_T_AFD -->
+      <div class="accordion-item pillar-risk fade-up">
+        <button class="accordion-trigger">
+          R_T_AFD &mdash; Recovery Time After Drawdown
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>When your account drops from its peak, how many days does it take you to recover back to that peak? Faster recovery = higher score. Deeper drawdowns need faster recovery to maintain a good score. After 61+ days without recovery, the score drops to 0.</p>
+
+          <h4>Visual Example &mdash; Score Decay Over Time</h4>
+          <p style="font-size:14px;color:var(--text3);margin-bottom:8px;">For a small drawdown (< 0.25%):</p>
+          <div class="visual-bars">
+            <div class="vbar">
+              <div class="vbar-label">Day 0</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:100%;background:var(--green);">100 pts</div></div>
+              <div class="vbar-value green">100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">Day 5</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:90%;background:var(--green);">90 pts</div></div>
+              <div class="vbar-value green">90</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">Day 10</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:76%;background:var(--amber);">76 pts</div></div>
+              <div class="vbar-value amber">76</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">Day 20</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:54%;background:var(--amber);">54 pts</div></div>
+              <div class="vbar-value amber">54</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">Day 30</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:32%;background:var(--red);">32 pts</div></div>
+              <div class="vbar-value red">32</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">Day 61+</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:0%;background:var(--red);"></div></div>
+              <div class="vbar-value red">0</div>
+            </div>
+          </div>
+          <p style="font-size:14px;color:var(--text3);margin-top:8px;">For deeper drawdowns (e.g., 5-7.5%), the decay is much faster: Day 0 = 80 pts, Day 5 = 49, Day 10 = 33, Day 20 = 8, Day 30 = 0.</p>
+
+          <h4>How to Improve</h4>
+          <ul class="tips-list">
+            <li>Keep drawdowns small &mdash; recovering from a -0.5% dip is much easier (and scores better) than recovering from -5%</li>
+            <li>After a loss, do not revenge trade &mdash; steady recovery is rewarded over time</li>
+            <li>Set strict daily loss limits so you never dig a deep hole</li>
+            <li>The clock starts ticking the moment you fall from your equity peak</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <!-- CT4 Average Leverage -->
+      <div class="accordion-item pillar-risk fade-up">
+        <button class="accordion-trigger">
+          CT4 &mdash; Average Leverage (Intraday)
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>How much leverage you use on average throughout your trades. The optimal zone is <strong style="color:var(--green)">2x to 5x leverage</strong>, which scores a perfect 100. Using too little leverage (0x) or too much (18x+) both hurt your score. Extreme leverage above 25x gives negative scores.</p>
+
+          <h4>Visual &mdash; The Leverage Zones</h4>
+          <div class="zone-chart">
+            <div style="flex:1;background:#EF444466;">0x<br><span style="font-size:10px;">60</span></div>
+            <div style="flex:1;background:#F59E0B88;">1x<br><span style="font-size:10px;">80</span></div>
+            <div style="flex:3;background:var(--green);color:#000;">2x-5x OPTIMAL<br><span style="font-size:10px;">100</span></div>
+            <div style="flex:1;background:#F59E0B88;">6-7x<br><span style="font-size:10px;">84-92</span></div>
+            <div style="flex:1;background:#EF444488;">10x<br><span style="font-size:10px;">60</span></div>
+            <div style="flex:1;background:#EF4444CC;color:#fff;">15x+<br><span style="font-size:10px;">0-20</span></div>
+          </div>
+
+          <h4>Scoring Thresholds</h4>
+          <div class="threshold-row">
+            <div class="threshold-item badge-green"><span class="thr-val">2x-5x</span> = 100 pts (Optimal)</div>
+            <div class="threshold-item badge-amber"><span class="thr-val">6x-7x</span> = 84-92 pts (Acceptable)</div>
+            <div class="threshold-item badge-red"><span class="thr-val">18x+</span> = 0 pts (Dangerous)</div>
+            <div class="threshold-item badge-red"><span class="thr-val">25x+</span> = -100 pts (Critical)</div>
+          </div>
+
+          <h4>How to Improve</h4>
+          <ul class="tips-list">
+            <li>Calculate your notional exposure: Notional = Point Value x Asset Price</li>
+            <li>For NQ futures: 20$ x ~25,500 = ~$510,000 notional per contract. With $1M account, 2 contracts = about 1x leverage</li>
+            <li>Stay in the 2x-5x sweet spot &mdash; enough to make meaningful profits, not enough to blow up</li>
+            <li>Avoid stacking positions &mdash; multiple open positions multiply your effective leverage</li>
+          </ul>
+        </div></div>
+      </div>
+    </div><!-- /accordion -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 3: PERFORMANCE (x4)
+     ═══════════════════════════════════════════ -->
+<section class="kc-section">
+  <div class="container">
+    <div class="kc-section-head fade-up">
+      <div class="section-label">Section 3</div>
+      <h2>Performance Metrics <span class="badge badge-amber" style="font-size:13px;vertical-align:middle;">Weight x4</span></h2>
+      <p>How profitable are you? These metrics assess your ability to generate returns and the quality of those returns.</p>
+    </div>
+
+    <div class="kc-accordion">
+      <!-- Profit Factor -->
+      <div class="accordion-item pillar-perf fade-up">
+        <button class="accordion-trigger">
+          Profit Factor &mdash; Your Win/Loss Ratio in Dollars
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>Profit Factor = total gross profit divided by total gross loss. A Profit Factor of 2.0 means for every $1 you lose, you make $2 back. Below 1.0, you are losing money overall. Above 4.0, you are at elite level.</p>
+
+          <h4>Visual Example</h4>
+          <div class="visual-bars">
+            <div class="vbar">
+              <div class="vbar-label">PF < 0.50</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:0%;background:var(--red);"></div></div>
+              <div class="vbar-value red">0/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">PF 1.00</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:45%;background:var(--amber);">45 pts</div></div>
+              <div class="vbar-value amber">45/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">PF 1.50</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:70%;background:var(--green);">70 pts</div></div>
+              <div class="vbar-value green">70/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">PF 2.00</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:85%;background:var(--green);">85 pts</div></div>
+              <div class="vbar-value green">85/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">PF 4.00+</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:100%;background:var(--green);">100 pts</div></div>
+              <div class="vbar-value green">100/100</div>
+            </div>
+          </div>
+
+          <h4>Confidence Multiplier</h4>
+          <p>Your raw Profit Factor score is multiplied by a confidence factor based on how many trades you have taken:</p>
+          <div class="threshold-row">
+            <div class="threshold-item badge-green"><span class="thr-val">200+</span> trades = x1.00 (full)</div>
+            <div class="threshold-item badge-amber"><span class="thr-val">100-199</span> trades = x0.75</div>
+            <div class="threshold-item badge-amber"><span class="thr-val">50-99</span> trades = x0.50</div>
+            <div class="threshold-item badge-red"><span class="thr-val">< 50</span> trades = x0.25</div>
+          </div>
+
+          <div class="example-box">
+            <strong>Example:</strong> You have a Profit Factor of 2.0 (raw score = 85) but only 80 trades. Your confidence multiplier is x0.50, so your final score = 85 x 0.50 = <strong>42.5/100</strong>. Trade more to unlock your full score.
+          </div>
+
+          <h4>How to Improve</h4>
+          <ul class="tips-list">
+            <li>Cut losers fast and let winners run &mdash; this directly improves your ratio of profit to loss</li>
+            <li>Take at least 200 trades to get the full confidence multiplier</li>
+            <li>Even a modest PF of 1.5 with 200+ trades scores well (70 x 1.00 = 70 pts)</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <!-- Sharpe Ratio -->
+      <div class="accordion-item pillar-perf fade-up">
+        <button class="accordion-trigger">
+          Sharpe Ratio &mdash; Risk-Adjusted Return Bonus
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>The Sharpe Ratio measures how much return you generate per unit of risk (volatility). A higher Sharpe means smoother, more consistent returns. It does not give you a base score &mdash; instead it acts as a <strong style="color:var(--teal)">bonus of up to +10 points</strong> on top of your performance score.</p>
+
+          <h4>Visual &mdash; Smooth vs Choppy Equity</h4>
+          <div class="curve-compare">
+            <div class="curve-box">
+              <h5 style="color:var(--green);">High Sharpe (Smooth)</h5>
+              <div class="curve-bars">
+                <div class="curve-bar" style="height:35%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:40%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:45%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:50%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:53%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:58%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:62%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:67%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:72%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:78%;background:var(--green);"></div>
+              </div>
+              <p style="font-size:12px;color:var(--text3);margin-top:8px;">Steady upward growth, low volatility = +8&ndash;10 bonus pts</p>
+            </div>
+            <div class="curve-box">
+              <h5 style="color:var(--red);">Low Sharpe (Choppy)</h5>
+              <div class="curve-bars">
+                <div class="curve-bar" style="height:30%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:70%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:20%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:80%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:15%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:60%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:25%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:90%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:10%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:75%;background:var(--green);"></div>
+              </div>
+              <p style="font-size:12px;color:var(--text3);margin-top:8px;">Wild swings even if profitable = +0 bonus pts</p>
+            </div>
+          </div>
+
+          <h4>Bonus Scale</h4>
+          <div class="threshold-row">
+            <div class="threshold-item badge-red"><span class="thr-val">< 1.00</span> = +0 bonus</div>
+            <div class="threshold-item badge-amber"><span class="thr-val">1.50</span> = +6 bonus</div>
+            <div class="threshold-item badge-green"><span class="thr-val">2.00</span> = +8.3 bonus</div>
+            <div class="threshold-item badge-green"><span class="thr-val">2.90+</span> = +10 bonus (max)</div>
+          </div>
+
+          <h4>How to Improve</h4>
+          <ul class="tips-list">
+            <li>Reduce the volatility of your daily returns &mdash; aim for consistent small wins rather than big swings</li>
+            <li>Avoid days with massive gains followed by massive losses</li>
+            <li>Use proper position sizing to keep your equity curve smooth</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <!-- Annualized Yield -->
+      <div class="accordion-item pillar-perf fade-up">
+        <button class="accordion-trigger">
+          Annualized Yield &mdash; Your Return vs the Market
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>Your trading performance projected over a full year, compared to a market benchmark of 8% annually. A score of 50/100 means you match the market. Below 50, you are underperforming. Above 50, you are beating the market. The score also factors in a confidence ramp-up &mdash; you need 180 days for full confidence.</p>
+
+          <h4>Visual Scale</h4>
+          <div class="visual-bars">
+            <div class="vbar">
+              <div class="vbar-label">-12% yield</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:0%;background:var(--red);"></div></div>
+              <div class="vbar-value red">0/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">0% yield</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:30%;background:var(--amber);">30 pts</div></div>
+              <div class="vbar-value amber">~30/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label" style="color:var(--text);">8% yield</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:50%;background:var(--teal);">50 pts = Benchmark</div></div>
+              <div class="vbar-value teal">50/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">18% yield</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:75%;background:var(--green);">75 pts</div></div>
+              <div class="vbar-value green">75/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">28%+ yield</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:100%;background:var(--green);">100 pts</div></div>
+              <div class="vbar-value green">100/100</div>
+            </div>
+          </div>
+
+          <h4>How to Improve</h4>
+          <ul class="tips-list">
+            <li>Focus on sustainable growth &mdash; even matching the 8% benchmark scores you 50 points</li>
+            <li>Trade for at least 180 days to get the full confidence multiplier</li>
+            <li>Consistent daily gains of 0.5-1% compound into excellent annualized returns</li>
+          </ul>
+        </div></div>
+      </div>
+    </div><!-- /accordion -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 4: CONSISTENCY (x3)
+     ═══════════════════════════════════════════ -->
+<section class="kc-section">
+  <div class="container">
+    <div class="kc-section-head fade-up">
+      <div class="section-label">Section 4</div>
+      <h2>Consistency Metrics <span class="badge badge-teal" style="font-size:13px;vertical-align:middle;">Weight x3</span></h2>
+      <p>Can you do it day after day? These metrics reward predictable, disciplined trading behavior.</p>
+    </div>
+
+    <div class="kc-accordion">
+      <!-- Win Rate -->
+      <div class="accordion-item pillar-consistency fade-up">
+        <button class="accordion-trigger">
+          Win Rate &mdash; How Often You Win
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>The percentage of your trades that are profitable. Below 46%, you actually receive a negative score! The system applies a confidence factor that ramps up over 22 trading days. A high win rate shows you have a reliable edge.</p>
+
+          <h4>Visual &mdash; 10-Trade Example (80% Win Rate)</h4>
+          <div class="trade-grid">
+            <div class="trade-cell" style="background:var(--green);">W</div>
+            <div class="trade-cell" style="background:var(--green);">W</div>
+            <div class="trade-cell" style="background:var(--green);">W</div>
+            <div class="trade-cell" style="background:var(--red);">L</div>
+            <div class="trade-cell" style="background:var(--green);">W</div>
+            <div class="trade-cell" style="background:var(--green);">W</div>
+            <div class="trade-cell" style="background:var(--green);">W</div>
+            <div class="trade-cell" style="background:var(--green);">W</div>
+            <div class="trade-cell" style="background:var(--red);">L</div>
+            <div class="trade-cell" style="background:var(--green);">W</div>
+          </div>
+          <p style="font-size:14px;color:var(--text3);">8 wins out of 10 = 80% win rate = 72.3 pts</p>
+
+          <h4>Scoring Thresholds</h4>
+          <div class="threshold-row">
+            <div class="threshold-item badge-red"><span class="thr-val">0-45%</span> = Negative score</div>
+            <div class="threshold-item badge-amber"><span class="thr-val">50%</span> = 11 pts</div>
+            <div class="threshold-item badge-amber"><span class="thr-val">60%</span> = 35 pts</div>
+            <div class="threshold-item badge-green"><span class="thr-val">70%</span> = 58.3 pts</div>
+            <div class="threshold-item badge-green"><span class="thr-val">80%</span> = 72.3 pts</div>
+          </div>
+
+          <h4>How to Improve</h4>
+          <ul class="tips-list">
+            <li>Be selective &mdash; only take high-probability setups you truly believe in</li>
+            <li>Use confirmation signals before entering trades</li>
+            <li>Trade for at least 22 days to unlock the full confidence multiplier</li>
+            <li>Do not over-trade &mdash; more trades with low conviction lowers your win rate</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <!-- Days in Gain -->
+      <div class="accordion-item pillar-consistency fade-up">
+        <button class="accordion-trigger">
+          Days in Gain &mdash; How Many Days You Finish Green
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>The simplest metric in the system: the percentage of your trading days that end with a positive P&L. 60% green days = 60 points. 80% green days = 80 points. It is that straightforward.</p>
+
+          <h4>Visual &mdash; 20-Day Calendar</h4>
+          <div class="cal-grid" style="grid-template-columns:repeat(10,1fr);">
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--red);">-</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--red);">-</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--red);">-</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--red);">-</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--green);">+</div>
+            <div class="cal-cell" style="background:var(--red);">-</div>
+          </div>
+          <p style="font-size:14px;color:var(--text3);">15 green days out of 20 = 75% = 75/100 points</p>
+
+          <h4>How to Improve</h4>
+          <ul class="tips-list">
+            <li>End your trading day once you are in profit &mdash; protect the green day</li>
+            <li>If you are having a red day, minimize the loss and move on</li>
+            <li>Avoid trading on days when you do not have a clear plan</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <!-- Lot Stability -->
+      <div class="accordion-item pillar-consistency fade-up">
+        <button class="accordion-trigger">
+          Lot Stability Ratio (LSR) &mdash; Consistent Position Sizing
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>How consistent is the size of your trades? LSR = Average lot size divided by the standard deviation of lot sizes. A high LSR means you trade roughly the same size every time (good). A low LSR means your sizing is all over the place (bad &mdash; often a sign of emotional trading).</p>
+
+          <h4>Visual &mdash; Consistent vs Inconsistent</h4>
+          <div class="lot-compare">
+            <div class="lot-compare-col">
+              <h5 style="color:var(--green);">Consistent (LSR 4.0 = 100 pts)</h5>
+              <div class="lot-bar-row"><div class="lot-bar-label">T1</div><div class="lot-bar" style="width:70%;background:var(--green);"></div></div>
+              <div class="lot-bar-row"><div class="lot-bar-label">T2</div><div class="lot-bar" style="width:72%;background:var(--green);"></div></div>
+              <div class="lot-bar-row"><div class="lot-bar-label">T3</div><div class="lot-bar" style="width:68%;background:var(--green);"></div></div>
+              <div class="lot-bar-row"><div class="lot-bar-label">T4</div><div class="lot-bar" style="width:71%;background:var(--green);"></div></div>
+              <div class="lot-bar-row"><div class="lot-bar-label">T5</div><div class="lot-bar" style="width:69%;background:var(--green);"></div></div>
+              <div class="lot-bar-row"><div class="lot-bar-label">T6</div><div class="lot-bar" style="width:73%;background:var(--green);"></div></div>
+            </div>
+            <div class="lot-compare-col">
+              <h5 style="color:var(--red);">Wild Variation (LSR 0.5 = 0 pts)</h5>
+              <div class="lot-bar-row"><div class="lot-bar-label">T1</div><div class="lot-bar" style="width:20%;background:var(--red);"></div></div>
+              <div class="lot-bar-row"><div class="lot-bar-label">T2</div><div class="lot-bar" style="width:95%;background:var(--red);"></div></div>
+              <div class="lot-bar-row"><div class="lot-bar-label">T3</div><div class="lot-bar" style="width:10%;background:var(--red);"></div></div>
+              <div class="lot-bar-row"><div class="lot-bar-label">T4</div><div class="lot-bar" style="width:80%;background:var(--red);"></div></div>
+              <div class="lot-bar-row"><div class="lot-bar-label">T5</div><div class="lot-bar" style="width:15%;background:var(--red);"></div></div>
+              <div class="lot-bar-row"><div class="lot-bar-label">T6</div><div class="lot-bar" style="width:90%;background:var(--red);"></div></div>
+            </div>
+          </div>
+
+          <h4>Scoring Thresholds</h4>
+          <div class="threshold-row">
+            <div class="threshold-item badge-red"><span class="thr-val">< 0.50</span> = 0 pts</div>
+            <div class="threshold-item badge-amber"><span class="thr-val">1.50</span> = 40 pts</div>
+            <div class="threshold-item badge-amber"><span class="thr-val">2.50</span> = 70 pts</div>
+            <div class="threshold-item badge-green"><span class="thr-val">3.50</span> = 90 pts</div>
+            <div class="threshold-item badge-green"><span class="thr-val">4.00+</span> = 100 pts</div>
+          </div>
+
+          <h4>How to Improve</h4>
+          <ul class="tips-list">
+            <li>Decide on a standard position size and stick to it for every trade</li>
+            <li>If you need to scale up, do it gradually &mdash; not suddenly doubling or tripling</li>
+            <li>Do not increase size after a loss (revenge trading) or after a win (overconfidence)</li>
+          </ul>
+        </div></div>
+      </div>
+    </div><!-- /accordion -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 5: QUALITY EXECUTION (multiplier)
+     ═══════════════════════════════════════════ -->
+<section class="kc-section">
+  <div class="container">
+    <div class="kc-section-head fade-up">
+      <div class="section-label">Section 5</div>
+      <h2>Quality Execution <span class="badge badge-purple" style="font-size:13px;vertical-align:middle;">Multiplier x0.90&ndash;1.10</span></h2>
+      <p>This pillar does not have its own weight &mdash; instead it adjusts your final score up or down by up to 10%. It rewards clean, balanced execution.</p>
+    </div>
+
+    <div class="kc-accordion">
+      <!-- Skew -->
+      <div class="accordion-item pillar-quality fade-up">
+        <button class="accordion-trigger">
+          Skew &mdash; Balance of Your Wins and Losses
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>Skew measures how symmetric your distribution of returns is. A skew near 0 means your wins and losses are balanced in shape. A high skew (above 2.0) means your returns are lopsided &mdash; possibly relying on a few rare big wins to offset many small losses. You start at 100/100 and lose points as skew increases.</p>
+
+          <h4>Visual &mdash; Symmetric vs Skewed</h4>
+          <div class="curve-compare">
+            <div class="curve-box">
+              <h5 style="color:var(--green);">Low Skew (Balanced) = 100 pts</h5>
+              <div class="curve-bars">
+                <div class="curve-bar" style="height:15%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:30%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:55%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:80%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:100%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:80%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:55%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:30%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:15%;background:var(--green);"></div>
+              </div>
+            </div>
+            <div class="curve-box">
+              <h5 style="color:var(--red);">High Skew (Lopsided) = 30-60 pts</h5>
+              <div class="curve-bars">
+                <div class="curve-bar" style="height:100%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:70%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:45%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:25%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:15%;background:var(--amber);"></div>
+                <div class="curve-bar" style="height:10%;background:var(--amber);"></div>
+                <div class="curve-bar" style="height:5%;background:var(--amber);"></div>
+                <div class="curve-bar" style="height:3%;background:var(--amber);"></div>
+                <div class="curve-bar" style="height:2%;background:var(--amber);"></div>
+              </div>
+            </div>
+          </div>
+
+          <h4>Scoring</h4>
+          <div class="threshold-row">
+            <div class="threshold-item badge-green"><span class="thr-val">0.0&ndash;0.5</span> = 90&ndash;100 pts</div>
+            <div class="threshold-item badge-amber"><span class="thr-val">1.0&ndash;1.5</span> = 70&ndash;80 pts</div>
+            <div class="threshold-item badge-red"><span class="thr-val">3.5&ndash;5.0</span> = 0&ndash;30 pts</div>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Kurtosis -->
+      <div class="accordion-item pillar-quality fade-up">
+        <button class="accordion-trigger">
+          Kurtosis &mdash; Frequency of Extreme Days
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>Kurtosis measures how often you have extreme days (very big wins or very big losses) compared to a normal distribution. Low kurtosis means your days are clustered around average &mdash; predictable. High kurtosis means you have fat tails &mdash; too many extreme outcomes. You start at 100/100.</p>
+
+          <h4>Visual &mdash; Smooth vs Spiky</h4>
+          <div class="curve-compare">
+            <div class="curve-box">
+              <h5 style="color:var(--green);">Low Kurtosis (Predictable)</h5>
+              <div class="curve-bars">
+                <div class="curve-bar" style="height:10%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:25%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:50%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:75%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:100%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:75%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:50%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:25%;background:var(--green);"></div>
+                <div class="curve-bar" style="height:10%;background:var(--green);"></div>
+              </div>
+              <p style="font-size:12px;color:var(--text3);margin-top:8px;">= 80&ndash;100 pts</p>
+            </div>
+            <div class="curve-box">
+              <h5 style="color:var(--red);">High Kurtosis (Extreme days)</h5>
+              <div class="curve-bars">
+                <div class="curve-bar" style="height:40%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:10%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:5%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:8%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:100%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:8%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:5%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:10%;background:var(--red);"></div>
+                <div class="curve-bar" style="height:45%;background:var(--red);"></div>
+              </div>
+              <p style="font-size:12px;color:var(--text3);margin-top:8px;">= 0&ndash;30 pts</p>
+            </div>
+          </div>
+
+          <h4>Scoring</h4>
+          <div class="threshold-row">
+            <div class="threshold-item badge-green"><span class="thr-val">0.0&ndash;1.0</span> = 80&ndash;100 pts</div>
+            <div class="threshold-item badge-amber"><span class="thr-val">2.0</span> = 60 pts</div>
+            <div class="threshold-item badge-red"><span class="thr-val">5.0+</span> = 0 pts</div>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Extreme Day Impact -->
+      <div class="accordion-item pillar-quality fade-up">
+        <button class="accordion-trigger">
+          Extreme Day Impact &mdash; Biggest Day vs Your Average
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>This metric looks at your best or worst single day and compares it to your average daily absolute P&L. If your biggest day is 10x your average, it suggests your performance depends too much on outlier events. The formula is: max(|Best Day|, |Worst Day|) / Average |Daily PnL|.</p>
+
+          <h4>Visual &mdash; Uniform vs One Giant Day</h4>
+          <div class="visual-bars">
+            <div class="vbar">
+              <div class="vbar-label">Ratio 1.0</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:100%;background:var(--green);">100 pts &mdash; Best day = average</div></div>
+              <div class="vbar-value green">100/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">Ratio 2.0</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:80%;background:var(--green);">80 pts</div></div>
+              <div class="vbar-value green">80/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">Ratio 5.0</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:50%;background:var(--amber);">50 pts</div></div>
+              <div class="vbar-value amber">50/100</div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label">Ratio 15.0+</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:0%;background:var(--red);"></div></div>
+              <div class="vbar-value red">0/100</div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Best/Worst Day Ratio -->
+      <div class="accordion-item pillar-quality fade-up">
+        <button class="accordion-trigger">
+          Best/Worst Day Ratio &mdash; Your Best Day vs Your Worst Day
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <h4>What it measures</h4>
+          <p>This compares the dollar amount of your best day to the absolute value of your worst day. If your best day made $5,000 and your worst day lost $2,500, the ratio is 2.0. A higher ratio is better &mdash; it means your best days outweigh your worst days significantly.</p>
+
+          <h4>Visual</h4>
+          <div class="visual-bars">
+            <div class="vbar">
+              <div class="vbar-label" style="color:var(--green);">Best Day</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:80%;background:var(--green);">+$5,000</div></div>
+              <div class="vbar-value"></div>
+            </div>
+            <div class="vbar">
+              <div class="vbar-label" style="color:var(--red);">Worst Day</div>
+              <div class="vbar-track"><div class="vbar-fill" style="width:40%;background:var(--red);">-$2,500</div></div>
+              <div class="vbar-value" style="color:var(--teal);">= Ratio 2.0</div>
+            </div>
+          </div>
+
+          <h4>Scoring</h4>
+          <div class="threshold-row">
+            <div class="threshold-item badge-red"><span class="thr-val">< 0.50</span> = 0 pts (worst day dominates)</div>
+            <div class="threshold-item badge-amber"><span class="thr-val">1.00</span> = 60 pts (equal)</div>
+            <div class="threshold-item badge-green"><span class="thr-val">2.00</span> = 80 pts</div>
+            <div class="threshold-item badge-green"><span class="thr-val">3.00</span> = 95 pts</div>
+            <div class="threshold-item badge-green"><span class="thr-val">4.30+</span> = 100 pts</div>
+          </div>
+        </div></div>
+      </div>
+    </div><!-- /accordion -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 6: PATH TO LIVE
+     ═══════════════════════════════════════════ -->
+<section class="kc-section">
+  <div class="container">
+    <div class="kc-section-head fade-up">
+      <div class="section-label">Section 6</div>
+      <h2>Your Path to Live Trading</h2>
+      <p>From signup to getting funded with real capital &mdash; here is exactly how it works.</p>
+    </div>
+
+    <div class="kc-accordion">
+      <div class="accordion-item pillar-path fade-up">
+        <button class="accordion-trigger">
+          The 5-Step Journey
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <div class="stepper">
+            <div class="stepper-item">
+              <div class="stepper-marker"><div class="stepper-dot">1</div><div class="stepper-line"></div></div>
+              <div class="stepper-body">
+                <h4>Subscribe &amp; Start</h4>
+                <p>Choose your plan: <strong style="color:var(--teal);">Standard at $199/month</strong> (renewable, Live-eligible) or <strong>Discovery at $49</strong> (30-day trial, no Live access). You get instant access to a $1,000,000 simulated trading account on Volumetrica.</p>
+              </div>
+            </div>
+            <div class="stepper-item">
+              <div class="stepper-marker"><div class="stepper-dot">2</div><div class="stepper-line"></div></div>
+              <div class="stepper-body">
+                <h4>Trade &amp; Get Scored</h4>
+                <p>Trade any instrument you want &mdash; futures, forex, CFDs, stocks. Your CLIMB Score updates in real-time across all 13 metrics. There is no time limit; take as long as you need. Minimum evaluation period is 30 calendar days.</p>
+              </div>
+            </div>
+            <div class="stepper-item">
+              <div class="stepper-marker"><div class="stepper-dot">3</div><div class="stepper-line"></div></div>
+              <div class="stepper-body">
+                <h4>Reach Score 85+</h4>
+                <p>You need a CLIMB Score of <strong style="color:var(--green);">85 or higher</strong> maintained for <strong>7 consecutive trading days</strong> (days with at least 1 trade). You also need at least 30 calendar days since account creation and a completed KYC verification.</p>
+              </div>
+            </div>
+            <div class="stepper-item">
+              <div class="stepper-marker"><div class="stepper-dot">4</div><div class="stepper-line"></div></div>
+              <div class="stepper-body">
+                <h4>Go Live &amp; Get Funded</h4>
+                <p>The system detects your eligibility automatically. You receive an email, your Live account is activated within 24-48 hours (weekdays only), and you receive real capital from the liquidity pool based on your score.</p>
+              </div>
+            </div>
+            <div class="stepper-item">
+              <div class="stepper-marker"><div class="stepper-dot">5</div><div class="stepper-line"></div></div>
+              <div class="stepper-body">
+                <h4>Grow Without Limits</h4>
+                <p>Monthly capital scaling with no ceiling. Your profit split improves as your score rises. Reach 95+ and enter Elite status for double allocation and up to 60% profit share. Payouts twice a month or on-demand.</p>
+              </div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+
+      <!-- Profit Splits -->
+      <div class="accordion-item pillar-path fade-up">
+        <button class="accordion-trigger">
+          Profit Splits &amp; Capital Allocation
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p>Once you go live, your profits are split between you and Climber Trade. The better your score, the more you keep:</p>
+
+          <div class="table-wrap" style="margin:16px 0;">
+            <table class="splits-table">
+              <thead>
+                <tr><th>CLIMB Score</th><th>Your Share</th><th>Climber Share</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong style="color:var(--green);">95&ndash;100</strong></td><td style="color:var(--green);">60%</td><td>40%</td><td><span class="badge badge-green">Elite</span></td></tr>
+                <tr><td><strong>90&ndash;94</strong></td><td style="color:var(--green);">55%</td><td>45%</td><td><span class="badge badge-teal">Expert</span></td></tr>
+                <tr><td><strong>85&ndash;89</strong></td><td>50%</td><td>50%</td><td><span class="badge badge-teal">Standard</span></td></tr>
+                <tr><td><strong style="color:var(--amber);">80&ndash;84</strong></td><td>45%</td><td>55%</td><td><span class="badge badge-amber">Watch</span></td></tr>
+                <tr><td><strong style="color:var(--amber);">75&ndash;79</strong></td><td>40%</td><td>60%</td><td><span class="badge badge-amber">Warning</span></td></tr>
+                <tr><td><strong style="color:var(--red);">< 75</strong></td><td>0%</td><td>0%</td><td><span class="badge badge-red">7 days to recover</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Withdrawals</h4>
+          <p>Minimum $500 per withdrawal. Two automatic cycles per month (5th and 20th). On-demand daily withdrawals with 24-hour notice. Payments via RISE WORKS. First payout available after 7 days in Live.</p>
+        </div></div>
+      </div>
+    </div><!-- /accordion -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 7: CONTRACTS SIMPLIFIED
+     ═══════════════════════════════════════════ -->
+<section class="kc-section">
+  <div class="container">
+    <div class="kc-section-head fade-up">
+      <div class="section-label">Section 7</div>
+      <h2>Contracts Simplified</h2>
+      <p>All the legal stuff, translated into plain English so you know exactly what you are signing up for.</p>
+    </div>
+
+    <div class="kc-accordion">
+      <div class="accordion-item pillar-contracts fade-up">
+        <button class="accordion-trigger">
+          Terms &amp; Conditions &mdash; What You Agree To When You Subscribe
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p>When you subscribe to an evaluation plan, you are paying for access to a simulated trading environment with $1,000,000 in fictitious capital. No real money is at risk during evaluation. Payment is in USD via credit card only. Your subscription renews automatically (Standard plan) with a 3-day advance notice. You can cancel anytime but there are no refunds &mdash; by subscribing, you waive the 14-day cooling-off period because access is granted immediately. One account per person maximum.</p>
+          <p><a href="legal/cgv.html" style="color:var(--teal);font-weight:600;">Read full Terms &amp; Conditions &rarr;</a></p>
+        </div></div>
+      </div>
+
+      <div class="accordion-item pillar-contracts fade-up">
+        <button class="accordion-trigger">
+          Trading Regulations &mdash; The Rules of the Game
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p>You can trade futures, forex, stocks, CFDs, and crypto (BTC/ETH only). All strategies are welcome: scalping, day trading, swing, algo, HFT, hedging, news trading, and more. What is NOT allowed: copy trading between accounts, insider trading, coordinated group trading, market manipulation, or latency arbitrage. You must trade at least 4 days out of every 30. Overnight positions are fine (up to 5:1 leverage). Weekend holdings are allowed (1:1 max leverage, $50K minimum balance).</p>
+          <p><a href="rules.html" style="color:var(--teal);font-weight:600;">Read full Trading Rules &rarr;</a></p>
+        </div></div>
+      </div>
+
+      <div class="accordion-item pillar-contracts fade-up">
+        <button class="accordion-trigger">
+          Trader Contract &mdash; Your Agreement When You Go Live
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p>Going live means you enter a professional service agreement with Climber Trade. You are classified as an independent analyst, not an employee. Your trading strategies remain your intellectual property (protected by confidentiality). Performance data and metrics belong to Climber Trade. You must keep your KYC information up to date and handle your own tax declarations. The profit split is dynamic based on your CLIMB Score, and you can withdraw your share twice per month or on-demand.</p>
+          <p><a href="legal/trader-contract.html" style="color:var(--teal);font-weight:600;">Read full Trader Contract &rarr;</a></p>
+        </div></div>
+      </div>
+
+      <div class="accordion-item pillar-contracts fade-up">
+        <button class="accordion-trigger">
+          Referral &amp; Affiliation &mdash; How to Earn by Bringing Friends
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p><strong>Referral (for all traders):</strong> You get $10/month off your subscription for each active referral, for 6 months. Stack up to 20 referrals and your subscription becomes free. Your friend gets 20% off their first month.</p>
+          <p><strong>Premium Affiliation (for creators and educators):</strong> You earn 15% recurring on every subscription your affiliate pays &mdash; for life. Plus 1% of every payout your affiliate receives. No cap. Your affiliate audience grows, your income grows.</p>
+          <p>Referral and Affiliation programs cannot be combined.</p>
+          <p><a href="referral.html" style="color:var(--teal);font-weight:600;">Learn about the Referral Program &rarr;</a></p>
+        </div></div>
+      </div>
+
+      <div class="accordion-item pillar-contracts fade-up">
+        <button class="accordion-trigger">
+          Pool Specification &mdash; How Your Capital Is Calculated
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p>The liquidity pool is funded by 50% of subscription revenues plus 50% of Climber Trade's profit share from live traders. Your capital allocation depends on your score, a cohort factor (that automatically scales with the number of qualified traders), a performance prime, and a seniority bonus. The pool cannot be exhausted &mdash; a built-in factor automatically reduces allocations as more traders qualify. The pool dashboard is publicly visible to all traders.</p>
+          <p><a href="pool.html" style="color:var(--teal);font-weight:600;">View the Liquidity Pool Dashboard &rarr;</a></p>
+        </div></div>
+      </div>
+    </div><!-- /accordion -->
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 8: FREQUENTLY MISUNDERSTOOD
+     ═══════════════════════════════════════════ -->
+<section class="kc-section">
+  <div class="container">
+    <div class="kc-section-head fade-up">
+      <div class="section-label">Section 8</div>
+      <h2>Frequently Misunderstood</h2>
+      <p>Honest answers to the questions traders get wrong most often.</p>
+    </div>
+
+    <div class="kc-accordion">
+      <div class="accordion-item pillar-faq fade-up">
+        <button class="accordion-trigger">
+          "Can I lose real money during evaluation?"
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p><strong style="color:var(--green);">No.</strong> During evaluation, you trade with $1,000,000 in 100% fictitious capital. The only real cost is your subscription fee ($199/month Standard or $49 Discovery). You cannot lose more than that. There is zero financial risk from your trading activity during evaluation.</p>
+        </div></div>
+      </div>
+
+      <div class="accordion-item pillar-faq fade-up">
+        <button class="accordion-trigger">
+          "Why does my score drop when I make too much profit?"
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p>The ABS_NPL metric penalizes daily gains above +1% because consistently oversized daily returns usually indicate excessive leverage or unsustainable risk-taking. A +5% day scores only 45 points while a +1% day scores a perfect 100. This is not about limiting your profits &mdash; it is about encouraging you to build wealth <strong>sustainably</strong>. The best traders in the world aim for steady, repeatable gains, not home runs.</p>
+        </div></div>
+      </div>
+
+      <div class="accordion-item pillar-faq fade-up">
+        <button class="accordion-trigger">
+          "What happens if my score drops below 75 in live?"
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p>If your score stays below 75 for <strong>7 consecutive days</strong>, you return to scoring mode. You will need to rebuild your score to 85+ and maintain it for 7 consecutive trading days to regain live access. If your score drops below 50 at any point, your live account is frozen and you must complete a full re-evaluation. If you experience a drawdown above 80% of your allocated capital, you get a 5-day trading pause followed by a 30-day scoring consolidation period.</p>
+        </div></div>
+      </div>
+
+      <div class="accordion-item pillar-faq fade-up">
+        <button class="accordion-trigger">
+          "Is there a time limit for evaluation?"
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p><strong style="color:var(--green);">No maximum time limit.</strong> The minimum is 30 calendar days, but you can take as long as you need. Your subscription renews monthly, and your score keeps building. In fact, taking more time usually results in a more reliable and higher score, because confidence multipliers reward longer track records.</p>
+        </div></div>
+      </div>
+
+      <div class="accordion-item pillar-faq fade-up">
+        <button class="accordion-trigger">
+          "Can I use bots, algorithms, or AI to trade?"
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p><strong style="color:var(--green);">Yes.</strong> All legitimate trading strategies are welcome: algorithmic trading, HFT (high-frequency trading), AI-based strategies, scalping, swing trading, hedging, arbitrage, news trading, and multi-strategy approaches. The only restrictions are on copy trading between accounts, insider trading, coordinated group manipulation, and latency arbitrage. If your strategy is legal and you are trading your own signals, you are welcome here.</p>
+        </div></div>
+      </div>
+
+      <div class="accordion-item pillar-faq fade-up">
+        <button class="accordion-trigger">
+          "Can I reset my account if things go badly?"
+          <svg class="accordion-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 8 10 13 15 8"/></svg>
+        </button>
+        <div class="accordion-content"><div class="accordion-content-inner">
+          <p><strong>Yes.</strong> You get one free reset per calendar month (if your balance is at $0 and you are not yet live). Otherwise, a standard reset costs $99 at any time, or $79 if your score is between 80-84 (close to passing). A reset restores your capital to $1M, wipes your CLIMB Score, and archives your history. Your subscription date does not change.</p>
+        </div></div>
+      </div>
+    </div><!-- /accordion -->
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="container fade-up">
+    <h2 class="hero-title">Ready to Build Your Career?</h2>
+    <p style="font-size:18px;margin-top:12px;">Now you know the system. Time to prove yourself.</p>
+    <div class="cta-row" style="margin-top:32px;">
+      <a href="pricing.html" class="btn btn-primary btn-lg">Start Your Evaluation &rarr;</a>
+      <a href="how-it-works.html" class="btn btn-outline btn-lg">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+          <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="rules.html">Trading Rules</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="about.html">About Us</a>
+        <a href="about.html#pool">Liquidity Pool</a>
+        <a href="about.html#splits">Profit Splits</a>
+        <a href="pool.html">Liquidity Pool Dashboard</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="legal/cgv.html">Terms &amp; Conditions</a>
+        <a href="legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 12 10 7 15 12"/></svg>
+</button>
+
+<script src="js/shared.js"></script>
+<script>
+/* ── EMAIL GATE ── */
+(function(){
+  var gate=document.getElementById('emailGate');
+  var emailInput=document.getElementById('gateEmail');
+  var btn=document.getElementById('gateBtn');
+  var err=document.getElementById('gateError');
+
+  // Check localStorage
+  if(localStorage.getItem('kc_email')){
+    gate.classList.add('hidden');
+    setTimeout(function(){gate.style.display='none';},500);
+    return;
+  }
+
+  function isValidEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
+
+  function submit(){
+    var email=emailInput.value.trim();
+    if(!isValidEmail(email)){
+      err.style.display='block';
+      emailInput.style.borderColor='var(--red)';
+      return;
+    }
+    err.style.display='none';
+    emailInput.style.borderColor='';
+    localStorage.setItem('kc_email',email);
+    gate.classList.add('hidden');
+    setTimeout(function(){gate.style.display='none';},500);
+  }
+
+  btn.addEventListener('click',submit);
+  emailInput.addEventListener('keydown',function(e){if(e.key==='Enter')submit();});
+})();
+
+/* ── ACCORDION ── */
+(function(){
+  document.querySelectorAll('.accordion-trigger').forEach(function(trigger){
+    trigger.addEventListener('click',function(){
+      var item=this.parentElement;
+      var content=item.querySelector('.accordion-content');
+      var inner=content.querySelector('.accordion-content-inner');
+      if(item.classList.contains('open')){
+        item.classList.remove('open');
+        content.style.maxHeight='0';
+      }else{
+        item.classList.add('open');
+        content.style.maxHeight=inner.scrollHeight+'px';
+      }
+    });
+  });
+})();
+
+/* ── SCROLL ANIMATIONS ── */
+(function(){
+  var els=document.querySelectorAll('.fade-up');
+  if(!els.length)return;
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+    });
+  },{threshold:0.08});
+  els.forEach(function(el){obs.observe(el);});
+})();
+
+/* ── NAVBAR SCROLL ── */
+(function(){
+  var nav=document.querySelector('.navbar');
+  if(!nav)return;
+  window.addEventListener('scroll',function(){
+    nav.classList.toggle('scrolled',window.scrollY>20);
+  });
+})();
+
+/* ── MOBILE NAV ── */
+(function(){
+  var toggle=document.querySelector('.nav-toggle');
+  var mobile=document.querySelector('.nav-mobile');
+  if(!toggle||!mobile)return;
+  toggle.addEventListener('click',function(){
+    toggle.classList.toggle('open');
+    mobile.classList.toggle('open');
+  });
+})();
+
+/* ── SCROLL TO TOP ── */
+(function(){
+  var btn=document.getElementById('scrollTop');
+  if(!btn)return;
+  window.addEventListener('scroll',function(){
+    btn.classList.toggle('visible',window.scrollY>400);
+  });
+  btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+
+/* ── LANG DROPDOWN ── */
+(function(){
+  document.querySelectorAll('.lang-dropdown').forEach(function(dd){
+    var btn=dd.querySelector('.lang-current');
+    if(!btn)return;
+    btn.addEventListener('click',function(e){e.stopPropagation();dd.classList.toggle('open');});
+    dd.querySelectorAll('.lang-option').forEach(function(opt){
+      opt.addEventListener('click',function(){dd.classList.remove('open');});
+    });
+  });
+  document.addEventListener('click',function(){
+    document.querySelectorAll('.lang-dropdown.open').forEach(function(d){d.classList.remove('open');});
+  });
+})();
+</script>
+</body>
+</html>

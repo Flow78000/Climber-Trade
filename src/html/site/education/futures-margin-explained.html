@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futures Margin Explained: Initial, Maintenance, and Day Trading Margins — Climber Trade</title>
+<meta name="description" content="Understand futures margin types: initial, maintenance, and day trading margins. How notional value works, margin calls, and how margin affects prop firm leverage scoring.">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+.article{max-width:740px;margin:0 auto;}
+.article h2{font-size:22px;font-weight:700;margin:32px 0 12px;color:var(--text);}
+.article h3{font-size:17px;font-weight:600;margin:24px 0 8px;color:var(--teal);}
+.article p{font-size:15px;color:var(--text2);line-height:1.9;margin-bottom:16px;}
+.article ul,.article ol{padding-left:24px;margin-bottom:16px;}
+.article li{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:8px;}
+.article strong{color:var(--text);}
+.article blockquote{border-left:3px solid var(--teal);padding:12px 20px;margin:20px 0;background:var(--card);border-radius:0 var(--r) var(--r) 0;font-style:italic;color:var(--text2);}
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:13px;color:var(--text3);}
+.article-category{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+.article-hero{padding:60px 0 20px;}
+.article-subtitle{font-size:17px;color:var(--text2);line-height:1.7;margin-top:12px;max-width:640px;}
+.cta-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:32px;text-align:center;margin:40px 0 0;}
+.cta-box h3{color:var(--text);font-size:20px;margin-bottom:8px;}
+.cta-box p{font-size:14px;color:var(--text2);margin-bottom:20px;}
+.formula-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;margin:16px 0;font-family:var(--mono);font-size:14px;color:var(--teal);overflow-x:auto;}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="../how-it-works.html" class="nav-link">How It Works</a>
+      <a href="../pricing.html" class="nav-link">Pricing</a>
+      <a href="../rules.html" class="nav-link">Rules</a>
+      <a href="../faq.html" class="nav-link">FAQ</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../how-it-works.html" class="nav-link">How It Works</a>
+  <a href="../pricing.html" class="nav-link">Pricing</a>
+  <a href="../rules.html" class="nav-link">Rules</a>
+  <a href="../faq.html" class="nav-link">FAQ</a>
+  <a href="../about.html" class="nav-link">About</a>
+  <a href="../contact.html" class="nav-link">Contact</a>
+  <a href="../pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<!-- ARTICLE -->
+<section class="article-hero">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="../index.html">Home</a><span class="breadcrumb-sep">/</span>
+      <a href="../academy.html">Education</a><span class="breadcrumb-sep">/</span>
+      <span>Futures Margin Explained</span>
+    </nav>
+    <span class="article-category" style="background:#10B98118;color:var(--green);border:1px solid #10B98133;">Futures Trading</span>
+    <h1 style="margin-top:12px;font-size:clamp(28px,4vw,42px);">Futures Margin Explained: Initial, Maintenance, and Day Trading Margins</h1>
+    <p class="article-subtitle">Margin is the most misunderstood concept in futures trading. Master it, and you will never be caught off guard by a margin call or overleveraged position again.</p>
+    <div class="article-meta">
+      <span>11 min read</span>
+      <span>March 2026</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 80px;">
+  <div class="container">
+    <div class="article">
+
+      <h2>What Margin Actually Means in Futures</h2>
+      <p>In the stock market, margin is a loan from your broker. In futures, margin is fundamentally different — it is a performance bond. When you post margin to open a futures position, you are not borrowing money to buy the underlying asset. Instead, you are depositing a good-faith guarantee that you can cover potential losses on the position. The exchange requires this deposit to ensure that all market participants can meet their obligations.</p>
+      <p>This distinction matters because it changes how you think about leverage. A stock trader using margin is borrowing capital and paying interest. A futures trader posting margin is simply putting up collateral. The remaining notional value of the contract is not a debt — it is the total value of the position you are controlling.</p>
+
+      <h2>The Three Types of Futures Margin</h2>
+
+      <h3>1. Initial Margin</h3>
+      <p>Initial margin is the minimum amount required to open a new futures position. It is set by the exchange (CME Group for most U.S. futures) and adjusted periodically based on market volatility. When volatility rises, exchanges increase initial margins to reflect higher risk. When volatility subsides, margins decrease.</p>
+      <p>Current approximate initial margins for popular contracts:</p>
+      <ul>
+        <li><strong>E-mini S&P 500 (ES):</strong> ~$26,586</li>
+        <li><strong>E-mini Nasdaq-100 (NQ):</strong> ~$40,435</li>
+        <li><strong>Crude Oil (CL):</strong> ~$4,747</li>
+        <li><strong>Gold (GC):</strong> ~$49,959</li>
+        <li><strong>10-Year Treasury Note (ZN):</strong> ~$2,200</li>
+      </ul>
+      <p>These figures represent overnight margins — what you must maintain if you hold a position through the daily settlement. They can change frequently, so always verify current requirements before planning overnight holds.</p>
+
+      <h3>2. Maintenance Margin</h3>
+      <p>Maintenance margin is the minimum balance you must keep in your account to hold an existing position. It is typically 80-90% of the initial margin. If your account balance falls below the maintenance margin level due to adverse price movement, you receive a margin call — a demand to deposit additional funds or close positions to restore the required balance.</p>
+      <p>For example, if the initial margin on ES is $26,586 and the maintenance margin is $24,200, your account can absorb roughly $2,386 in losses per contract before triggering a margin call. On a funded account, you should never come anywhere near these levels because the <a href="max-drawdown-explained.html" style="color:var(--teal);">drawdown limits</a> will intervene long before margin requirements become relevant.</p>
+
+      <h3>3. Day Trading Margin</h3>
+      <p>Day trading margin (also called intraday margin) is a reduced margin level offered by most brokers for positions that are opened and closed within the same trading session. Because the position will not be held overnight, the risk of gap moves is eliminated, and brokers pass this reduced risk to traders in the form of lower margins.</p>
+      <p>Day trading margins are typically 25% to 50% of the full overnight margin:</p>
+      <ul>
+        <li><strong>ES day margin:</strong> ~$500 to $13,000 (broker-dependent)</li>
+        <li><strong>NQ day margin:</strong> ~$500 to $20,000 (broker-dependent)</li>
+        <li><strong>CL day margin:</strong> ~$500 to $2,500 (broker-dependent)</li>
+      </ul>
+      <p>The wide range exists because day trading margins are set by brokers, not exchanges. Some brokers offer extremely low day margins to attract active traders. However, low margins are a double-edged sword — they enable higher leverage, which can amplify both gains and losses.</p>
+
+      <h2>Understanding Notional Value</h2>
+      <p>Notional value is the total dollar value of the position you control with a futures contract. It is calculated as:</p>
+      <div class="formula-box">Notional Value = Point Value x Current Price</div>
+      <p>Examples at recent price levels:</p>
+      <ul>
+        <li><strong>ES at 5,200:</strong> $50 x 5,200 = $260,000 per contract</li>
+        <li><strong>NQ at 21,000:</strong> $20 x 21,000 = $420,000 per contract</li>
+        <li><strong>CL at $75:</strong> $1,000 x 75 = $75,000 per contract</li>
+        <li><strong>GC at $2,000:</strong> $100 x 2,000 = $200,000 per contract</li>
+      </ul>
+      <p>The ratio between your margin deposit and the notional value reveals your implied leverage. For ES with a $13,000 day trading margin on a $260,000 contract, the implied leverage is 20:1. This does not mean 20:1 leverage is appropriate — it means the exchange allows it. What matters for your trading performance and your <a href="../how-it-works.html" style="color:var(--teal);">CLIMB Score</a> is the leverage relative to your account size.</p>
+
+      <h2>How Margin Translates to Leverage</h2>
+      <p>On a funded account, leverage is calculated differently than what margin alone implies. The formula that Climber Trade uses is:</p>
+      <div class="formula-box">Leverage = Total Notional Exposure / Account Balance</div>
+      <p>Let us work through a practical example on a $1,000,000 evaluation account:</p>
+      <ul>
+        <li><strong>Scenario A:</strong> Trading 4 ES contracts. Notional = 4 x $260,000 = $1,040,000. Leverage = 1.04x.</li>
+        <li><strong>Scenario B:</strong> Trading 10 ES contracts. Notional = 10 x $260,000 = $2,600,000. Leverage = 2.6x. This is inside the optimal 2-5x scoring zone.</li>
+        <li><strong>Scenario C:</strong> Trading 25 ES contracts. Notional = 25 x $260,000 = $6,500,000. Leverage = 6.5x. Your leverage score drops to 92/100.</li>
+        <li><strong>Scenario D:</strong> Trading 50 ES contracts. Notional = 50 x $260,000 = $13,000,000. Leverage = 13x. Your leverage score drops to around 28/100.</li>
+      </ul>
+      <p>The <a href="leverage-sweet-spot.html" style="color:var(--teal);">optimal leverage range</a> of 2x to 5x earns a perfect 100/100 on the CT4 metric. Going above 5x progressively reduces your score. Above 18x, the score turns negative.</p>
+
+      <h2>Day Trading Margin vs. Overnight: What Changes</h2>
+      <p>The transition from day trading to overnight margin requirements creates one of the most common traps for futures traders. During the day, your broker may allow you to hold 20 ES contracts on a $1M account with no margin issues. But at 4:00 PM ET when the cash session closes, overnight margins kick in: 20 ES contracts x $26,586 = $531,720 in required margin. If you do not have that capital available, your broker will begin liquidating positions.</p>
+      <p>On a Climber Trade account, overnight exposure is capped at 5:1 notional leverage. For ES at 5,200, this means a maximum of approximately 19 contracts overnight ($4,940,000 notional / $1,000,000 = 4.94x). Always plan your position size with end-of-day margin requirements in mind, especially if you are a swing trader who holds positions across sessions.</p>
+
+      <h3>Weekend Exposure</h3>
+      <p>Weekend holds face even stricter requirements. On a Climber Trade account, weekend exposure is limited to 1:1 notional leverage, and your account balance must be at least $50,000. This means a maximum of approximately 3-4 ES contracts over the weekend. The rationale is clear: weekend gaps can be significant (geopolitical events, emergency policy changes), and limiting exposure protects both the trader and the firm.</p>
+
+      <h2>Margin Calls: What Happens and How to Avoid Them</h2>
+      <p>A margin call occurs when your account balance drops below the maintenance margin requirement. The process typically works as follows:</p>
+      <ol>
+        <li>Your open positions move against you, reducing your account balance.</li>
+        <li>Your balance drops below the maintenance margin threshold.</li>
+        <li>Your broker issues a margin call, demanding additional funds.</li>
+        <li>If you do not deposit funds or close positions within the specified timeframe (often minutes for intraday, hours for overnight), the broker liquidates positions automatically.</li>
+      </ol>
+      <p>On a funded account, margin calls are catastrophic because they represent an uncontrolled loss event. The forced liquidation typically occurs at the worst possible price, and the resulting loss damages every risk metric in your CLIMB Score. The solution is never to use anywhere near your maximum available margin. Professional traders typically use less than 30% of their available margin capacity at any given time.</p>
+
+      <h2>How Margin Affects Prop Firm Scoring</h2>
+      <p>In Climber Trade's scoring system, margin itself is not directly scored. What is scored is the leverage that margin enables. The CT4 (Average Lot Number) metric calculates your effective intraday leverage based on notional exposure. The scoring works as follows:</p>
+      <ul>
+        <li><strong>0x leverage:</strong> 60/100 — under-leveraged, capital is underutilized</li>
+        <li><strong>1x leverage:</strong> 80/100 — conservative but acceptable</li>
+        <li><strong>2x to 5x leverage:</strong> 100/100 — the optimal zone</li>
+        <li><strong>6x leverage:</strong> 92/100 — slightly above optimal</li>
+        <li><strong>10x leverage:</strong> 60/100 — significant score penalty</li>
+        <li><strong>15x leverage:</strong> 20/100 — danger zone</li>
+        <li><strong>18x+ leverage:</strong> 0/100 or negative — destructive to your overall score</li>
+      </ul>
+      <p>This scoring system is designed to reward traders who use capital efficiently without taking excessive risk. The margin your broker requires is a floor — the CLIMB Score's leverage metric defines the ceiling.</p>
+
+      <h2>Practical Takeaways</h2>
+      <p>Margin is a tool, not a target. Just because you can trade 50 ES contracts on your account does not mean you should. The most consistently profitable funded traders use their available margin conservatively, sizing positions to stay within the 2-5x leverage sweet spot that optimizes both their <a href="position-sizing-guide.html" style="color:var(--teal);">risk-adjusted returns</a> and their CLIMB Score.</p>
+
+      <blockquote>Think of margin as the speed limit on a highway. Just because the road allows 120 mph does not mean driving at that speed is safe or efficient. The best drivers — and traders — find the optimal speed for the conditions.</blockquote>
+
+      <!-- CTA -->
+      <div class="cta-box">
+        <h3>Put Your Margin Knowledge to Work</h3>
+        <p>Trade futures with $1M in evaluation capital and real-time leverage scoring on every position.</p>
+        <a href="../signup.html" class="btn btn-primary">Start Your Evaluation</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+          <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="../how-it-works.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../rules.html">Trading Rules</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="../about.html">About Us</a>
+        <a href="../about.html#pool">Liquidity Pool</a>
+        <a href="../about.html#splits">Profit Splits</a>
+        <a href="../pool.html">Liquidity Pool Dashboard</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="../contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="../legal/cgv.html">Terms & Conditions</a>
+        <a href="../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>

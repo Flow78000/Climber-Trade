@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algorithmic Trading with Prop Firms: Rules, Tips, and Best Practices | Climber Trade</title>
+<meta name="description" content="Everything you need to know about running trading algorithms with prop firms. Climber Trade allows algos and HFT. Learn the rules, prohibited practices, and how bots score on consistency metrics.">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+.article{max-width:740px;margin:0 auto;}
+.article h2{font-size:22px;font-weight:700;margin:32px 0 12px;color:var(--text);}
+.article h3{font-size:17px;font-weight:600;margin:24px 0 8px;color:var(--teal);}
+.article p{font-size:15px;color:var(--text2);line-height:1.9;margin-bottom:16px;}
+.article ul,.article ol{padding-left:24px;margin-bottom:16px;}
+.article li{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:8px;}
+.article strong{color:var(--text);}
+.article blockquote{border-left:3px solid var(--teal);padding:12px 20px;margin:20px 0;background:var(--card);border-radius:0 var(--r) var(--r) 0;font-style:italic;color:var(--text2);}
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:24px;font-size:13px;color:var(--text3);}
+.article-category{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;}
+.article-hero{padding:80px 0 40px;}
+.article-cta{text-align:center;padding:48px 0;}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="../how-it-works.html" class="nav-link">How It Works</a>
+      <a href="../pricing.html" class="nav-link">Pricing</a>
+      <a href="../rules.html" class="nav-link">Rules</a>
+      <a href="../faq.html" class="nav-link">FAQ</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <a href="../pricing.html" class="nav-cta">Start Trading</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../how-it-works.html" class="nav-link">How It Works</a>
+  <a href="../pricing.html" class="nav-link">Pricing</a>
+  <a href="../rules.html" class="nav-link">Rules</a>
+  <a href="../faq.html" class="nav-link">FAQ</a>
+  <a href="../about.html" class="nav-link">About</a>
+  <a href="../contact.html" class="nav-link">Contact</a>
+  <a href="../pricing.html" class="nav-cta">Start Trading</a>
+</div>
+<div class="spacer-nav"></div>
+
+<section class="article-hero">
+  <div class="container">
+    <div class="article">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="../academy.html">Education</a>
+        <span class="breadcrumb-sep">/</span>
+        <span>Algorithmic Trading</span>
+      </div>
+      <span class="article-category" style="background:#00D4FF15;color:var(--teal);border:1px solid #00D4FF33;">Strategy</span>
+      <h1 style="margin:16px 0 12px;font-size:clamp(28px,4vw,40px);">Algorithmic Trading with Prop Firms: Rules, Tips, and Best Practices</h1>
+      <p style="font-size:17px;color:var(--text2);margin-bottom:0;">Yes, you can run bots. Here is everything you need to know about algo trading with funded capital.</p>
+      <div class="article-meta" style="margin-top:16px;">
+        <span>12 min read</span>
+        <span>|</span>
+        <span>Updated March 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 80px;">
+  <div class="container">
+    <div class="article">
+
+      <p>Algorithmic trading has moved from the exclusive domain of institutional quantitative desks to the toolkit of retail traders worldwide. With accessible programming languages, cloud infrastructure, and powerful backtesting frameworks, building and deploying a trading algorithm is more achievable than ever. The question for many algo traders is whether they can use their automated strategies with funded accounts at prop firms.</p>
+
+      <p>At Climber Trade, the answer is yes. Algorithmic trading, including high-frequency trading (HFT), is explicitly allowed. However, there are specific rules, prohibited practices, and scoring considerations that algo traders must understand to succeed. This article covers all of them.</p>
+
+      <h2>Which Prop Firms Allow Algorithmic Trading?</h2>
+
+      <p>The prop firm landscape is split on algorithmic trading. Many traditional firms prohibit it entirely or impose severe restrictions, such as minimum hold times, maximum trade frequency, or manual trade verification requirements. These restrictions often exist because the firm profits from failed evaluations rather than from trader success, and algorithms that pass evaluations efficiently threaten that business model.</p>
+
+      <p>Climber Trade takes the opposite approach. All legitimate trading styles are allowed, including:</p>
+
+      <ul>
+        <li><strong>Fully automated algorithmic strategies</strong></li>
+        <li><strong>High-frequency trading (HFT)</strong></li>
+        <li><strong>AI-based trading systems</strong></li>
+        <li><strong>Semi-automated strategies</strong> (algorithm generates signals, human executes)</li>
+        <li><strong>Multi-strategy approaches</strong> combining manual and automated trading</li>
+      </ul>
+
+      <p>There are no minimum hold times, no maximum trade frequency caps, and no requirement to execute trades manually. If your algorithm generates a legitimate edge, you are free to deploy it.</p>
+
+      <h2>Prohibited Practices for Algo Traders</h2>
+
+      <p>While algorithmic trading is allowed, certain practices are strictly prohibited regardless of whether they are executed manually or by algorithm:</p>
+
+      <h3>Latency Arbitrage</h3>
+
+      <p>Latency arbitrage exploits price differences between brokers or data feeds caused by microsecond timing differences. This is not a legitimate trading edge. It is an infrastructure advantage that does not translate to real market conditions. Climber Trade explicitly prohibits latency arbitrage, and accounts using it will be terminated.</p>
+
+      <h3>Copy Trading Between Accounts</h3>
+
+      <p>Running the same algorithm on multiple Climber Trade accounts (whether yours or another person's) constitutes copy trading and is prohibited. Each account must reflect an independent trading decision process. If you manage both a personal account and a corporate account, they must use different strategies.</p>
+
+      <h3>Coordinated Group Trading</h3>
+
+      <p>Multiple traders deploying the same algorithm simultaneously in a coordinated manner is treated as market manipulation and violates the trading rules. Each trader's algorithm must be independently developed and independently operated.</p>
+
+      <h3>Market Manipulation</h3>
+
+      <p>Algorithms designed to spoof, layer, or manipulate order books are illegal and constitute immediate grounds for account termination. If your algorithm places orders it intends to cancel before execution, that is spoofing. If it stacks orders at multiple levels to create the illusion of demand, that is layering. Both are prohibited by financial regulations and by Climber Trade's rules.</p>
+
+      <h2>Backtesting vs Live: The Reality Gap</h2>
+
+      <p>The most common failure mode for algorithmic traders is deploying a strategy that performed brilliantly in backtesting but fails in live markets. Understanding why this gap exists is critical for algo traders pursuing funded accounts.</p>
+
+      <h3>Overfitting</h3>
+
+      <p>Overfitting occurs when your algorithm is so precisely tuned to historical data that it cannot adapt to new market conditions. A system optimized to trade the exact patterns of 2023-2025 may produce exceptional backtest results but fail in 2026 when market dynamics shift. The solution is to use out-of-sample testing, walk-forward optimization, and cross-validation across multiple time periods and market regimes.</p>
+
+      <h3>Slippage and Execution</h3>
+
+      <p>Backtests typically assume perfect execution at the desired price. In live trading, there is slippage, especially for algorithms that trade during high-volatility events or place large orders relative to the market depth. Build slippage assumptions into your backtest (typically 1 to 3 ticks per trade) and see if the strategy remains profitable.</p>
+
+      <h3>Regime Changes</h3>
+
+      <p>Markets alternate between trending and ranging regimes, high and low volatility environments, and correlated and decorrelated asset behavior. An algorithm that excels in one regime may underperform in another. The most robust algorithms either adapt to regime changes or maintain a small but consistent edge across all regimes.</p>
+
+      <h2>How Algo Traders Score on CLIMB Metrics</h2>
+
+      <p>Well-designed algorithms can excel on the CLIMB Score because they remove the human psychological factors that damage most traders' metrics. Here is how algo trading interacts with each scoring pillar:</p>
+
+      <h3>Risk Management (Pillar 1)</h3>
+
+      <p>Algorithms that enforce strict position sizing and stop losses will naturally score well on ABS_NPL, INPL, and CT4 (leverage). The key is building hard <a href="daily-loss-limit.html" style="color:var(--teal);">daily loss limits</a> into the algorithm itself. If your bot does not have an automatic shutdown at a daily loss threshold, add one. Otherwise, a feedback loop of losses can run unchecked while you are away from the screen.</p>
+
+      <h3>Performance (Pillar 2)</h3>
+
+      <p>Algorithms that trade frequently will reach the 200-trade confidence threshold quickly, allowing the <a href="profit-factor-explained.html" style="color:var(--teal);">Profit Factor</a> score to reflect full weight. The <a href="sharpe-ratio-traders.html" style="color:var(--teal);">Sharpe Ratio</a> bonus tends to be strong for well-designed algorithms because automated execution removes the emotional decisions that increase return volatility.</p>
+
+      <h3>Consistency (Pillar 3)</h3>
+
+      <p>This is where algorithms truly excel. An algorithm uses the exact same position size on every trade, producing a near-perfect <a href="consistency-in-trading.html" style="color:var(--teal);">LSR (Lot Stability Ratio)</a>. If your bot always trades 3 NQ contracts, your LSR will approach the maximum score. Win rate consistency is also typically strong because the algorithm applies the same entry and exit criteria mechanically.</p>
+
+      <h3>Quality Execution (Pillar 4)</h3>
+
+      <p>Algorithms produce predictable performance distributions. Because they do not have emotionally driven outsized days (either positive or negative), their Kurtosis and Skew metrics tend to be favorable. The Max/Min Extreme Performance Ratio and Best/Worst Day Ratio also benefit from the algorithm's mechanical consistency.</p>
+
+      <h2>Tips for Optimizing Your Bot for CLIMB Score</h2>
+
+      <h3>Build in a Daily Loss Circuit Breaker</h3>
+
+      <p>Program your algorithm to stop trading for the day if daily losses exceed 0.3% of account equity. This single feature protects your ABS_NPL metric, prevents cascading losses during unfavorable market conditions, and ensures that your worst days are bounded.</p>
+
+      <h3>Use Fixed Position Sizing</h3>
+
+      <p>Avoid dynamic position sizing (e.g., increasing size after wins or decreasing after losses) during the evaluation period. While dynamic sizing may improve raw returns, it damages your LSR metric. Use a fixed number of contracts on every trade. After reaching live status and establishing a strong score, you can gradually introduce dynamic sizing.</p>
+
+      <h3>Implement Daily Profit Targets</h3>
+
+      <p>Program the algorithm to reduce or cease trading after reaching a daily profit target of approximately 0.5% to 1.0% of equity. This prevents outsized positive days that increase Kurtosis and Skew while ensuring your daily returns stay in the optimal ABS_NPL scoring range.</p>
+
+      <h3>Monitor for Regime Changes</h3>
+
+      <p>Build a regime detection module that monitors market volatility, trend strength, and correlation changes. When the market shifts outside the conditions your algorithm was designed for, reduce position sizes or pause trading. A bot that trades aggressively into a regime it was not designed for will suffer a <a href="recovery-after-drawdown.html" style="color:var(--teal);">drawdown</a> that damages multiple metrics simultaneously.</p>
+
+      <h3>Log Everything</h3>
+
+      <p>Maintain detailed logs of every trade, including the signal that triggered it, the market conditions at the time, the execution price versus intended price, and the P&L. This data is invaluable for identifying when the algorithm begins to degrade and needs recalibration.</p>
+
+      <h2>Common Algo Trading Mistakes on Funded Accounts</h2>
+
+      <ul>
+        <li><strong>No kill switch:</strong> Algorithms without a daily loss circuit breaker can lose 5% to 10% in a single session during adverse conditions. Always have a hard stop.</li>
+        <li><strong>Over-optimization:</strong> An algorithm with 50 parameters tuned to historical data will fail in live markets. Simpler models with fewer parameters are more robust.</li>
+        <li><strong>Ignoring transaction costs:</strong> A strategy that makes 2 ticks per trade sounds profitable until you account for commissions and slippage that consume 1.5 ticks. Net profitability must be verified.</li>
+        <li><strong>Running multiple correlated strategies:</strong> Three algorithms that all go long when VIX drops and the market trends up are effectively one strategy with 3x the risk. Ensure true diversification.</li>
+        <li><strong>Deploying without forward testing:</strong> Always run your algorithm in paper or simulation mode for at least 30 days before deploying on a funded evaluation account. The gap between backtest and live is real and often costly.</li>
+      </ul>
+
+      <h2>Intellectual Property Protection</h2>
+
+      <p>A critical concern for algo traders is whether the prop firm can access, copy, or reverse-engineer their strategy. Climber Trade's trader contract explicitly states that trading strategies are the exclusive intellectual property of the trader. Climber Trade owns the performance data and metrics, but the strategy itself remains yours. A confidentiality agreement protects your methods from disclosure.</p>
+
+      <p>This is an important distinction. Some firms include clauses that grant them rights to your strategy or require you to disclose your algorithm's logic. Climber Trade does not. Your code, your models, and your methods are yours.</p>
+
+      <blockquote>Algorithmic traders have a natural advantage in consistency, discipline, and risk management. The CLIMB Score rewards exactly those qualities. A well-designed bot is one of the strongest paths to funded status.</blockquote>
+
+      <h2>Key Takeaways</h2>
+
+      <ul>
+        <li>Climber Trade explicitly allows algorithmic trading, HFT, and AI-based strategies with no restrictions on trade frequency or hold time.</li>
+        <li>Prohibited practices include latency arbitrage, copy trading between accounts, coordinated group trading, and market manipulation.</li>
+        <li>Backtesting results rarely match live performance. Use out-of-sample testing, slippage assumptions, and regime detection.</li>
+        <li>Algorithms excel on consistency metrics (LSR, Kurtosis, Skew) because they remove emotional decision-making.</li>
+        <li>Build daily loss limits and daily profit targets directly into your algorithm for optimal scoring.</li>
+        <li>Your strategy remains your intellectual property. Climber Trade does not claim rights to your algorithm.</li>
+      </ul>
+
+      <div class="article-cta">
+        <h3 style="color:var(--text);font-size:22px;margin-bottom:12px;">Deploy your algorithm. Get funded.</h3>
+        <p>Climber Trade welcomes algorithmic traders. No restrictions, no minimum hold times, full intellectual property protection. Start your evaluation and let your bot prove its edge.</p>
+        <a href="../signup.html" class="btn btn-primary" style="margin-top:16px;">Start Your Evaluation &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Revolutionary trader funding platform with 100% aligned interests.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+          <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="../how-it-works.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../rules.html">Trading Rules</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="../about.html">About Us</a>
+        <a href="../about.html#pool">Liquidity Pool</a>
+        <a href="../about.html#splits">Profit Splits</a>
+        <a href="../pool.html">Liquidity Pool Dashboard</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="../contact.html">Help Center</a>
+        <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a>
+        <a href="../legal/cgv.html">Terms & Conditions</a>
+        <a href="../legal/privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Climber Trade. All rights reserved.</span>
+      <span class="footer-status">All Systems Operational</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/shared.js"></script>
+</body>
+</html>
