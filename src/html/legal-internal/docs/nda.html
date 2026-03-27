@@ -42,136 +42,147 @@
 }
 .legal .callout strong{color:var(--text);}
 .legal .callout-danger{border-left-color:var(--red);}
+.lang-switch{display:flex;gap:4px;align-items:center;margin-left:auto;}
+.lang-switch button{
+  padding:5px 12px;border-radius:6px;border:1px solid var(--border);
+  background:none;color:var(--text2);font-family:var(--font);font-size:12px;
+  font-weight:600;cursor:pointer;transition:all .15s;
+}
+.lang-switch button:hover{border-color:var(--border2);color:var(--text);}
+.lang-switch button.active{border-color:var(--teal);color:var(--teal);background:var(--teal-dim);}
+.breadcrumb-lang{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 </style>
 </head>
 <body>
-<nav class="navbar"><div class="nav-inner"><a href="../index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="../how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="../pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="../rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="../faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="../about.html" class="nav-link" data-i18n="nav_about">About</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="../pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
-<div class="nav-mobile"><a href="../how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="../pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="../rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="../faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="../about.html" class="nav-link" data-i18n="nav_about">About</a><a href="../contact.html" class="nav-link" data-i18n="nav_contact">Contact</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="../pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div>
+<nav class="navbar"><div class="nav-inner"><a href="../index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="../how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="../pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="../rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="../faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="../about.html" class="nav-link" data-i18n="nav_about">About</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">&#127760;</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">&#127760;</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">&#127467;&#127479;</span>Fran&ccedil;ais</button><button class="lang-option" data-lang="es"><span class="lang-flag">&#127466;&#127480;</span>Espa&ntilde;ol</button></div></div><a href="../pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-mobile"><a href="../how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="../pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="../rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="../faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="../about.html" class="nav-link" data-i18n="nav_about">About</a><a href="../contact.html" class="nav-link" data-i18n="nav_contact">Contact</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">&#127760;</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">&#127760;</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">&#127467;&#127479;</span>Fran&ccedil;ais</button><button class="lang-option" data-lang="es"><span class="lang-flag">&#127466;&#127480;</span>Espa&ntilde;ol</button></div></div><a href="../pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div>
 <div class="spacer-nav"></div>
 
 <section class="section">
 <div class="container legal">
-  <nav class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">/</span><a href="index.html">Legal</a><span class="breadcrumb-sep">/</span><span>NDA &mdash; Beta Testers</span></nav>
-  <div class="section-label">Legal</div>
-  <h1 style="font-size:32px;margin-bottom:8px">Non-Disclosure Agreement</h1>
-  <p style="color:var(--text3);font-size:13px">Last updated: March 2026 &middot; Climber Trade &middot; Beta Testing Program</p>
+  <div class="breadcrumb-lang">
+    <nav class="breadcrumb"><a href="../index.html" data-i18n="bc_home">Home</a><span class="breadcrumb-sep">/</span><a href="index.html" data-i18n="bc_legal">Legal</a><span class="breadcrumb-sep">/</span><span data-i18n="bc_nda">NDA — Beta Testers</span></nav>
+    <div class="lang-switch">
+      <button class="active" data-lang="en">EN</button>
+      <button data-lang="fr">&#127467;&#127479; FR</button>
+      <button data-lang="es">&#127466;&#127480; ES</button>
+    </div>
+  </div>
+  <div class="section-label" data-i18n="label_legal">Legal</div>
+  <h1 style="font-size:32px;margin-bottom:8px" data-i18n="page_title">Non-Disclosure Agreement</h1>
+  <p style="color:var(--text3);font-size:13px" data-i18n="page_subtitle">Last updated: March 2026 · Climber Trade · Beta Testing Program</p>
 
   <div class="legal-nav">
-    <div class="legal-nav-title">Table of Contents</div>
+    <div class="legal-nav-title" data-i18n="toc_title">Table of Contents</div>
     <ol class="legal-nav-list">
-      <li><a href="#nda-parties">Parties</a></li>
-      <li><a href="#nda-purpose">Purpose</a></li>
-      <li><a href="#nda-definition">Definition of Confidential Information</a></li>
-      <li><a href="#nda-obligations">Obligations of the Receiving Party</a></li>
-      <li><a href="#nda-scope">Scope of Covered Information</a></li>
-      <li><a href="#nda-duration">Duration</a></li>
-      <li><a href="#nda-communication">Authorized Communication Channels</a></li>
-      <li><a href="#nda-exceptions">Exceptions</a></li>
-      <li><a href="#nda-sanctions">Breach &amp; Sanctions</a></li>
-      <li><a href="#nda-return">Return of Materials</a></li>
-      <li><a href="#nda-law">Governing Law</a></li>
-      <li><a href="#nda-contact">Contact</a></li>
+      <li><a href="#nda-parties" data-i18n="toc_1">Parties</a></li>
+      <li><a href="#nda-purpose" data-i18n="toc_2">Purpose</a></li>
+      <li><a href="#nda-definition" data-i18n="toc_3">Definition of Confidential Information</a></li>
+      <li><a href="#nda-obligations" data-i18n="toc_4">Obligations of the Receiving Party</a></li>
+      <li><a href="#nda-scope" data-i18n="toc_5">Scope of Covered Information</a></li>
+      <li><a href="#nda-duration" data-i18n="toc_6">Duration</a></li>
+      <li><a href="#nda-communication" data-i18n="toc_7">Authorized Communication Channels</a></li>
+      <li><a href="#nda-exceptions" data-i18n="toc_8">Exceptions</a></li>
+      <li><a href="#nda-sanctions" data-i18n="toc_9">Breach & Sanctions</a></li>
+      <li><a href="#nda-return" data-i18n="toc_10">Return of Materials</a></li>
+      <li><a href="#nda-law" data-i18n="toc_11">Governing Law</a></li>
+      <li><a href="#nda-contact" data-i18n="toc_12">Contact</a></li>
     </ol>
   </div>
 
-  <h3 id="nda-parties">1. Parties</h3>
-  <p>This Non-Disclosure Agreement is entered into between:</p>
+  <h3 id="nda-parties" data-i18n="h_1">1. Parties</h3>
+  <p data-i18n="p_1a">This Non-Disclosure Agreement is entered into between:</p>
   <ul>
-    <li><strong>Disclosing Party:</strong> Climber Trade, represented at <a href="https://www.climbertrade.com" style="color:var(--teal)">www.climbertrade.com</a></li>
-    <li><strong>Receiving Party:</strong> The Beta Tester (the individual granted access to the beta testing program)</li>
+    <li data-i18n="li_1a">Disclosing Party: Climber Trade, represented at www.climbertrade.com</li>
+    <li data-i18n="li_1b">Receiving Party: The Beta Tester (the individual granted access to the beta testing program)</li>
   </ul>
-  <p>By participating in the Climber Trade Beta Testing Program, the Receiving Party acknowledges and agrees to all terms set forth in this agreement.</p>
+  <p data-i18n="p_1b">By participating in the Climber Trade Beta Testing Program, the Receiving Party acknowledges and agrees to all terms set forth in this agreement.</p>
 
-  <h3 id="nda-purpose">2. Purpose</h3>
-  <p>The purpose of this NDA is to protect proprietary and confidential information disclosed to Beta Testers during their participation in the Climber Trade Beta Testing Program. This agreement ensures that all platform-related information shared during the beta phase remains strictly confidential.</p>
+  <h3 id="nda-purpose" data-i18n="h_2">2. Purpose</h3>
+  <p data-i18n="p_2">The purpose of this NDA is to protect proprietary and confidential information disclosed to Beta Testers during their participation in the Climber Trade Beta Testing Program. This agreement ensures that all platform-related information shared during the beta phase remains strictly confidential.</p>
 
-  <h3 id="nda-definition">3. Definition of Confidential Information</h3>
-  <p>Confidential Information includes, without limitation, all information related to the Climber Trade platform that is disclosed to the Receiving Party during the beta testing program, whether in written, oral, electronic, or any other form. This encompasses:</p>
+  <h3 id="nda-definition" data-i18n="h_3">3. Definition of Confidential Information</h3>
+  <p data-i18n="p_3">Confidential Information includes, without limitation, all information related to the Climber Trade platform that is disclosed to the Receiving Party during the beta testing program, whether in written, oral, electronic, or any other form. This encompasses:</p>
   <ul>
-    <li>Platform features, functionality, and user interface designs</li>
-    <li>CLIMB Score algorithms, metrics, and scoring methodologies</li>
-    <li>Technical architecture, APIs, and infrastructure details</li>
-    <li>Business models, pricing strategies, and commercial terms</li>
-    <li>Trading regulations, internal processes, and operational procedures</li>
-    <li>Pool of liquidity mechanics and allocation formulas</li>
-    <li>Marketing materials, launch strategies, and roadmap details</li>
-    <li>Any bugs, errors, or issues discovered during testing</li>
-    <li>Feedback and communications between the parties</li>
-    <li>Any other information identified as confidential or that a reasonable person would understand to be confidential</li>
+    <li data-i18n="li_3a">Platform features, functionality, and user interface designs</li>
+    <li data-i18n="li_3b">CLIMB Score algorithms, metrics, and scoring methodologies</li>
+    <li data-i18n="li_3c">Technical architecture, APIs, and infrastructure details</li>
+    <li data-i18n="li_3d">Business models, pricing strategies, and commercial terms</li>
+    <li data-i18n="li_3e">Trading regulations, internal processes, and operational procedures</li>
+    <li data-i18n="li_3f">Pool of liquidity mechanics and allocation formulas</li>
+    <li data-i18n="li_3g">Marketing materials, launch strategies, and roadmap details</li>
+    <li data-i18n="li_3h">Any bugs, errors, or issues discovered during testing</li>
+    <li data-i18n="li_3i">Feedback and communications between the parties</li>
+    <li data-i18n="li_3j">Any other information identified as confidential or that a reasonable person would understand to be confidential</li>
   </ul>
 
-  <h3 id="nda-obligations">4. Obligations of the Receiving Party</h3>
-  <p>The Receiving Party agrees to:</p>
+  <h3 id="nda-obligations" data-i18n="h_4">4. Obligations of the Receiving Party</h3>
+  <p data-i18n="p_4">The Receiving Party agrees to:</p>
   <ol>
-    <li><strong>Maintain strict confidentiality</strong> of all Confidential Information received</li>
-    <li><strong>Not disclose, publish, or disseminate</strong> any Confidential Information to any third party, whether individual or entity</li>
-    <li><strong>Not reproduce or copy</strong> Confidential Information except as strictly necessary for beta testing activities</li>
-    <li><strong>Not use</strong> Confidential Information for any purpose other than participating in the beta testing program</li>
-    <li><strong>Take all reasonable measures</strong> to prevent unauthorized access to or disclosure of Confidential Information</li>
-    <li><strong>Not post, share, or reference</strong> any Confidential Information on social media, forums, messaging platforms, or any public or semi-public channels</li>
-    <li><strong>Immediately notify</strong> Climber Trade of any unauthorized disclosure or suspected breach</li>
+    <li data-i18n="li_4a">Maintain strict confidentiality of all Confidential Information received</li>
+    <li data-i18n="li_4b">Not disclose, publish, or disseminate any Confidential Information to any third party, whether individual or entity</li>
+    <li data-i18n="li_4c">Not reproduce or copy Confidential Information except as strictly necessary for beta testing activities</li>
+    <li data-i18n="li_4d">Not use Confidential Information for any purpose other than participating in the beta testing program</li>
+    <li data-i18n="li_4e">Take all reasonable measures to prevent unauthorized access to or disclosure of Confidential Information</li>
+    <li data-i18n="li_4f">Not post, share, or reference any Confidential Information on social media, forums, messaging platforms, or any public or semi-public channels</li>
+    <li data-i18n="li_4g">Immediately notify Climber Trade of any unauthorized disclosure or suspected breach</li>
   </ol>
 
-  <h3 id="nda-scope">5. Scope of Covered Information</h3>
-  <p>This NDA covers all information obtained through:</p>
+  <h3 id="nda-scope" data-i18n="h_5">5. Scope of Covered Information</h3>
+  <p data-i18n="p_5">This NDA covers all information obtained through:</p>
   <ul>
-    <li>Direct access to the Climber Trade platform during beta testing</li>
-    <li>Documentation, guides, or manuals provided to Beta Testers</li>
-    <li>Communications with Climber Trade team members</li>
-    <li>Group discussions, feedback sessions, or testing meetings</li>
-    <li>Screenshots, recordings, or any captures of platform content</li>
-    <li>Internal metrics, data, or performance indicators observed during testing</li>
+    <li data-i18n="li_5a">Direct access to the Climber Trade platform during beta testing</li>
+    <li data-i18n="li_5b">Documentation, guides, or manuals provided to Beta Testers</li>
+    <li data-i18n="li_5c">Communications with Climber Trade team members</li>
+    <li data-i18n="li_5d">Group discussions, feedback sessions, or testing meetings</li>
+    <li data-i18n="li_5e">Screenshots, recordings, or any captures of platform content</li>
+    <li data-i18n="li_5f">Internal metrics, data, or performance indicators observed during testing</li>
   </ul>
 
-  <h3 id="nda-duration">6. Duration</h3>
-  <div class="callout callout-danger">
-    <strong>The confidentiality obligations under this NDA are indefinite.</strong> They survive the termination of the beta testing program and the Receiving Party's relationship with Climber Trade. There is no expiration date on the duty of confidentiality.
-  </div>
+  <h3 id="nda-duration" data-i18n="h_6">6. Duration</h3>
+  <div class="callout callout-danger" data-i18n="callout_6">The confidentiality obligations under this NDA are indefinite. They survive the termination of the beta testing program and the Receiving Party's relationship with Climber Trade. There is no expiration date on the duty of confidentiality.</div>
 
-  <h3 id="nda-communication">7. Authorized Communication Channels</h3>
-  <p>All communications regarding the beta testing program, feedback, bug reports, and any matters related to Confidential Information must be conducted exclusively through:</p>
-  <div class="callout">
-    <strong>Email:</strong> <a href="mailto:contact@climbertrade.com" style="color:var(--teal)">contact@climbertrade.com</a><br><br>
-    No other communication channel is authorized for the exchange of Confidential Information. The Receiving Party must not use personal email, messaging apps, social media, or any other medium to discuss or transmit Confidential Information.
-  </div>
+  <h3 id="nda-communication" data-i18n="h_7">7. Authorized Communication Channels</h3>
+  <p data-i18n="p_7">All communications regarding the beta testing program, feedback, bug reports, and any matters related to Confidential Information must be conducted exclusively through:</p>
+  <div class="callout" data-i18n="callout_7">Email: contact@climbertrade.com. No other communication channel is authorized for the exchange of Confidential Information. The Receiving Party must not use personal email, messaging apps, social media, or any other medium to discuss or transmit Confidential Information.</div>
 
-  <h3 id="nda-exceptions">8. Exceptions</h3>
-  <p>The obligations of confidentiality do not apply to information that:</p>
+  <h3 id="nda-exceptions" data-i18n="h_8">8. Exceptions</h3>
+  <p data-i18n="p_8">The obligations of confidentiality do not apply to information that:</p>
   <ul>
-    <li>Was already publicly available at the time of disclosure, without any breach by the Receiving Party</li>
-    <li>Becomes publicly available after disclosure through no fault of the Receiving Party</li>
-    <li>Was independently developed by the Receiving Party without reference to the Confidential Information</li>
-    <li>Is disclosed pursuant to a valid court order or legal requirement, provided the Receiving Party notifies Climber Trade promptly and cooperates to limit the scope of disclosure</li>
+    <li data-i18n="li_8a">Was already publicly available at the time of disclosure, without any breach by the Receiving Party</li>
+    <li data-i18n="li_8b">Becomes publicly available after disclosure through no fault of the Receiving Party</li>
+    <li data-i18n="li_8c">Was independently developed by the Receiving Party without reference to the Confidential Information</li>
+    <li data-i18n="li_8d">Is disclosed pursuant to a valid court order or legal requirement, provided the Receiving Party notifies Climber Trade promptly and cooperates to limit the scope of disclosure</li>
   </ul>
 
-  <h3 id="nda-sanctions">9. Breach &amp; Sanctions</h3>
-  <p>Any breach of this NDA will result in the following consequences, which may be applied cumulatively:</p>
+  <h3 id="nda-sanctions" data-i18n="h_9">9. Breach & Sanctions</h3>
+  <p data-i18n="p_9">Any breach of this NDA will result in the following consequences, which may be applied cumulatively:</p>
 
-  <h4>9.1 Immediate Exclusion</h4>
-  <p>The Receiving Party will be immediately and permanently excluded from the Beta Testing Program and all Climber Trade services. All access will be revoked without notice.</p>
+  <h4 data-i18n="h_9_1">9.1 Immediate Exclusion</h4>
+  <p data-i18n="p_9_1">The Receiving Party will be immediately and permanently excluded from the Beta Testing Program and all Climber Trade services. All access will be revoked without notice.</p>
 
-  <h4>9.2 Civil Proceedings</h4>
-  <p>Climber Trade reserves the right to pursue civil action seeking compensatory damages for any losses, including but not limited to financial losses, reputational harm, and loss of competitive advantage resulting from the breach.</p>
+  <h4 data-i18n="h_9_2">9.2 Civil Proceedings</h4>
+  <p data-i18n="p_9_2">Climber Trade reserves the right to pursue civil action seeking compensatory damages for any losses, including but not limited to financial losses, reputational harm, and loss of competitive advantage resulting from the breach.</p>
 
-  <h4>9.3 Criminal Prosecution</h4>
-  <p>Where applicable under local and international law, Climber Trade reserves the right to file criminal complaints for misappropriation of trade secrets, unauthorized disclosure of confidential business information, or any other applicable offense.</p>
+  <h4 data-i18n="h_9_3">9.3 Criminal Prosecution</h4>
+  <p data-i18n="p_9_3">Where applicable under local and international law, Climber Trade reserves the right to file criminal complaints for misappropriation of trade secrets, unauthorized disclosure of confidential business information, or any other applicable offense.</p>
 
-  <h4>9.4 Damages &amp; Indemnification</h4>
-  <p>The Receiving Party agrees to indemnify Climber Trade for all direct and indirect damages resulting from a breach of this NDA, including legal fees, investigative costs, and any third-party claims arising from the unauthorized disclosure.</p>
+  <h4 data-i18n="h_9_4">9.4 Damages & Indemnification</h4>
+  <p data-i18n="p_9_4">The Receiving Party agrees to indemnify Climber Trade for all direct and indirect damages resulting from a breach of this NDA, including legal fees, investigative costs, and any third-party claims arising from the unauthorized disclosure.</p>
 
-  <h3 id="nda-return">10. Return of Materials</h3>
-  <p>Upon termination of the beta testing program, or upon request by Climber Trade, the Receiving Party must:</p>
+  <h3 id="nda-return" data-i18n="h_10">10. Return of Materials</h3>
+  <p data-i18n="p_10">Upon termination of the beta testing program, or upon request by Climber Trade, the Receiving Party must:</p>
   <ul>
-    <li>Return all physical materials containing Confidential Information</li>
-    <li>Permanently delete all digital copies, files, screenshots, and recordings related to the platform</li>
-    <li>Confirm in writing that all Confidential Information has been returned or destroyed</li>
+    <li data-i18n="li_10a">Return all physical materials containing Confidential Information</li>
+    <li data-i18n="li_10b">Permanently delete all digital copies, files, screenshots, and recordings related to the platform</li>
+    <li data-i18n="li_10c">Confirm in writing that all Confidential Information has been returned or destroyed</li>
   </ul>
 
-  <h3 id="nda-law">11. Governing Law</h3>
-  <p>This NDA shall be governed by and construed in accordance with applicable law. Any dispute arising from or related to this agreement shall be submitted to the competent courts. The Receiving Party consents to the jurisdiction of such courts for the purpose of any proceedings related to this NDA.</p>
+  <h3 id="nda-law" data-i18n="h_11">11. Governing Law</h3>
+  <p data-i18n="p_11">This NDA shall be governed by and construed in accordance with applicable law. Any dispute arising from or related to this agreement shall be submitted to the competent courts. The Receiving Party consents to the jurisdiction of such courts for the purpose of any proceedings related to this NDA.</p>
 
-  <h3 id="nda-contact">12. Contact</h3>
-  <p>For any questions regarding this NDA or the Beta Testing Program: <a href="mailto:contact@climbertrade.com" style="color:var(--teal)">contact@climbertrade.com</a></p>
+  <h3 id="nda-contact" data-i18n="h_12">12. Contact</h3>
+  <p data-i18n="p_12">For any questions regarding this NDA or the Beta Testing Program: contact@climbertrade.com</p>
 </div>
 </section>
 
@@ -187,5 +198,123 @@
 <script src="../js/translations.js"></script>
 <script src="../js/i18n.js"></script>
 <script src="../js/shared.js"></script>
+<script>
+(function(){
+  var D = {
+    en: {
+      bc_home:"Home",bc_legal:"Legal",bc_nda:"NDA \u2014 Beta Testers",label_legal:"Legal",
+      page_title:"Non-Disclosure Agreement",
+      page_subtitle:"Last updated: March 2026 \u00b7 Climber Trade \u00b7 Beta Testing Program",
+      toc_title:"Table of Contents",
+      toc_1:"Parties",toc_2:"Purpose",toc_3:"Definition of Confidential Information",toc_4:"Obligations of the Receiving Party",toc_5:"Scope of Covered Information",toc_6:"Duration",toc_7:"Authorized Communication Channels",toc_8:"Exceptions",toc_9:"Breach & Sanctions",toc_10:"Return of Materials",toc_11:"Governing Law",toc_12:"Contact",
+      h_1:"1. Parties",p_1a:"This Non-Disclosure Agreement is entered into between:",
+      li_1a:"Disclosing Party: Climber Trade, represented at www.climbertrade.com",
+      li_1b:"Receiving Party: The Beta Tester (the individual granted access to the beta testing program)",
+      p_1b:"By participating in the Climber Trade Beta Testing Program, the Receiving Party acknowledges and agrees to all terms set forth in this agreement.",
+      h_2:"2. Purpose",p_2:"The purpose of this NDA is to protect proprietary and confidential information disclosed to Beta Testers during their participation in the Climber Trade Beta Testing Program. This agreement ensures that all platform-related information shared during the beta phase remains strictly confidential.",
+      h_3:"3. Definition of Confidential Information",p_3:"Confidential Information includes, without limitation, all information related to the Climber Trade platform that is disclosed to the Receiving Party during the beta testing program, whether in written, oral, electronic, or any other form. This encompasses:",
+      li_3a:"Platform features, functionality, and user interface designs",li_3b:"CLIMB Score algorithms, metrics, and scoring methodologies",li_3c:"Technical architecture, APIs, and infrastructure details",li_3d:"Business models, pricing strategies, and commercial terms",li_3e:"Trading regulations, internal processes, and operational procedures",li_3f:"Pool of liquidity mechanics and allocation formulas",li_3g:"Marketing materials, launch strategies, and roadmap details",li_3h:"Any bugs, errors, or issues discovered during testing",li_3i:"Feedback and communications between the parties",li_3j:"Any other information identified as confidential or that a reasonable person would understand to be confidential",
+      h_4:"4. Obligations of the Receiving Party",p_4:"The Receiving Party agrees to:",
+      li_4a:"Maintain strict confidentiality of all Confidential Information received",li_4b:"Not disclose, publish, or disseminate any Confidential Information to any third party, whether individual or entity",li_4c:"Not reproduce or copy Confidential Information except as strictly necessary for beta testing activities",li_4d:"Not use Confidential Information for any purpose other than participating in the beta testing program",li_4e:"Take all reasonable measures to prevent unauthorized access to or disclosure of Confidential Information",li_4f:"Not post, share, or reference any Confidential Information on social media, forums, messaging platforms, or any public or semi-public channels",li_4g:"Immediately notify Climber Trade of any unauthorized disclosure or suspected breach",
+      h_5:"5. Scope of Covered Information",p_5:"This NDA covers all information obtained through:",
+      li_5a:"Direct access to the Climber Trade platform during beta testing",li_5b:"Documentation, guides, or manuals provided to Beta Testers",li_5c:"Communications with Climber Trade team members",li_5d:"Group discussions, feedback sessions, or testing meetings",li_5e:"Screenshots, recordings, or any captures of platform content",li_5f:"Internal metrics, data, or performance indicators observed during testing",
+      h_6:"6. Duration",callout_6:"The confidentiality obligations under this NDA are indefinite. They survive the termination of the beta testing program and the Receiving Party\u2019s relationship with Climber Trade. There is no expiration date on the duty of confidentiality.",
+      h_7:"7. Authorized Communication Channels",p_7:"All communications regarding the beta testing program, feedback, bug reports, and any matters related to Confidential Information must be conducted exclusively through:",
+      callout_7:"Email: contact@climbertrade.com. No other communication channel is authorized for the exchange of Confidential Information. The Receiving Party must not use personal email, messaging apps, social media, or any other medium to discuss or transmit Confidential Information.",
+      h_8:"8. Exceptions",p_8:"The obligations of confidentiality do not apply to information that:",
+      li_8a:"Was already publicly available at the time of disclosure, without any breach by the Receiving Party",li_8b:"Becomes publicly available after disclosure through no fault of the Receiving Party",li_8c:"Was independently developed by the Receiving Party without reference to the Confidential Information",li_8d:"Is disclosed pursuant to a valid court order or legal requirement, provided the Receiving Party notifies Climber Trade promptly and cooperates to limit the scope of disclosure",
+      h_9:"9. Breach & Sanctions",p_9:"Any breach of this NDA will result in the following consequences, which may be applied cumulatively:",
+      h_9_1:"9.1 Immediate Exclusion",p_9_1:"The Receiving Party will be immediately and permanently excluded from the Beta Testing Program and all Climber Trade services. All access will be revoked without notice.",
+      h_9_2:"9.2 Civil Proceedings",p_9_2:"Climber Trade reserves the right to pursue civil action seeking compensatory damages for any losses, including but not limited to financial losses, reputational harm, and loss of competitive advantage resulting from the breach.",
+      h_9_3:"9.3 Criminal Prosecution",p_9_3:"Where applicable under local and international law, Climber Trade reserves the right to file criminal complaints for misappropriation of trade secrets, unauthorized disclosure of confidential business information, or any other applicable offense.",
+      h_9_4:"9.4 Damages & Indemnification",p_9_4:"The Receiving Party agrees to indemnify Climber Trade for all direct and indirect damages resulting from a breach of this NDA, including legal fees, investigative costs, and any third-party claims arising from the unauthorized disclosure.",
+      h_10:"10. Return of Materials",p_10:"Upon termination of the beta testing program, or upon request by Climber Trade, the Receiving Party must:",
+      li_10a:"Return all physical materials containing Confidential Information",li_10b:"Permanently delete all digital copies, files, screenshots, and recordings related to the platform",li_10c:"Confirm in writing that all Confidential Information has been returned or destroyed",
+      h_11:"11. Governing Law",p_11:"This NDA shall be governed by and construed in accordance with applicable law. Any dispute arising from or related to this agreement shall be submitted to the competent courts. The Receiving Party consents to the jurisdiction of such courts for the purpose of any proceedings related to this NDA.",
+      h_12:"12. Contact",p_12:"For any questions regarding this NDA or the Beta Testing Program: contact@climbertrade.com"
+    },
+    fr: {
+      bc_home:"Accueil",bc_legal:"Juridique",bc_nda:"NDA \u2014 B\u00eata-testeurs",label_legal:"Juridique",
+      page_title:"Accord de Non-Divulgation",
+      page_subtitle:"Derni\u00e8re mise \u00e0 jour : Mars 2026 \u00b7 Climber Trade \u00b7 Programme de B\u00eata Test",
+      toc_title:"Table des mati\u00e8res",
+      toc_1:"Parties",toc_2:"Objet",toc_3:"D\u00e9finition des Informations Confidentielles",toc_4:"Obligations de la Partie R\u00e9ceptrice",toc_5:"P\u00e9rim\u00e8tre des Informations Couvertes",toc_6:"Dur\u00e9e",toc_7:"Canaux de Communication Autoris\u00e9s",toc_8:"Exceptions",toc_9:"Violation & Sanctions",toc_10:"Restitution des Documents",toc_11:"Droit Applicable",toc_12:"Contact",
+      h_1:"1. Parties",p_1a:"Le pr\u00e9sent Accord de Non-Divulgation est conclu entre :",
+      li_1a:"Partie Divulgatrice : Climber Trade, repr\u00e9sent\u00e9e sur www.climbertrade.com",
+      li_1b:"Partie R\u00e9ceptrice : Le B\u00eata-testeur (la personne physique ayant obtenu l\u2019acc\u00e8s au programme de b\u00eata test)",
+      p_1b:"En participant au Programme de B\u00eata Test de Climber Trade, la Partie R\u00e9ceptrice reconna\u00eet et accepte l\u2019ensemble des termes \u00e9nonc\u00e9s dans le pr\u00e9sent accord.",
+      h_2:"2. Objet",p_2:"Le pr\u00e9sent NDA a pour objet de prot\u00e9ger les informations propri\u00e9taires et confidentielles communiqu\u00e9es aux B\u00eata-testeurs dans le cadre de leur participation au Programme de B\u00eata Test de Climber Trade. Le pr\u00e9sent accord garantit que toute information relative \u00e0 la plateforme partag\u00e9e durant la phase b\u00eata demeure strictement confidentielle.",
+      h_3:"3. D\u00e9finition des Informations Confidentielles",p_3:"Les Informations Confidentielles comprennent, sans limitation, toute information relative \u00e0 la plateforme Climber Trade communiqu\u00e9e \u00e0 la Partie R\u00e9ceptrice durant le programme de b\u00eata test, sous forme \u00e9crite, orale, \u00e9lectronique ou toute autre forme. Cela englobe :",
+      li_3a:"Fonctionnalit\u00e9s de la plateforme, interface utilisateur et design",li_3b:"Algorithmes du CLIMB Score, m\u00e9triques et m\u00e9thodologies de notation",li_3c:"Architecture technique, API et d\u00e9tails d\u2019infrastructure",li_3d:"Mod\u00e8les \u00e9conomiques, strat\u00e9gies tarifaires et conditions commerciales",li_3e:"R\u00e8glements de trading, processus internes et proc\u00e9dures op\u00e9rationnelles",li_3f:"M\u00e9canismes du pool de liquidit\u00e9 et formules d\u2019allocation",li_3g:"Supports marketing, strat\u00e9gies de lancement et d\u00e9tails de la feuille de route",li_3h:"Tout bug, erreur ou probl\u00e8me d\u00e9couvert pendant les tests",li_3i:"Retours d\u2019exp\u00e9rience et communications entre les parties",li_3j:"Toute autre information identifi\u00e9e comme confidentielle ou qu\u2019une personne raisonnable comprendrait comme telle",
+      h_4:"4. Obligations de la Partie R\u00e9ceptrice",p_4:"La Partie R\u00e9ceptrice s\u2019engage \u00e0 :",
+      li_4a:"Maintenir la stricte confidentialit\u00e9 de toutes les Informations Confidentielles re\u00e7ues",li_4b:"Ne pas divulguer, publier ou diffuser d\u2019Informations Confidentielles \u00e0 un tiers, qu\u2019il s\u2019agisse d\u2019une personne physique ou morale",li_4c:"Ne pas reproduire ni copier les Informations Confidentielles sauf n\u00e9cessit\u00e9 stricte pour les activit\u00e9s de b\u00eata test",li_4d:"Ne pas utiliser les Informations Confidentielles \u00e0 d\u2019autres fins que la participation au programme de b\u00eata test",li_4e:"Prendre toutes les mesures raisonnables pour emp\u00eacher l\u2019acc\u00e8s non autoris\u00e9 aux Informations Confidentielles ou leur divulgation",li_4f:"Ne pas publier, partager ou faire r\u00e9f\u00e9rence \u00e0 des Informations Confidentielles sur les r\u00e9seaux sociaux, forums, plateformes de messagerie ou tout canal public ou semi-public",li_4g:"Notifier imm\u00e9diatement Climber Trade de toute divulgation non autoris\u00e9e ou suspicion de violation",
+      h_5:"5. P\u00e9rim\u00e8tre des Informations Couvertes",p_5:"Le pr\u00e9sent NDA couvre toutes les informations obtenues par :",
+      li_5a:"Acc\u00e8s direct \u00e0 la plateforme Climber Trade pendant le b\u00eata test",li_5b:"Documentation, guides ou manuels fournis aux B\u00eata-testeurs",li_5c:"Communications avec les membres de l\u2019\u00e9quipe Climber Trade",li_5d:"Discussions de groupe, sessions de retour d\u2019exp\u00e9rience ou r\u00e9unions de test",li_5e:"Captures d\u2019\u00e9cran, enregistrements ou toute capture de contenu de la plateforme",li_5f:"M\u00e9triques internes, donn\u00e9es ou indicateurs de performance observ\u00e9s pendant les tests",
+      h_6:"6. Dur\u00e9e",callout_6:"Les obligations de confidentialit\u00e9 au titre du pr\u00e9sent NDA sont \u00e0 dur\u00e9e ind\u00e9termin\u00e9e. Elles survivent \u00e0 la fin du programme de b\u00eata test et \u00e0 la cessation de la relation de la Partie R\u00e9ceptrice avec Climber Trade. Il n\u2019existe aucune date d\u2019expiration de l\u2019obligation de confidentialit\u00e9.",
+      h_7:"7. Canaux de Communication Autoris\u00e9s",p_7:"Toutes les communications relatives au programme de b\u00eata test, aux retours d\u2019exp\u00e9rience, aux rapports de bugs et \u00e0 toute question li\u00e9e aux Informations Confidentielles doivent \u00eatre effectu\u00e9es exclusivement par :",
+      callout_7:"Email : contact@climbertrade.com. Aucun autre canal de communication n\u2019est autoris\u00e9 pour l\u2019\u00e9change d\u2019Informations Confidentielles. La Partie R\u00e9ceptrice ne doit pas utiliser d\u2019email personnel, d\u2019applications de messagerie, de r\u00e9seaux sociaux ou tout autre moyen pour discuter ou transmettre des Informations Confidentielles.",
+      h_8:"8. Exceptions",p_8:"Les obligations de confidentialit\u00e9 ne s\u2019appliquent pas aux informations qui :",
+      li_8a:"\u00c9taient d\u00e9j\u00e0 accessibles au public au moment de la divulgation, sans violation de la part de la Partie R\u00e9ceptrice",li_8b:"Deviennent accessibles au public apr\u00e8s la divulgation sans faute de la Partie R\u00e9ceptrice",li_8c:"Ont \u00e9t\u00e9 d\u00e9velopp\u00e9es de mani\u00e8re ind\u00e9pendante par la Partie R\u00e9ceptrice sans r\u00e9f\u00e9rence aux Informations Confidentielles",li_8d:"Sont divulgu\u00e9es en vertu d\u2019une d\u00e9cision de justice valide ou d\u2019une obligation l\u00e9gale, \u00e0 condition que la Partie R\u00e9ceptrice notifie rapidement Climber Trade et coop\u00e8re pour limiter la port\u00e9e de la divulgation",
+      h_9:"9. Violation & Sanctions",p_9:"Toute violation du pr\u00e9sent NDA entra\u00eenera les cons\u00e9quences suivantes, qui pourront \u00eatre appliqu\u00e9es de mani\u00e8re cumulative :",
+      h_9_1:"9.1 Exclusion Imm\u00e9diate",p_9_1:"La Partie R\u00e9ceptrice sera imm\u00e9diatement et d\u00e9finitivement exclue du Programme de B\u00eata Test et de tous les services de Climber Trade. Tous les acc\u00e8s seront r\u00e9voqu\u00e9s sans pr\u00e9avis.",
+      h_9_2:"9.2 Poursuites Civiles",p_9_2:"Climber Trade se r\u00e9serve le droit d\u2019engager une action civile en r\u00e9paration de tout pr\u00e9judice, incluant notamment les pertes financi\u00e8res, l\u2019atteinte \u00e0 la r\u00e9putation et la perte d\u2019avantage concurrentiel r\u00e9sultant de la violation.",
+      h_9_3:"9.3 Poursuites P\u00e9nales",p_9_3:"Dans la mesure permise par le droit local et international, Climber Trade se r\u00e9serve le droit de d\u00e9poser plainte pour d\u00e9tournement de secrets commerciaux, divulgation non autoris\u00e9e d\u2019informations commerciales confidentielles ou toute autre infraction applicable.",
+      h_9_4:"9.4 Dommages & Indemnisation",p_9_4:"La Partie R\u00e9ceptrice s\u2019engage \u00e0 indemniser Climber Trade de tout dommage direct et indirect r\u00e9sultant d\u2019une violation du pr\u00e9sent NDA, y compris les frais juridiques, les co\u00fbts d\u2019enqu\u00eate et toute r\u00e9clamation de tiers d\u00e9coulant de la divulgation non autoris\u00e9e.",
+      h_10:"10. Restitution des Documents",p_10:"\u00c0 la fin du programme de b\u00eata test, ou sur demande de Climber Trade, la Partie R\u00e9ceptrice doit :",
+      li_10a:"Restituer tous les supports physiques contenant des Informations Confidentielles",li_10b:"Supprimer d\u00e9finitivement toutes les copies num\u00e9riques, fichiers, captures d\u2019\u00e9cran et enregistrements relatifs \u00e0 la plateforme",li_10c:"Confirmer par \u00e9crit que toutes les Informations Confidentielles ont \u00e9t\u00e9 restitu\u00e9es ou d\u00e9truites",
+      h_11:"11. Droit Applicable",p_11:"Le pr\u00e9sent NDA est r\u00e9gi et interpr\u00e9t\u00e9 conform\u00e9ment au droit applicable. Tout litige d\u00e9coulant du pr\u00e9sent accord ou s\u2019y rapportant sera soumis aux tribunaux comp\u00e9tents. La Partie R\u00e9ceptrice consent \u00e0 la comp\u00e9tence desdits tribunaux pour toute proc\u00e9dure relative au pr\u00e9sent NDA.",
+      h_12:"12. Contact",p_12:"Pour toute question relative au pr\u00e9sent NDA ou au Programme de B\u00eata Test : contact@climbertrade.com"
+    },
+    es: {
+      bc_home:"Inicio",bc_legal:"Legal",bc_nda:"NDA \u2014 Beta Testers",label_legal:"Legal",
+      page_title:"Acuerdo de No Divulgaci\u00f3n",
+      page_subtitle:"\u00daltima actualizaci\u00f3n: Marzo 2026 \u00b7 Climber Trade \u00b7 Programa de Beta Testing",
+      toc_title:"\u00cdndice",
+      toc_1:"Partes",toc_2:"Objeto",toc_3:"Definici\u00f3n de Informaci\u00f3n Confidencial",toc_4:"Obligaciones de la Parte Receptora",toc_5:"Alcance de la Informaci\u00f3n Cubierta",toc_6:"Duraci\u00f3n",toc_7:"Canales de Comunicaci\u00f3n Autorizados",toc_8:"Excepciones",toc_9:"Incumplimiento & Sanciones",toc_10:"Devoluci\u00f3n de Materiales",toc_11:"Legislaci\u00f3n Aplicable",toc_12:"Contacto",
+      h_1:"1. Partes",p_1a:"El presente Acuerdo de No Divulgaci\u00f3n se celebra entre:",
+      li_1a:"Parte Divulgadora: Climber Trade, representada en www.climbertrade.com",
+      li_1b:"Parte Receptora: El Beta Tester (la persona f\u00edsica a la que se otorga acceso al programa de beta testing)",
+      p_1b:"Al participar en el Programa de Beta Testing de Climber Trade, la Parte Receptora reconoce y acepta todos los t\u00e9rminos establecidos en el presente acuerdo.",
+      h_2:"2. Objeto",p_2:"El objeto del presente NDA es proteger la informaci\u00f3n propietaria y confidencial comunicada a los Beta Testers durante su participaci\u00f3n en el Programa de Beta Testing de Climber Trade. El presente acuerdo garantiza que toda la informaci\u00f3n relativa a la plataforma compartida durante la fase beta permanezca estrictamente confidencial.",
+      h_3:"3. Definici\u00f3n de Informaci\u00f3n Confidencial",p_3:"La Informaci\u00f3n Confidencial incluye, sin limitaci\u00f3n, toda la informaci\u00f3n relativa a la plataforma Climber Trade comunicada a la Parte Receptora durante el programa de beta testing, ya sea en forma escrita, oral, electr\u00f3nica o cualquier otra forma. Esto abarca:",
+      li_3a:"Funcionalidades de la plataforma, interfaz de usuario y dise\u00f1os",li_3b:"Algoritmos del CLIMB Score, m\u00e9tricas y metodolog\u00edas de puntuaci\u00f3n",li_3c:"Arquitectura t\u00e9cnica, APIs y detalles de infraestructura",li_3d:"Modelos de negocio, estrategias de precios y condiciones comerciales",li_3e:"Reglamentos de trading, procesos internos y procedimientos operativos",li_3f:"Mec\u00e1nicas del pool de liquidez y f\u00f3rmulas de asignaci\u00f3n",li_3g:"Materiales de marketing, estrategias de lanzamiento y detalles de la hoja de ruta",li_3h:"Cualquier bug, error o problema descubierto durante las pruebas",li_3i:"Comentarios y comunicaciones entre las partes",li_3j:"Cualquier otra informaci\u00f3n identificada como confidencial o que una persona razonable entender\u00eda como tal",
+      h_4:"4. Obligaciones de la Parte Receptora",p_4:"La Parte Receptora se compromete a:",
+      li_4a:"Mantener la estricta confidencialidad de toda la Informaci\u00f3n Confidencial recibida",li_4b:"No divulgar, publicar ni difundir Informaci\u00f3n Confidencial a terceros, ya sean personas f\u00edsicas o jur\u00eddicas",li_4c:"No reproducir ni copiar la Informaci\u00f3n Confidencial salvo necesidad estricta para las actividades de beta testing",li_4d:"No utilizar la Informaci\u00f3n Confidencial para ning\u00fan fin distinto a la participaci\u00f3n en el programa de beta testing",li_4e:"Adoptar todas las medidas razonables para prevenir el acceso no autorizado a la Informaci\u00f3n Confidencial o su divulgaci\u00f3n",li_4f:"No publicar, compartir ni hacer referencia a Informaci\u00f3n Confidencial en redes sociales, foros, plataformas de mensajer\u00eda o cualquier canal p\u00fablico o semip\u00fablico",li_4g:"Notificar inmediatamente a Climber Trade cualquier divulgaci\u00f3n no autorizada o sospecha de incumplimiento",
+      h_5:"5. Alcance de la Informaci\u00f3n Cubierta",p_5:"El presente NDA cubre toda la informaci\u00f3n obtenida a trav\u00e9s de:",
+      li_5a:"Acceso directo a la plataforma Climber Trade durante el beta testing",li_5b:"Documentaci\u00f3n, gu\u00edas o manuales proporcionados a los Beta Testers",li_5c:"Comunicaciones con los miembros del equipo de Climber Trade",li_5d:"Discusiones grupales, sesiones de feedback o reuniones de prueba",li_5e:"Capturas de pantalla, grabaciones o cualquier captura de contenido de la plataforma",li_5f:"M\u00e9tricas internas, datos o indicadores de rendimiento observados durante las pruebas",
+      h_6:"6. Duraci\u00f3n",callout_6:"Las obligaciones de confidencialidad establecidas en el presente NDA son de duraci\u00f3n indefinida. Subsisten tras la finalizaci\u00f3n del programa de beta testing y la terminaci\u00f3n de la relaci\u00f3n de la Parte Receptora con Climber Trade. No existe fecha de expiraci\u00f3n del deber de confidencialidad.",
+      h_7:"7. Canales de Comunicaci\u00f3n Autorizados",p_7:"Todas las comunicaciones relativas al programa de beta testing, feedback, informes de errores y cualquier asunto relacionado con la Informaci\u00f3n Confidencial deben realizarse exclusivamente a trav\u00e9s de:",
+      callout_7:"Email: contact@climbertrade.com. Ning\u00fan otro canal de comunicaci\u00f3n est\u00e1 autorizado para el intercambio de Informaci\u00f3n Confidencial. La Parte Receptora no debe utilizar email personal, aplicaciones de mensajer\u00eda, redes sociales ni ning\u00fan otro medio para discutir o transmitir Informaci\u00f3n Confidencial.",
+      h_8:"8. Excepciones",p_8:"Las obligaciones de confidencialidad no se aplican a la informaci\u00f3n que:",
+      li_8a:"Ya era de dominio p\u00fablico en el momento de la divulgaci\u00f3n, sin que mediara incumplimiento por parte de la Parte Receptora",li_8b:"Se hace de dominio p\u00fablico tras la divulgaci\u00f3n sin culpa de la Parte Receptora",li_8c:"Fue desarrollada de forma independiente por la Parte Receptora sin referencia a la Informaci\u00f3n Confidencial",li_8d:"Se divulga en cumplimiento de una orden judicial v\u00e1lida o un requerimiento legal, siempre que la Parte Receptora notifique prontamente a Climber Trade y coopere para limitar el alcance de la divulgaci\u00f3n",
+      h_9:"9. Incumplimiento & Sanciones",p_9:"Todo incumplimiento del presente NDA dar\u00e1 lugar a las siguientes consecuencias, que podr\u00e1n aplicarse de forma acumulativa:",
+      h_9_1:"9.1 Exclusi\u00f3n Inmediata",p_9_1:"La Parte Receptora ser\u00e1 excluida de forma inmediata y definitiva del Programa de Beta Testing y de todos los servicios de Climber Trade. Todos los accesos ser\u00e1n revocados sin preaviso.",
+      h_9_2:"9.2 Acciones Civiles",p_9_2:"Climber Trade se reserva el derecho de emprender acciones civiles reclamando da\u00f1os y perjuicios por cualquier p\u00e9rdida, incluyendo sin limitaci\u00f3n p\u00e9rdidas financieras, da\u00f1o reputacional y p\u00e9rdida de ventaja competitiva derivados del incumplimiento.",
+      h_9_3:"9.3 Acciones Penales",p_9_3:"En la medida en que lo permita la legislaci\u00f3n local e internacional, Climber Trade se reserva el derecho de presentar denuncia penal por apropiaci\u00f3n indebida de secretos comerciales, divulgaci\u00f3n no autorizada de informaci\u00f3n comercial confidencial o cualquier otro delito aplicable.",
+      h_9_4:"9.4 Da\u00f1os & Indemnizaci\u00f3n",p_9_4:"La Parte Receptora se compromete a indemnizar a Climber Trade por todos los da\u00f1os directos e indirectos derivados del incumplimiento del presente NDA, incluyendo honorarios legales, costes de investigaci\u00f3n y cualquier reclamaci\u00f3n de terceros derivada de la divulgaci\u00f3n no autorizada.",
+      h_10:"10. Devoluci\u00f3n de Materiales",p_10:"Al finalizar el programa de beta testing, o a solicitud de Climber Trade, la Parte Receptora deber\u00e1:",
+      li_10a:"Devolver todos los materiales f\u00edsicos que contengan Informaci\u00f3n Confidencial",li_10b:"Eliminar permanentemente todas las copias digitales, archivos, capturas de pantalla y grabaciones relacionadas con la plataforma",li_10c:"Confirmar por escrito que toda la Informaci\u00f3n Confidencial ha sido devuelta o destruida",
+      h_11:"11. Legislaci\u00f3n Aplicable",p_11:"El presente NDA se rige e interpreta de conformidad con la legislaci\u00f3n aplicable. Todo litigio derivado del presente acuerdo o relacionado con \u00e9l ser\u00e1 sometido a los tribunales competentes. La Parte Receptora consiente la jurisdicci\u00f3n de dichos tribunales para cualquier procedimiento relativo al presente NDA.",
+      h_12:"12. Contacto",p_12:"Para cualquier consulta relativa al presente NDA o al Programa de Beta Testing: contact@climbertrade.com"
+    }
+  };
+  var saved = localStorage.getItem('climber-legal-lang') || 'en';
+  function apply(lang) {
+    localStorage.setItem('climber-legal-lang', lang);
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (D[lang] && D[lang][key]) el.textContent = D[lang][key];
+    });
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+  }
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() { apply(b.dataset.lang); });
+  });
+  apply(saved);
+})();
+</script>
 </body>
 </html>

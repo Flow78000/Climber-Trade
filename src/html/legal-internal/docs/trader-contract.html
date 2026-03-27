@@ -41,200 +41,211 @@
   font-size:13px;color:var(--text2);line-height:1.7;
 }
 .legal .callout strong{color:var(--text);}
+.lang-switch{display:flex;gap:4px;align-items:center;margin-left:auto;}
+.lang-switch button{
+  padding:5px 12px;border-radius:6px;border:1px solid var(--border);
+  background:none;color:var(--text2);font-family:var(--font);font-size:12px;
+  font-weight:600;cursor:pointer;transition:all .15s;
+}
+.lang-switch button:hover{border-color:var(--border2);color:var(--text);}
+.lang-switch button.active{border-color:var(--teal);color:var(--teal);background:var(--teal-dim);}
+.breadcrumb-lang{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 </style>
 </head>
 <body>
-<nav class="navbar"><div class="nav-inner"><a href="../index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="../how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="../pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="../rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="../faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="../about.html" class="nav-link" data-i18n="nav_about">About</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="../pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
-<div class="nav-mobile"><a href="../how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="../pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="../rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="../faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="../about.html" class="nav-link" data-i18n="nav_about">About</a><a href="../contact.html" class="nav-link" data-i18n="nav_contact">Contact</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="../pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div>
+<nav class="navbar"><div class="nav-inner"><a href="../index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="../how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="../pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="../rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="../faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="../about.html" class="nav-link" data-i18n="nav_about">About</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">&#127760;</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">&#127760;</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">&#127467;&#127479;</span>Fran&ccedil;ais</button><button class="lang-option" data-lang="es"><span class="lang-flag">&#127466;&#127480;</span>Espa&ntilde;ol</button></div></div><a href="../pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-mobile"><a href="../how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="../pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="../rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="../faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="../about.html" class="nav-link" data-i18n="nav_about">About</a><a href="../contact.html" class="nav-link" data-i18n="nav_contact">Contact</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">&#127760;</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">&#127760;</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">&#127467;&#127479;</span>Fran&ccedil;ais</button><button class="lang-option" data-lang="es"><span class="lang-flag">&#127466;&#127480;</span>Espa&ntilde;ol</button></div></div><a href="../pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div>
 <div class="spacer-nav"></div>
 
 <section class="section">
 <div class="container legal">
-  <nav class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">/</span><a href="index.html">Legal</a><span class="breadcrumb-sep">/</span><span>Professional Trader Contract</span></nav>
-  <div class="section-label">Legal</div>
-  <h1 style="font-size:32px;margin-bottom:8px">Professional Trader Contract</h1>
-  <p style="color:var(--text3);font-size:13px">Last updated: March 2026 &middot; Climber Trade &middot; Live Trading Program</p>
+  <div class="breadcrumb-lang">
+    <nav class="breadcrumb"><a href="../index.html" data-i18n="bc_home">Home</a><span class="breadcrumb-sep">/</span><a href="index.html" data-i18n="bc_legal">Legal</a><span class="breadcrumb-sep">/</span><span data-i18n="bc_contract">Professional Trader Contract</span></nav>
+    <div class="lang-switch">
+      <button class="active" data-lang="en">EN</button>
+      <button data-lang="fr">&#127467;&#127479; FR</button>
+      <button data-lang="es">&#127466;&#127480; ES</button>
+    </div>
+  </div>
+  <div class="section-label" data-i18n="label_legal">Legal</div>
+  <h1 style="font-size:32px;margin-bottom:8px" data-i18n="page_title">Professional Trader Contract</h1>
+  <p style="color:var(--text3);font-size:13px" data-i18n="page_subtitle">Last updated: March 2026 &middot; Climber Trade &middot; Live Trading Program</p>
 
   <div class="legal-nav">
-    <div class="legal-nav-title">Table of Contents</div>
+    <div class="legal-nav-title" data-i18n="toc_title">Table of Contents</div>
     <ol class="legal-nav-list">
-      <li><a href="#tc-object">Object &amp; Scope</a></li>
-      <li><a href="#tc-relationship">Nature of the Relationship</a></li>
-      <li><a href="#tc-eligibility">Eligibility &amp; Activation</a></li>
-      <li><a href="#tc-capital">Capital Allocation</a></li>
-      <li><a href="#tc-splits">Profit Splits</a></li>
-      <li><a href="#tc-maintenance">Maintenance Requirements</a></li>
-      <li><a href="#tc-scaling">Scaling Mechanism</a></li>
-      <li><a href="#tc-withdrawals">Withdrawals &amp; Payouts</a></li>
-      <li><a href="#tc-ip">Intellectual Property</a></li>
-      <li><a href="#tc-kyc">KYC &amp; Compliance</a></li>
-      <li><a href="#tc-tax">Tax Obligations</a></li>
-      <li><a href="#tc-downgrade">Score Degradation &amp; Return to Evaluation</a></li>
-      <li><a href="#tc-termination">Termination</a></li>
-      <li><a href="#tc-contact">Contact</a></li>
+      <li><a href="#tc-object" data-i18n="toc_1">Object &amp; Scope</a></li>
+      <li><a href="#tc-relationship" data-i18n="toc_2">Nature of the Relationship</a></li>
+      <li><a href="#tc-eligibility" data-i18n="toc_3">Eligibility &amp; Activation</a></li>
+      <li><a href="#tc-capital" data-i18n="toc_4">Capital Allocation</a></li>
+      <li><a href="#tc-splits" data-i18n="toc_5">Profit Splits</a></li>
+      <li><a href="#tc-maintenance" data-i18n="toc_6">Maintenance Requirements</a></li>
+      <li><a href="#tc-scaling" data-i18n="toc_7">Scaling Mechanism</a></li>
+      <li><a href="#tc-withdrawals" data-i18n="toc_8">Withdrawals &amp; Payouts</a></li>
+      <li><a href="#tc-ip" data-i18n="toc_9">Intellectual Property</a></li>
+      <li><a href="#tc-kyc" data-i18n="toc_10">KYC &amp; Compliance</a></li>
+      <li><a href="#tc-tax" data-i18n="toc_11">Tax Obligations</a></li>
+      <li><a href="#tc-downgrade" data-i18n="toc_12">Score Degradation &amp; Return to Evaluation</a></li>
+      <li><a href="#tc-termination" data-i18n="toc_13">Termination</a></li>
+      <li><a href="#tc-contact" data-i18n="toc_14">Contact</a></li>
     </ol>
   </div>
 
-  <h3 id="tc-object">1. Object &amp; Scope</h3>
-  <p>This contract governs the relationship between Climber Trade and the Trader upon activation of the Live Trading Program. By accepting this contract, the Trader agrees to the terms outlined herein and in the associated Trading Regulations.</p>
-  <p>The Live Trading Program provides qualified traders with access to real capital from the Climber Trade Liquidity Pool, enabling them to trade on live markets and share in the profits generated.</p>
+  <h3 id="tc-object" data-i18n="h_1">1. Object &amp; Scope</h3>
+  <p data-i18n="p_1a">This contract governs the relationship between Climber Trade and the Trader upon activation of the Live Trading Program. By accepting this contract, the Trader agrees to the terms outlined herein and in the associated Trading Regulations.</p>
+  <p data-i18n="p_1b">The Live Trading Program provides qualified traders with access to real capital from the Climber Trade Liquidity Pool, enabling them to trade on live markets and share in the profits generated.</p>
 
-  <h3 id="tc-relationship">2. Nature of the Relationship</h3>
-  <p>The relationship between Climber Trade and the Trader is qualified as a <strong>service provision agreement</strong>. This contract does not create an employment relationship, partnership, or agency.</p>
+  <h3 id="tc-relationship" data-i18n="h_2">2. Nature of the Relationship</h3>
+  <p data-i18n="p_2a">The relationship between Climber Trade and the Trader is qualified as a service provision agreement. This contract does not create an employment relationship, partnership, or agency.</p>
   <ul>
-    <li>The Trader operates as an <strong>independent service provider</strong>, not a salaried employee</li>
-    <li>The Trader is classified as an <strong>analyst</strong> providing market analysis services to Climber Trade</li>
-    <li>The relationship is <strong>non-exclusive</strong> &mdash; the Trader may engage in other professional activities</li>
-    <li>The Trader is solely responsible for their own social contributions, insurance, and legal obligations</li>
+    <li data-i18n="li_2a">The Trader operates as an independent service provider, not a salaried employee</li>
+    <li data-i18n="li_2b">The Trader is classified as an analyst providing market analysis services to Climber Trade</li>
+    <li data-i18n="li_2c">The relationship is non-exclusive \u2014 the Trader may engage in other professional activities</li>
+    <li data-i18n="li_2d">The Trader is solely responsible for their own social contributions, insurance, and legal obligations</li>
   </ul>
 
-  <h3 id="tc-eligibility">3. Eligibility &amp; Activation</h3>
-  <p>Access to the Live Trading Program requires all of the following conditions to be met simultaneously:</p>
+  <h3 id="tc-eligibility" data-i18n="h_3">3. Eligibility &amp; Activation</h3>
+  <p data-i18n="p_3a">Access to the Live Trading Program requires all of the following conditions to be met simultaneously:</p>
   <ol>
-    <li><strong>CLIMB Score &ge; 85/100</strong> &mdash; maintained continuously</li>
-    <li><strong>7 consecutive trading days</strong> at or above the qualifying score (days with at least 1 trade executed)</li>
-    <li><strong>30 calendar days minimum</strong> since account creation</li>
-    <li><strong>KYC identity verification</strong> fully validated</li>
+    <li data-i18n="li_3a">CLIMB Score \u2265 85/100 \u2014 maintained continuously</li>
+    <li data-i18n="li_3b">7 consecutive trading days at or above the qualifying score (days with at least 1 trade executed)</li>
+    <li data-i18n="li_3c">30 calendar days minimum since account creation</li>
+    <li data-i18n="li_3d">KYC identity verification fully validated</li>
   </ol>
-  <div class="callout">
-    <strong>Activation process:</strong> Eligibility is detected automatically by the system. The Trader receives notification via email and dashboard. After KYC validation, live access is activated within 24&ndash;48 hours (weekdays only, excluding Friday evenings and weekends). Each trader passes to Live individually and instantly upon meeting all criteria.
-  </div>
+  <div class="callout" data-i18n="callout_3">Activation process: Eligibility is detected automatically by the system. The Trader receives notification via email and dashboard. After KYC validation, live access is activated within 24\u201348 hours (weekdays only, excluding Friday evenings and weekends). Each trader passes to Live individually and instantly upon meeting all criteria.</div>
 
-  <h3 id="tc-capital">4. Capital Allocation</h3>
-  <p>Capital is allocated from the Climber Trade Liquidity Pool using the following formula:</p>
-  <div class="callout">
-    <strong>Allocation = Pool_total &times; %Score(S) &times; FC &times; (1 + Prime(S) + Seniority_Bonus)</strong><br><br>
-    Where <strong>%Score</strong> ranges from 1.00% (score 85) to 2.00% (score 100), <strong>FC</strong> is the Cohort Factor providing automatic protection, <strong>Prime</strong> adds up to +10% for scores above 85, and <strong>Seniority Bonus</strong> adds up to +3% after 6 months in Live.
-  </div>
-  <p>The pool is divided into two tiers:</p>
+  <h3 id="tc-capital" data-i18n="h_4">4. Capital Allocation</h3>
+  <p data-i18n="p_4a">Capital is allocated from the Climber Trade Liquidity Pool using the following formula:</p>
+  <div class="callout" data-i18n="callout_4">Allocation = Pool_total \u00d7 %Score(S) \u00d7 FC \u00d7 (1 + Prime(S) + Seniority_Bonus). Where %Score ranges from 1.00% (score 85) to 2.00% (score 100), FC is the Cohort Factor providing automatic protection, Prime adds up to +10% for scores above 85, and Seniority Bonus adds up to +3% after 6 months in Live.</div>
+  <p data-i18n="p_4b">The pool is divided into two tiers:</p>
   <ul>
-    <li><strong>Standard Pool (90%):</strong> Accessible to all traders with score &ge; 85</li>
-    <li><strong>Elite Pool (10%):</strong> Reserved for traders with score &ge; 95 (who receive a double allocation from both pools)</li>
+    <li data-i18n="li_4a">Standard Pool (90%): Accessible to all traders with score \u2265 85</li>
+    <li data-i18n="li_4b">Elite Pool (10%): Reserved for traders with score \u2265 95 (who receive a double allocation from both pools)</li>
   </ul>
 
-  <h3 id="tc-splits">5. Profit Splits</h3>
-  <p>Profits generated during live trading are shared between the Trader and Climber Trade according to the following schedule:</p>
+  <h3 id="tc-splits" data-i18n="h_5">5. Profit Splits</h3>
+  <p data-i18n="p_5a">Profits generated during live trading are shared between the Trader and Climber Trade according to the following schedule:</p>
 
   <div class="table-wrap" style="margin:20px 0">
     <table>
       <thead>
-        <tr><th>CLIMB Score</th><th>Trader Share</th><th>Climber Share</th><th>Status</th></tr>
+        <tr><th data-i18n="th_score">CLIMB Score</th><th data-i18n="th_trader">Trader Share</th><th data-i18n="th_climber">Climber Share</th><th data-i18n="th_status">Status</th></tr>
       </thead>
       <tbody>
-        <tr><td><strong>95 &ndash; 100</strong></td><td style="color:var(--green)">60%</td><td>40%</td><td><span class="badge badge-teal">Elite</span></td></tr>
-        <tr><td><strong>90 &ndash; 94</strong></td><td style="color:var(--green)">55%</td><td>45%</td><td><span class="badge badge-green">Expert</span></td></tr>
-        <tr><td><strong>85 &ndash; 89</strong></td><td style="color:var(--green)">50%</td><td>50%</td><td><span class="badge badge-teal">Standard</span></td></tr>
-        <tr><td><strong>80 &ndash; 84</strong></td><td style="color:var(--amber)">45%</td><td>55%</td><td><span class="badge badge-amber">Watch</span></td></tr>
-        <tr><td><strong>75 &ndash; 79</strong></td><td style="color:var(--amber)">40%</td><td>60%</td><td><span class="badge badge-amber">Warning</span></td></tr>
-        <tr><td><strong>&lt; 75</strong></td><td style="color:var(--red)">0%</td><td>0%</td><td><span class="badge badge-red">7-day recovery</span></td></tr>
-        <tr><td><strong>&lt; 50</strong></td><td style="color:var(--red)">Frozen</td><td>&mdash;</td><td><span class="badge badge-red">Return to eval</span></td></tr>
+        <tr><td><strong>95 &ndash; 100</strong></td><td style="color:var(--green)">60%</td><td>40%</td><td><span class="badge badge-teal" data-i18n="badge_elite">Elite</span></td></tr>
+        <tr><td><strong>90 &ndash; 94</strong></td><td style="color:var(--green)">55%</td><td>45%</td><td><span class="badge badge-green" data-i18n="badge_expert">Expert</span></td></tr>
+        <tr><td><strong>85 &ndash; 89</strong></td><td style="color:var(--green)">50%</td><td>50%</td><td><span class="badge badge-teal" data-i18n="badge_standard">Standard</span></td></tr>
+        <tr><td><strong>80 &ndash; 84</strong></td><td style="color:var(--amber)">45%</td><td>55%</td><td><span class="badge badge-amber" data-i18n="badge_watch">Watch</span></td></tr>
+        <tr><td><strong>75 &ndash; 79</strong></td><td style="color:var(--amber)">40%</td><td>60%</td><td><span class="badge badge-amber" data-i18n="badge_warning">Warning</span></td></tr>
+        <tr><td><strong>&lt; 75</strong></td><td style="color:var(--red)">0%</td><td>0%</td><td><span class="badge badge-red" data-i18n="badge_recovery">7-day recovery</span></td></tr>
+        <tr><td><strong>&lt; 50</strong></td><td style="color:var(--red)" data-i18n="td_frozen">Frozen</td><td>&mdash;</td><td><span class="badge badge-red" data-i18n="badge_return">Return to eval</span></td></tr>
       </tbody>
     </table>
   </div>
-  <p>Profit splits are applied dynamically based on the Trader's current CLIMB Score at the time of each payout cycle.</p>
+  <p data-i18n="p_5b">Profit splits are applied dynamically based on the Trader's current CLIMB Score at the time of each payout cycle.</p>
 
-  <h3 id="tc-maintenance">6. Maintenance Requirements</h3>
-  <p>To maintain live trading status and profit-sharing eligibility, the Trader must comply with the following:</p>
+  <h3 id="tc-maintenance" data-i18n="h_6">6. Maintenance Requirements</h3>
+  <p data-i18n="p_6a">To maintain live trading status and profit-sharing eligibility, the Trader must comply with the following:</p>
   <ul>
-    <li><strong>CLIMB Score &ge; 75</strong> minimum to retain the profit split</li>
-    <li><strong>Minimum activity:</strong> at least 4 trading days per rolling 30-day period</li>
-    <li><strong>First payout eligibility:</strong> 7 days in Live before the first withdrawal request</li>
-    <li>Compliance with all Trading Regulations (instruments, position limits, prohibited practices)</li>
+    <li data-i18n="li_6a">CLIMB Score \u2265 75 minimum to retain the profit split</li>
+    <li data-i18n="li_6b">Minimum activity: at least 4 trading days per rolling 30-day period</li>
+    <li data-i18n="li_6c">First payout eligibility: 7 days in Live before the first withdrawal request</li>
+    <li data-i18n="li_6d">Compliance with all Trading Regulations (instruments, position limits, prohibited practices)</li>
   </ul>
 
-  <h3 id="tc-scaling">7. Scaling Mechanism</h3>
-  <p>Capital allocation is reviewed monthly through an automatic scaling mechanism:</p>
+  <h3 id="tc-scaling" data-i18n="h_7">7. Scaling Mechanism</h3>
+  <p data-i18n="p_7a">Capital allocation is reviewed monthly through an automatic scaling mechanism:</p>
   <ul>
-    <li><strong>Score &ge; 95:</strong> +10% of the pool increase shared among traders in this bracket</li>
-    <li><strong>Score 85&ndash;99:</strong> 90% of the pool shared proportionally among qualifying traders</li>
-    <li><strong>Score &lt; 85:</strong> No scaling &mdash; 0% increase</li>
+    <li data-i18n="li_7a">Score \u2265 95: +10% of the pool increase shared among traders in this bracket</li>
+    <li data-i18n="li_7b">Score 85\u201399: 90% of the pool shared proportionally among qualifying traders</li>
+    <li data-i18n="li_7c">Score < 85: No scaling \u2014 0% increase</li>
   </ul>
-  <p>There is no cap on capital allocation. The pool grows with revenue from subscriptions (50%) and Climber Trade's share of live trading profits (50%).</p>
+  <p data-i18n="p_7b">There is no cap on capital allocation. The pool grows with revenue from subscriptions (50%) and Climber Trade's share of live trading profits (50%).</p>
 
-  <h3 id="tc-withdrawals">8. Withdrawals &amp; Payouts</h3>
+  <h3 id="tc-withdrawals" data-i18n="h_8">8. Withdrawals &amp; Payouts</h3>
 
-  <h4>8.1 Automatic Payout Cycles</h4>
+  <h4 data-i18n="h_8_1">8.1 Automatic Payout Cycles</h4>
   <ul>
-    <li><strong>5th of each month:</strong> First automatic cycle</li>
-    <li><strong>20th of each month:</strong> Second automatic cycle</li>
-    <li><strong>On-demand:</strong> Daily withdrawal requests with 24-hour advance notice</li>
-  </ul>
-
-  <h4>8.2 Payout Conditions</h4>
-  <ul>
-    <li>Minimum withdrawal amount: <strong>$500</strong></li>
-    <li>Calculation: Processed on trade day +1 (J+1)</li>
-    <li>Settlement: Wire transfer within J+3 to J+5 business days</li>
-    <li>Method: Climber Trade Wallet + <strong>RISE WORKS</strong> exclusively</li>
-    <li>Only closed and consolidated positions are eligible (open profitable positions are excluded)</li>
+    <li data-i18n="li_8a">5th of each month: First automatic cycle</li>
+    <li data-i18n="li_8b">20th of each month: Second automatic cycle</li>
+    <li data-i18n="li_8c">On-demand: Daily withdrawal requests with 24-hour advance notice</li>
   </ul>
 
-  <h4>8.3 Payout Processing</h4>
+  <h4 data-i18n="h_8_2">8.2 Payout Conditions</h4>
   <ul>
-    <li><strong>With withdrawal request:</strong> Trader's share is paid out (if &ge; $500), Climber's share is retained automatically</li>
-    <li><strong>Without withdrawal request:</strong> Trader's share remains on the account (increasing available capital), Climber's share is retained automatically</li>
+    <li data-i18n="li_8d">Minimum withdrawal amount: $500</li>
+    <li data-i18n="li_8e">Calculation: Processed on trade day +1 (J+1)</li>
+    <li data-i18n="li_8f">Settlement: Wire transfer within J+3 to J+5 business days</li>
+    <li data-i18n="li_8g">Method: Climber Trade Wallet + RISE WORKS exclusively</li>
+    <li data-i18n="li_8h">Only closed and consolidated positions are eligible (open profitable positions are excluded)</li>
   </ul>
 
-  <h3 id="tc-ip">9. Intellectual Property</h3>
-
-  <h4>9.1 Trader's Property</h4>
-  <p>Trading strategies developed and employed by the Trader remain the <strong>exclusive intellectual property of the Trader</strong>. Climber Trade will not claim ownership, reproduce, or distribute the Trader's strategies. A mutual confidentiality agreement protects the Trader's strategic methods.</p>
-
-  <h4>9.2 Climber Trade's Property</h4>
-  <p>All metrics, scoring data, CLIMB Score calculations, platform algorithms, trading analytics, and aggregated performance data are the <strong>exclusive property of Climber Trade</strong>. This includes but is not limited to:</p>
+  <h4 data-i18n="h_8_3">8.3 Payout Processing</h4>
   <ul>
-    <li>CLIMB Score system and all associated metrics</li>
-    <li>Anonymized or aggregated trading data used for platform improvement</li>
-    <li>Leaderboard rankings and public performance displays</li>
-    <li>Pool allocation algorithms and cohort calculations</li>
+    <li data-i18n="li_8i">With withdrawal request: Trader's share is paid out (if \u2265 $500), Climber's share is retained automatically</li>
+    <li data-i18n="li_8j">Without withdrawal request: Trader's share remains on the account (increasing available capital), Climber's share is retained automatically</li>
   </ul>
 
-  <h3 id="tc-kyc">10. KYC &amp; Compliance</h3>
-  <p>The Trader is required to complete Know Your Customer (KYC) identity verification before live activation. The Trader must:</p>
+  <h3 id="tc-ip" data-i18n="h_9">9. Intellectual Property</h3>
+
+  <h4 data-i18n="h_9_1">9.1 Trader's Property</h4>
+  <p data-i18n="p_9a">Trading strategies developed and employed by the Trader remain the exclusive intellectual property of the Trader. Climber Trade will not claim ownership, reproduce, or distribute the Trader's strategies. A mutual confidentiality agreement protects the Trader's strategic methods.</p>
+
+  <h4 data-i18n="h_9_2">9.2 Climber Trade's Property</h4>
+  <p data-i18n="p_9b">All metrics, scoring data, CLIMB Score calculations, platform algorithms, trading analytics, and aggregated performance data are the exclusive property of Climber Trade. This includes but is not limited to:</p>
   <ul>
-    <li>Provide valid government-issued identification</li>
-    <li>Provide proof of address</li>
-    <li>Complete any additional verification requested by Climber Trade or its compliance partners</li>
-    <li><strong>Keep all personal information up to date</strong> &mdash; notify Climber Trade within 14 days of any material change</li>
+    <li data-i18n="li_9a">CLIMB Score system and all associated metrics</li>
+    <li data-i18n="li_9b">Anonymized or aggregated trading data used for platform improvement</li>
+    <li data-i18n="li_9c">Leaderboard rankings and public performance displays</li>
+    <li data-i18n="li_9d">Pool allocation algorithms and cohort calculations</li>
   </ul>
 
-  <h3 id="tc-tax">11. Tax Obligations</h3>
-  <p>Income generated through the Live Trading Program is classified as <strong>non-salaried professional income</strong>. The Trader is solely and entirely responsible for:</p>
+  <h3 id="tc-kyc" data-i18n="h_10">10. KYC &amp; Compliance</h3>
+  <p data-i18n="p_10a">The Trader is required to complete Know Your Customer (KYC) identity verification before live activation. The Trader must:</p>
   <ul>
-    <li>Declaring all income to the relevant tax authorities in their jurisdiction</li>
-    <li>Paying all applicable taxes, social contributions, and regulatory fees</li>
-    <li>Maintaining proper accounting records</li>
+    <li data-i18n="li_10a">Provide valid government-issued identification</li>
+    <li data-i18n="li_10b">Provide proof of address</li>
+    <li data-i18n="li_10c">Complete any additional verification requested by Climber Trade or its compliance partners</li>
+    <li data-i18n="li_10d">Keep all personal information up to date \u2014 notify Climber Trade within 14 days of any material change</li>
   </ul>
-  <p>Tax attestations are provided via <strong>RISE WORKS</strong> for the Trader's records.</p>
 
-  <h3 id="tc-downgrade">12. Score Degradation &amp; Return to Evaluation</h3>
-  <p>The following conditions trigger a status change or return to the evaluation phase:</p>
+  <h3 id="tc-tax" data-i18n="h_11">11. Tax Obligations</h3>
+  <p data-i18n="p_11a">Income generated through the Live Trading Program is classified as non-salaried professional income. The Trader is solely and entirely responsible for:</p>
+  <ul>
+    <li data-i18n="li_11a">Declaring all income to the relevant tax authorities in their jurisdiction</li>
+    <li data-i18n="li_11b">Paying all applicable taxes, social contributions, and regulatory fees</li>
+    <li data-i18n="li_11c">Maintaining proper accounting records</li>
+  </ul>
+  <p data-i18n="p_11b">Tax attestations are provided via RISE WORKS for the Trader's records.</p>
+
+  <h3 id="tc-downgrade" data-i18n="h_12">12. Score Degradation &amp; Return to Evaluation</h3>
+  <p data-i18n="p_12a">The following conditions trigger a status change or return to the evaluation phase:</p>
 
   <div class="table-wrap" style="margin:20px 0">
     <table>
       <thead>
-        <tr><th>Condition</th><th>Consequence</th></tr>
+        <tr><th data-i18n="th_condition">Condition</th><th data-i18n="th_consequence">Consequence</th></tr>
       </thead>
       <tbody>
-        <tr><td>Score &lt; 75 for 7 consecutive days</td><td>Return to scoring phase. Must consolidate score &ge; 85 for 7 consecutive days to regain live access.</td></tr>
-        <tr><td>Drawdown &gt; 80% of allocated capital</td><td>Mandatory 5-day trading pause + return to scoring with 30-day consolidation period.</td></tr>
-        <tr><td>Score &lt; 50</td><td>Live account frozen. Mandatory return to evaluation phase.</td></tr>
+        <tr><td data-i18n="td_12a">Score < 75 for 7 consecutive days</td><td data-i18n="td_12b">Return to scoring phase. Must consolidate score \u2265 85 for 7 consecutive days to regain live access.</td></tr>
+        <tr><td data-i18n="td_12c">Drawdown > 80% of allocated capital</td><td data-i18n="td_12d">Mandatory 5-day trading pause + return to scoring with 30-day consolidation period.</td></tr>
+        <tr><td data-i18n="td_12e">Score < 50</td><td data-i18n="td_12f">Live account frozen. Mandatory return to evaluation phase.</td></tr>
       </tbody>
     </table>
   </div>
 
-  <h3 id="tc-termination">13. Termination</h3>
-  <p>This contract may be terminated under the following circumstances:</p>
+  <h3 id="tc-termination" data-i18n="h_13">13. Termination</h3>
+  <p data-i18n="p_13a">This contract may be terminated under the following circumstances:</p>
   <ul>
-    <li><strong>By the Trader:</strong> At any time, by written request to Climber Trade. Outstanding profits will be settled in the next payout cycle.</li>
-    <li><strong>By Climber Trade:</strong> In case of violation of Trading Regulations, fraudulent activity, breach of this contract, or failure to maintain minimum requirements.</li>
-    <li><strong>Automatic termination:</strong> Upon permanent exclusion following the sanctions escalation process (warning &rarr; suspension &rarr; permanent ban).</li>
+    <li data-i18n="li_13a">By the Trader: At any time, by written request to Climber Trade. Outstanding profits will be settled in the next payout cycle.</li>
+    <li data-i18n="li_13b">By Climber Trade: In case of violation of Trading Regulations, fraudulent activity, breach of this contract, or failure to maintain minimum requirements.</li>
+    <li data-i18n="li_13c">Automatic termination: Upon permanent exclusion following the sanctions escalation process (warning \u2192 suspension \u2192 permanent ban).</li>
   </ul>
-  <p>Upon termination, outstanding profits owed to the Trader will be calculated and paid within the standard settlement period, subject to any deductions for violations or damages.</p>
+  <p data-i18n="p_13b">Upon termination, outstanding profits owed to the Trader will be calculated and paid within the standard settlement period, subject to any deductions for violations or damages.</p>
 
-  <h3 id="tc-contact">14. Contact</h3>
-  <p>For any questions regarding this contract: <a href="mailto:contact@climbertrade.com" style="color:var(--teal)">contact@climbertrade.com</a></p>
-  <p>All official communications must be directed to this email address. Climber Trade will respond within 24 hours on business days.</p>
+  <h3 id="tc-contact" data-i18n="h_14">14. Contact</h3>
+  <p data-i18n="p_14a">For any questions regarding this contract: contact@climbertrade.com</p>
+  <p data-i18n="p_14b">All official communications must be directed to this email address. Climber Trade will respond within 24 hours on business days.</p>
 </div>
 </section>
 
@@ -250,5 +261,324 @@
 <script src="../js/translations.js"></script>
 <script src="../js/i18n.js"></script>
 <script src="../js/shared.js"></script>
+<script>
+(function(){
+  var D = {
+    en: {
+      bc_home:"Home",bc_legal:"Legal",bc_contract:"Professional Trader Contract",label_legal:"Legal",
+      page_title:"Professional Trader Contract",
+      page_subtitle:"Last updated: March 2026 \u00b7 Climber Trade \u00b7 Live Trading Program",
+      toc_title:"Table of Contents",
+      toc_1:"Object & Scope",toc_2:"Nature of the Relationship",toc_3:"Eligibility & Activation",toc_4:"Capital Allocation",toc_5:"Profit Splits",toc_6:"Maintenance Requirements",toc_7:"Scaling Mechanism",toc_8:"Withdrawals & Payouts",toc_9:"Intellectual Property",toc_10:"KYC & Compliance",toc_11:"Tax Obligations",toc_12:"Score Degradation & Return to Evaluation",toc_13:"Termination",toc_14:"Contact",
+      h_1:"1. Object & Scope",
+      p_1a:"This contract governs the relationship between Climber Trade and the Trader upon activation of the Live Trading Program. By accepting this contract, the Trader agrees to the terms outlined herein and in the associated Trading Regulations.",
+      p_1b:"The Live Trading Program provides qualified traders with access to real capital from the Climber Trade Liquidity Pool, enabling them to trade on live markets and share in the profits generated.",
+      h_2:"2. Nature of the Relationship",
+      p_2a:"The relationship between Climber Trade and the Trader is qualified as a service provision agreement. This contract does not create an employment relationship, partnership, or agency.",
+      li_2a:"The Trader operates as an independent service provider, not a salaried employee",
+      li_2b:"The Trader is classified as an analyst providing market analysis services to Climber Trade",
+      li_2c:"The relationship is non-exclusive \u2014 the Trader may engage in other professional activities",
+      li_2d:"The Trader is solely responsible for their own social contributions, insurance, and legal obligations",
+      h_3:"3. Eligibility & Activation",
+      p_3a:"Access to the Live Trading Program requires all of the following conditions to be met simultaneously:",
+      li_3a:"CLIMB Score \u2265 85/100 \u2014 maintained continuously",
+      li_3b:"7 consecutive trading days at or above the qualifying score (days with at least 1 trade executed)",
+      li_3c:"30 calendar days minimum since account creation",
+      li_3d:"KYC identity verification fully validated",
+      callout_3:"Activation process: Eligibility is detected automatically by the system. The Trader receives notification via email and dashboard. After KYC validation, live access is activated within 24\u201348 hours (weekdays only, excluding Friday evenings and weekends). Each trader passes to Live individually and instantly upon meeting all criteria.",
+      h_4:"4. Capital Allocation",
+      p_4a:"Capital is allocated from the Climber Trade Liquidity Pool using the following formula:",
+      callout_4:"Allocation = Pool_total \u00d7 %Score(S) \u00d7 FC \u00d7 (1 + Prime(S) + Seniority_Bonus). Where %Score ranges from 1.00% (score 85) to 2.00% (score 100), FC is the Cohort Factor providing automatic protection, Prime adds up to +10% for scores above 85, and Seniority Bonus adds up to +3% after 6 months in Live.",
+      p_4b:"The pool is divided into two tiers:",
+      li_4a:"Standard Pool (90%): Accessible to all traders with score \u2265 85",
+      li_4b:"Elite Pool (10%): Reserved for traders with score \u2265 95 (who receive a double allocation from both pools)",
+      h_5:"5. Profit Splits",
+      p_5a:"Profits generated during live trading are shared between the Trader and Climber Trade according to the following schedule:",
+      th_score:"CLIMB Score",th_trader:"Trader Share",th_climber:"Climber Share",th_status:"Status",
+      badge_elite:"Elite",badge_expert:"Expert",badge_standard:"Standard",badge_watch:"Watch",badge_warning:"Warning",badge_recovery:"7-day recovery",td_frozen:"Frozen",badge_return:"Return to eval",
+      p_5b:"Profit splits are applied dynamically based on the Trader\u2019s current CLIMB Score at the time of each payout cycle.",
+      h_6:"6. Maintenance Requirements",
+      p_6a:"To maintain live trading status and profit-sharing eligibility, the Trader must comply with the following:",
+      li_6a:"CLIMB Score \u2265 75 minimum to retain the profit split",
+      li_6b:"Minimum activity: at least 4 trading days per rolling 30-day period",
+      li_6c:"First payout eligibility: 7 days in Live before the first withdrawal request",
+      li_6d:"Compliance with all Trading Regulations (instruments, position limits, prohibited practices)",
+      h_7:"7. Scaling Mechanism",
+      p_7a:"Capital allocation is reviewed monthly through an automatic scaling mechanism:",
+      li_7a:"Score \u2265 95: +10% of the pool increase shared among traders in this bracket",
+      li_7b:"Score 85\u201399: 90% of the pool shared proportionally among qualifying traders",
+      li_7c:"Score < 85: No scaling \u2014 0% increase",
+      p_7b:"There is no cap on capital allocation. The pool grows with revenue from subscriptions (50%) and Climber Trade\u2019s share of live trading profits (50%).",
+      h_8:"8. Withdrawals & Payouts",
+      h_8_1:"8.1 Automatic Payout Cycles",
+      li_8a:"5th of each month: First automatic cycle",
+      li_8b:"20th of each month: Second automatic cycle",
+      li_8c:"On-demand: Daily withdrawal requests with 24-hour advance notice",
+      h_8_2:"8.2 Payout Conditions",
+      li_8d:"Minimum withdrawal amount: $500",
+      li_8e:"Calculation: Processed on trade day +1 (J+1)",
+      li_8f:"Settlement: Wire transfer within J+3 to J+5 business days",
+      li_8g:"Method: Climber Trade Wallet + RISE WORKS exclusively",
+      li_8h:"Only closed and consolidated positions are eligible (open profitable positions are excluded)",
+      h_8_3:"8.3 Payout Processing",
+      li_8i:"With withdrawal request: Trader\u2019s share is paid out (if \u2265 $500), Climber\u2019s share is retained automatically",
+      li_8j:"Without withdrawal request: Trader\u2019s share remains on the account (increasing available capital), Climber\u2019s share is retained automatically",
+      h_9:"9. Intellectual Property",
+      h_9_1:"9.1 Trader\u2019s Property",
+      p_9a:"Trading strategies developed and employed by the Trader remain the exclusive intellectual property of the Trader. Climber Trade will not claim ownership, reproduce, or distribute the Trader\u2019s strategies. A mutual confidentiality agreement protects the Trader\u2019s strategic methods.",
+      h_9_2:"9.2 Climber Trade\u2019s Property",
+      p_9b:"All metrics, scoring data, CLIMB Score calculations, platform algorithms, trading analytics, and aggregated performance data are the exclusive property of Climber Trade. This includes but is not limited to:",
+      li_9a:"CLIMB Score system and all associated metrics",
+      li_9b:"Anonymized or aggregated trading data used for platform improvement",
+      li_9c:"Leaderboard rankings and public performance displays",
+      li_9d:"Pool allocation algorithms and cohort calculations",
+      h_10:"10. KYC & Compliance",
+      p_10a:"The Trader is required to complete Know Your Customer (KYC) identity verification before live activation. The Trader must:",
+      li_10a:"Provide valid government-issued identification",
+      li_10b:"Provide proof of address",
+      li_10c:"Complete any additional verification requested by Climber Trade or its compliance partners",
+      li_10d:"Keep all personal information up to date \u2014 notify Climber Trade within 14 days of any material change",
+      h_11:"11. Tax Obligations",
+      p_11a:"Income generated through the Live Trading Program is classified as non-salaried professional income. The Trader is solely and entirely responsible for:",
+      li_11a:"Declaring all income to the relevant tax authorities in their jurisdiction",
+      li_11b:"Paying all applicable taxes, social contributions, and regulatory fees",
+      li_11c:"Maintaining proper accounting records",
+      p_11b:"Tax attestations are provided via RISE WORKS for the Trader\u2019s records.",
+      h_12:"12. Score Degradation & Return to Evaluation",
+      p_12a:"The following conditions trigger a status change or return to the evaluation phase:",
+      th_condition:"Condition",th_consequence:"Consequence",
+      td_12a:"Score < 75 for 7 consecutive days",
+      td_12b:"Return to scoring phase. Must consolidate score \u2265 85 for 7 consecutive days to regain live access.",
+      td_12c:"Drawdown > 80% of allocated capital",
+      td_12d:"Mandatory 5-day trading pause + return to scoring with 30-day consolidation period.",
+      td_12e:"Score < 50",
+      td_12f:"Live account frozen. Mandatory return to evaluation phase.",
+      h_13:"13. Termination",
+      p_13a:"This contract may be terminated under the following circumstances:",
+      li_13a:"By the Trader: At any time, by written request to Climber Trade. Outstanding profits will be settled in the next payout cycle.",
+      li_13b:"By Climber Trade: In case of violation of Trading Regulations, fraudulent activity, breach of this contract, or failure to maintain minimum requirements.",
+      li_13c:"Automatic termination: Upon permanent exclusion following the sanctions escalation process (warning \u2192 suspension \u2192 permanent ban).",
+      p_13b:"Upon termination, outstanding profits owed to the Trader will be calculated and paid within the standard settlement period, subject to any deductions for violations or damages.",
+      h_14:"14. Contact",
+      p_14a:"For any questions regarding this contract: contact@climbertrade.com",
+      p_14b:"All official communications must be directed to this email address. Climber Trade will respond within 24 hours on business days."
+    },
+    fr: {
+      bc_home:"Accueil",bc_legal:"Juridique",bc_contract:"Contrat de Trader Professionnel",label_legal:"Juridique",
+      page_title:"Contrat de Trader Professionnel",
+      page_subtitle:"Derni\u00e8re mise \u00e0 jour : Mars 2026 \u00b7 Climber Trade \u00b7 Programme Live Trading",
+      toc_title:"Table des mati\u00e8res",
+      toc_1:"Objet & P\u00e9rim\u00e8tre",toc_2:"Nature de la Relation",toc_3:"\u00c9ligibilit\u00e9 & Activation",toc_4:"Allocation de Capital",toc_5:"Partage des B\u00e9n\u00e9fices",toc_6:"Conditions de Maintien",toc_7:"M\u00e9canisme de Scaling",toc_8:"Retraits & Paiements",toc_9:"Propri\u00e9t\u00e9 Intellectuelle",toc_10:"KYC & Conformit\u00e9",toc_11:"Obligations Fiscales",toc_12:"D\u00e9gradation du Score & Retour en \u00c9valuation",toc_13:"R\u00e9siliation",toc_14:"Contact",
+      h_1:"1. Objet & P\u00e9rim\u00e8tre",
+      p_1a:"Le pr\u00e9sent contrat r\u00e9git la relation entre Climber Trade et le Trader d\u00e8s l\u2019activation du Programme Live Trading. En acceptant ce contrat, le Trader s\u2019engage \u00e0 respecter les termes \u00e9nonc\u00e9s ci-apr\u00e8s ainsi que le R\u00e8glement de Trading associ\u00e9.",
+      p_1b:"Le Programme Live Trading offre aux traders qualifi\u00e9s un acc\u00e8s \u00e0 du capital r\u00e9el issu du Pool de Liquidit\u00e9 Climber Trade, leur permettant de trader sur les march\u00e9s en conditions r\u00e9elles et de partager les b\u00e9n\u00e9fices g\u00e9n\u00e9r\u00e9s.",
+      h_2:"2. Nature de la Relation",
+      p_2a:"La relation entre Climber Trade et le Trader est qualifi\u00e9e de contrat de prestation de services. Le pr\u00e9sent contrat ne cr\u00e9e aucune relation de travail salari\u00e9, de partenariat ou de mandat.",
+      li_2a:"Le Trader exerce en qualit\u00e9 de prestataire de services ind\u00e9pendant, et non en tant que salari\u00e9",
+      li_2b:"Le Trader est qualifi\u00e9 d\u2019analyste fournissant des services d\u2019analyse de march\u00e9 \u00e0 Climber Trade",
+      li_2c:"La relation est non exclusive \u2014 le Trader peut exercer d\u2019autres activit\u00e9s professionnelles",
+      li_2d:"Le Trader est seul responsable de ses cotisations sociales, assurances et obligations l\u00e9gales",
+      h_3:"3. \u00c9ligibilit\u00e9 & Activation",
+      p_3a:"L\u2019acc\u00e8s au Programme Live Trading n\u00e9cessite le respect simultan\u00e9 de toutes les conditions suivantes :",
+      li_3a:"CLIMB Score \u2265 85/100 \u2014 maintenu de mani\u00e8re continue",
+      li_3b:"7 jours de trading cons\u00e9cutifs au score qualifiant ou au-dessus (jours avec au moins 1 trade ex\u00e9cut\u00e9)",
+      li_3c:"30 jours calendaires minimum depuis la cr\u00e9ation du compte",
+      li_3d:"V\u00e9rification d\u2019identit\u00e9 KYC enti\u00e8rement valid\u00e9e",
+      callout_3:"Processus d\u2019activation : L\u2019\u00e9ligibilit\u00e9 est d\u00e9tect\u00e9e automatiquement par le syst\u00e8me. Le Trader re\u00e7oit une notification par email et sur le tableau de bord. Apr\u00e8s validation KYC, l\u2019acc\u00e8s live est activ\u00e9 sous 24 \u00e0 48 heures (jours ouvrables uniquement, hors vendredi soir et week-ends). Chaque trader passe en Live individuellement et instantan\u00e9ment d\u00e8s que tous les crit\u00e8res sont remplis.",
+      h_4:"4. Allocation de Capital",
+      p_4a:"Le capital est allou\u00e9 \u00e0 partir du Pool de Liquidit\u00e9 Climber Trade selon la formule suivante :",
+      callout_4:"Allocation = Pool_total \u00d7 %Score(S) \u00d7 FC \u00d7 (1 + Prime(S) + Seniority_Bonus). O\u00f9 %Score varie de 1,00 % (score 85) \u00e0 2,00 % (score 100), FC est le Facteur Cohorte assurant une protection automatique, Prime ajoute jusqu\u2019\u00e0 +10 % pour les scores sup\u00e9rieurs \u00e0 85, et le Bonus d\u2019Anciennet\u00e9 ajoute jusqu\u2019\u00e0 +3 % apr\u00e8s 6 mois en Live.",
+      p_4b:"Le pool est divis\u00e9 en deux niveaux :",
+      li_4a:"Pool Standard (90 %) : Accessible \u00e0 tous les traders avec un score \u2265 85",
+      li_4b:"Pool Elite (10 %) : R\u00e9serv\u00e9 aux traders avec un score \u2265 95 (qui b\u00e9n\u00e9ficient d\u2019une double allocation provenant des deux pools)",
+      h_5:"5. Partage des B\u00e9n\u00e9fices",
+      p_5a:"Les b\u00e9n\u00e9fices g\u00e9n\u00e9r\u00e9s pendant le trading live sont partag\u00e9s entre le Trader et Climber Trade selon la grille suivante :",
+      th_score:"CLIMB Score",th_trader:"Part Trader",th_climber:"Part Climber",th_status:"Statut",
+      badge_elite:"Elite",badge_expert:"Expert",badge_standard:"Standard",badge_watch:"Surveillance",badge_warning:"Avertissement",badge_recovery:"R\u00e9cup\u00e9ration 7 jours",td_frozen:"Gel\u00e9",badge_return:"Retour en \u00e9valuation",
+      p_5b:"Le partage des b\u00e9n\u00e9fices est appliqu\u00e9 de mani\u00e8re dynamique en fonction du CLIMB Score actuel du Trader au moment de chaque cycle de paiement.",
+      h_6:"6. Conditions de Maintien",
+      p_6a:"Pour maintenir le statut de trading live et l\u2019\u00e9ligibilit\u00e9 au partage des b\u00e9n\u00e9fices, le Trader doit respecter les conditions suivantes :",
+      li_6a:"CLIMB Score \u2265 75 minimum pour conserver le partage des b\u00e9n\u00e9fices",
+      li_6b:"Activit\u00e9 minimale : au moins 4 jours de trading par p\u00e9riode glissante de 30 jours",
+      li_6c:"Premier retrait : 7 jours en Live avant la premi\u00e8re demande de retrait",
+      li_6d:"Respect de l\u2019ensemble du R\u00e8glement de Trading (instruments, limites de position, pratiques interdites)",
+      h_7:"7. M\u00e9canisme de Scaling",
+      p_7a:"L\u2019allocation de capital est r\u00e9vis\u00e9e mensuellement via un m\u00e9canisme de scaling automatique :",
+      li_7a:"Score \u2265 95 : +10 % de l\u2019augmentation du pool partag\u00e9s entre les traders de cette tranche",
+      li_7b:"Score 85\u201399 : 90 % du pool r\u00e9partis proportionnellement entre les traders \u00e9ligibles",
+      li_7c:"Score < 85 : Aucun scaling \u2014 0 % d\u2019augmentation",
+      p_7b:"Il n\u2019y a pas de plafond d\u2019allocation de capital. Le pool cro\u00eet avec les revenus d\u2019abonnements (50 %) et la part de Climber Trade sur les profits du trading live (50 %).",
+      h_8:"8. Retraits & Paiements",
+      h_8_1:"8.1 Cycles de Paiement Automatiques",
+      li_8a:"5 du mois : Premier cycle automatique",
+      li_8b:"20 du mois : Deuxi\u00e8me cycle automatique",
+      li_8c:"\u00c0 la demande : Demandes de retrait quotidiennes avec pr\u00e9avis de 24 heures",
+      h_8_2:"8.2 Conditions de Paiement",
+      li_8d:"Montant minimum de retrait : $500",
+      li_8e:"Calcul : Trait\u00e9 \u00e0 J+1 (jour de trading +1)",
+      li_8f:"R\u00e8glement : Virement bancaire sous J+3 \u00e0 J+5 jours ouvrables",
+      li_8g:"M\u00e9thode : Wallet Climber Trade + RISE WORKS exclusivement",
+      li_8h:"Seules les positions cl\u00f4tur\u00e9es et consolid\u00e9es sont \u00e9ligibles (les positions ouvertes b\u00e9n\u00e9ficiaires sont exclues)",
+      h_8_3:"8.3 Traitement des Paiements",
+      li_8i:"Avec demande de retrait : La part du Trader est vers\u00e9e (si \u2265 $500), la part de Climber est retenue automatiquement",
+      li_8j:"Sans demande de retrait : La part du Trader reste sur le compte (augmentant le capital disponible), la part de Climber est retenue automatiquement",
+      h_9:"9. Propri\u00e9t\u00e9 Intellectuelle",
+      h_9_1:"9.1 Propri\u00e9t\u00e9 du Trader",
+      p_9a:"Les strat\u00e9gies de trading d\u00e9velopp\u00e9es et utilis\u00e9es par le Trader restent la propri\u00e9t\u00e9 intellectuelle exclusive du Trader. Climber Trade ne revendiquera pas la propri\u00e9t\u00e9, ne reproduira pas et ne diffusera pas les strat\u00e9gies du Trader. Un accord de confidentialit\u00e9 mutuel prot\u00e8ge les m\u00e9thodes strat\u00e9giques du Trader.",
+      h_9_2:"9.2 Propri\u00e9t\u00e9 de Climber Trade",
+      p_9b:"Toutes les m\u00e9triques, donn\u00e9es de scoring, calculs du CLIMB Score, algorithmes de la plateforme, analyses de trading et donn\u00e9es de performance agr\u00e9g\u00e9es sont la propri\u00e9t\u00e9 exclusive de Climber Trade. Cela inclut, sans s\u2019y limiter :",
+      li_9a:"Le syst\u00e8me CLIMB Score et toutes les m\u00e9triques associ\u00e9es",
+      li_9b:"Les donn\u00e9es de trading anonymis\u00e9es ou agr\u00e9g\u00e9es utilis\u00e9es pour l\u2019am\u00e9lioration de la plateforme",
+      li_9c:"Les classements du leaderboard et les affichages publics de performance",
+      li_9d:"Les algorithmes d\u2019allocation du pool et les calculs de cohorte",
+      h_10:"10. KYC & Conformit\u00e9",
+      p_10a:"Le Trader est tenu de compl\u00e9ter la v\u00e9rification d\u2019identit\u00e9 KYC (Know Your Customer) avant l\u2019activation live. Le Trader doit :",
+      li_10a:"Fournir une pi\u00e8ce d\u2019identit\u00e9 officielle en cours de validit\u00e9",
+      li_10b:"Fournir un justificatif de domicile",
+      li_10c:"Compl\u00e9ter toute v\u00e9rification suppl\u00e9mentaire demand\u00e9e par Climber Trade ou ses partenaires de conformit\u00e9",
+      li_10d:"Maintenir \u00e0 jour toutes les informations personnelles \u2014 informer Climber Trade dans les 14 jours suivant tout changement significatif",
+      h_11:"11. Obligations Fiscales",
+      p_11a:"Les revenus g\u00e9n\u00e9r\u00e9s par le Programme Live Trading sont qualifi\u00e9s de revenus professionnels non salari\u00e9s. Le Trader est seul et enti\u00e8rement responsable de :",
+      li_11a:"D\u00e9clarer l\u2019ensemble de ses revenus aux autorit\u00e9s fiscales comp\u00e9tentes de sa juridiction",
+      li_11b:"S\u2019acquitter de tous les imp\u00f4ts, cotisations sociales et frais r\u00e9glementaires applicables",
+      li_11c:"Tenir une comptabilit\u00e9 conforme",
+      p_11b:"Les attestations fiscales sont fournies via RISE WORKS pour les archives du Trader.",
+      h_12:"12. D\u00e9gradation du Score & Retour en \u00c9valuation",
+      p_12a:"Les conditions suivantes d\u00e9clenchent un changement de statut ou un retour en phase d\u2019\u00e9valuation :",
+      th_condition:"Condition",th_consequence:"Cons\u00e9quence",
+      td_12a:"Score < 75 pendant 7 jours cons\u00e9cutifs",
+      td_12b:"Retour en phase de scoring. Le score doit \u00eatre consolid\u00e9 \u00e0 \u2265 85 pendant 7 jours cons\u00e9cutifs pour retrouver l\u2019acc\u00e8s live.",
+      td_12c:"Drawdown > 80 % du capital allou\u00e9",
+      td_12d:"Pause obligatoire de 5 jours + retour en scoring avec p\u00e9riode de consolidation de 30 jours.",
+      td_12e:"Score < 50",
+      td_12f:"Compte live gel\u00e9. Retour obligatoire en phase d\u2019\u00e9valuation.",
+      h_13:"13. R\u00e9siliation",
+      p_13a:"Le pr\u00e9sent contrat peut \u00eatre r\u00e9sili\u00e9 dans les circonstances suivantes :",
+      li_13a:"Par le Trader : \u00c0 tout moment, par demande \u00e9crite adress\u00e9e \u00e0 Climber Trade. Les b\u00e9n\u00e9fices en attente seront r\u00e9gl\u00e9s lors du prochain cycle de paiement.",
+      li_13b:"Par Climber Trade : En cas de violation du R\u00e8glement de Trading, d\u2019activit\u00e9 frauduleuse, de rupture du pr\u00e9sent contrat ou de non-respect des exigences minimales.",
+      li_13c:"R\u00e9siliation automatique : Suite \u00e0 une exclusion d\u00e9finitive conform\u00e9ment au processus d\u2019escalade des sanctions (avertissement \u2192 suspension \u2192 exclusion d\u00e9finitive).",
+      p_13b:"En cas de r\u00e9siliation, les b\u00e9n\u00e9fices restant dus au Trader seront calcul\u00e9s et vers\u00e9s dans le d\u00e9lai de r\u00e8glement standard, sous r\u00e9serve de toute d\u00e9duction pour violations ou dommages.",
+      h_14:"14. Contact",
+      p_14a:"Pour toute question relative au pr\u00e9sent contrat : contact@climbertrade.com",
+      p_14b:"Toutes les communications officielles doivent \u00eatre adress\u00e9es \u00e0 cette adresse email. Climber Trade r\u00e9pondra sous 24 heures les jours ouvrables."
+    },
+    es: {
+      bc_home:"Inicio",bc_legal:"Legal",bc_contract:"Contrato de Trader Profesional",label_legal:"Legal",
+      page_title:"Contrato de Trader Profesional",
+      page_subtitle:"\u00daltima actualizaci\u00f3n: Marzo 2026 \u00b7 Climber Trade \u00b7 Programa Live Trading",
+      toc_title:"\u00cdndice",
+      toc_1:"Objeto & Alcance",toc_2:"Naturaleza de la Relaci\u00f3n",toc_3:"Elegibilidad & Activaci\u00f3n",toc_4:"Asignaci\u00f3n de Capital",toc_5:"Reparto de Beneficios",toc_6:"Requisitos de Mantenimiento",toc_7:"Mecanismo de Escalado",toc_8:"Retiros & Pagos",toc_9:"Propiedad Intelectual",toc_10:"KYC & Cumplimiento",toc_11:"Obligaciones Fiscales",toc_12:"Degradaci\u00f3n del Score & Retorno a Evaluaci\u00f3n",toc_13:"Resoluci\u00f3n",toc_14:"Contacto",
+      h_1:"1. Objeto & Alcance",
+      p_1a:"El presente contrato rige la relaci\u00f3n entre Climber Trade y el Trader desde la activaci\u00f3n del Programa Live Trading. Al aceptar este contrato, el Trader se compromete a respetar los t\u00e9rminos establecidos en el presente documento y en el Reglamento de Trading asociado.",
+      p_1b:"El Programa Live Trading ofrece a los traders cualificados acceso a capital real procedente del Pool de Liquidez de Climber Trade, permiti\u00e9ndoles operar en mercados en vivo y compartir los beneficios generados.",
+      h_2:"2. Naturaleza de la Relaci\u00f3n",
+      p_2a:"La relaci\u00f3n entre Climber Trade y el Trader se califica como un contrato de prestaci\u00f3n de servicios. El presente contrato no crea relaci\u00f3n laboral, asociaci\u00f3n ni agencia alguna.",
+      li_2a:"El Trader act\u00faa como proveedor de servicios independiente, no como empleado asalariado",
+      li_2b:"El Trader se clasifica como analista que proporciona servicios de an\u00e1lisis de mercado a Climber Trade",
+      li_2c:"La relaci\u00f3n es no exclusiva \u2014 el Trader puede ejercer otras actividades profesionales",
+      li_2d:"El Trader es el \u00fanico responsable de sus cotizaciones sociales, seguros y obligaciones legales",
+      h_3:"3. Elegibilidad & Activaci\u00f3n",
+      p_3a:"El acceso al Programa Live Trading requiere el cumplimiento simult\u00e1neo de todas las condiciones siguientes:",
+      li_3a:"CLIMB Score \u2265 85/100 \u2014 mantenido de forma continua",
+      li_3b:"7 d\u00edas consecutivos de trading en o por encima del score de calificaci\u00f3n (d\u00edas con al menos 1 operaci\u00f3n ejecutada)",
+      li_3c:"30 d\u00edas naturales m\u00ednimo desde la creaci\u00f3n de la cuenta",
+      li_3d:"Verificaci\u00f3n de identidad KYC completamente validada",
+      callout_3:"Proceso de activaci\u00f3n: La elegibilidad se detecta autom\u00e1ticamente por el sistema. El Trader recibe notificaci\u00f3n por email y en el panel de control. Tras la validaci\u00f3n KYC, el acceso live se activa en un plazo de 24 a 48 horas (d\u00edas laborables, excluyendo viernes por la noche y fines de semana). Cada trader pasa a Live de forma individual e instant\u00e1nea al cumplir todos los criterios.",
+      h_4:"4. Asignaci\u00f3n de Capital",
+      p_4a:"El capital se asigna a partir del Pool de Liquidez de Climber Trade seg\u00fan la siguiente f\u00f3rmula:",
+      callout_4:"Allocation = Pool_total \u00d7 %Score(S) \u00d7 FC \u00d7 (1 + Prime(S) + Seniority_Bonus). Donde %Score var\u00eda de 1,00 % (score 85) a 2,00 % (score 100), FC es el Factor Cohorte que proporciona protecci\u00f3n autom\u00e1tica, Prime a\u00f1ade hasta +10 % para scores superiores a 85, y el Bonus de Antig\u00fcedad a\u00f1ade hasta +3 % tras 6 meses en Live.",
+      p_4b:"El pool se divide en dos niveles:",
+      li_4a:"Pool Standard (90 %): Accesible a todos los traders con score \u2265 85",
+      li_4b:"Pool Elite (10 %): Reservado para traders con score \u2265 95 (que reciben una doble asignaci\u00f3n de ambos pools)",
+      h_5:"5. Reparto de Beneficios",
+      p_5a:"Los beneficios generados durante el trading en vivo se reparten entre el Trader y Climber Trade seg\u00fan la siguiente tabla:",
+      th_score:"CLIMB Score",th_trader:"Parte Trader",th_climber:"Parte Climber",th_status:"Estado",
+      badge_elite:"Elite",badge_expert:"Expert",badge_standard:"Standard",badge_watch:"Vigilancia",badge_warning:"Advertencia",badge_recovery:"Recuperaci\u00f3n 7 d\u00edas",td_frozen:"Congelado",badge_return:"Retorno a evaluaci\u00f3n",
+      p_5b:"El reparto de beneficios se aplica de forma din\u00e1mica en funci\u00f3n del CLIMB Score actual del Trader en el momento de cada ciclo de pago.",
+      h_6:"6. Requisitos de Mantenimiento",
+      p_6a:"Para mantener el estatus de trading live y la elegibilidad al reparto de beneficios, el Trader debe cumplir con lo siguiente:",
+      li_6a:"CLIMB Score \u2265 75 m\u00ednimo para conservar el reparto de beneficios",
+      li_6b:"Actividad m\u00ednima: al menos 4 d\u00edas de trading por per\u00edodo de 30 d\u00edas",
+      li_6c:"Primer retiro: 7 d\u00edas en Live antes de la primera solicitud de retiro",
+      li_6d:"Cumplimiento de todo el Reglamento de Trading (instrumentos, l\u00edmites de posici\u00f3n, pr\u00e1cticas prohibidas)",
+      h_7:"7. Mecanismo de Escalado",
+      p_7a:"La asignaci\u00f3n de capital se revisa mensualmente mediante un mecanismo de escalado autom\u00e1tico:",
+      li_7a:"Score \u2265 95: +10 % del aumento del pool compartido entre los traders de este tramo",
+      li_7b:"Score 85\u201399: 90 % del pool repartido proporcionalmente entre los traders elegibles",
+      li_7c:"Score < 85: Sin escalado \u2014 0 % de aumento",
+      p_7b:"No existe l\u00edmite m\u00e1ximo de asignaci\u00f3n de capital. El pool crece con los ingresos de suscripciones (50 %) y la parte de Climber Trade en los beneficios del trading live (50 %).",
+      h_8:"8. Retiros & Pagos",
+      h_8_1:"8.1 Ciclos de Pago Autom\u00e1ticos",
+      li_8a:"5 de cada mes: Primer ciclo autom\u00e1tico",
+      li_8b:"20 de cada mes: Segundo ciclo autom\u00e1tico",
+      li_8c:"Bajo demanda: Solicitudes de retiro diarias con preaviso de 24 horas",
+      h_8_2:"8.2 Condiciones de Pago",
+      li_8d:"Monto m\u00ednimo de retiro: $500",
+      li_8e:"C\u00e1lculo: Procesado en d\u00eda de trading +1 (J+1)",
+      li_8f:"Liquidaci\u00f3n: Transferencia bancaria en J+3 a J+5 d\u00edas h\u00e1biles",
+      li_8g:"M\u00e9todo: Wallet Climber Trade + RISE WORKS exclusivamente",
+      li_8h:"Solo las posiciones cerradas y consolidadas son elegibles (las posiciones abiertas con beneficios est\u00e1n excluidas)",
+      h_8_3:"8.3 Procesamiento de Pagos",
+      li_8i:"Con solicitud de retiro: La parte del Trader se abona (si \u2265 $500), la parte de Climber se retiene autom\u00e1ticamente",
+      li_8j:"Sin solicitud de retiro: La parte del Trader permanece en la cuenta (aumentando el capital disponible), la parte de Climber se retiene autom\u00e1ticamente",
+      h_9:"9. Propiedad Intelectual",
+      h_9_1:"9.1 Propiedad del Trader",
+      p_9a:"Las estrategias de trading desarrolladas y utilizadas por el Trader son propiedad intelectual exclusiva del Trader. Climber Trade no reclamar\u00e1 la propiedad, no reproducir\u00e1 ni distribuir\u00e1 las estrategias del Trader. Un acuerdo de confidencialidad mutuo protege los m\u00e9todos estrat\u00e9gicos del Trader.",
+      h_9_2:"9.2 Propiedad de Climber Trade",
+      p_9b:"Todas las m\u00e9tricas, datos de puntuaci\u00f3n, c\u00e1lculos del CLIMB Score, algoritmos de la plataforma, an\u00e1lisis de trading y datos de rendimiento agregados son propiedad exclusiva de Climber Trade. Esto incluye, sin limitarse a:",
+      li_9a:"El sistema CLIMB Score y todas las m\u00e9tricas asociadas",
+      li_9b:"Datos de trading anonimizados o agregados utilizados para la mejora de la plataforma",
+      li_9c:"Clasificaciones del leaderboard y presentaciones p\u00fablicas de rendimiento",
+      li_9d:"Algoritmos de asignaci\u00f3n del pool y c\u00e1lculos de cohorte",
+      h_10:"10. KYC & Cumplimiento",
+      p_10a:"El Trader debe completar la verificaci\u00f3n de identidad KYC (Know Your Customer) antes de la activaci\u00f3n live. El Trader debe:",
+      li_10a:"Proporcionar un documento de identidad oficial vigente",
+      li_10b:"Proporcionar un justificante de domicilio",
+      li_10c:"Completar cualquier verificaci\u00f3n adicional solicitada por Climber Trade o sus socios de cumplimiento",
+      li_10d:"Mantener actualizada toda la informaci\u00f3n personal \u2014 notificar a Climber Trade en un plazo de 14 d\u00edas cualquier cambio significativo",
+      h_11:"11. Obligaciones Fiscales",
+      p_11a:"Los ingresos generados a trav\u00e9s del Programa Live Trading se clasifican como ingresos profesionales no asalariados. El Trader es \u00fanica y enteramente responsable de:",
+      li_11a:"Declarar todos los ingresos ante las autoridades fiscales competentes de su jurisdicci\u00f3n",
+      li_11b:"Abonar todos los impuestos, cotizaciones sociales y tasas reglamentarias aplicables",
+      li_11c:"Mantener una contabilidad adecuada",
+      p_11b:"Las certificaciones fiscales se proporcionan a trav\u00e9s de RISE WORKS para los registros del Trader.",
+      h_12:"12. Degradaci\u00f3n del Score & Retorno a Evaluaci\u00f3n",
+      p_12a:"Las siguientes condiciones desencadenan un cambio de estatus o retorno a la fase de evaluaci\u00f3n:",
+      th_condition:"Condici\u00f3n",th_consequence:"Consecuencia",
+      td_12a:"Score < 75 durante 7 d\u00edas consecutivos",
+      td_12b:"Retorno a fase de scoring. Se debe consolidar el score \u2265 85 durante 7 d\u00edas consecutivos para recuperar el acceso live.",
+      td_12c:"Drawdown > 80 % del capital asignado",
+      td_12d:"Pausa obligatoria de 5 d\u00edas + retorno a scoring con per\u00edodo de consolidaci\u00f3n de 30 d\u00edas.",
+      td_12e:"Score < 50",
+      td_12f:"Cuenta live congelada. Retorno obligatorio a la fase de evaluaci\u00f3n.",
+      h_13:"13. Resoluci\u00f3n",
+      p_13a:"El presente contrato puede resolverse en las siguientes circunstancias:",
+      li_13a:"Por el Trader: En cualquier momento, mediante solicitud escrita a Climber Trade. Los beneficios pendientes se liquidar\u00e1n en el siguiente ciclo de pago.",
+      li_13b:"Por Climber Trade: En caso de violaci\u00f3n del Reglamento de Trading, actividad fraudulenta, incumplimiento del presente contrato o no cumplimiento de los requisitos m\u00ednimos.",
+      li_13c:"Resoluci\u00f3n autom\u00e1tica: Tras exclusi\u00f3n definitiva conforme al proceso de escalada de sanciones (advertencia \u2192 suspensi\u00f3n \u2192 exclusi\u00f3n definitiva).",
+      p_13b:"En caso de resoluci\u00f3n, los beneficios pendientes adeudados al Trader se calcular\u00e1n y abonar\u00e1n dentro del plazo de liquidaci\u00f3n est\u00e1ndar, sujeto a cualquier deducci\u00f3n por infracciones o da\u00f1os.",
+      h_14:"14. Contacto",
+      p_14a:"Para cualquier consulta relativa al presente contrato: contact@climbertrade.com",
+      p_14b:"Todas las comunicaciones oficiales deben dirigirse a esta direcci\u00f3n de email. Climber Trade responder\u00e1 en un plazo de 24 horas en d\u00edas laborables."
+    }
+  };
+  var saved = localStorage.getItem('climber-legal-lang') || 'en';
+  function apply(lang) {
+    localStorage.setItem('climber-legal-lang', lang);
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (D[lang] && D[lang][key]) el.textContent = D[lang][key];
+    });
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+  }
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() { apply(b.dataset.lang); });
+  });
+  apply(saved);
+})();
+</script>
 </body>
 </html>

@@ -41,6 +41,15 @@
   font-size:13px;color:var(--text2);line-height:1.7;
 }
 .legal .callout strong{color:var(--text);}
+.lang-switch{display:flex;gap:4px;align-items:center;margin-left:auto;}
+.lang-switch button{
+  padding:5px 12px;border-radius:6px;border:1px solid var(--border);
+  background:none;color:var(--text2);font-family:var(--font);font-size:12px;
+  font-weight:600;cursor:pointer;transition:all .15s;
+}
+.lang-switch button:hover{border-color:var(--border2);color:var(--text);}
+.lang-switch button.active{border-color:var(--teal);color:var(--teal);background:var(--teal-dim);}
+.breadcrumb-lang{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 @media print{
   .navbar,.nav-mobile,.spacer-nav,.footer{display:none!important;}
   body{background:#fff;color:#111;font-size:12px;}
@@ -65,165 +74,155 @@
 
 <section class="section">
 <div class="container legal">
-  <nav class="breadcrumb"><a href="../index.html">Home</a><span class="breadcrumb-sep">/</span><a href="index.html">Legal</a><span class="breadcrumb-sep">/</span><span>Referral &amp; Affiliation Program</span></nav>
-  <div class="section-label">Legal</div>
-  <h1 style="font-size:32px;margin-bottom:8px">Referral &amp; Affiliation Program</h1>
-  <p style="color:var(--text3);font-size:13px">Last updated: March 2026 &middot; Climber Trade &middot; Terms and Conditions</p>
+  <div class="breadcrumb-lang">
+    <nav class="breadcrumb"><a href="../index.html" data-i18n="bc_home">Home</a><span class="breadcrumb-sep">/</span><a href="index.html" data-i18n="bc_legal">Legal</a><span class="breadcrumb-sep">/</span><span data-i18n="bc_referral">Referral &amp; Affiliation Program</span></nav>
+    <div class="lang-switch">
+      <button class="active" data-lang="en">EN</button>
+      <button data-lang="fr">&#127467;&#127479; FR</button>
+      <button data-lang="es">&#127466;&#127480; ES</button>
+    </div>
+  </div>
+  <div class="section-label" data-i18n="label_legal">Legal</div>
+  <h1 style="font-size:32px;margin-bottom:8px" data-i18n="page_title">Referral &amp; Affiliation Program</h1>
+  <p style="color:var(--text3);font-size:13px" data-i18n="page_subtitle">Last updated: March 2026 · Climber Trade · Terms and Conditions</p>
 
   <div class="legal-nav">
-    <div class="legal-nav-title">Table of Contents</div>
+    <div class="legal-nav-title" data-i18n="toc_title">Table of Contents</div>
     <ol class="legal-nav-list">
-      <li><a href="#rp-object">Object</a></li>
-      <li><a href="#rp-referral">Referral Program</a></li>
-      <li><a href="#rp-affiliation">Premium Affiliation Program</a></li>
-      <li><a href="#rp-noncumulative">Non-Cumulative Clause</a></li>
-      <li><a href="#rp-tracking">Tracking &amp; Payment</a></li>
-      <li><a href="#rp-termination">Termination</a></li>
-      <li><a href="#rp-contact">Contact</a></li>
+      <li><a href="#rp-object" data-i18n="toc_1">Object</a></li>
+      <li><a href="#rp-referral" data-i18n="toc_2">Referral Program</a></li>
+      <li><a href="#rp-affiliation" data-i18n="toc_3">Premium Affiliation Program</a></li>
+      <li><a href="#rp-noncumulative" data-i18n="toc_4">Non-Cumulative Clause</a></li>
+      <li><a href="#rp-tracking" data-i18n="toc_5">Tracking & Payment</a></li>
+      <li><a href="#rp-termination" data-i18n="toc_6">Termination</a></li>
+      <li><a href="#rp-contact" data-i18n="toc_7">Contact</a></li>
     </ol>
   </div>
 
-  <!-- 1. Object -->
-  <h3 id="rp-object">1. Object</h3>
-  <p>Climber Trade offers two distinct programs designed to reward community growth and align incentives between the platform, its traders, and content creators who help build the ecosystem.</p>
+  <h3 id="rp-object" data-i18n="h_1">1. Object</h3>
+  <p data-i18n="p_1a">Climber Trade offers two distinct programs designed to reward community growth and align incentives between the platform, its traders, and content creators who help build the ecosystem.</p>
   <ul>
-    <li><strong>Referral Program</strong> &mdash; available to all registered traders. Provides subscription discounts for both the referrer and the referred trader.</li>
-    <li><strong>Premium Affiliation Program</strong> &mdash; designed for content creators, trading educators, and community leaders. Provides recurring revenue tied to the long-term success of affiliated traders.</li>
+    <li data-i18n="li_1a">Referral Program \u2014 available to all registered traders. Provides subscription discounts for both the referrer and the referred trader.</li>
+    <li data-i18n="li_1b">Premium Affiliation Program \u2014 designed for content creators, trading educators, and community leaders. Provides recurring revenue tied to the long-term success of affiliated traders.</li>
   </ul>
-  <p>Both programs are governed by these Terms and Conditions and are subject to the general Terms of Service of Climber Trade. Participation in either program implies full acceptance of the terms outlined herein.</p>
+  <p data-i18n="p_1b">Both programs are governed by these Terms and Conditions and are subject to the general Terms of Service of Climber Trade. Participation in either program implies full acceptance of the terms outlined herein.</p>
 
-  <!-- 2. Referral Program -->
-  <h3 id="rp-referral">2. Referral Program</h3>
-  <p>The Referral Program is open to all traders with an active Climber Trade account. It operates through unique referral codes and links that can be shared freely.</p>
+  <h3 id="rp-referral" data-i18n="h_2">2. Referral Program</h3>
+  <p data-i18n="p_2">The Referral Program is open to all traders with an active Climber Trade account. It operates through unique referral codes and links that can be shared freely.</p>
 
-  <h4>2.1 Referrer Benefits</h4>
+  <h4 data-i18n="h_2_1">2.1 Referrer Benefits</h4>
   <ul>
-    <li><strong>-$10/month discount</strong> on the referrer's subscription for each active referral</li>
-    <li>Duration: <strong>6 months fixed</strong> per referral, starting from the referral's first subscription payment</li>
-    <li>Cumulative: discounts stack with each qualifying referral</li>
-    <li>Maximum impact: <strong>20 active referrals = FREE subscription</strong> ($10 &times; 20 = $200/month discount on the $199/month Standard plan)</li>
-    <li>Beyond 20 referrals: additional credits are stored on the referrer's account balance</li>
+    <li data-i18n="li_2a">-$10/month discount on the referrer's subscription for each active referral</li>
+    <li data-i18n="li_2b">Duration: 6 months fixed per referral, starting from the referral's first subscription payment</li>
+    <li data-i18n="li_2c">Cumulative: discounts stack with each qualifying referral</li>
+    <li data-i18n="li_2d">Maximum impact: 20 active referrals = FREE subscription ($10 \u00d7 20 = $200/month discount on the $199/month Standard plan)</li>
+    <li data-i18n="li_2e">Beyond 20 referrals: additional credits are stored on the referrer's account balance</li>
   </ul>
 
-  <h4>2.2 Referred Trader Benefits</h4>
+  <h4 data-i18n="h_2_2">2.2 Referred Trader Benefits</h4>
   <ul>
-    <li><strong>-20% discount on the first month</strong> of the Standard subscription</li>
-    <li>Standard plan: $199 &rarr; <strong>$159</strong> for the first month</li>
-    <li>Discount applies automatically when the referral code or link is used during registration</li>
+    <li data-i18n="li_2f">-20% discount on the first month of the Standard subscription</li>
+    <li data-i18n="li_2g">Standard plan: $199 \u2192 $159 for the first month</li>
+    <li data-i18n="li_2h">Discount applies automatically when the referral code or link is used during registration</li>
   </ul>
 
-  <h4>2.3 Referral Codes &amp; Links</h4>
-  <div class="callout">
-    <strong>Code format:</strong> <code style="font-family:var(--mono);color:var(--teal)">CLIMB-XXXXX</code><br>
-    <strong>Link format:</strong> <code style="font-family:var(--mono);color:var(--teal)">climbertrade.com/ref/XXXXX</code><br><br>
-    Each trader receives a unique referral code upon account creation. The code can be shared via any channel. Tracking is automatic &mdash; the referral is attributed at the time of the referred trader's first payment.
-  </div>
+  <h4 data-i18n="h_2_3">2.3 Referral Codes & Links</h4>
+  <div class="callout" data-i18n="callout_2_3">Code format: CLIMB-XXXXX. Link format: climbertrade.com/ref/XXXXX. Each trader receives a unique referral code upon account creation. The code can be shared via any channel. Tracking is automatic \u2014 the referral is attributed at the time of the referred trader's first payment.</div>
 
-  <h4>2.4 Activation Conditions</h4>
+  <h4 data-i18n="h_2_4">2.4 Activation Conditions</h4>
   <ul>
-    <li>A referral is considered <strong>active</strong> only when the referred trader maintains a paying subscription</li>
-    <li>If the referred trader cancels or does not renew, the corresponding $10/month discount ceases at the end of the referred trader's paid period</li>
-    <li>Self-referral or referral of accounts controlled by the same person is strictly prohibited</li>
+    <li data-i18n="li_2i">A referral is considered active only when the referred trader maintains a paying subscription</li>
+    <li data-i18n="li_2j">If the referred trader cancels or does not renew, the corresponding $10/month discount ceases at the end of the referred trader's paid period</li>
+    <li data-i18n="li_2k">Self-referral or referral of accounts controlled by the same person is strictly prohibited</li>
   </ul>
 
-  <!-- 3. Premium Affiliation -->
-  <h3 id="rp-affiliation">3. Premium Affiliation Program</h3>
-  <p>The Premium Affiliation Program is reserved for content creators, trading educators, community managers, and individuals with an established audience who can drive meaningful growth to the platform.</p>
+  <h3 id="rp-affiliation" data-i18n="h_3">3. Premium Affiliation Program</h3>
+  <p data-i18n="p_3">The Premium Affiliation Program is reserved for content creators, trading educators, community managers, and individuals with an established audience who can drive meaningful growth to the platform.</p>
 
-  <h4>3.1 Recurring Subscription Commission</h4>
+  <h4 data-i18n="h_3_1">3.1 Recurring Subscription Commission</h4>
   <ul>
-    <li><strong>15% recurring commission</strong> on every subscription payment made by each affiliated trader</li>
-    <li>Duration: <strong>lifetime</strong> &mdash; as long as the affiliated trader remains a paying subscriber</li>
-    <li>Applied to each billing cycle (monthly renewals)</li>
+    <li data-i18n="li_3a">15% recurring commission on every subscription payment made by each affiliated trader</li>
+    <li data-i18n="li_3b">Duration: lifetime \u2014 as long as the affiliated trader remains a paying subscriber</li>
+    <li data-i18n="li_3c">Applied to each billing cycle (monthly renewals)</li>
   </ul>
 
-  <h4>3.2 Payout Commission</h4>
+  <h4 data-i18n="h_3_2">3.2 Payout Commission</h4>
   <ul>
-    <li><strong>1% commission on every payout</strong> earned by the affiliated trader in the Live Trading Program</li>
-    <li>This commission is paid by Climber Trade from its own share &mdash; it does not reduce the trader's earnings</li>
+    <li data-i18n="li_3d">1% commission on every payout earned by the affiliated trader in the Live Trading Program</li>
+    <li data-i18n="li_3e">This commission is paid by Climber Trade from its own share \u2014 it does not reduce the trader's earnings</li>
   </ul>
 
-  <h4>3.3 Calculation Example</h4>
-  <div class="callout">
-    <strong>Scenario:</strong> An affiliated trader generates $10,000 in profits during a payout cycle with a 60/40 split (Elite tier).<br><br>
-    &bull; Trader receives: $10,000 &times; 60% = <strong>$6,000</strong><br>
-    &bull; Climber Trade receives: $10,000 &times; 40% = <strong>$4,000</strong><br>
-    &bull; Affiliate commission: $6,000 &times; 1% = <strong>$60</strong> (paid from Climber's $4,000 share)<br><br>
-    The trader's payout is <strong>not affected</strong> &mdash; the affiliate commission comes entirely from Climber Trade's portion.
-  </div>
+  <h4 data-i18n="h_3_3">3.3 Calculation Example</h4>
+  <div class="callout" data-i18n="callout_3_3">Scenario: An affiliated trader generates $10,000 in profits during a payout cycle with a 60/40 split (Elite tier). Trader receives: $10,000 \u00d7 60% = $6,000. Climber Trade receives: $10,000 \u00d7 40% = $4,000. Affiliate commission: $6,000 \u00d7 1% = $60 (paid from Climber's $4,000 share). The trader's payout is not affected \u2014 the affiliate commission comes entirely from Climber Trade's portion.</div>
 
-  <h4>3.4 No Cap</h4>
-  <p>There is <strong>no cap</strong> on affiliate earnings. Commission grows naturally with the number and success of affiliated traders. The more traders an affiliate brings and the better those traders perform, the higher the affiliate's recurring income.</p>
+  <h4 data-i18n="h_3_4">3.4 No Cap</h4>
+  <p data-i18n="p_3_4">There is no cap on affiliate earnings. Commission grows naturally with the number and success of affiliated traders. The more traders an affiliate brings and the better those traders perform, the higher the affiliate's recurring income.</p>
 
-  <h4>3.5 Eligibility</h4>
+  <h4 data-i18n="h_3_5">3.5 Eligibility</h4>
   <ul>
-    <li>Application required &mdash; submit via the Climber Trade dashboard or by contacting the team</li>
-    <li>Approval is at the sole discretion of Climber Trade</li>
-    <li>Ideal candidates: trading educators, YouTube/social media creators, community leaders, trading signal providers, fund managers</li>
+    <li data-i18n="li_3f">Application required \u2014 submit via the Climber Trade dashboard or by contacting the team</li>
+    <li data-i18n="li_3g">Approval is at the sole discretion of Climber Trade</li>
+    <li data-i18n="li_3h">Ideal candidates: trading educators, YouTube/social media creators, community leaders, trading signal providers, fund managers</li>
   </ul>
 
-  <!-- 4. Non-Cumulative -->
-  <h3 id="rp-noncumulative">4. Non-Cumulative Clause</h3>
-  <p>The Referral Program and the Premium Affiliation Program are <strong>mutually exclusive</strong>. A participant may only be enrolled in one program at a time.</p>
+  <h3 id="rp-noncumulative" data-i18n="h_4">4. Non-Cumulative Clause</h3>
+  <p data-i18n="p_4">The Referral Program and the Premium Affiliation Program are mutually exclusive. A participant may only be enrolled in one program at a time.</p>
   <ul>
-    <li>A trader using the Referral Program cannot simultaneously participate in the Premium Affiliation Program, and vice versa</li>
-    <li>Switching between programs is possible upon written request, but active benefits from the previous program will cease upon transition</li>
-    <li>A referred trader who later becomes an affiliate must choose one program and forfeit the other</li>
+    <li data-i18n="li_4a">A trader using the Referral Program cannot simultaneously participate in the Premium Affiliation Program, and vice versa</li>
+    <li data-i18n="li_4b">Switching between programs is possible upon written request, but active benefits from the previous program will cease upon transition</li>
+    <li data-i18n="li_4c">A referred trader who later becomes an affiliate must choose one program and forfeit the other</li>
   </ul>
 
-  <!-- 5. Tracking & Payment -->
-  <h3 id="rp-tracking">5. Tracking &amp; Payment</h3>
+  <h3 id="rp-tracking" data-i18n="h_5">5. Tracking & Payment</h3>
 
-  <h4>5.1 Dashboard</h4>
-  <p>Both referrers and affiliates have access to a dedicated section in their Climber Trade dashboard providing real-time visibility on:</p>
+  <h4 data-i18n="h_5_1">5.1 Dashboard</h4>
+  <p data-i18n="p_5_1">Both referrers and affiliates have access to a dedicated section in their Climber Trade dashboard providing real-time visibility on:</p>
   <ul>
-    <li>Number of active referrals or affiliated traders</li>
-    <li>Current subscription discount (referrers) or accumulated commissions (affiliates)</li>
-    <li>Referral code usage history and conversion metrics</li>
-    <li>Payout history and pending commissions</li>
+    <li data-i18n="li_5a">Number of active referrals or affiliated traders</li>
+    <li data-i18n="li_5b">Current subscription discount (referrers) or accumulated commissions (affiliates)</li>
+    <li data-i18n="li_5c">Referral code usage history and conversion metrics</li>
+    <li data-i18n="li_5d">Payout history and pending commissions</li>
   </ul>
 
-  <h4>5.2 Payment Processing</h4>
+  <h4 data-i18n="h_5_2">5.2 Payment Processing</h4>
   <ul>
-    <li><strong>Referral discounts</strong> are applied automatically to the next billing cycle</li>
-    <li><strong>Affiliate commissions</strong> are calculated at each payout cycle and paid through the standard withdrawal process via <strong>RISE WORKS</strong></li>
-    <li>Minimum payout threshold for affiliate commissions: <strong>$50</strong></li>
-    <li>Settlement follows the same J+3 to J+5 business day timeline as trader payouts</li>
+    <li data-i18n="li_5e">Referral discounts are applied automatically to the next billing cycle</li>
+    <li data-i18n="li_5f">Affiliate commissions are calculated at each payout cycle and paid through the standard withdrawal process via RISE WORKS</li>
+    <li data-i18n="li_5g">Minimum payout threshold for affiliate commissions: $50</li>
+    <li data-i18n="li_5h">Settlement follows the same J+3 to J+5 business day timeline as trader payouts</li>
   </ul>
 
-  <!-- 6. Termination -->
-  <h3 id="rp-termination">6. Termination</h3>
-  <p>Participation in either program may be terminated under the following conditions:</p>
+  <h3 id="rp-termination" data-i18n="h_6">6. Termination</h3>
+  <p data-i18n="p_6">Participation in either program may be terminated under the following conditions:</p>
 
-  <h4>6.1 Voluntary Termination</h4>
+  <h4 data-i18n="h_6_1">6.1 Voluntary Termination</h4>
   <ul>
-    <li>Either party may terminate participation at any time by written notice</li>
-    <li>Outstanding commissions or discounts owed at the time of termination will be honored through the end of the current billing cycle</li>
+    <li data-i18n="li_6a">Either party may terminate participation at any time by written notice</li>
+    <li data-i18n="li_6b">Outstanding commissions or discounts owed at the time of termination will be honored through the end of the current billing cycle</li>
   </ul>
 
-  <h4>6.2 Termination by Climber Trade</h4>
-  <p>Climber Trade reserves the right to immediately terminate participation and revoke all benefits in case of:</p>
+  <h4 data-i18n="h_6_2">6.2 Termination by Climber Trade</h4>
+  <p data-i18n="p_6_2">Climber Trade reserves the right to immediately terminate participation and revoke all benefits in case of:</p>
   <ul>
-    <li>Fraudulent or misleading marketing practices</li>
-    <li>Spam, unsolicited mass messaging, or deceptive advertising</li>
-    <li>Misrepresentation of Climber Trade's services, returns, or guarantees</li>
-    <li>Self-referral schemes or creation of fake accounts to generate referral benefits</li>
-    <li>Violation of the Climber Trade Terms of Service or Trading Regulations</li>
-    <li>Any activity that damages Climber Trade's reputation or brand</li>
+    <li data-i18n="li_6c">Fraudulent or misleading marketing practices</li>
+    <li data-i18n="li_6d">Spam, unsolicited mass messaging, or deceptive advertising</li>
+    <li data-i18n="li_6e">Misrepresentation of Climber Trade's services, returns, or guarantees</li>
+    <li data-i18n="li_6f">Self-referral schemes or creation of fake accounts to generate referral benefits</li>
+    <li data-i18n="li_6g">Violation of the Climber Trade Terms of Service or Trading Regulations</li>
+    <li data-i18n="li_6h">Any activity that damages Climber Trade's reputation or brand</li>
   </ul>
 
-  <h4>6.3 Consequences of Termination</h4>
+  <h4 data-i18n="h_6_3">6.3 Consequences of Termination</h4>
   <ul>
-    <li>All future commissions and discounts are forfeited upon termination for cause</li>
-    <li>Existing referred/affiliated traders remain Climber Trade clients but are no longer linked to the terminated participant</li>
-    <li>Climber Trade's decision on termination is final and not subject to appeal</li>
+    <li data-i18n="li_6i">All future commissions and discounts are forfeited upon termination for cause</li>
+    <li data-i18n="li_6j">Existing referred/affiliated traders remain Climber Trade clients but are no longer linked to the terminated participant</li>
+    <li data-i18n="li_6k">Climber Trade's decision on termination is final and not subject to appeal</li>
   </ul>
 
-  <!-- 7. Contact -->
-  <h3 id="rp-contact">7. Contact</h3>
-  <p>For questions about the Referral or Affiliation Program, to apply for Premium Affiliation, or to report any issue:</p>
+  <h3 id="rp-contact" data-i18n="h_7">7. Contact</h3>
+  <p data-i18n="p_7a">For questions about the Referral or Affiliation Program, to apply for Premium Affiliation, or to report any issue:</p>
   <p><a href="mailto:contact@climbertrade.com" style="color:var(--teal)">contact@climbertrade.com</a></p>
-  <p>Climber Trade will respond within 24 hours on business days.</p>
+  <p data-i18n="p_7b">Climber Trade will respond within 24 hours on business days.</p>
 </div>
 </section>
 
@@ -239,5 +238,120 @@
 <script src="../js/translations.js"></script>
 <script src="../js/i18n.js"></script>
 <script src="../js/shared.js"></script>
+<script>
+(function(){
+  var D = {
+    en: {
+      bc_home:"Home",bc_legal:"Legal",bc_referral:"Referral & Affiliation Program",label_legal:"Legal",
+      page_title:"Referral & Affiliation Program",page_subtitle:"Last updated: March 2026 \u00b7 Climber Trade \u00b7 Terms and Conditions",
+      toc_title:"Table of Contents",toc_1:"Object",toc_2:"Referral Program",toc_3:"Premium Affiliation Program",toc_4:"Non-Cumulative Clause",toc_5:"Tracking & Payment",toc_6:"Termination",toc_7:"Contact",
+      h_1:"1. Object",p_1a:"Climber Trade offers two distinct programs designed to reward community growth and align incentives between the platform, its traders, and content creators who help build the ecosystem.",
+      li_1a:"Referral Program \u2014 available to all registered traders. Provides subscription discounts for both the referrer and the referred trader.",
+      li_1b:"Premium Affiliation Program \u2014 designed for content creators, trading educators, and community leaders. Provides recurring revenue tied to the long-term success of affiliated traders.",
+      p_1b:"Both programs are governed by these Terms and Conditions and are subject to the general Terms of Service of Climber Trade. Participation in either program implies full acceptance of the terms outlined herein.",
+      h_2:"2. Referral Program",p_2:"The Referral Program is open to all traders with an active Climber Trade account. It operates through unique referral codes and links that can be shared freely.",
+      h_2_1:"2.1 Referrer Benefits",li_2a:"-$10/month discount on the referrer\u2019s subscription for each active referral",li_2b:"Duration: 6 months fixed per referral, starting from the referral\u2019s first subscription payment",li_2c:"Cumulative: discounts stack with each qualifying referral",li_2d:"Maximum impact: 20 active referrals = FREE subscription ($10 \u00d7 20 = $200/month discount on the $199/month Standard plan)",li_2e:"Beyond 20 referrals: additional credits are stored on the referrer\u2019s account balance",
+      h_2_2:"2.2 Referred Trader Benefits",li_2f:"-20% discount on the first month of the Standard subscription",li_2g:"Standard plan: $199 \u2192 $159 for the first month",li_2h:"Discount applies automatically when the referral code or link is used during registration",
+      h_2_3:"2.3 Referral Codes & Links",callout_2_3:"Code format: CLIMB-XXXXX. Link format: climbertrade.com/ref/XXXXX. Each trader receives a unique referral code upon account creation. The code can be shared via any channel. Tracking is automatic \u2014 the referral is attributed at the time of the referred trader\u2019s first payment.",
+      h_2_4:"2.4 Activation Conditions",li_2i:"A referral is considered active only when the referred trader maintains a paying subscription",li_2j:"If the referred trader cancels or does not renew, the corresponding $10/month discount ceases at the end of the referred trader\u2019s paid period",li_2k:"Self-referral or referral of accounts controlled by the same person is strictly prohibited",
+      h_3:"3. Premium Affiliation Program",p_3:"The Premium Affiliation Program is reserved for content creators, trading educators, community managers, and individuals with an established audience who can drive meaningful growth to the platform.",
+      h_3_1:"3.1 Recurring Subscription Commission",li_3a:"15% recurring commission on every subscription payment made by each affiliated trader",li_3b:"Duration: lifetime \u2014 as long as the affiliated trader remains a paying subscriber",li_3c:"Applied to each billing cycle (monthly renewals)",
+      h_3_2:"3.2 Payout Commission",li_3d:"1% commission on every payout earned by the affiliated trader in the Live Trading Program",li_3e:"This commission is paid by Climber Trade from its own share \u2014 it does not reduce the trader\u2019s earnings",
+      h_3_3:"3.3 Calculation Example",callout_3_3:"Scenario: An affiliated trader generates $10,000 in profits during a payout cycle with a 60/40 split (Elite tier). Trader receives: $10,000 \u00d7 60% = $6,000. Climber Trade receives: $10,000 \u00d7 40% = $4,000. Affiliate commission: $6,000 \u00d7 1% = $60 (paid from Climber\u2019s $4,000 share). The trader\u2019s payout is not affected \u2014 the affiliate commission comes entirely from Climber Trade\u2019s portion.",
+      h_3_4:"3.4 No Cap",p_3_4:"There is no cap on affiliate earnings. Commission grows naturally with the number and success of affiliated traders. The more traders an affiliate brings and the better those traders perform, the higher the affiliate\u2019s recurring income.",
+      h_3_5:"3.5 Eligibility",li_3f:"Application required \u2014 submit via the Climber Trade dashboard or by contacting the team",li_3g:"Approval is at the sole discretion of Climber Trade",li_3h:"Ideal candidates: trading educators, YouTube/social media creators, community leaders, trading signal providers, fund managers",
+      h_4:"4. Non-Cumulative Clause",p_4:"The Referral Program and the Premium Affiliation Program are mutually exclusive. A participant may only be enrolled in one program at a time.",
+      li_4a:"A trader using the Referral Program cannot simultaneously participate in the Premium Affiliation Program, and vice versa",li_4b:"Switching between programs is possible upon written request, but active benefits from the previous program will cease upon transition",li_4c:"A referred trader who later becomes an affiliate must choose one program and forfeit the other",
+      h_5:"5. Tracking & Payment",h_5_1:"5.1 Dashboard",p_5_1:"Both referrers and affiliates have access to a dedicated section in their Climber Trade dashboard providing real-time visibility on:",
+      li_5a:"Number of active referrals or affiliated traders",li_5b:"Current subscription discount (referrers) or accumulated commissions (affiliates)",li_5c:"Referral code usage history and conversion metrics",li_5d:"Payout history and pending commissions",
+      h_5_2:"5.2 Payment Processing",li_5e:"Referral discounts are applied automatically to the next billing cycle",li_5f:"Affiliate commissions are calculated at each payout cycle and paid through the standard withdrawal process via RISE WORKS",li_5g:"Minimum payout threshold for affiliate commissions: $50",li_5h:"Settlement follows the same J+3 to J+5 business day timeline as trader payouts",
+      h_6:"6. Termination",p_6:"Participation in either program may be terminated under the following conditions:",
+      h_6_1:"6.1 Voluntary Termination",li_6a:"Either party may terminate participation at any time by written notice",li_6b:"Outstanding commissions or discounts owed at the time of termination will be honored through the end of the current billing cycle",
+      h_6_2:"6.2 Termination by Climber Trade",p_6_2:"Climber Trade reserves the right to immediately terminate participation and revoke all benefits in case of:",
+      li_6c:"Fraudulent or misleading marketing practices",li_6d:"Spam, unsolicited mass messaging, or deceptive advertising",li_6e:"Misrepresentation of Climber Trade\u2019s services, returns, or guarantees",li_6f:"Self-referral schemes or creation of fake accounts to generate referral benefits",li_6g:"Violation of the Climber Trade Terms of Service or Trading Regulations",li_6h:"Any activity that damages Climber Trade\u2019s reputation or brand",
+      h_6_3:"6.3 Consequences of Termination",li_6i:"All future commissions and discounts are forfeited upon termination for cause",li_6j:"Existing referred/affiliated traders remain Climber Trade clients but are no longer linked to the terminated participant",li_6k:"Climber Trade\u2019s decision on termination is final and not subject to appeal",
+      h_7:"7. Contact",p_7a:"For questions about the Referral or Affiliation Program, to apply for Premium Affiliation, or to report any issue:",p_7b:"Climber Trade will respond within 24 hours on business days."
+    },
+    fr: {
+      bc_home:"Accueil",bc_legal:"Juridique",bc_referral:"Programme de Parrainage & Affiliation",label_legal:"Juridique",
+      page_title:"Programme de Parrainage & Affiliation",page_subtitle:"Derni\u00e8re mise \u00e0 jour : Mars 2026 \u00b7 Climber Trade \u00b7 Conditions G\u00e9n\u00e9rales",
+      toc_title:"Table des mati\u00e8res",toc_1:"Objet",toc_2:"Programme de Parrainage",toc_3:"Programme d\u2019Affiliation Premium",toc_4:"Clause de Non-Cumul",toc_5:"Suivi & Paiement",toc_6:"R\u00e9siliation",toc_7:"Contact",
+      h_1:"1. Objet",p_1a:"Climber Trade propose deux programmes distincts con\u00e7us pour r\u00e9compenser la croissance de la communaut\u00e9 et aligner les int\u00e9r\u00eats entre la plateforme, ses traders et les cr\u00e9ateurs de contenu qui contribuent \u00e0 b\u00e2tir l\u2019\u00e9cosyst\u00e8me.",
+      li_1a:"Programme de Parrainage \u2014 accessible \u00e0 tous les traders inscrits. Offre des r\u00e9ductions d\u2019abonnement au parrain et au filleul.",
+      li_1b:"Programme d\u2019Affiliation Premium \u2014 destin\u00e9 aux cr\u00e9ateurs de contenu, formateurs en trading et leaders de communaut\u00e9. Offre des revenus r\u00e9currents li\u00e9s au succ\u00e8s \u00e0 long terme des traders affili\u00e9s.",
+      p_1b:"Les deux programmes sont r\u00e9gis par les pr\u00e9sentes Conditions G\u00e9n\u00e9rales et sont soumis aux Conditions G\u00e9n\u00e9rales d\u2019Utilisation de Climber Trade. La participation \u00e0 l\u2019un ou l\u2019autre programme implique l\u2019acceptation int\u00e9grale des termes \u00e9nonc\u00e9s ci-apr\u00e8s.",
+      h_2:"2. Programme de Parrainage",p_2:"Le Programme de Parrainage est ouvert \u00e0 tous les traders disposant d\u2019un compte Climber Trade actif. Il fonctionne gr\u00e2ce \u00e0 des codes et liens de parrainage uniques partageables librement.",
+      h_2_1:"2.1 Avantages du Parrain",li_2a:"-$10/mois de r\u00e9duction sur l\u2019abonnement du parrain pour chaque filleul actif",li_2b:"Dur\u00e9e : 6 mois fixes par filleul, \u00e0 compter du premier paiement d\u2019abonnement du filleul",li_2c:"Cumulable : les r\u00e9ductions s\u2019additionnent avec chaque filleul \u00e9ligible",li_2d:"Impact maximal : 20 filleuls actifs = abonnement GRATUIT ($10 \u00d7 20 = $200/mois de r\u00e9duction sur le plan Standard \u00e0 $199/mois)",li_2e:"Au-del\u00e0 de 20 filleuls : les cr\u00e9dits suppl\u00e9mentaires sont stock\u00e9s sur le solde du compte du parrain",
+      h_2_2:"2.2 Avantages du Filleul",li_2f:"-20% de r\u00e9duction sur le premier mois de l\u2019abonnement Standard",li_2g:"Plan Standard : $199 \u2192 $159 pour le premier mois",li_2h:"La r\u00e9duction s\u2019applique automatiquement lorsque le code ou le lien de parrainage est utilis\u00e9 lors de l\u2019inscription",
+      h_2_3:"2.3 Codes & Liens de Parrainage",callout_2_3:"Format du code : CLIMB-XXXXX. Format du lien : climbertrade.com/ref/XXXXX. Chaque trader re\u00e7oit un code de parrainage unique \u00e0 la cr\u00e9ation de son compte. Le code peut \u00eatre partag\u00e9 via n\u2019importe quel canal. Le suivi est automatique \u2014 le parrainage est attribu\u00e9 au moment du premier paiement du filleul.",
+      h_2_4:"2.4 Conditions d\u2019Activation",li_2i:"Un parrainage est consid\u00e9r\u00e9 comme actif uniquement lorsque le filleul maintient un abonnement payant",li_2j:"Si le filleul annule ou ne renouvelle pas, la r\u00e9duction correspondante de $10/mois cesse \u00e0 la fin de la p\u00e9riode pay\u00e9e du filleul",li_2k:"L\u2019auto-parrainage ou le parrainage de comptes contr\u00f4l\u00e9s par la m\u00eame personne est strictement interdit",
+      h_3:"3. Programme d\u2019Affiliation Premium",p_3:"Le Programme d\u2019Affiliation Premium est r\u00e9serv\u00e9 aux cr\u00e9ateurs de contenu, formateurs en trading, gestionnaires de communaut\u00e9 et individus disposant d\u2019une audience \u00e9tablie pouvant g\u00e9n\u00e9rer une croissance significative pour la plateforme.",
+      h_3_1:"3.1 Commission R\u00e9currente sur les Abonnements",li_3a:"15% de commission r\u00e9currente sur chaque paiement d\u2019abonnement effectu\u00e9 par chaque trader affili\u00e9",li_3b:"Dur\u00e9e : \u00e0 vie \u2014 tant que le trader affili\u00e9 reste abonn\u00e9 payant",li_3c:"Appliqu\u00e9e \u00e0 chaque cycle de facturation (renouvellements mensuels)",
+      h_3_2:"3.2 Commission sur les Retraits",li_3d:"1% de commission sur chaque retrait effectu\u00e9 par le trader affili\u00e9 dans le Programme Live Trading",li_3e:"Cette commission est pay\u00e9e par Climber Trade sur sa propre part \u2014 elle ne r\u00e9duit pas les gains du trader",
+      h_3_3:"3.3 Exemple de Calcul",callout_3_3:"Sc\u00e9nario : Un trader affili\u00e9 g\u00e9n\u00e8re $10 000 de b\u00e9n\u00e9fices lors d\u2019un cycle de paiement avec un partage 60/40 (niveau Elite). Le Trader re\u00e7oit : $10 000 \u00d7 60% = $6 000. Climber Trade re\u00e7oit : $10 000 \u00d7 40% = $4 000. Commission d\u2019affiliation : $6 000 \u00d7 1% = $60 (pr\u00e9lev\u00e9s sur la part de $4 000 de Climber). Le retrait du trader n\u2019est pas affect\u00e9 \u2014 la commission d\u2019affiliation provient enti\u00e8rement de la part de Climber Trade.",
+      h_3_4:"3.4 Sans Plafond",p_3_4:"Il n\u2019y a aucun plafond sur les revenus d\u2019affiliation. La commission cro\u00eet naturellement avec le nombre et le succ\u00e8s des traders affili\u00e9s. Plus un affili\u00e9 apporte de traders et plus ces traders performent, plus les revenus r\u00e9currents de l\u2019affili\u00e9 sont \u00e9lev\u00e9s.",
+      h_3_5:"3.5 \u00c9ligibilit\u00e9",li_3f:"Candidature requise \u2014 \u00e0 soumettre via le tableau de bord Climber Trade ou en contactant l\u2019\u00e9quipe",li_3g:"L\u2019approbation est \u00e0 la seule discr\u00e9tion de Climber Trade",li_3h:"Candidats id\u00e9aux : formateurs en trading, cr\u00e9ateurs YouTube/r\u00e9seaux sociaux, leaders de communaut\u00e9, fournisseurs de signaux de trading, gestionnaires de fonds",
+      h_4:"4. Clause de Non-Cumul",p_4:"Le Programme de Parrainage et le Programme d\u2019Affiliation Premium sont mutuellement exclusifs. Un participant ne peut \u00eatre inscrit qu\u2019\u00e0 un seul programme \u00e0 la fois.",
+      li_4a:"Un trader utilisant le Programme de Parrainage ne peut pas participer simultan\u00e9ment au Programme d\u2019Affiliation Premium, et inversement",li_4b:"Le changement de programme est possible sur demande \u00e9crite, mais les avantages actifs du programme pr\u00e9c\u00e9dent cesseront lors de la transition",li_4c:"Un filleul qui devient ult\u00e9rieurement affili\u00e9 doit choisir un seul programme et renoncer \u00e0 l\u2019autre",
+      h_5:"5. Suivi & Paiement",h_5_1:"5.1 Tableau de Bord",p_5_1:"Les parrains et affili\u00e9s ont acc\u00e8s \u00e0 une section d\u00e9di\u00e9e dans leur tableau de bord Climber Trade offrant une visibilit\u00e9 en temps r\u00e9el sur :",
+      li_5a:"Nombre de filleuls actifs ou de traders affili\u00e9s",li_5b:"R\u00e9duction d\u2019abonnement en cours (parrains) ou commissions accumul\u00e9es (affili\u00e9s)",li_5c:"Historique d\u2019utilisation des codes de parrainage et m\u00e9triques de conversion",li_5d:"Historique des paiements et commissions en attente",
+      h_5_2:"5.2 Traitement des Paiements",li_5e:"Les r\u00e9ductions de parrainage sont appliqu\u00e9es automatiquement au prochain cycle de facturation",li_5f:"Les commissions d\u2019affiliation sont calcul\u00e9es \u00e0 chaque cycle de paiement et vers\u00e9es via le processus de retrait standard par RISE WORKS",li_5g:"Seuil minimum de paiement pour les commissions d\u2019affiliation : $50",li_5h:"Le r\u00e8glement suit le m\u00eame calendrier J+3 \u00e0 J+5 jours ouvrables que les retraits des traders",
+      h_6:"6. R\u00e9siliation",p_6:"La participation \u00e0 l\u2019un ou l\u2019autre programme peut \u00eatre r\u00e9sili\u00e9e dans les conditions suivantes :",
+      h_6_1:"6.1 R\u00e9siliation Volontaire",li_6a:"Chaque partie peut r\u00e9silier sa participation \u00e0 tout moment par notification \u00e9crite",li_6b:"Les commissions ou r\u00e9ductions en attente dues au moment de la r\u00e9siliation seront honor\u00e9es jusqu\u2019\u00e0 la fin du cycle de facturation en cours",
+      h_6_2:"6.2 R\u00e9siliation par Climber Trade",p_6_2:"Climber Trade se r\u00e9serve le droit de r\u00e9silier imm\u00e9diatement la participation et de r\u00e9voquer tous les avantages en cas de :",
+      li_6c:"Pratiques marketing frauduleuses ou trompeuses",li_6d:"Spam, envoi massif non sollicit\u00e9 ou publicit\u00e9 trompeuse",li_6e:"Fausse repr\u00e9sentation des services, rendements ou garanties de Climber Trade",li_6f:"Syst\u00e8mes d\u2019auto-parrainage ou cr\u00e9ation de faux comptes pour g\u00e9n\u00e9rer des avantages de parrainage",li_6g:"Violation des Conditions G\u00e9n\u00e9rales d\u2019Utilisation ou du R\u00e8glement de Trading de Climber Trade",li_6h:"Toute activit\u00e9 portant atteinte \u00e0 la r\u00e9putation ou \u00e0 la marque de Climber Trade",
+      h_6_3:"6.3 Cons\u00e9quences de la R\u00e9siliation",li_6i:"Toutes les commissions et r\u00e9ductions futures sont perdues en cas de r\u00e9siliation pour faute",li_6j:"Les traders filleuls/affili\u00e9s existants restent clients de Climber Trade mais ne sont plus rattach\u00e9s au participant r\u00e9sili\u00e9",li_6k:"La d\u00e9cision de r\u00e9siliation de Climber Trade est d\u00e9finitive et sans recours",
+      h_7:"7. Contact",p_7a:"Pour toute question relative au Programme de Parrainage ou d\u2019Affiliation, pour postuler \u00e0 l\u2019Affiliation Premium, ou pour signaler un probl\u00e8me :",p_7b:"Climber Trade r\u00e9pondra sous 24 heures les jours ouvrables."
+    },
+    es: {
+      bc_home:"Inicio",bc_legal:"Legal",bc_referral:"Programa de Referidos & Afiliaci\u00f3n",label_legal:"Legal",
+      page_title:"Programa de Referidos & Afiliaci\u00f3n",page_subtitle:"\u00daltima actualizaci\u00f3n: Marzo 2026 \u00b7 Climber Trade \u00b7 T\u00e9rminos y Condiciones",
+      toc_title:"\u00cdndice",toc_1:"Objeto",toc_2:"Programa de Referidos",toc_3:"Programa de Afiliaci\u00f3n Premium",toc_4:"Cl\u00e1usula de No Acumulaci\u00f3n",toc_5:"Seguimiento & Pago",toc_6:"Resoluci\u00f3n",toc_7:"Contacto",
+      h_1:"1. Objeto",p_1a:"Climber Trade ofrece dos programas diferenciados dise\u00f1ados para recompensar el crecimiento de la comunidad y alinear los incentivos entre la plataforma, sus traders y los creadores de contenido que contribuyen a construir el ecosistema.",
+      li_1a:"Programa de Referidos \u2014 disponible para todos los traders registrados. Ofrece descuentos en la suscripci\u00f3n tanto al referente como al trader referido.",
+      li_1b:"Programa de Afiliaci\u00f3n Premium \u2014 dise\u00f1ado para creadores de contenido, formadores de trading y l\u00edderes de comunidad. Ofrece ingresos recurrentes vinculados al \u00e9xito a largo plazo de los traders afiliados.",
+      p_1b:"Ambos programas se rigen por los presentes T\u00e9rminos y Condiciones y est\u00e1n sujetos a los T\u00e9rminos Generales de Servicio de Climber Trade. La participaci\u00f3n en cualquiera de los programas implica la aceptaci\u00f3n plena de los t\u00e9rminos aqu\u00ed establecidos.",
+      h_2:"2. Programa de Referidos",p_2:"El Programa de Referidos est\u00e1 abierto a todos los traders con una cuenta activa en Climber Trade. Funciona mediante c\u00f3digos y enlaces de referido \u00fanicos que pueden compartirse libremente.",
+      h_2_1:"2.1 Beneficios del Referente",li_2a:"-$10/mes de descuento en la suscripci\u00f3n del referente por cada referido activo",li_2b:"Duraci\u00f3n: 6 meses fijos por referido, desde el primer pago de suscripci\u00f3n del referido",li_2c:"Acumulable: los descuentos se suman con cada referido cualificado",li_2d:"Impacto m\u00e1ximo: 20 referidos activos = suscripci\u00f3n GRATUITA ($10 \u00d7 20 = $200/mes de descuento en el plan Standard de $199/mes)",li_2e:"M\u00e1s de 20 referidos: los cr\u00e9ditos adicionales se almacenan en el saldo de la cuenta del referente",
+      h_2_2:"2.2 Beneficios del Trader Referido",li_2f:"-20% de descuento en el primer mes de la suscripci\u00f3n Standard",li_2g:"Plan Standard: $199 \u2192 $159 para el primer mes",li_2h:"El descuento se aplica autom\u00e1ticamente al utilizar el c\u00f3digo o enlace de referido durante el registro",
+      h_2_3:"2.3 C\u00f3digos & Enlaces de Referido",callout_2_3:"Formato del c\u00f3digo: CLIMB-XXXXX. Formato del enlace: climbertrade.com/ref/XXXXX. Cada trader recibe un c\u00f3digo de referido \u00fanico al crear su cuenta. El c\u00f3digo puede compartirse por cualquier canal. El seguimiento es autom\u00e1tico \u2014 el referido se atribuye en el momento del primer pago del trader referido.",
+      h_2_4:"2.4 Condiciones de Activaci\u00f3n",li_2i:"Un referido se considera activo solo cuando el trader referido mantiene una suscripci\u00f3n de pago",li_2j:"Si el trader referido cancela o no renueva, el descuento correspondiente de $10/mes cesa al final del per\u00edodo pagado del trader referido",li_2k:"El auto-referido o el referido de cuentas controladas por la misma persona est\u00e1 estrictamente prohibido",
+      h_3:"3. Programa de Afiliaci\u00f3n Premium",p_3:"El Programa de Afiliaci\u00f3n Premium est\u00e1 reservado para creadores de contenido, formadores de trading, gestores de comunidad e individuos con una audiencia establecida que puedan generar un crecimiento significativo para la plataforma.",
+      h_3_1:"3.1 Comisi\u00f3n Recurrente sobre Suscripciones",li_3a:"15% de comisi\u00f3n recurrente sobre cada pago de suscripci\u00f3n realizado por cada trader afiliado",li_3b:"Duraci\u00f3n: de por vida \u2014 mientras el trader afiliado se mantenga como suscriptor de pago",li_3c:"Aplicada a cada ciclo de facturaci\u00f3n (renovaciones mensuales)",
+      h_3_2:"3.2 Comisi\u00f3n sobre Retiros",li_3d:"1% de comisi\u00f3n sobre cada retiro obtenido por el trader afiliado en el Programa Live Trading",li_3e:"Esta comisi\u00f3n es pagada por Climber Trade de su propia parte \u2014 no reduce las ganancias del trader",
+      h_3_3:"3.3 Ejemplo de C\u00e1lculo",callout_3_3:"Escenario: Un trader afiliado genera $10 000 en beneficios durante un ciclo de pago con un reparto 60/40 (nivel Elite). El Trader recibe: $10 000 \u00d7 60% = $6 000. Climber Trade recibe: $10 000 \u00d7 40% = $4 000. Comisi\u00f3n de afiliaci\u00f3n: $6 000 \u00d7 1% = $60 (tomados de la parte de $4 000 de Climber). El retiro del trader no se ve afectado \u2014 la comisi\u00f3n de afiliaci\u00f3n proviene \u00edntegramente de la parte de Climber Trade.",
+      h_3_4:"3.4 Sin L\u00edmite M\u00e1ximo",p_3_4:"No existe l\u00edmite m\u00e1ximo en los ingresos de afiliaci\u00f3n. La comisi\u00f3n crece naturalmente con el n\u00famero y el \u00e9xito de los traders afiliados. Cuantos m\u00e1s traders trae un afiliado y mejor rinden esos traders, mayores son los ingresos recurrentes del afiliado.",
+      h_3_5:"3.5 Elegibilidad",li_3f:"Solicitud requerida \u2014 enviar a trav\u00e9s del panel de control de Climber Trade o contactando al equipo",li_3g:"La aprobaci\u00f3n queda a la entera discreci\u00f3n de Climber Trade",li_3h:"Candidatos ideales: formadores de trading, creadores de YouTube/redes sociales, l\u00edderes de comunidad, proveedores de se\u00f1ales de trading, gestores de fondos",
+      h_4:"4. Cl\u00e1usula de No Acumulaci\u00f3n",p_4:"El Programa de Referidos y el Programa de Afiliaci\u00f3n Premium son mutuamente excluyentes. Un participante solo puede estar inscrito en un programa a la vez.",
+      li_4a:"Un trader que utilice el Programa de Referidos no puede participar simult\u00e1neamente en el Programa de Afiliaci\u00f3n Premium, y viceversa",li_4b:"El cambio entre programas es posible mediante solicitud escrita, pero los beneficios activos del programa anterior cesar\u00e1n en el momento de la transici\u00f3n",li_4c:"Un trader referido que posteriormente se convierta en afiliado debe elegir un solo programa y renunciar al otro",
+      h_5:"5. Seguimiento & Pago",h_5_1:"5.1 Panel de Control",p_5_1:"Tanto referentes como afiliados tienen acceso a una secci\u00f3n dedicada en su panel de control de Climber Trade que ofrece visibilidad en tiempo real sobre:",
+      li_5a:"N\u00famero de referidos activos o traders afiliados",li_5b:"Descuento de suscripci\u00f3n actual (referentes) o comisiones acumuladas (afiliados)",li_5c:"Historial de uso de c\u00f3digos de referido y m\u00e9tricas de conversi\u00f3n",li_5d:"Historial de pagos y comisiones pendientes",
+      h_5_2:"5.2 Procesamiento de Pagos",li_5e:"Los descuentos de referido se aplican autom\u00e1ticamente al siguiente ciclo de facturaci\u00f3n",li_5f:"Las comisiones de afiliaci\u00f3n se calculan en cada ciclo de pago y se abonan mediante el proceso de retiro est\u00e1ndar a trav\u00e9s de RISE WORKS",li_5g:"Umbral m\u00ednimo de pago para comisiones de afiliaci\u00f3n: $50",li_5h:"La liquidaci\u00f3n sigue el mismo plazo de J+3 a J+5 d\u00edas h\u00e1biles que los retiros de los traders",
+      h_6:"6. Resoluci\u00f3n",p_6:"La participaci\u00f3n en cualquiera de los programas puede resolverse bajo las siguientes condiciones:",
+      h_6_1:"6.1 Resoluci\u00f3n Voluntaria",li_6a:"Cualquiera de las partes puede resolver su participaci\u00f3n en cualquier momento mediante notificaci\u00f3n escrita",li_6b:"Las comisiones o descuentos pendientes adeudados en el momento de la resoluci\u00f3n se respetar\u00e1n hasta el final del ciclo de facturaci\u00f3n en curso",
+      h_6_2:"6.2 Resoluci\u00f3n por Climber Trade",p_6_2:"Climber Trade se reserva el derecho de resolver inmediatamente la participaci\u00f3n y revocar todos los beneficios en caso de:",
+      li_6c:"Pr\u00e1cticas de marketing fraudulentas o enga\u00f1osas",li_6d:"Spam, env\u00edo masivo no solicitado o publicidad enga\u00f1osa",li_6e:"Falsa representaci\u00f3n de los servicios, rendimientos o garant\u00edas de Climber Trade",li_6f:"Esquemas de auto-referido o creaci\u00f3n de cuentas falsas para generar beneficios de referido",li_6g:"Violaci\u00f3n de los T\u00e9rminos de Servicio o del Reglamento de Trading de Climber Trade",li_6h:"Cualquier actividad que da\u00f1e la reputaci\u00f3n o la marca de Climber Trade",
+      h_6_3:"6.3 Consecuencias de la Resoluci\u00f3n",li_6i:"Todas las comisiones y descuentos futuros se pierden en caso de resoluci\u00f3n por causa justificada",li_6j:"Los traders referidos/afiliados existentes siguen siendo clientes de Climber Trade pero ya no est\u00e1n vinculados al participante cuya participaci\u00f3n fue resuelta",li_6k:"La decisi\u00f3n de resoluci\u00f3n de Climber Trade es definitiva y sin recurso",
+      h_7:"7. Contacto",p_7a:"Para preguntas sobre el Programa de Referidos o Afiliaci\u00f3n, para solicitar la Afiliaci\u00f3n Premium, o para informar de cualquier incidencia:",p_7b:"Climber Trade responder\u00e1 en un plazo de 24 horas en d\u00edas laborables."
+    }
+  };
+  var saved = localStorage.getItem('climber-legal-lang') || 'en';
+  function apply(lang) {
+    localStorage.setItem('climber-legal-lang', lang);
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (D[lang] && D[lang][key]) el.textContent = D[lang][key];
+    });
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+  }
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() { apply(b.dataset.lang); });
+  });
+  apply(saved);
+})();
+</script>
 </body>
 </html>
