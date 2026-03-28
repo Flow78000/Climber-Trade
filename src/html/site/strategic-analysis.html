@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Analysis — Climber Trade | INTERNAL</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* ═══════════════════════════════════════════
+   STRATEGIC ANALYSIS — INTERNAL DOCUMENT
+   Goldman Sachs / McKinsey styling
+   ═══════════════════════════════════════════ */
+
+/* Layout with sidebar */
+.sa-layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh;}
+
+/* Sidebar */
+.sa-sidebar{
+  position:fixed;top:0;left:0;bottom:0;width:260px;z-index:100;
+  background:var(--surface);border-right:1px solid var(--border);
+  padding:32px 0;overflow-y:auto;
+}
+.sa-sidebar-header{padding:0 24px 28px;border-bottom:1px solid var(--border);margin-bottom:20px;}
+.sa-sidebar-logo{font-size:14px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;}
+.sa-sidebar-logo span{color:var(--teal);}
+.sa-sidebar-tag{
+  display:inline-block;padding:3px 10px;border-radius:4px;
+  background:#EF444418;border:1px solid #EF444433;
+  font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  color:var(--red);margin-top:10px;
+}
+.sa-sidebar-sub{font-size:11px;color:var(--text3);margin-top:8px;line-height:1.5;}
+.sa-nav{padding:0 12px;}
+.sa-nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-radius:8px;
+  font-size:13px;font-weight:500;color:var(--text2);
+  cursor:pointer;transition:all .15s;margin-bottom:2px;
+  text-decoration:none;
+}
+.sa-nav-item:hover{background:var(--card);color:var(--text);}
+.sa-nav-item.active{background:var(--teal-dim);color:var(--teal);font-weight:600;}
+.sa-nav-num{
+  font-size:10px;font-weight:700;font-family:var(--mono);
+  width:24px;height:24px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--card2);color:var(--text3);flex-shrink:0;
+}
+.sa-nav-item.active .sa-nav-num{background:var(--teal);color:#000;}
+
+/* Main content */
+.sa-main{margin-left:260px;padding:48px 56px 100px;max-width:1100px;}
+
+/* Document header */
+.sa-doc-header{margin-bottom:56px;padding-bottom:40px;border-bottom:1px solid var(--border);}
+.sa-doc-watermark{
+  font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  color:var(--red);margin-bottom:24px;
+  display:flex;align-items:center;gap:8px;
+}
+.sa-doc-watermark::before{
+  content:'';width:8px;height:8px;border-radius:50%;background:var(--red);
+  box-shadow:0 0 8px var(--red);
+}
+.sa-doc-title{font-size:36px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px;}
+.sa-doc-subtitle{font-size:18px;color:var(--text2);margin-bottom:24px;}
+.sa-doc-meta{display:flex;gap:32px;flex-wrap:wrap;}
+.sa-meta-item{font-size:12px;color:var(--text3);}
+.sa-meta-item strong{color:var(--text2);font-weight:600;}
+
+/* Section styling */
+.sa-section{margin-bottom:72px;scroll-margin-top:32px;}
+.sa-section-num{
+  font-size:11px;font-weight:800;font-family:var(--mono);letter-spacing:1px;
+  color:var(--teal);margin-bottom:8px;text-transform:uppercase;
+}
+.sa-section-title{font-size:28px;font-weight:800;letter-spacing:-.02em;margin-bottom:24px;}
+.sa-section-divider{width:48px;height:3px;background:var(--teal);border-radius:2px;margin-bottom:32px;}
+.sa-text{font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:20px;}
+.sa-text strong{color:var(--text);font-weight:600;}
+
+/* Profile cards */
+.sa-profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;}
+.sa-profile-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px;}
+.sa-profile-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.sa-profile-value{font-size:22px;font-weight:800;font-family:var(--mono);margin-bottom:4px;}
+.sa-profile-desc{font-size:12px;color:var(--text3);line-height:1.5;}
+
+/* Key-value rows */
+.sa-kv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;}
+.sa-kv{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);
+}
+.sa-kv-label{font-size:13px;color:var(--text2);}
+.sa-kv-val{font-size:13px;font-weight:700;font-family:var(--mono);color:var(--text);}
+
+/* SWOT Matrix */
+.sa-swot{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:32px;border-radius:var(--r2);overflow:hidden;}
+.sa-swot-cell{padding:32px;position:relative;}
+.sa-swot-cell.strength{background:linear-gradient(135deg,#10B98110,#10B98105);}
+.sa-swot-cell.weakness{background:linear-gradient(135deg,#EF444410,#EF444405);}
+.sa-swot-cell.opportunity{background:linear-gradient(135deg,#00D4FF10,#00D4FF05);}
+.sa-swot-cell.threat{background:linear-gradient(135deg,#F59E0B10,#F59E0B05);}
+.sa-swot-header{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:20px;font-size:14px;font-weight:800;
+  text-transform:uppercase;letter-spacing:1px;
+}
+.sa-swot-header.s-head{color:var(--green);}
+.sa-swot-header.w-head{color:var(--red);}
+.sa-swot-header.o-head{color:var(--teal);}
+.sa-swot-header.t-head{color:var(--amber);}
+.sa-swot-dot{width:10px;height:10px;border-radius:50%;}
+.sa-swot-dot.s-dot{background:var(--green);}
+.sa-swot-dot.w-dot{background:var(--red);}
+.sa-swot-dot.o-dot{background:var(--teal);}
+.sa-swot-dot.t-dot{background:var(--amber);}
+.sa-swot-list{list-style:none;padding:0;margin:0;}
+.sa-swot-list li{
+  font-size:13px;color:var(--text2);line-height:1.7;
+  padding:6px 0;border-bottom:1px solid rgba(255,255,255,.03);
+  display:flex;align-items:flex-start;gap:8px;
+}
+.sa-swot-list li:last-child{border:none;}
+.sa-swot-list li::before{
+  content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px;
+}
+.sa-swot-cell.strength .sa-swot-list li::before{background:var(--green);}
+.sa-swot-cell.weakness .sa-swot-list li::before{background:var(--red);}
+.sa-swot-cell.opportunity .sa-swot-list li::before{background:var(--teal);}
+.sa-swot-cell.threat .sa-swot-list li::before{background:var(--amber);}
+
+/* Competitive Matrix */
+.sa-matrix-wrap{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:40px;margin-bottom:32px;position:relative;
+}
+.sa-matrix{
+  position:relative;width:100%;height:440px;
+  border-left:2px solid var(--border2);border-bottom:2px solid var(--border2);
+}
+.sa-matrix-xlabel,.sa-matrix-ylabel{
+  position:absolute;font-size:11px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:var(--text3);
+}
+.sa-matrix-xlabel{bottom:-32px;left:50%;transform:translateX(-50%);}
+.sa-matrix-ylabel{top:50%;left:-48px;transform:translateY(-50%) rotate(-90deg);white-space:nowrap;}
+.sa-matrix-corner{position:absolute;font-size:10px;color:var(--text3);font-weight:600;}
+.sa-matrix-corner.bl{bottom:-24px;left:-4px;}
+.sa-matrix-corner.br{bottom:-24px;right:0;}
+.sa-matrix-corner.tl{top:-4px;left:-4px;}
+
+.sa-matrix-dot{
+  position:absolute;transform:translate(-50%,-50%);
+  text-align:center;z-index:2;
+}
+.sa-matrix-dot-circle{
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:800;letter-spacing:.3px;
+  border:2px solid;margin:0 auto 6px;
+}
+.sa-matrix-dot-label{font-size:10px;font-weight:600;color:var(--text2);white-space:nowrap;}
+.sa-matrix-dot.ct .sa-matrix-dot-circle{
+  background:var(--teal);color:#000;border-color:var(--teal);
+  width:54px;height:54px;font-size:11px;
+  box-shadow:0 0 20px rgba(0,212,255,.3);
+}
+.sa-matrix-dot.ct .sa-matrix-dot-label{color:var(--teal);font-weight:700;}
+.sa-matrix-dot.comp .sa-matrix-dot-circle{
+  background:var(--card2);color:var(--text2);border-color:var(--border2);
+}
+.sa-matrix-quadrant{
+  position:absolute;font-size:10px;color:var(--text3);font-style:italic;
+  opacity:.5;
+}
+
+/* Porter's Five Forces */
+.sa-porter{display:flex;flex-direction:column;gap:16px;margin-bottom:32px;}
+.sa-porter-force{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:24px 28px;display:flex;align-items:center;gap:24px;
+}
+.sa-porter-rating{
+  display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0;min-width:80px;
+}
+.sa-porter-score{
+  font-size:28px;font-weight:800;font-family:var(--mono);line-height:1;
+}
+.sa-porter-level{
+  font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+  padding:3px 10px;border-radius:4px;
+}
+.sa-porter-level.high{background:#EF444418;color:var(--red);border:1px solid #EF444433;}
+.sa-porter-level.medium{background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B33;}
+.sa-porter-level.low{background:#10B98118;color:var(--green);border:1px solid #10B98133;}
+.sa-porter-content h4{font-size:15px;margin-bottom:6px;}
+.sa-porter-content p{font-size:13px;color:var(--text2);line-height:1.7;}
+.sa-porter-bar{
+  width:100%;height:6px;background:var(--card2);border-radius:3px;margin-top:10px;overflow:hidden;
+}
+.sa-porter-bar-fill{height:100%;border-radius:3px;transition:width .6s ease;}
+
+/* Value Chain */
+.sa-chain{display:flex;gap:4px;margin-bottom:32px;overflow-x:auto;padding-bottom:8px;}
+.sa-chain-step{
+  flex:1;min-width:130px;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r2);padding:20px 16px;text-align:center;position:relative;
+}
+.sa-chain-step.core{border-color:#00D4FF44;background:linear-gradient(180deg,#00D4FF08,var(--card));}
+.sa-chain-num{
+  font-size:10px;font-weight:800;font-family:var(--mono);color:var(--text3);
+  margin-bottom:8px;
+}
+.sa-chain-step.core .sa-chain-num{color:var(--teal);}
+.sa-chain-step h5{font-size:12px;font-weight:700;margin-bottom:8px;line-height:1.3;}
+.sa-chain-step.core h5{color:var(--teal);}
+.sa-chain-step p{font-size:11px;color:var(--text3);line-height:1.5;}
+.sa-chain-arrow{
+  display:flex;align-items:center;color:var(--text3);font-size:16px;flex-shrink:0;
+}
+.sa-chain-ip{
+  display:inline-block;padding:2px 8px;border-radius:4px;
+  background:var(--teal-dim);border:1px solid #00D4FF33;
+  font-size:9px;font-weight:800;color:var(--teal);letter-spacing:.5px;
+  margin-top:8px;
+}
+
+/* TAM/SAM/SOM */
+.sa-tam-visual{
+  display:flex;align-items:center;justify-content:center;
+  margin:40px 0;position:relative;
+}
+.sa-tam-circle{
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;position:absolute;
+  border:2px solid;
+}
+.sa-tam-circle.tam{
+  width:340px;height:340px;border-color:#00D4FF22;background:#00D4FF05;
+}
+.sa-tam-circle.sam{
+  width:230px;height:230px;border-color:#10B98133;background:#10B98108;
+}
+.sa-tam-circle.som{
+  width:130px;height:130px;border-color:var(--teal);background:var(--teal-dim);
+}
+.sa-tam-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+.sa-tam-circle.tam .sa-tam-label{color:var(--text3);position:absolute;top:24px;}
+.sa-tam-circle.sam .sa-tam-label{color:var(--green);position:absolute;top:16px;}
+.sa-tam-circle.som .sa-tam-label{color:var(--teal);}
+.sa-tam-value{font-size:18px;font-weight:800;font-family:var(--mono);margin-top:4px;}
+.sa-tam-circle.som .sa-tam-value{font-size:16px;}
+
+.sa-tam-details{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.sa-tam-detail{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:20px;text-align:center;}
+.sa-tam-detail-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.sa-tam-detail-val{font-size:24px;font-weight:800;font-family:var(--mono);margin-bottom:4px;}
+.sa-tam-detail-desc{font-size:12px;color:var(--text3);line-height:1.5;}
+
+/* Valuation */
+.sa-val-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:32px;}
+.sa-val-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:28px;position:relative;overflow:hidden;
+}
+.sa-val-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.sa-val-card:nth-child(1)::before{background:var(--teal);}
+.sa-val-card:nth-child(2)::before{background:var(--green);}
+.sa-val-card:nth-child(3)::before{background:var(--amber);}
+.sa-val-card:nth-child(4)::before{background:var(--purple);}
+.sa-val-method{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:12px;}
+.sa-val-range{font-size:11px;color:var(--text3);margin-top:12px;}
+.sa-val-range-bar{height:8px;background:var(--card2);border-radius:4px;margin-top:6px;position:relative;overflow:hidden;}
+.sa-val-range-fill{height:100%;border-radius:4px;position:absolute;}
+.sa-val-range-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--text3);font-family:var(--mono);margin-top:4px;}
+.sa-val-estimate{font-size:28px;font-weight:800;font-family:var(--mono);margin-bottom:4px;}
+.sa-val-basis{font-size:12px;color:var(--text2);line-height:1.6;}
+
+/* M&A Score */
+.sa-ma-grid{display:flex;flex-direction:column;gap:12px;margin-bottom:32px;}
+.sa-ma-row{
+  display:grid;grid-template-columns:200px 1fr 80px;gap:16px;align-items:center;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:16px 20px;
+}
+.sa-ma-label{font-size:13px;font-weight:600;}
+.sa-ma-bar{height:8px;background:var(--card2);border-radius:4px;overflow:hidden;}
+.sa-ma-bar-fill{height:100%;border-radius:4px;transition:width .8s ease;}
+.sa-ma-score{font-size:14px;font-weight:800;font-family:var(--mono);text-align:right;}
+
+/* Aggregate score */
+.sa-ma-aggregate{
+  background:linear-gradient(135deg,#00D4FF08,var(--card));
+  border:1px solid #00D4FF33;border-radius:var(--r2);
+  padding:32px;text-align:center;margin-bottom:32px;
+}
+.sa-ma-aggregate-label{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.sa-ma-aggregate-score{font-size:56px;font-weight:800;font-family:var(--mono);color:var(--text);letter-spacing:-2px;}
+.sa-ma-aggregate-sub{font-size:14px;color:var(--text2);margin-top:8px;}
+.sa-ma-aggregate-verdict{
+  display:inline-block;padding:6px 20px;border-radius:8px;
+  background:#10B98118;border:1px solid #10B98133;
+  color:var(--green);font-size:13px;font-weight:700;margin-top:16px;
+}
+
+/* Strategic Recommendations */
+.sa-rec-timeline{display:flex;flex-direction:column;gap:24px;margin-bottom:32px;}
+.sa-rec-phase{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:28px;position:relative;overflow:hidden;
+}
+.sa-rec-phase::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;}
+.sa-rec-phase.short::before{background:var(--teal);}
+.sa-rec-phase.medium::before{background:var(--green);}
+.sa-rec-phase.long::before{background:var(--purple);}
+.sa-rec-phase-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.sa-rec-phase-badge{
+  font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  padding:4px 12px;border-radius:6px;
+}
+.sa-rec-phase.short .sa-rec-phase-badge{background:var(--teal-dim);color:var(--teal);border:1px solid #00D4FF33;}
+.sa-rec-phase.medium .sa-rec-phase-badge{background:#10B98118;color:var(--green);border:1px solid #10B98133;}
+.sa-rec-phase.long .sa-rec-phase-badge{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}
+.sa-rec-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;}
+.sa-rec-list li{
+  font-size:13px;color:var(--text2);line-height:1.6;
+  display:flex;align-items:flex-start;gap:8px;padding:4px 0;
+}
+.sa-rec-list li::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  flex-shrink:0;margin-top:6px;background:var(--text3);
+}
+
+/* Due Diligence Checklist */
+.sa-dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;}
+.sa-dd-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:24px;
+}
+.sa-dd-card-title{
+  font-size:12px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:16px;display:flex;align-items:center;gap:8px;
+}
+.sa-dd-card-title svg{width:16px;height:16px;color:var(--teal);}
+.sa-dd-list{list-style:none;padding:0;margin:0;}
+.sa-dd-list li{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 0;border-bottom:1px solid rgba(255,255,255,.03);
+  font-size:13px;color:var(--text2);
+}
+.sa-dd-list li:last-child{border:none;}
+.sa-dd-check{
+  width:18px;height:18px;border-radius:5px;border:1px solid var(--border2);
+  background:var(--card2);flex-shrink:0;display:flex;align-items:center;justify-content:center;
+}
+.sa-dd-status{
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  padding:2px 8px;border-radius:4px;margin-left:auto;flex-shrink:0;
+}
+.sa-dd-status.critical{background:#EF444418;color:var(--red);border:1px solid #EF444433;}
+.sa-dd-status.required{background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B33;}
+.sa-dd-status.standard{background:var(--card2);color:var(--text3);border:1px solid var(--border);}
+
+/* Callout boxes */
+.sa-callout{
+  padding:20px 24px;border-radius:var(--r);margin:24px 0;
+  font-size:13px;line-height:1.7;
+}
+.sa-callout.info{background:var(--teal-dim);border:1px solid #00D4FF33;color:var(--text2);}
+.sa-callout.warn{background:#F59E0B08;border:1px solid #F59E0B33;color:var(--text2);}
+.sa-callout.success{background:#10B98108;border:1px solid #10B98133;color:var(--text2);}
+.sa-callout strong{color:var(--text);}
+.sa-callout-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.sa-callout.info .sa-callout-label{color:var(--teal);}
+.sa-callout.warn .sa-callout-label{color:var(--amber);}
+.sa-callout.success .sa-callout-label{color:var(--green);}
+
+/* Risk heat map */
+.sa-heat{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:24px 0;}
+.sa-heat-cell{
+  padding:14px 10px;border-radius:var(--r);text-align:center;
+  font-size:11px;font-weight:600;line-height:1.4;
+}
+.sa-heat-cell.h5{background:#EF444430;color:#f87171;}
+.sa-heat-cell.h4{background:#EF444418;color:#f87171;}
+.sa-heat-cell.h3{background:#F59E0B18;color:var(--amber);}
+.sa-heat-cell.h2{background:#10B98118;color:var(--green);}
+.sa-heat-cell.h1{background:#10B98108;color:#6ee7b7;}
+
+/* Print */
+@media print{
+  .sa-sidebar{display:none;}
+  .sa-main{margin-left:0;padding:24px;}
+}
+
+/* Responsive */
+@media(max-width:1024px){
+  .sa-layout{grid-template-columns:1fr;}
+  .sa-sidebar{display:none;}
+  .sa-main{margin-left:0;padding:32px 24px 80px;}
+  .sa-profile-grid{grid-template-columns:1fr;}
+  .sa-kv-grid{grid-template-columns:1fr;}
+  .sa-swot{grid-template-columns:1fr;}
+  .sa-val-grid{grid-template-columns:1fr;}
+  .sa-dd-grid{grid-template-columns:1fr;}
+  .sa-rec-list{grid-template-columns:1fr;}
+  .sa-tam-circle.tam{width:280px;height:280px;}
+  .sa-tam-circle.sam{width:190px;height:190px;}
+  .sa-tam-circle.som{width:110px;height:110px;}
+  .sa-tam-details{grid-template-columns:1fr;}
+  .sa-chain{flex-direction:column;}
+  .sa-ma-row{grid-template-columns:1fr;gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<div class="sa-layout">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sa-sidebar">
+  <div class="sa-sidebar-header">
+    <div class="sa-sidebar-logo">CLIMBER <span>TRADE</span></div>
+    <div class="sa-sidebar-tag">Confidential</div>
+    <div class="sa-sidebar-sub">M&amp;A Strategic Analysis<br>Prepared March 2026</div>
+  </div>
+  <nav class="sa-nav">
+    <a href="#company-profile" class="sa-nav-item active" data-section="1">
+      <span class="sa-nav-num">01</span>Company Profile
+    </a>
+    <a href="#swot-matrix" class="sa-nav-item" data-section="2">
+      <span class="sa-nav-num">02</span>SWOT Matrix
+    </a>
+    <a href="#competitive-positioning" class="sa-nav-item" data-section="3">
+      <span class="sa-nav-num">03</span>Competitive Positioning
+    </a>
+    <a href="#porters-five-forces" class="sa-nav-item" data-section="4">
+      <span class="sa-nav-num">04</span>Porter's Five Forces
+    </a>
+    <a href="#value-chain" class="sa-nav-item" data-section="5">
+      <span class="sa-nav-num">05</span>Value Chain Analysis
+    </a>
+    <a href="#market-sizing" class="sa-nav-item" data-section="6">
+      <span class="sa-nav-num">06</span>TAM / SAM / SOM
+    </a>
+    <a href="#valuation-framework" class="sa-nav-item" data-section="7">
+      <span class="sa-nav-num">07</span>Valuation Framework
+    </a>
+    <a href="#ma-attractiveness" class="sa-nav-item" data-section="8">
+      <span class="sa-nav-num">08</span>M&amp;A Attractiveness
+    </a>
+    <a href="#strategic-recommendations" class="sa-nav-item" data-section="9">
+      <span class="sa-nav-num">09</span>Strategic Recommendations
+    </a>
+    <a href="#due-diligence" class="sa-nav-item" data-section="10">
+      <span class="sa-nav-num">10</span>Due Diligence Checklist
+    </a>
+  </nav>
+</aside>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<main class="sa-main">
+
+  <!-- DOCUMENT HEADER -->
+  <header class="sa-doc-header">
+    <div class="sa-doc-watermark">STRICTLY CONFIDENTIAL &mdash; INTERNAL USE ONLY</div>
+    <h1 class="sa-doc-title">Climber Trade &mdash; Strategic M&amp;A Analysis</h1>
+    <p class="sa-doc-subtitle">Comprehensive assessment of competitive positioning, valuation, and acquisition attractiveness for a next-generation proprietary trading firm.</p>
+    <div class="sa-doc-meta">
+      <div class="sa-meta-item"><strong>Prepared:</strong> March 28, 2026</div>
+      <div class="sa-meta-item"><strong>Classification:</strong> Confidential</div>
+      <div class="sa-meta-item"><strong>Analyst:</strong> M&amp;A Advisory Team</div>
+      <div class="sa-meta-item"><strong>Subject:</strong> Climber Trade SAS</div>
+    </div>
+  </header>
+
+  <!-- ═══ SECTION 1: COMPANY PROFILE ═══ -->
+  <section id="company-profile" class="sa-section">
+    <div class="sa-section-num">Section 01</div>
+    <h2 class="sa-section-title">Company Profile</h2>
+    <div class="sa-section-divider"></div>
+
+    <p class="sa-text"><strong>Climber Trade</strong> is a next-generation proprietary trading firm that identifies, evaluates, and funds talented retail traders through a proprietary algorithmic scoring system. The firm differentiates itself from traditional prop firms through full transparency, a merit-based capital allocation model, and a multi-pillar scoring algorithm that replaces arbitrary pass/fail gates with continuous performance measurement.</p>
+
+    <p class="sa-text">The company operates under a <strong>SaaS-style subscription model</strong> where traders pay a monthly fee to access a simulated evaluation environment. Traders who achieve and sustain a CLIMB Score of 85 or above gain access to live capital drawn from a transparent liquidity pool funded by subscription revenues and profit-sharing commissions.</p>
+
+    <div class="sa-profile-grid">
+      <div class="sa-profile-card">
+        <div class="sa-profile-label">Stage</div>
+        <div class="sa-profile-value" style="color:var(--amber)">Pre-Revenue</div>
+        <div class="sa-profile-desc">Product development and beta testing phase. Platform architecture complete, scoring system fully specified, legal documents drafted.</div>
+      </div>
+      <div class="sa-profile-card">
+        <div class="sa-profile-label">Team Size</div>
+        <div class="sa-profile-value">2</div>
+        <div class="sa-profile-desc">Flo (Founder / Product Owner) and Alex (Lead Developer). Lean founding team with complementary skill sets.</div>
+      </div>
+      <div class="sa-profile-card">
+        <div class="sa-profile-label">Evaluation Capital</div>
+        <div class="sa-profile-value">$1M</div>
+        <div class="sa-profile-desc">Simulated capital per trader. Standardized environment across all subscription tiers for fair evaluation.</div>
+      </div>
+    </div>
+
+    <h4 style="margin-bottom:16px;font-size:16px;">Business Model &amp; Revenue Streams</h4>
+    <div class="sa-kv-grid">
+      <div class="sa-kv">
+        <span class="sa-kv-label">Primary Revenue</span>
+        <span class="sa-kv-val">$199/mo subscription</span>
+      </div>
+      <div class="sa-kv">
+        <span class="sa-kv-label">Secondary Revenue</span>
+        <span class="sa-kv-val">40-55% profit split (live)</span>
+      </div>
+      <div class="sa-kv">
+        <span class="sa-kv-label">Discovery Tier</span>
+        <span class="sa-kv-val">$49 one-time (30 days)</span>
+      </div>
+      <div class="sa-kv">
+        <span class="sa-kv-label">Account Resets</span>
+        <span class="sa-kv-val">$79 - $99 per reset</span>
+      </div>
+      <div class="sa-kv">
+        <span class="sa-kv-label">Trading Platform</span>
+        <span class="sa-kv-val">Volumetrica</span>
+      </div>
+      <div class="sa-kv">
+        <span class="sa-kv-label">Payment Integration</span>
+        <span class="sa-kv-val">aMember + RISE WORKS</span>
+      </div>
+      <div class="sa-kv">
+        <span class="sa-kv-label">Target Market</span>
+        <span class="sa-kv-val">Global retail traders</span>
+      </div>
+      <div class="sa-kv">
+        <span class="sa-kv-label">Primary Focus</span>
+        <span class="sa-kv-val">Futures (CME/CBOT/NYMEX)</span>
+      </div>
+    </div>
+
+    <h4 style="margin-bottom:16px;font-size:16px;">Technology Stack</h4>
+    <div class="sa-kv-grid">
+      <div class="sa-kv">
+        <span class="sa-kv-label">Frontend</span>
+        <span class="sa-kv-val">React TypeScript + Tailwind</span>
+      </div>
+      <div class="sa-kv">
+        <span class="sa-kv-label">Database</span>
+        <span class="sa-kv-val">MariaDB + Prisma ORM</span>
+      </div>
+      <div class="sa-kv">
+        <span class="sa-kv-label">Charts / Visualization</span>
+        <span class="sa-kv-val">Chart.js / D3.js / Recharts</span>
+      </div>
+      <div class="sa-kv">
+        <span class="sa-kv-label">Document Generation</span>
+        <span class="sa-kv-val">Node.js docx + Pandoc</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 2: SWOT MATRIX ═══ -->
+  <section id="swot-matrix" class="sa-section">
+    <div class="sa-section-num">Section 02</div>
+    <h2 class="sa-section-title">SWOT Analysis</h2>
+    <div class="sa-section-divider"></div>
+
+    <p class="sa-text">A comprehensive four-quadrant assessment of Climber Trade's internal capabilities and external environment. Each factor is weighted by strategic materiality to acquisition and growth potential.</p>
+
+    <div class="sa-swot">
+      <!-- STRENGTHS -->
+      <div class="sa-swot-cell strength">
+        <div class="sa-swot-header s-head"><span class="sa-swot-dot s-dot"></span>Strengths</div>
+        <ul class="sa-swot-list">
+          <li><strong>Proprietary CLIMB Score algorithm</strong> &mdash; 14 distinct metrics across 4 weighted pillars, producing a continuous 0-100 rating rather than binary pass/fail. Defensible IP with significant calibration depth.</li>
+          <li><strong>Transparent liquidity pool</strong> &mdash; Public dashboard showing pool size, trader count, and anonymized distribution. Unique trust mechanism vs. opaque competitors.</li>
+          <li><strong>Self-regulating pool via Cohort Factor</strong> &mdash; FC = 1/(1 + N/50) mathematically prevents pool exhaustion at any scale. Eliminates the solvency risk endemic to other prop firms.</li>
+          <li><strong>Dynamic merit-based profit splits</strong> &mdash; 40-60% trader share tied directly to CLIMB Score. Aligned incentives: firm profits only when traders profit.</li>
+          <li><strong>Multi-asset capability</strong> &mdash; Futures-first with planned expansion into Forex (28 pairs), US equities, CFDs, and crypto. Broader addressable market than single-asset competitors.</li>
+          <li><strong>No time limit on evaluation</strong> &mdash; Traders can maintain their subscription indefinitely, building a track record. Increases subscription LTV and reduces churn from artificial deadlines.</li>
+          <li><strong>ClimbCoin wallet ecosystem</strong> &mdash; In-platform currency system acts as a retention tool and creates switching costs once traders accumulate balances.</li>
+          <li><strong>Comprehensive education infrastructure</strong> &mdash; 50+ articles, planned Academy with bi-monthly webinars, tooltip-level metric explanations. Reduces onboarding friction and supports retention.</li>
+          <li><strong>Robust legal framework</strong> &mdash; NDA, CGV, trader contracts, and trading rules already drafted. Trader classified as independent contractor (analyst), reducing labor law exposure.</li>
+        </ul>
+      </div>
+
+      <!-- WEAKNESSES -->
+      <div class="sa-swot-cell weakness">
+        <div class="sa-swot-header w-head"><span class="sa-swot-dot w-dot"></span>Weaknesses</div>
+        <ul class="sa-swot-list">
+          <li><strong>Pre-revenue stage</strong> &mdash; No live subscribers yet. All financial projections are theoretical. Significant execution risk remains before product-market fit is proven.</li>
+          <li><strong>Minimal team (2 people)</strong> &mdash; Single points of failure for both product vision and technical implementation. No dedicated sales, marketing, compliance, or customer support resources.</li>
+          <li><strong>Single platform dependency</strong> &mdash; Exclusive reliance on Volumetrica for trade execution. Platform outage, pivot, or pricing change creates existential risk.</li>
+          <li><strong>USD-only accounts</strong> &mdash; Excludes or inconveniences traders in non-USD economies. Adds FX conversion costs that competitors may absorb.</li>
+          <li><strong>No regulatory license</strong> &mdash; Operating in a regulatory gray area. As jurisdictions move to regulate prop firms, lack of proactive licensing could force costly retroactive compliance.</li>
+          <li><strong>Scoring complexity may intimidate beginners</strong> &mdash; 14 metrics with non-linear baremes and multi-layer weighting can overwhelm new traders. Risk of adverse selection toward sophisticated traders only.</li>
+          <li><strong>No mobile application</strong> &mdash; Dashboard access limited to web. Mobile-first competitors have an engagement advantage with younger demographics.</li>
+          <li><strong>Unresolved spec ambiguities</strong> &mdash; Dual profit split grids exist (contract vs. rules annex) awaiting reconciliation. Commission rates for equities unconfirmed. Options and spot bonds still TBD.</li>
+        </ul>
+      </div>
+
+      <!-- OPPORTUNITIES -->
+      <div class="sa-swot-cell opportunity">
+        <div class="sa-swot-header o-head"><span class="sa-swot-dot o-dot"></span>Opportunities</div>
+        <ul class="sa-swot-list">
+          <li><strong>Rapidly expanding global prop firm market</strong> &mdash; Estimated at $2B+ and growing as retail trading participation surges post-2020. Prop firms increasingly mainstream.</li>
+          <li><strong>Regulatory crackdown creating flight to quality</strong> &mdash; Jurisdictions scrutinizing fake prop firms and challenge scams. Transparent operators like Climber Trade stand to capture displaced traders.</li>
+          <li><strong>Multi-asset expansion</strong> &mdash; Adding Forex, equities, crypto, and CFDs progressively widens the addressable funnel without fundamentally altering the scoring engine.</li>
+          <li><strong>B2B licensing of CLIMB Score</strong> &mdash; The scoring algorithm could be licensed to other prop firms, brokers, or fund managers as an independent evaluation tool, creating a second revenue stream with near-zero marginal cost.</li>
+          <li><strong>White-label platform for institutions</strong> &mdash; Package the evaluation + allocation model for hedge funds, family offices, or banks seeking talent identification pipelines.</li>
+          <li><strong>AI/ML integration for scoring optimization</strong> &mdash; Machine learning on accumulated trader data could refine metric weightings, predict default risk, and personalize trader development paths.</li>
+          <li><strong>Regional expansion (Asia, LATAM)</strong> &mdash; Underserved markets with growing retail trading populations. Localized pricing and multi-currency support could unlock outsized growth.</li>
+          <li><strong>CIR tax credit (France)</strong> &mdash; R&amp;D tax credit for the algorithmic scoring system development. Can offset 30% of qualifying expenses in early years.</li>
+          <li><strong>Affiliate program as growth engine</strong> &mdash; 15% lifetime recurring commission + 1% payout share creates powerful distribution through trading educators and influencers.</li>
+        </ul>
+      </div>
+
+      <!-- THREATS -->
+      <div class="sa-swot-cell threat">
+        <div class="sa-swot-header t-head"><span class="sa-swot-dot t-dot"></span>Threats</div>
+        <ul class="sa-swot-list">
+          <li><strong>Intense incumbent competition</strong> &mdash; FTMO, The5ers, TopStep, Apex Trader, MyForexFunds (pre-shutdown model) established with large user bases, brand recognition, and marketing budgets.</li>
+          <li><strong>Restrictive regulation of prop firms</strong> &mdash; Possible classification as financial services requiring licensing, capital reserves, or investor protection compliance. Could dramatically increase operating costs.</li>
+          <li><strong>Market downturn reducing trader interest</strong> &mdash; Bear markets or low volatility periods reduce retail trading enthusiasm, shrinking the prospect funnel and evaluation purchases.</li>
+          <li><strong>Copycat risk on scoring model</strong> &mdash; CLIMB Score methodology, while complex, is documented. Competitors with larger engineering teams could replicate a similar multi-pillar approach.</li>
+          <li><strong>Payment processing risk</strong> &mdash; High chargeback rates from dissatisfied traders could trigger payment processor restrictions. Subscription billing for financial services carries elevated fraud and dispute rates.</li>
+          <li><strong>Trader litigation risk</strong> &mdash; Payout disputes, account terminations, or pool allocation disagreements could generate legal actions, especially across multiple jurisdictions.</li>
+          <li><strong>Platform vendor risk</strong> &mdash; Volumetrica pricing changes, service disruptions, or discontinuation would require costly platform migration with no guaranteed timeline.</li>
+          <li><strong>Talent poaching of funded traders</strong> &mdash; Competitors offering better splits or more capital could attract top-performing Climber traders once they have a verified track record.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 3: COMPETITIVE POSITIONING ═══ -->
+  <section id="competitive-positioning" class="sa-section">
+    <div class="sa-section-num">Section 03</div>
+    <h2 class="sa-section-title">Competitive Positioning Matrix</h2>
+    <div class="sa-section-divider"></div>
+
+    <p class="sa-text">Mapping the prop firm landscape across two strategic dimensions: <strong>transparency</strong> (opaque operations to full public disclosure) and <strong>evaluation sophistication</strong> (binary pass/fail to continuous algorithmic scoring). Climber Trade occupies a unique position in the upper-right quadrant.</p>
+
+    <div class="sa-matrix-wrap">
+      <div class="sa-matrix">
+        <!-- Axis labels -->
+        <span class="sa-matrix-xlabel">Transparency &rarr;</span>
+        <span class="sa-matrix-ylabel">Evaluation Sophistication &rarr;</span>
+        <span class="sa-matrix-corner bl" style="font-size:9px;">Low / Simple</span>
+        <span class="sa-matrix-corner br" style="font-size:9px;">High</span>
+        <span class="sa-matrix-corner tl" style="font-size:9px;">Algorithmic</span>
+
+        <!-- Quadrant labels -->
+        <span class="sa-matrix-quadrant" style="top:16px;right:16px;">Transparent + Algorithmic</span>
+        <span class="sa-matrix-quadrant" style="top:16px;left:16px;">Opaque + Algorithmic</span>
+        <span class="sa-matrix-quadrant" style="bottom:16px;right:16px;">Transparent + Simple</span>
+        <span class="sa-matrix-quadrant" style="bottom:16px;left:16px;">Opaque + Simple</span>
+
+        <!-- Grid lines -->
+        <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+          <line x1="50%" y1="0" x2="50%" y2="100%" stroke="var(--border)" stroke-dasharray="4,4"/>
+          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="var(--border)" stroke-dasharray="4,4"/>
+        </svg>
+
+        <!-- Competitor dots -->
+        <div class="sa-matrix-dot comp" style="left:30%;top:65%;">
+          <div class="sa-matrix-dot-circle">APEX</div>
+          <div class="sa-matrix-dot-label">Apex Trader</div>
+        </div>
+        <div class="sa-matrix-dot comp" style="left:45%;top:40%;">
+          <div class="sa-matrix-dot-circle">FTMO</div>
+          <div class="sa-matrix-dot-label">FTMO</div>
+        </div>
+        <div class="sa-matrix-dot comp" style="left:50%;top:55%;">
+          <div class="sa-matrix-dot-circle">TS</div>
+          <div class="sa-matrix-dot-label">TopStep</div>
+        </div>
+        <div class="sa-matrix-dot comp" style="left:55%;top:50%;">
+          <div class="sa-matrix-dot-circle">T5</div>
+          <div class="sa-matrix-dot-label">The5ers</div>
+        </div>
+        <div class="sa-matrix-dot comp" style="left:20%;top:70%;">
+          <div class="sa-matrix-dot-circle">MFF</div>
+          <div class="sa-matrix-dot-label">MFF</div>
+        </div>
+        <div class="sa-matrix-dot comp" style="left:70%;top:30%;">
+          <div class="sa-matrix-dot-circle">DRW</div>
+          <div class="sa-matrix-dot-label">Darwinex</div>
+        </div>
+
+        <!-- Climber Trade -->
+        <div class="sa-matrix-dot ct" style="left:85%;top:12%;">
+          <div class="sa-matrix-dot-circle">CT</div>
+          <div class="sa-matrix-dot-label">Climber Trade</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sa-callout info">
+      <div class="sa-callout-label">Key Insight</div>
+      <strong>Climber Trade occupies a defensible niche.</strong> No current competitor combines full pool transparency with a continuous multi-pillar scoring algorithm. Darwinex is the closest analog but operates a different model (asset management). The upper-right quadrant represents a strategic moat that is difficult to replicate without fundamental business model changes by incumbents.
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 4: PORTER'S FIVE FORCES ═══ -->
+  <section id="porters-five-forces" class="sa-section">
+    <div class="sa-section-num">Section 04</div>
+    <h2 class="sa-section-title">Porter's Five Forces Analysis</h2>
+    <div class="sa-section-divider"></div>
+
+    <p class="sa-text">Industry structure analysis of the proprietary trading firm sector. Overall industry attractiveness is <strong>moderate</strong>, with high rivalry offset by growing demand and limited supplier power.</p>
+
+    <div class="sa-porter">
+      <!-- Force 1: New Entrants -->
+      <div class="sa-porter-force">
+        <div class="sa-porter-rating">
+          <div class="sa-porter-score" style="color:var(--red);">4.2</div>
+          <span class="sa-porter-level high">High</span>
+        </div>
+        <div class="sa-porter-content" style="flex:1;">
+          <h4>Threat of New Entrants</h4>
+          <p>Low capital requirements ($50-200K to launch), readily available trading platforms (cTrader, MetaTrader, Rithmic), and a proven subscription model make the prop firm space easy to enter. However, building a credible brand and achieving trader trust requires meaningful time and marketing investment. Regulatory barriers are rising, which may slow new entrants.</p>
+          <div class="sa-porter-bar"><div class="sa-porter-bar-fill" style="width:84%;background:var(--red);"></div></div>
+        </div>
+      </div>
+
+      <!-- Force 2: Bargaining Power of Traders -->
+      <div class="sa-porter-force">
+        <div class="sa-porter-rating">
+          <div class="sa-porter-score" style="color:var(--amber);">3.0</div>
+          <span class="sa-porter-level medium">Medium</span>
+        </div>
+        <div class="sa-porter-content" style="flex:1;">
+          <h4>Bargaining Power of Traders (Buyers)</h4>
+          <p>Traders have multiple alternatives and low switching costs between prop firms. Pricing transparency makes comparison shopping easy. However, once a trader has invested time building a track record on a platform, switching costs increase. Elite traders have significant leverage due to their demonstrated profitability and scarcity.</p>
+          <div class="sa-porter-bar"><div class="sa-porter-bar-fill" style="width:60%;background:var(--amber);"></div></div>
+        </div>
+      </div>
+
+      <!-- Force 3: Threat of Substitutes -->
+      <div class="sa-porter-force">
+        <div class="sa-porter-rating">
+          <div class="sa-porter-score" style="color:var(--amber);">2.8</div>
+          <span class="sa-porter-level medium">Medium</span>
+        </div>
+        <div class="sa-porter-content" style="flex:1;">
+          <h4>Threat of Substitutes</h4>
+          <p>Alternatives include self-funded retail trading, copy trading platforms (eToro, ZuluTrade), managed account services, and traditional hedge fund talent pipelines. However, prop firms uniquely offer capital access without personal risk, a value proposition that substitutes cannot fully replicate. The growing appeal of "trading as a career" strengthens the prop firm model.</p>
+          <div class="sa-porter-bar"><div class="sa-porter-bar-fill" style="width:56%;background:var(--amber);"></div></div>
+        </div>
+      </div>
+
+      <!-- Force 4: Supplier Power -->
+      <div class="sa-porter-force">
+        <div class="sa-porter-rating">
+          <div class="sa-porter-score" style="color:var(--green);">1.8</div>
+          <span class="sa-porter-level low">Low</span>
+        </div>
+        <div class="sa-porter-content" style="flex:1;">
+          <h4>Bargaining Power of Suppliers</h4>
+          <p>Key suppliers include trading platforms, data feed providers, payment processors, and cloud infrastructure. Multiple viable alternatives exist in each category (MetaTrader, cTrader, Rithmic, TradingView). Switching costs are moderate but manageable. Payment processors (Stripe, aMember) are commoditized. The main exception is specialized platforms like Volumetrica where alternatives may be limited.</p>
+          <div class="sa-porter-bar"><div class="sa-porter-bar-fill" style="width:36%;background:var(--green);"></div></div>
+        </div>
+      </div>
+
+      <!-- Force 5: Industry Rivalry -->
+      <div class="sa-porter-force">
+        <div class="sa-porter-rating">
+          <div class="sa-porter-score" style="color:var(--red);">4.5</div>
+          <span class="sa-porter-level high">High</span>
+        </div>
+        <div class="sa-porter-content" style="flex:1;">
+          <h4>Industry Rivalry</h4>
+          <p>Extremely competitive landscape with established players (FTMO, TopStep, The5ers, Apex) engaging in aggressive price competition, feature expansion, and marketing wars. Products are relatively homogeneous (pass challenge, get funded). Differentiation is difficult and easily copied. However, the market is growing fast enough that rivalry does not yet produce a zero-sum dynamic for well-positioned entrants.</p>
+          <div class="sa-porter-bar"><div class="sa-porter-bar-fill" style="width:90%;background:var(--red);"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 5: VALUE CHAIN ═══ -->
+  <section id="value-chain" class="sa-section">
+    <div class="sa-section-num">Section 05</div>
+    <h2 class="sa-section-title">Value Chain Analysis</h2>
+    <div class="sa-section-divider"></div>
+
+    <p class="sa-text">Mapping where Climber Trade creates and captures value at each stage of the trader lifecycle. The <strong>Scoring Algorithm</strong> and <strong>Capital Allocation</strong> stages represent the firm's core intellectual property and primary sources of competitive advantage.</p>
+
+    <div class="sa-chain">
+      <div class="sa-chain-step">
+        <div class="sa-chain-num">01</div>
+        <h5>Marketing &amp; Acquisition</h5>
+        <p>SEO (50+ articles), affiliate program (15% recurring), referral system, content marketing</p>
+      </div>
+      <div class="sa-chain-arrow">&rarr;</div>
+      <div class="sa-chain-step">
+        <div class="sa-chain-num">02</div>
+        <h5>Onboarding &amp; KYC</h5>
+        <p>5-min signup, subscription selection, identity verification, immediate platform access</p>
+      </div>
+      <div class="sa-chain-arrow">&rarr;</div>
+      <div class="sa-chain-step">
+        <div class="sa-chain-num">03</div>
+        <h5>Evaluation Platform</h5>
+        <p>$1M simulated capital, Volumetrica integration, real-time dashboards, multi-asset</p>
+      </div>
+      <div class="sa-chain-arrow">&rarr;</div>
+      <div class="sa-chain-step core">
+        <div class="sa-chain-num">04</div>
+        <h5>Scoring Algorithm</h5>
+        <p>CLIMB Score: 14 metrics, 4 pillars, continuous 0-100 rating, real-time updates</p>
+        <span class="sa-chain-ip">CORE IP</span>
+      </div>
+      <div class="sa-chain-arrow">&rarr;</div>
+      <div class="sa-chain-step core">
+        <div class="sa-chain-num">05</div>
+        <h5>Capital Allocation</h5>
+        <p>Pool model, Cohort Factor, score-based %, Elite/Standard tiers, auto-scaling</p>
+        <span class="sa-chain-ip">CORE IP</span>
+      </div>
+      <div class="sa-chain-arrow">&rarr;</div>
+      <div class="sa-chain-step">
+        <div class="sa-chain-num">06</div>
+        <h5>Trader Management</h5>
+        <p>Live monitoring, risk alerts, drawdown controls, scoring maintenance, support</p>
+      </div>
+      <div class="sa-chain-arrow">&rarr;</div>
+      <div class="sa-chain-step">
+        <div class="sa-chain-num">07</div>
+        <h5>Payouts &amp; Compliance</h5>
+        <p>RISE WORKS, bi-monthly cycles, $500 min, KYC maintenance, tax documentation</p>
+      </div>
+    </div>
+
+    <div class="sa-callout success">
+      <div class="sa-callout-label">Margin Concentration</div>
+      The highest-margin activities are concentrated in stages 3-5 (Evaluation, Scoring, Allocation), which are also the most defensible. Marketing (stage 1) and payouts (stage 7) carry the highest variable costs. <strong>Optimizing the evaluation-to-live conversion rate is the single most impactful lever for profitability.</strong>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 6: TAM/SAM/SOM ═══ -->
+  <section id="market-sizing" class="sa-section">
+    <div class="sa-section-num">Section 06</div>
+    <h2 class="sa-section-title">TAM / SAM / SOM Market Sizing</h2>
+    <div class="sa-section-divider"></div>
+
+    <p class="sa-text">Bottom-up market sizing based on global retail trader population data, prop firm adoption rates, and Climber Trade's specific addressable segments. Estimates are conservative and based on publicly available industry data.</p>
+
+    <div class="sa-tam-visual" style="height:380px;">
+      <div class="sa-tam-circle tam">
+        <span class="sa-tam-label">Total Addressable Market</span>
+        <div class="sa-tam-value" style="color:var(--text3);position:absolute;top:48px;">$2.4B</div>
+      </div>
+      <div class="sa-tam-circle sam">
+        <span class="sa-tam-label">Serviceable Available</span>
+        <div class="sa-tam-value" style="color:var(--green);position:absolute;top:40px;">$480M</div>
+      </div>
+      <div class="sa-tam-circle som">
+        <span class="sa-tam-label">SOM Y3</span>
+        <div class="sa-tam-value" style="color:var(--teal);">$7.2M</div>
+      </div>
+    </div>
+
+    <div class="sa-tam-details">
+      <div class="sa-tam-detail">
+        <div class="sa-tam-detail-label" style="color:var(--text3);">TAM</div>
+        <div class="sa-tam-detail-val">$2.4B</div>
+        <div class="sa-tam-detail-desc">~12M active retail traders globally who would consider prop firm evaluation. Average $200/yr spend assumption.</div>
+      </div>
+      <div class="sa-tam-detail">
+        <div class="sa-tam-detail-label" style="color:var(--green);">SAM</div>
+        <div class="sa-tam-detail-val">$480M</div>
+        <div class="sa-tam-detail-desc">~2M futures-focused traders in target geographies (NA, EU, MENA). $240/yr average subscription value.</div>
+      </div>
+      <div class="sa-tam-detail">
+        <div class="sa-tam-detail-label" style="color:var(--teal);">SOM (Year 3)</div>
+        <div class="sa-tam-detail-val">$7.2M</div>
+        <div class="sa-tam-detail-desc">~3,000 active subscribers at $199/mo. Conservative 0.15% SAM capture with affiliate-driven growth.</div>
+      </div>
+    </div>
+
+    <div class="sa-callout warn" style="margin-top:32px;">
+      <div class="sa-callout-label">Sensitivity Note</div>
+      The SOM estimate assumes a 30% annual churn rate (industry average is 40-60% for prop firms). If Climber Trade's no-time-limit model reduces churn to 20%, Year 3 ARR could reach <strong>$9.6M</strong> under the same acquisition assumptions. Conversely, a 50% churn rate compresses SOM to <strong>$4.8M</strong>.
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 7: VALUATION FRAMEWORK ═══ -->
+  <section id="valuation-framework" class="sa-section">
+    <div class="sa-section-num">Section 07</div>
+    <h2 class="sa-section-title">Valuation Framework</h2>
+    <div class="sa-section-divider"></div>
+
+    <p class="sa-text">Four independent valuation approaches applied to Climber Trade at its current pre-revenue stage. All estimates reflect <strong>post-launch potential value</strong> assuming successful market entry within 6 months. Pre-launch fair value carries a standard 60-70% illiquidity and execution risk discount.</p>
+
+    <div class="sa-val-grid">
+      <!-- Revenue Multiple -->
+      <div class="sa-val-card">
+        <div class="sa-val-method">Revenue Multiple (SaaS)</div>
+        <div class="sa-val-estimate" style="color:var(--teal);">$36M &ndash; $144M</div>
+        <div class="sa-val-basis">Based on Year 3 projected ARR of $7.2M at 5-20x revenue multiple. Fintech SaaS benchmarks range 10-20x for high-growth companies. Discounted to 5-10x given pre-revenue status.</div>
+        <div class="sa-val-range" style="margin-top:16px;">
+          <div class="sa-val-range-bar">
+            <div class="sa-val-range-fill" style="left:15%;width:55%;background:linear-gradient(90deg,var(--teal),#10B981);border-radius:4px;"></div>
+          </div>
+          <div class="sa-val-range-labels"><span>$0</span><span>$36M</span><span>$144M</span><span>$200M+</span></div>
+        </div>
+      </div>
+
+      <!-- User-Based -->
+      <div class="sa-val-card">
+        <div class="sa-val-method">User-Based Valuation</div>
+        <div class="sa-val-estimate" style="color:var(--green);">$1.5M &ndash; $6M</div>
+        <div class="sa-val-basis">Based on Year 3 target of 3,000 active subscribers at $500-$2,000 per active trader (industry benchmark for prop firms with live funding capability).</div>
+        <div class="sa-val-range" style="margin-top:16px;">
+          <div class="sa-val-range-bar">
+            <div class="sa-val-range-fill" style="left:5%;width:25%;background:linear-gradient(90deg,var(--green),#6ee7b7);border-radius:4px;"></div>
+          </div>
+          <div class="sa-val-range-labels"><span>$0</span><span>$1.5M</span><span>$6M</span><span>$20M+</span></div>
+        </div>
+      </div>
+
+      <!-- DCF -->
+      <div class="sa-val-card">
+        <div class="sa-val-method">DCF (5-Year Projection)</div>
+        <div class="sa-val-estimate" style="color:var(--amber);">$8M &ndash; $22M</div>
+        <div class="sa-val-basis">5-year free cash flow projection with 30% WACC (reflecting early-stage risk). Terminal growth rate 3%. Assumes breakeven in Month 18 and 25% EBITDA margin by Year 5.</div>
+        <div class="sa-val-range" style="margin-top:16px;">
+          <div class="sa-val-range-bar">
+            <div class="sa-val-range-fill" style="left:10%;width:40%;background:linear-gradient(90deg,var(--amber),#fbbf24);border-radius:4px;"></div>
+          </div>
+          <div class="sa-val-range-labels"><span>$0</span><span>$8M</span><span>$22M</span><span>$50M+</span></div>
+        </div>
+      </div>
+
+      <!-- Comparable Transactions -->
+      <div class="sa-val-card">
+        <div class="sa-val-method">Comparable Transactions</div>
+        <div class="sa-val-estimate" style="color:var(--purple);">$5M &ndash; $15M</div>
+        <div class="sa-val-basis">Based on comparable prop firm transactions and rumored valuations. FTMO reportedly valued at $100M+ with ~$100M revenue. Adjusted for Climber Trade's pre-revenue stage and smaller scale. Darwinex Zero provides a closer analog.</div>
+        <div class="sa-val-range" style="margin-top:16px;">
+          <div class="sa-val-range-bar">
+            <div class="sa-val-range-fill" style="left:8%;width:30%;background:linear-gradient(90deg,var(--purple),#a78bfa);border-radius:4px;"></div>
+          </div>
+          <div class="sa-val-range-labels"><span>$0</span><span>$5M</span><span>$15M</span><span>$50M+</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sa-callout info">
+      <div class="sa-callout-label">Valuation Summary</div>
+      <strong>Pre-launch indicative range: $2M &ndash; $6M</strong> (applying a 60-70% execution risk discount to the DCF and comparable transaction midpoints). This represents the IP value of the scoring system, legal framework, platform architecture, and brand assets. Post-launch with 500+ subscribers and proven unit economics, the valuation range shifts to <strong>$10M &ndash; $25M</strong>.
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 8: M&A ATTRACTIVENESS ═══ -->
+  <section id="ma-attractiveness" class="sa-section">
+    <div class="sa-section-num">Section 08</div>
+    <h2 class="sa-section-title">M&amp;A Attractiveness Score</h2>
+    <div class="sa-section-divider"></div>
+
+    <p class="sa-text">Assessment of Climber Trade across seven key dimensions that institutional acquirers and financial investors evaluate during M&amp;A screening. Each criterion is rated 0-100.</p>
+
+    <div class="sa-ma-grid">
+      <div class="sa-ma-row">
+        <div class="sa-ma-label">Revenue Quality</div>
+        <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:85%;background:var(--green);"></div></div>
+        <div class="sa-ma-score" style="color:var(--green);">85</div>
+      </div>
+      <div class="sa-ma-row">
+        <div class="sa-ma-label">IP Moat</div>
+        <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:78%;background:var(--teal);"></div></div>
+        <div class="sa-ma-score" style="color:var(--teal);">78</div>
+      </div>
+      <div class="sa-ma-row">
+        <div class="sa-ma-label">Scalability</div>
+        <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:82%;background:var(--green);"></div></div>
+        <div class="sa-ma-score" style="color:var(--green);">82</div>
+      </div>
+      <div class="sa-ma-row">
+        <div class="sa-ma-label">Team Quality</div>
+        <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:45%;background:var(--amber);"></div></div>
+        <div class="sa-ma-score" style="color:var(--amber);">45</div>
+      </div>
+      <div class="sa-ma-row">
+        <div class="sa-ma-label">Growth Trajectory</div>
+        <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:70%;background:var(--teal);"></div></div>
+        <div class="sa-ma-score" style="color:var(--teal);">70</div>
+      </div>
+      <div class="sa-ma-row">
+        <div class="sa-ma-label">Regulatory Exposure</div>
+        <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:40%;background:var(--red);"></div></div>
+        <div class="sa-ma-score" style="color:var(--red);">40</div>
+      </div>
+      <div class="sa-ma-row">
+        <div class="sa-ma-label">Integration Complexity</div>
+        <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:72%;background:var(--teal);"></div></div>
+        <div class="sa-ma-score" style="color:var(--teal);">72</div>
+      </div>
+    </div>
+
+    <!-- Aggregate -->
+    <div class="sa-ma-aggregate">
+      <div class="sa-ma-aggregate-label">Composite M&amp;A Attractiveness Score</div>
+      <div class="sa-ma-aggregate-score">67.4</div>
+      <div class="sa-ma-aggregate-sub">Weighted average across 7 dimensions (Team and Regulatory given 1.5x weight)</div>
+      <div class="sa-ma-aggregate-verdict">MODERATELY ATTRACTIVE &mdash; MONITOR</div>
+    </div>
+
+    <p class="sa-text"><strong>Revenue Quality (85):</strong> Recurring subscription model with predictable monthly cash flows. Auto-renewal reduces churn friction. Reset fees and profit-share commissions provide secondary revenue diversification. Strong unit economics if LTV/CAC exceeds 3x.</p>
+
+    <p class="sa-text"><strong>IP Moat (78):</strong> The CLIMB Score algorithm with 14 metrics, non-linear baremes, and multi-layer weighting represents genuine intellectual property. The cohort factor and pool allocation formulas are mathematically novel. However, the methodology is documented rather than patented, leaving it vulnerable to replication by well-resourced competitors.</p>
+
+    <p class="sa-text"><strong>Scalability (82):</strong> Pure platform model with near-zero marginal cost per additional subscriber during evaluation phase. Pool model auto-scales via Cohort Factor. Multi-asset expansion requires configuration, not architecture changes. Geographic expansion requires localization but no fundamental platform modifications.</p>
+
+    <p class="sa-text"><strong>Team Quality (45):</strong> Critical weakness. A 2-person team creates severe key-person risk. No dedicated compliance, marketing, or customer support functions. An acquirer would need to immediately invest in team expansion. However, the founder's product vision and the developer's implementation capability are clearly demonstrated in the existing deliverables.</p>
+
+    <p class="sa-text"><strong>Regulatory Exposure (40):</strong> The prop firm industry operates in a regulatory gray area. Climber Trade has proactively structured trader relationships as independent contractor agreements, but the lack of a financial services license in any jurisdiction represents material risk. Evolving regulations could require significant compliance investment.</p>
+  </section>
+
+  <!-- ═══ SECTION 9: STRATEGIC RECOMMENDATIONS ═══ -->
+  <section id="strategic-recommendations" class="sa-section">
+    <div class="sa-section-num">Section 09</div>
+    <h2 class="sa-section-title">Strategic Recommendations</h2>
+    <div class="sa-section-divider"></div>
+
+    <p class="sa-text">Phased strategic roadmap designed to maximize enterprise value and acquisition attractiveness. Each phase builds on the prior, with clear milestones and KPIs.</p>
+
+    <div class="sa-rec-timeline">
+      <!-- Short Term -->
+      <div class="sa-rec-phase short">
+        <div class="sa-rec-phase-header">
+          <span class="sa-rec-phase-badge">0 &ndash; 6 Months</span>
+          <h4>Product-Market Fit &amp; Launch</h4>
+        </div>
+        <ul class="sa-rec-list">
+          <li>Launch closed beta with 50-100 traders; validate scoring system on live data</li>
+          <li>Reconcile dual profit split grids and finalize all spec ambiguities</li>
+          <li>Confirm Volumetrica contract terms; identify backup platform</li>
+          <li>Achieve first 500 paying subscribers (primary KPI)</li>
+          <li>Establish baseline unit economics: CAC, LTV, churn rate, conversion rate</li>
+          <li>Activate affiliate program; onboard 10 trading educators as affiliates</li>
+          <li>Implement basic customer support infrastructure (ticket system + Discord)</li>
+          <li>Complete GDPR compliance audit for EU trader data handling</li>
+          <li>Apply for CIR tax credit on R&amp;D expenditures</li>
+          <li>Build an analytics pipeline to track all 14 CLIMB Score metrics in production</li>
+        </ul>
+      </div>
+
+      <!-- Medium Term -->
+      <div class="sa-rec-phase medium">
+        <div class="sa-rec-phase-header">
+          <span class="sa-rec-phase-badge">6 &ndash; 18 Months</span>
+          <h4>Scale &amp; Regulatory Positioning</h4>
+        </div>
+        <ul class="sa-rec-list">
+          <li>Scale to 1,500-3,000 active subscribers through paid acquisition and affiliates</li>
+          <li>Hire 3-5 key positions: compliance officer, marketing lead, 2 engineers, support</li>
+          <li>Engage regulatory counsel; begin licensing process in a favorable jurisdiction</li>
+          <li>Launch Forex and equity CFD instruments on the platform</li>
+          <li>Develop mobile-responsive dashboard (PWA or native app)</li>
+          <li>Implement AI/ML layer for scoring refinement using accumulated trader data</li>
+          <li>Build B2B pitch deck for CLIMB Score licensing opportunities</li>
+          <li>Establish board of advisors (fintech, regulation, trading industry)</li>
+          <li>Achieve breakeven or cash flow positive status</li>
+          <li>Commission third-party security audit and SOC 2 compliance pathway</li>
+        </ul>
+      </div>
+
+      <!-- Long Term -->
+      <div class="sa-rec-phase long">
+        <div class="sa-rec-phase-header">
+          <span class="sa-rec-phase-badge">18 &ndash; 36 Months</span>
+          <h4>International Expansion &amp; Exit Readiness</h4>
+        </div>
+        <ul class="sa-rec-list">
+          <li>Expand to Asia-Pacific and Latin American markets with localized pricing</li>
+          <li>Launch multi-currency accounts (EUR, GBP, AUD, SGD)</li>
+          <li>Pursue Series A funding ($5-15M) for accelerated growth</li>
+          <li>Develop white-label offering for institutional clients</li>
+          <li>Build API ecosystem for third-party integrations</li>
+          <li>Target 10,000+ active subscribers and $20M+ ARR</li>
+          <li>Explore strategic partnerships with exchanges or brokers</li>
+          <li>Prepare full data room for potential exit or strategic acquisition</li>
+          <li>Consider secondary market for early employee/investor equity</li>
+          <li>Evaluate IPO readiness or strategic sale to financial services conglomerate</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 10: DUE DILIGENCE CHECKLIST ═══ -->
+  <section id="due-diligence" class="sa-section">
+    <div class="sa-section-num">Section 10</div>
+    <h2 class="sa-section-title">Due Diligence Checklist</h2>
+    <div class="sa-section-divider"></div>
+
+    <p class="sa-text">Comprehensive checklist that a prospective buyer, investor, or strategic partner would evaluate during due diligence. Items are categorized by domain and rated by criticality.</p>
+
+    <div class="sa-dd-grid">
+      <!-- Legal & IP -->
+      <div class="sa-dd-card">
+        <div class="sa-dd-card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Legal &amp; IP
+        </div>
+        <ul class="sa-dd-list">
+          <li><span class="sa-dd-check"></span>Corporate structure and entity registration<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span>IP ownership of CLIMB Score algorithm<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span>Trademark registration (Climber Trade, CLIMB Score)<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Trader contract enforceability across jurisdictions<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span>NDA and non-compete clauses validity<span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span>CGV/Terms of service compliance with EU law<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Independent contractor classification risk<span class="sa-dd-status critical">Critical</span></li>
+        </ul>
+      </div>
+
+      <!-- Financial -->
+      <div class="sa-dd-card">
+        <div class="sa-dd-card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          Financial Model
+        </div>
+        <ul class="sa-dd-list">
+          <li><span class="sa-dd-check"></span>Pool model financial sustainability analysis<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span>Unit economics validation (LTV/CAC > 3x)<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span>Break-even analysis and cash runway<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span>Churn rate benchmarking vs. industry<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Profit split impact modeling under stress scenarios<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Cohort Factor effectiveness at scale (1K, 10K, 50K traders)<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Payment processor terms and chargeback exposure<span class="sa-dd-status standard">Standard</span></li>
+        </ul>
+      </div>
+
+      <!-- Technology -->
+      <div class="sa-dd-card">
+        <div class="sa-dd-card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Technology &amp; Platform
+        </div>
+        <ul class="sa-dd-list">
+          <li><span class="sa-dd-check"></span>Codebase quality audit and technical debt assessment<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Volumetrica dependency and vendor lock-in analysis<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span>Database schema and data migration capability<span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span>Security audit (penetration testing, OWASP)<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Scoring algorithm accuracy validation (backtest)<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span>Scalability testing (concurrent users, data throughput)<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Disaster recovery and business continuity plan<span class="sa-dd-status standard">Standard</span></li>
+        </ul>
+      </div>
+
+      <!-- Regulatory & Compliance -->
+      <div class="sa-dd-card">
+        <div class="sa-dd-card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          Regulatory &amp; Compliance
+        </div>
+        <ul class="sa-dd-list">
+          <li><span class="sa-dd-check"></span>Regulatory classification analysis (per jurisdiction)<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span>AML/KYC compliance framework<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span>GDPR/data protection compliance<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Cross-border tax implications (trader payouts)<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Consumer protection law compliance (14-day cooling-off)<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Sanctions screening capabilities<span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span>Regulatory horizon scan (pending prop firm legislation)<span class="sa-dd-status critical">Critical</span></li>
+        </ul>
+      </div>
+
+      <!-- Operational -->
+      <div class="sa-dd-card">
+        <div class="sa-dd-card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Operational
+        </div>
+        <ul class="sa-dd-list">
+          <li><span class="sa-dd-check"></span>Key-person risk mitigation plan<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span>Customer support SLA and escalation procedures<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Historical trader performance data (once available)<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Customer satisfaction metrics (NPS, CSAT)<span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span>Insurance coverage (D&amp;O, E&amp;O, cyber)<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Third-party vendor contracts and terms<span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span>Employee/contractor agreements and IP assignment<span class="sa-dd-status critical">Critical</span></li>
+        </ul>
+      </div>
+
+      <!-- Market & Commercial -->
+      <div class="sa-dd-card">
+        <div class="sa-dd-card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+          Market &amp; Commercial
+        </div>
+        <ul class="sa-dd-list">
+          <li><span class="sa-dd-check"></span>Competitive moat sustainability analysis<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Customer acquisition channel diversification<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span>Affiliate program economics and top affiliate dependency<span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span>Brand perception and online reputation audit<span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span>SEO/content asset valuation (50+ articles)<span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span>Geographic revenue concentration risk<span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span>Pricing power analysis and competitive pricing trends<span class="sa-dd-status required">Required</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sa-callout warn" style="margin-top:16px;">
+      <div class="sa-callout-label">Priority Items for Pre-Investment</div>
+      The four highest-priority due diligence items are: (1) <strong>IP ownership documentation</strong> for the CLIMB Score algorithm, (2) <strong>pool model stress testing</strong> under adverse scenarios, (3) <strong>regulatory classification opinion</strong> from qualified counsel, and (4) <strong>Volumetrica vendor dependency mitigation</strong> strategy. These should be addressed before any investment or acquisition discussions proceed.
+    </div>
+  </section>
+
+  <!-- Document Footer -->
+  <div style="margin-top:80px;padding-top:40px;border-top:1px solid var(--border);text-align:center;">
+    <p style="font-size:11px;color:var(--text3);line-height:1.8;">
+      STRICTLY CONFIDENTIAL &mdash; This document contains proprietary analysis and forward-looking projections.<br>
+      Not for distribution outside of authorized Climber Trade management.<br>
+      Prepared by M&amp;A Advisory Team &mdash; March 2026
+    </p>
+  </div>
+
+</main>
+</div>
+
+<!-- ═══ SIDEBAR NAVIGATION SCRIPT ═══ -->
+<script>
+(function(){
+  const navItems = document.querySelectorAll('.sa-nav-item');
+  const sections = document.querySelectorAll('.sa-section');
+
+  // Smooth scroll
+  navItems.forEach(item => {
+    item.addEventListener('click', function(e){
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
+  // Active state on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navItems.forEach(n => n.classList.remove('active'));
+        const active = document.querySelector(`.sa-nav-item[href="#${id}"]`);
+        if(active) active.classList.add('active');
+      }
+    });
+  }, {rootMargin:'-20% 0px -60% 0px', threshold:0});
+
+  sections.forEach(s => observer.observe(s));
+})();
+</script>
+
+</body>
+</html>
