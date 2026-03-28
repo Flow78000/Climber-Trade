@@ -108,7 +108,7 @@ const TRANSLATIONS = {
     // PAGE-SPECIFIC: INDEX
     // ════════════════════════════════════════
     index_hero_title: "Your Trading Partner For Success.<br><span class=\"teal\">Get Funded Without Limits.</span>",
-    index_hero_desc: "We grow when you grow. Unlike other prop firms, we don't profit when you fail \u2014 we succeed together. No rigged evaluations, no trick rules. Just real capital, transparent metrics and true partnership.",
+    index_hero_desc: "Climber Trade \u2014 where talent meets capital. Real funding. No tricks.",
     index_stat_pool: "Liquidity Funding Pool",
     index_stat_traders: "Traders Building Careers",
     index_stat_capital: "Capital Deployed",
@@ -632,7 +632,7 @@ const TRANSLATIONS = {
     // PAGE: INDEX
     // ════════════════════════════════════════
     index_hero_title: "Votre partenaire de trading pour r\u00E9ussir.<br><span class=\"teal\">Financ\u00E9 sans limites.</span>",
-    index_hero_desc: "Nous grandissons quand vous grandissez. Contrairement aux autres prop firms, nous ne profitons pas de vos \u00E9checs \u2014 nous r\u00E9ussissons ensemble. Pas d'\u00E9valuations truqu\u00E9es, pas de r\u00E8gles pi\u00E8ges. Du vrai capital, des m\u00E9triques transparentes et un vrai partenariat.",
+    index_hero_desc: "Climber Trade \u2014 l\u00E0 o\u00F9 le talent rencontre le capital. Du vrai financement. Sans pi\u00E8ges.",
     index_stat_pool: "Pool de financement",
     index_stat_traders: "Traders en carri\u00E8re",
     index_stat_capital: "Capital d\u00E9ploy\u00E9",
@@ -1156,7 +1156,7 @@ const TRANSLATIONS = {
     // PAGE: INDEX
     // ════════════════════════════════════════
     index_hero_title: "Tu socio de trading para el \u00E9xito.<br><span class=\"teal\">Financiado sin l\u00EDmites.</span>",
-    index_hero_desc: "Crecemos cuando t\u00FA creces. A diferencia de otras prop firms, no ganamos cuando fallas \u2014 triunfamos juntos. Sin evaluaciones ama\u00F1adas, sin reglas trampa. Solo capital real, m\u00E9tricas transparentes y verdadera asociaci\u00F3n.",
+    index_hero_desc: "Climber Trade \u2014 donde el talento se encuentra con el capital. Financiamiento real. Sin trampas.",
     index_stat_pool: "Pool de financiaci\u00F3n",
     index_stat_traders: "Traders en carrera",
     index_stat_capital: "Capital desplegado",

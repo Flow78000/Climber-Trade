@@ -147,7 +147,7 @@
       <h1 class="hero-title" id="heroTitle" style="opacity:1;">Your Trading Partner For Success.<br><span class="teal">Get Funded Without Limits.</span></h1>
       <canvas class="ash-canvas" id="ashCanvas"></canvas>
     </div>
-    <p class="hero-desc fade-up fade-up-delay-1" data-i18n="index_hero_desc">We grow when you grow. Unlike other prop firms, we don't profit when you fail — we succeed together. No rigged evaluations, no trick rules. Just real capital, transparent metrics and true partnership.</p>
+    <p class="hero-desc fade-up fade-up-delay-1" data-i18n="index_hero_desc">Climber Trade — where talent meets capital. Real funding. No tricks.</p>
     <div class="stat-cards fade-up fade-up-delay-2">
       <div class="stat-card">
         <div class="stat-card-label" data-i18n="index_stat_pool">Liquidity Funding Pool</div>
@@ -711,26 +711,30 @@
 
     for (var i = 0; i < points.length; i += skipRate) {
       var p = points[i];
-      var size = 0.5 + Math.random() * 1.5; // 0.5-2px fine grain
+      var size = 0.3 + Math.random() * 1.0; // 0.3-1.3px ultra fine
       var colorIdx = Math.random();
       var color;
-      if (colorIdx < 0.35) color = '0,212,255';      // teal
-      else if (colorIdx < 0.6) color = '180,220,255'; // light blue
-      else if (colorIdx < 0.8) color = '255,255,255'; // white
-      else color = '0,190,230';                        // darker teal
+      if (colorIdx < 0.3) color = '0,212,255';       // teal
+      else if (colorIdx < 0.5) color = '180,220,255'; // light blue
+      else if (colorIdx < 0.75) color = '255,255,255'; // white
+      else color = '140,180,200';                       // soft grey-blue
+
+      // Random angle for scattered drift (mostly left but varied)
+      var angle = Math.PI + (Math.random() - 0.5) * 1.2; // ~120° to ~240°
+      var speed = 0.4 + Math.random() * 1.2; // much slower
 
       particles.push({
         x: p.x, y: p.y,
         ox: p.x, oy: p.y,
         size: size,
         color: color,
-        alpha: 0.3 + Math.random() * 0.5,
-        // Drift RIGHT to LEFT
-        vx: -(1.5 + Math.random() * 3),
-        vy: (Math.random() - 0.5) * 0.8,
-        delay: Math.random() * 800,
+        alpha: 0.2 + Math.random() * 0.4,
+        // Scattered drift — mostly left but with wide vertical spread
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed * 1.5,
+        delay: Math.random() * 1500, // stagger more (was 800)
         life: 0,
-        maxLife: 1500 + Math.random() * 1000,
+        maxLife: 2500 + Math.random() * 2000, // longer life (was 1500+1000)
         started: false
       });
     }
@@ -809,16 +813,16 @@
     ctx.clearRect(0, 0, ashCanvas.width / dpr, ashCanvas.height / dpr);
     if (animId) { cancelAnimationFrame(animId); animId = null; }
 
-    // Phase 2: Hold visible for 4.5 seconds, then dissolve
+    // Phase 2: Hold visible for 7 seconds, then dissolve slowly
     setTimeout(function() {
       startDissolve();
-    }, 4500);
+    }, 7000);
 
-    // Phase 3: After dissolution (~2.5s) + pause (1s), restart
-    // Total cycle: 4.5s visible + 3.5s dissolve + 1s pause = 9s
+    // Phase 3: After dissolution (~5s) + pause (2.5s), restart
+    // Total cycle: 7s visible + 6s dissolve + 2.5s pause = 15.5s
     setTimeout(function() {
       cycle();
-    }, 4500 + 3500 + 1000);
+    }, 7000 + 6000 + 2500);
   }
 
   cycle();
