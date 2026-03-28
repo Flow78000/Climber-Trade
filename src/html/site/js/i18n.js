@@ -1,17 +1,19 @@
 /* ═══════════════════════════════════════════
    CLIMBER TRADE — i18n Language Dropdown
+   Event delegation version — works regardless
+   of when DOM elements are created or replaced.
    ═══════════════════════════════════════════ */
 
-const STORAGE_KEY = 'climber-lang';
-const DEFAULT_LANG = 'en';
-const SUPPORTED = ['en', 'fr', 'es'];
-const LANG_LABELS = { en: 'EN', fr: 'FR', es: 'ES' };
-const LANG_FLAGS = { en: '\u{1F310}', fr: '\u{1F1EB}\u{1F1F7}', es: '\u{1F1EA}\u{1F1F8}' };
+var STORAGE_KEY = 'climber-lang';
+var DEFAULT_LANG = 'en';
+var SUPPORTED = ['en', 'fr', 'es'];
+var LANG_LABELS = { en: 'EN', fr: 'FR', es: 'ES' };
+var LANG_FLAGS = { en: '\u{1F310}', fr: '\u{1F1EB}\u{1F1F7}', es: '\u{1F1EA}\u{1F1F8}' };
 
 function getSavedLang() {
   try {
-    const s = localStorage.getItem(STORAGE_KEY);
-    if (s && SUPPORTED.includes(s)) return s;
+    var s = localStorage.getItem(STORAGE_KEY);
+    if (s && SUPPORTED.indexOf(s) !== -1) return s;
   } catch (e) {}
   return DEFAULT_LANG;
 }
@@ -65,50 +67,63 @@ function updateDropdownUI(lang) {
 }
 
 function setLang(lang) {
-  if (!SUPPORTED.includes(lang)) return;
+  if (SUPPORTED.indexOf(lang) === -1) return;
   saveLang(lang);
   applyTranslations(lang);
   updateDropdownUI(lang);
 }
 
-// Bind all events via JS (not inline onclick — which can be blocked by CSP)
-function bindLangEvents() {
-  // Toggle dropdowns
-  document.querySelectorAll('.lang-current').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var dd = btn.closest('.lang-dropdown');
-      // Close all other dropdowns
-      document.querySelectorAll('.lang-dropdown.open').forEach(function(d) {
-        if (d !== dd) d.classList.remove('open');
-      });
-      dd.classList.toggle('open');
+// Expose switchLanguage globally for any external callers
+var switchLanguage = setLang;
+
+// ─── EVENT DELEGATION ───────────────────────────
+// A single listener on document handles all lang-dropdown interactions.
+// This works even if the dropdown HTML is inserted or replaced after page load
+// (e.g. by shared.js, a nav component, or any dynamic rendering).
+document.addEventListener('click', function(e) {
+
+  // 1. Toggle dropdown when clicking .lang-current (or a child of it)
+  var langCurrent = e.target.closest('.lang-current');
+  if (langCurrent) {
+    e.stopPropagation();
+    var dd = langCurrent.closest('.lang-dropdown');
+    // Close every other open dropdown first
+    document.querySelectorAll('.lang-dropdown.open').forEach(function(d) {
+      if (d !== dd) d.classList.remove('open');
     });
-  });
+    dd.classList.toggle('open');
+    return;
+  }
 
-  // Language options
-  document.querySelectorAll('.lang-option').forEach(function(opt) {
-    opt.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var lang = opt.getAttribute('data-lang');
-      if (lang) setLang(lang);
+  // 2. Select a language option
+  var langOption = e.target.closest('.lang-option');
+  if (langOption) {
+    e.stopPropagation();
+    var lang = langOption.getAttribute('data-lang');
+    if (lang) setLang(lang);
+    return;
+  }
+
+  // 3. Click anywhere else — close all open dropdowns
+  document.querySelectorAll('.lang-dropdown.open').forEach(function(dd) {
+    dd.classList.remove('open');
+  });
+});
+
+// Close dropdown on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.lang-dropdown.open').forEach(function(dd) {
+      dd.classList.remove('open');
     });
-  });
+  }
+});
 
-  // Close on outside click
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.lang-dropdown')) {
-      document.querySelectorAll('.lang-dropdown.open').forEach(function(dd) {
-        dd.classList.remove('open');
-      });
-    }
-  });
-}
-
-// Init
+// ─── INIT ────────────────────────────────────────
+// Apply saved language as soon as the DOM is ready.
+// No bindLangEvents() needed — delegation handles everything.
 (function () {
   function init() {
-    bindLangEvents();
     var lang = getSavedLang();
     applyTranslations(lang);
     updateDropdownUI(lang);

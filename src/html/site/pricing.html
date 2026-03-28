@@ -3,18 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pricing — Climber Trade</title>
-<meta name="description" content="Choose your plan. Standard $199/mo with Funded access or Discovery $49 for 30 days.">
+<title>Pricing — Climber Trade | Get Funded From $199/mo</title>
+<meta name="description" content="Turn your trading talent into a funded career. Standard $199/mo with real capital access or Discovery $49 one-time trial. 50% of every subscription builds YOUR funding pool.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="theme-color" content="#00D4FF">
 <link rel="stylesheet" href="css/shared.css">
 <style>
 .check-svg{width:16px;height:16px;color:var(--teal);}
-.pricing-hero{text-align:center;padding:100px 0 60px;}
+.pricing-hero{text-align:center;padding:100px 0 40px;}
 .discovery-tagline{
   font-size:13px;color:var(--teal);font-style:italic;
   margin-top:2px;margin-bottom:8px;opacity:.8;
 }
+
+/* Social proof bar */
+.social-proof-bar{
+  display:flex;align-items:center;justify-content:center;gap:24px;
+  margin-top:28px;flex-wrap:wrap;
+}
+.sp-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;color:var(--text2);
+}
+.sp-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 6px var(--green);
+  flex-shrink:0;
+}
+.sp-icon{
+  width:18px;height:18px;color:var(--text3);flex-shrink:0;
+}
+
+/* Path visualization */
+.path-visual{
+  display:flex;align-items:center;justify-content:center;gap:0;
+  margin:48px auto 0;max-width:720px;flex-wrap:wrap;
+}
+.path-step{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  flex:1;min-width:120px;position:relative;
+}
+.path-num{
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:800;font-family:var(--mono);
+  border:2px solid var(--border);color:var(--text3);
+  background:var(--card);transition:all .3s;
+}
+.path-step.active .path-num{
+  border-color:var(--teal);color:var(--teal);
+  box-shadow:0 0 16px #00D4FF18;
+}
+.path-step.funded .path-num{
+  border-color:var(--green);color:var(--green);
+  box-shadow:0 0 16px #10B98118;
+}
+.path-step.earn .path-num{
+  border-color:var(--amber);color:var(--amber);
+  box-shadow:0 0 16px #F59E0B18;
+}
+.path-label{font-size:12px;font-weight:700;color:var(--text2);text-align:center;}
+.path-sublabel{font-size:11px;color:var(--text3);text-align:center;margin-top:-4px;}
+.path-arrow{
+  width:40px;display:flex;align-items:center;justify-content:center;
+  color:var(--text3);flex-shrink:0;padding-bottom:28px;
+}
+
+/* Pool visual */
 .pool-visual{display:flex;align-items:center;justify-content:center;gap:24px;margin:48px 0;flex-wrap:wrap;}
 .pool-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px 32px;text-align:center;min-width:200px;}
 .pool-box-val{font-size:28px;font-weight:800;font-family:var(--mono);margin:4px 0;}
@@ -26,7 +81,20 @@
 .reset-cond{font-size:12px;color:var(--text2);line-height:1.6;}
 .guarantees{display:flex;justify-content:center;gap:32px;margin-top:48px;flex-wrap:wrap;}
 .guarantee{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text2);}
-.guarantee::before{content:'✓';color:var(--green);font-weight:700;}
+.guarantee::before{content:'';display:inline-block;width:16px;height:16px;flex-shrink:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%2310B981' stroke-width='2.5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/contain no-repeat;}
+
+/* Trust badges */
+.trust-row{
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  margin-top:20px;flex-wrap:wrap;
+}
+.trust-badge{
+  display:flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:8px;
+  background:var(--card);border:1px solid var(--border);
+  font-size:12px;color:var(--text2);font-weight:500;
+}
+.trust-badge svg{width:14px;height:14px;color:var(--green);flex-shrink:0;}
 
 /* Comparison table */
 .compare-table-wrap{
@@ -83,8 +151,52 @@
 .pf-card h4{font-size:16px;font-weight:700;margin-bottom:8px;}
 .pf-card p{font-size:13px;color:var(--text2);line-height:1.7;}
 
+/* Inline CTA row */
+.mid-cta{
+  text-align:center;margin:48px 0 0;
+  padding:32px 24px;border-radius:var(--r2);
+  background:linear-gradient(135deg,#00D4FF08 0%,transparent 60%);
+  border:1px solid #00D4FF15;
+}
+.mid-cta p{font-size:15px;color:var(--text2);margin-bottom:16px;}
+.mid-cta .btn{min-width:220px;}
+
+/* FAQ mini */
+.faq-mini{max-width:800px;margin:0 auto;}
+
+/* Testimonial row */
+.testi-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  margin-top:40px;
+}
+
+/* Urgency subtle banner */
+.urgency-note{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-top:24px;
+  padding:10px 20px;border-radius:8px;
+  background:var(--surface2);border:1px solid var(--border);
+  font-size:13px;color:var(--text2);
+}
+.urgency-note svg{width:16px;height:16px;color:var(--amber);flex-shrink:0;}
+
+/* Investment framing */
+.invest-frame{
+  max-width:640px;margin:40px auto 0;text-align:center;
+  padding:28px 32px;border-radius:var(--r2);
+  background:var(--card);border:1px solid #00D4FF18;
+}
+.invest-frame h4{font-size:18px;font-weight:700;margin-bottom:12px;}
+.invest-frame p{font-size:14px;color:var(--text2);line-height:1.7;}
+.invest-percent{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:22px;font-weight:800;color:var(--teal);
+}
+
 @media(max-width:1024px){
   .payout-freedom-grid{grid-template-columns:repeat(2,1fr);}
+  .testi-row{grid-template-columns:1fr;}
+  .path-visual{gap:0;}
 }
 @media(max-width:768px){
   .reset-grid{grid-template-columns:1fr;}
@@ -92,22 +204,75 @@
   .compare-table-wrap{font-size:13px;}
   .compare-table-wrap th,.compare-table-wrap td{padding:10px 14px;}
   .payout-freedom-grid{grid-template-columns:1fr;}
+  .social-proof-bar{flex-direction:column;gap:12px;}
+  .trust-row{flex-direction:column;gap:10px;}
+  .path-visual{flex-direction:column;gap:16px;}
+  .path-arrow{transform:rotate(90deg);padding:0;width:auto;height:24px;}
 }
 </style>
 </head>
 <body>
-<nav class="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a><a href="about.html" class="nav-link" data-i18n="nav_about">About</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
-<div class="nav-mobile"><a href="how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a><a href="about.html" class="nav-link" data-i18n="nav_about">About</a><a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div>
+<nav class="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a><a href="about.html" class="nav-link" data-i18n="nav_about">About</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Fran&ccedil;ais</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Espa&ntilde;ol</button></div></div><a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-mobile"><a href="how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a><a href="about.html" class="nav-link" data-i18n="nav_about">About</a><a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Fran&ccedil;ais</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Espa&ntilde;ol</button></div></div><a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div>
 <div class="spacer-nav"></div>
 
+<!-- ═══════════════════════════════════════
+     HERO — Clear value prop + urgency
+     ═══════════════════════════════════════ -->
 <section class="pricing-hero">
   <div class="container">
     <div class="section-label fade-up" style="justify-content:center" data-i18n="section_pricing">Pricing</div>
-    <h1 class="hero-title fade-up" data-i18n="pricing_hero_title">Choose Your Funding Path</h1>
-    <p class="section-subtitle fade-up fade-up-delay-1" style="margin-top:16px" data-i18n="pricing_hero_subtitle">All plans include 50% allocation to the liquidity funding pool</p>
+    <h1 class="hero-title fade-up" data-i18n="pricing_hero_title">Your Talent Deserves Real Capital</h1>
+    <p class="section-subtitle fade-up fade-up-delay-1" style="margin-top:16px" data-i18n="pricing_hero_subtitle">50% of every subscription goes directly into the pool that funds your live trading. We only profit when you do.</p>
+
+    <!-- Social proof bar -->
+    <div class="social-proof-bar fade-up fade-up-delay-2">
+      <div class="sp-item">
+        <span class="sp-dot"></span>
+        <span>283+ traders evaluating now</span>
+      </div>
+      <div class="sp-item">
+        <svg class="sp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Cancel anytime, no lock-in</span>
+      </div>
+      <div class="sp-item">
+        <svg class="sp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        <span>$0 payout fees</span>
+      </div>
+    </div>
+
+    <!-- Path visualization: Subscribe > Score > Get Funded > Earn -->
+    <div class="path-visual fade-up fade-up-delay-2">
+      <div class="path-step active">
+        <div class="path-num">1</div>
+        <div class="path-label">Subscribe</div>
+        <div class="path-sublabel">Start today</div>
+      </div>
+      <div class="path-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg></div>
+      <div class="path-step active">
+        <div class="path-num">2</div>
+        <div class="path-label">Score 85+</div>
+        <div class="path-sublabel">At your pace</div>
+      </div>
+      <div class="path-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg></div>
+      <div class="path-step funded">
+        <div class="path-num">3</div>
+        <div class="path-label">Get Funded</div>
+        <div class="path-sublabel">Real capital</div>
+      </div>
+      <div class="path-arrow"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg></div>
+      <div class="path-step earn">
+        <div class="path-num">4</div>
+        <div class="path-label">Earn Profits</div>
+        <div class="path-sublabel">Up to 60% split</div>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════
+     PLAN CARDS — Standard vs Discovery
+     ═══════════════════════════════════════ -->
 <section class="section" style="padding-top:0">
   <div class="container">
     <div class="pricing-grid" style="max-width:800px;margin:0 auto;">
@@ -115,39 +280,68 @@
       <div class="pricing-card featured fade-up">
         <h3>Standard</h3>
         <div class="pricing-price">$199<span>/mo</span></div>
-        <div class="pricing-pool">$99.50 → liquidity pool</div>
+        <div class="pricing-pool">$99.50 &rarr; liquidity pool</div>
         <ul class="pricing-features">
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>$1M simulated account</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Auto-renewable monthly</li>
-          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Funded trading access when qualified</li>
+          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong style="color:var(--text)">Funded trading access</strong> when qualified</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>All instruments (Futures, Forex, Stocks, CFD, Crypto)</li>
-          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Full dashboard & 16+ metrics</li>
+          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Full dashboard &amp; 16+ metrics</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>1 free reset per month</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Email + Chat support (9h-18h CET)</li>
         </ul>
-        <a href="how-it-works.html" class="btn btn-primary" style="width:100%">Get Started with Standard</a>
+        <a href="signup.html" class="btn btn-primary" style="width:100%">Get Funded &mdash; Start Now</a>
+        <div style="text-align:center;margin-top:10px;font-size:12px;color:var(--text3)">Join 283+ traders already evaluating</div>
       </div>
       <!-- DISCOVERY -->
       <div class="pricing-card fade-up fade-up-delay-1">
         <h3>Discovery</h3>
         <div class="discovery-tagline">Try before you commit</div>
         <div class="pricing-price">$49<span> one-time</span></div>
-        <div class="pricing-pool">$24.50 → liquidity pool</div>
+        <div class="pricing-pool">$24.50 &rarr; liquidity pool</div>
         <ul class="pricing-features">
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>$1M simulated account</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>30 days, non-renewable</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--red)"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span style="color:var(--text3)">No Funded phase access</span></li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>All instruments</li>
-          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Full dashboard & 16+ metrics</li>
-          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Score preserved if upgrading to Standard</li>
+          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Full dashboard &amp; 16+ metrics</li>
+          <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><strong style="color:var(--text)">Score preserved</strong> if upgrading to Standard</li>
           <li><svg class="check-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Email support</li>
         </ul>
-        <a href="how-it-works.html" class="btn btn-outline" style="width:100%">Try Discovery</a>
+        <a href="signup.html" class="btn btn-outline" style="width:100%">Try Discovery &mdash; $49</a>
+        <div style="text-align:center;margin-top:10px;font-size:12px;color:var(--text3)">Upgrade to Standard anytime &mdash; keep your score</div>
       </div>
     </div>
 
+    <!-- Trust badges -->
+    <div class="trust-row fade-up">
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        SSL Secured
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        No Hidden Fees
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+        Cancel Anytime
+      </div>
+      <div class="trust-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Visa &amp; Mastercard
+      </div>
+    </div>
+
+    <!-- Investment framing -->
+    <div class="invest-frame fade-up">
+      <h4>Your Subscription Is an Investment in Yourself</h4>
+      <div class="invest-percent" style="margin:12px 0">50%</div>
+      <p>Half of every dollar you pay goes directly into the liquidity pool that funds your live trading account. Unlike other prop firms where 95% of fees are pure profit, your subscription here literally builds the capital you will manage.</p>
+    </div>
+
     <!-- THE CLIMBER ADVANTAGE -->
-    <div class="fade-up" style="margin-bottom:48px;max-width:800px;margin-left:auto;margin-right:auto">
+    <div class="fade-up" style="margin-top:64px;margin-bottom:48px;max-width:800px;margin-left:auto;margin-right:auto">
       <div style="text-align:center;margin-bottom:24px">
         <div class="section-label" style="justify-content:center">The Climber Advantage</div>
         <h3 style="font-size:22px;font-weight:700;margin-top:10px">What you get that others don't</h3>
@@ -204,13 +398,28 @@
         </thead>
         <tbody>
           <tr>
+            <td>Price</td>
+            <td><strong style="color:var(--text)">$199/mo</strong></td>
+            <td>$49 one-time</td>
+          </tr>
+          <tr>
             <td>Duration</td>
             <td>Unlimited (monthly)</td>
             <td>30 days</td>
           </tr>
           <tr>
+            <td>Simulated Capital</td>
+            <td>$1,000,000</td>
+            <td>$1,000,000</td>
+          </tr>
+          <tr>
             <td>Funded Phase Access</td>
             <td><span class="compare-check">&#10003;</span></td>
+            <td><span class="compare-cross">&#10005;</span></td>
+          </tr>
+          <tr>
+            <td>Profit Split (up to)</td>
+            <td><strong style="color:var(--green)">60%</strong></td>
             <td><span class="compare-cross">&#10005;</span></td>
           </tr>
           <tr>
@@ -234,15 +443,15 @@
 
     <!-- Risk-free note -->
     <div class="risk-free-note fade-up">
-      <p><strong>No commitment.</strong> Cancel anytime. No commitment beyond the current month. Your subscription renews monthly — stop whenever you want, no questions asked.</p>
+      <p><strong>No commitment.</strong> Cancel anytime. Your subscription renews monthly &mdash; stop whenever you want, no questions asked. Your score stays in your account if you return.</p>
     </div>
 
     <!-- Pool visual -->
     <div class="pool-visual fade-up">
       <div class="pool-box"><div class="pool-box-label">Your Subscription</div><div class="pool-box-val teal">$199</div></div>
-      <div class="pool-arrow">→</div>
+      <div class="pool-arrow">&rarr;</div>
       <div class="pool-box"><div class="pool-box-label">50% to Liquidity Pool</div><div class="pool-box-val green">$99.50</div></div>
-      <div class="pool-arrow">→</div>
+      <div class="pool-arrow">&rarr;</div>
       <div class="pool-box"><div class="pool-box-label">Funds YOUR Trading</div><div class="pool-box-val amber">Real Capital</div></div>
     </div>
 
@@ -265,7 +474,7 @@
               </div>
             </div>
           </div>
-          <div style="font-size:12px;color:var(--text2);line-height:1.6">Credit & debit cards only. All transactions in <strong style="color:var(--text)">USD</strong>. Instant processing, auto-renewable.</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.6">Credit &amp; debit cards only. All transactions in <strong style="color:var(--text)">USD</strong>. Instant processing, auto-renewable.</div>
         </div>
         <!-- Withdraw with -->
         <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 24px">
@@ -290,10 +499,18 @@
       <div class="guarantee">Unlimited capital growth</div>
       <div class="guarantee">50% builds funding pool</div>
     </div>
+
+    <!-- Mid-page CTA #2 -->
+    <div class="mid-cta fade-up">
+      <p>Ready to prove your trading talent?</p>
+      <a href="signup.html" class="btn btn-primary">Start Your Evaluation Now</a>
+    </div>
   </div>
 </section>
 
-<!-- PAYOUT FREEDOM -->
+<!-- ═══════════════════════════════════════
+     PAYOUT FREEDOM
+     ═══════════════════════════════════════ -->
 <section class="section section-alt">
   <div class="container">
     <div class="text-center fade-up">
@@ -335,10 +552,18 @@
         <p>Score drops? Return to Scoring phase. Rebuild to 85+ for 7 consecutive days and you are back in with real capital. No permanent bans.</p>
       </div>
     </div>
+
+    <!-- Urgency note -->
+    <div class="urgency-note fade-up">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+      <span>The liquidity pool grows daily as new traders join. Earlier participants benefit from a higher capital-to-trader ratio.</span>
+    </div>
   </div>
 </section>
 
-<!-- WHAT HAPPENS NEXT -->
+<!-- ═══════════════════════════════════════
+     WHAT HAPPENS NEXT
+     ═══════════════════════════════════════ -->
 <section class="section">
   <div class="container">
     <div class="text-center fade-up">
@@ -353,12 +578,53 @@
   </div>
 </section>
 
-<!-- OBJECTION FAQ -->
+<!-- ═══════════════════════════════════════
+     WHAT TRADERS SAY — Social Proof
+     ═══════════════════════════════════════ -->
 <section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">From the Community</div>
+      <h2>What Traders Are Saying</h2>
+    </div>
+    <div class="testi-row" style="max-width:960px;margin:40px auto 0">
+      <div class="testimonial fade-up">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="testimonial-quote">"The transparency is unreal. I can see exactly how the pool is funded and what my score needs to be. No other prop firm shows you where your money goes."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">M.K.</div>
+          <div><div class="testimonial-name">Marcus K.</div><div class="testimonial-role">Futures Trader &mdash; Gold rank</div></div>
+        </div>
+      </div>
+      <div class="testimonial fade-up fade-up-delay-1">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="testimonial-quote">"I failed twice at other prop firms because of their trick rules. Here, there is no daily loss insta-fail. I focus on my strategy, not on avoiding traps."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">S.L.</div>
+          <div><div class="testimonial-name">Sarah L.</div><div class="testimonial-role">Forex &amp; CFD Trader &mdash; Silver rank</div></div>
+        </div>
+      </div>
+      <div class="testimonial fade-up fade-up-delay-2">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="testimonial-quote">"Started with Discovery to test the waters. Upgraded to Standard after 2 weeks and kept my entire score. The transition was seamless."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">R.T.</div>
+          <div><div class="testimonial-name">Romain T.</div><div class="testimonial-role">Day Trader &mdash; Bronze rank</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     OBJECTION HANDLING — Common Concerns
+     ═══════════════════════════════════════ -->
+<section class="section">
   <div class="container">
     <div class="text-center fade-up">
       <div class="section-label" style="justify-content:center">Common Concerns</div>
       <h2>Before You Decide</h2>
+      <p class="section-subtitle" style="margin-top:12px">Honest answers to the questions every trader asks before subscribing.</p>
     </div>
     <div class="accordion" style="margin-top:32px">
       <div class="accordion-item fade-up">
@@ -367,29 +633,39 @@
       </div>
       <div class="accordion-item fade-up fade-up-delay-1">
         <button class="accordion-trigger">What if I don't reach 85? Do I lose everything?<svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="accordion-content"><div class="accordion-content-inner">No. Your subscription continues monthly — keep trading and improving. You also get 1 free reset per month. There's no time limit on the Standard plan. Your score updates in real time so you always know where you stand.</div></div>
+        <div class="accordion-content"><div class="accordion-content-inner">No. Your subscription continues monthly &mdash; keep trading and improving at your own pace. You also get 1 free reset per month to start fresh. There is no time limit on the Standard plan. Your score updates in real time so you always know exactly where you stand.</div></div>
       </div>
       <div class="accordion-item fade-up fade-up-delay-2">
         <button class="accordion-trigger">How is this different from other prop firms?<svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="accordion-content"><div class="accordion-content-inner">Most prop firms profit when you fail — 95% of evaluation fees are pure profit for them. At Climber, 50% of your subscription funds the pool that pays YOU. We only profit when you profit. No trick rules, no designed-to-fail targets.</div></div>
+        <div class="accordion-content"><div class="accordion-content-inner">Most prop firms profit when you fail &mdash; 95% of evaluation fees are pure profit for them. At Climber, 50% of your subscription funds the pool that pays YOU. We only profit when you profit. No trick rules, no designed-to-fail targets.</div></div>
+      </div>
+      <div class="accordion-item fade-up fade-up-delay-3">
+        <button class="accordion-trigger">Is this legitimate? How do I know I'll get paid?<svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="accordion-content"><div class="accordion-content-inner">All payouts are processed through RISE WORKS, a professional payments platform. The liquidity pool is publicly visible on our dashboard. Every trader who reaches the Funded phase and maintains their score receives real payouts via wire transfer, with no cap on total earnings.</div></div>
+      </div>
+      <div class="accordion-item fade-up fade-up-delay-3">
+        <button class="accordion-trigger">Can I really make money from this?<svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="accordion-content"><div class="accordion-content-inner">Yes, but it requires skill and discipline. You trade with real capital from the pool and keep up to 60% of the profits. Your capital allocation grows monthly as your score holds. There is no cap on payouts and no ceiling on capital. The model is designed to reward consistent, professional trading &mdash; not gambling.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- RESET OPTIONS -->
+<!-- ═══════════════════════════════════════
+     RESET OPTIONS
+     ═══════════════════════════════════════ -->
 <section class="section section-alt">
   <div class="container">
     <div class="text-center fade-up">
       <div class="section-label" style="justify-content:center" data-i18n="pricing_reset_label">Account Reset</div>
-      <h2 data-i18n="pricing_reset_title">Reset Options</h2>
-      <p class="section-subtitle" style="margin-top:12px" data-i18n="pricing_reset_desc">Need a fresh start? Capital restored to $1M, score wiped, history archived.</p>
+      <h2 data-i18n="pricing_reset_title">Everyone Deserves a Second Chance</h2>
+      <p class="section-subtitle" style="margin-top:12px" data-i18n="pricing_reset_desc">Bad week? Reset your account. Capital restored to $1M, score wiped, history archived. Start fresh without starting over on your subscription.</p>
     </div>
     <div class="reset-grid">
       <div class="reset-card fade-up">
         <div style="font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px">Free Reset</div>
         <div class="reset-price green">$0</div>
-        <div class="reset-cond">1 per calendar month<br>Balance at $0 · Not yet Funded</div>
+        <div class="reset-cond">1 per calendar month<br>Balance at $0 &middot; Not yet Funded</div>
       </div>
       <div class="reset-card fade-up fade-up-delay-1">
         <div style="font-size:12px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.5px">Standard Reset</div>
@@ -399,23 +675,67 @@
       <div class="reset-card fade-up fade-up-delay-2">
         <div style="font-size:12px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.5px">Near-Fail Reset</div>
         <div class="reset-price" style="color:var(--purple)">$79</div>
-        <div class="reset-cond">Score between 80–84<br>Discounted fresh start</div>
+        <div class="reset-cond">Score between 80&ndash;84<br>Discounted fresh start</div>
       </div>
     </div>
     <!-- Reset explanation -->
     <div class="reset-explanation fade-up">
-      <p>When you reset, all metrics are cleared and your CLIMB Score returns to zero. Your capital is restored to <code>$1,000,000</code>. Trade history is archived for your records. Your subscription date remains unchanged — no extra charges.</p>
+      <p>When you reset, all metrics are cleared and your CLIMB Score returns to zero. Your capital is restored to <code>$1,000,000</code>. Trade history is archived for your records. Your subscription date remains unchanged &mdash; no extra charges.</p>
     </div>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════
+     PRICING FAQ MINI — 3 most common
+     ═══════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Quick Answers</div>
+      <h2>Pricing FAQ</h2>
+    </div>
+    <div class="faq-mini">
+      <div class="accordion" style="margin-top:32px">
+        <div class="accordion-item fade-up">
+          <button class="accordion-trigger">What happens if I cancel my subscription?<svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="accordion-content"><div class="accordion-content-inner">You keep access until the end of your current billing period. Your score and trade history are preserved. If you resubscribe later, you pick up right where you left off &mdash; no data is lost. There are no cancellation fees or penalties.</div></div>
+        </div>
+        <div class="accordion-item fade-up fade-up-delay-1">
+          <button class="accordion-trigger">Can I upgrade from Discovery to Standard mid-month?<svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="accordion-content"><div class="accordion-content-inner">Yes. Your CLIMB Score and all metrics are fully preserved when upgrading. You simply start the Standard subscription and your existing evaluation data carries over. No progress is lost.</div></div>
+        </div>
+        <div class="accordion-item fade-up fade-up-delay-2">
+          <button class="accordion-trigger">Why is 50% of my subscription going to the pool?<svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="accordion-content"><div class="accordion-content-inner">Because the pool IS your future capital. Unlike firms that pocket 95% of evaluation fees, we channel half of every subscription into the liquidity pool that funds live traders. When you qualify, that pool is what gives you real capital to trade with. Your subscription literally builds the infrastructure that pays you.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FINAL CTA — Bottom of page
+     ═══════════════════════════════════════ -->
 <section class="cta-section">
   <div class="container fade-up">
     <h2 class="hero-title" data-i18n="pricing_cta_title">Start Building Your Career Today</h2>
     <p style="font-size:18px;margin-top:12px">Your talent deserves real capital. Let's prove it together.</p>
-    <div class="cta-row" style="margin-top:32px">
-      <a href="how-it-works.html" class="btn btn-primary btn-lg">Subscribe Now →</a>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;margin-bottom:24px;font-size:13px;color:var(--text3);">
+      <span class="sp-dot" style="width:6px;height:6px;"></span>
+      283+ traders already evaluating
+    </div>
+    <div class="cta-row">
+      <a href="signup.html" class="btn btn-primary btn-lg">Subscribe Now &mdash; $199/mo</a>
       <a href="how-it-works.html" class="btn btn-outline btn-lg">Learn How It Works</a>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin-top:20px;flex-wrap:wrap;font-size:12px;color:var(--text3)">
+      <span>Cancel anytime</span>
+      <span>&middot;</span>
+      <span>No hidden fees</span>
+      <span>&middot;</span>
+      <span>1 free reset/month</span>
+      <span>&middot;</span>
+      <span>50% builds YOUR pool</span>
     </div>
   </div>
 </section>
@@ -436,7 +756,7 @@
         <a href="referral.html">Referral Program</a>
       </div>
       <div class="footer-col">
-        <div class="footer-col-title">Support</div><a href="contact.html">Help Center</a><a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a><a href="legal/cgv.html">Terms & Conditions</a><a href="legal/privacy.html">Privacy Policy</a></div></div><div class="footer-bottom"><span>&copy; 2026 Climber Trade. All rights reserved.</span><span class="footer-status">All Systems Operational</span></div></div></footer>
+        <div class="footer-col-title">Support</div><a href="contact.html">Help Center</a><a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a><a href="legal/cgv.html">Terms &amp; Conditions</a><a href="legal/privacy.html">Privacy Policy</a></div></div><div class="footer-bottom"><span>&copy; 2026 Climber Trade. All rights reserved.</span><span class="footer-status">All Systems Operational</span></div></div></footer>
 <script src="js/translations.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/shared.js"></script>

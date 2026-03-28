@@ -45,13 +45,22 @@
 .edu-grid{
   display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
 }
-/* Thumbnail */
+/* Thumbnail — Premium Gradient System */
 .edu-card-thumb{
-  height:120px;border-radius:8px;margin-bottom:16px;
+  height:160px;border-radius:10px;margin-bottom:16px;
+  position:relative;overflow:hidden;
   display:flex;align-items:center;justify-content:center;
-  overflow:hidden;position:relative;
 }
-.edu-card-thumb svg{width:100%;height:100%;opacity:.85;}
+.thumb-pattern{
+  position:absolute;inset:0;opacity:0.08;
+  background-image:radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size:20px 20px;
+}
+.thumb-text{
+  font-family:var(--mono);font-size:28px;font-weight:800;
+  letter-spacing:2px;color:rgba(255,255,255,0.2);
+  text-transform:uppercase;z-index:1;text-align:center;line-height:1.2;
+}
 /* Article card */
 .edu-card{
   background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
@@ -169,34 +178,11 @@
 
       <!-- ═══ GETTING STARTED (1-10) ═══ -->
 
-      <!-- 1. what-is-prop-trading — Ascending staircase with dollar signs -->
+      <!-- 1. what-is-prop-trading -->
       <article class="edu-card" data-cat="getting-started" data-title="what is prop trading the complete 2026 guide for beginners">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="gs1" x1="0" y1="120" x2="400" y2="0"><stop offset="0%" stop-color="#10B981" stop-opacity="0.08"/><stop offset="100%" stop-color="#10B981" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#gs1)"/>
-            <!-- Ascending staircase -->
-            <line x1="60" y1="100" x2="60" y2="80" stroke="#10B981" stroke-width="1.5"/>
-            <line x1="60" y1="80" x2="120" y2="80" stroke="#10B981" stroke-width="1.5"/>
-            <line x1="120" y1="80" x2="120" y2="60" stroke="#10B981" stroke-width="1.5"/>
-            <line x1="120" y1="60" x2="180" y2="60" stroke="#10B981" stroke-width="1.5"/>
-            <line x1="180" y1="60" x2="180" y2="40" stroke="#10B981" stroke-width="1.5"/>
-            <line x1="180" y1="40" x2="240" y2="40" stroke="#10B981" stroke-width="1.5"/>
-            <line x1="240" y1="40" x2="240" y2="20" stroke="#10B981" stroke-width="1.5"/>
-            <line x1="240" y1="20" x2="340" y2="20" stroke="#10B981" stroke-width="1.5"/>
-            <!-- Dollar signs on each step -->
-            <text x="90" y="76" fill="#10B981" font-size="12" font-family="monospace" opacity="0.6">$</text>
-            <text x="150" y="56" fill="#10B981" font-size="12" font-family="monospace" opacity="0.6">$</text>
-            <text x="210" y="36" fill="#10B981" font-size="14" font-family="monospace" opacity="0.7">$</text>
-            <text x="280" y="16" fill="#10B981" font-size="16" font-family="monospace" opacity="0.8">$</text>
-            <!-- Subtle dots -->
-            <circle cx="60" cy="100" r="3" fill="#10B981" opacity="0.4"/>
-            <circle cx="120" cy="80" r="3" fill="#10B981" opacity="0.4"/>
-            <circle cx="180" cy="60" r="3" fill="#10B981" opacity="0.4"/>
-            <circle cx="240" cy="40" r="3" fill="#10B981" opacity="0.4"/>
-            <circle cx="340" cy="20" r="3" fill="#10B981" opacity="0.5"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0d2818, #10B981 40%, #065f46)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">PROP TRADING</div>
         </div>
         <span class="edu-card-cat cat-getting-started">Getting Started</span>
         <h3><a href="what-is-prop-trading.html">What Is Prop Trading? The Complete 2026 Guide for Beginners</a></h3>
@@ -204,41 +190,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="what-is-prop-trading.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 2. how-prop-firms-work — Building blocks / gear mechanism -->
+      <!-- 2. how-prop-firms-work -->
       <article class="edu-card" data-cat="getting-started" data-title="how prop firms actually work the truth behind funded trading">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="gs2" x1="0" y1="0" x2="400" y2="120"><stop offset="0%" stop-color="#10B981" stop-opacity="0.06"/><stop offset="100%" stop-color="#10B981" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#gs2)"/>
-            <!-- Gear 1 -->
-            <circle cx="130" cy="60" r="28" stroke="#10B981" stroke-width="1.5" opacity="0.5"/>
-            <circle cx="130" cy="60" r="18" stroke="#10B981" stroke-width="1.5" opacity="0.7"/>
-            <circle cx="130" cy="60" r="5" fill="#10B981" opacity="0.3"/>
-            <!-- Gear teeth -->
-            <line x1="130" y1="30" x2="130" y2="24" stroke="#10B981" stroke-width="2"/>
-            <line x1="130" y1="90" x2="130" y2="96" stroke="#10B981" stroke-width="2"/>
-            <line x1="100" y1="60" x2="94" y2="60" stroke="#10B981" stroke-width="2"/>
-            <line x1="160" y1="60" x2="166" y2="60" stroke="#10B981" stroke-width="2"/>
-            <line x1="110" y1="40" x2="106" y2="36" stroke="#10B981" stroke-width="2"/>
-            <line x1="150" y1="80" x2="154" y2="84" stroke="#10B981" stroke-width="2"/>
-            <line x1="110" y1="80" x2="106" y2="84" stroke="#10B981" stroke-width="2"/>
-            <line x1="150" y1="40" x2="154" y2="36" stroke="#10B981" stroke-width="2"/>
-            <!-- Gear 2 smaller -->
-            <circle cx="260" cy="55" r="20" stroke="#10B981" stroke-width="1.5" opacity="0.5"/>
-            <circle cx="260" cy="55" r="12" stroke="#10B981" stroke-width="1.5" opacity="0.7"/>
-            <circle cx="260" cy="55" r="4" fill="#10B981" opacity="0.3"/>
-            <line x1="260" y1="33" x2="260" y2="28" stroke="#10B981" stroke-width="2"/>
-            <line x1="260" y1="77" x2="260" y2="82" stroke="#10B981" stroke-width="2"/>
-            <line x1="238" y1="55" x2="233" y2="55" stroke="#10B981" stroke-width="2"/>
-            <line x1="282" y1="55" x2="287" y2="55" stroke="#10B981" stroke-width="2"/>
-            <!-- Connection line -->
-            <line x1="166" y1="60" x2="233" y2="55" stroke="#10B981" stroke-width="1" stroke-dasharray="4 3" opacity="0.4"/>
-            <!-- Building blocks -->
-            <rect x="310" y="70" width="30" height="30" rx="3" stroke="#10B981" stroke-width="1.5" opacity="0.4" fill="#10B981" fill-opacity="0.08"/>
-            <rect x="320" y="45" width="30" height="25" rx="3" stroke="#10B981" stroke-width="1.5" opacity="0.5" fill="#10B981" fill-opacity="0.08"/>
-            <rect x="340" y="58" width="25" height="42" rx="3" stroke="#10B981" stroke-width="1.5" opacity="0.35" fill="#10B981" fill-opacity="0.05"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0d2818, #10B981 40%, #065f46)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">BUSINESS MODEL</div>
         </div>
         <span class="edu-card-cat cat-getting-started">Getting Started</span>
         <h3><a href="how-prop-firms-work.html">How Prop Firms Actually Work: The Truth Behind Funded Trading</a></h3>
@@ -246,29 +202,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="how-prop-firms-work.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 3. prop-trading-vs-retail — Two paths diverging -->
+      <!-- 3. prop-trading-vs-retail -->
       <article class="edu-card" data-cat="getting-started" data-title="prop trading vs retail trading which path is right for you">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="gs3" x1="200" y1="120" x2="200" y2="0"><stop offset="0%" stop-color="#10B981" stop-opacity="0.06"/><stop offset="100%" stop-color="#10B981" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#gs3)"/>
-            <!-- Single path converging to fork -->
-            <path d="M60 60 L180 60" stroke="#10B981" stroke-width="2" opacity="0.6"/>
-            <!-- Fork point -->
-            <circle cx="180" cy="60" r="5" fill="#10B981" opacity="0.5"/>
-            <!-- Upper path (Prop) -->
-            <path d="M180 60 Q220 60 260 30 L340 20" stroke="#10B981" stroke-width="2" opacity="0.8"/>
-            <text x="345" y="24" fill="#10B981" font-size="10" font-family="sans-serif" opacity="0.7">PROP</text>
-            <!-- Lower path (Retail) -->
-            <path d="M180 60 Q220 60 260 90 L340 100" stroke="#10B981" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.4"/>
-            <text x="345" y="104" fill="#10B981" font-size="10" font-family="sans-serif" opacity="0.4">RETAIL</text>
-            <!-- Arrow heads -->
-            <polygon points="338,17 340,20 336,23" fill="#10B981" opacity="0.8"/>
-            <polygon points="338,97 340,100 336,103" fill="#10B981" opacity="0.4"/>
-            <!-- Start marker -->
-            <circle cx="60" cy="60" r="4" stroke="#10B981" stroke-width="1.5" fill="none" opacity="0.5"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0d2818, #10B981 40%, #065f46)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">PROP vs RETAIL</div>
         </div>
         <span class="edu-card-cat cat-getting-started">Getting Started</span>
         <h3><a href="prop-trading-vs-retail.html">Prop Trading vs Retail Trading: Which Path Is Right for You?</a></h3>
@@ -276,35 +214,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="prop-trading-vs-retail.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 4. how-to-get-funded — Rocket launching upward -->
+      <!-- 4. how-to-get-funded -->
       <article class="edu-card" data-cat="getting-started" data-title="how to get funded as a trader in 2026 step by step guide">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="gs4" x1="200" y1="120" x2="200" y2="0"><stop offset="0%" stop-color="#10B981" stop-opacity="0.07"/><stop offset="100%" stop-color="#10B981" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#gs4)"/>
-            <!-- Launch pad -->
-            <line x1="170" y1="105" x2="230" y2="105" stroke="#10B981" stroke-width="1.5" opacity="0.4"/>
-            <line x1="180" y1="110" x2="220" y2="110" stroke="#10B981" stroke-width="1" opacity="0.3"/>
-            <!-- Rocket body -->
-            <path d="M200 15 L190 50 L190 80 L200 90 L210 80 L210 50 Z" stroke="#10B981" stroke-width="1.5" fill="#10B981" fill-opacity="0.1"/>
-            <!-- Rocket nose -->
-            <path d="M195 50 L200 15 L205 50" stroke="#10B981" stroke-width="1.5" fill="#10B981" fill-opacity="0.15"/>
-            <!-- Fins -->
-            <path d="M190 75 L178 90 L190 85" stroke="#10B981" stroke-width="1.5" fill="#10B981" fill-opacity="0.08"/>
-            <path d="M210 75 L222 90 L210 85" stroke="#10B981" stroke-width="1.5" fill="#10B981" fill-opacity="0.08"/>
-            <!-- Exhaust flames -->
-            <path d="M195 90 L200 110 L205 90" stroke="#10B981" stroke-width="1" opacity="0.5" fill="#10B981" fill-opacity="0.15"/>
-            <path d="M197 90 L200 100 L203 90" stroke="#10B981" stroke-width="1" opacity="0.3"/>
-            <!-- Stars -->
-            <circle cx="80" cy="30" r="1.5" fill="#10B981" opacity="0.3"/>
-            <circle cx="120" cy="50" r="1" fill="#10B981" opacity="0.25"/>
-            <circle cx="300" cy="25" r="1.5" fill="#10B981" opacity="0.3"/>
-            <circle cx="330" cy="60" r="1" fill="#10B981" opacity="0.2"/>
-            <circle cx="270" cy="45" r="1.5" fill="#10B981" opacity="0.25"/>
-            <circle cx="100" cy="80" r="1" fill="#10B981" opacity="0.2"/>
-            <circle cx="340" cy="90" r="1" fill="#10B981" opacity="0.15"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0d2818, #10B981 40%, #065f46)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">GET FUNDED</div>
         </div>
         <span class="edu-card-cat cat-getting-started">Getting Started</span>
         <h3><a href="how-to-get-funded.html">How to Get Funded as a Trader in 2026: Step-by-Step Guide</a></h3>
@@ -312,32 +226,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">11 min read</span><a href="how-to-get-funded.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 5. evaluation-process-explained — Checklist with checkmarks -->
+      <!-- 5. evaluation-process-explained -->
       <article class="edu-card" data-cat="getting-started" data-title="prop firm evaluation process explained what to expect">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="gs5" x1="0" y1="0" x2="400" y2="120"><stop offset="0%" stop-color="#10B981" stop-opacity="0.05"/><stop offset="100%" stop-color="#10B981" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#gs5)"/>
-            <!-- Clipboard outline -->
-            <rect x="140" y="10" width="120" height="100" rx="6" stroke="#10B981" stroke-width="1.5" opacity="0.4"/>
-            <rect x="170" y="5" width="60" height="12" rx="4" stroke="#10B981" stroke-width="1.5" fill="#1a1a1a" opacity="0.6"/>
-            <!-- Check items -->
-            <polyline points="158,35 164,41 174,29" stroke="#10B981" stroke-width="2" opacity="0.8"/>
-            <line x1="185" y1="35" x2="245" y2="35" stroke="#10B981" stroke-width="1.5" opacity="0.3"/>
-            <polyline points="158,55 164,61 174,49" stroke="#10B981" stroke-width="2" opacity="0.8"/>
-            <line x1="185" y1="55" x2="240" y2="55" stroke="#10B981" stroke-width="1.5" opacity="0.3"/>
-            <polyline points="158,75 164,81 174,69" stroke="#10B981" stroke-width="2" opacity="0.8"/>
-            <line x1="185" y1="75" x2="235" y2="75" stroke="#10B981" stroke-width="1.5" opacity="0.3"/>
-            <!-- Pending item -->
-            <rect x="156" y="87" width="18" height="14" rx="2" stroke="#10B981" stroke-width="1.5" opacity="0.3"/>
-            <line x1="185" y1="94" x2="230" y2="94" stroke="#10B981" stroke-width="1.5" opacity="0.2"/>
-            <!-- Decorative dots -->
-            <circle cx="80" cy="40" r="2" fill="#10B981" opacity="0.15"/>
-            <circle cx="90" cy="70" r="1.5" fill="#10B981" opacity="0.1"/>
-            <circle cx="320" cy="50" r="2" fill="#10B981" opacity="0.15"/>
-            <circle cx="340" cy="80" r="1.5" fill="#10B981" opacity="0.1"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0d2818, #10B981 40%, #065f46)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">SCORING</div>
         </div>
         <span class="edu-card-cat cat-getting-started">Getting Started</span>
         <h3><a href="evaluation-process-explained.html">Prop Firm Evaluation Process Explained: What to Expect</a></h3>
@@ -345,37 +238,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="evaluation-process-explained.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 6. first-30-days-funded-trader — Calendar with progress bar -->
+      <!-- 6. first-30-days-funded-trader -->
       <article class="edu-card" data-cat="getting-started" data-title="your first 30 days as a funded trader the survival guide">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="gs6" x1="0" y1="120" x2="400" y2="0"><stop offset="0%" stop-color="#10B981" stop-opacity="0.06"/><stop offset="100%" stop-color="#10B981" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#gs6)"/>
-            <!-- Calendar -->
-            <rect x="110" y="15" width="180" height="75" rx="5" stroke="#10B981" stroke-width="1.5" opacity="0.5"/>
-            <line x1="110" y1="32" x2="290" y2="32" stroke="#10B981" stroke-width="1" opacity="0.3"/>
-            <!-- Calendar header dots -->
-            <circle cx="130" cy="23" r="3" fill="#10B981" opacity="0.4"/>
-            <circle cx="145" cy="23" r="3" fill="#10B981" opacity="0.4"/>
-            <!-- Calendar days grid -->
-            <rect x="120" y="38" width="10" height="10" rx="1" fill="#10B981" fill-opacity="0.15"/>
-            <rect x="135" y="38" width="10" height="10" rx="1" fill="#10B981" fill-opacity="0.2"/>
-            <rect x="150" y="38" width="10" height="10" rx="1" fill="#10B981" fill-opacity="0.25"/>
-            <rect x="165" y="38" width="10" height="10" rx="1" fill="#10B981" fill-opacity="0.3"/>
-            <rect x="180" y="38" width="10" height="10" rx="1" fill="#10B981" fill-opacity="0.35"/>
-            <rect x="120" y="53" width="10" height="10" rx="1" fill="#10B981" fill-opacity="0.4"/>
-            <rect x="135" y="53" width="10" height="10" rx="1" fill="#10B981" fill-opacity="0.45"/>
-            <rect x="150" y="53" width="10" height="10" rx="1" fill="#10B981" fill-opacity="0.5"/>
-            <rect x="165" y="53" width="10" height="10" rx="1" stroke="#10B981" stroke-width="1" opacity="0.3"/>
-            <rect x="180" y="53" width="10" height="10" rx="1" stroke="#10B981" stroke-width="1" opacity="0.2"/>
-            <!-- 30 label -->
-            <text x="260" y="50" fill="#10B981" font-size="18" font-family="sans-serif" font-weight="700" opacity="0.5">30</text>
-            <text x="252" y="64" fill="#10B981" font-size="9" font-family="sans-serif" opacity="0.35">DAYS</text>
-            <!-- Progress bar -->
-            <rect x="110" y="100" width="180" height="6" rx="3" fill="#10B981" fill-opacity="0.1"/>
-            <rect x="110" y="100" width="120" height="6" rx="3" fill="#10B981" fill-opacity="0.4"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0d2818, #10B981 40%, #065f46)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">30 DAYS</div>
         </div>
         <span class="edu-card-cat cat-getting-started">Getting Started</span>
         <h3><a href="first-30-days-funded-trader.html">Your First 30 Days as a Funded Trader: The Survival Guide</a></h3>
@@ -383,29 +250,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="first-30-days-funded-trader.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 7. climb-score-explained — Gauge/meter at 85 -->
+      <!-- 7. climb-score-explained -->
       <article class="edu-card" data-cat="getting-started" data-title="climb score explained how algorithmic scoring changes everything">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="gs7" x1="200" y1="120" x2="200" y2="0"><stop offset="0%" stop-color="#10B981" stop-opacity="0.06"/><stop offset="100%" stop-color="#10B981" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#gs7)"/>
-            <!-- Gauge arc background -->
-            <path d="M130 95 A70 70 0 0 1 270 95" stroke="#10B981" stroke-width="3" opacity="0.15"/>
-            <!-- Gauge arc filled (to ~85%) -->
-            <path d="M130 95 A70 70 0 0 1 258 45" stroke="#10B981" stroke-width="3" opacity="0.7"/>
-            <!-- Gauge center -->
-            <circle cx="200" cy="95" r="4" fill="#10B981" opacity="0.5"/>
-            <!-- Needle pointing to 85 -->
-            <line x1="200" y1="95" x2="252" y2="50" stroke="#10B981" stroke-width="2" opacity="0.8"/>
-            <circle cx="252" cy="50" r="3" fill="#10B981" opacity="0.6"/>
-            <!-- Score label -->
-            <text x="186" y="82" fill="#10B981" font-size="22" font-family="sans-serif" font-weight="700" opacity="0.7">85</text>
-            <!-- Scale marks -->
-            <text x="120" y="105" fill="#10B981" font-size="8" font-family="sans-serif" opacity="0.3">0</text>
-            <text x="195" y="20" fill="#10B981" font-size="8" font-family="sans-serif" opacity="0.3">50</text>
-            <text x="270" y="105" fill="#10B981" font-size="8" font-family="sans-serif" opacity="0.3">100</text>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0d2818, #10B981 40%, #065f46)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">85/100</div>
         </div>
         <span class="edu-card-cat cat-getting-started">Getting Started</span>
         <h3><a href="climb-score-explained.html">CLIMB Score Explained: How Algorithmic Scoring Changes Everything</a></h3>
@@ -413,27 +262,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">12 min read</span><a href="climb-score-explained.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 8. how-much-can-you-earn — Bar chart ascending -->
+      <!-- 8. how-much-can-you-earn -->
       <article class="edu-card" data-cat="getting-started" data-title="how much can you really earn with a prop firm realistic numbers">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="gs8" x1="0" y1="120" x2="400" y2="0"><stop offset="0%" stop-color="#10B981" stop-opacity="0.05"/><stop offset="100%" stop-color="#10B981" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#gs8)"/>
-            <!-- Axis -->
-            <line x1="80" y1="100" x2="340" y2="100" stroke="#10B981" stroke-width="1" opacity="0.2"/>
-            <line x1="80" y1="100" x2="80" y2="15" stroke="#10B981" stroke-width="1" opacity="0.2"/>
-            <!-- Bars ascending -->
-            <rect x="100" y="80" width="30" height="20" rx="2" fill="#10B981" fill-opacity="0.15" stroke="#10B981" stroke-width="1" opacity="0.4"/>
-            <rect x="145" y="65" width="30" height="35" rx="2" fill="#10B981" fill-opacity="0.2" stroke="#10B981" stroke-width="1" opacity="0.5"/>
-            <rect x="190" y="50" width="30" height="50" rx="2" fill="#10B981" fill-opacity="0.25" stroke="#10B981" stroke-width="1" opacity="0.6"/>
-            <rect x="235" y="35" width="30" height="65" rx="2" fill="#10B981" fill-opacity="0.3" stroke="#10B981" stroke-width="1" opacity="0.7"/>
-            <rect x="280" y="20" width="30" height="80" rx="2" fill="#10B981" fill-opacity="0.35" stroke="#10B981" stroke-width="1.5" opacity="0.8"/>
-            <!-- Dollar signs on top -->
-            <text x="109" y="77" fill="#10B981" font-size="9" font-family="monospace" opacity="0.4">$</text>
-            <text x="153" y="62" fill="#10B981" font-size="10" font-family="monospace" opacity="0.5">$$</text>
-            <text x="296" y="17" fill="#10B981" font-size="11" font-family="monospace" opacity="0.6">$$$</text>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0d2818, #10B981 40%, #065f46)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">$10K/mo</div>
         </div>
         <span class="edu-card-cat cat-getting-started">Getting Started</span>
         <h3><a href="how-much-can-you-earn.html">How Much Can You Really Earn With a Prop Firm? Realistic Numbers</a></h3>
@@ -443,26 +276,11 @@
 
       <!-- ═══ PROP FIRM COMPARISONS (9-18) ═══ -->
 
-      <!-- 9. best-prop-firms-2026 — Podium (1st/2nd/3rd) -->
+      <!-- 9. best-prop-firms-2026 -->
       <article class="edu-card" data-cat="prop-firms" data-title="best prop firms in 2026 honest comparison for serious traders">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pf1" x1="200" y1="120" x2="200" y2="0"><stop offset="0%" stop-color="#00D4FF" stop-opacity="0.06"/><stop offset="100%" stop-color="#00D4FF" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pf1)"/>
-            <!-- Podium -->
-            <rect x="155" y="35" width="50" height="75" rx="3" fill="#00D4FF" fill-opacity="0.15" stroke="#00D4FF" stroke-width="1.5" opacity="0.6"/>
-            <rect x="100" y="55" width="50" height="55" rx="3" fill="#00D4FF" fill-opacity="0.1" stroke="#00D4FF" stroke-width="1.5" opacity="0.4"/>
-            <rect x="210" y="65" width="50" height="45" rx="3" fill="#00D4FF" fill-opacity="0.08" stroke="#00D4FF" stroke-width="1.5" opacity="0.35"/>
-            <!-- Numbers -->
-            <text x="174" y="62" fill="#00D4FF" font-size="18" font-family="sans-serif" font-weight="700" opacity="0.7">1</text>
-            <text x="120" y="78" fill="#00D4FF" font-size="14" font-family="sans-serif" font-weight="600" opacity="0.5">2</text>
-            <text x="230" y="86" fill="#00D4FF" font-size="14" font-family="sans-serif" font-weight="600" opacity="0.4">3</text>
-            <!-- Crown on 1st -->
-            <path d="M168 28 L175 20 L180 26 L185 18 L192 28" stroke="#00D4FF" stroke-width="1.5" opacity="0.5" fill="none"/>
-            <!-- Base line -->
-            <line x1="80" y1="110" x2="280" y2="110" stroke="#00D4FF" stroke-width="1" opacity="0.15"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #00D4FF 40%, #0369a1)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">TOP FIRMS</div>
         </div>
         <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
         <h3><a href="best-prop-firms-2026.html">Best Prop Firms in 2026: Honest Comparison for Serious Traders</a></h3>
@@ -470,29 +288,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">14 min read</span><a href="best-prop-firms-2026.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 10. ftmo-alternative — Arrow pointing to new direction -->
+      <!-- 10. ftmo-alternative -->
       <article class="edu-card" data-cat="prop-firms" data-title="looking for an ftmo alternative heres what to consider in 2026">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pf2" x1="0" y1="60" x2="400" y2="60"><stop offset="0%" stop-color="#00D4FF" stop-opacity="0.04"/><stop offset="100%" stop-color="#00D4FF" stop-opacity="0.08"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pf2)"/>
-            <!-- Old path (fading) -->
-            <path d="M60 70 L160 70" stroke="#00D4FF" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.25"/>
-            <!-- Turn point -->
-            <circle cx="160" cy="70" r="5" fill="#00D4FF" opacity="0.3"/>
-            <!-- New direction arrow -->
-            <path d="M160 70 L300 35" stroke="#00D4FF" stroke-width="2" opacity="0.7"/>
-            <polygon points="300,35 290,32 293,42" fill="#00D4FF" opacity="0.7"/>
-            <!-- "NEW" label -->
-            <text x="310" y="38" fill="#00D4FF" font-size="10" font-family="sans-serif" font-weight="600" opacity="0.5">NEW</text>
-            <!-- X on old direction -->
-            <line x1="185" y1="64" x2="195" y2="76" stroke="#00D4FF" stroke-width="1.5" opacity="0.3"/>
-            <line x1="195" y1="64" x2="185" y2="76" stroke="#00D4FF" stroke-width="1.5" opacity="0.3"/>
-            <!-- Sparkle at new end -->
-            <circle cx="310" cy="30" r="1.5" fill="#00D4FF" opacity="0.4"/>
-            <circle cx="320" cy="25" r="1" fill="#00D4FF" opacity="0.3"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #00D4FF 40%, #0369a1)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">ALTERNATIVE</div>
         </div>
         <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
         <h3><a href="ftmo-alternative.html">Looking for an FTMO Alternative? Here's What to Consider in 2026</a></h3>
@@ -500,33 +300,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="ftmo-alternative.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 11. darwinex-alternative — Compass pointing new direction -->
+      <!-- 11. darwinex-alternative -->
       <article class="edu-card" data-cat="prop-firms" data-title="darwinex alternative why traders are switching to score-based funding">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pf3" x1="200" y1="0" x2="200" y2="120"><stop offset="0%" stop-color="#00D4FF" stop-opacity="0.05"/><stop offset="100%" stop-color="#00D4FF" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pf3)"/>
-            <!-- Compass outer ring -->
-            <circle cx="200" cy="60" r="42" stroke="#00D4FF" stroke-width="1.5" opacity="0.3"/>
-            <circle cx="200" cy="60" r="35" stroke="#00D4FF" stroke-width="1" opacity="0.15"/>
-            <!-- Cardinal marks -->
-            <text x="196" y="22" fill="#00D4FF" font-size="9" font-family="sans-serif" opacity="0.4">N</text>
-            <text x="196" y="108" fill="#00D4FF" font-size="9" font-family="sans-serif" opacity="0.25">S</text>
-            <text x="148" y="64" fill="#00D4FF" font-size="9" font-family="sans-serif" opacity="0.25">W</text>
-            <text x="244" y="64" fill="#00D4FF" font-size="9" font-family="sans-serif" opacity="0.25">E</text>
-            <!-- Compass needle pointing NE -->
-            <line x1="200" y1="60" x2="228" y2="32" stroke="#00D4FF" stroke-width="2" opacity="0.8"/>
-            <circle cx="228" cy="32" r="3" fill="#00D4FF" opacity="0.6"/>
-            <line x1="200" y1="60" x2="172" y2="88" stroke="#00D4FF" stroke-width="1.5" opacity="0.3"/>
-            <!-- Center dot -->
-            <circle cx="200" cy="60" r="3" fill="#00D4FF" opacity="0.5"/>
-            <!-- Tick marks -->
-            <line x1="200" y1="18" x2="200" y2="24" stroke="#00D4FF" stroke-width="1" opacity="0.3"/>
-            <line x1="200" y1="96" x2="200" y2="102" stroke="#00D4FF" stroke-width="1" opacity="0.2"/>
-            <line x1="158" y1="60" x2="164" y2="60" stroke="#00D4FF" stroke-width="1" opacity="0.2"/>
-            <line x1="236" y1="60" x2="242" y2="60" stroke="#00D4FF" stroke-width="1" opacity="0.2"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #00D4FF 40%, #0369a1)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">SWITCH</div>
         </div>
         <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
         <h3><a href="darwinex-alternative.html">Darwinex Alternative: Why Traders Are Switching to Score-Based Funding</a></h3>
@@ -534,30 +312,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="darwinex-alternative.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 12. topstep-vs-climber — Balance scale -->
+      <!-- 12. topstep-vs-climber -->
       <article class="edu-card" data-cat="prop-firms" data-title="topstep vs score-based prop firms a new approach to funded trading">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pf4" x1="0" y1="120" x2="400" y2="0"><stop offset="0%" stop-color="#00D4FF" stop-opacity="0.05"/><stop offset="100%" stop-color="#00D4FF" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pf4)"/>
-            <!-- Scale post -->
-            <line x1="200" y1="105" x2="200" y2="25" stroke="#00D4FF" stroke-width="1.5" opacity="0.4"/>
-            <rect x="185" y="100" width="30" height="8" rx="3" fill="#00D4FF" fill-opacity="0.15"/>
-            <!-- Pivot -->
-            <polygon points="195,25 200,18 205,25" fill="#00D4FF" opacity="0.5"/>
-            <!-- Beam (tilted slightly right-heavy) -->
-            <line x1="120" y1="38" x2="280" y2="48" stroke="#00D4FF" stroke-width="2" opacity="0.6"/>
-            <!-- Left pan (higher) -->
-            <path d="M100 38 L120 38 L140 38" stroke="#00D4FF" stroke-width="1.5" opacity="0.5"/>
-            <path d="M100 38 L110 60 L130 60 L140 38" stroke="#00D4FF" stroke-width="1" opacity="0.3" fill="#00D4FF" fill-opacity="0.05"/>
-            <!-- Right pan (lower) -->
-            <path d="M260 48 L280 48 L300 48" stroke="#00D4FF" stroke-width="1.5" opacity="0.5"/>
-            <path d="M260 48 L270 70 L290 70 L300 48" stroke="#00D4FF" stroke-width="1" opacity="0.3" fill="#00D4FF" fill-opacity="0.08"/>
-            <!-- Labels -->
-            <text x="108" y="55" fill="#00D4FF" font-size="8" font-family="sans-serif" opacity="0.35">A</text>
-            <text x="274" y="65" fill="#00D4FF" font-size="8" font-family="sans-serif" opacity="0.35">B</text>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #00D4FF 40%, #0369a1)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">VS</div>
         </div>
         <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
         <h3><a href="topstep-vs-climber.html">TopStep vs Score-Based Prop Firms: A New Approach to Funded Trading</a></h3>
@@ -565,24 +324,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="topstep-vs-climber.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 13. prop-firm-scams — Warning shield with exclamation -->
+      <!-- 13. prop-firm-scams -->
       <article class="edu-card" data-cat="prop-firms" data-title="prop firm scams 7 red flags every trader must know">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pf5" x1="200" y1="0" x2="200" y2="120"><stop offset="0%" stop-color="#00D4FF" stop-opacity="0.06"/><stop offset="100%" stop-color="#00D4FF" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pf5)"/>
-            <!-- Shield -->
-            <path d="M200 12 L240 28 L240 65 Q240 90 200 108 Q160 90 160 65 L160 28 Z" stroke="#00D4FF" stroke-width="2" opacity="0.5" fill="#00D4FF" fill-opacity="0.06"/>
-            <!-- Exclamation mark -->
-            <line x1="200" y1="38" x2="200" y2="72" stroke="#00D4FF" stroke-width="3" opacity="0.7" stroke-linecap="round"/>
-            <circle cx="200" cy="88" r="3" fill="#00D4FF" opacity="0.7"/>
-            <!-- Warning rays -->
-            <line x1="145" y1="30" x2="135" y2="22" stroke="#00D4FF" stroke-width="1" opacity="0.2"/>
-            <line x1="255" y1="30" x2="265" y2="22" stroke="#00D4FF" stroke-width="1" opacity="0.2"/>
-            <line x1="140" y1="60" x2="128" y2="60" stroke="#00D4FF" stroke-width="1" opacity="0.15"/>
-            <line x1="260" y1="60" x2="272" y2="60" stroke="#00D4FF" stroke-width="1" opacity="0.15"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #00D4FF 40%, #0369a1)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">SCAMS</div>
         </div>
         <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
         <h3><a href="prop-firm-scams.html">Prop Firm Scams: 7 Red Flags Every Trader Must Know</a></h3>
@@ -590,30 +336,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="prop-firm-scams.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 14. prop-firm-profit-split — Pie chart splitting -->
+      <!-- 14. prop-firm-profit-split -->
       <article class="edu-card" data-cat="prop-firms" data-title="prop firm profit splits explained fixed vs dynamic models">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pf6" x1="0" y1="0" x2="400" y2="120"><stop offset="0%" stop-color="#00D4FF" stop-opacity="0.05"/><stop offset="100%" stop-color="#00D4FF" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pf6)"/>
-            <!-- Pie chart circle -->
-            <circle cx="200" cy="60" r="42" stroke="#00D4FF" stroke-width="1.5" opacity="0.3"/>
-            <!-- Larger slice (60%) -->
-            <path d="M200 60 L200 18 A42 42 0 0 1 236 92 Z" fill="#00D4FF" fill-opacity="0.2" stroke="#00D4FF" stroke-width="1.5" opacity="0.6"/>
-            <!-- Smaller slice (40%) -->
-            <path d="M200 60 L236 92 A42 42 0 0 1 200 18 Z" fill="#00D4FF" fill-opacity="0.06" stroke="#00D4FF" stroke-width="1" opacity="0.3"/>
-            <!-- Dividing line -->
-            <line x1="200" y1="60" x2="200" y2="18" stroke="#00D4FF" stroke-width="1.5" opacity="0.5"/>
-            <line x1="200" y1="60" x2="236" y2="92" stroke="#00D4FF" stroke-width="1.5" opacity="0.5"/>
-            <!-- Labels -->
-            <text x="205" y="48" fill="#00D4FF" font-size="11" font-family="sans-serif" font-weight="600" opacity="0.6">60%</text>
-            <text x="170" y="78" fill="#00D4FF" font-size="9" font-family="sans-serif" opacity="0.35">40%</text>
-            <!-- Split symbol -->
-            <line x1="280" y1="40" x2="310" y2="40" stroke="#00D4FF" stroke-width="1.5" opacity="0.3"/>
-            <line x1="280" y1="80" x2="310" y2="80" stroke="#00D4FF" stroke-width="1.5" opacity="0.3"/>
-            <line x1="295" y1="40" x2="295" y2="80" stroke="#00D4FF" stroke-width="1" stroke-dasharray="3 3" opacity="0.2"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #00D4FF 40%, #0369a1)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">60/40</div>
         </div>
         <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
         <h3><a href="prop-firm-profit-split.html">Prop Firm Profit Splits Explained: Fixed vs Dynamic Models</a></h3>
@@ -621,28 +348,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="prop-firm-profit-split.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 15. cheapest-prop-firms — Price tags with magnifying glass -->
+      <!-- 15. cheapest-prop-firms -->
       <article class="edu-card" data-cat="prop-firms" data-title="cheapest prop firms in 2026 is cheap actually better">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pf7" x1="0" y1="60" x2="400" y2="60"><stop offset="0%" stop-color="#00D4FF" stop-opacity="0.04"/><stop offset="100%" stop-color="#00D4FF" stop-opacity="0.06"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pf7)"/>
-            <!-- Price tags -->
-            <rect x="90" y="35" width="50" height="30" rx="4" stroke="#00D4FF" stroke-width="1.5" opacity="0.4" fill="#00D4FF" fill-opacity="0.06"/>
-            <circle cx="96" cy="42" r="3" fill="#1a1a1a" stroke="#00D4FF" stroke-width="1" opacity="0.4"/>
-            <text x="105" y="55" fill="#00D4FF" font-size="10" font-family="monospace" opacity="0.4">$49</text>
-            <rect x="160" y="30" width="50" height="30" rx="4" stroke="#00D4FF" stroke-width="1.5" opacity="0.5" fill="#00D4FF" fill-opacity="0.08"/>
-            <circle cx="166" cy="37" r="3" fill="#1a1a1a" stroke="#00D4FF" stroke-width="1" opacity="0.4"/>
-            <text x="174" y="50" fill="#00D4FF" font-size="10" font-family="monospace" opacity="0.5">$99</text>
-            <rect x="230" y="25" width="55" height="30" rx="4" stroke="#00D4FF" stroke-width="1.5" opacity="0.6" fill="#00D4FF" fill-opacity="0.1"/>
-            <circle cx="236" cy="32" r="3" fill="#1a1a1a" stroke="#00D4FF" stroke-width="1" opacity="0.5"/>
-            <text x="245" y="45" fill="#00D4FF" font-size="10" font-family="monospace" opacity="0.6">$199</text>
-            <!-- Magnifying glass -->
-            <circle cx="240" cy="82" r="18" stroke="#00D4FF" stroke-width="1.5" opacity="0.5"/>
-            <line x1="253" y1="95" x2="268" y2="108" stroke="#00D4FF" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
-            <text x="233" y="86" fill="#00D4FF" font-size="11" font-family="monospace" opacity="0.4">?</text>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #00D4FF 40%, #0369a1)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">$49</div>
         </div>
         <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
         <h3><a href="cheapest-prop-firms.html">Cheapest Prop Firms in 2026: Is Cheap Actually Better?</a></h3>
@@ -650,26 +360,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">7 min read</span><a href="cheapest-prop-firms.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 16. prop-firms-that-actually-pay — Wallet with checkmark -->
+      <!-- 16. prop-firms-that-actually-pay -->
       <article class="edu-card" data-cat="prop-firms" data-title="prop firms that actually pay how to verify before you subscribe">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pf8" x1="200" y1="120" x2="200" y2="0"><stop offset="0%" stop-color="#00D4FF" stop-opacity="0.06"/><stop offset="100%" stop-color="#00D4FF" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pf8)"/>
-            <!-- Wallet body -->
-            <rect x="140" y="30" width="100" height="65" rx="8" stroke="#00D4FF" stroke-width="1.5" opacity="0.5" fill="#00D4FF" fill-opacity="0.05"/>
-            <!-- Wallet flap -->
-            <path d="M140 45 L140 30 Q140 22 148 22 L232 22 Q240 22 240 30 L240 45" stroke="#00D4FF" stroke-width="1.5" opacity="0.35" fill="none"/>
-            <!-- Card slot -->
-            <rect x="210" y="52" width="30" height="20" rx="5" stroke="#00D4FF" stroke-width="1" opacity="0.3"/>
-            <circle cx="225" cy="62" r="4" fill="#00D4FF" fill-opacity="0.15" stroke="#00D4FF" stroke-width="1" opacity="0.3"/>
-            <!-- Dollar bills peeking out -->
-            <rect x="150" y="26" width="60" height="8" rx="2" fill="#00D4FF" fill-opacity="0.1" stroke="#00D4FF" stroke-width="1" opacity="0.25"/>
-            <!-- Checkmark circle -->
-            <circle cx="260" cy="38" r="14" stroke="#00D4FF" stroke-width="1.5" opacity="0.6" fill="#00D4FF" fill-opacity="0.1"/>
-            <polyline points="252,38 258,44 270,32" stroke="#00D4FF" stroke-width="2" opacity="0.8"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #00D4FF 40%, #0369a1)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">PAYOUTS</div>
         </div>
         <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
         <h3><a href="prop-firms-that-actually-pay.html">Prop Firms That Actually Pay: How to Verify Before You Subscribe</a></h3>
@@ -677,29 +372,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="prop-firms-that-actually-pay.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 17. prop-firm-for-beginners — Graduation cap / lightbulb -->
+      <!-- 17. prop-firm-for-beginners -->
       <article class="edu-card" data-cat="prop-firms" data-title="best prop firm for beginners what to look for in 2026">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pf9" x1="0" y1="0" x2="400" y2="120"><stop offset="0%" stop-color="#00D4FF" stop-opacity="0.05"/><stop offset="100%" stop-color="#00D4FF" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pf9)"/>
-            <!-- Lightbulb -->
-            <circle cx="200" cy="42" r="25" stroke="#00D4FF" stroke-width="1.5" opacity="0.5"/>
-            <path d="M188 62 L188 75 L212 75 L212 62" stroke="#00D4FF" stroke-width="1.5" opacity="0.4"/>
-            <line x1="190" y1="80" x2="210" y2="80" stroke="#00D4FF" stroke-width="1" opacity="0.3"/>
-            <line x1="192" y1="84" x2="208" y2="84" stroke="#00D4FF" stroke-width="1" opacity="0.25"/>
-            <!-- Filament -->
-            <path d="M195 50 Q200 35 205 50" stroke="#00D4FF" stroke-width="1.5" opacity="0.6"/>
-            <!-- Light rays -->
-            <line x1="200" y1="12" x2="200" y2="6" stroke="#00D4FF" stroke-width="1.5" opacity="0.3"/>
-            <line x1="170" y1="22" x2="165" y2="17" stroke="#00D4FF" stroke-width="1.5" opacity="0.25"/>
-            <line x1="230" y1="22" x2="235" y2="17" stroke="#00D4FF" stroke-width="1.5" opacity="0.25"/>
-            <line x1="164" y1="42" x2="158" y2="42" stroke="#00D4FF" stroke-width="1.5" opacity="0.2"/>
-            <line x1="236" y1="42" x2="242" y2="42" stroke="#00D4FF" stroke-width="1.5" opacity="0.2"/>
-            <!-- Glow effect -->
-            <circle cx="200" cy="42" r="30" fill="#00D4FF" fill-opacity="0.03"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #00D4FF 40%, #0369a1)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">START</div>
         </div>
         <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
         <h3><a href="prop-firm-for-beginners.html">Best Prop Firm for Beginners: What to Look for in 2026</a></h3>
@@ -707,26 +384,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="prop-firm-for-beginners.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 18. why-prop-firms-fail-traders — Broken chain links -->
+      <!-- 18. why-prop-firms-fail-traders -->
       <article class="edu-card" data-cat="prop-firms" data-title="why most prop firms are designed for you to fail and how to win">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pf10" x1="200" y1="0" x2="200" y2="120"><stop offset="0%" stop-color="#00D4FF" stop-opacity="0.05"/><stop offset="100%" stop-color="#00D4FF" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pf10)"/>
-            <!-- Left chain link -->
-            <rect x="100" y="38" width="55" height="30" rx="15" stroke="#00D4FF" stroke-width="2" opacity="0.5" fill="none"/>
-            <!-- Right chain link (broken, shifted) -->
-            <rect x="175" y="44" width="55" height="30" rx="15" stroke="#00D4FF" stroke-width="2" opacity="0.5" fill="none" transform="rotate(-8 202 59)"/>
-            <!-- Break gap lightning -->
-            <path d="M158 48 L165 55 L155 60 L168 68" stroke="#00D4FF" stroke-width="1.5" opacity="0.4"/>
-            <!-- Additional chain (intact for contrast) -->
-            <rect x="260" y="42" width="40" height="24" rx="12" stroke="#00D4FF" stroke-width="1.5" opacity="0.25" fill="none"/>
-            <rect x="285" y="42" width="40" height="24" rx="12" stroke="#00D4FF" stroke-width="1.5" opacity="0.25" fill="none"/>
-            <!-- Broken pieces -->
-            <circle cx="160" cy="52" r="2" fill="#00D4FF" opacity="0.3"/>
-            <circle cx="170" cy="62" r="1.5" fill="#00D4FF" opacity="0.25"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #00D4FF 40%, #0369a1)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">WHY FAIL</div>
         </div>
         <span class="edu-card-cat cat-prop-firms">Prop Firms</span>
         <h3><a href="why-prop-firms-fail-traders.html">Why Most Prop Firms Are Designed for You to Fail (And How to Win)</a></h3>
@@ -736,29 +398,11 @@
 
       <!-- ═══ FUTURES TRADING (19-26) ═══ -->
 
-      <!-- 19. futures-trading-beginners — Candlestick chart intro -->
+      <!-- 19. futures-trading-beginners -->
       <article class="edu-card" data-cat="futures" data-title="futures trading for beginners everything you need to know">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ft1" x1="0" y1="120" x2="400" y2="0"><stop offset="0%" stop-color="#F59E0B" stop-opacity="0.06"/><stop offset="100%" stop-color="#F59E0B" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ft1)"/>
-            <!-- Candlesticks -->
-            <line x1="100" y1="25" x2="100" y2="95" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
-            <rect x="93" y="40" width="14" height="30" rx="1" fill="#F59E0B" fill-opacity="0.3" stroke="#F59E0B" stroke-width="1"/>
-            <line x1="140" y1="30" x2="140" y2="90" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
-            <rect x="133" y="50" width="14" height="20" rx="1" fill="none" stroke="#F59E0B" stroke-width="1" opacity="0.5"/>
-            <line x1="180" y1="20" x2="180" y2="85" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
-            <rect x="173" y="30" width="14" height="35" rx="1" fill="#F59E0B" fill-opacity="0.35" stroke="#F59E0B" stroke-width="1"/>
-            <line x1="220" y1="35" x2="220" y2="95" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
-            <rect x="213" y="55" width="14" height="25" rx="1" fill="none" stroke="#F59E0B" stroke-width="1" opacity="0.5"/>
-            <line x1="260" y1="15" x2="260" y2="80" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
-            <rect x="253" y="25" width="14" height="40" rx="1" fill="#F59E0B" fill-opacity="0.35" stroke="#F59E0B" stroke-width="1.5"/>
-            <line x1="300" y1="30" x2="300" y2="90" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
-            <rect x="293" y="40" width="14" height="30" rx="1" fill="#F59E0B" fill-opacity="0.25" stroke="#F59E0B" stroke-width="1"/>
-            <!-- Axis -->
-            <line x1="70" y1="105" x2="340" y2="105" stroke="#F59E0B" stroke-width="1" opacity="0.15"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a1000, #F59E0B 40%, #92400e)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">FUTURES 101</div>
         </div>
         <span class="edu-card-cat cat-futures">Futures Trading</span>
         <h3><a href="futures-trading-beginners.html">Futures Trading for Beginners: Everything You Need to Know</a></h3>
@@ -766,27 +410,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">12 min read</span><a href="futures-trading-beginners.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 20. best-futures-to-trade — Trophy with chart -->
+      <!-- 20. best-futures-to-trade -->
       <article class="edu-card" data-cat="futures" data-title="best futures contracts to trade in 2026 es nq cl gc compared">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ft2" x1="200" y1="0" x2="200" y2="120"><stop offset="0%" stop-color="#F59E0B" stop-opacity="0.06"/><stop offset="100%" stop-color="#F59E0B" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ft2)"/>
-            <!-- Trophy cup -->
-            <path d="M175 25 L175 65 Q175 85 200 85 Q225 85 225 65 L225 25 Z" stroke="#F59E0B" stroke-width="1.5" opacity="0.6" fill="#F59E0B" fill-opacity="0.08"/>
-            <!-- Handles -->
-            <path d="M175 35 Q155 35 155 50 Q155 60 175 60" stroke="#F59E0B" stroke-width="1.5" opacity="0.4" fill="none"/>
-            <path d="M225 35 Q245 35 245 50 Q245 60 225 60" stroke="#F59E0B" stroke-width="1.5" opacity="0.4" fill="none"/>
-            <!-- Base -->
-            <line x1="190" y1="85" x2="210" y2="85" stroke="#F59E0B" stroke-width="1.5" opacity="0.5"/>
-            <rect x="185" y="90" width="30" height="8" rx="2" stroke="#F59E0B" stroke-width="1" opacity="0.4" fill="#F59E0B" fill-opacity="0.05"/>
-            <rect x="180" y="98" width="40" height="6" rx="2" stroke="#F59E0B" stroke-width="1" opacity="0.35" fill="#F59E0B" fill-opacity="0.05"/>
-            <!-- Mini chart inside trophy -->
-            <polyline points="185,55 192,45 198,52 206,38 215,50" stroke="#F59E0B" stroke-width="1.5" opacity="0.5" fill="none"/>
-            <!-- Star on top -->
-            <polygon points="200,15 202,21 208,21 203,25 205,31 200,27 195,31 197,25 192,21 198,21" fill="#F59E0B" opacity="0.4"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a1000, #F59E0B 40%, #92400e)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">ES NQ CL GC</div>
         </div>
         <span class="edu-card-cat cat-futures">Futures Trading</span>
         <h3><a href="best-futures-to-trade.html">Best Futures Contracts to Trade in 2026: ES, NQ, CL, GC Compared</a></h3>
@@ -794,27 +422,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="best-futures-to-trade.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 21. es-futures-guide — S&P line chart with "ES" label -->
+      <!-- 21. es-futures-guide -->
       <article class="edu-card" data-cat="futures" data-title="e-mini sp 500 es futures the complete trading guide">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ft3" x1="0" y1="120" x2="400" y2="0"><stop offset="0%" stop-color="#F59E0B" stop-opacity="0.05"/><stop offset="100%" stop-color="#F59E0B" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ft3)"/>
-            <!-- ES label -->
-            <text x="50" y="35" fill="#F59E0B" font-size="24" font-family="sans-serif" font-weight="700" opacity="0.3">ES</text>
-            <!-- Line chart -->
-            <polyline points="80,75 110,70 130,78 160,55 190,60 220,40 250,45 280,30 310,35 340,22" stroke="#F59E0B" stroke-width="2" opacity="0.6" fill="none"/>
-            <!-- Area under -->
-            <polygon points="80,75 110,70 130,78 160,55 190,60 220,40 250,45 280,30 310,35 340,22 340,100 80,100" fill="#F59E0B" fill-opacity="0.05"/>
-            <!-- Data dots -->
-            <circle cx="220" cy="40" r="2.5" fill="#F59E0B" opacity="0.5"/>
-            <circle cx="340" cy="22" r="2.5" fill="#F59E0B" opacity="0.6"/>
-            <!-- Grid lines -->
-            <line x1="80" y1="100" x2="340" y2="100" stroke="#F59E0B" stroke-width="1" opacity="0.1"/>
-            <line x1="80" y1="75" x2="340" y2="75" stroke="#F59E0B" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.1"/>
-            <line x1="80" y1="50" x2="340" y2="50" stroke="#F59E0B" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.1"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a1000, #F59E0B 40%, #92400e)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">E-MINI S&amp;P</div>
         </div>
         <span class="edu-card-cat cat-futures">Futures Trading</span>
         <h3><a href="es-futures-guide.html">E-mini S&amp;P 500 (ES) Futures: The Complete Trading Guide</a></h3>
@@ -822,26 +434,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">11 min read</span><a href="es-futures-guide.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 22. nq-futures-guide — Tech/Nasdaq line chart with "NQ" -->
+      <!-- 22. nq-futures-guide -->
       <article class="edu-card" data-cat="futures" data-title="nasdaq 100 nq futures why every prop trader should know this contract">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ft4" x1="200" y1="120" x2="200" y2="0"><stop offset="0%" stop-color="#F59E0B" stop-opacity="0.06"/><stop offset="100%" stop-color="#F59E0B" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ft4)"/>
-            <!-- NQ label -->
-            <text x="50" y="35" fill="#F59E0B" font-size="24" font-family="sans-serif" font-weight="700" opacity="0.3">NQ</text>
-            <!-- Volatile line chart -->
-            <polyline points="80,80 100,65 115,72 130,45 150,55 170,30 190,42 210,28 230,38 260,20 290,32 320,18 350,25" stroke="#F59E0B" stroke-width="2" opacity="0.6" fill="none"/>
-            <!-- Area under -->
-            <polygon points="80,80 100,65 115,72 130,45 150,55 170,30 190,42 210,28 230,38 260,20 290,32 320,18 350,25 350,100 80,100" fill="#F59E0B" fill-opacity="0.04"/>
-            <!-- High volatility indicators -->
-            <circle cx="170" cy="30" r="2" fill="#F59E0B" opacity="0.5"/>
-            <circle cx="260" cy="20" r="2" fill="#F59E0B" opacity="0.5"/>
-            <circle cx="320" cy="18" r="2.5" fill="#F59E0B" opacity="0.6"/>
-            <!-- Axis -->
-            <line x1="80" y1="100" x2="350" y2="100" stroke="#F59E0B" stroke-width="1" opacity="0.1"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a1000, #F59E0B 40%, #92400e)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">NASDAQ-100</div>
         </div>
         <span class="edu-card-cat cat-futures">Futures Trading</span>
         <h3><a href="nq-futures-guide.html">Nasdaq-100 (NQ) Futures: Why Every Prop Trader Should Know This Contract</a></h3>
@@ -849,27 +446,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="nq-futures-guide.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 23. crude-oil-futures — Oil barrel with chart -->
+      <!-- 23. crude-oil-futures -->
       <article class="edu-card" data-cat="futures" data-title="crude oil cl futures trading margin volatility and strategy">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ft5" x1="0" y1="0" x2="400" y2="120"><stop offset="0%" stop-color="#F59E0B" stop-opacity="0.05"/><stop offset="100%" stop-color="#F59E0B" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ft5)"/>
-            <!-- Oil barrel -->
-            <ellipse cx="150" cy="28" rx="30" ry="8" stroke="#F59E0B" stroke-width="1.5" opacity="0.4"/>
-            <ellipse cx="150" cy="90" rx="30" ry="8" stroke="#F59E0B" stroke-width="1.5" opacity="0.4"/>
-            <line x1="120" y1="28" x2="120" y2="90" stroke="#F59E0B" stroke-width="1.5" opacity="0.4"/>
-            <line x1="180" y1="28" x2="180" y2="90" stroke="#F59E0B" stroke-width="1.5" opacity="0.4"/>
-            <!-- Barrel bands -->
-            <ellipse cx="150" cy="48" rx="30" ry="5" stroke="#F59E0B" stroke-width="1" opacity="0.2"/>
-            <ellipse cx="150" cy="70" rx="30" ry="5" stroke="#F59E0B" stroke-width="1" opacity="0.2"/>
-            <!-- CL text -->
-            <text x="140" y="64" fill="#F59E0B" font-size="14" font-family="sans-serif" font-weight="600" opacity="0.35">CL</text>
-            <!-- Chart next to barrel -->
-            <polyline points="220,75 240,65 255,70 270,45 290,50 310,30 330,38 350,25" stroke="#F59E0B" stroke-width="1.5" opacity="0.5" fill="none"/>
-            <circle cx="350" cy="25" r="2" fill="#F59E0B" opacity="0.5"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a1000, #F59E0B 40%, #92400e)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">CRUDE OIL</div>
         </div>
         <span class="edu-card-cat cat-futures">Futures Trading</span>
         <h3><a href="crude-oil-futures.html">Crude Oil (CL) Futures Trading: Margin, Volatility, and Strategy</a></h3>
@@ -877,26 +458,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="crude-oil-futures.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 24. gold-futures-trading — Gold bars with uptrend -->
+      <!-- 24. gold-futures-trading -->
       <article class="edu-card" data-cat="futures" data-title="gold futures gc trading guide margins strategies and tips">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ft6" x1="0" y1="120" x2="400" y2="0"><stop offset="0%" stop-color="#F59E0B" stop-opacity="0.06"/><stop offset="100%" stop-color="#F59E0B" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ft6)"/>
-            <!-- Gold bars stacked -->
-            <path d="M110 90 L125 70 L175 70 L190 90 Z" stroke="#F59E0B" stroke-width="1.5" opacity="0.5" fill="#F59E0B" fill-opacity="0.1"/>
-            <path d="M120 70 L132 55 L168 55 L180 70 Z" stroke="#F59E0B" stroke-width="1.5" opacity="0.4" fill="#F59E0B" fill-opacity="0.08"/>
-            <path d="M130 55 L140 42 L160 42 L170 55 Z" stroke="#F59E0B" stroke-width="1.5" opacity="0.35" fill="#F59E0B" fill-opacity="0.06"/>
-            <!-- GC text -->
-            <text x="138" y="85" fill="#F59E0B" font-size="12" font-family="sans-serif" font-weight="600" opacity="0.3">GC</text>
-            <!-- Uptrend line -->
-            <polyline points="220,85 250,70 270,75 300,50 330,40 360,25" stroke="#F59E0B" stroke-width="2" opacity="0.5" fill="none"/>
-            <polygon points="358,22 360,25 355,27" fill="#F59E0B" opacity="0.5"/>
-            <!-- Sparkle dots -->
-            <circle cx="140" cy="38" r="1.5" fill="#F59E0B" opacity="0.3"/>
-            <circle cx="165" cy="35" r="1" fill="#F59E0B" opacity="0.2"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a1000, #F59E0B 40%, #92400e)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">GOLD</div>
         </div>
         <span class="edu-card-cat cat-futures">Futures Trading</span>
         <h3><a href="gold-futures-trading.html">Gold Futures (GC) Trading Guide: Margins, Strategies, and Tips</a></h3>
@@ -904,28 +470,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="gold-futures-trading.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 25. futures-vs-forex — Side-by-side comparison arrows -->
+      <!-- 25. futures-vs-forex -->
       <article class="edu-card" data-cat="futures" data-title="futures vs forex which market should funded traders choose">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ft7" x1="0" y1="60" x2="400" y2="60"><stop offset="0%" stop-color="#F59E0B" stop-opacity="0.05"/><stop offset="50%" stop-color="#F59E0B" stop-opacity="0.01"/><stop offset="100%" stop-color="#F59E0B" stop-opacity="0.05"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ft7)"/>
-            <!-- Left box: Futures -->
-            <rect x="60" y="25" width="110" height="70" rx="6" stroke="#F59E0B" stroke-width="1.5" opacity="0.4" fill="#F59E0B" fill-opacity="0.05"/>
-            <text x="82" y="55" fill="#F59E0B" font-size="12" font-family="sans-serif" font-weight="600" opacity="0.5">FUTURES</text>
-            <polyline points="75,72 90,65 105,70 120,58 140,62" stroke="#F59E0B" stroke-width="1" opacity="0.3" fill="none"/>
-            <!-- Right box: Forex -->
-            <rect x="230" y="25" width="110" height="70" rx="6" stroke="#F59E0B" stroke-width="1.5" opacity="0.4" fill="#F59E0B" fill-opacity="0.05"/>
-            <text x="260" y="55" fill="#F59E0B" font-size="12" font-family="sans-serif" font-weight="600" opacity="0.5">FOREX</text>
-            <polyline points="245,72 260,68 275,72 290,64 310,66" stroke="#F59E0B" stroke-width="1" opacity="0.3" fill="none"/>
-            <!-- VS arrows -->
-            <line x1="180" y1="50" x2="220" y2="50" stroke="#F59E0B" stroke-width="1.5" opacity="0.4"/>
-            <polygon points="218,47 222,50 218,53" fill="#F59E0B" opacity="0.4"/>
-            <line x1="220" y1="70" x2="180" y2="70" stroke="#F59E0B" stroke-width="1.5" opacity="0.4"/>
-            <polygon points="182,67 178,70 182,73" fill="#F59E0B" opacity="0.4"/>
-            <text x="192" y="64" fill="#F59E0B" font-size="9" font-family="sans-serif" font-weight="600" opacity="0.35">VS</text>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a1000, #F59E0B 40%, #92400e)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">FUT vs FX</div>
         </div>
         <span class="edu-card-cat cat-futures">Futures Trading</span>
         <h3><a href="futures-vs-forex.html">Futures vs Forex: Which Market Should Funded Traders Choose?</a></h3>
@@ -933,34 +482,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="futures-vs-forex.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 26. futures-margin-explained — Stack of coins with leverage arrow -->
+      <!-- 26. futures-margin-explained -->
       <article class="edu-card" data-cat="futures" data-title="futures margin explained initial maintenance and day trading margins">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ft8" x1="200" y1="120" x2="200" y2="0"><stop offset="0%" stop-color="#F59E0B" stop-opacity="0.06"/><stop offset="100%" stop-color="#F59E0B" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ft8)"/>
-            <!-- Coin stacks -->
-            <ellipse cx="120" cy="90" rx="20" ry="6" fill="#F59E0B" fill-opacity="0.15" stroke="#F59E0B" stroke-width="1" opacity="0.4"/>
-            <ellipse cx="120" cy="82" rx="20" ry="6" fill="#F59E0B" fill-opacity="0.12" stroke="#F59E0B" stroke-width="1" opacity="0.4"/>
-            <ellipse cx="120" cy="74" rx="20" ry="6" fill="#F59E0B" fill-opacity="0.1" stroke="#F59E0B" stroke-width="1" opacity="0.4"/>
-            <ellipse cx="160" cy="90" rx="20" ry="6" fill="#F59E0B" fill-opacity="0.15" stroke="#F59E0B" stroke-width="1" opacity="0.35"/>
-            <ellipse cx="160" cy="82" rx="20" ry="6" fill="#F59E0B" fill-opacity="0.12" stroke="#F59E0B" stroke-width="1" opacity="0.35"/>
-            <ellipse cx="160" cy="74" rx="20" ry="6" fill="#F59E0B" fill-opacity="0.1" stroke="#F59E0B" stroke-width="1" opacity="0.35"/>
-            <ellipse cx="160" cy="66" rx="20" ry="6" fill="#F59E0B" fill-opacity="0.08" stroke="#F59E0B" stroke-width="1" opacity="0.35"/>
-            <ellipse cx="160" cy="58" rx="20" ry="6" fill="#F59E0B" fill-opacity="0.06" stroke="#F59E0B" stroke-width="1" opacity="0.3"/>
-            <!-- Leverage arrow -->
-            <path d="M210 85 L210 25" stroke="#F59E0B" stroke-width="2" opacity="0.5"/>
-            <polygon points="206,28 210,18 214,28" fill="#F59E0B" opacity="0.5"/>
-            <!-- Multiplier labels -->
-            <text x="220" y="88" fill="#F59E0B" font-size="9" font-family="sans-serif" opacity="0.3">1x</text>
-            <text x="220" y="55" fill="#F59E0B" font-size="9" font-family="sans-serif" opacity="0.4">5x</text>
-            <text x="220" y="30" fill="#F59E0B" font-size="9" font-family="sans-serif" opacity="0.5">10x</text>
-            <!-- Dashed horizontal lines -->
-            <line x1="240" y1="85" x2="350" y2="85" stroke="#F59E0B" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.15"/>
-            <line x1="240" y1="52" x2="350" y2="52" stroke="#F59E0B" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.15"/>
-            <line x1="240" y1="25" x2="350" y2="25" stroke="#F59E0B" stroke-width="0.5" stroke-dasharray="4 3" opacity="0.15"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a1000, #F59E0B 40%, #92400e)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">MARGIN</div>
         </div>
         <span class="edu-card-cat cat-futures">Futures Trading</span>
         <h3><a href="futures-margin-explained.html">Futures Margin Explained: Initial, Maintenance, and Day Trading Margins</a></h3>
@@ -970,23 +496,11 @@
 
       <!-- ═══ RISK MANAGEMENT (27-34) ═══ -->
 
-      <!-- 27. trading-risk-management — Shield with checkmark -->
+      <!-- 27. trading-risk-management -->
       <article class="edu-card" data-cat="risk" data-title="trading risk management the number one skill that separates winners from losers">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="rm1" x1="200" y1="0" x2="200" y2="120"><stop offset="0%" stop-color="#EF4444" stop-opacity="0.06"/><stop offset="100%" stop-color="#EF4444" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#rm1)"/>
-            <!-- Shield -->
-            <path d="M200 10 L245 28 L245 65 Q245 95 200 110 Q155 95 155 65 L155 28 Z" stroke="#EF4444" stroke-width="2" opacity="0.5" fill="#EF4444" fill-opacity="0.06"/>
-            <!-- Checkmark -->
-            <polyline points="180,60 192,72 222,42" stroke="#EF4444" stroke-width="3" opacity="0.7" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Subtle radiating lines -->
-            <line x1="140" y1="30" x2="128" y2="22" stroke="#EF4444" stroke-width="1" opacity="0.15"/>
-            <line x1="260" y1="30" x2="272" y2="22" stroke="#EF4444" stroke-width="1" opacity="0.15"/>
-            <line x1="135" y1="60" x2="122" y2="60" stroke="#EF4444" stroke-width="1" opacity="0.12"/>
-            <line x1="265" y1="60" x2="278" y2="60" stroke="#EF4444" stroke-width="1" opacity="0.12"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a0505, #EF4444 40%, #991b1b)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">RISK x4</div>
         </div>
         <span class="edu-card-cat cat-risk">Risk Management</span>
         <h3><a href="trading-risk-management.html">Trading Risk Management: The #1 Skill That Separates Winners from Losers</a></h3>
@@ -994,33 +508,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="trading-risk-management.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 28. position-sizing-guide — Ruler measuring blocks -->
+      <!-- 28. position-sizing-guide -->
       <article class="edu-card" data-cat="risk" data-title="position sizing for funded traders the complete formula">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="rm2" x1="0" y1="60" x2="400" y2="60"><stop offset="0%" stop-color="#EF4444" stop-opacity="0.04"/><stop offset="100%" stop-color="#EF4444" stop-opacity="0.06"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#rm2)"/>
-            <!-- Ruler -->
-            <rect x="80" y="50" width="240" height="20" rx="3" stroke="#EF4444" stroke-width="1.5" opacity="0.4"/>
-            <!-- Tick marks -->
-            <line x1="120" y1="50" x2="120" y2="58" stroke="#EF4444" stroke-width="1" opacity="0.3"/>
-            <line x1="160" y1="50" x2="160" y2="62" stroke="#EF4444" stroke-width="1" opacity="0.4"/>
-            <line x1="200" y1="50" x2="200" y2="58" stroke="#EF4444" stroke-width="1" opacity="0.3"/>
-            <line x1="240" y1="50" x2="240" y2="62" stroke="#EF4444" stroke-width="1" opacity="0.4"/>
-            <line x1="280" y1="50" x2="280" y2="58" stroke="#EF4444" stroke-width="1" opacity="0.3"/>
-            <!-- Blocks being measured -->
-            <rect x="100" y="78" width="25" height="25" rx="3" stroke="#EF4444" stroke-width="1.5" opacity="0.35" fill="#EF4444" fill-opacity="0.06"/>
-            <rect x="140" y="78" width="40" height="25" rx="3" stroke="#EF4444" stroke-width="1.5" opacity="0.45" fill="#EF4444" fill-opacity="0.08"/>
-            <rect x="195" y="78" width="55" height="25" rx="3" stroke="#EF4444" stroke-width="1.5" opacity="0.55" fill="#EF4444" fill-opacity="0.1"/>
-            <!-- Labels -->
-            <text x="107" y="94" fill="#EF4444" font-size="8" font-family="sans-serif" opacity="0.3">1%</text>
-            <text x="153" y="94" fill="#EF4444" font-size="8" font-family="sans-serif" opacity="0.4">2%</text>
-            <text x="214" y="94" fill="#EF4444" font-size="8" font-family="sans-serif" opacity="0.5">3%</text>
-            <!-- Measurement arrows -->
-            <line x1="100" y1="42" x2="125" y2="42" stroke="#EF4444" stroke-width="1" opacity="0.3"/>
-            <polygon points="123,40 127,42 123,44" fill="#EF4444" opacity="0.3"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a0505, #EF4444 40%, #991b1b)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">2x - 5x</div>
         </div>
         <span class="edu-card-cat cat-risk">Risk Management</span>
         <h3><a href="position-sizing-guide.html">Position Sizing for Funded Traders: The Complete Formula</a></h3>
@@ -1028,29 +520,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="position-sizing-guide.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 29. max-drawdown-explained — Valley/trough in a line chart -->
+      <!-- 29. max-drawdown-explained -->
       <article class="edu-card" data-cat="risk" data-title="maximum drawdown explained why its the most important risk metric">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="rm3" x1="200" y1="120" x2="200" y2="0"><stop offset="0%" stop-color="#EF4444" stop-opacity="0.06"/><stop offset="100%" stop-color="#EF4444" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#rm3)"/>
-            <!-- Equity line with drawdown valley -->
-            <polyline points="60,40 100,35 140,30 170,32 190,55 210,80 230,75 260,55 290,40 320,35 350,30" stroke="#EF4444" stroke-width="2" opacity="0.6" fill="none"/>
-            <!-- Peak line -->
-            <line x1="140" y1="30" x2="260" y2="30" stroke="#EF4444" stroke-width="1" stroke-dasharray="4 3" opacity="0.25"/>
-            <!-- Drawdown area -->
-            <polygon points="140,30 170,32 190,55 210,80 230,75 260,55 290,40 320,35 350,30 350,30 140,30" fill="#EF4444" fill-opacity="0.06"/>
-            <!-- MDD arrow -->
-            <line x1="210" y1="30" x2="210" y2="80" stroke="#EF4444" stroke-width="1.5" opacity="0.5"/>
-            <polygon points="207,77 210,83 213,77" fill="#EF4444" opacity="0.5"/>
-            <polygon points="207,33 210,27 213,33" fill="#EF4444" opacity="0.5"/>
-            <!-- MDD label -->
-            <text x="218" y="58" fill="#EF4444" font-size="9" font-family="sans-serif" font-weight="600" opacity="0.5">MDD</text>
-            <!-- Dots -->
-            <circle cx="140" cy="30" r="3" fill="#EF4444" opacity="0.4"/>
-            <circle cx="210" cy="80" r="3" fill="#EF4444" opacity="0.5"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a0505, #EF4444 40%, #991b1b)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">MAX DD</div>
         </div>
         <span class="edu-card-cat cat-risk">Risk Management</span>
         <h3><a href="max-drawdown-explained.html">Maximum Drawdown Explained: Why It's the Most Important Risk Metric</a></h3>
@@ -1058,27 +532,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="max-drawdown-explained.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 30. leverage-sweet-spot — Target/bullseye -->
+      <!-- 30. leverage-sweet-spot -->
       <article class="edu-card" data-cat="risk" data-title="the leverage sweet spot why 2x 5x outperforms everything else">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="rm4" x1="200" y1="0" x2="200" y2="120"><stop offset="0%" stop-color="#EF4444" stop-opacity="0.05"/><stop offset="100%" stop-color="#EF4444" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#rm4)"/>
-            <!-- Concentric circles (bullseye) -->
-            <circle cx="200" cy="60" r="48" stroke="#EF4444" stroke-width="1" opacity="0.2"/>
-            <circle cx="200" cy="60" r="36" stroke="#EF4444" stroke-width="1" opacity="0.25"/>
-            <circle cx="200" cy="60" r="24" stroke="#EF4444" stroke-width="1.5" opacity="0.35"/>
-            <circle cx="200" cy="60" r="12" stroke="#EF4444" stroke-width="1.5" opacity="0.5" fill="#EF4444" fill-opacity="0.1"/>
-            <circle cx="200" cy="60" r="4" fill="#EF4444" opacity="0.6"/>
-            <!-- Sweet spot label -->
-            <text x="218" y="58" fill="#EF4444" font-size="9" font-family="sans-serif" font-weight="600" opacity="0.5">2x-5x</text>
-            <!-- Crosshair lines -->
-            <line x1="200" y1="8" x2="200" y2="22" stroke="#EF4444" stroke-width="1" opacity="0.2"/>
-            <line x1="200" y1="98" x2="200" y2="112" stroke="#EF4444" stroke-width="1" opacity="0.2"/>
-            <line x1="148" y1="60" x2="162" y2="60" stroke="#EF4444" stroke-width="1" opacity="0.2"/>
-            <line x1="238" y1="60" x2="252" y2="60" stroke="#EF4444" stroke-width="1" opacity="0.2"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a0505, #EF4444 40%, #991b1b)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">SWEET SPOT</div>
         </div>
         <span class="edu-card-cat cat-risk">Risk Management</span>
         <h3><a href="leverage-sweet-spot.html">The Leverage Sweet Spot: Why 2x-5x Outperforms Everything Else</a></h3>
@@ -1086,26 +544,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="leverage-sweet-spot.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 31. recovery-after-drawdown — Line chart recovering upward -->
+      <!-- 31. recovery-after-drawdown -->
       <article class="edu-card" data-cat="risk" data-title="how to recover after a trading drawdown without revenge trading">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="rm5" x1="0" y1="120" x2="400" y2="0"><stop offset="0%" stop-color="#EF4444" stop-opacity="0.05"/><stop offset="100%" stop-color="#EF4444" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#rm5)"/>
-            <!-- Line chart: decline then recovery -->
-            <polyline points="60,30 100,32 130,35 160,50 180,75 200,85 220,78 250,60 280,45 310,35 340,28 360,22" stroke="#EF4444" stroke-width="2" opacity="0.6" fill="none"/>
-            <!-- Bottom point highlighted -->
-            <circle cx="200" cy="85" r="4" fill="#EF4444" opacity="0.4"/>
-            <!-- Recovery arrow -->
-            <path d="M210 82 Q260 60 340 28" stroke="#EF4444" stroke-width="1" stroke-dasharray="4 3" opacity="0.3" fill="none"/>
-            <polygon points="338,25 342,28 336,30" fill="#EF4444" opacity="0.3"/>
-            <!-- Baseline -->
-            <line x1="60" y1="100" x2="360" y2="100" stroke="#EF4444" stroke-width="1" opacity="0.1"/>
-            <!-- Recovery zone highlight -->
-            <rect x="200" y="15" width="160" height="90" rx="4" fill="#EF4444" fill-opacity="0.02"/>
-            <text x="260" y="98" fill="#EF4444" font-size="8" font-family="sans-serif" opacity="0.3">RECOVERY</text>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a0505, #EF4444 40%, #991b1b)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">RECOVERY</div>
         </div>
         <span class="edu-card-cat cat-risk">Risk Management</span>
         <h3><a href="recovery-after-drawdown.html">How to Recover After a Trading Drawdown Without Revenge Trading</a></h3>
@@ -1113,26 +556,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="recovery-after-drawdown.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 32. daily-loss-limit — Stop sign / red line on chart -->
+      <!-- 32. daily-loss-limit -->
       <article class="edu-card" data-cat="risk" data-title="setting a daily loss limit the rule that saves trading careers">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="rm6" x1="200" y1="0" x2="200" y2="120"><stop offset="0%" stop-color="#EF4444" stop-opacity="0.06"/><stop offset="100%" stop-color="#EF4444" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#rm6)"/>
-            <!-- Chart line declining -->
-            <polyline points="80,30 120,35 160,40 200,50 240,60 280,72 310,82" stroke="#EF4444" stroke-width="1.5" opacity="0.5" fill="none"/>
-            <!-- Red limit line -->
-            <line x1="70" y1="85" x2="350" y2="85" stroke="#EF4444" stroke-width="2" opacity="0.6"/>
-            <text x="355" y="88" fill="#EF4444" font-size="8" font-family="sans-serif" font-weight="600" opacity="0.5">LIMIT</text>
-            <!-- Stop octagon -->
-            <polygon points="200,42 210,35 220,35 227,42 227,52 220,59 210,59 200,52" stroke="#EF4444" stroke-width="1.5" opacity="0.5" fill="#EF4444" fill-opacity="0.08"/>
-            <text x="205" y="51" fill="#EF4444" font-size="8" font-family="sans-serif" font-weight="700" opacity="0.5">STOP</text>
-            <!-- Area below limit -->
-            <rect x="70" y="85" width="280" height="25" fill="#EF4444" fill-opacity="0.04"/>
-            <!-- Warning text -->
-            <text x="150" y="100" fill="#EF4444" font-size="7" font-family="sans-serif" opacity="0.2">DAILY LOSS ZONE</text>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a0505, #EF4444 40%, #991b1b)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">STOP LOSS</div>
         </div>
         <span class="edu-card-cat cat-risk">Risk Management</span>
         <h3><a href="daily-loss-limit.html">Setting a Daily Loss Limit: The Rule That Saves Trading Careers</a></h3>
@@ -1140,34 +568,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">7 min read</span><a href="daily-loss-limit.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 33. overnight-positions-risk — Moon and chart -->
+      <!-- 33. overnight-positions-risk -->
       <article class="edu-card" data-cat="risk" data-title="overnight positions risk management for funded traders">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="rm7" x1="0" y1="0" x2="400" y2="120"><stop offset="0%" stop-color="#EF4444" stop-opacity="0.04"/><stop offset="100%" stop-color="#EF4444" stop-opacity="0.06"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#rm7)"/>
-            <!-- Moon crescent -->
-            <circle cx="120" cy="45" r="25" stroke="#EF4444" stroke-width="1.5" opacity="0.4"/>
-            <circle cx="132" cy="40" r="22" fill="#1a1a1a"/>
-            <!-- Stars -->
-            <circle cx="80" cy="25" r="1.5" fill="#EF4444" opacity="0.3"/>
-            <circle cx="95" cy="70" r="1" fill="#EF4444" opacity="0.2"/>
-            <circle cx="155" cy="20" r="1.5" fill="#EF4444" opacity="0.25"/>
-            <circle cx="170" cy="50" r="1" fill="#EF4444" opacity="0.2"/>
-            <!-- Chart with gap -->
-            <polyline points="200,60 230,55 260,50" stroke="#EF4444" stroke-width="1.5" opacity="0.5" fill="none"/>
-            <!-- Gap (vertical jump) -->
-            <line x1="260" y1="50" x2="260" y2="50" stroke="#EF4444" stroke-width="0"/>
-            <line x1="275" y1="75" x2="275" y2="75" stroke="#EF4444" stroke-width="0"/>
-            <polyline points="275,75 300,72 330,68 355,65" stroke="#EF4444" stroke-width="1.5" opacity="0.5" fill="none"/>
-            <!-- Gap arrow -->
-            <line x1="260" y1="50" x2="275" y2="75" stroke="#EF4444" stroke-width="1" stroke-dasharray="3 2" opacity="0.4"/>
-            <text x="265" y="66" fill="#EF4444" font-size="8" font-family="sans-serif" opacity="0.4">GAP</text>
-            <!-- Dots at gap edges -->
-            <circle cx="260" cy="50" r="2.5" fill="#EF4444" opacity="0.4"/>
-            <circle cx="275" cy="75" r="2.5" fill="#EF4444" opacity="0.4"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a0505, #EF4444 40%, #991b1b)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">OVERNIGHT</div>
         </div>
         <span class="edu-card-cat cat-risk">Risk Management</span>
         <h3><a href="overnight-positions-risk.html">Overnight Positions: Risk Management for Funded Traders</a></h3>
@@ -1175,25 +580,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="overnight-positions-risk.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 34. trading-psychology-losses — Brain with pulse line -->
+      <!-- 34. trading-psychology-losses -->
       <article class="edu-card" data-cat="risk" data-title="trading psychology how to handle losses like a professional">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="rm8" x1="200" y1="120" x2="200" y2="0"><stop offset="0%" stop-color="#EF4444" stop-opacity="0.05"/><stop offset="100%" stop-color="#EF4444" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#rm8)"/>
-            <!-- Brain outline (simplified) -->
-            <path d="M170 70 Q150 70 145 55 Q140 40 155 32 Q160 25 175 25 Q185 18 200 22 Q215 18 225 25 Q240 25 245 32 Q260 40 255 55 Q250 70 230 70" stroke="#EF4444" stroke-width="1.5" opacity="0.5" fill="none"/>
-            <!-- Brain center line -->
-            <path d="M200 25 Q198 40 200 55 Q202 65 200 70" stroke="#EF4444" stroke-width="1" opacity="0.3"/>
-            <!-- Brain wrinkles -->
-            <path d="M165 45 Q175 42 185 48" stroke="#EF4444" stroke-width="1" opacity="0.2"/>
-            <path d="M215 45 Q225 42 235 48" stroke="#EF4444" stroke-width="1" opacity="0.2"/>
-            <!-- Pulse line through brain -->
-            <polyline points="80,60 120,60 140,60 155,60 170,45 180,70 190,35 200,65 210,55 230,60 260,60 300,60 340,60" stroke="#EF4444" stroke-width="1.5" opacity="0.6" fill="none"/>
-            <!-- Base -->
-            <path d="M185 70 L185 82 Q185 90 200 90 Q215 90 215 82 L215 70" stroke="#EF4444" stroke-width="1" opacity="0.3"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a0505, #EF4444 40%, #991b1b)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">PSYCHOLOGY</div>
         </div>
         <span class="edu-card-cat cat-risk">Risk Management</span>
         <h3><a href="trading-psychology-losses.html">Trading Psychology: How to Handle Losses Like a Professional</a></h3>
@@ -1201,30 +592,13 @@
         <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="trading-psychology-losses.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- ═══ PERFORMANCE & STRATEGY (35-43) ═══ -->
+      <!-- ═══ PERFORMANCE (35-37) ═══ -->
 
-      <!-- 35. profit-factor-explained — Scale balancing profits vs losses -->
+      <!-- 35. profit-factor-explained -->
       <article class="edu-card" data-cat="performance" data-title="profit factor explained the metric that reveals your true edge">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pe1" x1="0" y1="60" x2="400" y2="60"><stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.05"/><stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.03"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pe1)"/>
-            <!-- Scale post -->
-            <line x1="200" y1="100" x2="200" y2="30" stroke="#8B5CF6" stroke-width="1.5" opacity="0.4"/>
-            <polygon points="195,30 200,22 205,30" fill="#8B5CF6" opacity="0.4"/>
-            <rect x="188" y="96" width="24" height="8" rx="3" fill="#8B5CF6" fill-opacity="0.1"/>
-            <!-- Beam tilted (profits heavier) -->
-            <line x1="110" y1="48" x2="290" y2="38" stroke="#8B5CF6" stroke-width="2" opacity="0.5"/>
-            <!-- Left pan (profits - heavier/lower) -->
-            <path d="M90 48 L110 48 L130 48" stroke="#8B5CF6" stroke-width="1.5" opacity="0.5"/>
-            <path d="M90 48 L100 72 L120 72 L130 48" stroke="#8B5CF6" stroke-width="1" opacity="0.4" fill="#8B5CF6" fill-opacity="0.08"/>
-            <text x="100" y="66" fill="#8B5CF6" font-size="7" font-family="sans-serif" font-weight="600" opacity="0.4">WIN</text>
-            <!-- Right pan (losses - lighter/higher) -->
-            <path d="M270 38 L290 38 L310 38" stroke="#8B5CF6" stroke-width="1.5" opacity="0.4"/>
-            <path d="M270 38 L278 55 L302 55 L310 38" stroke="#8B5CF6" stroke-width="1" opacity="0.3" fill="#8B5CF6" fill-opacity="0.05"/>
-            <text x="281" y="50" fill="#8B5CF6" font-size="7" font-family="sans-serif" font-weight="600" opacity="0.3">LOSS</text>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a0a2e, #8B5CF6 40%, #5b21b6)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">PF > 1.5</div>
         </div>
         <span class="edu-card-cat cat-performance">Performance</span>
         <h3><a href="profit-factor-explained.html">Profit Factor Explained: The Metric That Reveals Your True Edge</a></h3>
@@ -1232,23 +606,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="profit-factor-explained.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 36. sharpe-ratio-traders — Smooth vs jagged line comparison -->
+      <!-- 36. sharpe-ratio-traders -->
       <article class="edu-card" data-cat="performance" data-title="sharpe ratio for traders what it means and why it matters">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pe2" x1="200" y1="0" x2="200" y2="120"><stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.05"/><stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pe2)"/>
-            <!-- Smooth line (high Sharpe) -->
-            <polyline points="60,70 100,62 140,55 180,48 220,42 260,36 300,30 340,25" stroke="#8B5CF6" stroke-width="2" opacity="0.7" fill="none"/>
-            <text x="345" y="28" fill="#8B5CF6" font-size="8" font-family="sans-serif" opacity="0.5">HIGH</text>
-            <!-- Jagged line (low Sharpe) -->
-            <polyline points="60,85 85,70 100,90 120,65 140,88 165,72 180,92 200,68 220,85 245,75 260,90 280,70 300,88 320,72 340,82" stroke="#8B5CF6" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.35" fill="none"/>
-            <text x="345" y="85" fill="#8B5CF6" font-size="8" font-family="sans-serif" opacity="0.3">LOW</text>
-            <!-- Axis -->
-            <line x1="55" y1="100" x2="350" y2="100" stroke="#8B5CF6" stroke-width="1" opacity="0.1"/>
-            <line x1="55" y1="100" x2="55" y2="15" stroke="#8B5CF6" stroke-width="1" opacity="0.1"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a0a2e, #8B5CF6 40%, #5b21b6)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">SHARPE</div>
         </div>
         <span class="edu-card-cat cat-performance">Performance</span>
         <h3><a href="sharpe-ratio-traders.html">Sharpe Ratio for Traders: What It Means and Why It Matters</a></h3>
@@ -1256,26 +618,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="sharpe-ratio-traders.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 37. win-rate-vs-risk-reward — Percentage gauge -->
+      <!-- 37. win-rate-vs-risk-reward -->
       <article class="edu-card" data-cat="performance" data-title="win rate vs risk to reward finding your optimal balance">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="pe3" x1="0" y1="120" x2="400" y2="0"><stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.05"/><stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#pe3)"/>
-            <!-- Semi-circular gauge -->
-            <path d="M120 90 A80 80 0 0 1 280 90" stroke="#8B5CF6" stroke-width="3" opacity="0.15"/>
-            <!-- Filled portion (~60%) -->
-            <path d="M120 90 A80 80 0 0 1 224 22" stroke="#8B5CF6" stroke-width="3" opacity="0.6"/>
-            <!-- Percentage text -->
-            <text x="175" y="75" fill="#8B5CF6" font-size="20" font-family="sans-serif" font-weight="700" opacity="0.5">60%</text>
-            <text x="172" y="90" fill="#8B5CF6" font-size="9" font-family="sans-serif" opacity="0.3">WIN RATE</text>
-            <!-- R:R indicator -->
-            <text x="300" y="50" fill="#8B5CF6" font-size="12" font-family="sans-serif" font-weight="600" opacity="0.4">1:2</text>
-            <text x="296" y="62" fill="#8B5CF6" font-size="8" font-family="sans-serif" opacity="0.25">R:R</text>
-            <!-- Connection -->
-            <line x1="240" y1="55" x2="290" y2="50" stroke="#8B5CF6" stroke-width="1" stroke-dasharray="3 3" opacity="0.2"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #1a0a2e, #8B5CF6 40%, #5b21b6)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">WIN RATE</div>
         </div>
         <span class="edu-card-cat cat-performance">Performance</span>
         <h3><a href="win-rate-vs-risk-reward.html">Win Rate vs Risk-to-Reward: Finding Your Optimal Balance</a></h3>
@@ -1283,32 +630,13 @@
         <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="win-rate-vs-risk-reward.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 38. consistency-in-trading — Flat stable line chart -->
+      <!-- ═══ STRATEGY (38-43) ═══ -->
+
+      <!-- 38. consistency-in-trading -->
       <article class="edu-card" data-cat="strategy" data-title="consistency in trading why boring traders make the most money">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="st1" x1="0" y1="60" x2="400" y2="60"><stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.04"/><stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.06"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#st1)"/>
-            <!-- Very stable ascending line -->
-            <polyline points="60,72 90,70 120,68 150,66 180,65 210,63 240,61 270,59 300,57 330,55 360,53" stroke="#8B5CF6" stroke-width="2" opacity="0.6" fill="none"/>
-            <!-- Stability band -->
-            <polygon points="60,68 90,66 120,64 150,62 180,61 210,59 240,57 270,55 300,53 330,51 360,49 360,57 330,59 300,61 270,63 240,65 210,67 180,69 150,70 120,72 90,74 60,76" fill="#8B5CF6" fill-opacity="0.06"/>
-            <!-- Horizontal dashes for consistency -->
-            <line x1="60" y1="40" x2="360" y2="40" stroke="#8B5CF6" stroke-width="0.5" stroke-dasharray="6 4" opacity="0.12"/>
-            <line x1="60" y1="90" x2="360" y2="90" stroke="#8B5CF6" stroke-width="0.5" stroke-dasharray="6 4" opacity="0.12"/>
-            <!-- Equal-sized daily bars -->
-            <rect x="80" y="78" width="8" height="12" rx="1" fill="#8B5CF6" fill-opacity="0.15"/>
-            <rect x="100" y="77" width="8" height="13" rx="1" fill="#8B5CF6" fill-opacity="0.15"/>
-            <rect x="120" y="76" width="8" height="14" rx="1" fill="#8B5CF6" fill-opacity="0.15"/>
-            <rect x="140" y="76" width="8" height="14" rx="1" fill="#8B5CF6" fill-opacity="0.15"/>
-            <rect x="160" y="75" width="8" height="15" rx="1" fill="#8B5CF6" fill-opacity="0.15"/>
-            <rect x="180" y="75" width="8" height="15" rx="1" fill="#8B5CF6" fill-opacity="0.15"/>
-            <rect x="200" y="74" width="8" height="14" rx="1" fill="#8B5CF6" fill-opacity="0.15"/>
-            <rect x="220" y="74" width="8" height="14" rx="1" fill="#8B5CF6" fill-opacity="0.15"/>
-            <rect x="240" y="73" width="8" height="15" rx="1" fill="#8B5CF6" fill-opacity="0.15"/>
-            <rect x="260" y="73" width="8" height="14" rx="1" fill="#8B5CF6" fill-opacity="0.15"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #0e7490)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">CONSISTENCY</div>
         </div>
         <span class="edu-card-cat cat-strategy">Strategy</span>
         <h3><a href="consistency-in-trading.html">Consistency in Trading: Why Boring Traders Make the Most Money</a></h3>
@@ -1316,31 +644,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="consistency-in-trading.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 39. scalping-vs-swing-trading — Fast vs slow clock -->
+      <!-- 39. scalping-vs-swing-trading -->
       <article class="edu-card" data-cat="strategy" data-title="scalping vs swing trading which style fits your personality">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="st2" x1="200" y1="0" x2="200" y2="120"><stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.05"/><stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#st2)"/>
-            <!-- Fast clock (scalping) -->
-            <circle cx="130" cy="60" r="35" stroke="#8B5CF6" stroke-width="1.5" opacity="0.5"/>
-            <line x1="130" y1="60" x2="130" y2="35" stroke="#8B5CF6" stroke-width="2" opacity="0.6"/>
-            <line x1="130" y1="60" x2="150" y2="52" stroke="#8B5CF6" stroke-width="1.5" opacity="0.5"/>
-            <circle cx="130" cy="60" r="3" fill="#8B5CF6" opacity="0.4"/>
-            <!-- Speed lines around fast clock -->
-            <path d="M100 30 Q95 25 92 28" stroke="#8B5CF6" stroke-width="1" opacity="0.3"/>
-            <path d="M160 30 Q165 25 168 28" stroke="#8B5CF6" stroke-width="1" opacity="0.3"/>
-            <text x="112" y="108" fill="#8B5CF6" font-size="9" font-family="sans-serif" font-weight="600" opacity="0.4">FAST</text>
-            <!-- Slow clock (swing) -->
-            <circle cx="270" cy="60" r="35" stroke="#8B5CF6" stroke-width="1.5" opacity="0.35"/>
-            <line x1="270" y1="60" x2="270" y2="35" stroke="#8B5CF6" stroke-width="2" opacity="0.4"/>
-            <line x1="270" y1="60" x2="255" y2="70" stroke="#8B5CF6" stroke-width="1.5" opacity="0.35"/>
-            <circle cx="270" cy="60" r="3" fill="#8B5CF6" opacity="0.3"/>
-            <text x="252" y="108" fill="#8B5CF6" font-size="9" font-family="sans-serif" font-weight="600" opacity="0.3">SLOW</text>
-            <!-- VS -->
-            <text x="192" y="64" fill="#8B5CF6" font-size="10" font-family="sans-serif" font-weight="700" opacity="0.3">VS</text>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #0e7490)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">SCALP vs SWING</div>
         </div>
         <span class="edu-card-cat cat-strategy">Strategy</span>
         <h3><a href="scalping-vs-swing-trading.html">Scalping vs Swing Trading: Which Style Fits Your Personality?</a></h3>
@@ -1348,28 +656,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="scalping-vs-swing-trading.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 40. algorithmic-trading-prop-firms — Code brackets with chart -->
+      <!-- 40. algorithmic-trading-prop-firms -->
       <article class="edu-card" data-cat="strategy" data-title="algorithmic trading with prop firms rules tips and best practices">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="st3" x1="0" y1="0" x2="400" y2="120"><stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.05"/><stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.03"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#st3)"/>
-            <!-- Code bracket left -->
-            <path d="M110 25 L90 25 Q80 25 80 35 L80 52 Q80 60 70 60 Q80 60 80 68 L80 85 Q80 95 90 95 L110 95" stroke="#8B5CF6" stroke-width="2" opacity="0.5" fill="none"/>
-            <!-- Code bracket right -->
-            <path d="M190 25 L210 25 Q220 25 220 35 L220 52 Q220 60 230 60 Q220 60 220 68 L220 85 Q220 95 210 95 L190 95" stroke="#8B5CF6" stroke-width="2" opacity="0.5" fill="none"/>
-            <!-- Code lines inside -->
-            <line x1="105" y1="42" x2="145" y2="42" stroke="#8B5CF6" stroke-width="1.5" opacity="0.3"/>
-            <line x1="115" y1="55" x2="170" y2="55" stroke="#8B5CF6" stroke-width="1.5" opacity="0.25"/>
-            <line x1="115" y1="68" x2="155" y2="68" stroke="#8B5CF6" stroke-width="1.5" opacity="0.3"/>
-            <line x1="105" y1="81" x2="165" y2="81" stroke="#8B5CF6" stroke-width="1.5" opacity="0.2"/>
-            <!-- Mini chart output -->
-            <polyline points="260,80 280,72 295,75 310,55 330,50 350,35" stroke="#8B5CF6" stroke-width="2" opacity="0.5" fill="none"/>
-            <!-- Arrow from code to chart -->
-            <line x1="235" y1="60" x2="255" y2="60" stroke="#8B5CF6" stroke-width="1.5" opacity="0.3"/>
-            <polygon points="253,57 259,60 253,63" fill="#8B5CF6" opacity="0.3"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #0e7490)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">ALGO</div>
         </div>
         <span class="edu-card-cat cat-strategy">Strategy</span>
         <h3><a href="algorithmic-trading-prop-firms.html">Algorithmic Trading with Prop Firms: Rules, Tips, and Best Practices</a></h3>
@@ -1377,31 +668,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="algorithmic-trading-prop-firms.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 41. news-trading-strategy — Newspaper with chart spike -->
+      <!-- 41. news-trading-strategy -->
       <article class="edu-card" data-cat="strategy" data-title="news trading strategy how to trade high impact events safely">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="st4" x1="200" y1="120" x2="200" y2="0"><stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.05"/><stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#st4)"/>
-            <!-- Newspaper -->
-            <rect x="80" y="20" width="100" height="80" rx="4" stroke="#8B5CF6" stroke-width="1.5" opacity="0.4" fill="#8B5CF6" fill-opacity="0.04"/>
-            <!-- Headline -->
-            <line x1="92" y1="35" x2="168" y2="35" stroke="#8B5CF6" stroke-width="2" opacity="0.3"/>
-            <!-- Text lines -->
-            <line x1="92" y1="48" x2="165" y2="48" stroke="#8B5CF6" stroke-width="1" opacity="0.15"/>
-            <line x1="92" y1="56" x2="160" y2="56" stroke="#8B5CF6" stroke-width="1" opacity="0.15"/>
-            <line x1="92" y1="64" x2="155" y2="64" stroke="#8B5CF6" stroke-width="1" opacity="0.15"/>
-            <line x1="92" y1="72" x2="165" y2="72" stroke="#8B5CF6" stroke-width="1" opacity="0.12"/>
-            <line x1="92" y1="80" x2="150" y2="80" stroke="#8B5CF6" stroke-width="1" opacity="0.12"/>
-            <!-- Chart with spike -->
-            <polyline points="220,70 245,68 265,65 275,65 280,20 285,55 295,62 320,60 345,58 365,55" stroke="#8B5CF6" stroke-width="2" opacity="0.6" fill="none"/>
-            <!-- Spike highlight -->
-            <circle cx="280" cy="20" r="3" fill="#8B5CF6" opacity="0.5"/>
-            <text x="270" y="15" fill="#8B5CF6" font-size="7" font-family="sans-serif" opacity="0.4">NEWS</text>
-            <!-- Arrow connecting newspaper to spike -->
-            <path d="M185 50 Q200 40 220 60" stroke="#8B5CF6" stroke-width="1" stroke-dasharray="3 3" opacity="0.25" fill="none"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #0e7490)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">NEWS</div>
         </div>
         <span class="edu-card-cat cat-strategy">Strategy</span>
         <h3><a href="news-trading-strategy.html">News Trading Strategy: How to Trade High-Impact Events Safely</a></h3>
@@ -1409,33 +680,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="news-trading-strategy.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 42. trading-journal-guide — Open book with pen -->
+      <!-- 42. trading-journal-guide -->
       <article class="edu-card" data-cat="strategy" data-title="trading journal guide track your way to funded status">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="st5" x1="0" y1="120" x2="400" y2="0"><stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.04"/><stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.06"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#st5)"/>
-            <!-- Open book left page -->
-            <path d="M200 15 L120 20 Q100 22 100 30 L100 95 Q100 100 120 98 L200 92" stroke="#8B5CF6" stroke-width="1.5" opacity="0.4" fill="#8B5CF6" fill-opacity="0.03"/>
-            <!-- Open book right page -->
-            <path d="M200 15 L280 20 Q300 22 300 30 L300 95 Q300 100 280 98 L200 92" stroke="#8B5CF6" stroke-width="1.5" opacity="0.4" fill="#8B5CF6" fill-opacity="0.03"/>
-            <!-- Spine -->
-            <line x1="200" y1="15" x2="200" y2="92" stroke="#8B5CF6" stroke-width="1" opacity="0.3"/>
-            <!-- Left page lines -->
-            <line x1="115" y1="38" x2="185" y2="35" stroke="#8B5CF6" stroke-width="1" opacity="0.15"/>
-            <line x1="115" y1="50" x2="185" y2="47" stroke="#8B5CF6" stroke-width="1" opacity="0.15"/>
-            <line x1="115" y1="62" x2="185" y2="59" stroke="#8B5CF6" stroke-width="1" opacity="0.12"/>
-            <line x1="115" y1="74" x2="180" y2="71" stroke="#8B5CF6" stroke-width="1" opacity="0.12"/>
-            <!-- Right page lines -->
-            <line x1="215" y1="35" x2="285" y2="38" stroke="#8B5CF6" stroke-width="1" opacity="0.15"/>
-            <line x1="215" y1="47" x2="285" y2="50" stroke="#8B5CF6" stroke-width="1" opacity="0.15"/>
-            <line x1="215" y1="59" x2="285" y2="62" stroke="#8B5CF6" stroke-width="1" opacity="0.12"/>
-            <!-- Pen -->
-            <line x1="310" y1="90" x2="340" y2="20" stroke="#8B5CF6" stroke-width="2" opacity="0.5"/>
-            <polygon points="340,20 337,28 343,28" fill="#8B5CF6" opacity="0.4"/>
-            <line x1="308" y1="92" x2="315" y2="92" stroke="#8B5CF6" stroke-width="1.5" opacity="0.3"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #0e7490)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">JOURNAL</div>
         </div>
         <span class="edu-card-cat cat-strategy">Strategy</span>
         <h3><a href="trading-journal-guide.html">Trading Journal Guide: Track Your Way to Funded Status</a></h3>
@@ -1443,27 +692,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="trading-journal-guide.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 43. crypto-prop-trading — Bitcoin symbol with chart -->
+      <!-- 43. crypto-prop-trading -->
       <article class="edu-card" data-cat="strategy" data-title="crypto prop trading in 2026 btc and eth on funded accounts">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="st6" x1="200" y1="0" x2="200" y2="120"><stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.06"/><stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#st6)"/>
-            <!-- Bitcoin circle -->
-            <circle cx="140" cy="60" r="35" stroke="#8B5CF6" stroke-width="1.5" opacity="0.4"/>
-            <!-- B symbol -->
-            <text x="126" y="70" fill="#8B5CF6" font-size="30" font-family="serif" font-weight="700" opacity="0.4">B</text>
-            <line x1="134" y1="30" x2="134" y2="25" stroke="#8B5CF6" stroke-width="2" opacity="0.3"/>
-            <line x1="146" y1="30" x2="146" y2="25" stroke="#8B5CF6" stroke-width="2" opacity="0.3"/>
-            <line x1="134" y1="90" x2="134" y2="95" stroke="#8B5CF6" stroke-width="2" opacity="0.3"/>
-            <line x1="146" y1="90" x2="146" y2="95" stroke="#8B5CF6" stroke-width="2" opacity="0.3"/>
-            <!-- Volatile chart -->
-            <polyline points="210,70 225,60 240,68 255,40 270,55 285,30 300,45 320,25 340,35 360,20" stroke="#8B5CF6" stroke-width="2" opacity="0.5" fill="none"/>
-            <circle cx="360" cy="20" r="2.5" fill="#8B5CF6" opacity="0.5"/>
-            <!-- Connection -->
-            <line x1="178" y1="55" x2="205" y2="65" stroke="#8B5CF6" stroke-width="1" stroke-dasharray="3 3" opacity="0.2"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #0e7490)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">BTC ETH</div>
         </div>
         <span class="edu-card-cat cat-strategy">Strategy</span>
         <h3><a href="crypto-prop-trading.html">Crypto Prop Trading in 2026: BTC and ETH on Funded Accounts</a></h3>
@@ -1473,26 +706,11 @@
 
       <!-- ═══ ADVANCED & BUSINESS (44-50) ═══ -->
 
-      <!-- 44. scaling-funded-account — Expanding squares / growth -->
+      <!-- 44. scaling-funded-account -->
       <article class="edu-card" data-cat="advanced" data-title="scaling your funded account from 1m to unlimited capital">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ad1" x1="0" y1="120" x2="400" y2="0"><stop offset="0%" stop-color="#06B6D4" stop-opacity="0.06"/><stop offset="100%" stop-color="#06B6D4" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ad1)"/>
-            <!-- Expanding squares -->
-            <rect x="185" y="45" width="30" height="30" rx="3" stroke="#06B6D4" stroke-width="1.5" opacity="0.6" fill="#06B6D4" fill-opacity="0.12"/>
-            <rect x="165" y="30" width="70" height="60" rx="5" stroke="#06B6D4" stroke-width="1.5" opacity="0.4" fill="none"/>
-            <rect x="140" y="15" width="120" height="90" rx="7" stroke="#06B6D4" stroke-width="1.5" opacity="0.25" fill="none"/>
-            <rect x="110" y="5" width="180" height="110" rx="9" stroke="#06B6D4" stroke-width="1" opacity="0.15" fill="none"/>
-            <!-- Growth arrows pointing outward -->
-            <line x1="295" y1="60" x2="320" y2="60" stroke="#06B6D4" stroke-width="1.5" opacity="0.4"/>
-            <polygon points="318,57 324,60 318,63" fill="#06B6D4" opacity="0.4"/>
-            <line x1="200" y1="5" x2="200" y2="-5" stroke="#06B6D4" stroke-width="1.5" opacity="0.3"/>
-            <polygon points="197,-3 200,-8 203,-3" fill="#06B6D4" opacity="0.3"/>
-            <!-- Scale labels -->
-            <text x="330" y="63" fill="#06B6D4" font-size="8" font-family="sans-serif" opacity="0.35">SCALE</text>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #155e75)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">SCALING</div>
         </div>
         <span class="edu-card-cat cat-advanced">Advanced</span>
         <h3><a href="scaling-funded-account.html">Scaling Your Funded Account: From $1M to Unlimited Capital</a></h3>
@@ -1500,32 +718,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="scaling-funded-account.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 45. prop-firm-taxes — Calculator with percentage -->
+      <!-- 45. prop-firm-taxes -->
       <article class="edu-card" data-cat="advanced" data-title="prop firm taxes how funded traders handle tax obligations in 2026">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ad2" x1="200" y1="0" x2="200" y2="120"><stop offset="0%" stop-color="#06B6D4" stop-opacity="0.05"/><stop offset="100%" stop-color="#06B6D4" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ad2)"/>
-            <!-- Calculator body -->
-            <rect x="145" y="12" width="110" height="96" rx="8" stroke="#06B6D4" stroke-width="1.5" opacity="0.5" fill="#06B6D4" fill-opacity="0.04"/>
-            <!-- Display -->
-            <rect x="155" y="22" width="90" height="25" rx="3" fill="#06B6D4" fill-opacity="0.08" stroke="#06B6D4" stroke-width="1" opacity="0.3"/>
-            <text x="205" y="40" fill="#06B6D4" font-size="14" font-family="monospace" font-weight="600" opacity="0.5" text-anchor="middle">30%</text>
-            <!-- Button grid -->
-            <rect x="158" y="55" width="18" height="14" rx="2" stroke="#06B6D4" stroke-width="1" opacity="0.2"/>
-            <rect x="181" y="55" width="18" height="14" rx="2" stroke="#06B6D4" stroke-width="1" opacity="0.2"/>
-            <rect x="204" y="55" width="18" height="14" rx="2" stroke="#06B6D4" stroke-width="1" opacity="0.2"/>
-            <rect x="227" y="55" width="18" height="14" rx="2" stroke="#06B6D4" stroke-width="1" opacity="0.25"/>
-            <rect x="158" y="74" width="18" height="14" rx="2" stroke="#06B6D4" stroke-width="1" opacity="0.2"/>
-            <rect x="181" y="74" width="18" height="14" rx="2" stroke="#06B6D4" stroke-width="1" opacity="0.2"/>
-            <rect x="204" y="74" width="18" height="14" rx="2" stroke="#06B6D4" stroke-width="1" opacity="0.2"/>
-            <rect x="227" y="74" width="18" height="14" rx="2" stroke="#06B6D4" stroke-width="1" opacity="0.25"/>
-            <rect x="158" y="93" width="41" height="10" rx="2" stroke="#06B6D4" stroke-width="1" opacity="0.2"/>
-            <rect x="204" y="93" width="41" height="10" rx="2" stroke="#06B6D4" stroke-width="1" opacity="0.25" fill="#06B6D4" fill-opacity="0.08"/>
-            <!-- Percentage symbol outside -->
-            <text x="290" y="55" fill="#06B6D4" font-size="28" font-family="sans-serif" font-weight="300" opacity="0.2">%</text>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #155e75)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">TAXES</div>
         </div>
         <span class="edu-card-cat cat-advanced">Advanced</span>
         <h3><a href="prop-firm-taxes.html">Prop Firm Taxes: How Funded Traders Handle Tax Obligations in 2026</a></h3>
@@ -1533,25 +730,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">9 min read</span><a href="prop-firm-taxes.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 46. trading-as-career — Briefcase with uptrend -->
+      <!-- 46. trading-as-career -->
       <article class="edu-card" data-cat="advanced" data-title="trading as a career can you actually make a living from prop firms">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ad3" x1="0" y1="120" x2="400" y2="0"><stop offset="0%" stop-color="#06B6D4" stop-opacity="0.05"/><stop offset="100%" stop-color="#06B6D4" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ad3)"/>
-            <!-- Briefcase -->
-            <rect x="110" y="40" width="80" height="55" rx="6" stroke="#06B6D4" stroke-width="1.5" opacity="0.5" fill="#06B6D4" fill-opacity="0.05"/>
-            <!-- Handle -->
-            <path d="M135 40 L135 30 Q135 24 142 24 L158 24 Q165 24 165 30 L165 40" stroke="#06B6D4" stroke-width="1.5" opacity="0.4" fill="none"/>
-            <!-- Clasp -->
-            <rect x="142" y="62" width="16" height="8" rx="2" fill="#06B6D4" fill-opacity="0.15" stroke="#06B6D4" stroke-width="1" opacity="0.3"/>
-            <!-- Uptrend line -->
-            <polyline points="220,85 250,72 270,76 300,55 330,40 355,25" stroke="#06B6D4" stroke-width="2" opacity="0.5" fill="none"/>
-            <polygon points="353,22 358,25 351,27" fill="#06B6D4" opacity="0.5"/>
-            <!-- Area -->
-            <polygon points="220,85 250,72 270,76 300,55 330,40 355,25 355,95 220,95" fill="#06B6D4" fill-opacity="0.04"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #155e75)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">CAREER</div>
         </div>
         <span class="edu-card-cat cat-advanced">Advanced</span>
         <h3><a href="trading-as-career.html">Trading as a Career: Can You Actually Make a Living From Prop Firms?</a></h3>
@@ -1559,28 +742,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">11 min read</span><a href="trading-as-career.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 47. liquidity-pool-explained — Pool/water drops merging -->
+      <!-- 47. liquidity-pool-explained -->
       <article class="edu-card" data-cat="advanced" data-title="liquidity pool model how transparent prop firms allocate capital">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ad4" x1="200" y1="0" x2="200" y2="120"><stop offset="0%" stop-color="#06B6D4" stop-opacity="0.06"/><stop offset="100%" stop-color="#06B6D4" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ad4)"/>
-            <!-- Pool (ellipse at bottom) -->
-            <ellipse cx="200" cy="85" rx="90" ry="20" stroke="#06B6D4" stroke-width="1.5" opacity="0.4" fill="#06B6D4" fill-opacity="0.08"/>
-            <!-- Water ripples -->
-            <ellipse cx="200" cy="85" rx="60" ry="12" stroke="#06B6D4" stroke-width="1" opacity="0.2"/>
-            <ellipse cx="200" cy="85" rx="30" ry="6" stroke="#06B6D4" stroke-width="1" opacity="0.15"/>
-            <!-- Drops merging into pool -->
-            <path d="M140 20 Q140 10 145 15 Q150 20 140 20 Z" fill="#06B6D4" fill-opacity="0.3" stroke="#06B6D4" stroke-width="1" opacity="0.5"/>
-            <line x1="140" y1="22" x2="160" y2="65" stroke="#06B6D4" stroke-width="1" stroke-dasharray="3 3" opacity="0.25"/>
-            <path d="M200 12 Q200 2 205 7 Q210 12 200 12 Z" fill="#06B6D4" fill-opacity="0.35" stroke="#06B6D4" stroke-width="1" opacity="0.5"/>
-            <line x1="200" y1="14" x2="200" y2="65" stroke="#06B6D4" stroke-width="1" stroke-dasharray="3 3" opacity="0.25"/>
-            <path d="M260 18 Q260 8 265 13 Q270 18 260 18 Z" fill="#06B6D4" fill-opacity="0.3" stroke="#06B6D4" stroke-width="1" opacity="0.5"/>
-            <line x1="260" y1="20" x2="240" y2="65" stroke="#06B6D4" stroke-width="1" stroke-dasharray="3 3" opacity="0.25"/>
-            <!-- Pool label -->
-            <text x="178" y="90" fill="#06B6D4" font-size="9" font-family="sans-serif" font-weight="600" opacity="0.35">POOL</text>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #155e75)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">POOL</div>
         </div>
         <span class="edu-card-cat cat-advanced">Advanced</span>
         <h3><a href="liquidity-pool-explained.html">Liquidity Pool Model: How Transparent Prop Firms Allocate Capital</a></h3>
@@ -1588,38 +754,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">10 min read</span><a href="liquidity-pool-explained.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 48. referral-income-trading — Network/connected nodes -->
+      <!-- 48. referral-income-trading -->
       <article class="edu-card" data-cat="advanced" data-title="building passive income through trading referral programs">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ad5" x1="0" y1="0" x2="400" y2="120"><stop offset="0%" stop-color="#06B6D4" stop-opacity="0.05"/><stop offset="100%" stop-color="#06B6D4" stop-opacity="0.03"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ad5)"/>
-            <!-- Central node -->
-            <circle cx="200" cy="60" r="12" stroke="#06B6D4" stroke-width="2" opacity="0.6" fill="#06B6D4" fill-opacity="0.12"/>
-            <!-- Connected nodes -->
-            <circle cx="120" cy="35" r="8" stroke="#06B6D4" stroke-width="1.5" opacity="0.4" fill="#06B6D4" fill-opacity="0.08"/>
-            <circle cx="130" cy="90" r="8" stroke="#06B6D4" stroke-width="1.5" opacity="0.4" fill="#06B6D4" fill-opacity="0.08"/>
-            <circle cx="280" cy="30" r="8" stroke="#06B6D4" stroke-width="1.5" opacity="0.4" fill="#06B6D4" fill-opacity="0.08"/>
-            <circle cx="270" cy="85" r="8" stroke="#06B6D4" stroke-width="1.5" opacity="0.4" fill="#06B6D4" fill-opacity="0.08"/>
-            <!-- Second level nodes -->
-            <circle cx="70" cy="20" r="5" stroke="#06B6D4" stroke-width="1" opacity="0.25" fill="#06B6D4" fill-opacity="0.05"/>
-            <circle cx="80" cy="60" r="5" stroke="#06B6D4" stroke-width="1" opacity="0.25" fill="#06B6D4" fill-opacity="0.05"/>
-            <circle cx="330" cy="15" r="5" stroke="#06B6D4" stroke-width="1" opacity="0.25" fill="#06B6D4" fill-opacity="0.05"/>
-            <circle cx="320" cy="60" r="5" stroke="#06B6D4" stroke-width="1" opacity="0.25" fill="#06B6D4" fill-opacity="0.05"/>
-            <circle cx="330" cy="100" r="5" stroke="#06B6D4" stroke-width="1" opacity="0.25" fill="#06B6D4" fill-opacity="0.05"/>
-            <!-- Connection lines -->
-            <line x1="190" y1="52" x2="128" y2="38" stroke="#06B6D4" stroke-width="1" opacity="0.3"/>
-            <line x1="192" y1="68" x2="136" y2="86" stroke="#06B6D4" stroke-width="1" opacity="0.3"/>
-            <line x1="210" y1="52" x2="273" y2="33" stroke="#06B6D4" stroke-width="1" opacity="0.3"/>
-            <line x1="208" y1="68" x2="264" y2="81" stroke="#06B6D4" stroke-width="1" opacity="0.3"/>
-            <!-- Second level lines -->
-            <line x1="114" y1="30" x2="75" y2="23" stroke="#06B6D4" stroke-width="0.75" opacity="0.15"/>
-            <line x1="115" y1="40" x2="84" y2="57" stroke="#06B6D4" stroke-width="0.75" opacity="0.15"/>
-            <line x1="286" y1="26" x2="326" y2="18" stroke="#06B6D4" stroke-width="0.75" opacity="0.15"/>
-            <line x1="276" y1="36" x2="316" y2="57" stroke="#06B6D4" stroke-width="0.75" opacity="0.15"/>
-            <line x1="276" y1="90" x2="326" y2="97" stroke="#06B6D4" stroke-width="0.75" opacity="0.15"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #155e75)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">REFERRAL</div>
         </div>
         <span class="edu-card-cat cat-advanced">Advanced</span>
         <h3><a href="referral-income-trading.html">Building Passive Income Through Trading Referral Programs</a></h3>
@@ -1627,30 +766,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">7 min read</span><a href="referral-income-trading.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 49. prop-firm-rules-decoded — Magnifying glass on document -->
+      <!-- 49. prop-firm-rules-decoded -->
       <article class="edu-card" data-cat="advanced" data-title="prop firm rules decoded whats really prohibited and why">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ad6" x1="200" y1="120" x2="200" y2="0"><stop offset="0%" stop-color="#06B6D4" stop-opacity="0.05"/><stop offset="100%" stop-color="#06B6D4" stop-opacity="0.02"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ad6)"/>
-            <!-- Document -->
-            <rect x="120" y="12" width="100" height="96" rx="5" stroke="#06B6D4" stroke-width="1.5" opacity="0.4" fill="#06B6D4" fill-opacity="0.03"/>
-            <!-- Document lines -->
-            <line x1="135" y1="30" x2="205" y2="30" stroke="#06B6D4" stroke-width="1.5" opacity="0.2"/>
-            <line x1="135" y1="42" x2="200" y2="42" stroke="#06B6D4" stroke-width="1" opacity="0.15"/>
-            <line x1="135" y1="54" x2="195" y2="54" stroke="#06B6D4" stroke-width="1" opacity="0.15"/>
-            <line x1="135" y1="66" x2="200" y2="66" stroke="#06B6D4" stroke-width="1" opacity="0.12"/>
-            <line x1="135" y1="78" x2="190" y2="78" stroke="#06B6D4" stroke-width="1" opacity="0.12"/>
-            <line x1="135" y1="90" x2="195" y2="90" stroke="#06B6D4" stroke-width="1" opacity="0.1"/>
-            <!-- Magnifying glass over document -->
-            <circle cx="260" cy="55" r="28" stroke="#06B6D4" stroke-width="2" opacity="0.5"/>
-            <line x1="280" y1="75" x2="305" y2="98" stroke="#06B6D4" stroke-width="3" opacity="0.4" stroke-linecap="round"/>
-            <!-- Highlighted text inside magnifier -->
-            <line x1="242" y1="48" x2="278" y2="48" stroke="#06B6D4" stroke-width="2" opacity="0.4"/>
-            <line x1="245" y1="56" x2="275" y2="56" stroke="#06B6D4" stroke-width="2" opacity="0.35"/>
-            <line x1="248" y1="64" x2="272" y2="64" stroke="#06B6D4" stroke-width="2" opacity="0.3"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #155e75)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">RULES</div>
         </div>
         <span class="edu-card-cat cat-advanced">Advanced</span>
         <h3><a href="prop-firm-rules-decoded.html">Prop Firm Rules Decoded: What's Really Prohibited and Why</a></h3>
@@ -1658,36 +778,11 @@
         <div class="edu-card-meta"><span class="edu-card-time">8 min read</span><a href="prop-firm-rules-decoded.html" class="edu-card-link">Read &rarr;</a></div>
       </article>
 
-      <!-- 50. future-of-prop-trading — Horizon with rising sun -->
+      <!-- 50. future-of-prop-trading -->
       <article class="edu-card" data-cat="advanced" data-title="the future of prop trading 5 trends reshaping the industry in 2026">
-        <div class="edu-card-thumb">
-          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="400" height="120" rx="8" fill="#1a1a1a"/>
-            <defs><linearGradient id="ad7" x1="200" y1="120" x2="200" y2="0"><stop offset="0%" stop-color="#06B6D4" stop-opacity="0.08"/><stop offset="100%" stop-color="#06B6D4" stop-opacity="0.01"/></linearGradient></defs>
-            <rect width="400" height="120" rx="8" fill="url(#ad7)"/>
-            <!-- Horizon line -->
-            <line x1="30" y1="75" x2="370" y2="75" stroke="#06B6D4" stroke-width="1.5" opacity="0.4"/>
-            <!-- Rising sun -->
-            <circle cx="200" cy="75" r="30" stroke="#06B6D4" stroke-width="1.5" opacity="0.4" fill="#06B6D4" fill-opacity="0.06"/>
-            <!-- Clip bottom half (mask with rect) -->
-            <rect x="30" y="76" width="340" height="50" fill="#1a1a1a"/>
-            <!-- Re-draw horizon on top -->
-            <line x1="30" y1="75" x2="370" y2="75" stroke="#06B6D4" stroke-width="1.5" opacity="0.4"/>
-            <!-- Sun rays -->
-            <line x1="200" y1="38" x2="200" y2="25" stroke="#06B6D4" stroke-width="1.5" opacity="0.3"/>
-            <line x1="170" y1="48" x2="160" y2="38" stroke="#06B6D4" stroke-width="1.5" opacity="0.25"/>
-            <line x1="230" y1="48" x2="240" y2="38" stroke="#06B6D4" stroke-width="1.5" opacity="0.25"/>
-            <line x1="155" y1="62" x2="142" y2="58" stroke="#06B6D4" stroke-width="1.5" opacity="0.2"/>
-            <line x1="245" y1="62" x2="258" y2="58" stroke="#06B6D4" stroke-width="1.5" opacity="0.2"/>
-            <!-- Ground below horizon -->
-            <line x1="50" y1="85" x2="110" y2="85" stroke="#06B6D4" stroke-width="1" opacity="0.15"/>
-            <line x1="140" y1="90" x2="200" y2="90" stroke="#06B6D4" stroke-width="1" opacity="0.1"/>
-            <line x1="250" y1="85" x2="340" y2="85" stroke="#06B6D4" stroke-width="1" opacity="0.12"/>
-            <line x1="80" y1="95" x2="160" y2="95" stroke="#06B6D4" stroke-width="0.5" opacity="0.08"/>
-            <line x1="220" y1="98" x2="320" y2="98" stroke="#06B6D4" stroke-width="0.5" opacity="0.08"/>
-            <!-- Subtle glow -->
-            <circle cx="200" cy="75" r="50" fill="#06B6D4" fill-opacity="0.02"/>
-          </svg>
+        <div class="edu-card-thumb" style="background:linear-gradient(135deg, #0a1929, #06B6D4 40%, #155e75)">
+          <div class="thumb-pattern"></div>
+          <div class="thumb-text">2026+</div>
         </div>
         <span class="edu-card-cat cat-advanced">Advanced</span>
         <h3><a href="future-of-prop-trading.html">The Future of Prop Trading: 5 Trends Reshaping the Industry in 2026</a></h3>

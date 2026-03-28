@@ -29,16 +29,30 @@
 }
 .step-connector-arrow svg{width:14px;height:14px;color:var(--teal);opacity:.6;}
 
+/* Step timeframe badge */
+.step-time{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:3px 10px;border-radius:20px;
+  font-size:11px;font-weight:600;font-family:var(--mono);
+  margin-top:10px;
+}
+
 /* Pillars */
 .pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px;}
 .pillar-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:24px;position:relative;overflow:hidden;}
 .pillar-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
 .pillar-bar{width:100%;height:6px;border-radius:3px;background:var(--card2);margin:12px 0;overflow:hidden;}
-.pillar-bar-fill{height:100%;border-radius:3px;}
+.pillar-bar-fill{height:100%;border-radius:3px;transition:width 1.2s ease;}
 .pillar-label{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);}
 .pillar-name{font-size:16px;font-weight:700;margin:6px 0 4px;}
 .pillar-coeff{font-size:11px;font-family:var(--mono);color:var(--text3);}
 .pillar-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-top:12px;}
+.pillar-metrics{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.pillar-metric-tag{
+  font-size:10px;font-family:var(--mono);font-weight:500;
+  padding:3px 8px;border-radius:4px;
+  background:var(--card2);border:1px solid var(--border);color:var(--text2);
+}
 
 /* Score formula card */
 .formula-card{
@@ -105,9 +119,95 @@
   border-radius:6px;font-size:12px;font-weight:600;font-family:var(--mono);
 }
 
+/* Timeline visual */
+.timeline-track{
+  display:flex;align-items:stretch;gap:0;margin-top:48px;position:relative;
+  overflow:hidden;
+}
+.timeline-node{
+  flex:1;text-align:center;position:relative;padding:0 8px;
+}
+.timeline-dot{
+  width:18px;height:18px;border-radius:50%;margin:0 auto 14px;
+  position:relative;z-index:2;border:3px solid;
+}
+.timeline-line{
+  position:absolute;top:9px;left:0;right:0;height:2px;z-index:1;
+}
+.timeline-line-inner{
+  height:100%;width:100%;
+}
+.timeline-day{font-size:13px;font-weight:700;margin-bottom:4px;}
+.timeline-label{font-size:11px;color:var(--text2);line-height:1.5;}
+.timeline-badge{
+  display:inline-block;margin-top:8px;padding:2px 8px;border-radius:10px;
+  font-size:10px;font-weight:600;font-family:var(--mono);
+}
+
+/* Profit split example */
+.split-example{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;
+  margin-top:32px;max-width:680px;margin-left:auto;margin-right:auto;
+}
+.split-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:24px;text-align:center;
+}
+.split-score{font-size:32px;font-weight:800;font-family:var(--mono);letter-spacing:-2px;}
+.split-detail{font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5;}
+.split-payout{
+  font-size:28px;font-weight:800;font-family:var(--mono);
+  margin-top:14px;letter-spacing:-1px;
+}
+.split-calc{font-size:11px;font-family:var(--mono);color:var(--text3);margin-top:6px;}
+
+/* Comparison table */
+.compare-table{
+  width:100%;border-collapse:collapse;margin-top:32px;
+  font-size:13px;
+}
+.compare-table th{
+  padding:14px 16px;text-align:left;font-size:11px;font-weight:700;
+  letter-spacing:.5px;text-transform:uppercase;color:var(--text3);
+  border-bottom:1px solid var(--border);
+}
+.compare-table td{
+  padding:14px 16px;border-bottom:1px solid var(--border2);
+  color:var(--text2);vertical-align:top;
+}
+.compare-table tr td:first-child{color:var(--text);font-weight:600;}
+.compare-table .ct-col{color:var(--teal);font-weight:600;}
+.compare-table .other-col{color:var(--text3);}
+.compare-check{color:var(--green);}
+.compare-x{color:var(--red);opacity:.5;}
+
+/* FAQ mini */
+.faq-mini{margin-top:32px;}
+.faq-mini-item{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  margin-bottom:12px;overflow:hidden;
+}
+.faq-mini-q{
+  padding:20px 24px;cursor:pointer;display:flex;align-items:center;
+  justify-content:space-between;gap:16px;font-size:15px;font-weight:600;
+  transition:color .2s;
+}
+.faq-mini-q:hover{color:var(--teal);}
+.faq-mini-q svg{flex-shrink:0;transition:transform .2s;}
+.faq-mini-item.open .faq-mini-q svg{transform:rotate(180deg);}
+.faq-mini-a{
+  padding:0 24px 20px;font-size:13px;color:var(--text2);line-height:1.7;
+  display:none;
+}
+.faq-mini-item.open .faq-mini-a{display:block;}
+
 @media(max-width:1024px){
   .pillars-grid{grid-template-columns:repeat(2,1fr);}
   .after-live-grid{grid-template-columns:repeat(2,1fr);}
+  .split-example{grid-template-columns:1fr;}
+  .timeline-track{flex-wrap:wrap;gap:16px;}
+  .timeline-node{flex:none;width:calc(50% - 8px);}
+  .timeline-line{display:none;}
 }
 @media(max-width:768px){
   .pillars-grid{grid-template-columns:1fr;}
@@ -115,6 +215,9 @@
   .reliability-grid{grid-template-columns:1fr;}
   .after-live-grid{grid-template-columns:1fr;}
   .formula-text{font-size:11px;}
+  .compare-table{font-size:12px;}
+  .compare-table th,.compare-table td{padding:10px 12px;}
+  .timeline-node{width:100%;}
 }
 </style>
 </head>
@@ -128,7 +231,11 @@
   <div class="container text-center">
     <div class="section-label fade-up" style="justify-content:center" data-i18n="section_how">How It Works</div>
     <h1 class="hero-title fade-up" data-i18n="hiw_hero_title">Your Path to Trading Wealth</h1>
-    <p class="section-subtitle fade-up fade-up-delay-1" style="margin-top:16px" data-i18n="hiw_hero_subtitle">Four simple steps from subscription to unlimited earning potential</p>
+    <p class="section-subtitle fade-up fade-up-delay-1" style="margin-top:16px;max-width:640px;margin-left:auto;margin-right:auto" data-i18n="hiw_hero_subtitle">Four steps. One score. Unlimited earning potential. Get funded in as fast as 30 days.</p>
+    <div class="fade-up fade-up-delay-2" style="margin-top:28px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <a href="pricing.html" class="btn btn-primary btn-lg" data-i18n="btn_start_now">Start Your Evaluation</a>
+      <a href="#journey-timeline" class="btn btn-outline btn-lg" style="border-color:var(--border2)">See the Timeline</a>
+    </div>
   </div>
 </section>
 
@@ -138,35 +245,116 @@
     <div class="steps-grid">
       <div class="step-card fade-up">
         <div class="step-num">01</div>
-        <div><h4 data-i18n="hiw_step1_title">Subscribe & Start — Incubation</h4><p data-i18n="hiw_step1_desc">Choose your plan (Standard $199/mo or Discovery $49). 50% goes to the liquidity funding pool. Get instant access to your $1M simulated account. Your Incubation phase begins immediately on Volumetrica.</p></div>
+        <div>
+          <h4 data-i18n="hiw_step1_title">Subscribe & Start — Incubation</h4>
+          <p data-i18n="hiw_step1_desc">Choose your plan (Standard $199/mo or Discovery $49). 50% goes to the liquidity funding pool. Get instant access to your $1M simulated account on Volumetrica. Your Incubation begins immediately.</p>
+          <div class="step-time" style="background:#00D4FF10;color:var(--teal);border:1px solid #00D4FF22">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="5"/><polyline points="6 3 6 6 8 7.5"/></svg>
+            5 minutes to set up
+          </div>
+        </div>
       </div>
       <div class="step-connector fade-up">
         <div class="step-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
       </div>
       <div class="step-card fade-up fade-up-delay-1">
         <div class="step-num">02</div>
-        <div><h4 data-i18n="hiw_step2_title">Trade & Build Your Score — Scoring</h4><p data-i18n="hiw_step2_desc">Your Scoring phase begins. Trade any assets, any strategy. We track 14 metrics across 4 pillars in real time. Your CLIMB Score updates continuously. Improve with actionable insights from your dashboard.</p></div>
+        <div>
+          <h4 data-i18n="hiw_step2_title">Trade & Build Your Score — Scoring</h4>
+          <p data-i18n="hiw_step2_desc">Trade any asset, any strategy, any style. Our algorithm tracks 14 metrics across 4 pillars in real time. Your CLIMB Score updates continuously. Improve with actionable insights from your dashboard.</p>
+          <div class="step-time" style="background:#F59E0B10;color:var(--amber);border:1px solid #F59E0B22">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="5"/><polyline points="6 3 6 6 8 7.5"/></svg>
+            30 days minimum — trade at your pace
+          </div>
+        </div>
       </div>
       <div class="step-connector fade-up fade-up-delay-1">
         <div class="step-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
       </div>
       <div class="step-card fade-up fade-up-delay-2">
         <div class="step-num">03</div>
-        <div><h4 data-i18n="hiw_step3_title">Scoring Validated</h4><p data-i18n="hiw_step3_desc">No fixed profit targets. Your CLIMB Score determines eligibility. Reach 85/100, maintain it for 7 consecutive trading days, complete 30 calendar days and validate KYC. Your Scoring phase is complete.</p></div>
+        <div>
+          <h4 data-i18n="hiw_step3_title">Scoring Validated</h4>
+          <p data-i18n="hiw_step3_desc">No fixed profit targets to stress about. Your CLIMB Score determines everything. Reach 85/100, hold it for 7 consecutive trading days, complete 30 calendar days and validate KYC. That's it.</p>
+          <div class="step-time" style="background:#10B98110;color:var(--green);border:1px solid #10B98122">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6l3.5 3.5L11 3"/></svg>
+            Automatic — no reviews, no waiting
+          </div>
+        </div>
       </div>
       <div class="step-connector fade-up fade-up-delay-2">
         <div class="step-connector-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>
       </div>
       <div class="step-card fade-up fade-up-delay-3">
         <div class="step-num">04</div>
-        <div><h4 data-i18n="hiw_step4_title">Get Funded & Scale — Funded</h4><p data-i18n="hiw_step4_desc">Welcome to the Funded phase. Start receiving real capital from the liquidity pool. Profit splits from 50/50 to 60/40 based on your score. Best performers get regular capital increases. No caps, no ceilings.</p></div>
+        <div>
+          <h4 data-i18n="hiw_step4_title">Get Funded & Scale — Funded</h4>
+          <p data-i18n="hiw_step4_desc">Welcome to the Funded phase. Receive real capital from the liquidity pool. Earn profit splits from 50/50 up to 60/40 in your favor. Capital increases every month. No caps, no ceilings, ever.</p>
+          <div class="step-time" style="background:#8B5CF610;color:#8B5CF6;border:1px solid #8B5CF622">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 11V1M3 4l3-3 3 3"/></svg>
+            Unlimited growth from here
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISUAL TIMELINE -->
+<section class="section" id="journey-timeline">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Your Journey</div>
+      <h2>A Typical Trader Timeline</h2>
+      <p class="section-subtitle" style="margin-top:12px">From signup to funded in as few as 30 days. Here is what the path looks like.</p>
+    </div>
+    <div class="timeline-track fade-up">
+      <!-- Connecting line -->
+      <div class="timeline-line" style="left:12.5%;right:12.5%">
+        <div class="timeline-line-inner" style="background:linear-gradient(90deg,var(--teal),var(--amber),var(--green),#8B5CF6)"></div>
+      </div>
+      <div class="timeline-node">
+        <div class="timeline-dot" style="background:var(--teal);border-color:var(--teal)"></div>
+        <div class="timeline-day" style="color:var(--teal)">Day 1</div>
+        <div class="timeline-label">Subscribe and access your $1M simulated account</div>
+        <div class="timeline-badge" style="background:#00D4FF10;color:var(--teal);border:1px solid #00D4FF22">Incubation</div>
+      </div>
+      <div class="timeline-node">
+        <div class="timeline-dot" style="background:var(--amber);border-color:var(--amber)"></div>
+        <div class="timeline-day" style="color:var(--amber)">Day 7</div>
+        <div class="timeline-label">First metrics appear. Score starts building confidence</div>
+        <div class="timeline-badge" style="background:#F59E0B10;color:var(--amber);border:1px solid #F59E0B22">Scoring</div>
+      </div>
+      <div class="timeline-node">
+        <div class="timeline-dot" style="background:var(--green);border-color:var(--green)"></div>
+        <div class="timeline-day" style="color:var(--green)">Day 30</div>
+        <div class="timeline-label">Score at 85+ for 7 days? You qualify for funding</div>
+        <div class="timeline-badge" style="background:#10B98110;color:var(--green);border:1px solid #10B98122">Validated</div>
+      </div>
+      <div class="timeline-node">
+        <div class="timeline-dot" style="background:#8B5CF6;border-color:#8B5CF6"></div>
+        <div class="timeline-day" style="color:#8B5CF6">Day 32</div>
+        <div class="timeline-label">Funded within 24-48h. Real capital, real profits</div>
+        <div class="timeline-badge" style="background:#8B5CF610;color:#8B5CF6;border:1px solid #8B5CF622">Funded</div>
+      </div>
+      <div class="timeline-node">
+        <div class="timeline-dot" style="background:var(--green);border-color:var(--green)"></div>
+        <div class="timeline-day" style="color:var(--green)">Month 3</div>
+        <div class="timeline-label">Seniority bonus kicks in. Capital allocation scaling up</div>
+        <div class="timeline-badge" style="background:#10B98110;color:var(--green);border:1px solid #10B98122">Scaling</div>
+      </div>
+    </div>
+    <div class="fade-up" style="text-align:center;margin-top:28px">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:20px;background:var(--card);border:1px solid var(--border);font-size:12px;color:var(--text2)">
+        <svg width="14" height="14" fill="none" stroke="var(--teal)" stroke-width="2"><circle cx="7" cy="7" r="6"/><path d="M7 4v3l2 1.5"/></svg>
+        Most funded traders reach this point within 30 to 45 days
       </div>
     </div>
   </div>
 </section>
 
 <!-- CLIMB SCORE PILLARS -->
-<section class="section">
+<section class="section section-alt">
   <div class="container">
     <div class="text-center fade-up">
       <div class="section-label" style="justify-content:center" data-i18n="section_climb_score">CLIMB Score</div>
@@ -178,33 +366,55 @@
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#EF4444"></div>
         <div class="pillar-label">Pillar 1</div>
         <div class="pillar-name" data-i18n="hiw_pillar1">Risk Management</div>
-        <div class="pillar-coeff" data-i18n="hiw_pillar1_coeff">coefficient ×4</div>
+        <div class="pillar-coeff" data-i18n="hiw_pillar1_coeff">coefficient x4 — highest weight</div>
         <div class="pillar-bar"><div class="pillar-bar-fill" style="width:100%;background:#EF4444"></div></div>
-        <div class="pillar-desc" data-i18n="hiw_pillar1_desc">Drawdown control, position sizing, recovery speed. How well do you protect capital?</div>
+        <div class="pillar-desc" data-i18n="hiw_pillar1_desc">How well do you protect capital? Drawdown control, position sizing, and recovery speed.</div>
+        <div class="pillar-metrics">
+          <span class="pillar-metric-tag">Drawdown</span>
+          <span class="pillar-metric-tag">Recovery</span>
+          <span class="pillar-metric-tag">Leverage</span>
+          <span class="pillar-metric-tag">Daily PnL</span>
+        </div>
       </div>
       <div class="pillar-card fade-up fade-up-delay-1">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#F59E0B"></div>
         <div class="pillar-label">Pillar 2</div>
         <div class="pillar-name" data-i18n="hiw_pillar2">Performance</div>
-        <div class="pillar-coeff" data-i18n="hiw_pillar2_coeff">coefficient ×4</div>
+        <div class="pillar-coeff" data-i18n="hiw_pillar2_coeff">coefficient x4 — highest weight</div>
         <div class="pillar-bar"><div class="pillar-bar-fill" style="width:100%;background:#F59E0B"></div></div>
-        <div class="pillar-desc" data-i18n="hiw_pillar2_desc">Profit Factor, Sharpe Ratio, Annualized Yield. Are your returns worth the risk?</div>
+        <div class="pillar-desc" data-i18n="hiw_pillar2_desc">Are your returns worth the risk? Profit Factor, Sharpe Ratio, and Annualized Yield.</div>
+        <div class="pillar-metrics">
+          <span class="pillar-metric-tag">Profit Factor</span>
+          <span class="pillar-metric-tag">Sharpe</span>
+          <span class="pillar-metric-tag">Yield</span>
+        </div>
       </div>
       <div class="pillar-card fade-up fade-up-delay-2">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#00D4FF"></div>
         <div class="pillar-label">Pillar 3</div>
         <div class="pillar-name" data-i18n="hiw_pillar3">Consistency & Style</div>
-        <div class="pillar-coeff" data-i18n="hiw_pillar3_coeff">coefficient ×3</div>
+        <div class="pillar-coeff" data-i18n="hiw_pillar3_coeff">coefficient x3</div>
         <div class="pillar-bar"><div class="pillar-bar-fill" style="width:75%;background:#00D4FF"></div></div>
-        <div class="pillar-desc" data-i18n="hiw_pillar3_desc">Win Rate, green days ratio, position sizing stability, leverage discipline.</div>
+        <div class="pillar-desc" data-i18n="hiw_pillar3_desc">Can you repeat it? Win Rate, green days ratio, and position sizing stability.</div>
+        <div class="pillar-metrics">
+          <span class="pillar-metric-tag">Win Rate</span>
+          <span class="pillar-metric-tag">Green Days</span>
+          <span class="pillar-metric-tag">Lot Stability</span>
+        </div>
       </div>
       <div class="pillar-card fade-up fade-up-delay-3">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#8B5CF6"></div>
         <div class="pillar-label">Pillar 4</div>
         <div class="pillar-name" data-i18n="hiw_pillar4">Quality Execution</div>
-        <div class="pillar-coeff" data-i18n="hiw_pillar4_coeff">multiplier ×0.90–1.10</div>
+        <div class="pillar-coeff" data-i18n="hiw_pillar4_coeff">multiplier x0.90 to 1.10</div>
         <div class="pillar-bar"><div class="pillar-bar-fill" style="width:50%;background:#8B5CF6"></div></div>
-        <div class="pillar-desc" data-i18n="hiw_pillar4_desc">Return symmetry, kurtosis, extreme day impact. Adjusts final score ±10%.</div>
+        <div class="pillar-desc" data-i18n="hiw_pillar4_desc">How clean are your trades? Return symmetry, kurtosis, extreme day impact. Adjusts final score by up to 10%.</div>
+        <div class="pillar-metrics">
+          <span class="pillar-metric-tag">Skew</span>
+          <span class="pillar-metric-tag">Kurtosis</span>
+          <span class="pillar-metric-tag">Extremes</span>
+          <span class="pillar-metric-tag">Best/Worst</span>
+        </div>
       </div>
     </div>
 
@@ -212,14 +422,14 @@
     <div class="formula-card fade-up">
       <div class="formula-label" data-i18n="hiw_formula_label">CLIMB Score Formula</div>
       <div class="formula-text">
-        Score <span class="op">=</span> <span class="op">[</span><span class="op">(</span><span style="color:#EF4444">Risk</span> <span class="op">×</span> <span class="hl">4</span> <span class="op">+</span> <span style="color:#F59E0B">Performance</span> <span class="op">×</span> <span class="hl">4</span> <span class="op">+</span> <span style="color:#00D4FF">Consistency</span> <span class="op">×</span> <span class="hl">3</span><span class="op">)</span> <span class="op">/</span> <span class="hl">11</span><span class="op">]</span> <span class="op">×</span> <span style="color:#8B5CF6">Quality Multiplier</span> <span class="op">(</span>0.90<span class="op">–</span>1.10<span class="op">)</span>
+        Score <span class="op">=</span> <span class="op">[</span><span class="op">(</span><span style="color:#EF4444">Risk</span> <span class="op">x</span> <span class="hl">4</span> <span class="op">+</span> <span style="color:#F59E0B">Performance</span> <span class="op">x</span> <span class="hl">4</span> <span class="op">+</span> <span style="color:#00D4FF">Consistency</span> <span class="op">x</span> <span class="hl">3</span><span class="op">)</span> <span class="op">/</span> <span class="hl">11</span><span class="op">]</span> <span class="op">x</span> <span style="color:#8B5CF6">Quality Multiplier</span> <span class="op">(</span>0.90<span class="op">–</span>1.10<span class="op">)</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SCORE RELIABILITY -->
-<section class="section section-alt">
+<section class="section">
   <div class="container">
     <div class="text-center fade-up">
       <div class="section-label" style="justify-content:center" data-i18n="section_score_maturity">Score Maturity</div>
@@ -258,63 +468,133 @@
   </div>
 </section>
 
-<!-- LIVE PASSAGE CRITERIA -->
-<!-- GO LIVE — COMPLETE SECTION -->
-<section class="section" id="go-live">
+<!-- GO LIVE — CRITERIA (reframed positively) -->
+<section class="section section-alt" id="go-live">
   <div class="container">
     <div class="text-center fade-up">
       <div class="section-label" style="justify-content:center" data-i18n="section_go_live">Get Funded</div>
       <h2 class="hero-title" style="font-size:clamp(28px,4vw,42px)" data-i18n="hiw_live_title">From Scoring to <span style="color:var(--teal)">Funded Trader</span></h2>
-      <p class="section-subtitle" style="margin-top:12px;max-width:560px;margin-left:auto;margin-right:auto" data-i18n="hiw_live_subtitle">Complete your Scoring phase, get funded individually and instantly. Then watch your capital grow every month.</p>
+      <p class="section-subtitle" style="margin-top:12px;max-width:600px;margin-left:auto;margin-right:auto" data-i18n="hiw_live_subtitle">Four clear conditions. No hidden surprises. Most consistent traders clear them within their first month.</p>
     </div>
 
-    <!-- 3 CRITERIA (no KYC) -->
-    <div class="live-criteria-row fade-up" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;max-width:900px;margin-left:auto;margin-right:auto">
-      <div style="background:var(--card);border:1px solid #00D4FF22;border-radius:12px;padding:28px 22px;text-align:center;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#00D4FF,transparent)"></div>
-        <div style="font-size:42px;font-weight:800;font-family:var(--mono);color:var(--teal);letter-spacing:-2px;line-height:1">85</div>
-        <div style="font-size:12px;color:var(--text3);margin-top:4px">/100</div>
-        <div style="font-size:14px;font-weight:700;color:var(--text);margin-top:14px" data-i18n="hiw_live_score">CLIMB Score</div>
-        <div style="font-size:12px;color:var(--text2);margin-top:6px;line-height:1.6" data-i18n="hiw_live_score_desc">Composite score across Risk, Performance, Consistency and Quality pillars</div>
+    <!-- 4 CRITERIA — positive framing -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px;max-width:900px;margin-left:auto;margin-right:auto" class="fade-up">
+      <div style="background:var(--card);border:1px solid #00D4FF22;border-radius:12px;padding:24px;display:flex;align-items:flex-start;gap:16px">
+        <div style="width:52px;height:52px;border-radius:12px;background:#00D4FF10;border:1px solid #00D4FF28;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <span style="font-size:24px;font-weight:800;font-family:var(--mono);color:var(--teal)">85</span>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">CLIMB Score 85+</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.6">Prove your skill across all 4 pillars. A balanced trader reaches this naturally.</div>
+        </div>
       </div>
-      <div style="background:var(--card);border:1px solid #10B98122;border-radius:12px;padding:28px 22px;text-align:center;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#10B981,transparent)"></div>
-        <div style="font-size:42px;font-weight:800;font-family:var(--mono);color:var(--green);letter-spacing:-2px;line-height:1">7</div>
-        <div style="font-size:12px;color:var(--text3);margin-top:4px" data-i18n="hiw_live_days">consecutive days</div>
-        <div style="font-size:14px;font-weight:700;color:var(--text);margin-top:14px" data-i18n="hiw_live_maintained">Score Maintained</div>
-        <div style="font-size:12px;color:var(--text2);margin-top:6px;line-height:1.6" data-i18n="hiw_live_maintained_desc">At least 1 executed trade per day for 7 days straight at 85+</div>
+      <div style="background:var(--card);border:1px solid #10B98122;border-radius:12px;padding:24px;display:flex;align-items:flex-start;gap:16px">
+        <div style="width:52px;height:52px;border-radius:12px;background:#10B98110;border:1px solid #10B98128;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <span style="font-size:24px;font-weight:800;font-family:var(--mono);color:var(--green)">7d</span>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">Hold It 7 Trading Days</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.6">Just one trade per day for a week. This proves consistency, not a lucky streak.</div>
+        </div>
       </div>
-      <div style="background:var(--card);border:1px solid #F59E0B22;border-radius:12px;padding:28px 22px;text-align:center;position:relative;overflow:hidden">
-        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#F59E0B,transparent)"></div>
-        <div style="font-size:42px;font-weight:800;font-family:var(--mono);color:var(--amber);letter-spacing:-2px;line-height:1">30</div>
-        <div style="font-size:12px;color:var(--text3);margin-top:4px" data-i18n="hiw_live_calendar">calendar days</div>
-        <div style="font-size:14px;font-weight:700;color:var(--text);margin-top:14px" data-i18n="hiw_live_track">Minimum Track Record</div>
-        <div style="font-size:12px;color:var(--text2);margin-top:6px;line-height:1.6" data-i18n="hiw_live_track_desc">Maturity period since account creation. Proves consistency, not luck</div>
+      <div style="background:var(--card);border:1px solid #F59E0B22;border-radius:12px;padding:24px;display:flex;align-items:flex-start;gap:16px">
+        <div style="width:52px;height:52px;border-radius:12px;background:#F59E0B10;border:1px solid #F59E0B28;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <span style="font-size:24px;font-weight:800;font-family:var(--mono);color:var(--amber)">30</span>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">30 Calendar Days Active</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.6">A short maturity window. Most traders are already well past this when they hit 85.</div>
+        </div>
+      </div>
+      <div style="background:var(--card);border:1px solid #8B5CF622;border-radius:12px;padding:24px;display:flex;align-items:flex-start;gap:16px">
+        <div style="width:52px;height:52px;border-radius:12px;background:#8B5CF610;border:1px solid #8B5CF628;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="24" height="24" fill="none" stroke="#8B5CF6" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px">KYC Verified</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.6">A quick identity check. Submit documents anytime during your Scoring phase.</div>
+        </div>
       </div>
     </div>
 
     <div class="fade-up" style="text-align:center;margin-top:20px">
       <div style="display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:20px;background:#10B98110;border:1px solid #10B98122;font-size:12px;color:var(--green)">
         <svg width="14" height="14" fill="none" stroke="#10B981" stroke-width="2"><path d="M2 7l4 4 6-8"/></svg>
-        <span data-i18n="hiw_live_auto">Activation is automatic, individual, and within 24–48h</span>
+        <span data-i18n="hiw_live_auto">Activation is automatic, individual, and within 24-48h</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WHAT LIVE TRADING REALLY LOOKS LIKE -->
-<section class="section section-alt">
+<!-- AFTER GOING LIVE — THE EXCITING PART -->
+<section class="section">
   <div class="container">
     <div class="text-center fade-up">
       <div class="section-label" style="justify-content:center">Your Funded Career</div>
-      <h2>What the Funded Phase Looks Like</h2>
-      <p class="section-subtitle" style="margin-top:12px">This isn't a one-time payout. It's a career that grows with you.</p>
+      <h2>Show Me the <span style="color:var(--green)">Money</span></h2>
+      <p class="section-subtitle" style="margin-top:12px">This is not a one-time payout. It is a career with real capital that grows every month.</p>
+    </div>
+
+    <!-- REAL NUMBERS: Profit split examples -->
+    <div class="split-example fade-up">
+      <div class="split-card" style="border-color:#10B98133">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--green);margin-bottom:8px">Example A</div>
+        <div class="split-score" style="color:var(--green)">90</div>
+        <div class="split-detail">CLIMB Score — Expert tier</div>
+        <div class="split-detail" style="color:var(--text3)">55% profit split in your favor</div>
+        <div style="height:1px;background:var(--border);margin:16px 0"></div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:4px">On a $10,000 profit month:</div>
+        <div class="split-payout" style="color:var(--green)">$5,500</div>
+        <div class="split-calc">$10,000 x 55% = $5,500 to you</div>
+      </div>
+      <div class="split-card" style="border-color:#8B5CF633">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#8B5CF6;margin-bottom:8px">Example B</div>
+        <div class="split-score" style="color:#8B5CF6">96</div>
+        <div class="split-detail">CLIMB Score — Elite tier</div>
+        <div class="split-detail" style="color:var(--text3)">60% profit split in your favor</div>
+        <div style="height:1px;background:var(--border);margin:16px 0"></div>
+        <div style="font-size:12px;color:var(--text2);margin-bottom:4px">On a $10,000 profit month:</div>
+        <div class="split-payout" style="color:#8B5CF6">$6,000</div>
+        <div class="split-calc">$10,000 x 60% = $6,000 to you</div>
+      </div>
+    </div>
+
+    <!-- Profit split table -->
+    <div class="fade-up" style="max-width:680px;margin:24px auto 0">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;overflow-x:auto">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--teal);margin-bottom:14px">Full Profit Split Table</div>
+        <table style="width:100%;border-collapse:collapse;font-size:13px">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border)">
+              <th style="text-align:left;padding:8px 12px;font-size:11px;color:var(--text3);font-weight:600">CLIMB Score</th>
+              <th style="text-align:center;padding:8px 12px;font-size:11px;color:var(--text3);font-weight:600">Your Share</th>
+              <th style="text-align:center;padding:8px 12px;font-size:11px;color:var(--text3);font-weight:600">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border2)">
+              <td style="padding:10px 12px;font-family:var(--mono);color:#8B5CF6;font-weight:600">95 - 100</td>
+              <td style="padding:10px 12px;text-align:center;color:var(--green);font-weight:700">60%</td>
+              <td style="padding:10px 12px;text-align:center;font-size:11px;color:#8B5CF6">Elite</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border2)">
+              <td style="padding:10px 12px;font-family:var(--mono);color:var(--green);font-weight:600">90 - 94</td>
+              <td style="padding:10px 12px;text-align:center;color:var(--green);font-weight:700">55%</td>
+              <td style="padding:10px 12px;text-align:center;font-size:11px;color:var(--green)">Expert</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 12px;font-family:var(--mono);color:var(--teal);font-weight:600">85 - 89</td>
+              <td style="padding:10px 12px;text-align:center;color:var(--green);font-weight:700">50%</td>
+              <td style="padding:10px 12px;text-align:center;font-size:11px;color:var(--teal)">Standard</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- MONTHLY GROWTH VISUAL -->
-    <div class="fade-up" style="max-width:880px;margin:48px auto 0">
-      <!-- Growth trajectory -->
-      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:32px;margin-bottom:20px;position:relative;overflow:hidden">
+    <div class="fade-up" style="max-width:880px;margin:40px auto 0">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:32px;position:relative;overflow:hidden">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#00D4FF,#10B981,#F59E0B,#8B5CF6)"></div>
         <div style="font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--teal);margin-bottom:20px">Monthly Capital Growth — Example Trajectory</div>
         <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;text-align:center">
@@ -345,8 +625,10 @@
         </div>
         <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:14px">Illustrative — Based on score maintained at 90+, pool $250K, 50 traders. Actual amounts vary.</div>
       </div>
+    </div>
 
-      <!-- 3 key benefits -->
+    <!-- 3 key benefits -->
+    <div class="fade-up" style="max-width:880px;margin:20px auto 0">
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px">
         <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 20px">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
@@ -401,14 +683,117 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- No ceiling message -->
-      <div class="fade-up" style="text-align:center;margin-top:24px">
-        <div style="display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:24px;background:#8B5CF610;border:1px solid #8B5CF622;font-size:13px;font-weight:600;color:#8B5CF6">
-          <svg width="16" height="16" fill="none" stroke="#8B5CF6" stroke-width="2"><path d="M8 14V2M4 6l4-4 4 4"/></svg>
-          No ceiling on capital. No ceiling on earnings. Ever.
-        </div>
+    <!-- No ceiling message -->
+    <div class="fade-up" style="text-align:center;margin-top:24px">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border-radius:24px;background:#8B5CF610;border:1px solid #8B5CF622;font-size:13px;font-weight:600;color:#8B5CF6">
+        <svg width="16" height="16" fill="none" stroke="#8B5CF6" stroke-width="2"><path d="M8 14V2M4 6l4-4 4 4"/></svg>
+        No ceiling on capital. No ceiling on earnings. Ever.
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- VS TRADITIONAL PROP FIRMS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Why Climber</div>
+      <h2>Climber Trade vs. Traditional Prop Firms</h2>
+      <p class="section-subtitle" style="margin-top:12px">We built the model we wish existed when we were traders.</p>
+    </div>
+    <div class="fade-up" style="max-width:800px;margin:0 auto;overflow-x:auto">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th style="width:36%">Feature</th>
+            <th style="width:32%" class="ct-col">Climber Trade</th>
+            <th style="width:32%">Traditional Firms</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Evaluation method</td>
+            <td class="ct-col">14-metric CLIMB Score</td>
+            <td class="other-col">Fixed profit target (e.g. 8%)</td>
+          </tr>
+          <tr>
+            <td>Time pressure</td>
+            <td class="ct-col"><span class="compare-check">None</span> — take your time</td>
+            <td class="other-col">30-60 day hard deadline</td>
+          </tr>
+          <tr>
+            <td>Funding model</td>
+            <td class="ct-col">Real liquidity pool (public)</td>
+            <td class="other-col">Often simulated accounts</td>
+          </tr>
+          <tr>
+            <td>Profit split</td>
+            <td class="ct-col">50% to 60% (score-based)</td>
+            <td class="other-col">70-90% (but conditions apply)</td>
+          </tr>
+          <tr>
+            <td>Capital scaling</td>
+            <td class="ct-col"><span class="compare-check">Automatic every month</span></td>
+            <td class="other-col">Manual request / milestones</td>
+          </tr>
+          <tr>
+            <td>Trading style</td>
+            <td class="ct-col">Any — scalping to swing</td>
+            <td class="other-col">Often restricted</td>
+          </tr>
+          <tr>
+            <td>Instruments</td>
+            <td class="ct-col">Futures, Forex, Stocks, CFD</td>
+            <td class="other-col">Usually Forex only</td>
+          </tr>
+          <tr>
+            <td>Transparency</td>
+            <td class="ct-col"><span class="compare-check">Public pool dashboard</span></td>
+            <td class="other-col">Closed-book</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ MINI -->
+<section class="section">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label" style="justify-content:center">Common Questions</div>
+      <h2>Quick Answers About the Process</h2>
+    </div>
+    <div class="faq-mini fade-up" style="max-width:720px;margin:32px auto 0">
+      <div class="faq-mini-item">
+        <div class="faq-mini-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>What if my score drops below 85 after I get funded?</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 5 8 11 14 5"/></svg>
+        </div>
+        <div class="faq-mini-a">
+          You stay funded as long as your score remains at 75 or above. Between 75 and 84, your profit split is reduced but you keep trading with real capital. If your score drops below 75 for 7 consecutive days, you return to the Scoring phase to rebuild. You can always get funded again once your score is back at 85+ for 7 trading days.</div>
+      </div>
+      <div class="faq-mini-item">
+        <div class="faq-mini-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Is there a time limit on the Scoring phase?</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 5 8 11 14 5"/></svg>
+        </div>
+        <div class="faq-mini-a">
+          No. Your Standard subscription renews monthly and your Scoring phase has no deadline. The only requirement is 30 calendar days minimum and reaching 85+. Some traders get funded in their first month; others take longer to refine their approach. There is no penalty for taking your time.</div>
+      </div>
+      <div class="faq-mini-item">
+        <div class="faq-mini-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>How much capital will I actually manage when funded?</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 5 8 11 14 5"/></svg>
+        </div>
+        <div class="faq-mini-a">
+          Your allocation is a percentage of the liquidity pool, calculated from your score, the pool size, and the number of qualified traders. A score of 85 gives you 1% of the pool; 100 gives you 2%. Bonuses for seniority (up to +3%) and Elite status (up to +10%) increase your share over time. The pool dashboard is public, so you can see the numbers before you even subscribe.</div>
+      </div>
+    </div>
+    <div class="fade-up" style="text-align:center;margin-top:20px">
+      <a href="faq.html" style="font-size:13px;color:var(--teal);font-weight:600;text-decoration:underline;text-underline-offset:3px">See all frequently asked questions</a>
     </div>
   </div>
 </section>
@@ -418,8 +803,9 @@
   <div class="container fade-up">
     <h2 class="hero-title" data-i18n="hiw_cta_title">Ready to Start?</h2>
     <p style="font-size:18px;margin-top:12px" data-i18n="hiw_cta_desc">Choose your plan and begin your Incubation today.</p>
+    <div style="font-size:14px;color:var(--text2);margin-top:8px;margin-bottom:24px">Funded in as fast as 30 days. No profit targets. No time pressure.</div>
     <div class="cta-row" style="margin-top:32px">
-      <a href="pricing.html" class="btn btn-primary btn-lg" data-i18n="btn_see_pricing">See Pricing →</a>
+      <a href="pricing.html" class="btn btn-primary btn-lg" data-i18n="btn_see_pricing">See Pricing</a>
       <a href="rules.html" class="btn btn-outline btn-lg" data-i18n="btn_view_rules">Read Trading Rules</a>
     </div>
   </div>

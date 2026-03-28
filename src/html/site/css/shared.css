@@ -42,6 +42,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 
 /* ─── BASE ─── */
+html,body{overflow-x:hidden;}
 body{
   background:var(--bg);
   color:var(--text);
@@ -61,6 +62,7 @@ body{
 }
 .section{
   padding:100px 0;
+  width:100%;
 }
 .section-alt{
   background:var(--surface);
@@ -76,7 +78,7 @@ h2{font-size:clamp(28px,3.5vw,44px);font-weight:800;}
 h3{font-size:clamp(20px,2.5vw,28px);}
 h4{font-size:20px;}
 h5{font-size:16px;}
-.hero-title{font-style:italic;letter-spacing:-.03em;}
+.hero-title{font-style:italic;letter-spacing:-.03em;max-width:100%;word-wrap:break-word;overflow-wrap:break-word;}
 .section-label{
   display:inline-flex;align-items:center;gap:8px;
   font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
@@ -113,7 +115,7 @@ h5{font-size:16px;}
 }
 .nav-inner{
   display:flex;align-items:center;justify-content:space-between;
-  width:100%;max-width:var(--max-w);
+  width:100%;max-width:1400px;
   margin:0 auto;padding:0 32px;
 }
 .nav-logo{display:flex;align-items:center;gap:12px;}
@@ -127,7 +129,7 @@ h5{font-size:16px;}
   text-transform:uppercase;
 }
 .nav-logo-text span{color:var(--teal);}
-.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links{display:flex;align-items:center;gap:20px;}
 .nav-link{
   font-size:14px;font-weight:500;color:var(--text2);
   transition:color .15s;position:relative;padding:4px 0;
@@ -475,9 +477,11 @@ tr:hover td{background:var(--surface2);}
 /* ─── RESPONSIVE ─── */
 @media(max-width:1024px){
   .container{padding:0 24px;}
+  .nav-links{gap:14px;}
+  .nav-link{font-size:13px;}
+  .nav-cta{padding:8px 16px;font-size:13px;}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
   .compare-grid{grid-template-columns:1fr;}
-  .stat-cards{grid-template-columns:1fr;}
 }
 @media(max-width:768px){
   .container{padding:0 16px;}
@@ -537,7 +541,7 @@ button:focus-visible,a:focus-visible{
 }
 
 /* ─── LANGUAGE DROPDOWN ─── */
-.lang-dropdown{position:relative;margin-left:auto;margin-right:12px;}
+.lang-dropdown{position:relative;margin-left:8px;margin-right:4px;}
 .lang-current{
   display:flex;align-items:center;gap:6px;
   padding:5px 10px;border-radius:6px;border:1px solid var(--border);

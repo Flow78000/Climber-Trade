@@ -15,11 +15,11 @@
   pointer-events:none;display:block;
 }
 /* ── HERO TITLE ── */
-.hero-title{position:relative;overflow:visible;transition:opacity 0.8s ease;}
+.hero-title{position:relative;overflow:visible;transition:opacity 0.8s ease;max-width:100%;word-wrap:break-word;overflow-wrap:break-word;}
 .hero-title .teal{color:var(--teal);}
 /* ── ASH CANVAS (overlaid on hero title) ── */
 .ash-canvas{
-  position:absolute;top:0;left:0;pointer-events:none;z-index:10;
+  position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10;
 }
 .hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
 .hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
@@ -143,7 +143,7 @@
   <!-- PARTICLES — subtle floating dust -->
   <canvas class="hero-particles" id="heroParticles"></canvas>
   <div class="container" style="position:relative;z-index:2;">
-    <div id="heroTitleWrap" style="position:relative;display:inline-block;">
+    <div id="heroTitleWrap" style="position:relative;display:block;max-width:100%;">
       <h1 class="hero-title" id="heroTitle" style="opacity:1;">Your Trading Partner For Success.<br><span class="teal">Get Funded Without Limits.</span></h1>
       <canvas class="ash-canvas" id="ashCanvas"></canvas>
     </div>
