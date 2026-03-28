@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Content Strategy — Climber Trade [INTERNAL]</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* ═══════════════════════════════════════════
+   CONTENT STRATEGY — INTERNAL DOCUMENT
+   Navigation sidebar + section styles
+   ═══════════════════════════════════════════ */
+
+/* Internal doc banner */
+.internal-banner{
+  background:linear-gradient(90deg,#EF444422,#EF444408);
+  border:1px solid #EF444444;border-radius:8px;
+  padding:12px 20px;margin-bottom:32px;
+  display:flex;align-items:center;gap:12px;
+  font-size:13px;color:var(--red);font-weight:600;
+}
+.internal-banner svg{flex-shrink:0;}
+
+/* Layout: sidebar + main */
+.strategy-layout{
+  display:grid;grid-template-columns:260px 1fr;gap:40px;
+  align-items:start;
+}
+.strategy-sidebar{
+  position:sticky;top:calc(var(--nav-h) + 24px);
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:20px 0;max-height:calc(100vh - var(--nav-h) - 48px);overflow-y:auto;
+}
+.sidebar-title{
+  font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--teal);padding:0 20px 12px;border-bottom:1px solid var(--border);
+  margin-bottom:8px;
+}
+.sidebar-nav a{
+  display:block;padding:8px 20px;font-size:13px;color:var(--text2);
+  transition:all .15s;border-left:2px solid transparent;
+}
+.sidebar-nav a:hover{color:var(--text);background:var(--card2);}
+.sidebar-nav a.active{
+  color:var(--teal);border-left-color:var(--teal);background:#00D4FF06;
+}
+.sidebar-nav .sub{padding-left:36px;font-size:12px;color:var(--text3);}
+.sidebar-nav .sub:hover{color:var(--text2);}
+
+/* Main content */
+.strategy-main{min-width:0;}
+.strategy-section{margin-bottom:64px;scroll-margin-top:calc(var(--nav-h) + 24px);}
+.strategy-section h2{
+  font-size:28px;font-weight:800;margin-bottom:8px;
+  padding-bottom:16px;border-bottom:1px solid var(--border);
+}
+.strategy-section h3{font-size:20px;font-weight:700;margin:32px 0 16px;color:var(--teal);}
+.strategy-section h4{font-size:16px;font-weight:700;margin:24px 0 12px;}
+.strategy-section p{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:16px;}
+.strategy-section ul,.strategy-section ol{margin-bottom:16px;padding-left:0;}
+.strategy-section li{
+  font-size:14px;color:var(--text2);line-height:1.8;
+  padding:4px 0 4px 20px;position:relative;
+}
+.strategy-section li::before{
+  content:'';position:absolute;left:4px;top:14px;
+  width:5px;height:5px;border-radius:50%;background:var(--teal);
+}
+.strategy-section ol li{padding-left:0;}
+.strategy-section ol li::before{display:none;}
+
+/* Insight callout */
+.insight{
+  background:linear-gradient(135deg,#00D4FF06,#00D4FF02);
+  border:1px solid #00D4FF22;border-radius:var(--r2);
+  padding:20px 24px;margin:20px 0;
+}
+.insight-label{
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:8px;
+}
+.insight p{margin-bottom:0;color:var(--text);font-weight:500;}
+
+/* Warning callout */
+.warning{
+  background:linear-gradient(135deg,#F59E0B06,#F59E0B02);
+  border:1px solid #F59E0B22;border-radius:var(--r2);
+  padding:20px 24px;margin:20px 0;
+}
+.warning-label{
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--amber);margin-bottom:8px;
+}
+.warning p{margin-bottom:0;}
+
+/* Competitor cards */
+.competitor-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+.competitor-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:24px;display:grid;grid-template-columns:1fr 2fr 1fr;gap:20px;
+  align-items:center;transition:border-color .2s;
+}
+.competitor-card:hover{border-color:var(--border2);}
+.competitor-rank{
+  font-size:36px;font-weight:800;font-family:var(--mono);
+  color:var(--teal);opacity:.3;text-align:center;
+}
+.competitor-info h4{font-size:15px;font-weight:700;margin-bottom:4px;}
+.competitor-info .ci-type{font-size:12px;color:var(--teal);font-weight:600;margin-bottom:6px;}
+.competitor-info p{font-size:13px;margin-bottom:0;}
+.competitor-stats{text-align:right;}
+.competitor-stats .cs-val{font-size:18px;font-weight:800;font-family:var(--mono);}
+.competitor-stats .cs-label{font-size:11px;color:var(--text3);}
+.competitor-stats .cs-row{margin-bottom:6px;}
+
+/* Pillar cards */
+.pillar-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:28px;margin-bottom:20px;
+}
+.pillar-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.pillar-icon{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.pillar-icon svg{width:24px;height:24px;}
+.pillar-header h3{margin:0;font-size:18px;}
+.pillar-header .pillar-count{
+  font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;
+  background:var(--teal-dim);color:var(--teal);margin-left:auto;
+}
+
+/* Video idea list */
+.video-idea{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:12px 0;border-bottom:1px solid #0f0f0f;
+}
+.video-idea:last-child{border:none;}
+.video-idea-num{
+  font-size:11px;font-weight:700;font-family:var(--mono);
+  color:var(--text3);min-width:24px;padding-top:2px;
+}
+.video-idea-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px;}
+.video-idea-desc{font-size:12px;color:var(--text3);line-height:1.6;}
+.video-idea-tags{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
+.video-idea-tag{
+  font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;
+  background:var(--card2);color:var(--text3);border:1px solid var(--border);
+}
+
+/* KPI cards */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.kpi-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:20px;text-align:center;
+}
+.kpi-card .kpi-val{
+  font-size:28px;font-weight:800;font-family:var(--mono);
+  color:var(--teal);letter-spacing:-1px;
+}
+.kpi-card .kpi-label{font-size:11px;color:var(--text3);margin-top:4px;font-weight:600;}
+.kpi-card .kpi-desc{font-size:12px;color:var(--text2);margin-top:8px;line-height:1.5;}
+
+/* Calendar timeline */
+.calendar-month{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:24px;margin-bottom:16px;
+}
+.calendar-month-header{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;
+}
+.calendar-month-title{font-size:16px;font-weight:700;}
+.calendar-month-count{
+  font-size:11px;font-weight:700;padding:4px 10px;border-radius:6px;
+  font-family:var(--mono);
+}
+.calendar-week{
+  display:grid;grid-template-columns:80px 1fr;gap:12px;
+  padding:10px 0;border-bottom:1px solid #0f0f0f;
+}
+.calendar-week:last-child{border:none;}
+.calendar-week-label{font-size:12px;font-weight:700;color:var(--teal);padding-top:2px;}
+.calendar-videos{display:flex;flex-direction:column;gap:6px;}
+.calendar-video{
+  display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text2);
+}
+.calendar-video .cv-type{
+  font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;
+  min-width:50px;text-align:center;
+}
+.type-long{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}
+.type-short{background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B33;}
+
+/* Shorts list */
+.shorts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.shorts-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:16px;position:relative;overflow:hidden;
+}
+.shorts-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--amber),var(--red));
+}
+.shorts-card .sc-num{
+  font-size:10px;font-weight:700;font-family:var(--mono);
+  color:var(--text3);margin-bottom:6px;
+}
+.shorts-card .sc-title{font-size:13px;font-weight:600;line-height:1.5;}
+.shorts-card .sc-hook{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.5;}
+
+/* SEO keyword table styling */
+.seo-priority{display:inline-block;width:8px;height:8px;border-radius:50%;}
+.seo-high{background:var(--green);}
+.seo-medium{background:var(--amber);}
+.seo-low{background:var(--red);}
+
+/* Master video table */
+.master-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.master-table{min-width:900px;}
+.master-table th{white-space:nowrap;font-size:10px;}
+.master-table td{font-size:12px;padding:10px 14px;}
+.master-table .mt-title{font-weight:600;color:var(--text);min-width:280px;}
+.master-table .mt-cat{white-space:nowrap;}
+.mt-priority-high{color:var(--green);font-weight:700;}
+.mt-priority-medium{color:var(--amber);font-weight:700;}
+.mt-priority-low{color:var(--text3);font-weight:700;}
+
+/* Cross-platform flow */
+.platform-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:24px 0;}
+.platform-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:16px;text-align:center;
+}
+.platform-card h5{font-size:13px;font-weight:700;margin-bottom:6px;}
+.platform-card p{font-size:11px;color:var(--text3);line-height:1.5;margin:0;}
+.platform-arrow{
+  display:flex;align-items:center;justify-content:center;
+  color:var(--teal);font-size:16px;
+}
+
+/* Thumbnail guidelines */
+.thumb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.thumb-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:20px;
+}
+.thumb-card h5{font-size:14px;font-weight:700;margin-bottom:8px;color:var(--teal);}
+.thumb-card p{font-size:13px;color:var(--text2);line-height:1.7;margin:0;}
+.thumb-do{border-color:#10B98133;}
+.thumb-dont{border-color:#EF444433;}
+.thumb-tip{border-color:#F59E0B33;}
+
+/* Responsive */
+@media(max-width:1024px){
+  .strategy-layout{grid-template-columns:1fr;}
+  .strategy-sidebar{position:static;max-height:none;}
+  .competitor-card{grid-template-columns:auto 1fr;gap:16px;}
+  .competitor-stats{text-align:left;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .shorts-grid{grid-template-columns:repeat(2,1fr);}
+  .platform-flow{grid-template-columns:repeat(3,1fr);}
+  .thumb-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:768px){
+  .competitor-card{grid-template-columns:1fr;}
+  .competitor-rank{text-align:left;font-size:24px;}
+  .kpi-grid{grid-template-columns:1fr;}
+  .shorts-grid{grid-template-columns:1fr;}
+  .calendar-week{grid-template-columns:1fr;gap:6px;}
+  .platform-flow{grid-template-columns:1fr;}
+  .thumb-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="how-it-works.html" class="nav-link">How It Works</a><a href="pricing.html" class="nav-link">Pricing</a><a href="rules.html" class="nav-link">Rules</a><a href="faq.html" class="nav-link">FAQ</a><a href="education/index.html" class="nav-link">Education</a><a href="about.html" class="nav-link">About</a><a href="pricing.html" class="nav-cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="spacer-nav"></div>
+
+<!-- CONTENT -->
+<section class="section" style="padding-top:40px;padding-bottom:40px">
+<div class="container">
+
+<div class="internal-banner">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  INTERNAL DOCUMENT — NOT FOR PUBLIC DISTRIBUTION — Climber Trade Content Strategy Q2 2026
+</div>
+
+<div style="text-align:center;margin-bottom:48px">
+  <div class="section-label" style="justify-content:center">Content Strategy</div>
+  <h1 class="hero-title" style="font-size:clamp(28px,4vw,48px)">YouTube Content Strategy</h1>
+  <p class="section-subtitle" style="margin-top:12px">Comprehensive content plan to establish Climber Trade as the authority in prop trading education</p>
+  <div style="display:flex;gap:16px;justify-content:center;margin-top:24px;flex-wrap:wrap">
+    <span class="badge badge-teal">March 2026</span>
+    <span class="badge badge-purple">McKinsey-Level Analysis</span>
+    <span class="badge badge-green">100+ Video Ideas</span>
+  </div>
+</div>
+
+<div class="strategy-layout">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="strategy-sidebar">
+  <div class="sidebar-title">Navigation</div>
+  <nav class="sidebar-nav">
+    <a href="#executive-summary">1. Executive Summary</a>
+    <a href="#competitive-landscape">2. Competitive Landscape</a>
+    <a href="#content-pillars">3. Content Pillars</a>
+    <a href="#pillar-a" class="sub">A. CLIMB Score Education</a>
+    <a href="#pillar-b" class="sub">B. Futures Trading Mastery</a>
+    <a href="#pillar-c" class="sub">C. Prop Firm Industry</a>
+    <a href="#pillar-d" class="sub">D. Trading Psychology</a>
+    <a href="#pillar-e" class="sub">E. Platform &amp; Tools</a>
+    <a href="#pillar-f" class="sub">F. Success Stories</a>
+    <a href="#pillar-g" class="sub">G. Market Analysis</a>
+    <a href="#seo-strategy">4. SEO Strategy</a>
+    <a href="#production-calendar">5. Production Calendar</a>
+    <a href="#shorts-strategy">6. Shorts Strategy</a>
+    <a href="#thumbnail-guidelines">7. Thumbnail &amp; Branding</a>
+    <a href="#kpis">8. KPIs &amp; Metrics</a>
+    <a href="#cross-platform">9. Cross-Platform</a>
+    <a href="#master-list">10. Complete Video List</a>
+  </nav>
+</aside>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<main class="strategy-main">
+
+<!-- ═══════════════════════════════════════
+     SECTION 1: EXECUTIVE SUMMARY
+     ═══════════════════════════════════════ -->
+<div class="strategy-section" id="executive-summary">
+  <h2>1. Executive Summary</h2>
+
+  <div class="stat-cards" style="grid-template-columns:repeat(4,1fr);margin:32px 0">
+    <div class="stat-card">
+      <div class="stat-card-label">TAM on YouTube</div>
+      <div class="stat-card-value" style="font-size:24px">2.4M+</div>
+      <div class="stat-card-sub">Monthly searches for prop trading terms</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-label">Content Gap</div>
+      <div class="stat-card-value" style="font-size:24px">HIGH</div>
+      <div class="stat-card-sub">Futures-specific scoring education is virtually absent</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-label">Recommended Output</div>
+      <div class="stat-card-value" style="font-size:24px">3-4/wk</div>
+      <div class="stat-card-sub">Target: 3 long-form + 4 Shorts per week</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-label">12-Month Target</div>
+      <div class="stat-card-value" style="font-size:24px">50K</div>
+      <div class="stat-card-sub">Subscribers with 500K monthly views</div>
+    </div>
+  </div>
+
+  <h3>Market Opportunity</h3>
+  <p>The prop trading content space on YouTube is experiencing explosive growth, driven by increasing retail trader interest and the proliferation of funded trading programs. However, the landscape is dominated by forex-centric creators, leaving a significant gap in futures-specific education. Most content falls into two categories: surface-level reviews of prop firms, or generic trading education without connection to funded programs.</p>
+
+  <p>Climber Trade occupies a unique position: a futures-first prop firm with a proprietary scoring system (CLIMB Score) that is more sophisticated than any competitor. This scoring system, comprising 14 distinct metrics across 4 pillars, represents an untapped content goldmine. No other prop firm has the depth of educational material embedded in their evaluation methodology.</p>
+
+  <div class="insight">
+    <div class="insight-label">Key Insight</div>
+    <p>The intersection of "futures education" and "prop firm scoring" is essentially uncontested on YouTube. Climber Trade can own this entire category with a systematic content approach.</p>
+  </div>
+
+  <h3>Recommended Approach: Authority-First, Sales-Second</h3>
+  <p>The strategy follows a 3-phase model inspired by top fintech content channels:</p>
+  <ul>
+    <li><strong>Phase 1 (Months 1-3):</strong> Foundation. Establish credibility with deep educational content on futures trading, the CLIMB Score system, and honest industry analysis. Ratio: 80% education, 20% product.</li>
+    <li><strong>Phase 2 (Months 4-6):</strong> Authority. Launch recurring series (weekly market outlook, trader interviews, live scoring sessions). Build community engagement. Ratio: 70% education, 30% product.</li>
+    <li><strong>Phase 3 (Months 7-12):</strong> Scale. Leverage established authority for rapid growth. Collaborate with trading influencers. Optimize based on data. Ratio: 60% education, 40% product.</li>
+  </ul>
+
+  <h3>Top 5 Recommendations</h3>
+  <div class="features-grid" style="grid-template-columns:repeat(1,1fr);gap:12px;margin-top:16px">
+    <div class="feature-card" style="display:flex;gap:16px;align-items:flex-start">
+      <div class="feature-icon" style="background:#00D4FF12;border:1px solid #00D4FF22;min-width:44px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+      <div><h4 style="margin:0 0 4px">Lead with CLIMB Score content</h4><p style="margin:0;font-size:13px">No competitor has a 14-metric scoring system. Each metric is a standalone video. This is the single biggest content differentiator.</p></div>
+    </div>
+    <div class="feature-card" style="display:flex;gap:16px;align-items:flex-start">
+      <div class="feature-icon" style="background:#10B98112;border:1px solid #10B98122;min-width:44px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+      <div><h4 style="margin:0 0 4px">Focus on futures instruments (ES, NQ, CL, GC)</h4><p style="margin:0;font-size:13px">Most YouTube prop firm content is forex-centric. Futures education is under-served and has higher CPM rates due to the more affluent audience.</p></div>
+    </div>
+    <div class="feature-card" style="display:flex;gap:16px;align-items:flex-start">
+      <div class="feature-icon" style="background:#F59E0B12;border:1px solid #F59E0B22;min-width:44px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+      <div><h4 style="margin:0 0 4px">Radical transparency as a content strategy</h4><p style="margin:0;font-size:13px">Show the pool dashboard publicly, explain the math behind profit splits, do live score analyses. Transparency itself becomes viral content.</p></div>
+    </div>
+    <div class="feature-card" style="display:flex;gap:16px;align-items:flex-start">
+      <div class="feature-icon" style="background:#8B5CF612;border:1px solid #8B5CF622;min-width:44px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <div><h4 style="margin:0 0 4px">Invest in Shorts from day one</h4><p style="margin:0;font-size:13px">YouTube Shorts are the fastest subscriber acquisition channel in finance. Target 4-5 Shorts per week alongside long-form content.</p></div>
+    </div>
+    <div class="feature-card" style="display:flex;gap:16px;align-items:flex-start">
+      <div class="feature-icon" style="background:#EF444412;border:1px solid #EF444422;min-width:44px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <div><h4 style="margin:0 0 4px">Build a community-driven content engine</h4><p style="margin:0;font-size:13px">Trader interviews, leaderboard highlights, challenge recaps, and Discord integration create a flywheel of user-generated content ideas.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 2: COMPETITIVE LANDSCAPE
+     ═══════════════════════════════════════ -->
+<div class="strategy-section" id="competitive-landscape">
+  <h2>2. Competitive Landscape</h2>
+
+  <p>The following analysis covers the top 10 YouTube channels in the prop trading and funded trading niche. Data is based on publicly available metrics and content analysis through Q1 2026.</p>
+
+  <div class="competitor-grid">
+    <!-- Channel 1 -->
+    <div class="competitor-card">
+      <div class="competitor-rank">01</div>
+      <div class="competitor-info">
+        <h4>FTMO</h4>
+        <div class="ci-type">Prop Firm Official Channel</div>
+        <p>Largest prop firm channel globally. Content mix of trader interviews, educational series, and platform tutorials. Strong production quality. Primarily forex-focused with some indices content. Weakness: corporate tone limits engagement; very little futures-specific content.</p>
+      </div>
+      <div class="competitor-stats">
+        <div class="cs-row"><div class="cs-val">185K</div><div class="cs-label">Subscribers</div></div>
+        <div class="cs-row"><div class="cs-val">2-3/wk</div><div class="cs-label">Posting Frequency</div></div>
+        <div class="cs-row"><div class="cs-val">8-20 min</div><div class="cs-label">Avg. Video Length</div></div>
+      </div>
+    </div>
+    <!-- Channel 2 -->
+    <div class="competitor-card">
+      <div class="competitor-rank">02</div>
+      <div class="competitor-info">
+        <h4>The Trading Channel</h4>
+        <div class="ci-type">Independent Creator / Educator</div>
+        <p>Popular education-first channel covering prop firm challenges, strategy breakdowns, and live trades. Strong audience loyalty. Mix of forex and indices. Weakness: no proprietary scoring system to teach; relies on generic prop firm comparisons.</p>
+      </div>
+      <div class="competitor-stats">
+        <div class="cs-row"><div class="cs-val">320K</div><div class="cs-label">Subscribers</div></div>
+        <div class="cs-row"><div class="cs-val">3-4/wk</div><div class="cs-label">Posting Frequency</div></div>
+        <div class="cs-row"><div class="cs-val">12-25 min</div><div class="cs-label">Avg. Video Length</div></div>
+      </div>
+    </div>
+    <!-- Channel 3 -->
+    <div class="competitor-card">
+      <div class="competitor-rank">03</div>
+      <div class="competitor-info">
+        <h4>MyForexFunds / MFF Content</h4>
+        <div class="ci-type">Prop Firm Official (Post-restructure)</div>
+        <p>Rebuilt content strategy after regulatory challenges. Focused on trust-rebuilding content, transparency reports, and trader success stories. Exclusively forex. Weakness: legacy trust issues limit growth; no futures content at all.</p>
+      </div>
+      <div class="competitor-stats">
+        <div class="cs-row"><div class="cs-val">95K</div><div class="cs-label">Subscribers</div></div>
+        <div class="cs-row"><div class="cs-val">1-2/wk</div><div class="cs-label">Posting Frequency</div></div>
+        <div class="cs-row"><div class="cs-val">5-15 min</div><div class="cs-label">Avg. Video Length</div></div>
+      </div>
+    </div>
+    <!-- Channel 4 -->
+    <div class="competitor-card">
+      <div class="competitor-rank">04</div>
+      <div class="competitor-info">
+        <h4>TopStep</h4>
+        <div class="ci-type">Prop Firm Official — Futures-Focused</div>
+        <p>The closest competitor in terms of market positioning (futures-focused). Runs a YouTube channel with live trading, market commentary, and combine/challenge updates. Decent production quality. Weakness: limited educational depth; no scoring system content; repetitive market updates.</p>
+      </div>
+      <div class="competitor-stats">
+        <div class="cs-row"><div class="cs-val">45K</div><div class="cs-label">Subscribers</div></div>
+        <div class="cs-row"><div class="cs-val">2-3/wk</div><div class="cs-label">Posting Frequency</div></div>
+        <div class="cs-row"><div class="cs-val">15-45 min</div><div class="cs-label">Avg. Video Length</div></div>
+      </div>
+    </div>
+    <!-- Channel 5 -->
+    <div class="competitor-card">
+      <div class="competitor-rank">05</div>
+      <div class="competitor-info">
+        <h4>Funded Trading Plus</h4>
+        <div class="ci-type">Prop Firm Official</div>
+        <p>Growing channel focused on payout proofs, trader spotlights, and educational snippets. Multi-asset but forex-heavy. Weakness: low production quality compared to FTMO; generic educational content without unique IP.</p>
+      </div>
+      <div class="competitor-stats">
+        <div class="cs-row"><div class="cs-val">28K</div><div class="cs-label">Subscribers</div></div>
+        <div class="cs-row"><div class="cs-val">1-2/wk</div><div class="cs-label">Posting Frequency</div></div>
+        <div class="cs-row"><div class="cs-val">5-12 min</div><div class="cs-label">Avg. Video Length</div></div>
+      </div>
+    </div>
+    <!-- Channel 6 -->
+    <div class="competitor-card">
+      <div class="competitor-rank">06</div>
+      <div class="competitor-info">
+        <h4>The5ers</h4>
+        <div class="ci-type">Prop Firm Official</div>
+        <p>Israel-based prop firm with active YouTube presence. Focus on risk management education, webinars, and trader development. Interesting scaling model content. Weakness: heavily forex-focused; lower subscriber engagement; webinars can be lengthy and unedited.</p>
+      </div>
+      <div class="competitor-stats">
+        <div class="cs-row"><div class="cs-val">22K</div><div class="cs-label">Subscribers</div></div>
+        <div class="cs-row"><div class="cs-val">2-3/wk</div><div class="cs-label">Posting Frequency</div></div>
+        <div class="cs-row"><div class="cs-val">20-60 min</div><div class="cs-label">Avg. Video Length</div></div>
+      </div>
+    </div>
+    <!-- Channel 7 -->
+    <div class="competitor-card">
+      <div class="competitor-rank">07</div>
+      <div class="competitor-info">
+        <h4>Umar Ashraf</h4>
+        <div class="ci-type">Independent Creator / Prop Trader</div>
+        <p>High-energy lifestyle/trading mix. Popular with younger demographics. Live trade recaps, P&L reveals, and aspirational content. Primarily stocks and options. Weakness: lifestyle focus over education; not prop-firm specific; different asset class entirely.</p>
+      </div>
+      <div class="competitor-stats">
+        <div class="cs-row"><div class="cs-val">750K</div><div class="cs-label">Subscribers</div></div>
+        <div class="cs-row"><div class="cs-val">2-3/wk</div><div class="cs-label">Posting Frequency</div></div>
+        <div class="cs-row"><div class="cs-val">10-20 min</div><div class="cs-label">Avg. Video Length</div></div>
+      </div>
+    </div>
+    <!-- Channel 8 -->
+    <div class="competitor-card">
+      <div class="competitor-rank">08</div>
+      <div class="competitor-info">
+        <h4>ICT (Inner Circle Trader)</h4>
+        <div class="ci-type">Independent Educator</div>
+        <p>Massive influence in trading education. Deep technical content on smart money concepts, order flow, and market structure. Indirectly drives prop firm signups. Weakness: not a prop firm channel; very niche teaching style; extremely long content (2-4 hours).</p>
+      </div>
+      <div class="competitor-stats">
+        <div class="cs-row"><div class="cs-val">1.2M</div><div class="cs-label">Subscribers</div></div>
+        <div class="cs-row"><div class="cs-val">1-2/wk</div><div class="cs-label">Posting Frequency</div></div>
+        <div class="cs-row"><div class="cs-val">60-240 min</div><div class="cs-label">Avg. Video Length</div></div>
+      </div>
+    </div>
+    <!-- Channel 9 -->
+    <div class="competitor-card">
+      <div class="competitor-rank">09</div>
+      <div class="competitor-info">
+        <h4>Apex Trader Funding</h4>
+        <div class="ci-type">Prop Firm Official — Futures-Focused</div>
+        <p>Direct competitor in the futures prop firm space. YouTube presence focused on promotional content, discount codes, and basic challenge overviews. Weakness: very promotional; shallow educational content; relies on aggressive coupon marketing over content depth.</p>
+      </div>
+      <div class="competitor-stats">
+        <div class="cs-row"><div class="cs-val">15K</div><div class="cs-label">Subscribers</div></div>
+        <div class="cs-row"><div class="cs-val">1/wk</div><div class="cs-label">Posting Frequency</div></div>
+        <div class="cs-row"><div class="cs-val">5-10 min</div><div class="cs-label">Avg. Video Length</div></div>
+      </div>
+    </div>
+    <!-- Channel 10 -->
+    <div class="competitor-card">
+      <div class="competitor-rank">10</div>
+      <div class="competitor-info">
+        <h4>Mack (Trader Mack / Prop Trading Reviews)</h4>
+        <div class="ci-type">Independent Reviewer</div>
+        <p>Dedicated prop firm review channel. Honest breakdowns of rules, payout structures, and comparison videos. Growing rapidly due to high-intent search traffic. Weakness: review-only model limits diversification; no proprietary educational content; covers all prop firms equally.</p>
+      </div>
+      <div class="competitor-stats">
+        <div class="cs-row"><div class="cs-val">65K</div><div class="cs-label">Subscribers</div></div>
+        <div class="cs-row"><div class="cs-val">3-5/wk</div><div class="cs-label">Posting Frequency</div></div>
+        <div class="cs-row"><div class="cs-val">8-15 min</div><div class="cs-label">Avg. Video Length</div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Key Competitive Takeaways</h3>
+
+  <div class="table-wrap" style="margin-top:16px">
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Current Landscape</th><th>Climber Trade Opportunity</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="font-weight:600;color:var(--text)">Asset Class Focus</td><td>90% forex-centric</td><td>Own futures education on YouTube entirely</td></tr>
+        <tr><td style="font-weight:600;color:var(--text)">Scoring Transparency</td><td>No firm explains their evaluation metrics deeply</td><td>14-metric CLIMB Score is unmatched content depth</td></tr>
+        <tr><td style="font-weight:600;color:var(--text)">Pool Visibility</td><td>No firm shows their liquidity pool publicly</td><td>Live pool dashboard as recurring content format</td></tr>
+        <tr><td style="font-weight:600;color:var(--text)">Video Quality</td><td>Only FTMO has professional production</td><td>Match FTMO quality with superior depth</td></tr>
+        <tr><td style="font-weight:600;color:var(--text)">Shorts Adoption</td><td>Most prop firms ignore Shorts entirely</td><td>First-mover advantage in prop firm Shorts</td></tr>
+        <tr><td style="font-weight:600;color:var(--text)">Educational Depth</td><td>Surface-level; no proprietary frameworks</td><td>Each CLIMB metric = deep-dive series potential</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight">
+    <div class="insight-label">Strategic Gap Identified</div>
+    <p>No prop firm on YouTube currently teaches the mathematics and logic behind their scoring system. Climber Trade can become the "Bloomberg of prop firm education" by leading with quantitative rigor and full transparency.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 3: CONTENT PILLARS
+     ═══════════════════════════════════════ -->
+<div class="strategy-section" id="content-pillars">
+  <h2>3. Content Pillars</h2>
+  <p>Seven content pillars form the backbone of the Climber Trade YouTube strategy. Each pillar serves a distinct purpose in the content funnel, from awareness to conversion to retention.</p>
+
+  <!-- PILLAR A -->
+  <div class="pillar-card" id="pillar-a">
+    <div class="pillar-header">
+      <div class="pillar-icon" style="background:#00D4FF12;border:1px solid #00D4FF22"><svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+      <h3 style="margin:0">Pillar A: CLIMB Score &amp; Metrics Education</h3>
+      <div class="pillar-count">20 Videos</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px">The crown jewel of Climber Trade content. No competitor has this depth. Each of the 14 metrics in the CLIMB Score is a standalone educational video, plus overview and optimization content.</p>
+
+    <div class="video-idea"><div class="video-idea-num">01</div><div><div class="video-idea-title">The CLIMB Score Explained: How We Rate Every Trader</div><div class="video-idea-desc">Full overview of the 4-pillar scoring system — Risk Management, Performance, Consistency, Quality Execution. The math, the logic, the weighting.</div><div class="video-idea-tags"><span class="video-idea-tag">Cornerstone</span><span class="video-idea-tag">15-20 min</span><span class="video-idea-tag">High Priority</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">02</div><div><div class="video-idea-title">ABS_NPL: Why Your Daily P&L Is Scored Non-Linearly</div><div class="video-idea-desc">Deep dive into Absolute Net Profit/Loss scoring. Why making +1% is the sweet spot, why +5% scores lower, and the logic behind the bell curve.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">03</div><div><div class="video-idea-title">INPL: Initial Net PnL Drawdown — Never Blow Your Account</div><div class="video-idea-desc">How drawdown tracking works from your equity peak. The scoring table explained and practical strategies to minimize drawdown impact.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">04</div><div><div class="video-idea-title">R_T_AFD: Recovery Time After Drawdown — Speed Matters</div><div class="video-idea-desc">The granular recovery matrix: how drawdown % and days to recover interact. Why quick recovery is more valued than never having a drawdown.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">05</div><div><div class="video-idea-title">CT4: The Leverage Sweet Spot — Why 2x-5x Scores 100</div><div class="video-idea-desc">Average lot number scoring explained. The notional value calculation, why under-leveraging and over-leveraging both get penalized.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">06</div><div><div class="video-idea-title">Profit Factor: The Most Important Metric Nobody Understands</div><div class="video-idea-desc">PI3 deep dive. The reliability coefficient that penalizes small sample sizes. Why a PF of 2.0 means nothing with only 20 trades.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">07</div><div><div class="video-idea-title">Sharpe Ratio For Traders: The Bonus Metric That Separates Pros</div><div class="video-idea-desc">PI1 explained with trader examples. How risk-adjusted returns work and why a high Sharpe adds up to +10 bonus points.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">08</div><div><div class="video-idea-title">YIELD_Y: Annualized Performance — The 180-Day Confidence Game</div><div class="video-idea-desc">How annualized yield is calculated, why the confidence factor scales over 180 days, and what the 8% benchmark means for your score.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">09</div><div><div class="video-idea-title">Win Rate: Why 50% Doesn't Mean You're Breaking Even</div><div class="video-idea-desc">CT1 scoring with the 22-day confidence factor. The non-linear scoring curve and why 60% win rate only scores 35 points.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">10</div><div><div class="video-idea-title">GAIN_DAYS: The Simplest Metric With the Biggest Impact</div><div class="video-idea-desc">CT2 explained: percentage of winning days = your score. Why this forces daily discipline and prevents "hero day" trading.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">8-10 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">11</div><div><div class="video-idea-title">LSR: Lot Stability Ratio — Why Consistent Sizing Gets Funded</div><div class="video-idea-desc">CT5 deep dive into position sizing consistency. The standard deviation calculation and why erratic sizing destroys your score.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">12</div><div><div class="video-idea-title">Skew &amp; Kurtosis: The Stats Nobody Teaches Traders</div><div class="video-idea-desc">OF1 and OF2 combined video. Distribution shape analysis, what fat tails mean for your trading, and how to keep both metrics at 100.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">13</div><div><div class="video-idea-title">Extreme Performance Ratio: Why Your Best Day Might Hurt You</div><div class="video-idea-desc">OF3 — the ratio between your most extreme day and average performance. Why outlier days signal inconsistency to the algorithm.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">14</div><div><div class="video-idea-title">Best/Worst Day Ratio: The Symmetry Test</div><div class="video-idea-desc">OF4 explained. Why your best day should be 4x your worst day, and practical strategies to improve this ratio.</div><div class="video-idea-tags"><span class="video-idea-tag">Metric Deep-Dive</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">15</div><div><div class="video-idea-title">Quality Execution: The Multiplier That Can Make or Break Your Score</div><div class="video-idea-desc">Pillar 4 overview. How the 0.90-1.10 multiplier works with real score calculations. The math behind the +-10% impact.</div><div class="video-idea-tags"><span class="video-idea-tag">Pillar Overview</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">16</div><div><div class="video-idea-title">5 Common Mistakes That Destroy Your CLIMB Score</div><div class="video-idea-desc">Practical video: over-leveraging, inconsistent sizing, revenge trading after drawdown, ignoring gain days, extreme day outliers.</div><div class="video-idea-tags"><span class="video-idea-tag">Tips</span><span class="video-idea-tag">12-15 min</span><span class="video-idea-tag">High Search</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">17</div><div><div class="video-idea-title">From Score 60 to Score 90: A Step-by-Step Improvement Plan</div><div class="video-idea-desc">Practical roadmap showing which metrics to focus on first, estimated timelines, and the compounding effect of consistency.</div><div class="video-idea-tags"><span class="video-idea-tag">Tutorial</span><span class="video-idea-tag">15-20 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">18</div><div><div class="video-idea-title">Live CLIMB Score Analysis: Breaking Down a Real Trader's Stats</div><div class="video-idea-desc">Screen recording walkthrough of a real (anonymized) trader dashboard. Metric by metric analysis with improvement suggestions.</div><div class="video-idea-tags"><span class="video-idea-tag">Live Analysis</span><span class="video-idea-tag">20-25 min</span><span class="video-idea-tag">Recurring</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">19</div><div><div class="video-idea-title">The Reliability Factor: Why Your Score Needs Time to Mature</div><div class="video-idea-desc">30 days indicative, 30-120 fiable, 120+ certified. How confidence factors across metrics create a more accurate score over time.</div><div class="video-idea-tags"><span class="video-idea-tag">Education</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">20</div><div><div class="video-idea-title">Score 85+: What It Actually Takes to Get Funded</div><div class="video-idea-desc">The 4 cumulative criteria: Score 85+, 7 consecutive trading days, 30 calendar days, KYC. Real statistics on pass rates and common failure points.</div><div class="video-idea-tags"><span class="video-idea-tag">Conversion</span><span class="video-idea-tag">12-15 min</span><span class="video-idea-tag">High Search</span></div></div></div>
+  </div>
+
+  <!-- PILLAR B -->
+  <div class="pillar-card" id="pillar-b">
+    <div class="pillar-header">
+      <div class="pillar-icon" style="background:#10B98112;border:1px solid #10B98122"><svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+      <h3 style="margin:0">Pillar B: Futures Trading Mastery</h3>
+      <div class="pillar-count">20 Videos</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Futures-specific education is massively under-served on YouTube. This pillar targets the highest-intent traders and positions Climber Trade as the go-to futures prop firm.</p>
+
+    <div class="video-idea"><div class="video-idea-num">01</div><div><div class="video-idea-title">E-mini S&P 500 (ES): The Complete Trading Guide for Funded Traders</div><div class="video-idea-desc">Contract specs, margin requirements, best sessions to trade, key levels methodology, and how ES fits with the CLIMB Score leverage rules.</div><div class="video-idea-tags"><span class="video-idea-tag">Instrument Guide</span><span class="video-idea-tag">20-25 min</span><span class="video-idea-tag">Evergreen</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">02</div><div><div class="video-idea-title">E-mini NASDAQ (NQ): Why This Is the Trader's Favorite Futures Contract</div><div class="video-idea-desc">NQ volatility profile, tick value calculations, optimal lot sizing with a $1M account, and notional value calculations per CLIMB rules.</div><div class="video-idea-tags"><span class="video-idea-tag">Instrument Guide</span><span class="video-idea-tag">20-25 min</span><span class="video-idea-tag">High Search</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">03</div><div><div class="video-idea-title">Crude Oil Futures (CL): The Most Volatile Money-Making Instrument</div><div class="video-idea-desc">CL contract specs, NYMEX trading hours, inventory reports impact, and risk management for oil futures in a funded account.</div><div class="video-idea-tags"><span class="video-idea-tag">Instrument Guide</span><span class="video-idea-tag">18-22 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">04</div><div><div class="video-idea-title">Gold Futures (GC): How to Trade the Ultimate Safe Haven</div><div class="video-idea-desc">COMEX gold futures, correlation with DXY and yields, FOMC reaction strategies, and position sizing for funded accounts.</div><div class="video-idea-tags"><span class="video-idea-tag">Instrument Guide</span><span class="video-idea-tag">18-22 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">05</div><div><div class="video-idea-title">Reading Order Flow: The Skill That Separates Pro Futures Traders</div><div class="video-idea-desc">Footprint charts, volume profile, delta analysis, and how order flow tools on Volumetrica give you an edge.</div><div class="video-idea-tags"><span class="video-idea-tag">Advanced Strategy</span><span class="video-idea-tag">20-25 min</span><span class="video-idea-tag">High Search</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">06</div><div><div class="video-idea-title">Volume Profile: Finding High-Probability Entries on Futures</div><div class="video-idea-desc">POC, value area, volume nodes. Step-by-step setup on Volumetrica. Live chart examples on ES and NQ.</div><div class="video-idea-tags"><span class="video-idea-tag">Strategy</span><span class="video-idea-tag">18-22 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">07</div><div><div class="video-idea-title">Scalping NQ Futures: A $1M Funded Account Strategy</div><div class="video-idea-desc">Specific entry and exit rules for NQ scalping, lot sizing for the CLIMB leverage sweet spot (2x-5x), and session timing.</div><div class="video-idea-tags"><span class="video-idea-tag">Strategy</span><span class="video-idea-tag">15-20 min</span><span class="video-idea-tag">High Search</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">08</div><div><div class="video-idea-title">Scalping vs Day Trading Futures: Which Style Scores Higher?</div><div class="video-idea-desc">Comparative analysis of how scalping and day trading impact each CLIMB Score metric differently. Data-driven conclusion.</div><div class="video-idea-tags"><span class="video-idea-tag">Comparison</span><span class="video-idea-tag">15-18 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">09</div><div><div class="video-idea-title">Futures Margin Explained: What Every Funded Trader Must Know</div><div class="video-idea-desc">Initial vs maintenance margin, intraday margins, overnight exposure rules (5:1 max), and how margin interacts with the leverage metric.</div><div class="video-idea-tags"><span class="video-idea-tag">Fundamentals</span><span class="video-idea-tag">12-15 min</span><span class="video-idea-tag">Evergreen</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">10</div><div><div class="video-idea-title">The RTH vs ETH Edge: When to Trade Futures for Maximum Score</div><div class="video-idea-desc">Regular Trading Hours vs Electronic Trading Hours analysis. Liquidity, spreads, and which sessions produce the most consistent gains.</div><div class="video-idea-tags"><span class="video-idea-tag">Strategy</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">11</div><div><div class="video-idea-title">CME, NYMEX, COMEX, CBOT: Understanding Futures Exchanges</div><div class="video-idea-desc">Which exchange trades what, settlement procedures, contract rollovers, and why it matters for your funded account.</div><div class="video-idea-tags"><span class="video-idea-tag">Fundamentals</span><span class="video-idea-tag">12-15 min</span><span class="video-idea-tag">Evergreen</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">12</div><div><div class="video-idea-title">Overnight and Weekend Positions: The Hidden Risk in Funded Accounts</div><div class="video-idea-desc">Climber Trade rules for overnight (5:1 max) and weekend (1:1 max + 50k balance). Gap risk, margin calls, and score impact.</div><div class="video-idea-tags"><span class="video-idea-tag">Risk Management</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">13</div><div><div class="video-idea-title">How to Calculate Notional Value: The Formula Every Futures Trader Needs</div><div class="video-idea-desc">Point value x price = notional. How to size lots for 2x-5x leverage. Worked examples for ES, NQ, CL, and GC.</div><div class="video-idea-tags"><span class="video-idea-tag">Tutorial</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">14</div><div><div class="video-idea-title">DAX Futures (FDAX): Trading Europe's Most Active Index</div><div class="video-idea-desc">EUREX specifications, European session strategy, correlation with US indices, and DAX-specific entry patterns.</div><div class="video-idea-tags"><span class="video-idea-tag">Instrument Guide</span><span class="video-idea-tag">15-18 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">15</div><div><div class="video-idea-title">Currency Futures (6E, 6B, 6J): The Forex Alternative on CME</div><div class="video-idea-desc">Why some traders prefer currency futures over spot forex. Contract specs, trading hours, and regulatory advantages.</div><div class="video-idea-tags"><span class="video-idea-tag">Instrument Guide</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">16</div><div><div class="video-idea-title">Treasury Futures (ZN, ZB): How to Trade Interest Rates</div><div class="video-idea-desc">10-Year Note and Bond futures. FOMC impact, yield curve trades, and how treasury futures fit in a diversified funded portfolio.</div><div class="video-idea-tags"><span class="video-idea-tag">Instrument Guide</span><span class="video-idea-tag">15-18 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">17</div><div><div class="video-idea-title">Natural Gas Futures (NG): High Risk, High Reward Explained</div><div class="video-idea-desc">NG volatility characteristics, seasonal patterns, weather report impacts, and position sizing for extreme movers.</div><div class="video-idea-tags"><span class="video-idea-tag">Instrument Guide</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">18</div><div><div class="video-idea-title">Algorithmic Trading With Funded Accounts: Rules and Strategies</div><div class="video-idea-desc">Climber Trade allows algo/HFT. How to integrate automated strategies while maintaining high CLIMB Score metrics.</div><div class="video-idea-tags"><span class="video-idea-tag">Advanced</span><span class="video-idea-tag">18-22 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">19</div><div><div class="video-idea-title">Multi-Instrument Futures Portfolio: Diversification That Scores Well</div><div class="video-idea-desc">How trading multiple instruments (ES + CL + GC) impacts your Lot Stability Ratio, gain days, and overall consistency metrics.</div><div class="video-idea-tags"><span class="video-idea-tag">Advanced Strategy</span><span class="video-idea-tag">15-18 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">20</div><div><div class="video-idea-title">Hedging Strategies in Funded Accounts: A Double-Edged Sword</div><div class="video-idea-desc">When hedging helps and hurts your CLIMB Score. Proper hedging techniques versus account-splitting violations.</div><div class="video-idea-tags"><span class="video-idea-tag">Advanced Strategy</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+  </div>
+
+  <!-- PILLAR C -->
+  <div class="pillar-card" id="pillar-c">
+    <div class="pillar-header">
+      <div class="pillar-icon" style="background:#F59E0B12;border:1px solid #F59E0B22"><svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+      <h3 style="margin:0">Pillar C: Prop Firm Industry</h3>
+      <div class="pillar-count">15 Videos</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Honest, data-driven industry analysis. Position Climber Trade as the most transparent voice in the prop firm space. Avoid bashing competitors; let facts differentiate.</p>
+
+    <div class="video-idea"><div class="video-idea-num">01</div><div><div class="video-idea-title">Are Prop Firms a Scam? An Honest Deep Dive</div><div class="video-idea-desc">Address the elephant in the room. Analyze the business model, where revenue comes from, and how to distinguish real firms from bad actors.</div><div class="video-idea-tags"><span class="video-idea-tag">Myth Busting</span><span class="video-idea-tag">15-20 min</span><span class="video-idea-tag">Viral Potential</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">02</div><div><div class="video-idea-title">Profit Splits Compared: Every Major Prop Firm Analyzed</div><div class="video-idea-desc">Factual comparison of profit split structures across FTMO, TopStep, Apex, The5ers, and Climber Trade. Who actually pays the most?</div><div class="video-idea-tags"><span class="video-idea-tag">Comparison</span><span class="video-idea-tag">15-18 min</span><span class="video-idea-tag">High Search</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">03</div><div><div class="video-idea-title">What Happens When You Get Funded: Behind the Scenes</div><div class="video-idea-desc">The real process from passing evaluation to getting capital. Liquidity pool mechanics, capital allocation formula, and first payout timeline.</div><div class="video-idea-tags"><span class="video-idea-tag">Education</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">04</div><div><div class="video-idea-title">How Prop Firms Actually Make Money (The Truth)</div><div class="video-idea-desc">Business model breakdown: evaluation fees, profit splits, and how Climber Trade funds its pool (50% of subscription revenue + 50% of Climber share from profits).</div><div class="video-idea-tags"><span class="video-idea-tag">Transparency</span><span class="video-idea-tag">12-15 min</span><span class="video-idea-tag">Viral Potential</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">05</div><div><div class="video-idea-title">Tax Implications for Funded Traders (USA, UK, EU)</div><div class="video-idea-desc">Professional non-salaried income classification, RISE WORKS attestations, declaration requirements. Disclaimer: not tax advice.</div><div class="video-idea-tags"><span class="video-idea-tag">Practical</span><span class="video-idea-tag">12-15 min</span><span class="video-idea-tag">High Search</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">06</div><div><div class="video-idea-title">Climber Trade vs TopStep vs Apex: Futures Prop Firm Showdown</div><div class="video-idea-desc">Factual comparison of rules, scoring systems, capital allocation, and profit splits. No bias, just data.</div><div class="video-idea-tags"><span class="video-idea-tag">Comparison</span><span class="video-idea-tag">18-22 min</span><span class="video-idea-tag">High Search</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">07</div><div><div class="video-idea-title">The Liquidity Pool Explained: Where Your Funded Capital Comes From</div><div class="video-idea-desc">Full transparency on pool mechanics: funding sources, FC factor, %Score allocation, and the public dashboard.</div><div class="video-idea-tags"><span class="video-idea-tag">Transparency</span><span class="video-idea-tag">15-18 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">08</div><div><div class="video-idea-title">Why Most Prop Firm Traders Fail (And How to Beat the Odds)</div><div class="video-idea-desc">Data analysis on common failure patterns, the 7 key mistakes, and specific strategies to avoid them using CLIMB Score metrics.</div><div class="video-idea-tags"><span class="video-idea-tag">Education</span><span class="video-idea-tag">15-18 min</span><span class="video-idea-tag">High Search</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">09</div><div><div class="video-idea-title">The Future of Prop Trading: Regulation, AI, and What's Next</div><div class="video-idea-desc">Industry trends analysis: regulatory landscape, AI trading integration, and how the prop firm model is evolving.</div><div class="video-idea-tags"><span class="video-idea-tag">Thought Leadership</span><span class="video-idea-tag">15-20 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">10</div><div><div class="video-idea-title">Red Flags to Watch For When Choosing a Prop Firm</div><div class="video-idea-desc">Unrealistic promises, hidden rules, withdrawal delays, fake testimonials. A checklist of warning signs for aspiring funded traders.</div><div class="video-idea-tags"><span class="video-idea-tag">Consumer Protection</span><span class="video-idea-tag">12-15 min</span><span class="video-idea-tag">Viral Potential</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">11</div><div><div class="video-idea-title">Prop Firm Payouts: How and When You Actually Get Paid</div><div class="video-idea-desc">Payout mechanics: 5th and 20th cycle, daily requests with 24h notice, $500 minimum, J+3 to J+5 settlement via RISE WORKS.</div><div class="video-idea-tags"><span class="video-idea-tag">Practical</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">12</div><div><div class="video-idea-title">Scaling Your Funded Account: How Capital Grows With Performance</div><div class="video-idea-desc">Monthly automatic scaling, seniority bonus (up to 3% after 6 months), Elite pool access at score 95+. No ceiling on growth.</div><div class="video-idea-tags"><span class="video-idea-tag">Growth</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">13</div><div><div class="video-idea-title">One Account Rule: Why Prop Firms Limit You (And Why It's Fair)</div><div class="video-idea-desc">Anti-gaming measures, copy trading detection, why the 1-account-per-person rule protects the pool for everyone.</div><div class="video-idea-tags"><span class="video-idea-tag">Rules Explained</span><span class="video-idea-tag">8-10 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">14</div><div><div class="video-idea-title">Prop Trading as a Career: Realistic Income Expectations</div><div class="video-idea-desc">Mathematical analysis of what funded traders can realistically earn based on pool size, score range, and consistency.</div><div class="video-idea-tags"><span class="video-idea-tag">Career</span><span class="video-idea-tag">15-18 min</span><span class="video-idea-tag">High Search</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">15</div><div><div class="video-idea-title">The Referral and Affiliate Program: Earning Beyond Trading</div><div class="video-idea-desc">How the dual program works: -$10/month per referral (up to free), or 15% recurring + 1% on payouts for affiliates.</div><div class="video-idea-tags"><span class="video-idea-tag">Growth</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+  </div>
+
+  <!-- PILLAR D -->
+  <div class="pillar-card" id="pillar-d">
+    <div class="pillar-header">
+      <div class="pillar-icon" style="background:#8B5CF612;border:1px solid #8B5CF622"><svg viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+      <h3 style="margin:0">Pillar D: Trading Psychology &amp; Discipline</h3>
+      <div class="pillar-count">10 Videos</div>
+    </div>
+
+    <div class="video-idea"><div class="video-idea-num">01</div><div><div class="video-idea-title">The Psychology of Drawdowns: How Top Traders Recover</div><div class="video-idea-desc">Mental frameworks for handling losses. Connection to the R_T_AFD metric and why recovery speed reflects mental resilience.</div><div class="video-idea-tags"><span class="video-idea-tag">Psychology</span><span class="video-idea-tag">15-18 min</span><span class="video-idea-tag">High Search</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">02</div><div><div class="video-idea-title">Consistency Is a Skill: Training Your Trading Discipline</div><div class="video-idea-desc">How the CLIMB Score specifically rewards consistency (Gain Days, LSR, Win Rate). Practical daily routine to build the habit.</div><div class="video-idea-tags"><span class="video-idea-tag">Psychology</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">03</div><div><div class="video-idea-title">Revenge Trading: The Score Killer and How to Stop</div><div class="video-idea-desc">How revenge trading destroys ABS_NPL, increases kurtosis, and spikes your Extreme Performance Ratio. Pattern recognition and circuit breakers.</div><div class="video-idea-tags"><span class="video-idea-tag">Psychology</span><span class="video-idea-tag">12-15 min</span><span class="video-idea-tag">High Search</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">04</div><div><div class="video-idea-title">Building a Pre-Market Routine for Funded Traders</div><div class="video-idea-desc">Step-by-step morning routine: macro check, key levels prep, risk budget calculation, mental readiness assessment.</div><div class="video-idea-tags"><span class="video-idea-tag">Practical</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">05</div><div><div class="video-idea-title">Fear and Greed: The Two Emotions Destroying Your Metrics</div><div class="video-idea-desc">Fear leads to under-trading (low Gain Days). Greed leads to over-leveraging (CT4 penalty). The mathematical balance.</div><div class="video-idea-tags"><span class="video-idea-tag">Psychology</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">06</div><div><div class="video-idea-title">The 30-Day Mental Game Plan for Your Evaluation</div><div class="video-idea-desc">Week-by-week psychological framework for the first month. When to push, when to pull back, managing expectations.</div><div class="video-idea-tags"><span class="video-idea-tag">Practical</span><span class="video-idea-tag">15-18 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">07</div><div><div class="video-idea-title">Why Profitable Traders Fail Evaluations (And How to Fix It)</div><div class="video-idea-desc">The paradox of making money but scoring low. Over-performance days, inconsistent sizing, and the bell curve penalty explained.</div><div class="video-idea-tags"><span class="video-idea-tag">Education</span><span class="video-idea-tag">12-15 min</span><span class="video-idea-tag">Viral Potential</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">08</div><div><div class="video-idea-title">Trading Journal for Funded Traders: What to Track and Why</div><div class="video-idea-desc">A trading journal template aligned with CLIMB Score metrics. Daily review process that directly improves your score.</div><div class="video-idea-tags"><span class="video-idea-tag">Tutorial</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">09</div><div><div class="video-idea-title">The Imposter Syndrome of Getting Funded</div><div class="video-idea-desc">Common psychological challenges when transitioning from evaluation to live. How the score system actually helps with the transition.</div><div class="video-idea-tags"><span class="video-idea-tag">Psychology</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">10</div><div><div class="video-idea-title">The CLIMB Score as a Psychology Coach: Using Metrics as Mirrors</div><div class="video-idea-desc">How each metric reflects a psychological pattern. Low LSR = emotional sizing. Low Gain Days = fear. High Kurtosis = gambling.</div><div class="video-idea-tags"><span class="video-idea-tag">Unique Angle</span><span class="video-idea-tag">15-18 min</span></div></div></div>
+  </div>
+
+  <!-- PILLAR E -->
+  <div class="pillar-card" id="pillar-e">
+    <div class="pillar-header">
+      <div class="pillar-icon" style="background:#EF444412;border:1px solid #EF444422"><svg viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <h3 style="margin:0">Pillar E: Platform &amp; Tools</h3>
+      <div class="pillar-count">10 Videos</div>
+    </div>
+
+    <div class="video-idea"><div class="video-idea-num">01</div><div><div class="video-idea-title">Volumetrica Platform: Complete Setup Guide for Funded Traders</div><div class="video-idea-desc">End-to-end walkthrough of the Volumetrica platform. Account connection, chart setup, order entry, and workspace configuration.</div><div class="video-idea-tags"><span class="video-idea-tag">Tutorial</span><span class="video-idea-tag">20-25 min</span><span class="video-idea-tag">Evergreen</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">02</div><div><div class="video-idea-title">Setting Up Volume Profile on Volumetrica: Step-by-Step</div><div class="video-idea-desc">Detailed tutorial: adding volume profile, configuring sessions, color schemes, and interpreting the data.</div><div class="video-idea-tags"><span class="video-idea-tag">Tutorial</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">03</div><div><div class="video-idea-title">Order Types Explained: Market, Limit, Stop, and Beyond</div><div class="video-idea-desc">Every order type available on Volumetrica, when to use each, and how order type choice affects your execution quality metrics.</div><div class="video-idea-tags"><span class="video-idea-tag">Tutorial</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">04</div><div><div class="video-idea-title">Risk Management Tools: Setting Daily Loss Limits Automatically</div><div class="video-idea-desc">Platform features for automated risk controls. Daily loss alerts, position size calculators, and margin monitoring.</div><div class="video-idea-tags"><span class="video-idea-tag">Tutorial</span><span class="video-idea-tag">10-12 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">05</div><div><div class="video-idea-title">Backtesting Your Strategy Before Going Live</div><div class="video-idea-desc">How to use historical data to validate your strategy against CLIMB Score requirements before risking your evaluation.</div><div class="video-idea-tags"><span class="video-idea-tag">Tutorial</span><span class="video-idea-tag">15-18 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">06</div><div><div class="video-idea-title">The Climber Trade Dashboard: Understanding Every Metric</div><div class="video-idea-desc">Screen tour of the Trade Desk, My Stats, and Performance Lab tabs. What each number means and how to use it.</div><div class="video-idea-tags"><span class="video-idea-tag">Tutorial</span><span class="video-idea-tag">15-18 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">07</div><div><div class="video-idea-title">Customizing Your Trader Profile: Avatar, Stats, and Public Display</div><div class="video-idea-desc">How to set up your public profile, customize your avatar, and what appears on the leaderboard.</div><div class="video-idea-tags"><span class="video-idea-tag">Tutorial</span><span class="video-idea-tag">5-8 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">08</div><div><div class="video-idea-title">Footprint Charts on Volumetrica: The Ultimate Setup Guide</div><div class="video-idea-desc">Delta footprint, bid/ask imbalance, and cumulative delta. Configuration and interpretation for day trading futures.</div><div class="video-idea-tags"><span class="video-idea-tag">Advanced Tutorial</span><span class="video-idea-tag">18-22 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">09</div><div><div class="video-idea-title">Mobile Trading: Managing Your Funded Account On the Go</div><div class="video-idea-desc">Mobile setup, position monitoring, and emergency exit procedures when away from your main setup.</div><div class="video-idea-tags"><span class="video-idea-tag">Tutorial</span><span class="video-idea-tag">8-10 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">10</div><div><div class="video-idea-title">Integrating TradingView with Volumetrica: Best of Both Worlds</div><div class="video-idea-desc">Using TradingView for analysis and Volumetrica for execution. Workflow optimization for funded traders.</div><div class="video-idea-tags"><span class="video-idea-tag">Tutorial</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+  </div>
+
+  <!-- PILLAR F -->
+  <div class="pillar-card" id="pillar-f">
+    <div class="pillar-header">
+      <div class="pillar-icon" style="background:#10B98112;border:1px solid #10B98122"><svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <h3 style="margin:0">Pillar F: Success Stories &amp; Community</h3>
+      <div class="pillar-count">10 Videos</div>
+    </div>
+
+    <div class="video-idea"><div class="video-idea-num">01</div><div><div class="video-idea-title">Funded Trader Interview: How [Name] Reached Diamond Rank</div><div class="video-idea-desc">Long-form interview with a top-performing trader. Their journey, strategy, and how they optimized each CLIMB Score pillar.</div><div class="video-idea-tags"><span class="video-idea-tag">Interview</span><span class="video-idea-tag">25-35 min</span><span class="video-idea-tag">Recurring Series</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">02</div><div><div class="video-idea-title">A Day in the Life of a Funded Futures Trader</div><div class="video-idea-desc">Pre-market through post-market routine. Real trades, real P&L, real dashboard updates. Raw and authentic.</div><div class="video-idea-tags"><span class="video-idea-tag">Lifestyle</span><span class="video-idea-tag">15-20 min</span><span class="video-idea-tag">Viral Potential</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">03</div><div><div class="video-idea-title">Monthly Leaderboard Review: Who's on Top and Why</div><div class="video-idea-desc">Analysis of the top 10 leaderboard positions. What metrics they excel at, trading styles, and lessons for everyone.</div><div class="video-idea-tags"><span class="video-idea-tag">Recurring</span><span class="video-idea-tag">12-15 min</span><span class="video-idea-tag">Monthly</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">04</div><div><div class="video-idea-title">Challenge Recap: This Month's Community Challenge Results</div><div class="video-idea-desc">Highlights from the monthly community challenge. Winners, notable performances, and strategy breakdowns.</div><div class="video-idea-tags"><span class="video-idea-tag">Community</span><span class="video-idea-tag">10-15 min</span><span class="video-idea-tag">Monthly</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">05</div><div><div class="video-idea-title">From Retail to Funded: 3 Traders Share Their Journey</div><div class="video-idea-desc">Panel discussion with traders at different stages: evaluation, newly funded, and established live trader.</div><div class="video-idea-tags"><span class="video-idea-tag">Panel</span><span class="video-idea-tag">30-40 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">06</div><div><div class="video-idea-title">My First Payout: Real Reactions from Funded Traders</div><div class="video-idea-desc">Compilation of real trader reactions receiving their first payout. Emotional, authentic content that builds trust.</div><div class="video-idea-tags"><span class="video-idea-tag">Social Proof</span><span class="video-idea-tag">8-12 min</span><span class="video-idea-tag">Viral Potential</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">07</div><div><div class="video-idea-title">Discord Highlights: Best Trades and Funniest Moments This Month</div><div class="video-idea-desc">Community engagement content. Curated highlights from Discord channels, including trade ideas that played out.</div><div class="video-idea-tags"><span class="video-idea-tag">Community</span><span class="video-idea-tag">8-10 min</span><span class="video-idea-tag">Monthly</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">08</div><div><div class="video-idea-title">Trading From [Country]: Funded Traders Around the World</div><div class="video-idea-desc">Spotlight on traders from different countries. Cultural perspectives on trading, timezone strategies, and local challenges.</div><div class="video-idea-tags"><span class="video-idea-tag">International</span><span class="video-idea-tag">12-15 min</span><span class="video-idea-tag">Series</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">09</div><div><div class="video-idea-title">Score Recovery Story: How I Went from 45 to 92 in 60 Days</div><div class="video-idea-desc">A trader's documented journey of score recovery. Before and after metrics, what changed, and the turning point.</div><div class="video-idea-tags"><span class="video-idea-tag">Transformation</span><span class="video-idea-tag">15-18 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">10</div><div><div class="video-idea-title">Climber Trade Year in Review: Growth, Milestones, and What's Next</div><div class="video-idea-desc">Annual recap: pool growth, total payouts, number of funded traders, platform updates, and roadmap preview.</div><div class="video-idea-tags"><span class="video-idea-tag">Brand</span><span class="video-idea-tag">15-20 min</span><span class="video-idea-tag">Annual</span></div></div></div>
+  </div>
+
+  <!-- PILLAR G -->
+  <div class="pillar-card" id="pillar-g">
+    <div class="pillar-header">
+      <div class="pillar-icon" style="background:#00D4FF12;border:1px solid #00D4FF22"><svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+      <h3 style="margin:0">Pillar G: Market Analysis &amp; News</h3>
+      <div class="pillar-count">Ongoing</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Recurring content that drives consistent viewership. Weekly market outlook becomes the anchor that brings viewers back regularly.</p>
+
+    <div class="video-idea"><div class="video-idea-num">W</div><div><div class="video-idea-title">Weekly Futures Market Outlook</div><div class="video-idea-desc">Every Sunday/Monday: key levels for ES, NQ, CL, GC. Economic calendar highlights, technical analysis, and funded trading considerations.</div><div class="video-idea-tags"><span class="video-idea-tag">Recurring Weekly</span><span class="video-idea-tag">15-20 min</span><span class="video-idea-tag">Anchor Content</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">E</div><div><div class="video-idea-title">FOMC / NFP / CPI Reaction Analysis</div><div class="video-idea-desc">Same-day reaction video after major data releases. How the market moved, what funded traders should have done, and next steps.</div><div class="video-idea-tags"><span class="video-idea-tag">Event-Driven</span><span class="video-idea-tag">10-15 min</span><span class="video-idea-tag">Time-Sensitive</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">Q</div><div><div class="video-idea-title">Earnings Season Impact on Index Futures</div><div class="video-idea-desc">How FAANG/mega-cap earnings move NQ and ES futures. Pre-earnings positioning strategies for funded accounts.</div><div class="video-idea-tags"><span class="video-idea-tag">Quarterly</span><span class="video-idea-tag">12-15 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">M</div><div><div class="video-idea-title">Macro Trend Deep Dive</div><div class="video-idea-desc">Monthly analysis of major macro themes: rate cycle, geopolitical risks, sector rotation. How to position futures trades accordingly.</div><div class="video-idea-tags"><span class="video-idea-tag">Monthly</span><span class="video-idea-tag">18-25 min</span></div></div></div>
+    <div class="video-idea"><div class="video-idea-num">S</div><div><div class="video-idea-title">Friday Trading Week Recap</div><div class="video-idea-desc">Weekly recap every Friday: best trades of the week, market summary, and what to watch next week. Light, engaging format.</div><div class="video-idea-tags"><span class="video-idea-tag">Recurring Weekly</span><span class="video-idea-tag">8-12 min</span></div></div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 4: SEO STRATEGY
+     ═══════════════════════════════════════ -->
+<div class="strategy-section" id="seo-strategy">
+  <h2>4. SEO Strategy</h2>
+
+  <h3>Top 50 YouTube Search Keywords</h3>
+  <p>Keywords ranked by estimated monthly search volume on YouTube and competition level. Priority indicates how well the term aligns with Climber Trade content.</p>
+
+  <div class="table-wrap" style="margin-top:16px">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Keyword</th><th>Est. Monthly Searches</th><th>Competition</th><th>Priority</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td style="color:var(--text)">how to get funded</td><td>110K</td><td><span class="seo-priority seo-high"></span> High</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>2</td><td style="color:var(--text)">prop firm review</td><td>90K</td><td><span class="seo-priority seo-high"></span> High</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>3</td><td style="color:var(--text)">best prop firm 2026</td><td>74K</td><td><span class="seo-priority seo-high"></span> High</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>4</td><td style="color:var(--text)">funded trader</td><td>68K</td><td><span class="seo-priority seo-high"></span> High</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>5</td><td style="color:var(--text)">prop trading for beginners</td><td>55K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>6</td><td style="color:var(--text)">FTMO review</td><td>50K</td><td><span class="seo-priority seo-high"></span> High</td><td class="mt-priority-medium">MEDIUM</td></tr>
+        <tr><td>7</td><td style="color:var(--text)">futures trading for beginners</td><td>48K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>8</td><td style="color:var(--text)">is prop trading a scam</td><td>44K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>9</td><td style="color:var(--text)">how much can funded traders make</td><td>40K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>10</td><td style="color:var(--text)">prop firm profit split</td><td>35K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>11</td><td style="color:var(--text)">NQ futures trading</td><td>33K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>12</td><td style="color:var(--text)">ES futures strategy</td><td>30K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>13</td><td style="color:var(--text)">day trading futures</td><td>28K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>14</td><td style="color:var(--text)">scalping futures</td><td>26K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>15</td><td style="color:var(--text)">trading psychology</td><td>25K</td><td><span class="seo-priority seo-high"></span> High</td><td class="mt-priority-medium">MEDIUM</td></tr>
+        <tr><td>16</td><td style="color:var(--text)">order flow trading</td><td>24K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>17</td><td style="color:var(--text)">volume profile trading</td><td>22K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>18</td><td style="color:var(--text)">prop firm comparison</td><td>21K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>19</td><td style="color:var(--text)">prop firm rules</td><td>20K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>20</td><td style="color:var(--text)">revenge trading</td><td>19K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-medium">MEDIUM</td></tr>
+        <tr><td>21</td><td style="color:var(--text)">funded account payout</td><td>18K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>22</td><td style="color:var(--text)">gold futures trading</td><td>17K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>23</td><td style="color:var(--text)">crude oil futures strategy</td><td>16K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>24</td><td style="color:var(--text)">topstep vs apex</td><td>15K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-medium">MEDIUM</td></tr>
+        <tr><td>25</td><td style="color:var(--text)">profit factor trading</td><td>14K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>26</td><td style="color:var(--text)">sharpe ratio explained</td><td>13K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>27</td><td style="color:var(--text)">futures margin explained</td><td>12K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>28</td><td style="color:var(--text)">prop firm tax</td><td>12K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>29</td><td style="color:var(--text)">how prop firms work</td><td>11K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>30</td><td style="color:var(--text)">drawdown recovery trading</td><td>10K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>31</td><td style="color:var(--text)">trading consistency tips</td><td>9.5K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>32</td><td style="color:var(--text)">position sizing futures</td><td>9K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>33</td><td style="color:var(--text)">win rate vs risk reward</td><td>8.5K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>34</td><td style="color:var(--text)">RTH vs ETH trading</td><td>7K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>35</td><td style="color:var(--text)">algo trading prop firm</td><td>7K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>36</td><td style="color:var(--text)">DAX futures trading</td><td>6.5K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-medium">MEDIUM</td></tr>
+        <tr><td>37</td><td style="color:var(--text)">prop firm payout proof</td><td>6K</td><td><span class="seo-priority seo-medium"></span> Medium</td><td class="mt-priority-medium">MEDIUM</td></tr>
+        <tr><td>38</td><td style="color:var(--text)">leverage in futures trading</td><td>5.5K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>39</td><td style="color:var(--text)">footprint chart trading</td><td>5K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>40</td><td style="color:var(--text)">natural gas futures</td><td>5K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-medium">MEDIUM</td></tr>
+        <tr><td>41</td><td style="color:var(--text)">funded trader income</td><td>4.5K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>42</td><td style="color:var(--text)">kurtosis trading</td><td>3K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>43</td><td style="color:var(--text)">skew trading statistics</td><td>2.5K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>44</td><td style="color:var(--text)">lot stability ratio</td><td>1K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>45</td><td style="color:var(--text)">CLIMB Score trading</td><td>0.5K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>46</td><td style="color:var(--text)">prop firm liquidity pool</td><td>2K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>47</td><td style="color:var(--text)">treasury futures trading</td><td>4K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-medium">MEDIUM</td></tr>
+        <tr><td>48</td><td style="color:var(--text)">CME futures explained</td><td>6K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>49</td><td style="color:var(--text)">prop firm evaluation tips</td><td>8K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+        <tr><td>50</td><td style="color:var(--text)">overnight futures trading risk</td><td>3.5K</td><td><span class="seo-priority seo-low"></span> Low</td><td class="mt-priority-high">HIGH</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Title Formulas That Work</h3>
+  <div class="features-grid" style="grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+    <div class="feature-card">
+      <h4 style="margin-top:0;color:var(--teal)">The [Metric] Nobody Understands</h4>
+      <p>Creates curiosity gap. Works for every CLIMB Score metric. Example: "The Profit Factor Nobody Understands"</p>
+    </div>
+    <div class="feature-card">
+      <h4 style="margin-top:0;color:var(--teal)">[Number] Mistakes That Kill Your [Outcome]</h4>
+      <p>Negative framing drives clicks. Example: "5 Mistakes That Kill Your Funded Account Score"</p>
+    </div>
+    <div class="feature-card">
+      <h4 style="margin-top:0;color:var(--teal)">How I [Achievement] in [Timeframe]</h4>
+      <p>Personal story format. Example: "How I Reached Diamond Rank in 90 Days"</p>
+    </div>
+    <div class="feature-card">
+      <h4 style="margin-top:0;color:var(--teal)">[Subject] Explained: What [Audience] Must Know</h4>
+      <p>Authority-based. Example: "Futures Margin Explained: What Every Funded Trader Must Know"</p>
+    </div>
+    <div class="feature-card">
+      <h4 style="margin-top:0;color:var(--teal)">[A] vs [B]: Which Is Better for [Goal]?</h4>
+      <p>Comparison drives engagement. Example: "Scalping vs Day Trading: Which Scores Higher?"</p>
+    </div>
+    <div class="feature-card">
+      <h4 style="margin-top:0;color:var(--teal)">The Complete Guide to [Topic]</h4>
+      <p>Evergreen authority content. Example: "The Complete Guide to NQ Futures Trading"</p>
+    </div>
+  </div>
+
+  <h3>Description Template</h3>
+  <div class="pillar-card" style="font-family:var(--mono);font-size:12px;color:var(--text2);line-height:2">
+    Line 1: Hook sentence with main keyword<br>
+    Line 2: (blank)<br>
+    Line 3: TIMESTAMPS<br>
+    Line 4-10: 00:00 - Section timestamps<br>
+    Line 11: (blank)<br>
+    Line 12: KEY LINKS<br>
+    Line 13: Start your evaluation: [link]<br>
+    Line 14: CLIMB Score explained: [link to education article]<br>
+    Line 15: Join our Discord: [link]<br>
+    Line 16: (blank)<br>
+    Line 17: ABOUT CLIMBER TRADE<br>
+    Line 18: [2-line boilerplate about the firm]<br>
+    Line 19: (blank)<br>
+    Line 20: #proptrading #futures #fundedtrader #climbertrade
+  </div>
+
+  <h3>Tag Strategy</h3>
+  <p>Every video should include a mix of 3 tag tiers:</p>
+  <ul>
+    <li><strong>Tier 1 — Brand tags (always include):</strong> climber trade, climb score, funded trading, prop firm</li>
+    <li><strong>Tier 2 — Topic tags (5-8 per video):</strong> specific to the video topic, e.g., "profit factor", "NQ futures", "order flow"</li>
+    <li><strong>Tier 3 — Competitor tags (2-3 per video):</strong> relevant competitor names for discovery, e.g., "ftmo alternative", "topstep review"</li>
+  </ul>
+
+  <h3>Thumbnail Best Practices</h3>
+  <p>Based on analysis of top-performing trading videos:</p>
+  <ul>
+    <li>Use 2-3 words of large text maximum on the thumbnail</li>
+    <li>Include a face (proven 30% higher CTR in finance niche)</li>
+    <li>Use contrasting colors: Climber teal (#00D4FF) on dark backgrounds performs well</li>
+    <li>Show numbers/metrics when relevant (scores, percentages, dollar amounts)</li>
+    <li>Include a subtle chart or trading screen in the background for context</li>
+    <li>Avoid cluttered designs; negative space drives focus</li>
+    <li>A/B test thumbnails on community posts before committing</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 5: PRODUCTION CALENDAR
+     ═══════════════════════════════════════ -->
+<div class="strategy-section" id="production-calendar">
+  <h2>5. Production Calendar</h2>
+
+  <p>A structured 3-month ramp-up plan to establish the channel foundation, followed by ongoing production targets.</p>
+
+  <!-- Month 1 -->
+  <div class="calendar-month">
+    <div class="calendar-month-header">
+      <div class="calendar-month-title" style="color:var(--teal)">Month 1 — Foundation</div>
+      <div class="calendar-month-count badge badge-teal">8 Videos</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Establish channel identity. Publish cornerstone content that will rank for years. Focus on evergreen educational pieces.</p>
+    <div class="calendar-week">
+      <div class="calendar-week-label">Week 1</div>
+      <div class="calendar-videos">
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> The CLIMB Score Explained: How We Rate Every Trader</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> E-mini NASDAQ (NQ): Complete Guide for Funded Traders</div>
+      </div>
+    </div>
+    <div class="calendar-week">
+      <div class="calendar-week-label">Week 2</div>
+      <div class="calendar-videos">
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Are Prop Firms a Scam? An Honest Deep Dive</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Volumetrica Platform: Complete Setup Guide</div>
+      </div>
+    </div>
+    <div class="calendar-week">
+      <div class="calendar-week-label">Week 3</div>
+      <div class="calendar-videos">
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Profit Factor: The Most Important Metric Nobody Understands</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Futures Trading for Beginners: Everything You Need to Know</div>
+      </div>
+    </div>
+    <div class="calendar-week">
+      <div class="calendar-week-label">Week 4</div>
+      <div class="calendar-videos">
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> The Psychology of Drawdowns: How Top Traders Recover</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Score 85+: What It Actually Takes to Get Funded</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Month 2 -->
+  <div class="calendar-month">
+    <div class="calendar-month-header">
+      <div class="calendar-month-title" style="color:var(--green)">Month 2 — Build Authority</div>
+      <div class="calendar-month-count badge badge-green">8 Videos + Shorts Launch</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Introduce recurring series. Launch Shorts. Deepen metric education. Start building community engagement.</p>
+    <div class="calendar-week">
+      <div class="calendar-week-label">Week 5</div>
+      <div class="calendar-videos">
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Weekly Futures Market Outlook (series premiere)</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> ABS_NPL: Why Your Daily P&L Is Scored Non-Linearly</div>
+        <div class="calendar-video"><span class="cv-type type-short">SHORT</span> 3 Shorts: Quick metric tips (Win Rate, Gain Days, Leverage)</div>
+      </div>
+    </div>
+    <div class="calendar-week">
+      <div class="calendar-week-label">Week 6</div>
+      <div class="calendar-videos">
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Profit Splits Compared: Every Major Prop Firm Analyzed</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Reading Order Flow: The Skill That Separates Pro Traders</div>
+        <div class="calendar-video"><span class="cv-type type-short">SHORT</span> 3 Shorts: Market reactions, quick trades, one-metric tips</div>
+      </div>
+    </div>
+    <div class="calendar-week">
+      <div class="calendar-week-label">Week 7</div>
+      <div class="calendar-videos">
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> 5 Common Mistakes That Destroy Your CLIMB Score</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Crude Oil Futures (CL): The Complete Trading Guide</div>
+        <div class="calendar-video"><span class="cv-type type-short">SHORT</span> 4 Shorts: Daily tips, score facts, market bites</div>
+      </div>
+    </div>
+    <div class="calendar-week">
+      <div class="calendar-week-label">Week 8</div>
+      <div class="calendar-videos">
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Live CLIMB Score Analysis: Breaking Down a Real Trader's Stats</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Weekly Futures Market Outlook (week 2)</div>
+        <div class="calendar-video"><span class="cv-type type-short">SHORT</span> 4 Shorts: Metric explainers, lifestyle clips</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Month 3 -->
+  <div class="calendar-month">
+    <div class="calendar-month-header">
+      <div class="calendar-month-title" style="color:var(--amber)">Month 3 — Optimize &amp; Scale</div>
+      <div class="calendar-month-count badge badge-amber">10 Videos + 15 Shorts</div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px">Full production cadence achieved. Launch interview series. Optimize based on Month 1-2 analytics. Begin collaboration outreach.</p>
+    <div class="calendar-week">
+      <div class="calendar-week-label">Week 9</div>
+      <div class="calendar-videos">
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Funded Trader Interview: First Guest Episode</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Scalping NQ Futures: A $1M Funded Account Strategy</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Weekly Market Outlook</div>
+        <div class="calendar-video"><span class="cv-type type-short">SHORT</span> 4 Shorts</div>
+      </div>
+    </div>
+    <div class="calendar-week">
+      <div class="calendar-week-label">Week 10</div>
+      <div class="calendar-videos">
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> How Prop Firms Actually Make Money (The Truth)</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Gold Futures (GC): Trading the Ultimate Safe Haven</div>
+        <div class="calendar-video"><span class="cv-type type-short">SHORT</span> 4 Shorts</div>
+      </div>
+    </div>
+    <div class="calendar-week">
+      <div class="calendar-week-label">Week 11</div>
+      <div class="calendar-videos">
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Monthly Leaderboard Review (series premiere)</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> LSR: Lot Stability Ratio — Why Consistent Sizing Gets Funded</div>
+        <div class="calendar-video"><span class="cv-type type-short">SHORT</span> 4 Shorts</div>
+      </div>
+    </div>
+    <div class="calendar-week">
+      <div class="calendar-week-label">Week 12</div>
+      <div class="calendar-videos">
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Consistency Is a Skill: Training Your Trading Discipline</div>
+        <div class="calendar-video"><span class="cv-type type-long">LONG</span> Weekly Market Outlook + Friday Recap (double feature launch)</div>
+        <div class="calendar-video"><span class="cv-type type-short">SHORT</span> 3 Shorts</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-label">Ongoing Target (Month 4+)</div>
+    <p>3-4 long-form videos per week + 4-5 Shorts per week. Total target: 150+ long-form videos and 200+ Shorts in the first year.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 6: SHORTS STRATEGY
+     ═══════════════════════════════════════ -->
+<div class="strategy-section" id="shorts-strategy">
+  <h2>6. Shorts Strategy</h2>
+
+  <p>YouTube Shorts are the fastest-growing format in finance content. Trading Shorts that combine screen recordings with quick insights consistently outperform other formats.</p>
+
+  <h3>15 Shorts Ideas</h3>
+  <div class="shorts-grid">
+    <div class="shorts-card"><div class="sc-num">#01</div><div class="sc-title">Your Win Rate Means Nothing Without This</div><div class="sc-hook">Hook: Show 80% win rate with negative P&L. Reveal: risk/reward matters more than win rate.</div></div>
+    <div class="shorts-card"><div class="sc-num">#02</div><div class="sc-title">The Leverage Sweet Spot for Funded Traders</div><div class="sc-hook">Hook: Quick graphic showing 2x-5x = 100 score. Tease the penalty curve for over-leveraging.</div></div>
+    <div class="shorts-card"><div class="sc-num">#03</div><div class="sc-title">One Metric Separates Funded From Failed</div><div class="sc-hook">Hook: "It's not win rate, not profit factor..." Reveal: Consistency (Gain Days percentage).</div></div>
+    <div class="shorts-card"><div class="sc-num">#04</div><div class="sc-title">$1M Funded Account: How Many NQ Contracts?</div><div class="sc-hook">Hook: Quick math on notional value. Answer: 3-10 contracts depending on price.</div></div>
+    <div class="shorts-card"><div class="sc-num">#05</div><div class="sc-title">This Trading Mistake Costs You 30 Score Points</div><div class="sc-hook">Hook: Show a score drop. Reveal: Inconsistent lot sizing destroys LSR metric.</div></div>
+    <div class="shorts-card"><div class="sc-num">#06</div><div class="sc-title">FOMC Day: What Funded Traders Should Do</div><div class="sc-hook">Hook: "Most traders do THIS on FOMC day..." Show the smart approach to event risk with a funded account.</div></div>
+    <div class="shorts-card"><div class="sc-num">#07</div><div class="sc-title">Why +5% in a Day Is Actually Bad</div><div class="sc-hook">Hook: "You made 5% today? Your score just dropped." Explain ABS_NPL bell curve scoring.</div></div>
+    <div class="shorts-card"><div class="sc-num">#08</div><div class="sc-title">3 Seconds to Know If a Prop Firm Is Real</div><div class="sc-hook">Hook: "Check these 3 things..." Quick red flag checklist for fake prop firms.</div></div>
+    <div class="shorts-card"><div class="sc-num">#09</div><div class="sc-title">The Only Futures Contract Beginners Should Trade</div><div class="sc-hook">Hook: "Not NQ, not CL..." Reveal: Micro E-mini ES for learning.</div></div>
+    <div class="shorts-card"><div class="sc-num">#10</div><div class="sc-title">What 85/100 Looks Like on the Dashboard</div><div class="sc-hook">Hook: Quick screen recording showing the actual score breakdown of a funded-ready trader.</div></div>
+    <div class="shorts-card"><div class="sc-num">#11</div><div class="sc-title">Overnight Positions With a Funded Account: Rules</div><div class="sc-hook">Hook: "Can you hold overnight? Yes, BUT..." Quick explanation of 5:1 max exposure rule.</div></div>
+    <div class="shorts-card"><div class="sc-num">#12</div><div class="sc-title">How Much Can a Funded Trader Actually Make?</div><div class="sc-hook">Hook: Quick math with pool allocation, 8% monthly return, and profit split calculation.</div></div>
+    <div class="shorts-card"><div class="sc-num">#13</div><div class="sc-title">The Prop Firm Profit Split Nobody Talks About</div><div class="sc-hook">Hook: "60/40 sounds great until..." Explain the dynamic split based on score maintenance.</div></div>
+    <div class="shorts-card"><div class="sc-num">#14</div><div class="sc-title">Trading NQ at Market Open: 30-Second Setup</div><div class="sc-hook">Hook: Quick screen recording of pre-open preparation for NQ RTH open.</div></div>
+    <div class="shorts-card"><div class="sc-num">#15</div><div class="sc-title">Score 95+ Gets You Into the Elite Pool</div><div class="sc-hook">Hook: "There's a secret pool..." Explain the Elite Pool (10%) vs Standard Pool (90%) dual allocation.</div></div>
+  </div>
+
+  <h3>Best Performing Short Formats in Trading Niche</h3>
+  <div class="table-wrap" style="margin-top:16px">
+    <table>
+      <thead><tr><th>Format</th><th>Avg. Views</th><th>Best For</th><th>Production Time</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--text);font-weight:600">Screen Recording + Voiceover</td><td style="color:var(--green)">50K-200K</td><td>Metric explainers, dashboard tours, trade setups</td><td>30-45 min</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Face-to-Camera Quick Tip</td><td style="color:var(--green)">30K-150K</td><td>Psychology tips, common mistakes, myth busting</td><td>15-20 min</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Chart Timelapse + Text</td><td style="color:var(--amber)">20K-100K</td><td>Market reactions, trade recaps, pattern recognition</td><td>20-30 min</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Before/After Comparison</td><td style="color:var(--amber)">15K-80K</td><td>Score improvements, strategy changes, performance</td><td>15-20 min</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Quiz/Poll Format</td><td style="color:var(--text2)">10K-50K</td><td>Engagement bait, metric knowledge testing</td><td>10-15 min</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Repurposing Long-Form to Shorts</h3>
+  <ul>
+    <li><strong>Extract the hook:</strong> Every long-form video should have a 30-60 second hook that stands alone as a Short</li>
+    <li><strong>Isolate one insight:</strong> Pull the single most surprising data point or claim from each long video</li>
+    <li><strong>Before/after clips:</strong> Use score improvement moments from live analysis videos</li>
+    <li><strong>Metric spotlight:</strong> Take the 60-second summary of each metric deep-dive and format it as a Short</li>
+    <li><strong>Best comments:</strong> Read and respond to the best viewer comments as Shorts</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 7: THUMBNAIL & BRANDING
+     ═══════════════════════════════════════ -->
+<div class="strategy-section" id="thumbnail-guidelines">
+  <h2>7. Thumbnail &amp; Branding Guidelines</h2>
+
+  <h3>Brand Colors on Thumbnails</h3>
+  <div class="features-grid" style="grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px">
+    <div class="feature-card" style="text-align:center;padding:20px">
+      <div style="width:60px;height:60px;border-radius:12px;background:#0A0A0A;border:2px solid var(--border);margin:0 auto 12px"></div>
+      <div style="font-size:13px;font-weight:700;font-family:var(--mono)">#0A0A0A</div>
+      <div style="font-size:11px;color:var(--text3)">Background</div>
+    </div>
+    <div class="feature-card" style="text-align:center;padding:20px">
+      <div style="width:60px;height:60px;border-radius:12px;background:#00D4FF;margin:0 auto 12px"></div>
+      <div style="font-size:13px;font-weight:700;font-family:var(--mono)">#00D4FF</div>
+      <div style="font-size:11px;color:var(--text3)">Accent Teal</div>
+    </div>
+    <div class="feature-card" style="text-align:center;padding:20px">
+      <div style="width:60px;height:60px;border-radius:12px;background:#F0F0F0;margin:0 auto 12px"></div>
+      <div style="font-size:13px;font-weight:700;font-family:var(--mono)">#F0F0F0</div>
+      <div style="font-size:11px;color:var(--text3)">Text White</div>
+    </div>
+    <div class="feature-card" style="text-align:center;padding:20px">
+      <div style="width:60px;height:60px;border-radius:12px;background:#EF4444;margin:0 auto 12px"></div>
+      <div style="font-size:13px;font-weight:700;font-family:var(--mono)">#EF4444</div>
+      <div style="font-size:11px;color:var(--text3)">Danger / Negative</div>
+    </div>
+  </div>
+
+  <h3>Do vs Don't</h3>
+  <div class="thumb-grid" style="margin-top:16px">
+    <div class="thumb-card thumb-do">
+      <h5 style="color:var(--green)">DO: Use Faces</h5>
+      <p>Thumbnails with a human face achieve 30-40% higher CTR. Use founder or host reaction shots. Expression should match content emotion.</p>
+    </div>
+    <div class="thumb-card thumb-do">
+      <h5 style="color:var(--green)">DO: Show Numbers</h5>
+      <p>Numbers attract attention. Show scores (85/100), dollar amounts ($10,000), or percentages (60/40 split) prominently.</p>
+    </div>
+    <div class="thumb-card thumb-do">
+      <h5 style="color:var(--green)">DO: Keep Text Minimal</h5>
+      <p>Maximum 2-3 words of large text. The thumbnail is not the title. Use visual storytelling with chart backgrounds or dashboard screenshots.</p>
+    </div>
+    <div class="thumb-card thumb-dont">
+      <h5 style="color:var(--red)">DON'T: Clutter With Details</h5>
+      <p>Avoid cramming multiple data points, small text, or complex charts into thumbnails. It becomes unreadable at mobile scale.</p>
+    </div>
+    <div class="thumb-card thumb-dont">
+      <h5 style="color:var(--red)">DON'T: Use Misleading Imagery</h5>
+      <p>No fake P&L screenshots, no unrealistic profit claims, no clickbait money fans. Maintain credibility of the Climber Trade brand.</p>
+    </div>
+    <div class="thumb-card thumb-dont">
+      <h5 style="color:var(--red)">DON'T: Ignore Consistency</h5>
+      <p>Every thumbnail should feel like part of the same channel. Use the same font (Outfit Bold), color palette, and layout structure.</p>
+    </div>
+  </div>
+
+  <h3>Template Suggestions</h3>
+  <div class="table-wrap" style="margin-top:16px">
+    <table>
+      <thead><tr><th>Video Type</th><th>Template Structure</th><th>Color Scheme</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--text);font-weight:600">Metric Deep-Dive</td><td>Face (left) + Metric Name (center, teal) + Score gauge (right) + Dark BG</td><td>Dark + Teal accent</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Instrument Guide</td><td>Chart screenshot (BG, blurred) + Instrument symbol (large) + Face with expression</td><td>Dark + Green accent</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Prop Firm Comparison</td><td>Split layout: two logos/brands + VS text + comparison arrow</td><td>Dark + Amber accent</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Psychology</td><td>Close-up face (emotional expression) + 1-2 words overlay + subtle brain/mind graphic</td><td>Dark + Purple accent</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Market Outlook (Weekly)</td><td>Consistent branded frame + Week/Date + Key level numbers + Directional arrow</td><td>Dark + Teal (series branding)</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Trader Interview</td><td>Guest face + Name/Rank badge + Score number + Branded lower third</td><td>Dark + Guest's rank color</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 8: KPIs & METRICS
+     ═══════════════════════════════════════ -->
+<div class="strategy-section" id="kpis">
+  <h2>8. KPIs &amp; Metrics to Track</h2>
+
+  <h3>Primary KPIs</h3>
+  <div class="kpi-grid" style="margin-top:16px">
+    <div class="kpi-card">
+      <div class="kpi-val">CTR</div>
+      <div class="kpi-label">Click-Through Rate</div>
+      <div class="kpi-desc">Target: 6-10%. Below 4% = thumbnail/title problem. Above 10% = scale this format.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">AVD</div>
+      <div class="kpi-label">Avg. View Duration</div>
+      <div class="kpi-desc">Target: 50%+ of video length. Key retention metric. Drop-off analysis informs editing.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">RPM</div>
+      <div class="kpi-label">Revenue Per Mille</div>
+      <div class="kpi-desc">Finance niche: $15-40 RPM expected. Tracks monetization efficiency per 1K views.</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val">SUB%</div>
+      <div class="kpi-label">Subscriber Conversion</div>
+      <div class="kpi-desc">Target: 3-5% of viewers subscribe. Track which content types drive the highest conversion.</div>
+    </div>
+  </div>
+
+  <h3>Benchmarks by Month</h3>
+  <div class="table-wrap" style="margin-top:16px">
+    <table>
+      <thead><tr><th>Metric</th><th>Month 1</th><th>Month 3</th><th>Month 6</th><th>Month 12</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--text);font-weight:600">Subscribers</td><td>500</td><td>3,000</td><td>15,000</td><td>50,000</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Monthly Views</td><td>5,000</td><td>50,000</td><td>200,000</td><td>500,000</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Avg. Views Per Video</td><td>300</td><td>3,000</td><td>10,000</td><td>25,000</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">CTR (Avg)</td><td>4-6%</td><td>5-8%</td><td>6-9%</td><td>7-10%</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Avg. View Duration</td><td>3-5 min</td><td>5-7 min</td><td>6-8 min</td><td>7-10 min</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Videos Published</td><td>8</td><td>26+</td><td>60+</td><td>150+</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Shorts Published</td><td>0</td><td>28+</td><td>80+</td><td>200+</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Estimated RPM</td><td>$5-10</td><td>$10-20</td><td>$15-30</td><td>$20-40</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Success Criteria</h3>
+  <ul>
+    <li><strong>Green (on track):</strong> Meeting or exceeding subscriber and view benchmarks, CTR above 6%, AVD above 50%</li>
+    <li><strong>Amber (needs attention):</strong> Within 70% of benchmarks, CTR 4-6%, AVD 40-50%. Adjust thumbnails and hooks.</li>
+    <li><strong>Red (pivot needed):</strong> Below 50% of benchmarks at any milestone. Full content audit, audience research, potential format change.</li>
+  </ul>
+
+  <div class="warning">
+    <div class="warning-label">Important</div>
+    <p>YouTube growth is exponential, not linear. Months 1-3 will feel slow. The algorithm needs 30-50 videos of consistent quality before it begins recommending your content. Do not judge ROI based on early metrics.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 9: CROSS-PLATFORM STRATEGY
+     ═══════════════════════════════════════ -->
+<div class="strategy-section" id="cross-platform">
+  <h2>9. Cross-Platform Strategy</h2>
+
+  <p>YouTube serves as the content engine. Every piece of YouTube content should be repurposed across at least 3 additional platforms to maximize reach and amortize production costs.</p>
+
+  <h3>Platform Distribution Flow</h3>
+  <div class="platform-flow">
+    <div class="platform-card" style="border-color:#EF444433">
+      <h5>YouTube Long-Form</h5>
+      <p>Primary platform. 10-25 min deep-dive videos. Full production value.</p>
+    </div>
+    <div class="platform-card" style="border-color:#F59E0B33">
+      <h5>YouTube Shorts</h5>
+      <p>Sub-60s clips extracted from long-form. Hook-first format.</p>
+    </div>
+    <div class="platform-card" style="border-color:#8B5CF633">
+      <h5>Instagram Reels</h5>
+      <p>Same Shorts with IG-optimized captions and hashtags.</p>
+    </div>
+    <div class="platform-card" style="border-color:#00D4FF33">
+      <h5>TikTok</h5>
+      <p>Slightly different edit: faster pacing, trending sounds, younger tone.</p>
+    </div>
+    <div class="platform-card" style="border-color:#10B98133">
+      <h5>X / LinkedIn</h5>
+      <p>Text threads + clip embeds. LinkedIn for professional angle.</p>
+    </div>
+  </div>
+
+  <h3>Platform-Specific Adaptations</h3>
+
+  <div class="table-wrap" style="margin-top:16px">
+    <table>
+      <thead><tr><th>Platform</th><th>Content Adaptation</th><th>Posting Schedule</th><th>Key Metric</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--text);font-weight:600">Instagram Reels</td><td>Vertical Short clips with IG captions, trading hashtags. Stories for behind-the-scenes. Carousel posts for metric breakdowns.</td><td>4-5 Reels/week + 3 Stories/week</td><td>Reach, Saves</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">TikTok</td><td>Same core clips, faster pacing. Use trending formats when relevant. "Trading tip" hook works well. Duet reactions to other trading content.</td><td>5-7 posts/week</td><td>Views, Followers</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">X (Twitter)</td><td>Thread format for metric explainers. Video clips (under 2:20). Quote-tweet market reactions. Engage with trading community.</td><td>2-3 threads/week + daily posts</td><td>Impressions, Engagement</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">LinkedIn</td><td>Professional angle: prop trading as career, institutional-level analysis, thought leadership on trading metrics and risk.</td><td>2-3 posts/week</td><td>Engagement Rate</td></tr>
+        <tr><td style="color:var(--text);font-weight:600">Blog / Education Articles</td><td>Each video becomes a companion article on climbertrade.com/education. SEO-optimized for Google. Already have 50+ articles.</td><td>Match video schedule</td><td>Organic Traffic</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Content Repurposing Workflow</h3>
+  <ul>
+    <li><strong>Step 1:</strong> Record long-form video (primary asset)</li>
+    <li><strong>Step 2:</strong> Editor extracts 3-5 Short clips during editing</li>
+    <li><strong>Step 3:</strong> Shorts published to YouTube, Instagram, and TikTok with platform-specific captions</li>
+    <li><strong>Step 4:</strong> Key insights converted to X thread + LinkedIn post</li>
+    <li><strong>Step 5:</strong> Full video transcript converted to education article for the website</li>
+    <li><strong>Step 6:</strong> Thumbnail repurposed as social media promotional image</li>
+  </ul>
+
+  <div class="insight">
+    <div class="insight-label">Leverage Existing Education Library</div>
+    <p>Climber Trade already has 50+ education articles at climbertrade.com/education covering topics from prop trading basics to specific metrics. Each article is a ready-made video script. The reverse pipeline (video to article) completes the SEO circle.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SECTION 10: COMPLETE VIDEO IDEAS LIST
+     ═══════════════════════════════════════ -->
+<div class="strategy-section" id="master-list">
+  <h2>10. Complete Video Ideas List</h2>
+
+  <p>Comprehensive catalog of 115+ video ideas organized by category, priority, and format. Use this as the production backlog.</p>
+
+  <div class="master-table-wrap table-wrap" style="margin-top:16px">
+    <table class="master-table">
+      <thead>
+        <tr><th>#</th><th>Title</th><th>Category</th><th>Priority</th><th>Format</th><th>Est. Length</th></tr>
+      </thead>
+      <tbody>
+        <!-- CLIMB SCORE (20) -->
+        <tr><td>1</td><td class="mt-title">The CLIMB Score Explained: How We Rate Every Trader</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-20 min</td></tr>
+        <tr><td>2</td><td class="mt-title">ABS_NPL: Why Your Daily P&L Is Scored Non-Linearly</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>3</td><td class="mt-title">INPL: Initial Net PnL Drawdown — Never Blow Your Account</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>4</td><td class="mt-title">R_T_AFD: Recovery Time After Drawdown — Speed Matters</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>5</td><td class="mt-title">CT4: The Leverage Sweet Spot — Why 2x-5x Scores 100</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>6</td><td class="mt-title">Profit Factor: The Most Important Metric Nobody Understands</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>7</td><td class="mt-title">Sharpe Ratio For Traders: The Bonus Metric</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>8</td><td class="mt-title">YIELD_Y: Annualized Performance — The 180-Day Confidence Game</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>9</td><td class="mt-title">Win Rate: Why 50% Doesn't Mean You're Breaking Even</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>10</td><td class="mt-title">GAIN_DAYS: The Simplest Metric With the Biggest Impact</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>8-10 min</td></tr>
+        <tr><td>11</td><td class="mt-title">LSR: Lot Stability Ratio — Consistent Sizing Gets Funded</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>12</td><td class="mt-title">Skew &amp; Kurtosis: The Stats Nobody Teaches Traders</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>13</td><td class="mt-title">Extreme Performance Ratio: Why Your Best Day Might Hurt You</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>14</td><td class="mt-title">Best/Worst Day Ratio: The Symmetry Test</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>15</td><td class="mt-title">Quality Execution: The Multiplier That Makes or Breaks Your Score</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>16</td><td class="mt-title">5 Common Mistakes That Destroy Your CLIMB Score</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>17</td><td class="mt-title">From Score 60 to 90: A Step-by-Step Improvement Plan</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-20 min</td></tr>
+        <tr><td>18</td><td class="mt-title">Live CLIMB Score Analysis: Real Trader Breakdown</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>20-25 min</td></tr>
+        <tr><td>19</td><td class="mt-title">The Reliability Factor: Why Scores Need Time to Mature</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>20</td><td class="mt-title">Score 85+: What It Actually Takes to Get Funded</td><td class="mt-cat"><span class="badge badge-teal">Score</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <!-- FUTURES (20) -->
+        <tr><td>21</td><td class="mt-title">E-mini S&P 500 (ES): Complete Guide for Funded Traders</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>20-25 min</td></tr>
+        <tr><td>22</td><td class="mt-title">E-mini NASDAQ (NQ): The Trader's Favorite Futures Contract</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>20-25 min</td></tr>
+        <tr><td>23</td><td class="mt-title">Crude Oil Futures (CL): The Most Volatile Money-Maker</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>18-22 min</td></tr>
+        <tr><td>24</td><td class="mt-title">Gold Futures (GC): Trading the Ultimate Safe Haven</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>18-22 min</td></tr>
+        <tr><td>25</td><td class="mt-title">Reading Order Flow: The Skill That Separates Pro Traders</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>20-25 min</td></tr>
+        <tr><td>26</td><td class="mt-title">Volume Profile: Finding High-Probability Entries</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>18-22 min</td></tr>
+        <tr><td>27</td><td class="mt-title">Scalping NQ Futures: A $1M Funded Account Strategy</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-20 min</td></tr>
+        <tr><td>28</td><td class="mt-title">Scalping vs Day Trading Futures: Which Scores Higher?</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>29</td><td class="mt-title">Futures Margin Explained: What Every Funded Trader Must Know</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>30</td><td class="mt-title">RTH vs ETH: When to Trade Futures for Maximum Score</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>31</td><td class="mt-title">CME, NYMEX, COMEX, CBOT: Understanding Exchanges</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>32</td><td class="mt-title">Overnight &amp; Weekend Positions: The Hidden Risk</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>33</td><td class="mt-title">How to Calculate Notional Value: The Essential Formula</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>34</td><td class="mt-title">DAX Futures (FDAX): Trading Europe's Most Active Index</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>35</td><td class="mt-title">Currency Futures (6E, 6B, 6J): The Forex Alternative</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>36</td><td class="mt-title">Treasury Futures (ZN, ZB): Trading Interest Rates</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-low">LOW</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>37</td><td class="mt-title">Natural Gas Futures (NG): High Risk, High Reward</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-low">LOW</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>38</td><td class="mt-title">Algorithmic Trading With Funded Accounts</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>18-22 min</td></tr>
+        <tr><td>39</td><td class="mt-title">Multi-Instrument Futures Portfolio for Funded Accounts</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>40</td><td class="mt-title">Hedging Strategies in Funded Accounts</td><td class="mt-cat"><span class="badge badge-green">Futures</span></td><td class="mt-priority-low">LOW</td><td>Long</td><td>12-15 min</td></tr>
+        <!-- INDUSTRY (15) -->
+        <tr><td>41</td><td class="mt-title">Are Prop Firms a Scam? An Honest Deep Dive</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-20 min</td></tr>
+        <tr><td>42</td><td class="mt-title">Profit Splits Compared: Every Major Prop Firm</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>43</td><td class="mt-title">What Happens When You Get Funded: Behind the Scenes</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>44</td><td class="mt-title">How Prop Firms Actually Make Money (The Truth)</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>45</td><td class="mt-title">Tax Implications for Funded Traders</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>46</td><td class="mt-title">Climber Trade vs TopStep vs Apex: Futures Showdown</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>18-22 min</td></tr>
+        <tr><td>47</td><td class="mt-title">The Liquidity Pool Explained</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>48</td><td class="mt-title">Why Most Prop Firm Traders Fail</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>49</td><td class="mt-title">The Future of Prop Trading: Regulation, AI, What's Next</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>15-20 min</td></tr>
+        <tr><td>50</td><td class="mt-title">Red Flags When Choosing a Prop Firm</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>51</td><td class="mt-title">Prop Firm Payouts: How and When You Get Paid</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>52</td><td class="mt-title">Scaling Your Funded Account</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>53</td><td class="mt-title">One Account Rule: Why Prop Firms Limit You</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-low">LOW</td><td>Long</td><td>8-10 min</td></tr>
+        <tr><td>54</td><td class="mt-title">Prop Trading as a Career: Realistic Income Expectations</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>55</td><td class="mt-title">The Referral &amp; Affiliate Program</td><td class="mt-cat"><span class="badge badge-amber">Industry</span></td><td class="mt-priority-low">LOW</td><td>Long</td><td>10-12 min</td></tr>
+        <!-- PSYCHOLOGY (10) -->
+        <tr><td>56</td><td class="mt-title">The Psychology of Drawdowns: How Top Traders Recover</td><td class="mt-cat"><span class="badge badge-purple">Psych</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>57</td><td class="mt-title">Consistency Is a Skill: Training Your Trading Discipline</td><td class="mt-cat"><span class="badge badge-purple">Psych</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>58</td><td class="mt-title">Revenge Trading: The Score Killer and How to Stop</td><td class="mt-cat"><span class="badge badge-purple">Psych</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>59</td><td class="mt-title">Building a Pre-Market Routine for Funded Traders</td><td class="mt-cat"><span class="badge badge-purple">Psych</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>60</td><td class="mt-title">Fear and Greed: Two Emotions Destroying Your Metrics</td><td class="mt-cat"><span class="badge badge-purple">Psych</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>61</td><td class="mt-title">The 30-Day Mental Game Plan for Evaluation</td><td class="mt-cat"><span class="badge badge-purple">Psych</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>62</td><td class="mt-title">Why Profitable Traders Fail Evaluations</td><td class="mt-cat"><span class="badge badge-purple">Psych</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>63</td><td class="mt-title">Trading Journal for Funded Traders: What to Track</td><td class="mt-cat"><span class="badge badge-purple">Psych</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>64</td><td class="mt-title">The Imposter Syndrome of Getting Funded</td><td class="mt-cat"><span class="badge badge-purple">Psych</span></td><td class="mt-priority-low">LOW</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>65</td><td class="mt-title">CLIMB Score as a Psychology Coach: Metrics as Mirrors</td><td class="mt-cat"><span class="badge badge-purple">Psych</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>15-18 min</td></tr>
+        <!-- PLATFORM (10) -->
+        <tr><td>66</td><td class="mt-title">Volumetrica Platform: Complete Setup Guide</td><td class="mt-cat"><span class="badge badge-red">Platform</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>20-25 min</td></tr>
+        <tr><td>67</td><td class="mt-title">Volume Profile on Volumetrica: Step-by-Step</td><td class="mt-cat"><span class="badge badge-red">Platform</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>68</td><td class="mt-title">Order Types Explained: Market, Limit, Stop, Beyond</td><td class="mt-cat"><span class="badge badge-red">Platform</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>69</td><td class="mt-title">Risk Management Tools: Daily Loss Limits</td><td class="mt-cat"><span class="badge badge-red">Platform</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>10-12 min</td></tr>
+        <tr><td>70</td><td class="mt-title">Backtesting Your Strategy Before Going Live</td><td class="mt-cat"><span class="badge badge-red">Platform</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>71</td><td class="mt-title">The Climber Trade Dashboard: Every Metric Explained</td><td class="mt-cat"><span class="badge badge-red">Platform</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>72</td><td class="mt-title">Customizing Your Trader Profile</td><td class="mt-cat"><span class="badge badge-red">Platform</span></td><td class="mt-priority-low">LOW</td><td>Long</td><td>5-8 min</td></tr>
+        <tr><td>73</td><td class="mt-title">Footprint Charts on Volumetrica: Ultimate Guide</td><td class="mt-cat"><span class="badge badge-red">Platform</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>18-22 min</td></tr>
+        <tr><td>74</td><td class="mt-title">Mobile Trading: Managing Your Account On the Go</td><td class="mt-cat"><span class="badge badge-red">Platform</span></td><td class="mt-priority-low">LOW</td><td>Long</td><td>8-10 min</td></tr>
+        <tr><td>75</td><td class="mt-title">TradingView + Volumetrica: Best of Both Worlds</td><td class="mt-cat"><span class="badge badge-red">Platform</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>12-15 min</td></tr>
+        <!-- COMMUNITY (10) -->
+        <tr><td>76</td><td class="mt-title">Funded Trader Interview: How [Name] Reached Diamond</td><td class="mt-cat"><span class="badge badge-green">Community</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>25-35 min</td></tr>
+        <tr><td>77</td><td class="mt-title">A Day in the Life of a Funded Futures Trader</td><td class="mt-cat"><span class="badge badge-green">Community</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-20 min</td></tr>
+        <tr><td>78</td><td class="mt-title">Monthly Leaderboard Review</td><td class="mt-cat"><span class="badge badge-green">Community</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>79</td><td class="mt-title">Challenge Recap: Monthly Community Challenge</td><td class="mt-cat"><span class="badge badge-green">Community</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>10-15 min</td></tr>
+        <tr><td>80</td><td class="mt-title">From Retail to Funded: 3 Traders Share Their Journey</td><td class="mt-cat"><span class="badge badge-green">Community</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>30-40 min</td></tr>
+        <tr><td>81</td><td class="mt-title">My First Payout: Real Reactions From Funded Traders</td><td class="mt-cat"><span class="badge badge-green">Community</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>8-12 min</td></tr>
+        <tr><td>82</td><td class="mt-title">Discord Highlights: Best Trades This Month</td><td class="mt-cat"><span class="badge badge-green">Community</span></td><td class="mt-priority-low">LOW</td><td>Long</td><td>8-10 min</td></tr>
+        <tr><td>83</td><td class="mt-title">Trading From [Country]: Global Funded Traders</td><td class="mt-cat"><span class="badge badge-green">Community</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>84</td><td class="mt-title">Score Recovery: From 45 to 92 in 60 Days</td><td class="mt-cat"><span class="badge badge-green">Community</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>85</td><td class="mt-title">Climber Trade Year in Review</td><td class="mt-cat"><span class="badge badge-green">Community</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>15-20 min</td></tr>
+        <!-- MARKET ANALYSIS (5 recurring) -->
+        <tr><td>86</td><td class="mt-title">Weekly Futures Market Outlook [RECURRING]</td><td class="mt-cat"><span class="badge badge-teal">Market</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-20 min</td></tr>
+        <tr><td>87</td><td class="mt-title">FOMC/NFP/CPI Reaction Analysis [EVENT]</td><td class="mt-cat"><span class="badge badge-teal">Market</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>10-15 min</td></tr>
+        <tr><td>88</td><td class="mt-title">Earnings Season Impact on Index Futures [QUARTERLY]</td><td class="mt-cat"><span class="badge badge-teal">Market</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>89</td><td class="mt-title">Macro Trend Deep Dive [MONTHLY]</td><td class="mt-cat"><span class="badge badge-teal">Market</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>18-25 min</td></tr>
+        <tr><td>90</td><td class="mt-title">Friday Trading Week Recap [RECURRING]</td><td class="mt-cat"><span class="badge badge-teal">Market</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>8-12 min</td></tr>
+        <!-- SHORTS (15) -->
+        <tr><td>91</td><td class="mt-title">Your Win Rate Means Nothing Without This</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-high">HIGH</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>92</td><td class="mt-title">The Leverage Sweet Spot for Funded Traders</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-high">HIGH</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>93</td><td class="mt-title">One Metric Separates Funded From Failed</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-high">HIGH</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>94</td><td class="mt-title">$1M Funded Account: How Many NQ Contracts?</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-high">HIGH</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>95</td><td class="mt-title">This Mistake Costs You 30 Score Points</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-high">HIGH</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>96</td><td class="mt-title">FOMC Day: What Funded Traders Should Do</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-medium">MEDIUM</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>97</td><td class="mt-title">Why +5% in a Day Is Actually Bad</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-high">HIGH</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>98</td><td class="mt-title">3 Seconds to Know If a Prop Firm Is Real</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-high">HIGH</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>99</td><td class="mt-title">The Only Futures Contract Beginners Should Trade</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-medium">MEDIUM</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>100</td><td class="mt-title">What 85/100 Looks Like on the Dashboard</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-high">HIGH</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>101</td><td class="mt-title">Overnight Positions With a Funded Account: Rules</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-medium">MEDIUM</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>102</td><td class="mt-title">How Much Can a Funded Trader Actually Make?</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-high">HIGH</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>103</td><td class="mt-title">The Profit Split Nobody Talks About</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-high">HIGH</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>104</td><td class="mt-title">NQ at Market Open: 30-Second Setup</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-medium">MEDIUM</td><td>Short</td><td>&lt;60s</td></tr>
+        <tr><td>105</td><td class="mt-title">Score 95+ Gets You Into the Elite Pool</td><td class="mt-cat"><span class="badge badge-amber">Short</span></td><td class="mt-priority-high">HIGH</td><td>Short</td><td>&lt;60s</td></tr>
+        <!-- BONUS IDEAS (10) -->
+        <tr><td>106</td><td class="mt-title">I Tried Trading With $1M for 30 Days (Results)</td><td class="mt-cat"><span class="badge badge-purple">Viral</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>20-25 min</td></tr>
+        <tr><td>107</td><td class="mt-title">Reacting to the Worst Funded Account Blow-Ups</td><td class="mt-cat"><span class="badge badge-purple">Viral</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>15-18 min</td></tr>
+        <tr><td>108</td><td class="mt-title">Can AI Beat the CLIMB Score? We Tested It</td><td class="mt-cat"><span class="badge badge-purple">Viral</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>18-22 min</td></tr>
+        <tr><td>109</td><td class="mt-title">The Mathematics Behind Funded Trading (Deep Dive)</td><td class="mt-cat"><span class="badge badge-purple">Viral</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>25-30 min</td></tr>
+        <tr><td>110</td><td class="mt-title">How Banks Evaluate Traders vs How Prop Firms Do</td><td class="mt-cat"><span class="badge badge-purple">Viral</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>15-20 min</td></tr>
+        <tr><td>111</td><td class="mt-title">Ranking Every Prop Firm's Rules From Easiest to Hardest</td><td class="mt-cat"><span class="badge badge-purple">Viral</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>18-22 min</td></tr>
+        <tr><td>112</td><td class="mt-title">What Your Trading Style Says About Your Score</td><td class="mt-cat"><span class="badge badge-purple">Viral</span></td><td class="mt-priority-medium">MEDIUM</td><td>Long</td><td>12-15 min</td></tr>
+        <tr><td>113</td><td class="mt-title">$0 to Funded: The Complete Roadmap</td><td class="mt-cat"><span class="badge badge-purple">Viral</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>20-25 min</td></tr>
+        <tr><td>114</td><td class="mt-title">The Dark Side of Prop Trading Nobody Mentions</td><td class="mt-cat"><span class="badge badge-purple">Viral</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>15-20 min</td></tr>
+        <tr><td>115</td><td class="mt-title">Building a Trading Career in 2026: The Honest Truth</td><td class="mt-cat"><span class="badge badge-purple">Viral</span></td><td class="mt-priority-high">HIGH</td><td>Long</td><td>20-25 min</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:32px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);text-align:center">
+    <div style="font-size:48px;font-weight:800;font-family:var(--mono);color:var(--teal);letter-spacing:-2px">115</div>
+    <div style="font-size:14px;color:var(--text2);margin-top:4px">Total Video Ideas Catalogued</div>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+      <span class="badge badge-teal">20 Score</span>
+      <span class="badge badge-green">20 Futures</span>
+      <span class="badge badge-amber">15 Industry</span>
+      <span class="badge badge-purple">10 Psychology</span>
+      <span class="badge badge-red">10 Platform</span>
+      <span class="badge badge-green">10 Community</span>
+      <span class="badge badge-teal">5 Market</span>
+      <span class="badge badge-amber">15 Shorts</span>
+      <span class="badge badge-purple">10 Viral/Bonus</span>
+    </div>
+  </div>
+</div>
+
+</main>
+</div><!-- /strategy-layout -->
+</div><!-- /container -->
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="border:none;padding-top:0">
+      <span>INTERNAL DOCUMENT — Climber Trade Content Strategy 2026</span>
+      <span class="footer-status">Document active</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+/* Sidebar active state */
+(function(){
+  const links=document.querySelectorAll('.sidebar-nav a');
+  const sections=document.querySelectorAll('.strategy-section');
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const id=entry.target.id;
+        links.forEach(l=>{
+          l.classList.toggle('active',l.getAttribute('href')==='#'+id);
+        });
+      }
+    });
+  },{rootMargin:'-20% 0px -60% 0px',threshold:0});
+  sections.forEach(s=>observer.observe(s));
+  /* Also observe pillar cards */
+  document.querySelectorAll('.pillar-card[id]').forEach(s=>observer.observe(s));
+})();
+
+/* Fade-up animation */
+(function(){
+  const els=document.querySelectorAll('.fade-up');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:.15});
+  els.forEach(e=>obs.observe(e));
+})();
+
+/* Navbar scroll */
+(function(){
+  const nav=document.querySelector('.navbar');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>20);});
+})();
+
+/* Mobile toggle */
+(function(){
+  const toggle=document.querySelector('.nav-toggle');
+  const mobile=document.querySelector('.nav-mobile');
+  if(toggle&&mobile){
+    toggle.addEventListener('click',()=>{
+      toggle.classList.toggle('open');
+      mobile.classList.toggle('open');
+    });
+  }
+})();
+</script>
+</body>
+</html>
