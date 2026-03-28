@@ -15,11 +15,22 @@
   pointer-events:none;display:block;
 }
 /* ── HERO TITLE ── */
-.hero-title{position:relative;overflow:visible;transition:opacity 0.8s ease;max-width:100%;word-wrap:break-word;overflow-wrap:break-word;}
-.hero-title .teal{color:var(--teal);}
-/* ── ASH CANVAS (overlaid on hero title) ── */
-.ash-canvas{
-  position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10;
+.hero-title{position:relative;overflow:visible;max-width:100%;word-wrap:break-word;overflow-wrap:break-word;}
+/* Shimmer on teal span */
+@keyframes heroShimmer{
+  0%{background-position:-200% center}
+  100%{background-position:200% center}
+}
+.hero-title .teal{
+  background:linear-gradient(90deg,#009ec0 0%,#00D4FF 35%,rgba(255,255,255,.88) 50%,#00D4FF 65%,#009ec0 100%);
+  background-size:250% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:heroShimmer 4s linear infinite;
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-title .teal{animation:none;-webkit-text-fill-color:#00D4FF;background:none;color:#00D4FF;}
 }
 .hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
 .hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
@@ -143,9 +154,8 @@
   <!-- PARTICLES — subtle floating dust -->
   <canvas class="hero-particles" id="heroParticles"></canvas>
   <div class="container" style="position:relative;z-index:2;">
-    <div id="heroTitleWrap" style="position:relative;display:block;max-width:100%;">
-      <h1 class="hero-title" id="heroTitle" style="opacity:1;">Your Trading Partner For Success.<br><span class="teal">Get Funded Without Limits.</span></h1>
-      <canvas class="ash-canvas" id="ashCanvas"></canvas>
+    <div id="heroTitleWrap">
+      <h1 class="hero-title" id="heroTitle">Your Trading Partner For Success.<br><span class="teal">Get Funded Without Limits.</span></h1>
     </div>
     <p class="hero-desc fade-up fade-up-delay-1" data-i18n="index_hero_desc">Climber Trade — where talent meets capital. Real funding. No tricks.</p>
     <div class="stat-cards fade-up fade-up-delay-2">
@@ -330,14 +340,14 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="#10B981"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
         </div>
         <h4 data-i18n="index_why1_title">We Profit When YOU Profit</h4>
-        <p data-i18n="index_why1_desc">Funding Partner model means we profit from your success, not your failures. 50% of subscription fees grow the liquidity pool that funds YOU.</p>
+        <p data-i18n="index_why1_desc">Funding Partner model: we profit from your success, not your failures. 50% of subscription fees grow the pool that funds YOU. On top of that, 25% of live profits are reinvested into the pool — accelerating your allocation. Seniority bonuses (up to +3% after 6 months live) and score-based bonuses grow your share further every month.</p>
       </div>
       <div class="why-card fade-up fade-up-delay-1">
         <div class="why-icon" style="background:#00D4FF18;border:1px solid #00D4FF33">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="#00D4FF"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
         </div>
         <h4 data-i18n="index_why2_title">Build a Successful Career</h4>
-        <p data-i18n="index_why2_desc">No Funding Limit. Top performers receive regular capital increases. You are in the real markets with real capital to generate massive uncapped profits.</p>
+        <p data-i18n="index_why2_desc">No funding limit — ever. Capital increases automatically every month from your go-live date, independent of other traders, with no ceiling. Each month your allocation grows — it never decreases. Real markets, real capital, unlimited upside.</p>
       </div>
       <div class="why-card fade-up fade-up-delay-2">
         <div class="why-icon" style="background:#F59E0B18;border:1px solid #F59E0B33">
@@ -445,18 +455,18 @@
     <div class="testimonial-grid">
       <div class="testimonial fade-up">
         <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-quote" data-i18n="index_testimonial1_quote">"I've tried 3 other prop firms before. Climber is the first one where I feel like they actually want me to succeed. The scoring system is fair and transparent."</div>
+        <div class="testimonial-quote" data-i18n="index_testimonial1_quote">"The dashboard alone is worth the subscription. I can see exactly where I need to improve. Made it to Live in 47 days with a score of 89."</div>
         <div class="testimonial-author"><div class="testimonial-avatar">M.R</div><div><div class="testimonial-name">Marcus R.</div><div class="testimonial-role" data-i18n="index_testimonial1_role">Futures Trader · 6 months</div></div></div>
       </div>
       <div class="testimonial fade-up fade-up-delay-1">
         <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-quote" data-i18n="index_testimonial2_quote">"The dashboard alone is worth the subscription. I can see exactly where I need to improve. Made it to Funded in 47 days with a score of 89."</div>
+        <div class="testimonial-quote" data-i18n="index_testimonial2_quote">"No hidden rules, no tricks. Just trade well and you get funded. The pool model makes sense — when I profit, they profit. Finally aligned incentives."</div>
         <div class="testimonial-author"><div class="testimonial-avatar">S.K</div><div><div class="testimonial-name">Sophie K.</div><div class="testimonial-role" data-i18n="index_testimonial2_role">Forex Trader · 3 months</div></div></div>
       </div>
       <div class="testimonial fade-up fade-up-delay-2">
         <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-quote" data-i18n="index_testimonial3_quote">"No hidden rules, no tricks. Just trade well and you get funded. The pool model makes sense — when I profit, they profit. Finally aligned incentives."</div>
-        <div class="testimonial-author"><div class="testimonial-avatar">J.T</div><div><div class="testimonial-name">James T.</div><div class="testimonial-role" data-i18n="index_testimonial3_role">Multi-asset Trader · 4 months</div></div></div>
+        <div class="testimonial-quote" data-i18n="index_testimonial3_quote">"I've tried 3 other prop firms before. Climber is the first one where I feel like they actually want me to succeed. The scoring system is fair and transparent."</div>
+        <div class="testimonial-author"><div class="testimonial-avatar">J.T</div><div><div class="testimonial-name">James T.</div><div class="testimonial-role" data-i18n="index_testimonial3_role">Futures Trader · 4 months</div></div></div>
       </div>
     </div>
     <!-- REFERRAL BANNER -->
@@ -538,57 +548,88 @@
 <script src="js/i18n.js"></script>
 <script src="js/shared.js"></script>
 <script>
-// ── BACKGROUND PARTICLES — teal floating dust with twinkling ──
+// ── HERO BACKGROUND — ascending chart lines + ambient particles ──
 (function(){
   var c = document.getElementById('heroParticles');
   if (!c) return;
   var ctx = c.getContext('2d');
   var W, H;
-  function resize() { W = c.width = c.offsetWidth; H = c.height = c.offsetHeight; }
+  function resize(){ W = c.width = c.offsetWidth; H = c.height = c.offsetHeight; }
   resize();
   window.addEventListener('resize', resize);
 
-  var PARTICLES = [];
-  var COUNT = 60;
-  for (var i = 0; i < COUNT; i++) {
-    // 20% are larger (2-3px), 80% are small (0.8-1.5px)
-    var size = Math.random() < 0.2 ? (2 + Math.random()) : (0.8 + Math.random() * 0.7);
-    PARTICLES.push({
-      x: Math.random() * 2000,
-      y: Math.random() * 1200,
-      r: size,
-      baseO: 0.2 + Math.random() * 0.3, // opacity range 0.2-0.5
-      ph: Math.random() * 6.28,
-      speed: 0.003 + Math.random() * 0.007,
-      dy: -0.05 - Math.random() * 0.15, // gentle upward drift
-      // Twinkling: ~40% of particles pulse on a 3-5s cycle
-      twinkle: Math.random() < 0.4,
-      twinkleSpeed: 0.3 + Math.random() * 0.4,
-      twinklePh: Math.random() * 6.28
+  // ── Ambient rising particles ──
+  var DOTS = [];
+  for(var i=0;i<35;i++){
+    DOTS.push({
+      x:Math.random(), y:Math.random(),
+      r:0.6+Math.random()*0.9,
+      vy:0.00025+Math.random()*0.0006,
+      a:0.06+Math.random()*0.18,
+      ph:Math.random()*6.28, sp:0.004+Math.random()*0.008
     });
   }
 
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    for (var i = 0; i < PARTICLES.length; i++) {
-      var s = PARTICLES[i];
-      s.ph += s.speed;
-      s.y += s.dy;
-      if (s.y < -20) s.y = 1200 + Math.random() * 100;
+  // ── Chart lines — ascending price paths ──
+  function newLine(startX){
+    var y0 = 0.35 + Math.random()*0.45;
+    return {
+      pts:[[startX||0, y0]],
+      curY:y0, x:startX||0,
+      spd: 0.0015+Math.random()*0.0025,
+      trend: -(0.0003+Math.random()*0.0006),  // net upward bias
+      vol:   0.0015+Math.random()*0.003,
+      op:    0.07+Math.random()*0.11,
+      teal:  Math.random()<0.5,
+      lw:    0.6+Math.random()*0.9
+    };
+  }
 
-      var twinkleFactor = 1;
-      if (s.twinkle) {
-        s.twinklePh += 0.02;
-        twinkleFactor = 0.4 + 0.6 * Math.abs(Math.sin(s.twinklePh * s.twinkleSpeed));
-      }
-      var a = s.baseO * twinkleFactor * (0.6 + 0.4 * Math.sin(s.ph));
-      if (a < 0.03) continue;
+  var LINES = [];
+  // Stagger start positions so lines cover the whole canvas from frame 1
+  for(var j=0;j<5;j++) LINES.push(newLine(j*0.2));
 
-      var x = (s.x / 2000) * W;
-      var y = (s.y / 1200) * H;
+  function stepLine(ln){
+    ln.x += ln.spd;
+    var dy = ln.trend + (Math.random()-0.5)*ln.vol;
+    ln.curY = Math.max(0.08, Math.min(0.92, ln.curY+dy));
+    ln.pts.push([ln.x, ln.curY]);
+    if(ln.pts.length>600) ln.pts.shift();
+    return ln.x>1.05;
+  }
+
+  function drawLine(ln){
+    if(ln.pts.length<2) return;
+    ctx.beginPath();
+    ctx.moveTo(ln.pts[0][0]*W, ln.pts[0][1]*H);
+    for(var i=1;i<ln.pts.length;i++) ctx.lineTo(ln.pts[i][0]*W, ln.pts[i][1]*H);
+    ctx.strokeStyle = ln.teal
+      ? 'rgba(0,212,255,'+ln.op+')'
+      : 'rgba(180,190,210,'+(ln.op*0.55)+')';
+    ctx.lineWidth = ln.lw;
+    ctx.stroke();
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    // Chart lines
+    for(var j=0;j<LINES.length;j++){
+      var done = stepLine(LINES[j]);
+      drawLine(LINES[j]);
+      if(done) LINES[j] = newLine(0);
+    }
+
+    // Ambient particles
+    for(var i=0;i<DOTS.length;i++){
+      var d = DOTS[i];
+      d.ph += d.sp; d.y -= d.vy;
+      if(d.y<-0.02){ d.y=1.02; d.x=Math.random(); }
+      var a = d.a*(0.5+0.5*Math.sin(d.ph));
+      if(a<0.02) continue;
       ctx.beginPath();
-      ctx.arc(x, y, s.r, 0, 6.28);
-      ctx.fillStyle = 'rgba(0,212,255,' + a.toFixed(3) + ')';
+      ctx.arc(d.x*W, d.y*H, d.r, 0, 6.28);
+      ctx.fillStyle='rgba(0,212,255,'+a.toFixed(3)+')';
       ctx.fill();
     }
     requestAnimationFrame(draw);
@@ -626,209 +667,6 @@
   })();
 })();
 
-// ── HERO TITLE — Canvas-based fine ash/cinder dissolution (right-to-left) ──
-(function(){
-  var titleEl = document.getElementById('heroTitle');
-  var ashCanvas = document.getElementById('ashCanvas');
-  var wrap = document.getElementById('heroTitleWrap');
-  if (!titleEl || !ashCanvas || !wrap) return;
-
-  var ctx = ashCanvas.getContext('2d');
-  var particles = [];
-  var animId = null;
-  var dpr = window.devicePixelRatio || 1;
-
-  function syncSize() {
-    var rect = titleEl.getBoundingClientRect();
-    ashCanvas.style.width = rect.width + 'px';
-    ashCanvas.style.height = rect.height + 'px';
-    ashCanvas.width = Math.round(rect.width * dpr);
-    ashCanvas.height = Math.round(rect.height * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-
-  // Capture text pixels by rendering into an offscreen canvas
-  function captureTextPixels() {
-    syncSize();
-    var rect = titleEl.getBoundingClientRect();
-    var w = Math.round(rect.width);
-    var h = Math.round(rect.height);
-    if (w === 0 || h === 0) return [];
-
-    var offCanvas = document.createElement('canvas');
-    offCanvas.width = w;
-    offCanvas.height = h;
-    var offCtx = offCanvas.getContext('2d');
-
-    var cs = getComputedStyle(titleEl);
-    var fontSize = parseFloat(cs.fontSize);
-    var fontWeight = cs.fontWeight;
-    var fontFamily = cs.fontFamily;
-    var lineHeight = parseFloat(cs.lineHeight) || fontSize * 1.3;
-
-    offCtx.fillStyle = '#ffffff';
-    offCtx.font = fontWeight + ' ' + fontSize + 'px ' + fontFamily;
-    offCtx.textAlign = 'center';
-    offCtx.textBaseline = 'top';
-
-    // Extract lines from the title
-    var rawText = titleEl.innerText || titleEl.textContent || '';
-    var lines = rawText.split('\n').filter(function(l) { return l.trim().length > 0; });
-    if (lines.length < 2) {
-      var fullText = rawText.trim();
-      var idx = fullText.indexOf('Get Funded');
-      if (idx > 0) {
-        lines = [fullText.substring(0, idx).trim(), fullText.substring(idx).trim()];
-      }
-    }
-
-    var totalTextHeight = lines.length * lineHeight;
-    var startY = (h - totalTextHeight) / 2;
-    for (var i = 0; i < lines.length; i++) {
-      offCtx.fillText(lines[i].trim(), w / 2, startY + i * lineHeight);
-    }
-
-    var imageData = offCtx.getImageData(0, 0, w, h);
-    var data = imageData.data;
-    var points = [];
-    var step = 2;
-    for (var y = 0; y < h; y += step) {
-      for (var x = 0; x < w; x += step) {
-        var idx2 = (y * w + x) * 4;
-        if (data[idx2 + 3] > 30) {
-          points.push({ x: x, y: y, a: data[idx2 + 3] / 255 });
-        }
-      }
-    }
-    return points;
-  }
-
-  function createParticles() {
-    var points = captureTextPixels();
-    particles = [];
-    var maxParticles = 1000;
-    var skipRate = Math.max(1, Math.floor(points.length / maxParticles));
-
-    for (var i = 0; i < points.length; i += skipRate) {
-      var p = points[i];
-      var size = 0.3 + Math.random() * 1.0; // 0.3-1.3px ultra fine
-      var colorIdx = Math.random();
-      var color;
-      if (colorIdx < 0.3) color = '0,212,255';       // teal
-      else if (colorIdx < 0.5) color = '180,220,255'; // light blue
-      else if (colorIdx < 0.75) color = '255,255,255'; // white
-      else color = '140,180,200';                       // soft grey-blue
-
-      // Random angle for scattered drift (mostly left but varied)
-      var angle = Math.PI + (Math.random() - 0.5) * 1.2; // ~120° to ~240°
-      var speed = 0.4 + Math.random() * 1.2; // much slower
-
-      particles.push({
-        x: p.x, y: p.y,
-        ox: p.x, oy: p.y,
-        size: size,
-        color: color,
-        alpha: 0.2 + Math.random() * 0.4,
-        // Scattered drift — mostly left but with wide vertical spread
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed * 1.5,
-        delay: Math.random() * 1500, // stagger more (was 800)
-        life: 0,
-        maxLife: 2500 + Math.random() * 2000, // longer life (was 1500+1000)
-        started: false
-      });
-    }
-  }
-
-  var dissolveStartTime = 0;
-  var dissolving = false;
-
-  function animateDissolve() {
-    var now = performance.now();
-    var elapsed = now - dissolveStartTime;
-    var rect = titleEl.getBoundingClientRect();
-    var w = rect.width;
-    var h = rect.height;
-    ctx.clearRect(0, 0, w, h);
-    var allDone = true;
-
-    for (var i = 0; i < particles.length; i++) {
-      var p = particles[i];
-      if (elapsed < p.delay) {
-        ctx.beginPath();
-        ctx.arc(p.ox, p.oy, p.size, 0, 6.28);
-        ctx.fillStyle = 'rgba(' + p.color + ',' + p.alpha.toFixed(2) + ')';
-        ctx.fill();
-        allDone = false;
-        continue;
-      }
-      if (!p.started) {
-        p.started = true;
-        p.life = 0;
-        p.x = p.ox;
-        p.y = p.oy;
-      }
-      p.life = elapsed - p.delay;
-      if (p.life > p.maxLife) continue;
-      allDone = false;
-
-      var progress = p.life / p.maxLife;
-      var ease = progress * progress * 0.5 + progress * 0.5;
-      p.x = p.ox + p.vx * ease * (p.maxLife / 16);
-      p.y = p.oy + p.vy * ease * (p.maxLife / 16) + Math.sin(p.life * 0.005) * 2;
-
-      var fadeAlpha;
-      if (progress < 0.15) fadeAlpha = p.alpha;
-      else fadeAlpha = p.alpha * (1 - ((progress - 0.15) / 0.85));
-      if (fadeAlpha < 0.01) continue;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size * (1 - progress * 0.3), 0, 6.28);
-      ctx.fillStyle = 'rgba(' + p.color + ',' + fadeAlpha.toFixed(3) + ')';
-      ctx.fill();
-    }
-
-    if (!allDone) {
-      animId = requestAnimationFrame(animateDissolve);
-    } else {
-      ctx.clearRect(0, 0, w, h);
-      dissolving = false;
-    }
-  }
-
-  function startDissolve() {
-    if (dissolving) return;
-    dissolving = true;
-    createParticles();
-    titleEl.style.opacity = '0';
-    dissolveStartTime = performance.now();
-    animateDissolve();
-  }
-
-  function cycle() {
-    // Phase 1: Show text (fade in over 0.8s)
-    titleEl.style.transition = 'opacity 0.8s ease';
-    titleEl.style.opacity = '1';
-    syncSize();
-    ctx.clearRect(0, 0, ashCanvas.width / dpr, ashCanvas.height / dpr);
-    if (animId) { cancelAnimationFrame(animId); animId = null; }
-
-    // Phase 2: Hold visible for 7 seconds, then dissolve slowly
-    setTimeout(function() {
-      startDissolve();
-    }, 7000);
-
-    // Phase 3: After dissolution (~5s) + pause (2.5s), restart
-    // Total cycle: 7s visible + 6s dissolve + 2.5s pause = 15.5s
-    setTimeout(function() {
-      cycle();
-    }, 7000 + 6000 + 2500);
-  }
-
-  cycle();
-
-  window.addEventListener('resize', function() { syncSize(); });
-})();
 </script>
 </body>
 </html>

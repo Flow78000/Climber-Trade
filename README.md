@@ -1,152 +1,130 @@
-# 🏔 Climber Trade
+# 🏔 Climber Trade — Project Index
 
 > **Your Trading Partner For Success. Get Funded Without Limits.**
-
-Revolutionary prop firm that identifies, evaluates, and funds talented traders through the CLIMB Score — a 100-point algorithmic rating across 14 metrics and 4 pillars.
-
-[![Last Commit](https://img.shields.io/github/last-commit/Flow78000/Climber-Trade)](https://github.com/Flow78000/Climber-Trade)
+> Repo : **https://github.com/Flow78000/Climber-Trade**
 
 ---
 
-## 🌐 Live Preview (Development)
+## 🔒 Fichiers Confidentiels & Privés
 
-| Site | URL | Status |
-|------|-----|--------|
-| **Public Website** | `src/html/site/index.html` | ✅ 19 pages |
-| **Legal Document Center** | `src/html/legal-internal/index.html` | ✅ 5 contracts |
-| **Data Dashboards** | `src/html/` | ✅ 5 tools |
+> Ces fichiers ne sont **PAS** dans la navigation du site. Accès interne uniquement.
 
-> Open any `.html` file directly in your browser, or serve with `python -m http.server 9100 --directory src/html/site`
+| Fichier | Description | GitHub (source) | Rendu HTML |
+|---------|-------------|-----------------|------------|
+| `business-intelligence.html` | Modèle financier BI — P&L, pool economics, 12 sections | [Voir source](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/business-intelligence.html) | [Ouvrir rendu](https://htmlpreview.github.io/?https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/business-intelligence.html) |
+| `strategic-analysis.html` | Analyse M&A — SWOT, Porter, valorisation, due diligence | [Voir source](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/strategic-analysis.html) | [Ouvrir rendu](https://htmlpreview.github.io/?https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/strategic-analysis.html) |
+| `content-strategy.html` | Stratégie contenu YouTube — 115 vidéos planifiées | [Voir source](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/content-strategy.html) | [Ouvrir rendu](https://htmlpreview.github.io/?https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/content-strategy.html) |
+
+> 💡 **Utiliser les liens "Rendu HTML"** pour voir le fichier comme une vraie page web (nécessite que le repo soit public sur GitHub).
 
 ---
 
-## 📁 Project Structure
+## 🌐 Pages du Site Public
+
+| Page | Fichier | Description |
+|------|---------|-------------|
+| Home | [`index.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/index.html) | Landing page — hero animé, stats live, why, CTA |
+| How It Works | [`how-it-works.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/how-it-works.html) | Parcours trader 5 étapes, CLIMB Score overview |
+| Pricing | [`pricing.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/pricing.html) | Standard $199/mois · Découverte $49 |
+| FAQ | [`faq.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/faq.html) | Accordéons par catégorie + section paiements & retraits |
+| Trading Rules | [`rules.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/rules.html) | Règles phase évaluation & live, instruments, sanctions |
+| About / The Model | [`about.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/about.html) | Mission, pool de liquidité, profit splits |
+| Contact | [`contact.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/contact.html) | Support — formulaire, chat, Discord, tickets |
+| Compare | [`compare.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/compare.html) | Comparateur interactif 4 modèles (CFD / Futures / Darwinex / Climber) |
+| Instruments | [`instruments.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/instruments.html) | Instruments disponibles (Futures CME, Forex, Actions, CFD) |
+| Ranks | [`ranks.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/ranks.html) | Système de rangs No Rank → Diamond |
+| Leaderboard | [`leaderboard.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/leaderboard.html) | Classement traders par score CLIMB |
+| Referral | [`referral.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/referral.html) | Programme parrainage & affiliation premium |
+| Pool Dashboard | [`pool.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/pool.html) | Dashboard public pool de liquidité temps réel |
+| Knowledge Center | [`knowledge-center.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/knowledge-center.html) | Base de connaissances & infobulles métriques |
+| Academy | [`academy.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/academy.html) | Formations vidéo + webinaires |
+| Login | [`login.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/login.html) | Connexion plateforme |
+| Sign Up | [`signup.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/signup.html) | Inscription |
+| 404 | [`404.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/404.html) | Page d'erreur personnalisée |
+
+---
+
+## ⚖️ Pages Légales
+
+| Page | Fichier | Description |
+|------|---------|-------------|
+| CGV | [`legal/cgv.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/legal/cgv.html) | Conditions générales challenge & reset |
+| Mentions légales | [`legal/mentions.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/legal/mentions.html) | Éditeur, hébergeur, contact légal |
+| Politique de confidentialité | [`legal/privacy.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/legal/privacy.html) | RGPD, KYC, RISE WORKS, cookies |
+| NDA Beta Testeurs | [`legal/nda.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/legal/nda.html) | NDA confidentialité beta |
+| Règlement Trading (légal) | [`legal/trading-rules.html`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/legal/trading-rules.html) | Règlement complet version légale |
+
+---
+
+## 🎨 Assets Partagés (CSS / JS)
+
+| Fichier | Description |
+|---------|-------------|
+| [`css/shared.css`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/css/shared.css) | Design system complet — tokens couleur, navbar, footer, composants, cookie banner |
+| [`js/shared.js`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/js/shared.js) | Navbar mobile, accordéons, footer payments (Visa/MC/RISE WORKS), CFTC disclosures, cookie consent |
+| [`js/translations.js`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/js/translations.js) | Traductions complètes EN / FR / ES |
+| [`js/i18n.js`](https://github.com/Flow78000/Climber-Trade/blob/main/src/html/site/js/i18n.js) | Moteur de traduction i18n (sélecteur langue, localStorage) |
+
+---
+
+## 📐 Structure des Fichiers
 
 ```
-src/
-├── html/
-│   ├── site/                    ← PUBLIC WEBSITE (19 pages)
-│   │   ├── index.html               Home — hero, counters, 4 steps, why us
-│   │   ├── how-it-works.html        4-step flow, CLIMB Score, Go Live criteria
-│   │   ├── pricing.html             Standard ($199/mo) + Discovery ($49)
-│   │   ├── rules.html               Trading rules + 14 KB metrics + margins
-│   │   ├── faq.html                 33 questions, 8 categories, search
-│   │   ├── about.html               Values, pool model, profit splits, scaling
-│   │   ├── contact.html             Form, Discord, response times
-│   │   ├── referral.html            Referral + Premium Affiliation programs
-│   │   ├── ranks.html               6 rank tiers (No Rank → Diamond)
-│   │   ├── pool.html                Public pool dashboard (Bloomberg-style)
-│   │   ├── instruments.html         5 asset classes, leverage guide
-│   │   ├── academy.html             3 learning tracks, CLIMB Score simulator
-│   │   ├── leaderboard.html         Top traders, challenges, Hall of Fame
-│   │   ├── compare.html             Honest comparison vs traditional prop firms
-│   │   ├── login.html               Login form
-│   │   ├── signup.html              Registration with plan selector
-│   │   ├── css/shared.css           Design system tokens + components
-│   │   ├── js/shared.js             Nav, scroll animations, accordions, counters
-│   │   ├── js/translations.js       EN/FR/ES translations (500+ keys)
-│   │   ├── js/i18n.js              Language switcher controller
-│   │   └── legal/                   PUBLIC legal pages
-│   │       ├── index.html               Legal hub (5 documents)
-│   │       ├── cgv.html                 Terms & Conditions
-│   │       ├── privacy.html             Privacy Policy
-│   │       ├── mentions.html            Legal Notice
-│   │       ├── nda.html                 NDA Beta Testers
-│   │       └── trading-rules.html       Trading Regulations
-│   │
-│   ├── legal-internal/          ← INTERNAL LEGAL CENTER (not public)
-│   │   ├── index.html               Document hub with view + download
-│   │   └── docs/
-│   │       ├── trader-contract.html     Professional Trader Contract
-│   │       ├── trading-rules.html       Complete Trading Regulations
-│   │       ├── nda.html                 NDA Beta Testers
-│   │       ├── referral-program.html    Referral & Affiliation Terms
-│   │       └── pool-spec.html           Liquidity Pool Technical Spec
-│   │
-│   ├── scoring-data-v2.html     ← SCORING REFERENCE (14 metrics, all barèmes)
-│   ├── kb-items-v2.html         ← KNOWLEDGE BASE (educational metric guides)
-│   ├── trader-guide-v2.html     ← TRADER GUIDE (targets, profiles, checklist)
-│   ├── margin-data-v2.html      ← MARGIN REFERENCE (108 products, 5 exchanges)
-│   └── trading-rules-v2.html    ← RULES MOCKUP (standalone sidebar version)
+src/html/site/
+├── index.html              ← Landing page
+├── how-it-works.html
+├── pricing.html
+├── faq.html
+├── rules.html
+├── about.html
+├── contact.html
+├── compare.html
+├── pool.html / ranks.html / leaderboard.html
+├── referral.html / instruments.html
+├── knowledge-center.html / academy.html
+├── login.html / signup.html / 404.html
 │
-├── CLAUDE.md                    ← PROJECT MEMORY (complete specs)
-└── README.md                    ← This file
+├── 🔒 [CONFIDENTIEL — pas dans la nav]
+│   ├── business-intelligence.html
+│   ├── strategic-analysis.html
+│   └── content-strategy.html
+│
+├── legal/
+│   ├── cgv.html
+│   ├── mentions.html
+│   ├── privacy.html
+│   ├── nda.html
+│   └── trading-rules.html
+│
+├── css/shared.css
+└── js/
+    ├── shared.js
+    ├── translations.js
+    └── i18n.js
 ```
 
 ---
 
-## 🎨 Design System
+## 🔑 Références Rapides
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| Background | `#0A0A0A` | Global background |
-| Card | `#131313` | Cards, panels |
-| Teal | `#00D4FF` | Primary accent (used sparingly) |
-| Green | `#10B981` | Success states |
-| Red | `#EF4444` | Errors, alerts |
-| Amber | `#F59E0B` | Warnings |
-| Purple | `#8B5CF6` | Elite, special |
-
-**Typography:** Outfit (300-800) + JetBrains Mono (data)
-**Style:** Institutional fintech dark theme — no glow, no neon
-
----
-
-## 🌍 Multilingual
-
-The site supports **EN / FR / ES** via a dropdown language switcher:
-- 500+ translation keys in `translations.js`
-- Language persists across pages via `localStorage`
-- Legal documents also have integrated EN/FR/ES switcher
+| Paramètre | Valeur |
+|-----------|--------|
+| Site live | https://www.climbertrade.com |
+| Email | contact@climbertrade.com |
+| Paiements traders | RISE WORKS |
+| Paiements abonnements | aMember (Visa / Mastercard USD) |
+| Plan Standard | $199/mois (renouvelable auto) |
+| Plan Découverte | $49 / 30 jours non renouvelable |
+| Reset gratuit | 1×/mois (si solde 0$, pas encore live) |
+| Reset standard | $99 |
+| Reset near-fail | $79 (score 80–84) |
+| Seuil Live | Score CLIMB ≥ 85 + 7j consécutifs + 30j calendaires + KYC |
+| Split Live 85–89 | 50% trader / 50% Climber |
+| Split Live 90–94 | 55% trader / 45% Climber |
+| Split Live 95–100 | 60% trader / 40% Climber |
+| Payout minimum | $500 |
+| Cycles payout | 5 du mois + 20 du mois + à la demande (J+1 calcul, J+3–5 virement) |
 
 ---
 
-## 📊 CLIMB Score System
-
-**4 Pillars · 14 Metrics · Score /100**
-
-| Pillar | Coefficient | Metrics |
-|--------|-------------|---------|
-| Risk Management | ×4 | ABS_NPL, INPL, R_T_AFD, CT4 |
-| Performance | ×4 | Profit Factor, Sharpe, Yield |
-| Consistency & Style | ×3 | Win Rate, Days in Gain, LSR |
-| Quality Execution | ×2 (multiplier) | Skew, Kurtosis, Extreme Day, Best/Worst |
-
-**Formula:** `Score = [(Risk×4 + Perf×4 + Cons×3) / 11] × (1 + (Quality-50)/500)`
-
----
-
-## 💰 Business Model
-
-| Plan | Price | Capital | Live Access |
-|------|-------|---------|-------------|
-| Standard | $199/mo | $1,000,000 | ✅ When qualified |
-| Discovery | $49 one-time | $1,000,000 | ❌ |
-
-**Live Threshold:** Score ≥ 85 · 7 consecutive days · 30 calendar days
-
-**Profit Splits:** 50/50 (Score 85-89) → 60/40 (Score 95+)
-
-**Payouts:** 5th & 20th monthly + daily on request · Min $500 · Via RISE WORKS
-
----
-
-## 🔗 Social Media
-
-- [Instagram](https://www.instagram.com/climber.trade/) · [Facebook](https://www.facebook.com/profile.php?id=61588421365977) · [X/Twitter](https://x.com/ClimberTrade) · [LinkedIn](https://www.linkedin.com/in/climber-trade-5144323b1/) · [YouTube](http://www.youtube.com/@ClimberTrade) · [TikTok](https://www.tiktok.com/@climber_trade.funding)
-
----
-
-## 👥 Team
-
-| Person | Role |
-|--------|------|
-| **Flo** | Founder / Product Owner |
-| **Alex** | Lead Developer |
-
-**Contact:** contact@climbertrade.com
-**Website:** [www.climbertrade.com](https://www.climbertrade.com)
-
----
-
-*Built with HTML/CSS/JS · React TSX dashboards · Volumetrica trading platform · aMember payments · RISE WORKS payouts*
+*Dernière mise à jour : Mars 2026 — Flo / Climber Trade*

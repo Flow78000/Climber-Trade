@@ -15,136 +15,520 @@
 <meta name="theme-color" content="#00D4FF">
 <link rel="stylesheet" href="css/shared.css">
 <style>
-/* Hero */
-.hero{text-align:center;padding:120px 0 80px;}
-.hero-desc{font-size:18px;color:var(--text2);max-width:680px;margin:24px auto 0;line-height:1.8;}
-
-/* Problem cards */
-.problems-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;
+/* ============================================================
+   HERO
+   ============================================================ */
+.compare-hero {
+  text-align: center;
+  padding: 120px 0 80px;
 }
-.problem-card{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
-  padding:32px;transition:border-color .2s;
+.compare-hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  margin: 0;
 }
-.problem-card:hover{border-color:var(--border2);}
-.problem-icon{
-  width:48px;height:48px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:20px;background:#EF444418;border:1px solid #EF444433;
+.compare-hero .hero-sub {
+  font-size: 18px;
+  color: var(--text2);
+  max-width: 560px;
+  margin: 20px auto 36px;
+  line-height: 1.7;
 }
-.problem-card h4{margin-bottom:10px;font-size:18px;}
-.problem-card p{font-size:14px;color:var(--text2);line-height:1.7;}
-
-/* Comparison table */
-.comparison-wrap{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r2);overflow:hidden;margin-top:48px;
+.model-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
 }
-.comparison-wrap table{width:100%;border-collapse:collapse;}
-.comparison-wrap th{
-  font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
-  padding:16px 24px;text-align:left;
-  border-bottom:1px solid var(--border);background:var(--card2);
+.model-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text2);
+  letter-spacing: .02em;
 }
-.comparison-wrap th:first-child{color:var(--text2);}
-.comparison-wrap th:nth-child(2){color:var(--text3);}
-.comparison-wrap th:nth-child(3){color:var(--teal);}
-.comparison-wrap td{
-  padding:16px 24px;border-bottom:1px solid #0f0f0f;
-  font-size:14px;color:var(--text2);vertical-align:top;
+.model-pill .pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
-.comparison-wrap tr:last-child td{border:none;}
-.comparison-wrap tr:hover td{background:var(--surface2);}
-.comparison-wrap td:first-child{
-  font-weight:600;color:var(--text);font-size:13px;white-space:nowrap;
-}
-.comparison-wrap td:nth-child(3){color:var(--text);}
-.check-icon{color:var(--green);margin-right:6px;font-weight:700;}
-.neutral-icon{color:var(--text3);margin-right:6px;}
-
-/* Incentive section */
-.incentive-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;
-}
-.incentive-card{
-  border-radius:var(--r2);padding:36px;border:1px solid var(--border);
-  position:relative;
-}
-.incentive-card.misaligned{
-  background:linear-gradient(180deg,#1a0e0e,var(--card));
-  border-color:#EF444422;
-}
-.incentive-card.aligned{
-  background:linear-gradient(180deg,#0a1a1f,var(--card));
-  border-color:#00D4FF33;
-}
-.incentive-label{
-  display:inline-block;padding:4px 14px;border-radius:20px;
-  font-size:10px;font-weight:700;letter-spacing:.5px;
-  text-transform:uppercase;margin-bottom:20px;
-}
-.incentive-card h4{margin-bottom:12px;font-size:20px;}
-.incentive-card p{font-size:14px;color:var(--text2);line-height:1.7;}
-.incentive-arrow{
-  font-size:28px;margin:16px 0;display:block;
-}
-.incentive-result{
-  font-size:15px;font-weight:700;line-height:1.6;
-}
-.incentive-math{
-  margin-top:24px;padding:20px;
-  background:var(--surface2);border-radius:var(--r);
-  font-size:13px;color:var(--text2);line-height:1.8;
-}
-.incentive-math strong{color:var(--teal);}
-
-/* Numbers cards */
-.numbers-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;
-}
-.number-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r2);padding:28px;text-align:center;
-  transition:border-color .2s,transform .2s;
-}
-.number-card:hover{border-color:var(--border2);transform:translateY(-2px);}
-.number-card-metric{
-  font-size:12px;font-weight:700;letter-spacing:.6px;
-  text-transform:uppercase;color:var(--text2);margin-bottom:16px;
-}
-.number-card-row{
-  display:flex;flex-direction:column;gap:12px;margin-top:12px;
-}
-.number-card-industry{
-  font-size:13px;color:var(--text3);
-}
-.number-card-industry span{
-  display:block;font-size:22px;font-weight:800;font-family:var(--mono);
-  color:var(--text3);letter-spacing:-.5px;margin-top:4px;
-}
-.number-card-climber{
-  font-size:13px;color:var(--teal);
-}
-.number-card-climber span{
-  display:block;font-size:22px;font-weight:800;font-family:var(--mono);
-  color:var(--teal);letter-spacing:-.5px;margin-top:4px;
-}
-.number-divider{
-  width:40px;height:1px;background:var(--border);margin:4px auto;
+.model-pill.pill-gray .pill-dot  { background: #6B7280; }
+.model-pill.pill-amber .pill-dot { background: #F59E0B; }
+.model-pill.pill-teal .pill-dot  { background: #00D4FF; }
+.model-pill.pill-teal {
+  border-color: rgba(0,212,255,.35);
+  color: var(--text);
 }
 
-/* Responsive */
-@media(max-width:1024px){
-  .problems-grid{grid-template-columns:1fr;}
-  .incentive-grid{grid-template-columns:1fr;}
-  .numbers-grid{grid-template-columns:repeat(2,1fr);}
-  .comparison-wrap{overflow-x:auto;}
+/* ============================================================
+   MODEL OVERVIEW CARDS
+   ============================================================ */
+.models-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 48px;
 }
-@media(max-width:768px){
-  .hero{padding:80px 0 60px;}
-  .numbers-grid{grid-template-columns:1fr;}
-  .comparison-wrap table{min-width:640px;}
+.model-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 28px 24px;
+  position: relative;
+  transition: border-color .2s, transform .2s;
+}
+.model-card::before {
+  content: '';
+  display: block;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  background: var(--border);
+}
+.model-card.card-gray::before  { background: #6B7280; }
+.model-card.card-amber::before { background: #F59E0B; }
+.model-card.card-teal::before  { background: #00D4FF; }
+.model-card.climber {
+  border-color: rgba(0,212,255,.35);
+}
+.model-card.climber:hover {
+  border-color: rgba(0,212,255,.6);
+  transform: translateY(-3px);
+}
+.model-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.model-card-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.model-card-label.lbl-gray  { background: rgba(107,114,128,.15); color: #9CA3AF; }
+.model-card-label.lbl-amber { background: rgba(245,158,11,.15);  color: #F59E0B; }
+.model-card-label.lbl-teal  { background: rgba(0,212,255,.12);   color: #00D4FF; }
+.mc-best-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #00D4FF;
+  background: rgba(0,212,255,.1);
+  border: 1px solid rgba(0,212,255,.3);
+  padding: 2px 9px;
+  border-radius: 10px;
+}
+.model-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: var(--text);
+}
+.mc-how {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+.mc-revenue {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--text2);
+  margin-bottom: 16px;
+  line-height: 1.5;
+  padding: 9px 12px;
+  background: var(--surface2, rgba(255,255,255,.03));
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+}
+.mc-revenue-icon {
+  flex-shrink: 0;
+  font-size: 13px;
+  margin-top: 1px;
+}
+.mc-revenue-icon.good  { color: #10B981; }
+.mc-revenue-icon.ok    { color: #F59E0B; }
+.mc-revenue-icon.bad   { color: #EF4444; }
+.mc-stats {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.mc-stat {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  text-align: center;
+}
+.mc-stat-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mc-stat-lbl {
+  font-size: 10px;
+  color: var(--text3);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mc-best {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.5;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.mc-best strong {
+  color: var(--text);
+}
+
+/* ============================================================
+   INTERACTIVE COMPARISON MATRIX
+   ============================================================ */
+.cat-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 36px 0 24px;
+}
+.cat-btn {
+  padding: 7px 18px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text2);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .18s;
+  font-family: inherit;
+}
+.cat-btn:hover {
+  border-color: var(--border2);
+  color: var(--text);
+}
+.cat-btn.active {
+  background: rgba(0,212,255,.1);
+  border-color: rgba(0,212,255,.4);
+  color: #00D4FF;
+}
+.matrix-wrap {
+  overflow-x: auto;
+  border-radius: var(--r2);
+  border: 1px solid var(--border);
+  background: var(--card);
+  -webkit-overflow-scrolling: touch;
+}
+.matrix-wrap table {
+  width: 100%;
+  min-width: 780px;
+  border-collapse: collapse;
+}
+.matrix-wrap thead tr {
+  background: rgba(255,255,255,.025);
+}
+.matrix-wrap th {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text2);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.matrix-wrap th:first-child {
+  width: 20%;
+  min-width: 160px;
+}
+.th-climber {
+  color: #00D4FF !important;
+  border-top: 2px solid #00D4FF;
+  position: relative;
+}
+.th-climber .th-our-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(0,212,255,.6);
+  margin-bottom: 3px;
+}
+.matrix-wrap td {
+  padding: 13px 18px;
+  font-size: 13px;
+  color: var(--text2);
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.matrix-wrap tr:last-child td {
+  border-bottom: none;
+}
+.matrix-wrap tbody tr:hover td {
+  background: rgba(255,255,255,.02);
+}
+.td-crit {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 13px;
+}
+.td-cat-tag {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-top: 3px;
+}
+.td-climber {
+  background: rgba(0,212,255,.03);
+}
+.matrix-wrap tbody tr:hover .td-climber {
+  background: rgba(0,212,255,.06);
+}
+.cell-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 7px;
+  flex-shrink: 0;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+.cell-good { color: #10B981; }
+.cell-good .cell-dot { background: #10B981; }
+.cell-ok   { color: #F59E0B; }
+.cell-ok .cell-dot   { background: #F59E0B; }
+.cell-bad  { color: #9CA3AF; }
+.cell-bad .cell-dot  { background: #6B7280; }
+
+/* ============================================================
+   SCORE BARS
+   ============================================================ */
+.score-section {
+  padding: 80px 0;
+}
+.score-dims {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 48px;
+}
+.score-dim {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  align-items: center;
+}
+.score-dim-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: right;
+  padding-right: 8px;
+}
+.score-bars-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.score-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.score-bar-name {
+  font-size: 11px;
+  color: var(--text3);
+  width: 110px;
+  flex-shrink: 0;
+  text-align: right;
+}
+.score-bar-track {
+  flex: 1;
+  height: 8px;
+  background: rgba(255,255,255,.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  width: 0;
+  transition: width 1.1s cubic-bezier(.4,0,.2,1);
+}
+.score-bar-fill.bar-gray   { background: #6B7280; }
+.score-bar-fill.bar-amber  { background: #F59E0B; }
+.score-bar-fill.bar-teal   { background: #00D4FF; }
+.score-bar-pct {
+  font-size: 11px;
+  font-weight: 700;
+  width: 38px;
+  flex-shrink: 0;
+  color: var(--text2);
+}
+
+/* ============================================================
+   VERDICT
+   ============================================================ */
+.verdict-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 48px;
+}
+.verdict-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 28px 24px;
+  transition: border-color .2s;
+}
+.verdict-card.winner {
+  border-color: rgba(0,212,255,.4);
+}
+.verdict-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.verdict-model-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+.verdict-badge {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+.verdict-badge.vb-orange {
+  background: rgba(251,146,60,.12);
+  color: #FB923C;
+  border: 1px solid rgba(251,146,60,.25);
+}
+.verdict-badge.vb-amber {
+  background: rgba(245,158,11,.12);
+  color: #F59E0B;
+  border: 1px solid rgba(245,158,11,.25);
+}
+.verdict-badge.vb-teal {
+  background: rgba(0,212,255,.1);
+  color: #00D4FF;
+  border: 1px solid rgba(0,212,255,.3);
+}
+.verdict-stars {
+  font-size: 16px;
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+  color: #F59E0B;
+}
+.verdict-stars .star-empty { color: rgba(255,255,255,.15); }
+.verdict-best {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  background: rgba(16,185,129,.06);
+  border-radius: 8px;
+  border-left: 2px solid rgba(16,185,129,.4);
+}
+.verdict-best strong { color: #10B981; }
+.verdict-notfor {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+  padding: 10px 12px;
+  background: rgba(239,68,68,.06);
+  border-radius: 8px;
+  border-left: 2px solid rgba(239,68,68,.3);
+}
+.verdict-notfor strong { color: #EF4444; }
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta-section {
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 100px 0;
+  text-align: center;
+}
+.cta-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+
+/* ============================================================
+   SHARED SECTION UTILITIES
+   ============================================================ */
+.section-alt { background: var(--surface, rgba(255,255,255,.015)); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:1200px) {
+  .models-grid   { grid-template-columns: repeat(2, 1fr); }
+  .verdict-grid  { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width:900px) {
+  .score-dim { grid-template-columns: 1fr; gap: 10px; }
+  .score-dim-label { text-align: left; padding-right: 0; }
+  .score-bar-name { width: 80px; }
+}
+@media(max-width:700px) {
+  .compare-hero { padding: 80px 0 60px; }
+  .models-grid  { grid-template-columns: 1fr; }
+  .verdict-grid { grid-template-columns: 1fr; }
+  .cat-filters  { gap: 6px; }
+  .cat-btn { font-size: 12px; padding: 6px 13px; }
 }
 </style>
 </head>
@@ -185,124 +569,263 @@
 <div class="spacer-nav"></div>
 
 <!-- SECTION 1: HERO -->
-<section class="hero">
+<section class="compare-hero">
   <div class="container">
     <div class="breadcrumb fade-up">
       <a href="index.html">Home</a>
       <span class="breadcrumb-sep">/</span>
       <span>Compare</span>
     </div>
-    <h1 class="hero-title fade-up" data-i18n="compare_hero_title">How We <span class="teal">Compare</span></h1>
-    <p class="hero-desc fade-up fade-up-delay-1" data-i18n="compare_hero_subtitle">An honest look at what makes Climber Trade different from traditional prop firms. No spin, no competitor bashing. Just the facts so you can make the right decision for your trading career.</p>
+    <h1 class="fade-up">The Only Comparison <span class="teal">That Matters</span></h1>
+    <p class="hero-sub fade-up fade-up-delay-1">4 business models. 15 criteria. One honest verdict.</p>
+    <div class="model-pills fade-up fade-up-delay-2">
+      <span class="model-pill pill-gray"><span class="pill-dot"></span>CFD Prop Firms</span>
+      <span class="model-pill pill-gray"><span class="pill-dot"></span>Futures Prop Firms</span>
+      <span class="model-pill pill-amber"><span class="pill-dot"></span>Darwinex Model</span>
+      <span class="model-pill pill-teal"><span class="pill-dot"></span>Climber Trade</span>
+    </div>
   </div>
 </section>
 
-<!-- SECTION 2: THE INDUSTRY PROBLEM -->
+<!-- SECTION 2: 4 MODEL OVERVIEW CARDS -->
 <section class="section section-alt">
   <div class="container">
     <div class="text-center fade-up">
-      <div class="section-label" style="justify-content:center">The Industry Problem</div>
-      <h2>What's Wrong With Traditional Prop Firms</h2>
-      <p class="section-subtitle" style="margin-top:12px">Three structural issues that work against traders</p>
+      <div class="section-label" style="justify-content:center">Business Models</div>
+      <h2>4 Models, Side by Side</h2>
+      <p class="section-subtitle" style="margin-top:12px">Understand what each model is — and who it's actually built for</p>
     </div>
-    <div class="problems-grid">
-      <div class="problem-card fade-up">
-        <div class="problem-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="#EF4444"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+
+    <div class="models-grid">
+
+      <!-- Card 1: CFD Prop Firms -->
+      <div class="model-card card-gray fade-up">
+        <div class="model-card-top">
+          <span class="model-card-label lbl-gray">CFD Prop Firms</span>
         </div>
-        <h4>Profit From Failures</h4>
-        <p>Most prop firms make money from failed evaluations, not from trading profits. Their incentive is for you to fail and rebuy. When 90%+ of traders fail, the business model depends on that failure rate continuing.</p>
-      </div>
-      <div class="problem-card fade-up fade-up-delay-1">
-        <div class="problem-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="#EF4444"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+        <h3>Pass/Fail Forex Funding</h3>
+        <p class="mc-how">Traders pay a one-time fee to access a simulated account. They must hit a profit target within 30–60 days without breaching loss limits.</p>
+        <div class="mc-revenue">
+          <span class="mc-revenue-icon bad">✗</span>
+          <span>Primarily from failed evaluations — ~90% fail rate drives revenue</span>
         </div>
-        <h4>Arbitrary Rules</h4>
-        <p>Hidden daily loss limits, time pressure, and artificial constraints designed to trip you up. Many firms use trailing drawdowns, consistency rules, and minimum day requirements that have nothing to do with real trading skill.</p>
-      </div>
-      <div class="problem-card fade-up fade-up-delay-2">
-        <div class="problem-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="#EF4444"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        <div class="mc-stats">
+          <div class="mc-stat"><div class="mc-stat-val">$150–600</div><div class="mc-stat-lbl">Eval fee</div></div>
+          <div class="mc-stat"><div class="mc-stat-val">80%</div><div class="mc-stat-lbl">Split fixed</div></div>
+          <div class="mc-stat"><div class="mc-stat-val">FX/CFD</div><div class="mc-stat-lbl">Only</div></div>
         </div>
-        <h4>No Real Capital</h4>
-        <p>Many firms never allocate real capital. You trade on simulated accounts even after passing the evaluation. The "funded account" is still a demo with payouts coming from evaluation fees collected from other traders.</p>
+        <div class="mc-best"><strong>Best for:</strong> Forex &amp; CFD specialists who work well under time pressure</div>
       </div>
+
+      <!-- Card 2: Futures Prop Firms -->
+      <div class="model-card card-gray fade-up fade-up-delay-1">
+        <div class="model-card-top">
+          <span class="model-card-label lbl-gray">Futures Prop Firms</span>
+        </div>
+        <h3>CME Futures Evaluation</h3>
+        <p class="mc-how">Traders evaluate on real or near-real futures accounts with trailing drawdown rules and profit targets. Popular with US futures markets (NQ, ES, CL).</p>
+        <div class="mc-revenue">
+          <span class="mc-revenue-icon bad">✗</span>
+          <span>Subscription fees + failed eval rebuys — failure still central to the model</span>
+        </div>
+        <div class="mc-stats">
+          <div class="mc-stat"><div class="mc-stat-val">$100–400</div><div class="mc-stat-lbl">Per month</div></div>
+          <div class="mc-stat"><div class="mc-stat-val">70–90%</div><div class="mc-stat-lbl">Split fixed</div></div>
+          <div class="mc-stat"><div class="mc-stat-val">Futures</div><div class="mc-stat-lbl">Only</div></div>
+        </div>
+        <div class="mc-best"><strong>Best for:</strong> Dedicated CME futures traders with strict loss discipline</div>
+      </div>
+
+      <!-- Card 3: Darwinex -->
+      <div class="model-card card-amber fade-up fade-up-delay-2">
+        <div class="model-card-top">
+          <span class="model-card-label lbl-amber">Darwinex Model</span>
+        </div>
+        <h3>Investor Capital Management</h3>
+        <p class="mc-how">Traders build a statistical track record as a "DARWIN" product. Investors allocate real capital to successful DARWINs and pay a 20% performance fee to Darwinex.</p>
+        <div class="mc-revenue">
+          <span class="mc-revenue-icon ok">◎</span>
+          <span>20% performance fee from investor profits — partially aligned incentives</span>
+        </div>
+        <div class="mc-stats">
+          <div class="mc-stat"><div class="mc-stat-val">Free</div><div class="mc-stat-lbl">Eval fee</div></div>
+          <div class="mc-stat"><div class="mc-stat-val">~15%</div><div class="mc-stat-lbl">AUM gains</div></div>
+          <div class="mc-stat"><div class="mc-stat-val">FX/CFD</div><div class="mc-stat-lbl">Focus</div></div>
+        </div>
+        <div class="mc-best"><strong>Best for:</strong> Patient discretionary traders who want to manage external capital long-term</div>
+      </div>
+
+      <!-- Card 4: Climber Trade -->
+      <div class="model-card card-teal climber fade-up fade-up-delay-3">
+        <div class="model-card-top">
+          <span class="model-card-label lbl-teal">Climber Trade</span>
+          <span class="mc-best-badge">BEST</span>
+        </div>
+        <h3>Merit-Based Real Funding</h3>
+        <p class="mc-how">Continuous 100-point CLIMB Score across 16+ metrics. No pass/fail. Real Liquidity Pool capital allocated by merit. Fully aligned incentives — Climber earns only when you earn.</p>
+        <div class="mc-revenue">
+          <span class="mc-revenue-icon good">✓</span>
+          <span>50% profit share from live traders only — we never profit from failures</span>
+        </div>
+        <div class="mc-stats">
+          <div class="mc-stat"><div class="mc-stat-val">$199/mo</div><div class="mc-stat-lbl">Or $49 trial</div></div>
+          <div class="mc-stat"><div class="mc-stat-val">50–60%</div><div class="mc-stat-lbl">Dynamic split</div></div>
+          <div class="mc-stat"><div class="mc-stat-val">All mkts</div><div class="mc-stat-lbl">Full access</div></div>
+        </div>
+        <div class="mc-best"><strong>Best for:</strong> All serious traders — full markets, transparent scoring, aligned incentives</div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- SECTION 3: FEATURE COMPARISON TABLE -->
+<!-- SECTION 3: INTERACTIVE COMPARISON MATRIX -->
 <section class="section">
   <div class="container">
     <div class="text-center fade-up">
-      <div class="section-label" style="justify-content:center">Feature Comparison</div>
-      <h2>The Climber Difference</h2>
-      <p class="section-subtitle" style="margin-top:12px">A transparent side-by-side look at what matters</p>
+      <div class="section-label" style="justify-content:center">Detailed Comparison</div>
+      <h2>16 Criteria — Fully Transparent</h2>
+      <p class="section-subtitle" style="margin-top:12px">Filter by category and see exactly how each model stacks up</p>
     </div>
-    <div class="comparison-wrap fade-up fade-up-delay-1">
+
+    <div class="cat-filters fade-up fade-up-delay-1">
+      <button class="cat-btn active" data-cat="all">All Criteria</button>
+      <button class="cat-btn" data-cat="business">Business Model</button>
+      <button class="cat-btn" data-cat="capital">Capital &amp; Payouts</button>
+      <button class="cat-btn" data-cat="risk">Risk &amp; Rules</button>
+      <button class="cat-btn" data-cat="tech">Markets &amp; Tech</button>
+    </div>
+
+    <div class="matrix-wrap fade-up fade-up-delay-2">
       <table>
         <thead>
           <tr>
-            <th>Feature</th>
-            <th>Traditional Prop Firms</th>
-            <th>Climber Trade</th>
+            <th>Criterion</th>
+            <th>CFD Prop Firms</th>
+            <th>Futures Prop Firms</th>
+            <th>Darwinex Model</th>
+            <th class="th-climber"><span class="th-our-label">✦ Our Model</span>Climber Trade</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Revenue model</td>
-            <td><span class="neutral-icon">&#8212;</span>Evaluation fees (profit from failures)</td>
-            <td><span class="check-icon">&#10003;</span>Shared profits (we grow when you grow)</td>
+          <!-- BUSINESS MODEL -->
+          <tr data-cat="business">
+            <td class="td-crit">Revenue source<br><span class="td-cat-tag">Business Model</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Failed eval fees (70–90% of revenue)</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Failed eval fees + subscriptions</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>20% perf fee on investor profits</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>50% profit share from live traders only</span></td>
           </tr>
-          <tr>
-            <td>Capital</td>
-            <td><span class="neutral-icon">&#8212;</span>Often simulated even post-evaluation</td>
-            <td><span class="check-icon">&#10003;</span>Real capital from Liquidity Pool</td>
+          <tr data-cat="business">
+            <td class="td-crit">Firm's incentive<br><span class="td-cat-tag">Business Model</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>You fail = they profit</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>You fail = they profit</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>You earn = they earn (partial)</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>You earn = they earn (fully aligned)</span></td>
           </tr>
-          <tr>
-            <td>Evaluation scoring</td>
-            <td><span class="neutral-icon">&#8212;</span>Pass/fail with hidden rules</td>
-            <td><span class="check-icon">&#10003;</span>Transparent 100-point CLIMB Score</td>
+          <tr data-cat="business">
+            <td class="td-crit">Capital transparency<br><span class="td-cat-tag">Business Model</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Opaque — no public data</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Opaque</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Strategy stats visible</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>Public Liquidity Pool dashboard</span></td>
           </tr>
-          <tr>
-            <td>Time limit</td>
-            <td><span class="neutral-icon">&#8212;</span>30-60 day pressure</td>
-            <td><span class="check-icon">&#10003;</span>No time limit (min 30 days, no maximum)</td>
+          <tr data-cat="business">
+            <td class="td-crit">Entry cost<br><span class="td-cat-tag">Business Model</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>$150–600 one-time</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>$100–400/month</span></td>
+            <td><span class="cell-good"><span class="cell-dot"></span>No entry fee</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>$199/mo or $49 discovery</span></td>
           </tr>
-          <tr>
-            <td>Daily loss limit</td>
-            <td><span class="neutral-icon">&#8212;</span>Hard 5% daily (instant fail)</td>
-            <td><span class="check-icon">&#10003;</span>Scored, not instant failure</td>
+
+          <!-- CAPITAL & PAYOUTS -->
+          <tr data-cat="capital">
+            <td class="td-crit">Capital type<br><span class="td-cat-tag">Capital &amp; Payouts</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Simulated / hedged mirror</span></td>
+            <td><span class="cell-good"><span class="cell-dot"></span>Real futures accounts (CME)</span></td>
+            <td><span class="cell-good"><span class="cell-dot"></span>Real investor money</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>Real pool capital</span></td>
           </tr>
-          <tr>
-            <td>Profit split</td>
-            <td><span class="neutral-icon">&#8212;</span>Fixed 80/20</td>
-            <td><span class="check-icon">&#10003;</span>Dynamic 50/50 to 60/40 based on score</td>
+          <tr data-cat="capital">
+            <td class="td-crit">Profit split<br><span class="td-cat-tag">Capital &amp; Payouts</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>80% fixed</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>70–90% fixed</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>~15% of AUM gains</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>50–60% dynamic (score-based)</span></td>
           </tr>
-          <tr>
-            <td>Scaling</td>
-            <td><span class="neutral-icon">&#8212;</span>Manual application</td>
-            <td><span class="check-icon">&#10003;</span>Automatic monthly based on score</td>
+          <tr data-cat="capital">
+            <td class="td-crit">Payout frequency<br><span class="td-cat-tag">Capital &amp; Payouts</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Monthly</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Monthly</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Variable / investor-dependent</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>2× monthly + on-demand daily</span></td>
           </tr>
-          <tr>
-            <td>Instruments</td>
-            <td><span class="neutral-icon">&#8212;</span>Limited to Forex or futures</td>
-            <td><span class="check-icon">&#10003;</span>Futures, Forex, Stocks, CFD, Crypto</td>
+          <tr data-cat="capital">
+            <td class="td-crit">Capital scaling<br><span class="td-cat-tag">Capital &amp; Payouts</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Manual application</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Manual step plans</span></td>
+            <td><span class="cell-good"><span class="cell-dot"></span>AUM grows with track record</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>Automatic monthly (score-based)</span></td>
           </tr>
-          <tr>
-            <td>Transparency</td>
-            <td><span class="neutral-icon">&#8212;</span>Opaque pool / funding</td>
-            <td><span class="check-icon">&#10003;</span>Public Liquidity Pool dashboard</td>
+
+          <!-- RISK & RULES -->
+          <tr data-cat="risk">
+            <td class="td-crit">Evaluation model<br><span class="td-cat-tag">Risk &amp; Rules</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Pass/fail — binary hard rules</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Pass/fail + trailing drawdown</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Live track record (no hard target)</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>CLIMB Score — continuous, 16 metrics</span></td>
           </tr>
-          <tr>
-            <td>Education</td>
-            <td><span class="neutral-icon">&#8212;</span>None or paid extra</td>
-            <td><span class="check-icon">&#10003;</span>Academy included with all plans</td>
+          <tr data-cat="risk">
+            <td class="td-crit">Time pressure<br><span class="td-cat-tag">Risk &amp; Rules</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>30–60 day hard deadline</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>30–60 days</span></td>
+            <td><span class="cell-good"><span class="cell-dot"></span>No time limit</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>No maximum — min 30 days only</span></td>
           </tr>
-          <tr>
-            <td>Capital allocation</td>
-            <td><span class="neutral-icon">&#8212;</span>Fixed amount</td>
-            <td><span class="check-icon">&#10003;</span>Score-based from real pool</td>
+          <tr data-cat="risk">
+            <td class="td-crit">Daily loss rule<br><span class="td-cat-tag">Risk &amp; Rules</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Hard 5% daily limit (instant fail)</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Trailing DD resets on every gain</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Monitored (VAR, Sharpe, DD)</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>Scored — no single instant failure</span></td>
+          </tr>
+          <tr data-cat="risk">
+            <td class="td-crit">Max drawdown<br><span class="td-cat-tag">Risk &amp; Rules</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Absolute hard cap (10%)</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Trailing from equity peak</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Risk-adjusted limits</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>Impacts score, not binary failure</span></td>
+          </tr>
+
+          <!-- MARKETS & TECH -->
+          <tr data-cat="tech">
+            <td class="td-crit">Instruments<br><span class="td-cat-tag">Markets &amp; Tech</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Forex + CFDs only</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Futures only (CME/CBOT)</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Forex + CFDs</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>Futures + Forex + Stocks + ETFs + CFDs + Crypto</span></td>
+          </tr>
+          <tr data-cat="tech">
+            <td class="td-crit">Trading styles<br><span class="td-cat-tag">Markets &amp; Tech</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Most styles allowed</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Day trading focus</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Any style</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>All styles: scalp, swing, algo, HFT, news</span></td>
+          </tr>
+          <tr data-cat="tech">
+            <td class="td-crit">Analytics dashboard<br><span class="td-cat-tag">Markets &amp; Tech</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Basic P&amp;L metrics</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>Basic pass/fail tracking</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Strategy statistics</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>16-metric CLIMB Score with infotips</span></td>
+          </tr>
+          <tr data-cat="tech">
+            <td class="td-crit">Education &amp; support<br><span class="td-cat-tag">Markets &amp; Tech</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>None included</span></td>
+            <td><span class="cell-bad"><span class="cell-dot"></span>None included</span></td>
+            <td><span class="cell-ok"><span class="cell-dot"></span>Community forums</span></td>
+            <td class="td-climber"><span class="cell-good"><span class="cell-dot"></span>Academy + 2× webinars/month + live chat + Discord</span></td>
           </tr>
         </tbody>
       </table>
@@ -310,134 +833,246 @@
   </div>
 </section>
 
-<!-- SECTION 4: ALIGNED INCENTIVE MODEL -->
-<section class="section section-alt">
+<!-- SECTION 4: VISUAL SCORE BARS -->
+<section class="score-section section-alt">
   <div class="container">
     <div class="text-center fade-up">
-      <div class="section-label" style="justify-content:center">Incentive Model</div>
-      <h2>The Aligned Incentive Model</h2>
-      <p class="section-subtitle" style="margin-top:12px">The fundamental difference in how revenue is generated</p>
+      <div class="section-label" style="justify-content:center">At a Glance</div>
+      <h2>6 Dimensions Scored</h2>
+      <p class="section-subtitle" style="margin-top:12px">How each model performs across the dimensions that matter most to traders</p>
     </div>
-    <div class="incentive-grid">
-      <div class="incentive-card misaligned fade-up">
-        <span class="incentive-label" style="background:#EF444418;color:var(--red)">Traditional Model</span>
-        <h4>Firm profits when you <span class="red">FAIL</span> and rebuy</h4>
-        <p>Revenue comes primarily from evaluation fees. The more traders fail and repurchase evaluations, the more the firm earns. There is no financial incentive to help traders succeed.</p>
-        <span class="incentive-arrow red">&#8595;</span>
-        <div class="incentive-result red">Misaligned incentives</div>
-      </div>
-      <div class="incentive-card aligned fade-up fade-up-delay-1">
-        <span class="incentive-label" style="background:#00D4FF18;color:var(--teal)">Climber Model</span>
-        <h4>Firm profits when you <span class="teal">SUCCEED</span> and trade live</h4>
-        <p>Revenue comes from profit sharing with successful funded traders. The more traders succeed and generate profits, the more Climber earns. Your success is our success.</p>
-        <span class="incentive-arrow teal">&#8595;</span>
-        <div class="incentive-result teal">Aligned incentives</div>
-        <div class="incentive-math">
-          <strong>50%</strong> of subscription revenue funds the Liquidity Pool.<br>
-          <strong>50%</strong> of Climber's profit share goes back to the pool.<br>
-          We literally invest in your success.
+
+    <div class="score-dims fade-up fade-up-delay-1">
+
+      <div class="score-dim">
+        <div class="score-dim-label">Incentive Alignment</div>
+        <div class="score-bars-group">
+          <div class="score-bar">
+            <span class="score-bar-name">CFD Firms</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-gray" data-w="10%"></div></div>
+            <span class="score-bar-pct">10%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Futures Firms</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-gray" data-w="15%"></div></div>
+            <span class="score-bar-pct">15%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Darwinex</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-amber" data-w="55%"></div></div>
+            <span class="score-bar-pct">55%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Climber Trade</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-teal" data-w="100%"></div></div>
+            <span class="score-bar-pct">100%</span>
+          </div>
         </div>
       </div>
+
+      <div class="score-dim">
+        <div class="score-dim-label">Capital Quality</div>
+        <div class="score-bars-group">
+          <div class="score-bar">
+            <span class="score-bar-name">CFD Firms</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-gray" data-w="25%"></div></div>
+            <span class="score-bar-pct">25%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Futures Firms</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-gray" data-w="70%"></div></div>
+            <span class="score-bar-pct">70%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Darwinex</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-amber" data-w="80%"></div></div>
+            <span class="score-bar-pct">80%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Climber Trade</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-teal" data-w="92%"></div></div>
+            <span class="score-bar-pct">92%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-dim">
+        <div class="score-dim-label">Rule Fairness</div>
+        <div class="score-bars-group">
+          <div class="score-bar">
+            <span class="score-bar-name">CFD Firms</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-gray" data-w="20%"></div></div>
+            <span class="score-bar-pct">20%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Futures Firms</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-gray" data-w="25%"></div></div>
+            <span class="score-bar-pct">25%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Darwinex</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-amber" data-w="65%"></div></div>
+            <span class="score-bar-pct">65%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Climber Trade</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-teal" data-w="95%"></div></div>
+            <span class="score-bar-pct">95%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-dim">
+        <div class="score-dim-label">Market Access</div>
+        <div class="score-bars-group">
+          <div class="score-bar">
+            <span class="score-bar-name">CFD Firms</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-gray" data-w="40%"></div></div>
+            <span class="score-bar-pct">40%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Futures Firms</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-gray" data-w="25%"></div></div>
+            <span class="score-bar-pct">25%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Darwinex</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-amber" data-w="40%"></div></div>
+            <span class="score-bar-pct">40%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Climber Trade</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-teal" data-w="100%"></div></div>
+            <span class="score-bar-pct">100%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-dim">
+        <div class="score-dim-label">Transparency</div>
+        <div class="score-bars-group">
+          <div class="score-bar">
+            <span class="score-bar-name">CFD Firms</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-gray" data-w="15%"></div></div>
+            <span class="score-bar-pct">15%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Futures Firms</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-gray" data-w="15%"></div></div>
+            <span class="score-bar-pct">15%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Darwinex</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-amber" data-w="55%"></div></div>
+            <span class="score-bar-pct">55%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Climber Trade</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-teal" data-w="98%"></div></div>
+            <span class="score-bar-pct">98%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-dim">
+        <div class="score-dim-label">Trader Development</div>
+        <div class="score-bars-group">
+          <div class="score-bar">
+            <span class="score-bar-name">CFD Firms</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-gray" data-w="8%"></div></div>
+            <span class="score-bar-pct">8%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Futures Firms</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-gray" data-w="8%"></div></div>
+            <span class="score-bar-pct">8%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Darwinex</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-amber" data-w="35%"></div></div>
+            <span class="score-bar-pct">35%</span>
+          </div>
+          <div class="score-bar">
+            <span class="score-bar-name">Climber Trade</span>
+            <div class="score-bar-track"><div class="score-bar-fill bar-teal" data-w="90%"></div></div>
+            <span class="score-bar-pct">90%</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- SECTION 5: TESTIMONIALS -->
+<!-- SECTION 5: THE VERDICT -->
 <section class="section">
   <div class="container">
     <div class="text-center fade-up">
-      <div class="section-label" style="justify-content:center">Trader Feedback</div>
-      <h2>What Real Traders Say</h2>
+      <div class="section-label" style="justify-content:center">The Verdict</div>
+      <h2>Our Honest Assessment</h2>
+      <p class="section-subtitle" style="margin-top:12px">Every model has its place — here is who each one actually serves best</p>
     </div>
-    <div class="testimonial-grid">
-      <div class="testimonial fade-up">
-        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <div class="testimonial-quote">"After failing 3 evaluations at another firm, I realized the system was designed against me. Climber's scoring actually helps me improve. The 16 metrics showed me exactly where I was going wrong."</div>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">D.L</div>
-          <div>
-            <div class="testimonial-name">Daniel L.</div>
-            <div class="testimonial-role">Futures Trader &middot; 5 months</div>
-          </div>
+
+    <div class="verdict-grid">
+
+      <div class="verdict-card fade-up">
+        <div class="verdict-card-header">
+          <span class="verdict-model-name">CFD Prop Firms</span>
+          <span class="verdict-badge vb-orange">Limited</span>
         </div>
-      </div>
-      <div class="testimonial fade-up fade-up-delay-1">
-        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <div class="testimonial-quote">"The public pool dashboard was what convinced me. No other firm shows you where the money actually is. That level of transparency told me everything I needed to know about their integrity."</div>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">A.M</div>
-          <div>
-            <div class="testimonial-name">Aisha M.</div>
-            <div class="testimonial-role">Forex &amp; CFD Trader &middot; 7 months</div>
-          </div>
+        <div class="verdict-stars">
+          <span>&#9733;&#9733;</span><span class="star-empty">&#9733;&#9733;&#9733;</span>
         </div>
+        <div class="verdict-best"><strong>Best if:</strong> You trade Forex/CFDs exclusively and work well under strict time pressure.</div>
+        <div class="verdict-notfor"><strong>Not ideal if:</strong> You want fair scoring, multiple markets, or aligned incentives.</div>
       </div>
-      <div class="testimonial fade-up fade-up-delay-2">
-        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <div class="testimonial-quote">"Getting scored on 13 metrics instead of just 'don't hit the loss limit' made me a genuinely better trader. I improved my Sharpe ratio and risk management before even going live."</div>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">R.C</div>
-          <div>
-            <div class="testimonial-name">Roberto C.</div>
-            <div class="testimonial-role">Multi-asset Trader &middot; 4 months</div>
-          </div>
+
+      <div class="verdict-card fade-up fade-up-delay-1">
+        <div class="verdict-card-header">
+          <span class="verdict-model-name">Futures Prop Firms</span>
+          <span class="verdict-badge vb-orange">Niche</span>
         </div>
+        <div class="verdict-stars">
+          <span>&#9733;&#9733;&#9733;</span><span class="star-empty">&#9733;&#9733;</span>
+        </div>
+        <div class="verdict-best"><strong>Best if:</strong> You're a dedicated CME futures day trader with iron-clad risk discipline.</div>
+        <div class="verdict-notfor"><strong>Not ideal if:</strong> You want multiple asset classes or a scoring-based approach.</div>
       </div>
+
+      <div class="verdict-card fade-up fade-up-delay-2">
+        <div class="verdict-card-header">
+          <span class="verdict-model-name">Darwinex Model</span>
+          <span class="verdict-badge vb-amber">Alternative</span>
+        </div>
+        <div class="verdict-stars">
+          <span>&#9733;&#9733;&#9733;</span><span class="star-empty">&#9733;&#9733;</span>
+        </div>
+        <div class="verdict-best"><strong>Best if:</strong> You're building a long-term track record to attract investor capital.</div>
+        <div class="verdict-notfor"><strong>Not ideal if:</strong> You want fast capital allocation or a guaranteed evaluation path.</div>
+      </div>
+
+      <div class="verdict-card winner fade-up fade-up-delay-3">
+        <div class="verdict-card-header">
+          <span class="verdict-model-name">Climber Trade</span>
+          <span class="verdict-badge vb-teal">Top Choice</span>
+        </div>
+        <div class="verdict-stars">
+          <span>&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        </div>
+        <div class="verdict-best"><strong>Best if:</strong> You want merit-based funding, transparent scoring, and fully aligned incentives.</div>
+        <div class="verdict-notfor"><strong>Not ideal if:</strong> You prefer a one-time payment instead of a monthly subscription.</div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- SECTION 6: SIDE-BY-SIDE NUMBERS -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="text-center fade-up">
-      <div class="section-label" style="justify-content:center">By The Numbers</div>
-      <h2>Side-by-Side Numbers</h2>
-      <p class="section-subtitle" style="margin-top:12px">Key metrics that matter when choosing a funding partner</p>
-    </div>
-    <div class="numbers-grid">
-      <div class="number-card fade-up">
-        <div class="number-card-metric">Eval Pass Rate</div>
-        <div class="number-card-row">
-          <div class="number-card-industry">Industry Average<span>5-10%</span></div>
-          <div class="number-divider"></div>
-          <div class="number-card-climber">Climber Trade<span>~15%</span></div>
-        </div>
-      </div>
-      <div class="number-card fade-up fade-up-delay-1">
-        <div class="number-card-metric">Profit Split</div>
-        <div class="number-card-row">
-          <div class="number-card-industry">Industry Average<span>80/20</span></div>
-          <div class="number-divider"></div>
-          <div class="number-card-climber">Climber Trade<span>50-60%</span></div>
-        </div>
-      </div>
-      <div class="number-card fade-up fade-up-delay-2">
-        <div class="number-card-metric">Eval Capital</div>
-        <div class="number-card-row">
-          <div class="number-card-industry">Industry Average<span>$100-200K</span></div>
-          <div class="number-divider"></div>
-          <div class="number-card-climber">Climber Trade<span>$1,000,000</span></div>
-        </div>
-      </div>
-      <div class="number-card fade-up fade-up-delay-3">
-        <div class="number-card-metric">Education</div>
-        <div class="number-card-row">
-          <div class="number-card-industry">Industry Average<span>None</span></div>
-          <div class="number-divider"></div>
-          <div class="number-card-climber">Climber Trade<span>Included</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 7: CTA -->
+<!-- SECTION 6: CTA -->
 <section class="cta-section">
   <div class="container fade-up">
     <h2 class="hero-title">Ready to Try the Difference?</h2>
-    <p style="font-size:18px;margin-top:12px">Join a funding partner that succeeds when you succeed.</p>
-    <div class="cta-row" style="margin-top:36px">
+    <p style="font-size:18px;margin-top:12px;color:var(--text2)">Join a funding partner that succeeds only when you succeed.</p>
+    <div class="cta-row">
       <a href="pricing.html" class="btn btn-primary btn-lg">Start Your Evaluation &rarr;</a>
       <a href="pricing.html" class="btn btn-outline btn-lg">See Our Pricing &rarr;</a>
     </div>
@@ -491,6 +1126,34 @@
     </div>
   </div>
 </footer>
+
+<script>
+// Category filters
+const catBtns = document.querySelectorAll('.cat-btn');
+const critRows = document.querySelectorAll('tr[data-cat]');
+catBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    catBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cat = btn.dataset.cat;
+    critRows.forEach(row => {
+      row.style.display = (cat === 'all' || row.dataset.cat === cat) ? '' : 'none';
+    });
+  });
+});
+
+// Score bar animation on scroll
+const fills = document.querySelectorAll('.score-bar-fill');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.width = e.target.dataset.w;
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+fills.forEach(f => { f.style.width = '0'; obs.observe(f); });
+</script>
 
 <script src="js/translations.js"></script>
 <script src="js/i18n.js"></script>

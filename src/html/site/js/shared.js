@@ -233,6 +233,67 @@ document.addEventListener('DOMContentLoaded', () => {
     footerBottom.parentNode.insertBefore(newsletter, footerBottom);
   }
 
+  // ─── FOOTER PAYMENT METHODS BAR ───
+  const fpayBottom = document.querySelector('.footer-bottom');
+  if (fpayBottom && !document.querySelector('.footer-payments')) {
+    const isDeep = /\/(education|legal)\//.test(window.location.pathname);
+    const faqLink = (isDeep ? '../' : '') + 'faq.html?ref=payment#payment-methods';
+    const payBar = document.createElement('div');
+    payBar.className = 'footer-payments';
+    payBar.innerHTML =
+      '<span class="footer-pay-label">Secure payments</span>' +
+      '<a href="' + faqLink + '" class="footer-pay-icon" title="Visa — View payment FAQ" aria-label="Visa">' +
+        '<svg viewBox="0 0 46 15" width="46" height="15" aria-hidden="true">' +
+          '<text x="1" y="13" font-family="\'Arial Black\',Arial,sans-serif" font-weight="900" font-size="13" fill="#fff" font-style="italic" letter-spacing="0.5">VISA</text>' +
+        '</svg>' +
+      '</a>' +
+      '<a href="' + faqLink + '" class="footer-pay-icon" title="Mastercard accepted" aria-label="Mastercard">' +
+        '<svg viewBox="0 0 36 22" width="36" height="22" aria-hidden="true">' +
+          '<circle cx="13" cy="11" r="9" fill="#EB001B"/>' +
+          '<circle cx="23" cy="11" r="9" fill="#F79E1B" opacity="0.88"/>' +
+        '</svg>' +
+      '</a>' +
+      '<span class="footer-pay-sep" aria-hidden="true"></span>' +
+      '<a href="' + faqLink + '" class="footer-pay-payout" title="Trader payouts — View payment FAQ">' +
+        'Payouts via <strong>RISE WORKS</strong>' +
+      '</a>';
+    fpayBottom.parentNode.insertBefore(payBar, fpayBottom);
+  }
+
+  // ─── FOOTER LEGAL DISCLOSURES (CFTC) ───
+  const fdiscBottom = document.querySelector('.footer-bottom');
+  if (fdiscBottom && !document.querySelector('.footer-disclosures')) {
+    const discEl = document.createElement('div');
+    discEl.className = 'footer-disclosures';
+    discEl.innerHTML =
+      '<button class="footer-disclosures-toggle" id="footerDiscToggle" aria-expanded="false">' +
+        'Legal Disclosures' +
+        '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="2 4 6 8 10 4"/></svg>' +
+      '</button>' +
+      '<div class="footer-disc-body" id="footerDiscBody">' +
+        '<div>' +
+          '<div class="footer-disc-title">CFTC Required Disclaimer</div>' +
+          '<p class="footer-disc-text">Trading futures and options presents great potential rewards, but also great potential risk. You need to be aware of the risks and be willing to accept them to invest in the futures markets. Don\u2019t trade with money you can\u2019t afford to lose. This is neither a solicitation nor an offer to buy or sell futures contracts, shares or options thereon. No representation is made that any account will or is likely to realize profits or losses similar to those discussed on this website. Past performance of any trading system or methodology is not necessarily indicative of future results.</p>' +
+        '</div>' +
+        '<div>' +
+          '<div class="footer-disc-title">CFTC Rule 4.41</div>' +
+          '<p class="footer-disc-text">Hypothetical or simulated performance results have certain limitations. Unlike an actual performance record, simulated results do not represent actual trades. Furthermore, since the trades have not been executed, the results may have under- or over-compensated for the impact, if any, of certain market factors, such as lack of liquidity. Simulated trading programs in general are also subject to the fact that they are designed with hindsight. No representation is made that any account will or is likely to generate profits or losses similar to those shown. Our courses, products and services are to be used as learning aids only and are not to be used to invest real money. If you decide to invest real money, all business decisions must be your own.</p>' +
+        '</div>' +
+        '<div>' +
+          '<div class="footer-disc-title">Testimonial Disclosure</div>' +
+          '<p class="footer-disc-text">Testimonials appearing on this website may not be representative of other customers and do not constitute a guarantee of future performance or success.</p>' +
+        '</div>' +
+      '</div>';
+    fdiscBottom.insertAdjacentElement('afterend', discEl);
+    const discToggle = discEl.querySelector('#footerDiscToggle');
+    const discBody = discEl.querySelector('#footerDiscBody');
+    discToggle.addEventListener('click', function() {
+      const open = discBody.classList.toggle('open');
+      discToggle.classList.toggle('open', open);
+      discToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
   // ─── COOKIE CONSENT BANNER ───
   if (!localStorage.getItem('cookie-consent')) {
     const banner = document.createElement('div');

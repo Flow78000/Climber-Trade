@@ -722,3 +722,159 @@ button:focus-visible,a:focus-visible{
   .newsletter-form input{border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;}
   .newsletter-form button{border-radius:var(--r);padding:14px;}
 }
+
+/* ─── FOOTER PAYMENTS BAR ─── */
+.footer-payments{
+  display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+  padding:14px 0;border-top:1px solid var(--border);
+}
+.footer-pay-label{
+  font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--text3);margin-right:2px;white-space:nowrap;
+}
+.footer-pay-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  height:26px;padding:0 10px;
+  background:var(--card2);border:1px solid var(--border);border-radius:5px;
+  text-decoration:none;transition:border-color .15s;cursor:pointer;
+}
+.footer-pay-icon:hover{border-color:var(--border2);}
+.footer-pay-sep{
+  width:1px;height:16px;background:var(--border);margin:0 4px;flex-shrink:0;
+}
+.footer-pay-payout{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:600;color:var(--text3);
+  background:var(--card2);border:1px solid var(--border);border-radius:5px;
+  padding:0 10px;height:26px;text-decoration:none;white-space:nowrap;
+  transition:border-color .15s,color .15s;
+}
+.footer-pay-payout:hover{border-color:var(--border2);color:var(--text2);}
+.footer-pay-payout strong{color:rgba(255,255,255,.55);}
+
+/* ─── FOOTER LEGAL DISCLOSURES ─── */
+.footer-disclosures{
+  border-top:1px solid var(--border);padding:16px 0 8px;
+}
+.footer-disclosures-toggle{
+  display:flex;align-items:center;gap:7px;
+  background:none;border:none;cursor:pointer;
+  font-family:var(--font);font-size:10px;font-weight:700;
+  letter-spacing:.6px;text-transform:uppercase;
+  color:var(--text3);padding:0;transition:color .15s;
+}
+.footer-disclosures-toggle:hover{color:var(--text2);}
+.footer-disclosures-toggle svg{width:12px;height:12px;transition:transform .2s;flex-shrink:0;}
+.footer-disclosures-toggle.open svg{transform:rotate(180deg);}
+.footer-disc-body{display:none;margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+.footer-disc-body:not(.open){display:none!important;}
+.footer-disc-body.open{display:grid;}
+.footer-disc-title{
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--text3);margin-bottom:5px;
+}
+.footer-disc-text{font-size:11px;line-height:1.65;color:rgba(255,255,255,.18);}
+@media(max-width:900px){.footer-disc-body.open{grid-template-columns:1fr;}}
+
+/* ─── FREE ACCOUNT POPUP ─── */
+.fap-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.84);
+  z-index:9997;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .32s ease;
+}
+.fap-overlay.fap-active{opacity:1;pointer-events:all;}
+.fap-card{
+  position:relative;background:#0F0F0F;
+  border:1px solid rgba(255,255,255,.07);border-radius:20px;
+  padding:52px 48px 44px;max-width:500px;
+  width:calc(100% - 40px);overflow:hidden;
+  transform:translateY(22px) scale(.97);
+  transition:transform .42s cubic-bezier(.16,1,.3,1);
+}
+.fap-overlay.fap-active .fap-card{transform:none;}
+.fap-stripe{
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:#00D4FF;border-radius:20px 20px 0 0;
+}
+.fap-ring{
+  position:absolute;top:-70px;right:-70px;
+  width:220px;height:220px;border:1px solid rgba(0,212,255,.05);
+  border-radius:50%;pointer-events:none;
+}
+.fap-ring::after{
+  content:'';position:absolute;inset:24px;
+  border:1px solid rgba(0,212,255,.03);border-radius:50%;
+}
+.fap-close{
+  position:absolute;top:16px;right:16px;
+  width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+  background:transparent;border:1px solid rgba(255,255,255,.08);
+  border-radius:7px;cursor:pointer;color:rgba(255,255,255,.3);transition:all .15s;
+}
+.fap-close:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);}
+.fap-close svg{width:13px;height:13px;}
+.fap-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.16);
+  border-radius:20px;padding:5px 14px;margin-bottom:18px;
+  font-size:10px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:#00D4FF;
+}
+.fap-badge-dot{width:5px;height:5px;border-radius:50%;background:#00D4FF;}
+.fap-title{font-size:30px;font-weight:800;line-height:1.1;color:#fff;margin-bottom:10px;}
+.fap-title em{font-style:normal;color:#00D4FF;}
+.fap-sub{font-size:14px;line-height:1.65;color:rgba(255,255,255,.45);margin-bottom:22px;}
+.fap-prize{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.14);
+  border-radius:10px;padding:12px 16px;margin-bottom:22px;
+}
+.fap-prize-val{font-size:20px;font-weight:800;color:#10B981;white-space:nowrap;}
+.fap-prize-info{font-size:12px;color:rgba(255,255,255,.45);line-height:1.5;}
+.fap-prize-info strong{color:rgba(255,255,255,.7);font-weight:600;}
+.fap-feats{display:flex;flex-direction:column;gap:7px;margin-bottom:26px;}
+.fap-feat{display:flex;align-items:center;gap:9px;font-size:13px;color:rgba(255,255,255,.6);}
+.fap-feat-check{
+  width:15px;height:15px;border-radius:50%;flex-shrink:0;
+  background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);
+  display:flex;align-items:center;justify-content:center;
+}
+.fap-feat-check svg{width:8px;height:8px;}
+.fap-form-row{
+  display:flex;gap:0;border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;overflow:hidden;margin-bottom:11px;
+}
+.fap-email{
+  flex:1;padding:13px 16px;background:rgba(255,255,255,.03);
+  border:none;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;
+  outline:none;min-width:0;
+}
+.fap-email:focus{background:rgba(255,255,255,.05);}
+.fap-email::placeholder{color:rgba(255,255,255,.25);}
+.fap-submit{
+  padding:13px 20px;background:#00D4FF;color:#000;
+  font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;
+  border:none;cursor:pointer;white-space:nowrap;transition:background .18s;
+}
+.fap-submit:hover{background:#00c4ee;}
+.fap-legal{font-size:11px;color:rgba(255,255,255,.2);text-align:center;line-height:1.55;}
+.fap-legal a{color:rgba(255,255,255,.35);}
+.fap-success{
+  display:none;flex-direction:column;align-items:center;
+  text-align:center;padding:12px 0;
+}
+.fap-success-icon{
+  width:54px;height:54px;border-radius:50%;
+  background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.18);
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+}
+.fap-success-icon svg{width:22px;height:22px;color:#10B981;}
+.fap-success h3{font-size:22px;font-weight:700;color:#fff;margin-bottom:8px;}
+.fap-success p{font-size:13px;color:rgba(255,255,255,.4);line-height:1.6;}
+@media(max-width:600px){
+  .footer-payments{justify-content:center;}
+  .footer-pay-sep{display:none;}
+  .fap-card{padding:40px 22px 32px;}
+  .fap-title{font-size:25px;}
+  .fap-form-row{flex-direction:column;border-radius:10px;}
+  .fap-submit{padding:13px;width:100%;}
+}
