@@ -17,7 +17,7 @@ cli/
 commands/
 commitlint.config.js
 contexts/
-docs/
+/docs/
 eslint.config.js
 hooks/
 manifests/
