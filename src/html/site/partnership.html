@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partnership &amp; Affiliation — Climber Trade</title>
+<meta name="description" content="Refer trader friends or become a premium affiliate. Two programs tailored to your profile — earn recurring income with Climber Trade.">
+<meta name="keywords" content="prop firm affiliate program, trader referral program, Climber Trade partnership, recurring commissions trading, funded trader referral">
+<link rel="canonical" href="https://www.climbertrade.com/partnership">
+<meta property="og:title" content="Partnership &amp; Affiliation — Climber Trade">
+<meta property="og:description" content="Refer trader friends or become a premium affiliate with 15% recurring commissions for life.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.climbertrade.com/partnership">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="theme-color" content="#00D4FF">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+/* ─── HERO ─── */
+.partner-hero{
+  text-align:center;
+  padding:108px 0 72px;
+}
+.partner-hero .section-label{justify-content:center;margin-bottom:20px;}
+.hero-stats-row{
+  display:flex;
+  justify-content:center;
+  gap:48px;
+  margin-top:40px;
+  flex-wrap:wrap;
+}
+.hero-stat{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+.hero-stat-val{
+  font-size:32px;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  color:#F0F0F0;
+  font-family:var(--mono);
+}
+.hero-stat-val .teal{color:var(--teal);}
+.hero-stat-label{
+  font-size:13px;
+  color:var(--text2);
+  text-align:center;
+}
+
+/* ─── COMPARISON CARDS ─── */
+.compare-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  margin-top:0;
+}
+@media(max-width:768px){.compare-grid{grid-template-columns:1fr;}}
+
+.prog-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r3);
+  padding:36px 32px 32px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+.prog-card.green-accent{border-left:3px solid var(--green);}
+.prog-card.teal-accent{border-left:3px solid var(--teal);}
+
+.prog-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  padding:4px 10px;
+  border-radius:4px;
+  width:fit-content;
+}
+.prog-badge.green{background:rgba(16,185,129,.12);color:var(--green);}
+.prog-badge.teal{background:rgba(0,212,255,.1);color:var(--teal);}
+
+.prog-title{
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  margin-top:4px;
+}
+
+.prog-section-label{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--text2);
+  margin-bottom:8px;
+}
+
+.prog-feature-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.prog-feature{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-size:14px;
+  color:var(--text2);
+  line-height:1.5;
+}
+.prog-feature-icon{
+  flex-shrink:0;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:1px;
+}
+.prog-feature-icon.green{background:rgba(16,185,129,.12);}
+.prog-feature-icon.teal{background:rgba(0,212,255,.08);}
+.prog-feature strong{color:var(--text);}
+
+.prog-code{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:10px 14px;
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--text2);
+}
+.prog-code span{color:var(--teal);}
+
+.warn-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  color:var(--amber);
+  background:rgba(245,158,11,.08);
+  border:1px solid rgba(245,158,11,.15);
+  border-radius:6px;
+  padding:6px 10px;
+}
+
+.prog-cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:13px 24px;
+  border-radius:var(--r2);
+  font-size:15px;
+  font-weight:600;
+  text-decoration:none;
+  transition:opacity .15s, transform .15s;
+  cursor:pointer;
+  border:none;
+  width:100%;
+  margin-top:auto;
+}
+.prog-cta:hover{opacity:.85;transform:translateY(-1px);}
+.prog-cta.green{background:var(--green);color:#000;}
+.prog-cta.teal{background:var(--teal);color:#000;}
+
+/* ─── HOW IT WORKS ─── */
+.hiw-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px 64px;
+}
+@media(max-width:900px){.hiw-grid{grid-template-columns:1fr;gap:40px;}}
+
+.hiw-col-title{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:24px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.hiw-col-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+.hiw-col-dot.green{background:var(--green);}
+.hiw-col-dot.teal{background:var(--teal);}
+
+.hiw-steps{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+.hiw-step{
+  display:flex;
+  gap:16px;
+  position:relative;
+}
+.hiw-step:not(:last-child)::after{
+  content:'';
+  position:absolute;
+  left:19px;
+  top:40px;
+  bottom:-16px;
+  width:1px;
+  background:var(--border);
+}
+.hiw-step-num{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:var(--card2);
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  font-weight:700;
+  font-family:var(--mono);
+  flex-shrink:0;
+}
+.hiw-step-num.green{color:var(--green);}
+.hiw-step-num.teal{color:var(--teal);}
+.hiw-step-body{
+  padding-bottom:28px;
+  flex:1;
+}
+.hiw-step:last-child .hiw-step-body{padding-bottom:0;}
+.hiw-step-title{
+  font-size:15px;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:4px;
+}
+.hiw-step-desc{
+  font-size:13px;
+  color:var(--text2);
+  line-height:1.55;
+}
+
+/* ─── FAQ ─── */
+.faq-item{
+  border-bottom:1px solid var(--border);
+}
+.faq-trigger{
+  width:100%;
+  text-align:left;
+  padding:22px 0;
+  font-size:15px;
+  font-weight:600;
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  cursor:pointer;
+  background:none;
+  border:none;
+  font-family:var(--font);
+  transition:color .15s;
+}
+.faq-trigger:hover{color:var(--teal);}
+.faq-chevron{
+  width:18px;height:18px;
+  flex-shrink:0;
+  transition:transform .25s;
+  color:var(--text2);
+}
+.faq-item.open .faq-chevron{transform:rotate(180deg);}
+.faq-body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease;
+}
+.faq-body-inner{
+  padding:0 0 20px;
+  font-size:14px;
+  color:var(--text2);
+  line-height:1.7;
+}
+.faq-body-inner strong{color:var(--text);}
+
+/* ─── CONTACT FORM ─── */
+.contact-section{
+  max-width:640px;
+  margin:0 auto;
+  text-align:center;
+}
+.contact-section .section-title{text-align:center;margin-bottom:8px;}
+.contact-section .section-subtitle{margin-bottom:40px;}
+
+.form-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r3);
+  padding:40px 36px;
+  text-align:left;
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+@media(max-width:560px){.form-row{grid-template-columns:1fr;}}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-bottom:16px;
+}
+.form-group:last-of-type{margin-bottom:0;}
+
+.form-label{
+  font-size:12px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  color:var(--text2);
+}
+.form-input,
+.form-select,
+.form-textarea{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  color:var(--text);
+  font-family:var(--font);
+  font-size:14px;
+  padding:12px 14px;
+  outline:none;
+  transition:border-color .15s;
+  width:100%;
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus{border-color:var(--teal);}
+.form-input::placeholder,
+.form-textarea::placeholder{color:var(--text3);}
+.form-select{appearance:none;cursor:pointer;}
+.form-textarea{resize:vertical;min-height:100px;line-height:1.6;}
+.form-select option{background:var(--card);color:var(--text);}
+
+.form-submit-row{
+  margin-top:24px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  align-items:center;
+}
+.btn-submit{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:14px 32px;
+  border-radius:var(--r2);
+  font-size:15px;
+  font-weight:700;
+  background:var(--teal);
+  color:#000;
+  border:none;
+  cursor:pointer;
+  font-family:var(--font);
+  width:100%;
+  transition:opacity .15s, transform .15s;
+}
+.btn-submit:hover{opacity:.85;transform:translateY(-1px);}
+.form-note{
+  font-size:12px;
+  color:var(--text2);
+  text-align:center;
+}
+.form-note a{color:var(--teal);text-decoration:none;}
+.form-note a:hover{text-decoration:underline;}
+
+.form-success{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  padding:48px 0;
+  text-align:center;
+}
+.form-success-icon{
+  width:52px;height:52px;
+  background:rgba(16,185,129,.12);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.form-success h3{font-size:20px;font-weight:700;}
+.form-success p{font-size:14px;color:var(--text2);}
+
+/* ─── INCOME CALC CALLOUT ─── */
+.income-callout{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r2);
+  padding:28px 32px;
+  display:flex;
+  align-items:center;
+  gap:32px;
+  flex-wrap:wrap;
+}
+.income-callout-label{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--text2);
+  margin-bottom:4px;
+}
+.income-callout-val{
+  font-size:28px;
+  font-weight:800;
+  color:var(--green);
+  font-family:var(--mono);
+  letter-spacing:-0.02em;
+}
+.income-callout-desc{
+  font-size:13px;
+  color:var(--text2);
+  line-height:1.5;
+}
+.income-callout-divider{
+  width:1px;
+  height:48px;
+  background:var(--border);
+  flex-shrink:0;
+}
+@media(max-width:600px){.income-callout-divider{display:none;}.income-callout{gap:16px;}}
+
+/* ─── SECTION TITLES ─── */
+.section-title{
+  font-size:clamp(24px,3vw,36px);
+  font-weight:800;
+  letter-spacing:-0.02em;
+  margin-bottom:12px;
+}
+.section-subtitle{
+  font-size:16px;
+  color:var(--text2);
+  max-width:600px;
+  line-height:1.6;
+}
+.section-header{
+  margin-bottom:48px;
+}
+
+/* ─── MISC ─── */
+.teal{color:var(--teal);}
+.green{color:var(--green);}
+.separator{height:1px;background:var(--border);margin:0;}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a><a href="about.html" class="nav-link" data-i18n="nav_about">About</a><a href="partnership.html" class="nav-link active" data-i18n="nav_partner">Partnership</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-mobile"><a href="how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a><a href="about.html" class="nav-link" data-i18n="nav_about">About</a><a href="partnership.html" class="nav-link active" data-i18n="nav_partner">Partnership</a><a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div>
+<div class="spacer-nav"></div>
+
+<!-- ════════════════════════════════════════ -->
+<!-- HERO                                    -->
+<!-- ════════════════════════════════════════ -->
+<section class="partner-hero">
+  <div class="container">
+    <div class="section-label fade-up" style="justify-content:center" data-i18n="section_partnership">Partnership Program</div>
+    <h1 class="hero-title fade-up" data-i18n="partner_hero_title">Grow Your Income<br>with Climber Trade</h1>
+    <p class="section-subtitle fade-up fade-up-delay-1" style="margin-top:16px;margin:16px auto 0" data-i18n="partner_hero_subtitle">Two programs tailored to your profile &mdash; refer trader friends or become a premium affiliate if you have an audience.</p>
+    <div class="hero-stats-row fade-up fade-up-delay-2">
+      <div class="hero-stat">
+        <div class="hero-stat-val"><span class="teal">-$10</span>/mo</div>
+        <div class="hero-stat-label" data-i18n="partner_stat1_label">Per active referral<br>(up to 20 = free sub)</div>
+      </div>
+      <div class="hero-stat" style="border-left:1px solid var(--border);padding-left:48px;">
+        <div class="hero-stat-val"><span class="teal">15%</span></div>
+        <div class="hero-stat-label" data-i18n="partner_stat2_label">Recurring for life<br>on every subscriber</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- PROGRAMS COMPARISON                     -->
+<!-- ════════════════════════════════════════ -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="compare-grid">
+
+      <!-- CARD 1 — Referral -->
+      <div class="prog-card green-accent fade-up">
+        <div>
+          <div class="prog-badge green" data-i18n="partner_ref_badge">For all traders</div>
+          <div class="prog-title" data-i18n="partner_ref_title">Trader Referral</div>
+        </div>
+
+        <div>
+          <div class="prog-section-label" data-i18n="partner_ref_foryou">For you, the referrer</div>
+          <div class="prog-feature-list">
+            <div class="prog-feature">
+              <div class="prog-feature-icon green">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#10B981" stroke-width="1.8" stroke-linecap="round"><path d="M2 5l2 2 4-4"/></svg>
+              </div>
+              <span><strong>-$10/month</strong> per active referral &mdash; <span data-i18n="partner_ref_6mo">6 months fixed per referral</span></span>
+            </div>
+            <div class="prog-feature">
+              <div class="prog-feature-icon green">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#10B981" stroke-width="1.8" stroke-linecap="round"><path d="M2 5l2 2 4-4"/></svg>
+              </div>
+              <span><strong data-i18n="partner_ref_20">20 referrals = free subscription</strong> &mdash; <span data-i18n="partner_ref_free_detail">-$200/month cumulated</span></span>
+            </div>
+            <div class="prog-feature">
+              <div class="prog-feature-icon green">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#10B981" stroke-width="1.8" stroke-linecap="round"><path d="M2 5l2 2 4-4"/></svg>
+              </div>
+              <span data-i18n="partner_ref_beyond">Beyond 20: credit accumulates in your account balance</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="prog-section-label" data-i18n="partner_ref_forthem">For the referred trader</div>
+          <div class="prog-feature-list">
+            <div class="prog-feature">
+              <div class="prog-feature-icon green">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#10B981" stroke-width="1.8" stroke-linecap="round"><path d="M2 5l2 2 4-4"/></svg>
+              </div>
+              <span><strong>-20% on first month</strong> &mdash; Standard $199 <span style="color:var(--text3);text-decoration:line-through">$199</span> &rarr; <strong style="color:var(--green)">$159</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="prog-section-label" data-i18n="partner_ref_code_label">Your referral code</div>
+          <div class="prog-code">
+            <span data-i18n="partner_ref_code_format">Code: </span><span>CLIMB-XXXXX</span> &nbsp;&mdash;&nbsp;
+            <span data-i18n="partner_ref_code_link">Link: </span><span>climbertrade.com/ref/XXXXX</span>
+          </div>
+        </div>
+
+        <div class="warn-badge">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><circle cx="8" cy="8" r="6"/><line x1="8" y1="5" x2="8" y2="8.5"/><circle cx="8" cy="11" r=".8" fill="currentColor" stroke="none"/></svg>
+          <span data-i18n="partner_ref_warn">Cannot be combined with Premium Affiliate program</span>
+        </div>
+
+        <a href="#contact-form" class="prog-cta green" data-i18n="partner_ref_cta">Get my referral code &rarr;</a>
+      </div>
+
+      <!-- CARD 2 — Premium Affiliate -->
+      <div class="prog-card teal-accent fade-up fade-up-delay-1">
+        <div>
+          <div class="prog-badge teal" data-i18n="partner_aff_badge">For creators &amp; educators</div>
+          <div class="prog-title" data-i18n="partner_aff_title">Premium Affiliate</div>
+        </div>
+
+        <div>
+          <div class="prog-section-label" data-i18n="partner_aff_commission_label">Commission structure</div>
+          <div class="prog-feature-list">
+            <div class="prog-feature">
+              <div class="prog-feature-icon teal">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#00D4FF" stroke-width="1.8" stroke-linecap="round"><path d="M2 5l2 2 4-4"/></svg>
+              </div>
+              <span><strong>15% recurring</strong> <span data-i18n="partner_aff_on_sub">on every subscriber's monthly payment</span> &mdash; <strong data-i18n="partner_aff_forlife">for LIFE</strong></span>
+            </div>
+            <div class="prog-feature">
+              <div class="prog-feature-icon teal">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#00D4FF" stroke-width="1.8" stroke-linecap="round"><path d="M2 5l2 2 4-4"/></svg>
+              </div>
+              <span data-i18n="partner_aff_nocap">No cap &mdash; your income grows with your audience size</span>
+            </div>
+            <div class="prog-feature">
+              <div class="prog-feature-icon teal">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#00D4FF" stroke-width="1.8" stroke-linecap="round"><path d="M2 5l2 2 4-4"/></svg>
+              </div>
+              <span data-i18n="partner_aff_paid">Commissions paid monthly — no minimum threshold</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="prog-section-label" data-i18n="partner_aff_for_label">Ideal for</div>
+          <div class="prog-feature-list">
+            <div class="prog-feature">
+              <div class="prog-feature-icon teal">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#00D4FF" stroke-width="1.8" stroke-linecap="round"><path d="M2 5l2 2 4-4"/></svg>
+              </div>
+              <span data-i18n="partner_aff_who1">Trading educators &amp; coaches</span>
+            </div>
+            <div class="prog-feature">
+              <div class="prog-feature-icon teal">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#00D4FF" stroke-width="1.8" stroke-linecap="round"><path d="M2 5l2 2 4-4"/></svg>
+              </div>
+              <span data-i18n="partner_aff_who2">YouTube / TikTok content creators</span>
+            </div>
+            <div class="prog-feature">
+              <div class="prog-feature-icon teal">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#00D4FF" stroke-width="1.8" stroke-linecap="round"><path d="M2 5l2 2 4-4"/></svg>
+              </div>
+              <span data-i18n="partner_aff_who3">Discord community managers</span>
+            </div>
+            <div class="prog-feature">
+              <div class="prog-feature-icon teal">
+                <svg viewBox="0 0 10 10" fill="none" stroke="#00D4FF" stroke-width="1.8" stroke-linecap="round"><path d="M2 5l2 2 4-4"/></svg>
+              </div>
+              <span data-i18n="partner_aff_who4">Newsletter writers &amp; trading analysts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Income example callout -->
+        <div class="income-callout" style="margin-top:4px">
+          <div>
+            <div class="income-callout-label" data-i18n="partner_aff_example_label">Example: 10 subscribers</div>
+            <div class="income-callout-val">$298.50<span style="font-size:14px;font-weight:500;color:var(--text2)">/mo</span></div>
+          </div>
+          <div class="income-callout-divider"></div>
+          <div class="income-callout-desc" data-i18n="partner_aff_example_desc">10 active subscribers &times; $199 &times; 15% &mdash; <strong>recurring every month, for life.</strong> No cap on the number of referrals.</div>
+        </div>
+
+        <div class="warn-badge">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><circle cx="8" cy="8" r="6"/><line x1="8" y1="5" x2="8" y2="8.5"/><circle cx="8" cy="11" r=".8" fill="currentColor" stroke="none"/></svg>
+          <span data-i18n="partner_aff_warn">Cannot be combined with Trader Referral program</span>
+        </div>
+
+        <a href="#contact-form" class="prog-cta teal" data-i18n="partner_aff_cta">Become an affiliate &rarr;</a>
+      </div>
+
+    </div><!-- /compare-grid -->
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- HOW IT WORKS                            -->
+<!-- ════════════════════════════════════════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label fade-up" data-i18n="section_how">How It Works</div>
+      <h2 class="section-title fade-up" data-i18n="partner_hiw_title">Three Simple Steps</h2>
+      <p class="section-subtitle fade-up fade-up-delay-1" data-i18n="partner_hiw_subtitle">Both programs are simple to join. Start earning in minutes for referrals, or within 48h for the affiliate program.</p>
+    </div>
+
+    <div class="hiw-grid">
+
+      <!-- Referral Steps -->
+      <div class="fade-up">
+        <div class="hiw-col-title">
+          <div class="hiw-col-dot green"></div>
+          <span data-i18n="partner_ref_title">Trader Referral</span>
+        </div>
+        <div class="hiw-steps">
+          <div class="hiw-step">
+            <div class="hiw-step-num green">1</div>
+            <div class="hiw-step-body">
+              <div class="hiw-step-title" data-i18n="partner_ref_step1_title">Get your unique link</div>
+              <div class="hiw-step-desc" data-i18n="partner_ref_step1_desc">Your CLIMB-XXXXX referral code and personal link are available directly from your dashboard after signing up. No application required.</div>
+            </div>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num green">2</div>
+            <div class="hiw-step-body">
+              <div class="hiw-step-title" data-i18n="partner_ref_step2_title">Invite your contacts</div>
+              <div class="hiw-step-desc" data-i18n="partner_ref_step2_desc">Share your CLIMB-XXXXX code or referral link with trader friends. They get -20% on their first month when they use it.</div>
+            </div>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num green">3</div>
+            <div class="hiw-step-body">
+              <div class="hiw-step-title" data-i18n="partner_ref_step3_title">Save automatically</div>
+              <div class="hiw-step-desc" data-i18n="partner_ref_step3_desc">Each active referral = -$10 deducted automatically from your next billing cycle. Stack up to 20 for a completely free subscription.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Affiliate Steps -->
+      <div class="fade-up fade-up-delay-1">
+        <div class="hiw-col-title">
+          <div class="hiw-col-dot teal"></div>
+          <span data-i18n="partner_aff_title">Premium Affiliate</span>
+        </div>
+        <div class="hiw-steps">
+          <div class="hiw-step">
+            <div class="hiw-step-num teal">1</div>
+            <div class="hiw-step-body">
+              <div class="hiw-step-title" data-i18n="partner_aff_step1_title">Apply here</div>
+              <div class="hiw-step-desc" data-i18n="partner_aff_step1_desc">Fill out the contact form below with your profile and audience details. We review every application within 48 hours.</div>
+            </div>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num teal">2</div>
+            <div class="hiw-step-body">
+              <div class="hiw-step-title" data-i18n="partner_aff_step2_title">Receive your materials</div>
+              <div class="hiw-step-desc" data-i18n="partner_aff_step2_desc">We send you a unique tracking link, banners in multiple formats, and a ready-to-use messaging kit for your audience.</div>
+            </div>
+          </div>
+          <div class="hiw-step">
+            <div class="hiw-step-num teal">3</div>
+            <div class="hiw-step-body">
+              <div class="hiw-step-title" data-i18n="partner_aff_step3_title">Earn your commissions</div>
+              <div class="hiw-step-desc" data-i18n="partner_aff_step3_desc">15% recurring on every subscription from your audience, paid monthly. No cap, no expiry &mdash; as long as they stay subscribed, you earn.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /hiw-grid -->
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- FAQ                                     -->
+<!-- ════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" style="max-width:640px">
+      <div class="section-label fade-up" data-i18n="section_faq">FAQ</div>
+      <h2 class="section-title fade-up" data-i18n="partner_faq_title">Common Questions</h2>
+    </div>
+
+    <div style="max-width:720px">
+
+      <div class="faq-item fade-up">
+        <button class="faq-trigger" aria-expanded="false">
+          <span data-i18n="partner_faq1_q">Can both programs be combined?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner" data-i18n="partner_faq1_a">No. You choose one program. The <strong>Trader Referral</strong> program is designed for individual traders who want to save on their subscription. The <strong>Premium Affiliate</strong> program is for educators, creators, and community managers with an established audience. Both programs are mutually exclusive and cannot be used simultaneously on the same account.</div>
+        </div>
+      </div>
+
+      <div class="faq-item fade-up fade-up-delay-1">
+        <button class="faq-trigger" aria-expanded="false">
+          <span data-i18n="partner_faq2_q">How are affiliate commissions calculated?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner" data-i18n="partner_faq2_a">You receive <strong>15% of each $199/month Standard subscription</strong> from traders who subscribe through your link. With 10 active subscribers that's <strong>$298.50/month recurring</strong>. With 50 subscribers: $1,492.50/month. There is no cap on the number of referrals, and commissions continue for as long as the referred trader maintains their subscription.</div>
+        </div>
+      </div>
+
+      <div class="faq-item fade-up">
+        <button class="faq-trigger" aria-expanded="false">
+          <span data-i18n="partner_faq3_q">When are referral discounts applied?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner" data-i18n="partner_faq3_a">Discounts are applied automatically to your next billing cycle. Each active referral removes <strong>-$10 from your monthly subscription fee</strong> for 6 months per referral. Stacking 20 active referrals equals -$200/month, making your Standard subscription completely free. Credits are cumulative and applied before each billing date.</div>
+        </div>
+      </div>
+
+      <div class="faq-item fade-up fade-up-delay-1">
+        <button class="faq-trigger" aria-expanded="false">
+          <span data-i18n="partner_faq4_q">What happens if my referral cancels their subscription?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-body">
+          <div class="faq-body-inner" data-i18n="partner_faq4_a">The -$10 discount for that specific referral stops when they cancel. Your other active referrals continue generating their individual discounts without interruption. The 6-month countdown is calculated independently per referral from their signup date &mdash; not from a shared start date.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- CONTACT / APPLICATION FORM             -->
+<!-- ════════════════════════════════════════ -->
+<section class="section section-alt" id="contact-form">
+  <div class="container">
+    <div class="contact-section">
+      <div class="section-label fade-up" style="justify-content:center" data-i18n="section_contact">Contact</div>
+      <h2 class="section-title fade-up" data-i18n="partner_form_title">Apply or Contact Us</h2>
+      <p class="section-subtitle fade-up fade-up-delay-1" style="margin:0 auto 40px" data-i18n="partner_form_subtitle">Fill out this form to join a program or ask your questions. We respond within 48 hours.</p>
+
+      <div class="form-card fade-up fade-up-delay-2">
+
+        <!-- Form -->
+        <div id="partnerFormContent">
+          <form id="partnerForm" novalidate>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="partnerName" data-i18n="partner_form_name">Full Name</label>
+                <input type="text" id="partnerName" name="name" class="form-input" placeholder="John Doe" autocomplete="name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="partnerEmail" data-i18n="partner_form_email">Email Address</label>
+                <input type="email" id="partnerEmail" name="email" class="form-input" placeholder="you@example.com" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="partnerProgram" data-i18n="partner_form_program">Program of Interest</label>
+              <select id="partnerProgram" name="program" class="form-select" required>
+                <option value="" data-i18n="partner_form_program_placeholder">Select a program...</option>
+                <option value="referral" data-i18n="partner_form_program_ref">Trader Referral</option>
+                <option value="affiliate" data-i18n="partner_form_program_aff">Premium Affiliate</option>
+                <option value="question" data-i18n="partner_form_program_q">General Question</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="partnerProfile" data-i18n="partner_form_profile">Describe your profile / project</label>
+              <textarea id="partnerProfile" name="profile" class="form-textarea" rows="4" placeholder="For affiliates: describe your audience, platforms (YouTube, Discord, newsletter...), approximate subscriber count. For referral: any questions about the program." data-i18n-placeholder="partner_form_profile_ph"></textarea>
+            </div>
+
+            <div class="form-submit-row">
+              <button type="submit" class="btn-submit" data-i18n="partner_form_submit">
+                Send my application
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="4" y1="10" x2="16" y2="10"/><polyline points="11 5 16 10 11 15"/></svg>
+              </button>
+              <p class="form-note" data-i18n="partner_form_note">We respond within 48h &mdash; <a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a></p>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Success state -->
+        <div class="form-success" id="partnerFormSuccess">
+          <div class="form-success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" width="26" height="26"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h3 data-i18n="partner_form_success_title">Application Sent!</h3>
+          <p data-i18n="partner_form_success_desc">We've received your message and will get back to you within 48 hours at the email address you provided.</p>
+        </div>
+
+      </div><!-- /form-card -->
+    </div><!-- /contact-section -->
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!-- FOOTER                                  -->
+<!-- ════════════════════════════════════════ -->
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="nav-logo" style="margin-bottom:4px"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></div><p>Revolutionary trader funding platform with 100% aligned interests.</p>
+  <div class="footer-socials">
+    <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+    <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+    <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+    <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+    <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.69z"/></svg></a>
+  </div></div><div class="footer-col"><div class="footer-col-title">Platform</div><a href="how-it-works.html">How It Works</a><a href="pricing.html">Pricing</a><a href="rules.html">Trading Rules</a><a href="instruments.html">Instruments</a><a href="ranks.html">Ranks &amp; Badges</a><a href="faq.html">FAQ</a></div><div class="footer-col"><div class="footer-col-title">Company</div><a href="about.html">About Us</a><a href="about.html#pool">Liquidity Pool</a><a href="about.html#splits">Profit Splits</a><a href="pool.html">Liquidity Pool Dashboard</a><a href="contact.html">Contact</a><a href="partnership.html">Partnership</a></div>
+  <div class="footer-col">
+    <div class="footer-col-title">Support</div><a href="contact.html">Help Center</a><a href="mailto:contact@climbertrade.com">contact@climbertrade.com</a><a href="legal/cgv.html">Terms &amp; Conditions</a><a href="legal/privacy.html">Privacy Policy</a></div></div><div class="footer-bottom"><span>&copy; 2026 Climber Trade. All rights reserved.</span><span class="footer-status">All Systems Operational</span></div></div></footer>
+
+<!-- ─── SCRIPTS ─── -->
+<script src="js/translations.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/shared.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-trigger').forEach(function(trigger) {
+    trigger.addEventListener('click', function() {
+      var item = this.closest('.faq-item');
+      var body = item.querySelector('.faq-body');
+      var isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+        openItem.classList.remove('open');
+        openItem.querySelector('.faq-body').style.maxHeight = '0';
+        openItem.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+      });
+
+      // Open clicked if was closed
+      if (!isOpen) {
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ── Contact form ──
+  var form = document.getElementById('partnerForm');
+  var formContent = document.getElementById('partnerFormContent');
+  var successEl = document.getElementById('partnerFormSuccess');
+
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var name = document.getElementById('partnerName').value.trim();
+      var email = document.getElementById('partnerEmail').value.trim();
+      var program = document.getElementById('partnerProgram').value;
+
+      if (!name || !email || !program) return;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+
+      // Hide form, show success
+      formContent.style.display = 'none';
+      successEl.style.display = 'flex';
+    });
+  }
+})();
+</script>
+</body>
+</html>

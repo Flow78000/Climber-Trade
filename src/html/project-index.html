@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Climber Trade — Index des Pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ─── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+/* ─── TOKENS ─── */
+:root{
+  --bg:#0A0A0A;
+  --surface:#0d0d0d;
+  --card:#131313;
+  --card2:#161616;
+  --border:#1c1c1c;
+  --border2:#222;
+  --teal:#00D4FF;
+  --green:#10B981;
+  --red:#EF4444;
+  --amber:#F59E0B;
+  --purple:#8B5CF6;
+  --text:#F0F0F0;
+  --text2:#8A8A8A;
+  --text3:#444;
+  --font:'Outfit',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --r:8px;
+  --r2:12px;
+  --r3:16px;
+}
+
+html,body{overflow-x:hidden;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+
+.container{
+  width:100%;
+  max-width:1140px;
+  margin:0 auto;
+  padding:0 28px;
+}
+
+/* ─── HEADER ─── */
+.site-header{
+  border-bottom:1px solid var(--border);
+  padding:28px 0;
+  position:sticky;
+  top:0;
+  background:rgba(10,10,10,.96);
+  backdrop-filter:blur(12px);
+  z-index:100;
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.logo-icon{
+  width:32px;height:32px;
+  background:rgba(0,212,255,.08);
+  border:1px solid rgba(0,212,255,.2);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+}
+.logo-text{
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.logo-text span{color:var(--teal);}
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* ─── SEARCH ─── */
+.search-wrap{
+  position:relative;
+  width:260px;
+}
+.search-input{
+  width:100%;
+  padding:9px 14px 9px 38px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  color:var(--text);
+  font-family:var(--font);
+  font-size:13px;
+  outline:none;
+  transition:border-color .15s;
+}
+.search-input:focus{border-color:var(--teal);}
+.search-input::placeholder{color:var(--text3);}
+.search-icon{
+  position:absolute;left:12px;top:50%;transform:translateY(-50%);
+  width:16px;height:16px;color:var(--text3);pointer-events:none;
+}
+
+/* ─── SERVER INFO BOX ─── */
+.server-box{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r2);
+  padding:16px 20px;
+  margin:28px 0;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+.server-box-icon{
+  width:32px;height:32px;
+  background:rgba(0,212,255,.08);
+  border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  margin-top:1px;
+}
+.server-box-title{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--text2);
+  margin-bottom:6px;
+}
+.server-cmd{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--teal);
+  background:rgba(0,212,255,.06);
+  border:1px solid rgba(0,212,255,.12);
+  border-radius:4px;
+  padding:4px 10px;
+  display:inline-block;
+  margin:2px 0;
+}
+.server-url{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--text2);
+}
+.server-url a{color:var(--teal);}
+.server-url a:hover{text-decoration:underline;}
+
+/* ─── CATEGORY ─── */
+.category{
+  margin-bottom:32px;
+}
+.category-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:0;
+  padding:12px 16px;
+  border-radius:var(--r2) var(--r2) 0 0;
+  border:1px solid var(--border);
+  border-bottom:none;
+}
+.category-dot{
+  width:9px;height:9px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+.category-name{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+}
+.category-count{
+  font-size:11px;
+  color:var(--text3);
+  font-family:var(--mono);
+  margin-left:auto;
+}
+
+/* ─── TABLE ─── */
+.page-table{
+  width:100%;
+  border-collapse:collapse;
+  border:1px solid var(--border);
+  border-radius:0 0 var(--r2) var(--r2);
+  overflow:hidden;
+}
+.page-table tr{
+  border-bottom:1px solid var(--border);
+  transition:background .1s;
+}
+.page-table tr:last-child{border-bottom:none;}
+.page-table tr:hover{background:rgba(255,255,255,.025);}
+.page-table tr.hidden-row{display:none;}
+
+.page-table td{
+  padding:11px 16px;
+  font-size:13px;
+  vertical-align:middle;
+}
+
+.td-link{
+  width:48%;
+}
+.td-link a{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  color:var(--text);
+  font-family:var(--mono);
+  font-size:12px;
+  transition:color .15s;
+}
+.td-link a:hover{color:var(--teal);}
+.td-link a svg{flex-shrink:0;color:var(--text3);}
+.td-link a:hover svg{color:var(--teal);}
+
+.td-desc{
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.4;
+}
+
+.td-tag{
+  width:1%;
+  white-space:nowrap;
+  text-align:right;
+}
+
+/* ─── TAGS ─── */
+.tag{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  padding:3px 8px;
+  border-radius:4px;
+  white-space:nowrap;
+}
+.tag-public{background:rgba(16,185,129,.1);color:var(--green);}
+.tag-dashboard{background:rgba(0,212,255,.08);color:var(--teal);}
+.tag-interne{background:rgba(245,158,11,.08);color:var(--amber);}
+.tag-legal{background:rgba(239,68,68,.08);color:var(--red);}
+.tag-new{background:rgba(139,92,246,.12);color:var(--purple);}
+.tag-mockup{background:rgba(255,255,255,.06);color:var(--text2);}
+
+/* ─── STATS BAR ─── */
+.stats-bar{
+  display:flex;
+  gap:24px;
+  flex-wrap:wrap;
+  margin-bottom:32px;
+  padding:16px 20px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r2);
+}
+.stat-item{
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+}
+.stat-val{
+  font-size:22px;
+  font-weight:800;
+  font-family:var(--mono);
+  letter-spacing:-0.02em;
+  color:var(--text);
+}
+.stat-label{
+  font-size:11px;
+  color:var(--text2);
+  text-transform:uppercase;
+  letter-spacing:.8px;
+}
+.stat-divider{
+  width:1px;
+  background:var(--border);
+  align-self:stretch;
+  margin:4px 0;
+}
+
+/* ─── MAIN ─── */
+.main{
+  padding:32px 0 72px;
+}
+
+/* ─── NO RESULTS ─── */
+.no-results{
+  text-align:center;
+  padding:64px 24px;
+  color:var(--text3);
+  font-size:14px;
+  display:none;
+}
+
+/* ─── FOOTER ─── */
+.page-footer{
+  border-top:1px solid var(--border);
+  padding:24px 0;
+  text-align:center;
+  font-size:12px;
+  color:var(--text3);
+}
+.page-footer strong{color:var(--text2);}
+.page-footer a{color:var(--teal);}
+.page-footer a:hover{text-decoration:underline;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:680px){
+  .search-wrap{width:100%;}
+  .header-inner{gap:12px;}
+  .td-desc{display:none;}
+  .td-tag{display:none;}
+  .page-table td{padding:10px 12px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 40 40" fill="none" width="20" height="20">
+            <path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="logo-text">CLI<span>MB</span>ER TRADE</div>
+        <span style="color:var(--text3);font-size:12px;margin-left:4px;font-family:var(--mono)">/ index des pages</span>
+      </div>
+      <div class="header-right">
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" class="search-input" id="pageSearch" placeholder="Rechercher une page..." autocomplete="off">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ─── MAIN ─── -->
+<main class="main">
+  <div class="container">
+
+    <!-- SERVER INFO -->
+    <div class="server-box">
+      <div class="server-box-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00D4FF" stroke-width="1.8" width="18" height="18">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <div>
+        <div class="server-box-title">Serveur local</div>
+        <div class="server-cmd">python -m http.server 8090 --directory ./src/html</div>
+        <div class="server-url" style="margin-top:6px">
+          Accès :&nbsp;<a href="http://localhost:8090/" target="_blank">http://localhost:8090/</a>
+          &nbsp;&mdash;&nbsp;Ce fichier :&nbsp;<span style="color:var(--teal);font-family:var(--mono);font-size:12px">http://localhost:8090/project-index.html</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-val" id="totalCount">62</div>
+        <div class="stat-label">Pages totales</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-val" style="color:var(--green)">8</div>
+        <div class="stat-label">Site public</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-val" style="color:var(--teal)">12</div>
+        <div class="stat-label">Dashboard mockup</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-val" style="color:var(--amber)">5</div>
+        <div class="stat-label">Documents internes</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-val" style="color:var(--red)">10</div>
+        <div class="stat-label">Pages légales</div>
+      </div>
+    </div>
+
+    <!-- NO RESULTS -->
+    <div class="no-results" id="noResults">Aucune page ne correspond à votre recherche.</div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- CATEGORY 1 — SITE PUBLIC PRINCIPAL      -->
+    <!-- ════════════════════════════════════════ -->
+    <div class="category" data-cat>
+      <div class="category-header" style="background:rgba(16,185,129,.04)">
+        <div class="category-dot" style="background:var(--green)"></div>
+        <div class="category-name" style="color:var(--green)">Site Public — Pages Principales</div>
+        <div class="category-count">8 pages</div>
+      </div>
+      <table class="page-table">
+        <tbody>
+          <tr data-searchable="home landing index accueil">
+            <td class="td-link">
+              <a href="site/index.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/index.html
+              </a>
+            </td>
+            <td class="td-desc">Home / Landing Page — Hero, fonctionnement, témoignages, CTA</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+          <tr data-searchable="how it works comment ca marche fonctionnement etapes">
+            <td class="td-link">
+              <a href="site/how-it-works.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/how-it-works.html
+              </a>
+            </td>
+            <td class="td-desc">Comment ça Marche — 5 étapes du parcours trader, CLIMB Score, passage en live</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+          <tr data-searchable="pricing tarifs prix plans standard discovery">
+            <td class="td-link">
+              <a href="site/pricing.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/pricing.html
+              </a>
+            </td>
+            <td class="td-desc">Tarifs — Plans Standard ($199/mo), Discovery ($49), resets, comparaison</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+          <tr data-searchable="faq questions answers reponses aide">
+            <td class="td-link">
+              <a href="site/faq.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/faq.html
+              </a>
+            </td>
+            <td class="td-desc">FAQ — 36 questions couvrant 9 catégories, scoring, payouts, règles</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+          <tr data-searchable="rules regles trading evaluation live instruments">
+            <td class="td-link">
+              <a href="site/rules.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/rules.html
+              </a>
+            </td>
+            <td class="td-desc">Règles de Trading — Instruments autorisés, limites de risque, phases évaluation et live</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+          <tr data-searchable="about propos modele pool liquidite equipe">
+            <td class="td-link">
+              <a href="site/about.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/about.html
+              </a>
+            </td>
+            <td class="td-desc">À Propos / The Model — Vision, modèle économique, pool, équipe fondatrice</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+          <tr data-searchable="contact support aide email help center">
+            <td class="td-link">
+              <a href="site/contact.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/contact.html
+              </a>
+            </td>
+            <td class="td-desc">Contact &amp; Support — Formulaire de contact, canaux de support, ticketing</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+          <tr data-searchable="partnership partenariat affiliation referral programme commission">
+            <td class="td-link">
+              <a href="site/partnership.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/partnership.html
+              </a>
+            </td>
+            <td class="td-desc">Partenariat &amp; Affiliation — Parrainage (-$10/ref), Affilié Premium (15% récurrent), formulaire candidature</td>
+            <td class="td-tag"><span class="tag tag-new">NEW</span>&nbsp;<span class="tag tag-public">Public</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- CATEGORY 2 — EDUCATION                  -->
+    <!-- ════════════════════════════════════════ -->
+    <div class="category" data-cat>
+      <div class="category-header" style="background:rgba(16,185,129,.03)">
+        <div class="category-dot" style="background:var(--green)"></div>
+        <div class="category-name" style="color:var(--green)">Site Public — Éducation</div>
+        <div class="category-count">50+ articles</div>
+      </div>
+      <table class="page-table">
+        <tbody>
+          <tr data-searchable="education index article liste blog">
+            <td class="td-link">
+              <a href="site/education/index.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/education/index.html
+              </a>
+            </td>
+            <td class="td-desc">Index Éducation — Liste complète des 50+ articles éducatifs</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+          <tr data-searchable="prop firm cost cout frais vrai cout">
+            <td class="td-link">
+              <a href="site/education/prop-firm-true-cost.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                education/prop-firm-true-cost.html
+              </a>
+            </td>
+            <td class="td-desc">Le vrai coût d'une prop firm — comparatif et analyse</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+          <tr data-searchable="complement indispensable climber guide">
+            <td class="td-link">
+              <a href="site/education/climber-complement-indispensable.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                education/climber-complement-indispensable.html
+              </a>
+            </td>
+            <td class="td-desc">Climber, le complément indispensable du trader</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+          <tr data-searchable="referral income trading revenus passifs parrainage affiliation">
+            <td class="td-link">
+              <a href="site/education/referral-income-trading.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                education/referral-income-trading.html
+              </a>
+            </td>
+            <td class="td-desc">Générer des revenus passifs via le parrainage en trading</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+          <tr data-searchable="best prop firms 2026 meilleures comparaison">
+            <td class="td-link">
+              <a href="site/education/best-prop-firms-2026.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                education/best-prop-firms-2026.html
+              </a>
+            </td>
+            <td class="td-desc">Meilleures Prop Firms 2026 — Classement &amp; comparatif détaillé</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+          <tr data-searchable="climb score explained explication notation systeme piliers">
+            <td class="td-link">
+              <a href="site/education/climb-score-explained.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                education/climb-score-explained.html
+              </a>
+            </td>
+            <td class="td-desc">CLIMB Score expliqué — Formule, piliers, barèmes, exemples concrets</td>
+            <td class="td-tag"><span class="tag tag-public">Public</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- CATEGORY 3 — LEGAL                      -->
+    <!-- ════════════════════════════════════════ -->
+    <div class="category" data-cat>
+      <div class="category-header" style="background:rgba(239,68,68,.03)">
+        <div class="category-dot" style="background:var(--red)"></div>
+        <div class="category-name" style="color:var(--red)">Site Public — Légal</div>
+        <div class="category-count">5 pages</div>
+      </div>
+      <table class="page-table">
+        <tbody>
+          <tr data-searchable="cgv conditions generales vente reset terms">
+            <td class="td-link">
+              <a href="site/legal/cgv.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/legal/cgv.html
+              </a>
+            </td>
+            <td class="td-desc">CGV Challenge &amp; Reset — Conditions générales de vente, remboursement, résiliation</td>
+            <td class="td-tag"><span class="tag tag-legal">Legal</span></td>
+          </tr>
+          <tr data-searchable="privacy politique confidentialite donnees rgpd">
+            <td class="td-link">
+              <a href="site/legal/privacy.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/legal/privacy.html
+              </a>
+            </td>
+            <td class="td-desc">Politique de Confidentialité — RGPD, collecte données, droits utilisateurs</td>
+            <td class="td-tag"><span class="tag tag-legal">Legal</span></td>
+          </tr>
+          <tr data-searchable="mentions legales editeur hebergeur responsabilite">
+            <td class="td-link">
+              <a href="site/legal/mentions.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/legal/mentions.html
+              </a>
+            </td>
+            <td class="td-desc">Mentions Légales — Éditeur, hébergeur, responsabilité éditoriale</td>
+            <td class="td-tag"><span class="tag tag-legal">Legal</span></td>
+          </tr>
+          <tr data-searchable="trading rules reglement evaluation live sanctions">
+            <td class="td-link">
+              <a href="site/legal/trading-rules.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/legal/trading-rules.html
+              </a>
+            </td>
+            <td class="td-desc">Règlement de Trading — Version publique complète, sanctions, appels</td>
+            <td class="td-tag"><span class="tag tag-legal">Legal</span></td>
+          </tr>
+          <tr data-searchable="nda non disclosure agreement beta confidentialite">
+            <td class="td-link">
+              <a href="site/legal/nda.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/legal/nda.html
+              </a>
+            </td>
+            <td class="td-desc">NDA Beta Testeurs — Accord de confidentialité version publique</td>
+            <td class="td-tag"><span class="tag tag-legal">Legal</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- CATEGORY 4 — DASHBOARD MOCKUP           -->
+    <!-- ════════════════════════════════════════ -->
+    <div class="category" data-cat>
+      <div class="category-header" style="background:rgba(0,212,255,.04)">
+        <div class="category-dot" style="background:var(--teal)"></div>
+        <div class="category-name" style="color:var(--teal)">Dashboard Mockup</div>
+        <div class="category-count">12 pages</div>
+      </div>
+      <table class="page-table">
+        <tbody>
+          <tr data-searchable="dashboard index principal trade desk overview">
+            <td class="td-link">
+              <a href="dashboard-mockup/index.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                dashboard-mockup/index.html
+              </a>
+            </td>
+            <td class="td-desc">Dashboard Principal — Vue d'ensemble, métriques clés, compte</td>
+            <td class="td-tag"><span class="tag tag-dashboard">Dashboard</span></td>
+          </tr>
+          <tr data-searchable="score lab climb scoring notation piliers">
+            <td class="td-link">
+              <a href="dashboard-mockup/score-lab.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                dashboard-mockup/score-lab.html
+              </a>
+            </td>
+            <td class="td-desc">Score Lab — Détail du CLIMB Score, 4 piliers, métriques granulaires</td>
+            <td class="td-tag"><span class="tag tag-dashboard">Dashboard</span></td>
+          </tr>
+          <tr data-searchable="my performance stats metrics performance pnl">
+            <td class="td-link">
+              <a href="dashboard-mockup/my-performance.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                dashboard-mockup/my-performance.html
+              </a>
+            </td>
+            <td class="td-desc">My Performance — Analyses avancées, graphiques, historique P&amp;L</td>
+            <td class="td-tag"><span class="tag tag-dashboard">Dashboard</span></td>
+          </tr>
+          <tr data-searchable="knowledge hub education articles ressources apprenez">
+            <td class="td-link">
+              <a href="dashboard-mockup/knowledge-hub.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                dashboard-mockup/knowledge-hub.html
+              </a>
+            </td>
+            <td class="td-desc">Knowledge Hub — Base de connaissances avec infobulles par métrique</td>
+            <td class="td-tag"><span class="tag tag-dashboard">Dashboard</span></td>
+          </tr>
+          <tr data-searchable="wallet paiements retraits gains payout pool">
+            <td class="td-link">
+              <a href="dashboard-mockup/wallet.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                dashboard-mockup/wallet.html
+              </a>
+            </td>
+            <td class="td-desc">Wallet &amp; Liquidity Pool — Solde, retraits, profit splits, pool en temps réel</td>
+            <td class="td-tag"><span class="tag tag-dashboard">Dashboard</span></td>
+          </tr>
+          <tr data-searchable="trade desk trading vue compte capital">
+            <td class="td-link">
+              <a href="dashboard-mockup/trade-desk.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                dashboard-mockup/trade-desk.html
+              </a>
+            </td>
+            <td class="td-desc">Trade Desk — Interface de trading, positions, ordres en cours</td>
+            <td class="td-tag"><span class="tag tag-dashboard">Dashboard</span></td>
+          </tr>
+          <tr data-searchable="support center aide tickets chat contact dashboard">
+            <td class="td-link">
+              <a href="dashboard-mockup/support.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                dashboard-mockup/support.html
+              </a>
+            </td>
+            <td class="td-desc">Support Center — Tickets, chat 9h-18h CET, Discord urgences live</td>
+            <td class="td-tag"><span class="tag tag-dashboard">Dashboard</span></td>
+          </tr>
+          <tr data-searchable="affiliate area parrainage commissions tracking lien">
+            <td class="td-link">
+              <a href="dashboard-mockup/affiliate.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                dashboard-mockup/affiliate.html
+              </a>
+            </td>
+            <td class="td-desc">Affiliate Area — Suivi parrainage, lien CLIMB-XXXXX, commissions accumulées</td>
+            <td class="td-tag"><span class="tag tag-dashboard">Dashboard</span></td>
+          </tr>
+          <tr data-searchable="profil profile avatar personnalisation compte">
+            <td class="td-link">
+              <a href="dashboard-mockup/my-profile.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                dashboard-mockup/my-profile.html
+              </a>
+            </td>
+            <td class="td-desc">My Profile — Avatar personnalisable, informations compte, badges</td>
+            <td class="td-tag"><span class="tag tag-dashboard">Dashboard</span></td>
+          </tr>
+          <tr data-searchable="community communaute traders reseau social">
+            <td class="td-link">
+              <a href="dashboard-mockup/community.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                dashboard-mockup/community.html
+              </a>
+            </td>
+            <td class="td-desc">Community — Communauté traders, ambassadeurs, créateurs de contenu</td>
+            <td class="td-tag"><span class="tag tag-dashboard">Dashboard</span></td>
+          </tr>
+          <tr data-searchable="challenges defis gamification communautaire competition">
+            <td class="td-link">
+              <a href="dashboard-mockup/challenges.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                dashboard-mockup/challenges.html
+              </a>
+            </td>
+            <td class="td-desc">Challenges — Challenges communautaires gamifiés (Coming Soon)</td>
+            <td class="td-tag"><span class="tag tag-dashboard">Dashboard</span></td>
+          </tr>
+          <tr data-searchable="leaderboard classement traders score rang badges">
+            <td class="td-link">
+              <a href="dashboard-mockup/leaderboard.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                dashboard-mockup/leaderboard.html
+              </a>
+            </td>
+            <td class="td-desc">Leaderboard — Classement des traders par CLIMB Score (Coming Soon)</td>
+            <td class="td-tag"><span class="tag tag-dashboard">Dashboard</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- CATEGORY 5 — DOCUMENTS INTERNES         -->
+    <!-- ════════════════════════════════════════ -->
+    <div class="category" data-cat>
+      <div class="category-header" style="background:rgba(245,158,11,.03)">
+        <div class="category-dot" style="background:var(--amber)"></div>
+        <div class="category-name" style="color:var(--amber)">Documents Internes</div>
+        <div class="category-count">4 pages</div>
+      </div>
+      <table class="page-table">
+        <tbody>
+          <tr data-searchable="strategic analysis analyse strategique ma acquisition swot porter">
+            <td class="td-link">
+              <a href="site/strategic-analysis.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/strategic-analysis.html
+              </a>
+            </td>
+            <td class="td-desc">Analyse Stratégique M&amp;A — SWOT, Porter, valorisation, due diligence (FR/EN)</td>
+            <td class="td-tag"><span class="tag tag-interne">Interne</span></td>
+          </tr>
+          <tr data-searchable="content strategy strategie contenu youtube videos plan">
+            <td class="td-link">
+              <a href="site/content-strategy.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/content-strategy.html
+              </a>
+            </td>
+            <td class="td-desc">Stratégie Contenu YouTube — 115 vidéos planifiées, calendrier éditorial (FR/EN)</td>
+            <td class="td-tag"><span class="tag tag-interne">Interne</span></td>
+          </tr>
+          <tr data-searchable="business intelligence bi modele financier pl pool economics">
+            <td class="td-link">
+              <a href="site/business-intelligence.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/business-intelligence.html
+              </a>
+            </td>
+            <td class="td-desc">Business Intelligence — Modèle financier 12 sections, P&amp;L, pool economics</td>
+            <td class="td-tag"><span class="tag tag-interne">Interne</span></td>
+          </tr>
+          <tr data-searchable="hero showcase landing page animation demo composants">
+            <td class="td-link">
+              <a href="site/hero-showcase.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                site/hero-showcase.html
+              </a>
+            </td>
+            <td class="td-desc">Hero Showcase — Composants hero, animations, variantes design</td>
+            <td class="td-tag"><span class="tag tag-interne">Interne</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- CATEGORY 6 — LEGAL INTERNAL             -->
+    <!-- ════════════════════════════════════════ -->
+    <div class="category" data-cat>
+      <div class="category-header" style="background:rgba(239,68,68,.03)">
+        <div class="category-dot" style="background:var(--red)"></div>
+        <div class="category-name" style="color:var(--red)">Documents Légaux Internes</div>
+        <div class="category-count">6 pages</div>
+      </div>
+      <table class="page-table">
+        <tbody>
+          <tr data-searchable="legal internal index documents juridiques">
+            <td class="td-link">
+              <a href="legal-internal/index.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                legal-internal/index.html
+              </a>
+            </td>
+            <td class="td-desc">Index Documents Internes — Liste tous les documents juridiques internes</td>
+            <td class="td-tag"><span class="tag tag-legal">Legal</span></td>
+          </tr>
+          <tr data-searchable="trading rules reglement trading interne complet sanctions">
+            <td class="td-link">
+              <a href="legal-internal/docs/trading-rules.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                legal-internal/docs/trading-rules.html
+              </a>
+            </td>
+            <td class="td-desc">Règlement de Trading — Version interne complète avec toutes annexes</td>
+            <td class="td-tag"><span class="tag tag-legal">Legal</span></td>
+          </tr>
+          <tr data-searchable="trader contract contrat professionnel live prestation service">
+            <td class="td-link">
+              <a href="legal-internal/docs/trader-contract.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                legal-internal/docs/trader-contract.html
+              </a>
+            </td>
+            <td class="td-desc">Contrat Trader Professionnel — Contrat de prestation live, profit splits, KYC</td>
+            <td class="td-tag"><span class="tag tag-legal">Legal</span></td>
+          </tr>
+          <tr data-searchable="referral program parrainage affiliation programme legal doc">
+            <td class="td-link">
+              <a href="legal-internal/docs/referral-program.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                legal-internal/docs/referral-program.html
+              </a>
+            </td>
+            <td class="td-desc">Programme Parrainage — Document légal officiel, conditions, calculs commissions</td>
+            <td class="td-tag"><span class="tag tag-legal">Legal</span></td>
+          </tr>
+          <tr data-searchable="pool spec specification liquidite pool cohorte fc allocation">
+            <td class="td-link">
+              <a href="legal-internal/docs/pool-spec.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                legal-internal/docs/pool-spec.html
+              </a>
+            </td>
+            <td class="td-desc">Spécification Pool de Liquidité — Formule FC, allocation, cohorte, scaling</td>
+            <td class="td-tag"><span class="tag tag-legal">Legal</span></td>
+          </tr>
+          <tr data-searchable="nda confidentialite beta testeurs accord">
+            <td class="td-link">
+              <a href="legal-internal/docs/nda.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                legal-internal/docs/nda.html
+              </a>
+            </td>
+            <td class="td-desc">NDA Beta Testeurs — Accord de confidentialité, version légale interne complète</td>
+            <td class="td-tag"><span class="tag tag-legal">Legal</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- CATEGORY 7 — MOCKUPS & COMPOSANTS       -->
+    <!-- ════════════════════════════════════════ -->
+    <div class="category" data-cat>
+      <div class="category-header" style="background:rgba(255,255,255,.02)">
+        <div class="category-dot" style="background:var(--text3)"></div>
+        <div class="category-name" style="color:var(--text2)">Mockups &amp; Composants</div>
+        <div class="category-count">5 pages</div>
+      </div>
+      <table class="page-table">
+        <tbody>
+          <tr data-searchable="knowledge base kb items articles base connaissance v2">
+            <td class="td-link">
+              <a href="kb-items-v2.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                kb-items-v2.html
+              </a>
+            </td>
+            <td class="td-desc">Knowledge Base Items V2 — Articles et ressources éducatives, version 2</td>
+            <td class="td-tag"><span class="tag tag-mockup">Mockup</span></td>
+          </tr>
+          <tr data-searchable="scoring data v2 notation donnees baremes metriques">
+            <td class="td-link">
+              <a href="scoring-data-v2.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                scoring-data-v2.html
+              </a>
+            </td>
+            <td class="td-desc">Scoring Data V2 — Données de notation, barèmes CLIMB Score, piliers</td>
+            <td class="td-tag"><span class="tag tag-mockup">Mockup</span></td>
+          </tr>
+          <tr data-searchable="margin data marges instruments futures forex v2">
+            <td class="td-link">
+              <a href="margin-data-v2.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                margin-data-v2.html
+              </a>
+            </td>
+            <td class="td-desc">Margin Data V2 — Marges par instrument, futures, forex, tableau complet</td>
+            <td class="td-tag"><span class="tag tag-mockup">Mockup</span></td>
+          </tr>
+          <tr data-searchable="trader guide v2 guide trader onboarding premiers pas">
+            <td class="td-link">
+              <a href="trader-guide-v2.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                trader-guide-v2.html
+              </a>
+            </td>
+            <td class="td-desc">Trader Guide V2 — Guide complet du trader, onboarding, premiers pas</td>
+            <td class="td-tag"><span class="tag tag-mockup">Mockup</span></td>
+          </tr>
+          <tr data-searchable="trading rules v2 regles trading composant version 2">
+            <td class="td-link">
+              <a href="trading-rules-v2.html" target="_blank">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M7 2H2v12h12V9"/><polyline points="10 2 14 2 14 6"/><line x1="14" y1="2" x2="7" y2="9"/></svg>
+                trading-rules-v2.html
+              </a>
+            </td>
+            <td class="td-desc">Trading Rules V2 — Composant règles de trading, version 2</td>
+            <td class="td-tag"><span class="tag tag-mockup">Mockup</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /container -->
+</main>
+
+<!-- ─── FOOTER ─── -->
+<footer class="page-footer">
+  <div class="container">
+    <p>
+      <strong>Climber Trade</strong> &mdash; Index des Pages du Projet
+      &nbsp;&bull;&nbsp;
+      Généré le : <strong>Mars 2026</strong>
+      &nbsp;&bull;&nbsp;
+      Racine serveur : <span style="font-family:var(--mono);font-size:11px;color:var(--text3)">D:\Climber test\src\html</span>
+    </p>
+    <p style="margin-top:6px">
+      <a href="site/index.html" target="_blank">Site Public</a>
+      &nbsp;&bull;&nbsp;
+      <a href="dashboard-mockup/index.html" target="_blank">Dashboard</a>
+      &nbsp;&bull;&nbsp;
+      <a href="legal-internal/index.html" target="_blank">Légal Interne</a>
+      &nbsp;&bull;&nbsp;
+      <a href="site/partnership.html" target="_blank">Partnership</a>
+    </p>
+  </div>
+</footer>
+
+<!-- ─── SEARCH SCRIPT ─── -->
+<script>
+(function() {
+  'use strict';
+
+  var searchInput = document.getElementById('pageSearch');
+  var noResults = document.getElementById('noResults');
+
+  function normalize(str) {
+    return str.toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  }
+
+  function filterPages(query) {
+    var q = normalize(query);
+    var rows = document.querySelectorAll('tr[data-searchable]');
+    var cats = document.querySelectorAll('[data-cat]');
+    var visibleCount = 0;
+
+    rows.forEach(function(row) {
+      var searchText = normalize(row.getAttribute('data-searchable') || '');
+      var linkText = normalize(row.querySelector('.td-link a') ? row.querySelector('.td-link a').textContent : '');
+      var descText = normalize(row.querySelector('.td-desc') ? row.querySelector('.td-desc').textContent : '');
+      var combined = searchText + ' ' + linkText + ' ' + descText;
+
+      var match = !q || combined.indexOf(q) !== -1;
+      row.classList.toggle('hidden-row', !match);
+      if (match) visibleCount++;
+    });
+
+    // Show/hide category headers when all rows inside are hidden
+    cats.forEach(function(cat) {
+      if (!q) {
+        cat.style.display = '';
+        return;
+      }
+      var catRows = cat.querySelectorAll('tr[data-searchable]');
+      var catVisible = false;
+      catRows.forEach(function(r) { if (!r.classList.contains('hidden-row')) catVisible = true; });
+      cat.style.display = catVisible ? '' : 'none';
+    });
+
+    noResults.style.display = (visibleCount === 0 && q) ? 'block' : 'none';
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      filterPages(this.value);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

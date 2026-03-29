@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ce que les prop firms vous coûtent vraiment — Climber Trade</title>
+<meta name="description" content="En moyenne, un trader en prop firm dépense plus de 3 000 $/an — par prop firm. Voici la vérité sur les coûts cachés, et pourquoi le modèle Climber est fondamentalement différent.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="theme-color" content="#00D4FF">
+<link rel="stylesheet" href="../css/shared.css">
+<style>
+.article{max-width:740px;margin:0 auto;}
+.article h2{font-size:22px;font-weight:700;margin:36px 0 12px;color:var(--text);}
+.article h3{font-size:17px;font-weight:600;margin:28px 0 8px;color:var(--teal);}
+.article p{font-size:15px;color:var(--text2);line-height:1.95;margin-bottom:18px;}
+.article ul,.article ol{padding-left:24px;margin-bottom:18px;}
+.article li{font-size:15px;color:var(--text2);line-height:1.85;margin-bottom:10px;}
+.article strong{color:var(--text);}
+.article blockquote{
+  border-left:3px solid var(--teal);padding:16px 22px;margin:28px 0;
+  background:var(--card);border-radius:0 var(--r) var(--r) 0;
+  font-size:16px;font-style:italic;color:var(--text2);line-height:1.8;
+}
+.article-meta{display:flex;align-items:center;gap:16px;margin-bottom:28px;font-size:13px;color:var(--text3);flex-wrap:wrap;}
+.article-category{
+  padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;
+  letter-spacing:.3px;text-transform:uppercase;
+  background:#EF444415;color:#EF4444;border:1px solid #EF444430;
+}
+.article-hero{padding:60px 0 20px;}
+.article-cta{
+  text-align:center;padding:64px 0;margin-top:56px;
+  border-top:1px solid var(--border);
+}
+.article-cta h2{margin-bottom:12px;font-size:28px;}
+.article-cta p{color:var(--text2);margin-bottom:28px;font-size:16px;max-width:500px;margin-left:auto;margin-right:auto;}
+.key-point{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:20px 24px;margin:24px 0;
+  border-left:3px solid var(--teal);
+}
+.key-point-title{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.key-point p{margin:0;font-size:14px;line-height:1.8;}
+.stat-inline{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#00D4FF10;border:1px solid #00D4FF25;
+  border-radius:6px;padding:2px 10px;
+  font-family:var(--mono);font-size:13px;color:var(--teal);font-weight:700;
+}
+.stat-red{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#EF444410;border:1px solid #EF444425;
+  border-radius:6px;padding:2px 10px;
+  font-family:var(--mono);font-size:13px;color:#EF4444;font-weight:700;
+}
+
+/* Comparison table */
+.compare-wrap{overflow-x:auto;margin:32px 0;}
+.cmp-table{width:100%;border-collapse:collapse;font-size:13px;}
+.cmp-table th{padding:14px 18px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border);}
+.cmp-table th.col-climber{color:var(--teal);}
+.cmp-table td{padding:14px 18px;border-bottom:1px solid #1a1a1a;vertical-align:top;line-height:1.65;}
+.cmp-table tr:last-child td{border-bottom:none;}
+.cmp-table .row-label{font-weight:600;color:var(--text2);}
+.cmp-table .col-propfirm{color:var(--text3);}
+.cmp-table .col-climber{color:var(--text);}
+.cmp-table .col-climber span.good{color:var(--green);font-weight:600;}
+.cmp-table .col-climber span.great{color:var(--teal);font-weight:600;}
+.cmp-table .col-propfirm span.bad{color:#EF4444;}
+.cmp-table tr:hover td{background:#0e0e0e;}
+
+/* Cost visual */
+.cost-visual{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.cost-card{padding:24px;border-radius:12px;border:1px solid var(--border);background:var(--card);}
+.cost-card-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.cost-card-amount{font-size:36px;font-weight:800;font-family:var(--mono);margin-bottom:4px;line-height:1.1;}
+.cost-card-sub{font-size:12px;color:var(--text3);line-height:1.6;}
+.cost-card.bad{border-color:#EF444422;background:#EF44440A;}
+.cost-card.good{border-color:#00D4FF22;background:#00D4FF08;}
+.cost-card.bad .cost-card-label{color:#EF4444;}
+.cost-card.good .cost-card-label{color:var(--teal);}
+.cost-card.bad .cost-card-amount{color:#EF4444;}
+.cost-card.good .cost-card-amount{color:var(--teal);}
+
+/* Casino vs Bank visual */
+.vs-block{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin:32px 0;}
+.vs-side{padding:24px;border-radius:12px;border:1px solid var(--border);background:var(--card);text-align:center;}
+.vs-side.casino{border-color:#EF444422;background:#EF44440A;}
+.vs-side.bank{border-color:#10B98122;background:#10B98108;}
+.vs-side-icon{font-size:32px;margin-bottom:12px;}
+.vs-side-title{font-size:15px;font-weight:700;margin-bottom:8px;}
+.vs-side-desc{font-size:13px;color:var(--text3);line-height:1.6;}
+.vs-middle{font-size:20px;font-weight:800;color:var(--text3);text-align:center;}
+
+@media(max-width:600px){
+  .cost-visual{grid-template-columns:1fr;}
+  .vs-block{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
+  .vs-middle{padding:8px 0;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+    </a>
+    <div class="nav-links">
+      <a href="../how-it-works.html" class="nav-link">How It Works</a>
+      <a href="../pricing.html" class="nav-link">Pricing</a>
+      <a href="../rules.html" class="nav-link">Rules</a>
+      <a href="../faq.html" class="nav-link">FAQ</a>
+      <a href="index.html" class="nav-link active">Éducation</a>
+      <a href="../about.html" class="nav-link">About</a>
+      <div class="lang-dropdown">
+        <button class="lang-current"><span class="lang-flag">🌐</span>FR<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button>
+        <div class="lang-menu">
+          <button class="lang-option" data-lang="en"><span class="lang-flag">🌐</span>English</button>
+          <button class="lang-option active" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button>
+          <button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button>
+        </div>
+      </div>
+      <a href="../pricing.html" class="nav-cta">Commencer</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile">
+  <a href="../how-it-works.html" class="nav-link">How It Works</a>
+  <a href="../pricing.html" class="nav-link">Pricing</a>
+  <a href="../rules.html" class="nav-link">Rules</a>
+  <a href="../faq.html" class="nav-link">FAQ</a>
+  <a href="index.html" class="nav-link">Éducation</a>
+  <a href="../about.html" class="nav-link">About</a>
+  <div class="lang-dropdown">
+    <button class="lang-current"><span class="lang-flag">🌐</span>FR</button>
+    <div class="lang-menu">
+      <button class="lang-option" data-lang="en"><span class="lang-flag">🌐</span>English</button>
+      <button class="lang-option active" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button>
+      <button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button>
+    </div>
+  </div>
+  <a href="../pricing.html" class="nav-cta">Commencer</a>
+</div>
+
+<div class="spacer-nav"></div>
+
+<!-- ARTICLE HERO -->
+<section class="article-hero section">
+  <div class="container">
+    <div class="article">
+      <div class="article-meta">
+        <span class="article-category">Analyse · Coûts réels</span>
+        <span>Mars 2026</span>
+        <span>9 min de lecture</span>
+      </div>
+      <h1 class="hero-title" style="font-size:clamp(26px,4vw,42px);text-align:left;max-width:680px">
+        Ce que les prop firms vous coûtent vraiment.<br>
+        <span class="teal">Et pourquoi vous avez peut-être tout faux.</span>
+      </h1>
+      <p style="font-size:18px;color:var(--text2);margin-top:20px;max-width:620px;line-height:1.75">En moyenne, un trader actif dépense plus de <strong style="color:var(--text)">3 000 $/an par prop firm</strong> — souvent bien plus. Resets, re-challenges, frais de dossier, abonnements multiples. Le secteur a construit un modèle qui gagne quand vous perdez. Voici les chiffres, sans filtre.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE BODY -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="article">
+
+      <p>Il y a une vérité que personne dans l'industrie des prop firms ne veut vous dire franchement : <em>le modèle économique de la plupart d'entre elles repose sur votre échec.</em></p>
+
+      <p>Pas parce qu'elles sont malveillantes. Simplement parce que leur structure financière l'exige. Quand plus de 90% des traders échouent l'évaluation — et recommencent — c'est le moteur de revenus. Les frais de challenge, les resets, les re-certifications. <strong>La prop firm gagne à chaque tentative, qu'elle vous finance ou non.</strong></p>
+
+      <p>Avant de vous présenter une alternative, regardons les chiffres en face.</p>
+
+      <h2>Le vrai coût d'une prop firm en 2026</h2>
+
+      <p>La plupart des traders qui s'intéressent aux prop firms regardent le prix affiché : "$125 pour un compte de $100k". C'est le coût d'entrée. Ce n'est pas le coût réel.</p>
+
+      <p>Voici ce qui se passe en pratique pour un trader sérieux sur 12 mois :</p>
+
+      <div class="key-point">
+        <div class="key-point-title">Anatomie d'une année en prop firm classique</div>
+        <p>
+          <strong>Abonnement / challenge mensuel :</strong> $100–$250/mois × 12 = $1 200–$3 000<br>
+          <strong>Resets après echec :</strong> $99–$199 × 2–4 fois = $200–$800<br>
+          <strong>Re-challenges (nouveau départ) :</strong> $125–$250 × 1–3 fois = $125–$750<br>
+          <strong>Frais de gestion, retrait, etc. :</strong> $50–$200/an<br><br>
+          <strong>Total annuel estimé :</strong> <span class="stat-red">$1 575 → $4 750+</span><br>
+          <em style="font-size:12px">Pour une seule prop firm. Beaucoup de traders en testent 2 ou 3 simultanément.</em>
+        </p>
+      </div>
+
+      <div class="cost-visual">
+        <div class="cost-card bad">
+          <div class="cost-card-label">Prop firm classique</div>
+          <div class="cost-card-amount">$3 000+</div>
+          <div class="cost-card-sub">Coût annuel moyen par trader actif — hors resets et re-challenges supplémentaires. Certains dépassent $6 000/an.</div>
+        </div>
+        <div class="cost-card good">
+          <div class="cost-card-label">Climber Trade</div>
+          <div class="cost-card-amount">$199/mois</div>
+          <div class="cost-card-sub">Abonnement mensuel tout inclus. 1 reset gratuit/mois. Accès à 1 000 000 $ de capital simulé intégral dès J1.</div>
+        </div>
+      </div>
+
+      <p>Ce n'est pas une attaque. C'est un constat arithmétique. Et ce constat amène à une question fondamentale : <em>qui profite vraiment de ce modèle ?</em></p>
+
+      <h2>La prop firm, un casino où la banque gagne toujours</h2>
+
+      <p>Il y a une analogie qui résume parfaitement la mécanique des prop firms traditionnelles : <strong>le casino.</strong></p>
+
+      <p>Au casino, vous pouvez gagner une main. Parfois plusieurs. Mais le modèle économique est structuré pour que, sur le long terme, la maison gagne. Les règles du jeu sont conçues dans ce sens. Le "edge" appartient à la maison, pas au joueur.</p>
+
+      <p>En prop firm classique, le mécanisme est similaire. Les règles d'évaluation — stop journalier, drawdown trailing, objectif de profit arbitraire dans une fenêtre temps — ne mesurent pas votre talent. <strong>Elles mesurent votre capacité à ne pas déclencher les conditions de liquidation avant d'avoir atteint leur objectif.</strong> C'est un jeu de survie, pas un jeu de compétence.</p>
+
+      <blockquote>
+        "La plupart des prop firms ont un intérêt financier direct à ce que vous ratiez l'évaluation et recommenciez. C'est mécanique, pas malveillant. Mais comprenez ce que ça implique : vos intérêts et les leurs ne sont pas alignés."
+      </blockquote>
+
+      <p>Ce n'est pas anodin. Quand vos intérêts divergent de ceux de votre partenaire financier, vous êtes structurellement désavantagé. Pas parce que vous êtes un mauvais trader — mais parce que les règles du jeu ont été écrites par et pour quelqu'un d'autre.</p>
+
+      <div class="vs-block">
+        <div class="vs-side casino">
+          <div class="vs-side-icon">🎰</div>
+          <div class="vs-side-title" style="color:#EF4444">Prop firm classique</div>
+          <div class="vs-side-desc">La prop firm est la banque. Elle gagne sur chaque re-challenge, chaque reset. Si vous réussissez, elle partage le profit. Si vous échouez, elle garde les frais. Dans les deux cas, <strong style="color:#EF4444">elle gagne.</strong></div>
+        </div>
+        <div class="vs-middle">VS</div>
+        <div class="vs-side bank">
+          <div class="vs-side-icon">🏦</div>
+          <div class="vs-side-title" style="color:var(--green)">Climber Trade</div>
+          <div class="vs-side-desc">Les traders <em>sont</em> la banque. 50% de l'abonnement alimente le pool. Vos retraits profitables y reviennent en partie. Plus vous gagnez, plus le pool grandit. <strong style="color:var(--green)">Tout le monde gagne ensemble.</strong></div>
+        </div>
+      </div>
+
+      <h2>Chez Climber, vous ne vous battez jamais contre la prop firm</h2>
+
+      <p>C'est la différence fondamentale — et elle est absolue. <strong>Chez Climber Trade, votre seul adversaire, c'est vous-même.</strong></p>
+
+      <p>Il n'y a pas de règle conçue pour vous éliminer. Il n'y a pas de drawdown trailing calibré pour déclencher un stop aux pires moments. Il n'y a pas d'objectif de profit arbitraire à atteindre dans une fenêtre de 30 jours.</p>
+
+      <p>Les règles de Climber existent pour une seule raison : <em>faire de vous un meilleur trader.</em> Le CLIMB Score mesure objectivement votre Risk Management, votre Performance, votre Consistance, la qualité de vos exécutions. Chaque règle est un signal. Chaque contrainte est un outil de croissance.</p>
+
+      <div class="key-point">
+        <div class="key-point-title">Un alignement d'intérêts structurel</div>
+        <p>Climber Trade ne gagne que si vous gagnez. <strong>50% des abonnements alimentent le pool de financement.</strong> Quand vous retirez vos profits en Live, la part de Climber (40–50% selon votre score) est réinjectée dans le pool — pour financer plus de traders, avec plus de capital. C'est un cercle vertueux, pas un système de capture.</p>
+      </div>
+
+      <h2>1 000 000 $ de capital — intégralement disponible</h2>
+
+      <p>Parmi les règles les plus toxiques des prop firms classiques, le "daily stop loss" et le "trailing drawdown" occupent une place à part. Ils sont présentés comme des protections. Ce sont surtout des mécanismes d'élimination.</p>
+
+      <p><strong>Chez Climber, il n'y a ni stop journalier, ni drawdown trailing.</strong> Votre compte d'évaluation dispose de <span class="stat-inline">$1 000 000</span> de capital simulé — intégralement disponible pour tester vos stratégies, vos positions, votre sizing réel.</p>
+
+      <p>Vous pouvez trader des futures ES, NQ, CL, GC avec des tailles réelles. Pas un compte jouet de $25k avec 1 contrat maximum. Un million de dollars, les mêmes conditions qu'un trader institutionnel.</p>
+
+      <div class="key-point">
+        <div class="key-point-title">Ce que 1 000 000 $ permettent concrètement</div>
+        <p>
+          <strong>ES (S&P 500 Futures) :</strong> ~70 contrats simultanément (marge ~$14k/contrat)<br>
+          <strong>NQ (Nasdaq Futures) :</strong> ~45 contrats simultanément (marge ~$22k/contrat)<br>
+          <strong>CL (Crude Oil) :</strong> ~150 contrats simultanément (marge ~$6.5k/contrat)<br><br>
+          Aucune prop firm à $100/mois ne vous offre ces conditions. Aucune.
+        </p>
+      </div>
+
+      <h2>Le vrai comparatif : Prop firm classique vs Climber Trade</h2>
+
+      <div class="compare-wrap">
+        <table class="cmp-table">
+          <thead>
+            <tr>
+              <th>Critère</th>
+              <th>Prop firm classique</th>
+              <th class="col-climber">Climber Trade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">Coût annuel estimé</td>
+              <td class="col-propfirm"><span class="bad">$1 500 – $6 000+</span><br><span style="font-size:11px">Resets, re-challenges inclus</span></td>
+              <td class="col-climber"><span class="great">$199/mois</span><br><span style="font-size:11px;color:var(--text3)">Tout inclus, annulable à tout moment</span></td>
+            </tr>
+            <tr>
+              <td class="row-label">Capital disponible</td>
+              <td class="col-propfirm"><span class="bad">$10k – $200k</span><br><span style="font-size:11px">Avec plafond, souvent < $100k effectif</span></td>
+              <td class="col-climber"><span class="great">$1 000 000</span><br><span style="font-size:11px;color:var(--text3)">Intégral, sans stop journalier ni trailing</span></td>
+            </tr>
+            <tr>
+              <td class="row-label">Règles d'évaluation</td>
+              <td class="col-propfirm"><span class="bad">Arbitraires</span><br><span style="font-size:11px">Daily stop, trailing DD, objectif profit fixe</span></td>
+              <td class="col-climber"><span class="good">Méritocratiques</span><br><span style="font-size:11px;color:var(--text3)">Score objectif sur 13 métriques — conçu pour vous améliorer</span></td>
+            </tr>
+            <tr>
+              <td class="row-label">Qui profite si vous échouez ?</td>
+              <td class="col-propfirm"><span class="bad">La prop firm</span><br><span style="font-size:11px">Frais conservés, re-challenge recommandé</span></td>
+              <td class="col-climber"><span class="good">Personne</span><br><span style="font-size:11px;color:var(--text3)">Le modèle n'est viable que si vous réussissez</span></td>
+            </tr>
+            <tr>
+              <td class="row-label">Profit split</td>
+              <td class="col-propfirm">70–80% (fixe)<br><span style="font-size:11px">Indépendant de vos performances</span></td>
+              <td class="col-climber"><span class="great">50–60%</span><br><span style="font-size:11px;color:var(--text3)">Grille dynamique selon votre CLIMB Score</span></td>
+            </tr>
+            <tr>
+              <td class="row-label">Track record</td>
+              <td class="col-propfirm">Perdu si vous changez de firm<br><span style="font-size:11px">Historique non portable</span></td>
+              <td class="col-climber"><span class="good">Permanent & certifié</span><br><span style="font-size:11px;color:var(--text3)">Score CLIMB continu, archivé, exportable</span></td>
+            </tr>
+            <tr>
+              <td class="row-label">Modèle de pool</td>
+              <td class="col-propfirm">Opaque<br><span style="font-size:11px">Aucune visibilité sur les fonds réels</span></td>
+              <td class="col-climber"><span class="great">Transparent & public</span><br><span style="font-size:11px;color:var(--text3)">Taille du pool en temps réel, distribué aux meilleurs</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Maîtrisez votre risque de dépense personnelle</h2>
+
+      <p>Il y a un concept que les traders négligent systématiquement : <strong>le risque de dépense personnelle.</strong> Vous gérez votre drawdown en compte — mais gérez-vous vos sorties de caisse mensuelles pour le trading ?</p>
+
+      <p>Cumuler plusieurs prop firms pour "maximiser les chances de passage" est une stratégie qui se retourne facilement. $150 ici, $200 là, deux resets à $99, un re-challenge à $250. Avant de vous en rendre compte, vous avez dépensé $900 sur un mois — sans avoir mis un seul trade en Live.</p>
+
+      <p><strong>Chez Climber, votre exposition financière est prévisible et fixe : $199/mois.</strong> Un seul compte. Un million de dollars de capital simulé. Des règles qui vous font progresser, pas des pièges qui vous font recommencer. Et un reset gratuit chaque mois si vous en avez besoin.</p>
+
+      <blockquote>
+        Maximiser le capital accessible. Minimiser le coût d'accès. Maîtriser chaque variable de votre P&L personnel. C'est ça, la discipline d'un trader professionnel — pas uniquement dans le marché, mais dans sa structure financière globale.
+      </blockquote>
+
+      <h2>La seule prop firm où vous visez le sommet — pas la survie</h2>
+
+      <p>Voici la métrique qui résume tout : dans une prop firm classique, l'objectif implicite est de <em>ne pas échouer.</em> Ne pas toucher le drawdown. Ne pas déclencher le stop. Passer en dessous du radar 30 jours. C'est une psychologie de survie.</p>
+
+      <p>Chez Climber, l'objectif est inverse. <strong>Monter.</strong> Améliorer son Risk Management. Construire sa régularité. Optimiser la qualité de ses exécutions. Atteindre un score de 85, puis 90, puis 95. Et à chaque palier, débloquer plus de capital, un meilleur split, une reconnaissance croissante.</p>
+
+      <p>Vous n'évitez pas la défaite. Vous poursuivez la maîtrise.</p>
+
+      <p>C'est la différence entre un sport de survie et un sport de performance. Et c'est cette différence que Climber Trade a été construit pour incarner.</p>
+
+      <!-- CTA -->
+      <div class="article-cta">
+        <h2>Arrêtez de financer leurs échecs. Investissez dans les vôtres.</h2>
+        <p>Un compte Climber à $199/mois. $1 000 000 de capital disponible. Des règles qui vous font progresser. Et un modèle où votre succès est le leur.</p>
+        <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap">
+          <a href="../pricing.html" class="btn btn-primary btn-lg">Voir les plans — dès $49</a>
+          <a href="../how-it-works.html" class="btn btn-outline btn-lg">Comment ça marche</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:4px">
+          <div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div>
+        </div>
+        <p>Plateforme de financement de traders nouvelle génération. 100% aligné avec votre succès.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/climber.trade/" target="_blank" rel="noopener" class="footer-social" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61588421365977" target="_blank" rel="noopener" class="footer-social" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+          <a href="https://x.com/ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="X (Twitter)"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.linkedin.com/in/climber-trade-5144323b1/" target="_blank" rel="noopener" class="footer-social" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="http://www.youtube.com/@ClimberTrade" target="_blank" rel="noopener" class="footer-social" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48" fill="#0A0A0A"/></svg></a>
+          <a href="https://www.tiktok.com/@climber_trade.funding" target="_blank" rel="noopener" class="footer-social" title="TikTok"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52V6.37z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Platform</div>
+        <a href="../how-it-works.html">How It Works</a>
+        <a href="../pricing.html">Pricing</a>
+        <a href="../rules.html">Trading Rules</a>
+        <a href="../instruments.html">Instruments</a>
+        <a href="../ranks.html">Ranks</a>
+        <a href="../faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="../about.html">About Us</a>
+        <a href="../pool.html">Liquidity Pool</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../referral.html">Referral Program</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <a href="../legal/cgv.html">Terms &amp; Conditions</a>
+        <a href="../legal/privacy.html">Privacy Policy</a>
+        <a href="../legal/mentions.html">Legal Notice</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div style="font-size:12px;color:var(--text3)">© 2026 Climber Trade. All rights reserved.</div>
+      <div class="footer-status">All Systems Operational</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/translations.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/shared.js"></script>
+</body>
+</html>

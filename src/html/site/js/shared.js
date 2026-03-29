@@ -242,22 +242,52 @@ document.addEventListener('DOMContentLoaded', () => {
     payBar.className = 'footer-payments';
     payBar.innerHTML =
       '<span class="footer-pay-label">Secure payments</span>' +
-      '<a href="' + faqLink + '" class="footer-pay-icon" title="Visa — View payment FAQ" aria-label="Visa">' +
-        '<svg viewBox="0 0 46 15" width="46" height="15" aria-hidden="true">' +
-          '<text x="1" y="13" font-family="\'Arial Black\',Arial,sans-serif" font-weight="900" font-size="13" fill="#fff" font-style="italic" letter-spacing="0.5">VISA</text>' +
+      /* ── Visa — logo officiel blanc/bleu ── */
+      '<a href="' + faqLink + '" class="footer-pay-icon" title="Visa — View payment FAQ" aria-label="Visa" style="padding:0 8px;height:30px;background:#fff;border-color:#e0e0e0;">' +
+        '<svg viewBox="0 0 780 500" width="44" height="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+          '<path fill="#1A1F71" d="M293 348.5L328.4 152h55.8L348.8 348.5z"/>' +
+          '<path fill="#1A1F71" d="M524.3 157.2c-11.1-4.1-28.5-8.5-50.2-8.5-55.3 0-94.3 27.9-94.6 67.8-.3 29.5 27.9 46 49.2 55.8 21.9 10.1 29.2 16.5 29.1 25.5-.1 13.8-17.5 20.1-33.6 20.1-22.5 0-34.4-3.1-52.8-10.8l-7.2-3.3-7.9 46.1c13.1 5.7 37.4 10.7 62.6 11 59 0 97.2-27.6 97.7-70.3.2-23.4-14.8-41.2-47.2-55.9-19.7-9.5-31.7-15.9-31.6-25.5 0-8.5 10.2-17.7 32.3-17.7 18.4-.3 31.8 3.7 42.1 7.9l5.1 2.4 7.9-45.6z"/>' +
+          '<path fill="#1A1F71" d="M635.8 152h-43.2c-13.4 0-23.4 3.6-29.3 16.9L484 348.5h59s9.6-25.2 11.8-30.7h72.1c1.7 7.2 6.9 30.7 6.9 30.7h52.1L635.8 152zm-69.2 122.4c4.7-12 22.5-57.8 22.5-57.8s4.6-11.9 7.5-19.6l3.8 17.7s10.8 49.4 13 59.7h-46.8z"/>' +
+          '<path fill="#1A1F71" d="M241.8 152l-54.8 133.5-5.8-28.4c-10.2-32.7-41.9-68.2-77.4-85.9l50.1 177.3h59.5L315.6 152h-73.8z"/>' +
+          '<path fill="#F2AE14" d="M134.1 152H46.6l-.7 4.1c67.9 16.4 113.0 56.1 131.6 103.8L158.2 169c-3.4-13-13.2-16.6-25.4-17z"/>' +
         '</svg>' +
       '</a>' +
-      '<a href="' + faqLink + '" class="footer-pay-icon" title="Mastercard accepted" aria-label="Mastercard">' +
-        '<svg viewBox="0 0 36 22" width="36" height="22" aria-hidden="true">' +
-          '<circle cx="13" cy="11" r="9" fill="#EB001B"/>' +
-          '<circle cx="23" cy="11" r="9" fill="#F79E1B" opacity="0.88"/>' +
+      /* ── Mastercard — cercles rouge/orange avec intersection ── */
+      '<a href="' + faqLink + '" class="footer-pay-icon" title="Mastercard accepted" aria-label="Mastercard" style="padding:0 8px;">' +
+        '<svg viewBox="0 0 50 32" width="50" height="32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+          '<rect width="50" height="32" rx="5" fill="#252525"/>' +
+          '<circle cx="19" cy="16" r="11" fill="#EB001B"/>' +
+          '<circle cx="31" cy="16" r="11" fill="#F79E1B"/>' +
+          '<path d="M25 6.78A11 11 0 0 1 25 25.22A11 11 0 0 0 25 6.78Z" fill="#FF5F00"/>' +
         '</svg>' +
       '</a>' +
       '<span class="footer-pay-sep" aria-hidden="true"></span>' +
-      '<a href="' + faqLink + '" class="footer-pay-payout" title="Trader payouts — View payment FAQ">' +
+      /* ── RISE WORKS — badge payout ── */
+      '<a href="' + faqLink + '" class="footer-pay-payout" title="Trader payouts via RISE WORKS — View payment FAQ">' +
+        '<svg viewBox="0 0 20 20" width="15" height="15" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0" aria-hidden="true">' +
+          '<rect width="20" height="20" rx="4" fill="#1a2e1a"/>' +
+          '<path d="M10 14V7M7 10l3-3 3 3" stroke="#4ade80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '</svg>' +
         'Payouts via <strong>RISE WORKS</strong>' +
       '</a>';
     fpayBottom.parentNode.insertBefore(payBar, fpayBottom);
+  }
+
+  // ─── DISCORD SOCIAL ICON (injection sur toutes les pages) ───
+  const footerSocials = document.querySelector('.footer-socials');
+  if (footerSocials && !footerSocials.querySelector('.footer-social-discord')) {
+    const dc = document.createElement('a');
+    dc.href = '#discord'; // lien à remplacer quand disponible
+    dc.className = 'footer-social footer-social-discord';
+    dc.target = '_blank';
+    dc.rel = 'noopener';
+    dc.title = 'Discord';
+    dc.setAttribute('aria-label', 'Discord');
+    dc.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true">' +
+        '<path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.032.054a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 13.79 13.79 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>' +
+      '</svg>';
+    footerSocials.appendChild(dc);
   }
 
   // ─── FOOTER LEGAL DISCLOSURES (CFTC) ───

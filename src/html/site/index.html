@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -32,7 +32,66 @@
 @media(prefers-reduced-motion:reduce){
   .hero-title .teal{animation:none;-webkit-text-fill-color:#00D4FF;background:none;color:#00D4FF;}
 }
-.hero-desc{font-size:18px;color:var(--text2);max-width:660px;margin:24px auto 0;line-height:1.8;}
+/* ── Typewriter cursor ── */
+.hw-cursor{display:inline-block;width:2px;height:.82em;background:#00D4FF;margin-left:3px;vertical-align:middle;animation:hwBlink .65s step-end infinite;}
+@keyframes hwBlink{0%,100%{opacity:1}50%{opacity:0}}
+/* ── HERO BRAND BLOCK ── */
+.hero-brand-block{
+  display:inline-block;text-align:left;
+  border-left:2px solid #00D4FF;
+  padding-left:20px;margin-top:36px;
+  max-width:640px;font-family:'Outfit',sans-serif;
+}
+.hero-brand-label{
+  display:block;font-size:13px;letter-spacing:0.18em;
+  color:#00D4FF;text-transform:uppercase;font-weight:600;margin-bottom:8px;
+}
+.hero-brand-desc{
+  font-size:20px;font-weight:400;color:rgba(255,255,255,0.6);line-height:1.6;margin:0;
+}
+.hero-brand-desc strong{font-weight:700;color:#fff;}
+
+/* ── DISCORD COMMUNITY SECTION ── */
+.discord-section{padding:90px 0;background:#080808;text-align:center;}
+.discord-section-title{
+  font-size:clamp(26px,3.8vw,42px);font-weight:300;
+  color:rgba(255,255,255,0.55);line-height:1.45;
+  max-width:720px;margin:0 auto;
+}
+.discord-section-title strong{color:#fff;font-weight:400;}
+.discord-section-sub{font-size:17px;font-weight:600;color:#fff;margin-top:18px;}
+.discord-widget{
+  display:inline-flex;flex-direction:column;gap:14px;
+  background:#111;border:1px solid #1e1e1e;border-radius:14px;
+  padding:22px 26px 20px;margin-top:36px;
+  min-width:340px;max-width:400px;
+}
+.discord-server-row{display:flex;align-items:center;gap:14px;}
+.discord-server-avatar{
+  width:52px;height:52px;border-radius:50%;
+  background:#0d0d0d;border:1px solid #232323;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.discord-server-name{font-size:15px;font-weight:700;color:#fff;}
+.discord-server-stats{
+  display:flex;align-items:center;gap:5px;
+  font-size:13px;color:rgba(255,255,255,0.45);margin-top:4px;
+}
+.discord-online-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#23a55a;flex-shrink:0;
+}
+.discord-stats-sep{opacity:0.35;}
+.discord-join-btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  background:var(--teal);color:#000;
+  font-family:'Outfit',sans-serif;font-weight:700;font-size:15px;
+  padding:14px 24px;border-radius:9px;
+  text-decoration:none;transition:background .2s,transform .2s;
+  border:none;cursor:pointer;
+}
+.discord-join-btn:hover{background:#00bde6;transform:translateY(-2px);}
+.discord-join-btn svg{flex-shrink:0;}
 .hero-btns{display:flex;justify-content:center;gap:16px;margin-top:40px;flex-wrap:wrap;}
 /* Evolution section */
 .evo-header{text-align:center;margin-bottom:48px;}
@@ -127,7 +186,7 @@
       <a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a>
       <a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a>
       <a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a>
-      <a href="about.html" class="nav-link" data-i18n="nav_about">About</a>
+      <a href="about.html" class="nav-link" data-i18n="nav_about">About</a><a href="partnership.html" class="nav-link" data-i18n="nav_partner">Partnership</a>
       <div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div>
       <a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a>
     </div>
@@ -142,7 +201,7 @@
   <a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a>
   <a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a>
   <a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a>
-  <a href="about.html" class="nav-link" data-i18n="nav_about">About</a>
+  <a href="about.html" class="nav-link" data-i18n="nav_about">About</a><a href="partnership.html" class="nav-link" data-i18n="nav_partner">Partnership</a>
   <a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
   <div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div>
   <a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a>
@@ -157,7 +216,14 @@
     <div id="heroTitleWrap">
       <h1 class="hero-title" id="heroTitle">Your Trading Partner For Success.<br><span class="teal">Get Funded Without Limits.</span></h1>
     </div>
-    <p class="hero-desc fade-up fade-up-delay-1" data-i18n="index_hero_desc">Climber Trade — where talent meets capital. Real funding. No tricks.</p>
+    <div class="hero-brand-block fade-up fade-up-delay-1">
+      <span class="hero-brand-label">CLIMBER TRADE</span>
+      <p class="hero-brand-desc">
+        <span data-i18n="index_hero_tagline1">Where talent meets capital.</span>
+        <strong data-i18n="index_hero_tagline2"> Unlimited funding.</strong>
+        <span data-i18n="index_hero_tagline3"> Your only limit: the summit.</span>
+      </p>
+    </div>
     <div class="stat-cards fade-up fade-up-delay-2">
       <div class="stat-card">
         <div class="stat-card-label" data-i18n="index_stat_pool">Liquidity Funding Pool</div>
@@ -340,7 +406,7 @@
           <svg width="22" height="22" viewBox="0 0 24 24" fill="#10B981"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
         </div>
         <h4 data-i18n="index_why1_title">We Profit When YOU Profit</h4>
-        <p data-i18n="index_why1_desc">Funding Partner model: we profit from your success, not your failures. 50% of subscription fees grow the pool that funds YOU. On top of that, 25% of live profits are reinvested into the pool — accelerating your allocation. Seniority bonuses (up to +3% after 6 months live) and score-based bonuses grow your share further every month.</p>
+        <p data-i18n="index_why1_desc">Funding Partner model: 50% of every subscription feeds the pool that funds YOU. Every time a Live trader gets paid out, Climber's share goes straight back into the pool — funding more traders with more capital. The more traders earn, the bigger the pool grows. Seniority bonuses (+3% after 6 months) and score-based bonuses grow your allocation further every month.</p>
       </div>
       <div class="why-card fade-up fade-up-delay-1">
         <div class="why-icon" style="background:#00D4FF18;border:1px solid #00D4FF33">
@@ -481,6 +547,42 @@
   </div>
 </section>
 
+<!-- DISCORD COMMUNITY -->
+<section class="discord-section">
+  <div class="container">
+    <h2 class="discord-section-title">
+      Most prop firms keep you in simulated accounts forever.<br>
+      <strong>We move you to real capital.</strong>
+    </h2>
+    <p class="discord-section-sub">Join our community today.</p>
+    <div class="discord-widget">
+      <div class="discord-server-row">
+        <div class="discord-server-avatar">
+          <svg viewBox="0 0 40 40" fill="none" width="32" height="32" aria-hidden="true">
+            <path d="M6 30L15 16L22 23L33 9" stroke="#00D4FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M27 9H33V15" stroke="#00D4FF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="discord-server-name">Climber Trade</div>
+          <div class="discord-server-stats">
+            <span class="discord-online-dot"></span>
+            <span>247 Online</span>
+            <span class="discord-stats-sep">&bull;</span>
+            <span>1,842 Members</span>
+          </div>
+        </div>
+      </div>
+      <a href="#discord" class="discord-join-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17" aria-hidden="true">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.032.054a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 13.79 13.79 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+        </svg>
+        Join Our Discord
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- CTA FINAL -->
 <section class="cta-section">
   <div class="container fade-up">
@@ -548,94 +650,166 @@
 <script src="js/i18n.js"></script>
 <script src="js/shared.js"></script>
 <script>
-// ── HERO BACKGROUND — ascending chart lines + ambient particles ──
+// ── HERO — Typewriter (B) + Warp Speed (C) combinés ──
+// Typewriter : setTimeout (fiable même en onglet background)
+// Warp canvas : requestAnimationFrame (smooth au premier plan)
 (function(){
-  var c = document.getElementById('heroParticles');
-  if (!c) return;
-  var ctx = c.getContext('2d');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var titleEl = document.getElementById('heroTitle');
+  var cvs     = document.getElementById('heroParticles');
+  var ashCvs  = document.getElementById('ashCanvas');
+  if(!titleEl || !cvs) return;
+  if(ashCvs) ashCvs.style.display = 'none';
+
+  var ctx = cvs.getContext('2d');
   var W, H;
-  function resize(){ W = c.width = c.offsetWidth; H = c.height = c.offsetHeight; }
+  function resize(){ W = cvs.width = cvs.offsetWidth; H = cvs.height = cvs.offsetHeight; }
   resize();
   window.addEventListener('resize', resize);
 
-  // ── Ambient rising particles ──
-  var DOTS = [];
-  for(var i=0;i<35;i++){
-    DOTS.push({
-      x:Math.random(), y:Math.random(),
-      r:0.6+Math.random()*0.9,
-      vy:0.00025+Math.random()*0.0006,
-      a:0.06+Math.random()*0.18,
-      ph:Math.random()*6.28, sp:0.004+Math.random()*0.008
+  titleEl.style.transition = 'none';
+  titleEl.style.opacity    = '1';
+
+  // ── Texte (signature de marque — toujours anglais) ──
+  var FULL = 'Your Trading Partner For Success.\nGet Funded Without Limits.';
+  var curLen = 0;
+
+  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function renderTitle(len, cursor){
+    var s  = FULL.slice(0, len);
+    var nl = s.indexOf('\n');
+    var c  = cursor ? '<span class="hw-cursor"></span>' : '';
+    if(nl === -1){
+      titleEl.innerHTML = esc(s) + c;
+    } else {
+      var l2 = s.slice(nl + 1);
+      titleEl.innerHTML = esc(s.slice(0, nl)) + '<br><span class="teal">' + esc(l2) + c + '</span>';
+    }
+  }
+
+  // ── Timings ──
+  var T_TYPE    = 38;    // ms/caractère frappe
+  var T_DEL     = 18;    // ms/caractère effacement
+  var T_HOLDPRE = 400;   // pause avant warp
+  var T_WARPIN  = 900;   // durée montée en intensité warp
+  var T_WARPHOLD= 5500;  // maintien warp plein
+  var T_WARPOUT = 650;   // fondu warp (pendant effacement)
+  var T_GAP     = 400;   // noir entre cycles
+
+  // ── État partagé typewriter ↔ canvas ──
+  var PHASE        = 'idle';
+  var warpI        = 0;   // 0–1 intensité warp actuelle
+  var warpInStart  = 0;   // timestamp début ramp-in
+  var warpOutStart = 0;   // timestamp début ramp-out
+  var stars        = [];
+
+  // ── TYPEWRITER (setTimeout) ──
+  function typeStep(){
+    PHASE = 'type';
+    if(curLen < FULL.length){
+      curLen++; renderTitle(curLen, true);
+      setTimeout(typeStep, T_TYPE);
+    } else {
+      renderTitle(curLen, true);
+      setTimeout(beginWarp, T_HOLDPRE);
+    }
+  }
+
+  function beginWarp(){
+    PHASE = 'warpin';
+    warpInStart = performance.now();
+    renderTitle(curLen, false);
+    setTimeout(function(){
+      PHASE = 'warphold';
+      setTimeout(beginDelete, T_WARPHOLD);
+    }, T_WARPIN);
+  }
+
+  function beginDelete(){
+    PHASE = 'delete';
+    warpOutStart = performance.now();
+    deleteStep();
+  }
+
+  function deleteStep(){
+    if(curLen > 0){
+      curLen--; renderTitle(curLen, true);
+      setTimeout(deleteStep, T_DEL);
+    } else {
+      PHASE = 'gap';
+      stars = [];
+      setTimeout(function(){
+        curLen = 0;
+        typeStep();
+      }, T_GAP);
+    }
+  }
+
+  // ── WARP CANVAS (requestAnimationFrame) ──
+  function spawnStar(){
+    var a  = Math.random() * Math.PI * 2;
+    var sp = 0.9 + Math.random() * 2.8;
+    stars.push({
+      x:  W/2 + (Math.random()-0.5) * W * 0.28,
+      y:  H/2 + (Math.random()-0.5) * H * 0.28,
+      vx: Math.cos(a) * sp,
+      vy: Math.sin(a) * sp,
+      r:  0.5 + Math.random() * 1.7,
+      ba: 0.30 + Math.random() * 0.5,
+      c:  Math.random() < 0.62 ? '0,212,255' : '255,255,255',
+      life: 0, ml: 40 + Math.random() * 58
     });
   }
 
-  // ── Chart lines — ascending price paths ──
-  function newLine(startX){
-    var y0 = 0.35 + Math.random()*0.45;
-    return {
-      pts:[[startX||0, y0]],
-      curY:y0, x:startX||0,
-      spd: 0.0015+Math.random()*0.0025,
-      trend: -(0.0003+Math.random()*0.0006),  // net upward bias
-      vol:   0.0015+Math.random()*0.003,
-      op:    0.07+Math.random()*0.11,
-      teal:  Math.random()<0.5,
-      lw:    0.6+Math.random()*0.9
-    };
-  }
+  function warpTick(now){
+    ctx.clearRect(0, 0, W, H);
 
-  var LINES = [];
-  // Stagger start positions so lines cover the whole canvas from frame 1
-  for(var j=0;j<5;j++) LINES.push(newLine(j*0.2));
-
-  function stepLine(ln){
-    ln.x += ln.spd;
-    var dy = ln.trend + (Math.random()-0.5)*ln.vol;
-    ln.curY = Math.max(0.08, Math.min(0.92, ln.curY+dy));
-    ln.pts.push([ln.x, ln.curY]);
-    if(ln.pts.length>600) ln.pts.shift();
-    return ln.x>1.05;
-  }
-
-  function drawLine(ln){
-    if(ln.pts.length<2) return;
-    ctx.beginPath();
-    ctx.moveTo(ln.pts[0][0]*W, ln.pts[0][1]*H);
-    for(var i=1;i<ln.pts.length;i++) ctx.lineTo(ln.pts[i][0]*W, ln.pts[i][1]*H);
-    ctx.strokeStyle = ln.teal
-      ? 'rgba(0,212,255,'+ln.op+')'
-      : 'rgba(180,190,210,'+(ln.op*0.55)+')';
-    ctx.lineWidth = ln.lw;
-    ctx.stroke();
-  }
-
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-
-    // Chart lines
-    for(var j=0;j<LINES.length;j++){
-      var done = stepLine(LINES[j]);
-      drawLine(LINES[j]);
-      if(done) LINES[j] = newLine(0);
+    // Calculer warpI selon la phase courante
+    if(PHASE === 'warpin'){
+      var p = Math.min(1, (now - warpInStart) / T_WARPIN);
+      warpI = p * p;  // easeIn
+    } else if(PHASE === 'warphold'){
+      warpI = 1;
+    } else if(PHASE === 'delete'){
+      var p2 = Math.min(1, (now - warpOutStart) / T_WARPOUT);
+      warpI = Math.max(0, 1 - p2 * p2);  // easeOut
+    } else {
+      warpI = 0;
     }
 
-    // Ambient particles
-    for(var i=0;i<DOTS.length;i++){
-      var d = DOTS[i];
-      d.ph += d.sp; d.y -= d.vy;
-      if(d.y<-0.02){ d.y=1.02; d.x=Math.random(); }
-      var a = d.a*(0.5+0.5*Math.sin(d.ph));
-      if(a<0.02) continue;
+    if(warpI > 0.02 && Math.random() < warpI * 4) spawnStar();
+
+    for(var i = stars.length - 1; i >= 0; i--){
+      var s   = stars[i];
+      var acc = 1 + s.life / s.ml * 3.5;
+      s.x += s.vx * acc;
+      s.y += s.vy * acc;
+      s.life++;
+      if(s.life > s.ml || s.x < -40 || s.x > W+40 || s.y < -40 || s.y > H+40){
+        stars.splice(i, 1); continue;
+      }
+      var p3  = s.life / s.ml;
+      var tl  = (0.5 + p3 * 2.5) * acc;
+      var alp = s.ba * (1 - p3 * 0.5) * warpI;
+      if(alp < 0.015) continue;
       ctx.beginPath();
-      ctx.arc(d.x*W, d.y*H, d.r, 0, 6.28);
-      ctx.fillStyle='rgba(0,212,255,'+a.toFixed(3)+')';
-      ctx.fill();
+      ctx.moveTo(s.x, s.y);
+      ctx.lineTo(s.x - s.vx * acc * tl, s.y - s.vy * acc * tl);
+      ctx.strokeStyle = 'rgba(' + s.c + ',' + alp.toFixed(3) + ')';
+      ctx.lineWidth   = s.r * (0.4 + p3 * 0.6);
+      ctx.lineCap     = 'round';
+      ctx.stroke();
     }
-    requestAnimationFrame(draw);
+    requestAnimationFrame(warpTick);
   }
-  draw();
-})();
+
+  // ── Démarrage ──
+  renderTitle(0, true);
+  setTimeout(typeStep, 200);          // léger délai pour laisser la page finir de charger
+  requestAnimationFrame(warpTick);    // canvas tourne en continu (smooth si visible)
+}());
 
 // ── LIVE COUNTERS (all 3 increment every second) ──
 (function(){

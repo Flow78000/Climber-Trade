@@ -578,9 +578,6 @@ Copy trading entre comptes, informations privilégiées, trading en groupe coord
 ### Affiliation Premium (formateurs, créateurs, gérants de communautés)
 
 - **15% récurrents** sur chaque abonnement de l'affilié (à vie)
-- **1% sur chaque payout** de l'affilié (payé par Climber depuis sa part)
-
-Exemple : Trader génère 10 000$ profit, split 60% -> reçoit 6 000$ -> affilieur = 60$ (1%)
 
 Pas de plafond. Croissance avec le succès des affiliés. Non cumulable avec parrainage.
 

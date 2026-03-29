@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -57,7 +57,7 @@
 /* Score formula card */
 .formula-card{
   background:var(--card);border:1px solid #00D4FF22;border-radius:var(--r2);
-  padding:24px 32px;margin-top:32px;text-align:center;
+  padding:28px 32px;margin-top:32px;text-align:left;
   position:relative;overflow:hidden;
 }
 .formula-card::before{
@@ -66,14 +66,20 @@
 }
 .formula-label{
   font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-  color:var(--teal);margin-bottom:10px;
+  color:var(--teal);margin-bottom:18px;text-align:center;
 }
-.formula-text{
-  font-family:var(--mono);font-size:14px;font-weight:500;
-  color:var(--text);line-height:1.8;letter-spacing:-.2px;
-}
-.formula-text .op{color:var(--text3);}
-.formula-text .hl{color:var(--teal);}
+/* Score composition visual */
+.score-composition{display:flex;flex-direction:column;gap:18px;}
+.score-comp-meta{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+.score-comp-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.score-comp-name{flex:1;font-size:14px;font-weight:600;color:var(--text);}
+.score-comp-coeff{font-size:10px;color:var(--text3);font-family:var(--mono);background:var(--card2);padding:2px 8px;border-radius:4px;border:1px solid var(--border);}
+.score-comp-pct{font-size:13px;font-family:var(--mono);font-weight:700;}
+.score-comp-track{height:8px;background:var(--card2);border-radius:4px;overflow:hidden;}
+.score-comp-fill{height:100%;border-radius:4px;}
+.score-comp-divider{border:none;border-top:1px solid var(--border);margin:22px 0 18px;}
+.score-comp-quality{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:#8B5CF60A;border:1px solid #8B5CF622;border-radius:10px;}
+.score-comp-quality-icon{width:38px;height:38px;border-radius:9px;background:#8B5CF618;border:1px solid #8B5CF633;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
 /* Score reliability */
 .reliability-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
@@ -222,8 +228,8 @@
 </style>
 </head>
 <body>
-<nav class="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a><a href="about.html" class="nav-link" data-i18n="nav_about">About</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
-<div class="nav-mobile"><a href="how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a><a href="about.html" class="nav-link" data-i18n="nav_about">About</a><a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div>
+<nav class="navbar"><div class="nav-inner"><a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 40 40" fill="none" width="28" height="28"><path d="M8 28L16 16L22 22L32 10" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M26 10H32V16" stroke="#00D4FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="nav-logo-text">CLI<span>MB</span>ER TRADE</div></a><div class="nav-links"><a href="how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a><a href="about.html" class="nav-link" data-i18n="nav_about">About</a><a href="partnership.html" class="nav-link" data-i18n="nav_partner">Partnership</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div><button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="nav-mobile"><a href="how-it-works.html" class="nav-link" data-i18n="nav_how">How It Works</a><a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Pricing</a><a href="rules.html" class="nav-link" data-i18n="nav_rules">Rules</a><a href="faq.html" class="nav-link" data-i18n="nav_faq">FAQ</a><a href="education/index.html" class="nav-link" data-i18n="nav_education">Education</a><a href="about.html" class="nav-link" data-i18n="nav_about">About</a><a href="partnership.html" class="nav-link" data-i18n="nav_partner">Partnership</a><a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a><div class="lang-dropdown"><button class="lang-current"><span class="lang-flag">🌐</span>EN<svg class="lang-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg></button><div class="lang-menu"><button class="lang-option active" data-lang="en"><span class="lang-flag">🌐</span>English</button><button class="lang-option" data-lang="fr"><span class="lang-flag">🇫🇷</span>Français</button><button class="lang-option" data-lang="es"><span class="lang-flag">🇪🇸</span>Español</button></div></div><a href="pricing.html" class="nav-cta" data-i18n="nav_cta">Start Trading</a></div>
 <div class="spacer-nav"></div>
 
 <!-- HERO -->
@@ -247,7 +253,7 @@
         <div class="step-num">01</div>
         <div>
           <h4 data-i18n="hiw_step1_title">Subscribe & Start — Incubation</h4>
-          <p data-i18n="hiw_step1_desc">Choose your plan (Standard $199/mo or Discovery $49). 50% goes to the liquidity funding pool. Get instant access to your $1M simulated account on Volumetrica. Your Incubation begins immediately.</p>
+          <p data-i18n="hiw_step1_desc">Choose your plan (Standard $199/mo or Discovery $49). 50% funds the liquidity pool directly. Get instant access to your $1M evaluation account — fully available, no daily stop, no trailing drawdown. Start trading right away, directly inside Climber Trade.</p>
           <div class="step-time" style="background:#00D4FF10;color:var(--teal);border:1px solid #00D4FF22">
             <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="5"/><polyline points="6 3 6 6 8 7.5"/></svg>
             5 minutes to set up
@@ -418,11 +424,51 @@
       </div>
     </div>
 
-    <!-- Score formula -->
+    <!-- Score formula — visual composition -->
     <div class="formula-card fade-up">
       <div class="formula-label" data-i18n="hiw_formula_label">CLIMB Score Formula</div>
-      <div class="formula-text">
-        Score <span class="op">=</span> <span class="op">[</span><span class="op">(</span><span style="color:#EF4444">Risk</span> <span class="op">x</span> <span class="hl">4</span> <span class="op">+</span> <span style="color:#F59E0B">Performance</span> <span class="op">x</span> <span class="hl">4</span> <span class="op">+</span> <span style="color:#00D4FF">Consistency</span> <span class="op">x</span> <span class="hl">3</span><span class="op">)</span> <span class="op">/</span> <span class="hl">11</span><span class="op">]</span> <span class="op">x</span> <span style="color:#8B5CF6">Quality Multiplier</span> <span class="op">(</span>0.90<span class="op">–</span>1.10<span class="op">)</span>
+      <div class="score-composition">
+
+        <div>
+          <div class="score-comp-meta">
+            <span class="score-comp-dot" style="background:#EF4444"></span>
+            <span class="score-comp-name" data-i18n="hiw_pillar1">Risk Management</span>
+            <span class="score-comp-coeff">×4</span>
+            <span class="score-comp-pct" style="color:#EF4444">36%</span>
+          </div>
+          <div class="score-comp-track"><div class="score-comp-fill" style="width:100%;background:linear-gradient(90deg,#EF4444,#c0392b)"></div></div>
+        </div>
+
+        <div>
+          <div class="score-comp-meta">
+            <span class="score-comp-dot" style="background:#F59E0B"></span>
+            <span class="score-comp-name" data-i18n="hiw_pillar2">Performance</span>
+            <span class="score-comp-coeff">×4</span>
+            <span class="score-comp-pct" style="color:#F59E0B">36%</span>
+          </div>
+          <div class="score-comp-track"><div class="score-comp-fill" style="width:100%;background:linear-gradient(90deg,#F59E0B,#d97706)"></div></div>
+        </div>
+
+        <div>
+          <div class="score-comp-meta">
+            <span class="score-comp-dot" style="background:#00D4FF"></span>
+            <span class="score-comp-name" data-i18n="hiw_pillar3">Consistency &amp; Style</span>
+            <span class="score-comp-coeff">×3</span>
+            <span class="score-comp-pct" style="color:#00D4FF">27%</span>
+          </div>
+          <div class="score-comp-track"><div class="score-comp-fill" style="width:75%;background:linear-gradient(90deg,#00D4FF,#0099cc)"></div></div>
+        </div>
+
+      </div>
+      <hr class="score-comp-divider">
+      <div class="score-comp-quality">
+        <div class="score-comp-quality-icon">
+          <svg width="18" height="18" fill="none" stroke="#8B5CF6" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#8B5CF6;margin-bottom:4px" data-i18n="hiw_pillar4">Quality Execution</div>
+          <div style="font-size:12px;color:var(--text2);line-height:1.65" data-i18n="hiw_comp_quality_note">Adjusts your final score by up to ±10%. Clean, precise trades earn a bonus. Erratic execution applies a reduction.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -442,9 +488,9 @@
         <div class="reliability-icon" style="background:#F59E0B18;border:1px solid #F59E0B33;">
           <svg viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" width="20" height="20"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
-        <div class="reliability-duration" data-i18n="hiw_rel1_duration">Less than 30 days</div>
-        <div class="reliability-status" style="color:var(--amber)" data-i18n="hiw_rel1_status">Indicative *</div>
-        <div class="reliability-desc" data-i18n="hiw_rel1_desc">Score is preliminary and being calibrated. Metrics still building confidence factors.</div>
+        <div class="reliability-duration" data-i18n="hiw_rel1_duration">Early Stage</div>
+        <div class="reliability-status" style="color:var(--amber)" data-i18n="hiw_rel1_status">Calibrating</div>
+        <div class="reliability-desc" data-i18n="hiw_rel1_desc">Your score is live and building with every trade. The algorithm is already evaluating your edge.</div>
       </div>
       <div class="reliability-card fade-up fade-up-delay-1">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--green)"></div>
@@ -745,7 +791,7 @@
           </tr>
           <tr>
             <td>Instruments</td>
-            <td class="ct-col">Futures, Forex, Stocks, CFD</td>
+            <td class="ct-col">Futures CME &amp; EUREX</td>
             <td class="other-col">Usually Forex only</td>
           </tr>
           <tr>

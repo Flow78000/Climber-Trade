@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Strategic Analysis — Climber Trade | INTERNAL</title>
+<title>Analyse Stratégique — Climber Trade | INTERNE</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="css/shared.css">
@@ -14,7 +14,7 @@
    ═══════════════════════════════════════════ */
 
 /* Layout with sidebar */
-.sa-layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh;}
+.sa-layout{min-height:100vh;}
 
 /* Sidebar */
 .sa-sidebar{
@@ -392,6 +392,24 @@
 .sa-heat-cell.h2{background:#10B98118;color:var(--green);}
 .sa-heat-cell.h1{background:#10B98108;color:#6ee7b7;}
 
+/* Language toggle */
+.lang-toggle{display:flex;align-items:center;gap:8px;margin-top:16px;}
+.lang-btn{font-size:11px;font-weight:700;letter-spacing:.5px;color:var(--text3);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:4px;transition:all .15s;}
+.lang-btn.active{color:var(--teal);background:var(--teal-dim);}
+.lang-btn:hover{color:var(--text);}
+.lang-sep{color:#444;font-size:12px;user-select:none;}
+
+/* Language visibility */
+.lang-en{display:none;}
+.lang-fr{display:block;}
+body.en .lang-en{display:block;}
+body.en .lang-fr{display:none;}
+/* Inline variants */
+span.lang-en,span.lang-fr{display:inline;}
+body.en span.lang-en{display:inline;}
+body.en span.lang-fr{display:none;}
+span.lang-en{display:none;}
+
 /* Print */
 @media print{
   .sa-sidebar{display:none;}
@@ -400,7 +418,6 @@
 
 /* Responsive */
 @media(max-width:1024px){
-  .sa-layout{grid-template-columns:1fr;}
   .sa-sidebar{display:none;}
   .sa-main{margin-left:0;padding:32px 24px 80px;}
   .sa-profile-grid{grid-template-columns:1fr;}
@@ -426,39 +443,44 @@
 <aside class="sa-sidebar">
   <div class="sa-sidebar-header">
     <div class="sa-sidebar-logo">CLIMBER <span>TRADE</span></div>
-    <div class="sa-sidebar-tag">Confidential</div>
-    <div class="sa-sidebar-sub">M&amp;A Strategic Analysis<br>Prepared March 2026</div>
+    <div class="sa-sidebar-tag">Confidentiel</div>
+    <div class="sa-sidebar-sub"><span class="lang-fr">Analyse Stratégique M&amp;A<br>Préparée en mars 2026</span><span class="lang-en">M&amp;A Strategic Analysis<br>Prepared March 2026</span></div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-fr" onclick="setLang('fr')">FR</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
   </div>
   <nav class="sa-nav">
     <a href="#company-profile" class="sa-nav-item active" data-section="1">
-      <span class="sa-nav-num">01</span>Company Profile
+      <span class="sa-nav-num">01</span><span class="lang-fr">Profil de l'Entreprise</span><span class="lang-en">Company Profile</span>
     </a>
     <a href="#swot-matrix" class="sa-nav-item" data-section="2">
-      <span class="sa-nav-num">02</span>SWOT Matrix
+      <span class="sa-nav-num">02</span><span class="lang-fr">Matrice SWOT</span><span class="lang-en">SWOT Matrix</span>
     </a>
     <a href="#competitive-positioning" class="sa-nav-item" data-section="3">
-      <span class="sa-nav-num">03</span>Competitive Positioning
+      <span class="sa-nav-num">03</span><span class="lang-fr">Positionnement Concurrentiel</span><span class="lang-en">Competitive Positioning</span>
     </a>
     <a href="#porters-five-forces" class="sa-nav-item" data-section="4">
-      <span class="sa-nav-num">04</span>Porter's Five Forces
+      <span class="sa-nav-num">04</span><span class="lang-fr">Les 5 Forces de Porter</span><span class="lang-en">Porter's Five Forces</span>
     </a>
     <a href="#value-chain" class="sa-nav-item" data-section="5">
-      <span class="sa-nav-num">05</span>Value Chain Analysis
+      <span class="sa-nav-num">05</span><span class="lang-fr">Analyse de la Chaîne de Valeur</span><span class="lang-en">Value Chain Analysis</span>
     </a>
     <a href="#market-sizing" class="sa-nav-item" data-section="6">
       <span class="sa-nav-num">06</span>TAM / SAM / SOM
     </a>
     <a href="#valuation-framework" class="sa-nav-item" data-section="7">
-      <span class="sa-nav-num">07</span>Valuation Framework
+      <span class="sa-nav-num">07</span><span class="lang-fr">Cadre de Valorisation</span><span class="lang-en">Valuation Framework</span>
     </a>
     <a href="#ma-attractiveness" class="sa-nav-item" data-section="8">
-      <span class="sa-nav-num">08</span>M&amp;A Attractiveness
+      <span class="sa-nav-num">08</span><span class="lang-fr">Attractivité M&amp;A</span><span class="lang-en">M&amp;A Attractiveness</span>
     </a>
     <a href="#strategic-recommendations" class="sa-nav-item" data-section="9">
-      <span class="sa-nav-num">09</span>Strategic Recommendations
+      <span class="sa-nav-num">09</span><span class="lang-fr">Recommandations Stratégiques</span><span class="lang-en">Strategic Recommendations</span>
     </a>
     <a href="#due-diligence" class="sa-nav-item" data-section="10">
-      <span class="sa-nav-num">10</span>Due Diligence Checklist
+      <span class="sa-nav-num">10</span><span class="lang-fr">Checklist Due Diligence</span><span class="lang-en">Due Diligence Checklist</span>
     </a>
   </nav>
 </aside>
@@ -468,97 +490,99 @@
 
   <!-- DOCUMENT HEADER -->
   <header class="sa-doc-header">
-    <div class="sa-doc-watermark">STRICTLY CONFIDENTIAL &mdash; INTERNAL USE ONLY</div>
-    <h1 class="sa-doc-title">Climber Trade &mdash; Strategic M&amp;A Analysis</h1>
-    <p class="sa-doc-subtitle">Comprehensive assessment of competitive positioning, valuation, and acquisition attractiveness for a next-generation proprietary trading firm.</p>
+    <div class="sa-doc-watermark"><span class="lang-fr">STRICTEMENT CONFIDENTIEL &mdash; USAGE INTERNE UNIQUEMENT</span><span class="lang-en">STRICTLY CONFIDENTIAL &mdash; INTERNAL USE ONLY</span></div>
+    <h1 class="sa-doc-title"><span class="lang-fr">Climber Trade &mdash; Analyse Stratégique M&amp;A</span><span class="lang-en">Climber Trade &mdash; M&amp;A Strategic Analysis</span></h1>
+    <p class="sa-doc-subtitle"><span class="lang-fr">Évaluation complète du positionnement concurrentiel, de la valorisation et de l'attractivité à l'acquisition pour une prop firm nouvelle génération.</span><span class="lang-en">Comprehensive assessment of competitive positioning, valuation, and acquisition attractiveness for a next-generation prop firm.</span></p>
     <div class="sa-doc-meta">
-      <div class="sa-meta-item"><strong>Prepared:</strong> March 28, 2026</div>
-      <div class="sa-meta-item"><strong>Classification:</strong> Confidential</div>
-      <div class="sa-meta-item"><strong>Analyst:</strong> M&amp;A Advisory Team</div>
-      <div class="sa-meta-item"><strong>Subject:</strong> Climber Trade SAS</div>
+      <div class="sa-meta-item"><strong><span class="lang-fr">Préparé le :</span><span class="lang-en">Prepared:</span></strong> <span class="lang-fr">28 mars 2026</span><span class="lang-en">March 28, 2026</span></div>
+      <div class="sa-meta-item"><strong><span class="lang-fr">Classification :</span><span class="lang-en">Classification:</span></strong> <span class="lang-fr">Confidentiel</span><span class="lang-en">Confidential</span></div>
+      <div class="sa-meta-item"><strong><span class="lang-fr">Analyste :</span><span class="lang-en">Analyst:</span></strong> <span class="lang-fr">Équipe Advisory M&amp;A</span><span class="lang-en">M&amp;A Advisory Team</span></div>
+      <div class="sa-meta-item"><strong><span class="lang-fr">Sujet :</span><span class="lang-en">Subject:</span></strong> Climber Trade SAS</div>
     </div>
   </header>
 
   <!-- ═══ SECTION 1: COMPANY PROFILE ═══ -->
   <section id="company-profile" class="sa-section">
     <div class="sa-section-num">Section 01</div>
-    <h2 class="sa-section-title">Company Profile</h2>
+    <h2 class="sa-section-title"><span class="lang-fr">Profil de l'Entreprise</span><span class="lang-en">Company Profile</span></h2>
     <div class="sa-section-divider"></div>
 
-    <p class="sa-text"><strong>Climber Trade</strong> is a next-generation proprietary trading firm that identifies, evaluates, and funds talented retail traders through a proprietary algorithmic scoring system. The firm differentiates itself from traditional prop firms through full transparency, a merit-based capital allocation model, and a multi-pillar scoring algorithm that replaces arbitrary pass/fail gates with continuous performance measurement.</p>
+    <p class="sa-text lang-fr"><strong>Climber Trade</strong> est une prop firm nouvelle génération qui identifie, évalue et finance des traders retail talentueux grâce à un système de notation algorithmique propriétaire. L'entreprise se distingue des prop firms traditionnelles par une transparence totale, un modèle d'allocation de capital méritocratique et un algorithme de scoring multi-piliers qui remplace les simples portes de passage binaires par une mesure continue de la performance.</p>
+    <p class="sa-text lang-en"><strong>Climber Trade</strong> is a next-generation prop firm that identifies, evaluates, and funds talented retail traders through a proprietary algorithmic scoring system. The company differentiates itself from traditional prop firms through full transparency, a meritocratic capital allocation model, and a multi-pillar scoring algorithm that replaces binary pass/fail gates with continuous performance measurement.</p>
 
-    <p class="sa-text">The company operates under a <strong>SaaS-style subscription model</strong> where traders pay a monthly fee to access a simulated evaluation environment. Traders who achieve and sustain a CLIMB Score of 85 or above gain access to live capital drawn from a transparent liquidity pool funded by subscription revenues and profit-sharing commissions.</p>
+    <p class="sa-text lang-fr">La société opère selon un <strong>modèle d'abonnement de type SaaS</strong> où les traders paient un abonnement mensuel pour accéder à un environnement d'évaluation simulé. Les traders qui atteignent et maintiennent un CLIMB Score de 85 ou plus accèdent à du capital réel issu d'un pool de liquidité transparent, alimenté par les revenus d'abonnement et les commissions sur partage des profits.</p>
+    <p class="sa-text lang-en">The company operates on a <strong>SaaS subscription model</strong> where traders pay a monthly subscription to access a simulated evaluation environment. Traders who reach and maintain a CLIMB Score of 85 or above gain access to real capital from a transparent liquidity pool, funded by subscription revenues and profit-share commissions.</p>
 
     <div class="sa-profile-grid">
       <div class="sa-profile-card">
-        <div class="sa-profile-label">Stage</div>
-        <div class="sa-profile-value" style="color:var(--amber)">Pre-Revenue</div>
-        <div class="sa-profile-desc">Product development and beta testing phase. Platform architecture complete, scoring system fully specified, legal documents drafted.</div>
+        <div class="sa-profile-label"><span class="lang-fr">Stade</span><span class="lang-en">Stage</span></div>
+        <div class="sa-profile-value" style="color:var(--amber)"><span class="lang-fr">Pré-Revenu</span><span class="lang-en">Pre-Revenue</span></div>
+        <div class="sa-profile-desc"><span class="lang-fr">Phase de développement produit et de tests bêta. Architecture de la plateforme complète, système de notation entièrement spécifié, documents juridiques rédigés.</span><span class="lang-en">Product development and beta testing phase. Full platform architecture complete, scoring system fully specified, legal documents drafted.</span></div>
       </div>
       <div class="sa-profile-card">
-        <div class="sa-profile-label">Team Size</div>
+        <div class="sa-profile-label"><span class="lang-fr">Taille de l'Équipe</span><span class="lang-en">Team Size</span></div>
         <div class="sa-profile-value">2</div>
-        <div class="sa-profile-desc">Flo (Founder / Product Owner) and Alex (Lead Developer). Lean founding team with complementary skill sets.</div>
+        <div class="sa-profile-desc"><span class="lang-fr">Flo (Fondateur / Product Owner) et Alex (Développeur principal). Équipe fondatrice resserrée aux compétences complémentaires.</span><span class="lang-en">Flo (Founder / Product Owner) and Alex (Lead Developer). Lean founding team with complementary skills.</span></div>
       </div>
       <div class="sa-profile-card">
-        <div class="sa-profile-label">Evaluation Capital</div>
+        <div class="sa-profile-label"><span class="lang-fr">Capital d'Évaluation</span><span class="lang-en">Evaluation Capital</span></div>
         <div class="sa-profile-value">$1M</div>
-        <div class="sa-profile-desc">Simulated capital per trader. Standardized environment across all subscription tiers for fair evaluation.</div>
+        <div class="sa-profile-desc"><span class="lang-fr">Capital simulé par trader. Environnement standardisé sur tous les niveaux d'abonnement pour une évaluation équitable.</span><span class="lang-en">Simulated capital per trader. Standardized environment across all subscription tiers for fair evaluation.</span></div>
       </div>
     </div>
 
-    <h4 style="margin-bottom:16px;font-size:16px;">Business Model &amp; Revenue Streams</h4>
+    <h4 style="margin-bottom:16px;font-size:16px;"><span class="lang-fr">Modèle Économique &amp; Sources de Revenus</span><span class="lang-en">Business Model &amp; Revenue Streams</span></h4>
     <div class="sa-kv-grid">
       <div class="sa-kv">
-        <span class="sa-kv-label">Primary Revenue</span>
-        <span class="sa-kv-val">$199/mo subscription</span>
+        <span class="sa-kv-label"><span class="lang-fr">Revenu Principal</span><span class="lang-en">Primary Revenue</span></span>
+        <span class="sa-kv-val"><span class="lang-fr">199$/mois d'abonnement</span><span class="lang-en">$199/month subscription</span></span>
       </div>
       <div class="sa-kv">
-        <span class="sa-kv-label">Secondary Revenue</span>
-        <span class="sa-kv-val">40-55% profit split (live)</span>
+        <span class="sa-kv-label"><span class="lang-fr">Revenu Secondaire</span><span class="lang-en">Secondary Revenue</span></span>
+        <span class="sa-kv-val">40–55% profit split (live)</span>
       </div>
       <div class="sa-kv">
-        <span class="sa-kv-label">Discovery Tier</span>
-        <span class="sa-kv-val">$49 one-time (30 days)</span>
+        <span class="sa-kv-label"><span class="lang-fr">Offre Découverte</span><span class="lang-en">Discovery Offer</span></span>
+        <span class="sa-kv-val"><span class="lang-fr">49$ unique (30 jours)</span><span class="lang-en">$49 one-time (30 days)</span></span>
       </div>
       <div class="sa-kv">
-        <span class="sa-kv-label">Account Resets</span>
-        <span class="sa-kv-val">$79 - $99 per reset</span>
+        <span class="sa-kv-label"><span class="lang-fr">Resets de Compte</span><span class="lang-en">Account Resets</span></span>
+        <span class="sa-kv-val">$79–$99 per reset</span>
       </div>
       <div class="sa-kv">
-        <span class="sa-kv-label">Trading Platform</span>
+        <span class="sa-kv-label"><span class="lang-fr">Plateforme de Trading</span><span class="lang-en">Trading Platform</span></span>
         <span class="sa-kv-val">Volumetrica</span>
       </div>
       <div class="sa-kv">
-        <span class="sa-kv-label">Payment Integration</span>
+        <span class="sa-kv-label"><span class="lang-fr">Intégration Paiements</span><span class="lang-en">Payment Integration</span></span>
         <span class="sa-kv-val">aMember + RISE WORKS</span>
       </div>
       <div class="sa-kv">
-        <span class="sa-kv-label">Target Market</span>
-        <span class="sa-kv-val">Global retail traders</span>
+        <span class="sa-kv-label"><span class="lang-fr">Marché Cible</span><span class="lang-en">Target Market</span></span>
+        <span class="sa-kv-val"><span class="lang-fr">Traders retail mondiaux</span><span class="lang-en">Global retail traders</span></span>
       </div>
       <div class="sa-kv">
-        <span class="sa-kv-label">Primary Focus</span>
+        <span class="sa-kv-label"><span class="lang-fr">Focus Principal</span><span class="lang-en">Primary Focus</span></span>
         <span class="sa-kv-val">Futures (CME/CBOT/NYMEX)</span>
       </div>
     </div>
 
-    <h4 style="margin-bottom:16px;font-size:16px;">Technology Stack</h4>
+    <h4 style="margin-bottom:16px;font-size:16px;"><span class="lang-fr">Stack Technique</span><span class="lang-en">Technology Stack</span></h4>
     <div class="sa-kv-grid">
       <div class="sa-kv">
         <span class="sa-kv-label">Frontend</span>
         <span class="sa-kv-val">React TypeScript + Tailwind</span>
       </div>
       <div class="sa-kv">
-        <span class="sa-kv-label">Database</span>
+        <span class="sa-kv-label"><span class="lang-fr">Base de données</span><span class="lang-en">Database</span></span>
         <span class="sa-kv-val">MariaDB + Prisma ORM</span>
       </div>
       <div class="sa-kv">
-        <span class="sa-kv-label">Charts / Visualization</span>
+        <span class="sa-kv-label"><span class="lang-fr">Graphiques / Visualisation</span><span class="lang-en">Charts / Visualization</span></span>
         <span class="sa-kv-val">Chart.js / D3.js / Recharts</span>
       </div>
       <div class="sa-kv">
-        <span class="sa-kv-label">Document Generation</span>
+        <span class="sa-kv-label"><span class="lang-fr">Génération de Documents</span><span class="lang-en">Document Generation</span></span>
         <span class="sa-kv-val">Node.js docx + Pandoc</span>
       </div>
     </div>
@@ -567,71 +591,72 @@
   <!-- ═══ SECTION 2: SWOT MATRIX ═══ -->
   <section id="swot-matrix" class="sa-section">
     <div class="sa-section-num">Section 02</div>
-    <h2 class="sa-section-title">SWOT Analysis</h2>
+    <h2 class="sa-section-title"><span class="lang-fr">Analyse SWOT</span><span class="lang-en">SWOT Matrix</span></h2>
     <div class="sa-section-divider"></div>
 
-    <p class="sa-text">A comprehensive four-quadrant assessment of Climber Trade's internal capabilities and external environment. Each factor is weighted by strategic materiality to acquisition and growth potential.</p>
+    <p class="sa-text lang-fr">Évaluation complète en quatre quadrants des capacités internes et de l'environnement externe de Climber Trade. Chaque facteur est pondéré selon sa matérialité stratégique pour l'acquisition et le potentiel de croissance.</p>
+    <p class="sa-text lang-en">Comprehensive four-quadrant assessment of Climber Trade's internal capabilities and external environment. Each factor is weighted by its strategic materiality for acquisition and growth potential.</p>
 
     <div class="sa-swot">
       <!-- STRENGTHS -->
       <div class="sa-swot-cell strength">
-        <div class="sa-swot-header s-head"><span class="sa-swot-dot s-dot"></span>Strengths</div>
+        <div class="sa-swot-header s-head"><span class="sa-swot-dot s-dot"></span><span class="lang-fr">Forces</span><span class="lang-en">Strengths</span></div>
         <ul class="sa-swot-list">
-          <li><strong>Proprietary CLIMB Score algorithm</strong> &mdash; 14 distinct metrics across 4 weighted pillars, producing a continuous 0-100 rating rather than binary pass/fail. Defensible IP with significant calibration depth.</li>
-          <li><strong>Transparent liquidity pool</strong> &mdash; Public dashboard showing pool size, trader count, and anonymized distribution. Unique trust mechanism vs. opaque competitors.</li>
-          <li><strong>Self-regulating pool via Cohort Factor</strong> &mdash; FC = 1/(1 + N/50) mathematically prevents pool exhaustion at any scale. Eliminates the solvency risk endemic to other prop firms.</li>
-          <li><strong>Dynamic merit-based profit splits</strong> &mdash; 40-60% trader share tied directly to CLIMB Score. Aligned incentives: firm profits only when traders profit.</li>
-          <li><strong>Multi-asset capability</strong> &mdash; Futures-first with planned expansion into Forex (28 pairs), US equities, CFDs, and crypto. Broader addressable market than single-asset competitors.</li>
-          <li><strong>No time limit on evaluation</strong> &mdash; Traders can maintain their subscription indefinitely, building a track record. Increases subscription LTV and reduces churn from artificial deadlines.</li>
-          <li><strong>ClimbCoin wallet ecosystem</strong> &mdash; In-platform currency system acts as a retention tool and creates switching costs once traders accumulate balances.</li>
-          <li><strong>Comprehensive education infrastructure</strong> &mdash; 50+ articles, planned Academy with bi-monthly webinars, tooltip-level metric explanations. Reduces onboarding friction and supports retention.</li>
-          <li><strong>Robust legal framework</strong> &mdash; NDA, CGV, trader contracts, and trading rules already drafted. Trader classified as independent contractor (analyst), reducing labor law exposure.</li>
+          <li><strong><span class="lang-fr">Algorithme CLIMB Score propriétaire</span><span class="lang-en">Proprietary CLIMB Score algorithm</span></strong> &mdash; <span class="lang-fr">14 métriques distinctes réparties sur 4 piliers pondérés, produisant une notation continue de 0 à 100 plutôt qu'un simple succès/échec. Propriété intellectuelle défendable avec une profondeur de calibration significative.</span><span class="lang-en">14 distinct metrics across 4 weighted pillars, producing a continuous 0–100 score rather than a binary pass/fail. Defensible IP with significant calibration depth.</span></li>
+          <li><strong><span class="lang-fr">Pool de liquidité transparent</span><span class="lang-en">Transparent liquidity pool</span></strong> &mdash; <span class="lang-fr">Tableau de bord public affichant la taille du pool, le nombre de traders et la distribution anonymisée. Mécanisme de confiance unique face à des concurrents opaques.</span><span class="lang-en">Public dashboard showing pool size, trader count, and anonymized distribution. Unique trust mechanism against opaque competitors.</span></li>
+          <li><strong><span class="lang-fr">Pool auto-régulateur via le Facteur Cohorte</span><span class="lang-en">Self-regulating pool via Cohort Factor</span></strong> &mdash; <span class="lang-fr">FC = 1/(1 + N/50) empêche mathématiquement l'épuisement du pool à toute échelle. Élimine le risque de solvabilité endémique aux autres prop firms.</span><span class="lang-en">CF = 1/(1 + N/50) mathematically prevents pool depletion at any scale. Eliminates the solvency risk endemic to other prop firms.</span></li>
+          <li><strong><span class="lang-fr">Partage des profits méritocratique et dynamique</span><span class="lang-en">Meritocratic, dynamic profit sharing</span></strong> &mdash; <span class="lang-fr">Part trader de 40 à 60% directement liée au CLIMB Score. Intérêts alignés : la firme profite uniquement quand les traders profitent.</span><span class="lang-en">40–60% trader share directly tied to CLIMB Score. Aligned interests: the firm profits only when traders profit.</span></li>
+          <li><strong><span class="lang-fr">Capacité multi-actifs</span><span class="lang-en">Multi-asset capability</span></strong> &mdash; <span class="lang-fr">Priorité aux futures avec expansion planifiée vers le Forex (28 paires), actions américaines, CFD et crypto. Marché adressable plus large que les concurrents mono-actif.</span><span class="lang-en">Futures-first with planned expansion to Forex (28 pairs), US equities, CFDs, and crypto. Wider addressable market than single-asset competitors.</span></li>
+          <li><strong><span class="lang-fr">Aucune limite de temps sur l'évaluation</span><span class="lang-en">No evaluation time limit</span></strong> &mdash; <span class="lang-fr">Les traders peuvent maintenir leur abonnement indéfiniment et construire un track record. Augmente la LTV des abonnements et réduit le churn lié aux délais artificiels.</span><span class="lang-en">Traders can maintain their subscription indefinitely and build a track record. Increases subscription LTV and reduces churn from artificial deadlines.</span></li>
+          <li><strong><span class="lang-fr">Écosystème de wallet ClimbCoin</span><span class="lang-en">ClimbCoin wallet ecosystem</span></strong> &mdash; <span class="lang-fr">La monnaie interne à la plateforme sert d'outil de rétention et crée des coûts de changement une fois que les traders y ont accumulé des soldes.</span><span class="lang-en">The platform's internal currency serves as a retention tool and creates switching costs once traders have accumulated balances.</span></li>
+          <li><strong><span class="lang-fr">Infrastructure éducative complète</span><span class="lang-en">Comprehensive educational infrastructure</span></strong> &mdash; <span class="lang-fr">Plus de 50 articles, Academy planifiée avec webinaires bimensuels, explications des métriques au niveau des infobulles. Réduit les frictions à l'onboarding et soutient la rétention.</span><span class="lang-en">50+ articles, planned Academy with bi-monthly webinars, metric explanations at tooltip level. Reduces onboarding friction and supports retention.</span></li>
+          <li><strong><span class="lang-fr">Cadre juridique solide</span><span class="lang-en">Solid legal framework</span></strong> &mdash; <span class="lang-fr">NDA, CGV, contrats traders et règlement de trading déjà rédigés. Le trader est qualifié de prestataire indépendant (analyste), réduisant l'exposition au droit du travail.</span><span class="lang-en">NDA, T&Cs, trader contracts, and trading rules already drafted. Traders classified as independent contractors (analysts), reducing employment law exposure.</span></li>
         </ul>
       </div>
 
       <!-- WEAKNESSES -->
       <div class="sa-swot-cell weakness">
-        <div class="sa-swot-header w-head"><span class="sa-swot-dot w-dot"></span>Weaknesses</div>
+        <div class="sa-swot-header w-head"><span class="sa-swot-dot w-dot"></span><span class="lang-fr">Faiblesses</span><span class="lang-en">Weaknesses</span></div>
         <ul class="sa-swot-list">
-          <li><strong>Pre-revenue stage</strong> &mdash; No live subscribers yet. All financial projections are theoretical. Significant execution risk remains before product-market fit is proven.</li>
-          <li><strong>Minimal team (2 people)</strong> &mdash; Single points of failure for both product vision and technical implementation. No dedicated sales, marketing, compliance, or customer support resources.</li>
-          <li><strong>Single platform dependency</strong> &mdash; Exclusive reliance on Volumetrica for trade execution. Platform outage, pivot, or pricing change creates existential risk.</li>
-          <li><strong>USD-only accounts</strong> &mdash; Excludes or inconveniences traders in non-USD economies. Adds FX conversion costs that competitors may absorb.</li>
-          <li><strong>No regulatory license</strong> &mdash; Operating in a regulatory gray area. As jurisdictions move to regulate prop firms, lack of proactive licensing could force costly retroactive compliance.</li>
-          <li><strong>Scoring complexity may intimidate beginners</strong> &mdash; 14 metrics with non-linear baremes and multi-layer weighting can overwhelm new traders. Risk of adverse selection toward sophisticated traders only.</li>
-          <li><strong>No mobile application</strong> &mdash; Dashboard access limited to web. Mobile-first competitors have an engagement advantage with younger demographics.</li>
-          <li><strong>Unresolved spec ambiguities</strong> &mdash; Dual profit split grids exist (contract vs. rules annex) awaiting reconciliation. Commission rates for equities unconfirmed. Options and spot bonds still TBD.</li>
+          <li><strong><span class="lang-fr">Stade pré-revenu</span><span class="lang-en">Pre-revenue stage</span></strong> &mdash; <span class="lang-fr">Aucun abonné actif à ce jour. Toutes les projections financières sont théoriques. Le risque d'exécution reste significatif avant que l'adéquation produit-marché soit prouvée.</span><span class="lang-en">No active subscribers to date. All financial projections are theoretical. Execution risk remains significant until product-market fit is proven.</span></li>
+          <li><strong><span class="lang-fr">Équipe minimale (2 personnes)</span><span class="lang-en">Minimal team (2 people)</span></strong> &mdash; <span class="lang-fr">Points uniques de défaillance tant pour la vision produit que pour l'implémentation technique. Absence de ressources dédiées à la vente, au marketing, à la conformité ou au support client.</span><span class="lang-en">Single points of failure for both product vision and technical implementation. No dedicated sales, marketing, compliance, or customer support resources.</span></li>
+          <li><strong><span class="lang-fr">Dépendance à une seule plateforme</span><span class="lang-en">Single-platform dependency</span></strong> &mdash; <span class="lang-fr">Recours exclusif à Volumetrica pour l'exécution des trades. Une panne, un pivot ou un changement tarifaire de la plateforme crée un risque existentiel.</span><span class="lang-en">Exclusive reliance on Volumetrica for trade execution. A platform outage, pivot, or pricing change creates an existential risk.</span></li>
+          <li><strong><span class="lang-fr">Comptes en USD uniquement</span><span class="lang-en">USD-only accounts</span></strong> &mdash; <span class="lang-fr">Exclut ou pénalise les traders dans les économies non-USD. Ajoute des coûts de conversion de devises que des concurrents pourraient absorber.</span><span class="lang-en">Excludes or penalizes traders in non-USD economies. Adds currency conversion costs that competitors may absorb.</span></li>
+          <li><strong><span class="lang-fr">Absence de licence réglementaire</span><span class="lang-en">No regulatory license</span></strong> &mdash; <span class="lang-fr">Opération dans une zone grise réglementaire. À mesure que les juridictions évoluent vers la régulation des prop firms, l'absence de licence proactive pourrait imposer une mise en conformité rétroactive coûteuse.</span><span class="lang-en">Operating in a regulatory grey zone. As jurisdictions move toward prop firm regulation, the absence of proactive licensing could impose costly retroactive compliance.</span></li>
+          <li><strong><span class="lang-fr">La complexité du scoring peut intimider les débutants</span><span class="lang-en">Scoring complexity may intimidate beginners</span></strong> &mdash; <span class="lang-fr">14 métriques avec des barèmes non linéaires et une pondération multicouche peuvent submerger les nouveaux traders. Risque de sélection adverse vers les seuls traders sophistiqués.</span><span class="lang-en">14 metrics with non-linear scales and multi-layer weighting may overwhelm new traders. Risk of adverse selection toward only sophisticated traders.</span></li>
+          <li><strong><span class="lang-fr">Absence d'application mobile</span><span class="lang-en">No mobile application</span></strong> &mdash; <span class="lang-fr">L'accès au tableau de bord est limité au web. Les concurrents prioritairement mobiles disposent d'un avantage d'engagement auprès des jeunes générations.</span><span class="lang-en">Dashboard access is web-only. Mobile-first competitors have an engagement advantage with younger demographics.</span></li>
+          <li><strong><span class="lang-fr">Ambiguïtés de spécification non résolues</span><span class="lang-en">Unresolved specification ambiguities</span></strong> &mdash; <span class="lang-fr">Deux grilles de partage des profits coexistent (contrat vs. annexe du règlement) en attente de réconciliation. Commissions sur actions non confirmées. Options et obligations spot encore à définir.</span><span class="lang-en">Two profit split grids coexist (contract vs. rules annex) pending reconciliation. Stock commissions unconfirmed. Options and spot bonds still undefined.</span></li>
         </ul>
       </div>
 
       <!-- OPPORTUNITIES -->
       <div class="sa-swot-cell opportunity">
-        <div class="sa-swot-header o-head"><span class="sa-swot-dot o-dot"></span>Opportunities</div>
+        <div class="sa-swot-header o-head"><span class="sa-swot-dot o-dot"></span><span class="lang-fr">Opportunités</span><span class="lang-en">Opportunities</span></div>
         <ul class="sa-swot-list">
-          <li><strong>Rapidly expanding global prop firm market</strong> &mdash; Estimated at $2B+ and growing as retail trading participation surges post-2020. Prop firms increasingly mainstream.</li>
-          <li><strong>Regulatory crackdown creating flight to quality</strong> &mdash; Jurisdictions scrutinizing fake prop firms and challenge scams. Transparent operators like Climber Trade stand to capture displaced traders.</li>
-          <li><strong>Multi-asset expansion</strong> &mdash; Adding Forex, equities, crypto, and CFDs progressively widens the addressable funnel without fundamentally altering the scoring engine.</li>
-          <li><strong>B2B licensing of CLIMB Score</strong> &mdash; The scoring algorithm could be licensed to other prop firms, brokers, or fund managers as an independent evaluation tool, creating a second revenue stream with near-zero marginal cost.</li>
-          <li><strong>White-label platform for institutions</strong> &mdash; Package the evaluation + allocation model for hedge funds, family offices, or banks seeking talent identification pipelines.</li>
-          <li><strong>AI/ML integration for scoring optimization</strong> &mdash; Machine learning on accumulated trader data could refine metric weightings, predict default risk, and personalize trader development paths.</li>
-          <li><strong>Regional expansion (Asia, LATAM)</strong> &mdash; Underserved markets with growing retail trading populations. Localized pricing and multi-currency support could unlock outsized growth.</li>
-          <li><strong>CIR tax credit (France)</strong> &mdash; R&amp;D tax credit for the algorithmic scoring system development. Can offset 30% of qualifying expenses in early years.</li>
-          <li><strong>Affiliate program as growth engine</strong> &mdash; 15% lifetime recurring commission + 1% payout share creates powerful distribution through trading educators and influencers.</li>
+          <li><strong><span class="lang-fr">Marché mondial des prop firms en forte expansion</span><span class="lang-en">Rapidly expanding global prop firm market</span></strong> &mdash; <span class="lang-fr">Estimé à plus de 2 milliards de dollars et en croissance à mesure que la participation au trading retail explose depuis 2020. Les prop firms deviennent de plus en plus grand public.</span><span class="lang-en">Estimated at over $2 billion and growing as retail trading participation has exploded since 2020. Prop firms are becoming increasingly mainstream.</span></li>
+          <li><strong><span class="lang-fr">Le renforcement réglementaire crée une fuite vers la qualité</span><span class="lang-en">Regulatory tightening creates flight to quality</span></strong> &mdash; <span class="lang-fr">Les juridictions scrutinent les fausses prop firms et les arnaques aux challenges. Les opérateurs transparents comme Climber Trade sont bien positionnés pour capter les traders déplacés.</span><span class="lang-en">Jurisdictions are scrutinizing fake prop firms and challenge scams. Transparent operators like Climber Trade are well-positioned to capture displaced traders.</span></li>
+          <li><strong><span class="lang-fr">Expansion multi-actifs</span><span class="lang-en">Multi-asset expansion</span></strong> &mdash; <span class="lang-fr">L'ajout progressif du Forex, des actions, de la crypto et des CFD élargit le funnel adressable sans modifier fondamentalement le moteur de scoring.</span><span class="lang-en">Gradual addition of Forex, equities, crypto, and CFDs widens the addressable funnel without fundamentally changing the scoring engine.</span></li>
+          <li><strong><span class="lang-fr">Licence B2B du CLIMB Score</span><span class="lang-en">B2B licensing of the CLIMB Score</span></strong> &mdash; <span class="lang-fr">L'algorithme de scoring pourrait être licencié à d'autres prop firms, courtiers ou gérants de fonds en tant qu'outil d'évaluation indépendant, créant un second flux de revenus à coût marginal quasi nul.</span><span class="lang-en">The scoring algorithm could be licensed to other prop firms, brokers, or fund managers as a standalone evaluation tool, creating a second revenue stream at near-zero marginal cost.</span></li>
+          <li><strong><span class="lang-fr">Plateforme en marque blanche pour les institutions</span><span class="lang-en">White-label platform for institutions</span></strong> &mdash; <span class="lang-fr">Packager le modèle évaluation + allocation pour les hedge funds, family offices ou banques cherchant des pipelines d'identification de talents.</span><span class="lang-en">Package the evaluation + allocation model for hedge funds, family offices, or banks seeking talent identification pipelines.</span></li>
+          <li><strong><span class="lang-fr">Intégration IA/ML pour l'optimisation du scoring</span><span class="lang-en">AI/ML integration for scoring optimization</span></strong> &mdash; <span class="lang-fr">L'apprentissage automatique sur les données traders accumulées pourrait affiner les pondérations des métriques, prédire le risque de défaillance et personnaliser les parcours de développement.</span><span class="lang-en">Machine learning on accumulated trader data could refine metric weightings, predict failure risk, and personalize development pathways.</span></li>
+          <li><strong><span class="lang-fr">Expansion régionale (Asie, LATAM)</span><span class="lang-en">Regional expansion (Asia, LATAM)</span></strong> &mdash; <span class="lang-fr">Marchés sous-desservis avec une population croissante de traders retail. Une tarification localisée et un support multi-devises pourraient débloquer une croissance hors norme.</span><span class="lang-en">Underserved markets with a growing retail trader population. Localized pricing and multi-currency support could unlock outsized growth.</span></li>
+          <li><strong><span class="lang-fr">Crédit d'impôt CIR (France)</span><span class="lang-en">French R&amp;D tax credit (CIR)</span></strong> &mdash; <span class="lang-fr">Crédit d'impôt recherche &amp; développement pour le développement du système de scoring algorithmique. Peut compenser 30% des dépenses éligibles sur les premières années.</span><span class="lang-en">Research &amp; development tax credit for algorithmic scoring system development. Can offset 30% of eligible expenditures in early years.</span></li>
+          <li><strong><span class="lang-fr">Programme d'affiliation comme moteur de croissance</span><span class="lang-en">Affiliate program as growth engine</span></strong> &mdash; <span class="lang-fr">Commission récurrente à vie de 15% sur chaque abonnement crée une distribution puissante via les formateurs en trading et les influenceurs.</span><span class="lang-en">15% lifetime recurring commission on every subscription creates powerful distribution via trading educators and influencers.</span></li>
         </ul>
       </div>
 
       <!-- THREATS -->
       <div class="sa-swot-cell threat">
-        <div class="sa-swot-header t-head"><span class="sa-swot-dot t-dot"></span>Threats</div>
+        <div class="sa-swot-header t-head"><span class="sa-swot-dot t-dot"></span><span class="lang-fr">Menaces</span><span class="lang-en">Threats</span></div>
         <ul class="sa-swot-list">
-          <li><strong>Intense incumbent competition</strong> &mdash; FTMO, The5ers, TopStep, Apex Trader, MyForexFunds (pre-shutdown model) established with large user bases, brand recognition, and marketing budgets.</li>
-          <li><strong>Restrictive regulation of prop firms</strong> &mdash; Possible classification as financial services requiring licensing, capital reserves, or investor protection compliance. Could dramatically increase operating costs.</li>
-          <li><strong>Market downturn reducing trader interest</strong> &mdash; Bear markets or low volatility periods reduce retail trading enthusiasm, shrinking the prospect funnel and evaluation purchases.</li>
-          <li><strong>Copycat risk on scoring model</strong> &mdash; CLIMB Score methodology, while complex, is documented. Competitors with larger engineering teams could replicate a similar multi-pillar approach.</li>
-          <li><strong>Payment processing risk</strong> &mdash; High chargeback rates from dissatisfied traders could trigger payment processor restrictions. Subscription billing for financial services carries elevated fraud and dispute rates.</li>
-          <li><strong>Trader litigation risk</strong> &mdash; Payout disputes, account terminations, or pool allocation disagreements could generate legal actions, especially across multiple jurisdictions.</li>
-          <li><strong>Platform vendor risk</strong> &mdash; Volumetrica pricing changes, service disruptions, or discontinuation would require costly platform migration with no guaranteed timeline.</li>
-          <li><strong>Talent poaching of funded traders</strong> &mdash; Competitors offering better splits or more capital could attract top-performing Climber traders once they have a verified track record.</li>
+          <li><strong><span class="lang-fr">Concurrence intense des acteurs établis</span><span class="lang-en">Intense competition from established players</span></strong> &mdash; <span class="lang-fr">FTMO, The5ers, TopStep, Apex Trader, MyForexFunds (modèle pré-fermeture) bénéficient de grandes bases d'utilisateurs, d'une notoriété de marque et de budgets marketing conséquents.</span><span class="lang-en">FTMO, The5ers, TopStep, Apex Trader, MyForexFunds (pre-closure model) benefit from large user bases, brand awareness, and significant marketing budgets.</span></li>
+          <li><strong><span class="lang-fr">Réglementation restrictive des prop firms</span><span class="lang-en">Restrictive prop firm regulation</span></strong> &mdash; <span class="lang-fr">Classification possible comme service financier exigeant une licence, des réserves de capital ou une conformité à la protection des investisseurs. Pourrait augmenter drastiquement les coûts d'exploitation.</span><span class="lang-en">Possible classification as a financial service requiring licensing, capital reserves, or investor protection compliance. Could dramatically increase operating costs.</span></li>
+          <li><strong><span class="lang-fr">Baisse de marché réduisant l'intérêt des traders</span><span class="lang-en">Market downturn reducing trader interest</span></strong> &mdash; <span class="lang-fr">Les marchés baissiers ou les périodes de faible volatilité réduisent l'enthousiasme du trading retail, contractant le funnel de prospects et les achats d'évaluation.</span><span class="lang-en">Bear markets or low-volatility periods reduce retail trading enthusiasm, contracting the prospect funnel and evaluation purchases.</span></li>
+          <li><strong><span class="lang-fr">Risque de copie du modèle de scoring</span><span class="lang-en">Scoring model copy risk</span></strong> &mdash; <span class="lang-fr">La méthodologie du CLIMB Score, bien que complexe, est documentée. Des concurrents disposant d'équipes techniques plus importantes pourraient reproduire une approche multi-piliers similaire.</span><span class="lang-en">The CLIMB Score methodology, while complex, is documented. Competitors with larger technical teams could replicate a similar multi-pillar approach.</span></li>
+          <li><strong><span class="lang-fr">Risque lié aux processeurs de paiement</span><span class="lang-en">Payment processor risk</span></strong> &mdash; <span class="lang-fr">Des taux de chargeback élevés de la part de traders insatisfaits pourraient déclencher des restrictions de la part des processeurs de paiement. La facturation par abonnement pour les services financiers présente des taux de fraude et de litige plus élevés.</span><span class="lang-en">High chargeback rates from dissatisfied traders could trigger payment processor restrictions. Subscription billing for financial services has elevated fraud and dispute rates.</span></li>
+          <li><strong><span class="lang-fr">Risque de contentieux avec les traders</span><span class="lang-en">Trader litigation risk</span></strong> &mdash; <span class="lang-fr">Des litiges sur les paiements, des fermetures de comptes ou des désaccords sur l'allocation du pool pourraient générer des actions judiciaires, notamment dans plusieurs juridictions.</span><span class="lang-en">Disputes over payouts, account closures, or pool allocation disagreements could generate legal actions, particularly across multiple jurisdictions.</span></li>
+          <li><strong><span class="lang-fr">Risque fournisseur plateforme</span><span class="lang-en">Platform vendor risk</span></strong> &mdash; <span class="lang-fr">Des changements tarifaires de Volumetrica, des interruptions de service ou une discontinuation imposeraient une migration coûteuse de plateforme sans calendrier garanti.</span><span class="lang-en">Volumetrica pricing changes, service outages, or discontinuation would impose a costly platform migration with no guaranteed timeline.</span></li>
+          <li><strong><span class="lang-fr">Débauchage des traders financés</span><span class="lang-en">Poaching of funded traders</span></strong> &mdash; <span class="lang-fr">Des concurrents offrant de meilleurs splits ou davantage de capital pourraient attirer les meilleurs traders Climber une fois qu'ils disposent d'un track record vérifié.</span><span class="lang-en">Competitors offering better splits or more capital could attract top Climber traders once they have a verified track record.</span></li>
         </ul>
       </div>
     </div>
@@ -640,23 +665,24 @@
   <!-- ═══ SECTION 3: COMPETITIVE POSITIONING ═══ -->
   <section id="competitive-positioning" class="sa-section">
     <div class="sa-section-num">Section 03</div>
-    <h2 class="sa-section-title">Competitive Positioning Matrix</h2>
+    <h2 class="sa-section-title"><span class="lang-fr">Matrice de Positionnement Concurrentiel</span><span class="lang-en">Competitive Positioning Matrix</span></h2>
     <div class="sa-section-divider"></div>
 
-    <p class="sa-text">Mapping the prop firm landscape across two strategic dimensions: <strong>transparency</strong> (opaque operations to full public disclosure) and <strong>evaluation sophistication</strong> (binary pass/fail to continuous algorithmic scoring). Climber Trade occupies a unique position in the upper-right quadrant.</p>
+    <p class="sa-text lang-fr">Cartographie du paysage des prop firms selon deux dimensions stratégiques : la <strong>transparence</strong> (des opérations opaques à la divulgation publique totale) et la <strong>sophistication de l'évaluation</strong> (du succès/échec binaire au scoring algorithmique continu). Climber Trade occupe une position unique dans le quadrant supérieur droit.</p>
+    <p class="sa-text lang-en">Mapping of the prop firm landscape along two strategic dimensions: <strong>transparency</strong> (from opaque operations to full public disclosure) and <strong>evaluation sophistication</strong> (from binary pass/fail to continuous algorithmic scoring). Climber Trade occupies a unique position in the upper-right quadrant.</p>
 
     <div class="sa-matrix-wrap">
       <div class="sa-matrix">
         <!-- Axis labels -->
-        <span class="sa-matrix-xlabel">Transparency &rarr;</span>
-        <span class="sa-matrix-ylabel">Evaluation Sophistication &rarr;</span>
-        <span class="sa-matrix-corner bl" style="font-size:9px;">Low / Simple</span>
-        <span class="sa-matrix-corner br" style="font-size:9px;">High</span>
-        <span class="sa-matrix-corner tl" style="font-size:9px;">Algorithmic</span>
+        <span class="sa-matrix-xlabel">Transparence &rarr;</span>
+        <span class="sa-matrix-ylabel">Sophistication de l'Évaluation &rarr;</span>
+        <span class="sa-matrix-corner bl" style="font-size:9px;">Faible / Simple</span>
+        <span class="sa-matrix-corner br" style="font-size:9px;">Élevée</span>
+        <span class="sa-matrix-corner tl" style="font-size:9px;">Algorithmique</span>
 
         <!-- Quadrant labels -->
-        <span class="sa-matrix-quadrant" style="top:16px;right:16px;">Transparent + Algorithmic</span>
-        <span class="sa-matrix-quadrant" style="top:16px;left:16px;">Opaque + Algorithmic</span>
+        <span class="sa-matrix-quadrant" style="top:16px;right:16px;">Transparent + Algorithmique</span>
+        <span class="sa-matrix-quadrant" style="top:16px;left:16px;">Opaque + Algorithmique</span>
         <span class="sa-matrix-quadrant" style="bottom:16px;right:16px;">Transparent + Simple</span>
         <span class="sa-matrix-quadrant" style="bottom:16px;left:16px;">Opaque + Simple</span>
 
@@ -701,29 +727,32 @@
     </div>
 
     <div class="sa-callout info">
-      <div class="sa-callout-label">Key Insight</div>
-      <strong>Climber Trade occupies a defensible niche.</strong> No current competitor combines full pool transparency with a continuous multi-pillar scoring algorithm. Darwinex is the closest analog but operates a different model (asset management). The upper-right quadrant represents a strategic moat that is difficult to replicate without fundamental business model changes by incumbents.
+      <div class="sa-callout-label"><span class="lang-fr">Insight Clé</span><span class="lang-en">Key Insight</span></div>
+      <span class="lang-fr"><strong>Climber Trade occupe une niche défendable.</strong> Aucun concurrent actuel ne combine une transparence totale du pool avec un algorithme de scoring continu multi-piliers. Darwinex est l'analogue le plus proche, mais opère selon un modèle différent (gestion d'actifs). Le quadrant supérieur droit représente un avantage stratégique difficile à répliquer sans changements fondamentaux du modèle économique par les acteurs établis.</span>
+      <span class="lang-en"><strong>Climber Trade occupies a defensible niche.</strong> No current competitor combines full pool transparency with a continuous multi-pillar scoring algorithm. Darwinex is the closest analogue, but operates a different model (asset management). The upper-right quadrant represents a strategic advantage that is difficult to replicate without fundamental business model changes by established players.</span>
     </div>
   </section>
 
   <!-- ═══ SECTION 4: PORTER'S FIVE FORCES ═══ -->
   <section id="porters-five-forces" class="sa-section">
     <div class="sa-section-num">Section 04</div>
-    <h2 class="sa-section-title">Porter's Five Forces Analysis</h2>
+    <h2 class="sa-section-title"><span class="lang-fr">Analyse des 5 Forces de Porter</span><span class="lang-en">Porter's Five Forces Analysis</span></h2>
     <div class="sa-section-divider"></div>
 
-    <p class="sa-text">Industry structure analysis of the proprietary trading firm sector. Overall industry attractiveness is <strong>moderate</strong>, with high rivalry offset by growing demand and limited supplier power.</p>
+    <p class="sa-text lang-fr">Analyse de la structure du secteur des prop firms. L'attractivité globale du secteur est <strong>modérée</strong>, une forte rivalité étant compensée par une demande croissante et un faible pouvoir des fournisseurs.</p>
+    <p class="sa-text lang-en">Analysis of the prop firm industry structure. Overall sector attractiveness is <strong>moderate</strong>, with strong rivalry offset by growing demand and low supplier power.</p>
 
     <div class="sa-porter">
       <!-- Force 1: New Entrants -->
       <div class="sa-porter-force">
         <div class="sa-porter-rating">
           <div class="sa-porter-score" style="color:var(--red);">4.2</div>
-          <span class="sa-porter-level high">High</span>
+          <span class="sa-porter-level high"><span class="lang-fr">Élevée</span><span class="lang-en">High</span></span>
         </div>
         <div class="sa-porter-content" style="flex:1;">
-          <h4>Threat of New Entrants</h4>
-          <p>Low capital requirements ($50-200K to launch), readily available trading platforms (cTrader, MetaTrader, Rithmic), and a proven subscription model make the prop firm space easy to enter. However, building a credible brand and achieving trader trust requires meaningful time and marketing investment. Regulatory barriers are rising, which may slow new entrants.</p>
+          <h4><span class="lang-fr">Menace des Nouveaux Entrants</span><span class="lang-en">Threat of New Entrants</span></h4>
+          <p class="lang-fr">De faibles besoins en capital (50 à 200 K$ pour lancer), des plateformes de trading facilement disponibles (cTrader, MetaTrader, Rithmic) et un modèle d'abonnement éprouvé rendent l'entrée sur le marché des prop firms aisée. Cependant, construire une marque crédible et gagner la confiance des traders nécessite un investissement en temps et en marketing significatif. Les barrières réglementaires se renforcent, ce qui pourrait ralentir les nouveaux entrants.</p>
+          <p class="lang-en">Low capital requirements ($50–200K to launch), readily available trading platforms (cTrader, MetaTrader, Rithmic), and a proven subscription model make prop firm entry straightforward. However, building a credible brand and earning trader trust requires significant time and marketing investment. Regulatory barriers are strengthening, which may slow new entrants.</p>
           <div class="sa-porter-bar"><div class="sa-porter-bar-fill" style="width:84%;background:var(--red);"></div></div>
         </div>
       </div>
@@ -732,11 +761,12 @@
       <div class="sa-porter-force">
         <div class="sa-porter-rating">
           <div class="sa-porter-score" style="color:var(--amber);">3.0</div>
-          <span class="sa-porter-level medium">Medium</span>
+          <span class="sa-porter-level medium"><span class="lang-fr">Modérée</span><span class="lang-en">Moderate</span></span>
         </div>
         <div class="sa-porter-content" style="flex:1;">
-          <h4>Bargaining Power of Traders (Buyers)</h4>
-          <p>Traders have multiple alternatives and low switching costs between prop firms. Pricing transparency makes comparison shopping easy. However, once a trader has invested time building a track record on a platform, switching costs increase. Elite traders have significant leverage due to their demonstrated profitability and scarcity.</p>
+          <h4><span class="lang-fr">Pouvoir de Négociation des Traders (Acheteurs)</span><span class="lang-en">Bargaining Power of Traders (Buyers)</span></h4>
+          <p class="lang-fr">Les traders disposent de multiples alternatives et de faibles coûts de changement entre prop firms. La transparence des tarifs facilite la comparaison. Cependant, une fois qu'un trader a investi du temps à construire un track record sur une plateforme, les coûts de changement augmentent. Les traders d'élite disposent d'un levier significatif grâce à leur rentabilité démontrée et à leur rareté.</p>
+          <p class="lang-en">Traders have multiple alternatives and low switching costs between prop firms. Pricing transparency makes comparison easy. However, once a trader has invested time building a track record on a platform, switching costs increase. Elite traders have significant leverage due to their demonstrated profitability and scarcity.</p>
           <div class="sa-porter-bar"><div class="sa-porter-bar-fill" style="width:60%;background:var(--amber);"></div></div>
         </div>
       </div>
@@ -745,11 +775,12 @@
       <div class="sa-porter-force">
         <div class="sa-porter-rating">
           <div class="sa-porter-score" style="color:var(--amber);">2.8</div>
-          <span class="sa-porter-level medium">Medium</span>
+          <span class="sa-porter-level medium"><span class="lang-fr">Modérée</span><span class="lang-en">Moderate</span></span>
         </div>
         <div class="sa-porter-content" style="flex:1;">
-          <h4>Threat of Substitutes</h4>
-          <p>Alternatives include self-funded retail trading, copy trading platforms (eToro, ZuluTrade), managed account services, and traditional hedge fund talent pipelines. However, prop firms uniquely offer capital access without personal risk, a value proposition that substitutes cannot fully replicate. The growing appeal of "trading as a career" strengthens the prop firm model.</p>
+          <h4><span class="lang-fr">Menace des Produits de Substitution</span><span class="lang-en">Threat of Substitutes</span></h4>
+          <p class="lang-fr">Les alternatives incluent le trading retail autofinancé, les plateformes de copy trading (eToro, ZuluTrade), les services de gestion de comptes et les pipelines de talents des hedge funds traditionnels. Cependant, les prop firms offrent de manière unique un accès à du capital sans risque personnel, une proposition de valeur que les substituts ne peuvent pas pleinement répliquer. L'attrait croissant du « trading comme carrière » renforce le modèle des prop firms.</p>
+          <p class="lang-en">Alternatives include self-funded retail trading, copy trading platforms (eToro, ZuluTrade), account management services, and traditional hedge fund talent pipelines. However, prop firms uniquely offer capital access without personal risk — a value proposition substitutes cannot fully replicate. Growing appeal of "trading as a career" reinforces the prop firm model.</p>
           <div class="sa-porter-bar"><div class="sa-porter-bar-fill" style="width:56%;background:var(--amber);"></div></div>
         </div>
       </div>
@@ -758,11 +789,12 @@
       <div class="sa-porter-force">
         <div class="sa-porter-rating">
           <div class="sa-porter-score" style="color:var(--green);">1.8</div>
-          <span class="sa-porter-level low">Low</span>
+          <span class="sa-porter-level low"><span class="lang-fr">Faible</span><span class="lang-en">Low</span></span>
         </div>
         <div class="sa-porter-content" style="flex:1;">
-          <h4>Bargaining Power of Suppliers</h4>
-          <p>Key suppliers include trading platforms, data feed providers, payment processors, and cloud infrastructure. Multiple viable alternatives exist in each category (MetaTrader, cTrader, Rithmic, TradingView). Switching costs are moderate but manageable. Payment processors (Stripe, aMember) are commoditized. The main exception is specialized platforms like Volumetrica where alternatives may be limited.</p>
+          <h4><span class="lang-fr">Pouvoir de Négociation des Fournisseurs</span><span class="lang-en">Bargaining Power of Suppliers</span></h4>
+          <p class="lang-fr">Les fournisseurs clés comprennent les plateformes de trading, les fournisseurs de flux de données, les processeurs de paiement et l'infrastructure cloud. Plusieurs alternatives viables existent dans chaque catégorie (MetaTrader, cTrader, Rithmic, TradingView). Les coûts de changement sont modérés mais gérables. Les processeurs de paiement (Stripe, aMember) sont banalisés. La principale exception concerne les plateformes spécialisées comme Volumetrica, dont les alternatives peuvent être limitées.</p>
+          <p class="lang-en">Key suppliers include trading platforms, data feed providers, payment processors, and cloud infrastructure. Multiple viable alternatives exist in each category (MetaTrader, cTrader, Rithmic, TradingView). Switching costs are moderate but manageable. Payment processors (Stripe, aMember) are commoditized. The main exception is specialized platforms like Volumetrica, where alternatives may be limited.</p>
           <div class="sa-porter-bar"><div class="sa-porter-bar-fill" style="width:36%;background:var(--green);"></div></div>
         </div>
       </div>
@@ -771,11 +803,12 @@
       <div class="sa-porter-force">
         <div class="sa-porter-rating">
           <div class="sa-porter-score" style="color:var(--red);">4.5</div>
-          <span class="sa-porter-level high">High</span>
+          <span class="sa-porter-level high"><span class="lang-fr">Élevée</span><span class="lang-en">High</span></span>
         </div>
         <div class="sa-porter-content" style="flex:1;">
-          <h4>Industry Rivalry</h4>
-          <p>Extremely competitive landscape with established players (FTMO, TopStep, The5ers, Apex) engaging in aggressive price competition, feature expansion, and marketing wars. Products are relatively homogeneous (pass challenge, get funded). Differentiation is difficult and easily copied. However, the market is growing fast enough that rivalry does not yet produce a zero-sum dynamic for well-positioned entrants.</p>
+          <h4><span class="lang-fr">Rivalité Sectorielle</span><span class="lang-en">Industry Rivalry</span></h4>
+          <p class="lang-fr">Paysage extrêmement concurrentiel avec des acteurs établis (FTMO, TopStep, The5ers, Apex) engagés dans une guerre des prix agressive, une expansion des fonctionnalités et des batailles marketing. Les produits sont relativement homogènes (réussir le challenge, être financé). La différenciation est difficile et facilement copiée. Toutefois, le marché croît assez rapidement pour que la rivalité ne produise pas encore une dynamique à somme nulle pour les nouveaux entrants bien positionnés.</p>
+          <p class="lang-en">Extremely competitive landscape with established players (FTMO, TopStep, The5ers, Apex) engaged in aggressive price wars, feature expansion, and marketing battles. Products are relatively homogeneous (pass the challenge, get funded). Differentiation is difficult and easily copied. However, the market is growing fast enough that rivalry has not yet produced a zero-sum dynamic for well-positioned new entrants.</p>
           <div class="sa-porter-bar"><div class="sa-porter-bar-fill" style="width:90%;background:var(--red);"></div></div>
         </div>
       </div>
@@ -785,82 +818,85 @@
   <!-- ═══ SECTION 5: VALUE CHAIN ═══ -->
   <section id="value-chain" class="sa-section">
     <div class="sa-section-num">Section 05</div>
-    <h2 class="sa-section-title">Value Chain Analysis</h2>
+    <h2 class="sa-section-title"><span class="lang-fr">Analyse de la Chaîne de Valeur</span><span class="lang-en">Value Chain Analysis</span></h2>
     <div class="sa-section-divider"></div>
 
-    <p class="sa-text">Mapping where Climber Trade creates and captures value at each stage of the trader lifecycle. The <strong>Scoring Algorithm</strong> and <strong>Capital Allocation</strong> stages represent the firm's core intellectual property and primary sources of competitive advantage.</p>
+    <p class="sa-text lang-fr">Cartographie de la création et de la capture de valeur par Climber Trade à chaque étape du cycle de vie du trader. Les étapes <strong>Algorithme de Scoring</strong> et <strong>Allocation du Capital</strong> représentent la propriété intellectuelle fondamentale de la firme et ses principales sources d'avantage concurrentiel.</p>
+    <p class="sa-text lang-en">Mapping of how Climber Trade creates and captures value at each stage of the trader lifecycle. The <strong>Scoring Algorithm</strong> and <strong>Capital Allocation</strong> steps represent the firm's core intellectual property and primary sources of competitive advantage.</p>
 
     <div class="sa-chain">
       <div class="sa-chain-step">
         <div class="sa-chain-num">01</div>
-        <h5>Marketing &amp; Acquisition</h5>
-        <p>SEO (50+ articles), affiliate program (15% recurring), referral system, content marketing</p>
+        <h5><span class="lang-fr">Marketing &amp; Acquisition</span><span class="lang-en">Marketing &amp; Acquisition</span></h5>
+        <p><span class="lang-fr">SEO (50+ articles), programme d'affiliation (15% récurrents), système de parrainage, marketing de contenu</span><span class="lang-en">SEO (50+ articles), affiliate program (15% recurring), referral system, content marketing</span></p>
       </div>
       <div class="sa-chain-arrow">&rarr;</div>
       <div class="sa-chain-step">
         <div class="sa-chain-num">02</div>
         <h5>Onboarding &amp; KYC</h5>
-        <p>5-min signup, subscription selection, identity verification, immediate platform access</p>
+        <p><span class="lang-fr">Inscription en 5 min, sélection de l'abonnement, vérification d'identité, accès immédiat à la plateforme</span><span class="lang-en">5-min signup, subscription selection, identity verification, immediate platform access</span></p>
       </div>
       <div class="sa-chain-arrow">&rarr;</div>
       <div class="sa-chain-step">
         <div class="sa-chain-num">03</div>
-        <h5>Evaluation Platform</h5>
-        <p>$1M simulated capital, Volumetrica integration, real-time dashboards, multi-asset</p>
+        <h5><span class="lang-fr">Plateforme d'Évaluation</span><span class="lang-en">Evaluation Platform</span></h5>
+        <p><span class="lang-fr">Capital simulé de 1M$, intégration Volumetrica, tableaux de bord temps réel, multi-actifs</span><span class="lang-en">$1M simulated capital, Volumetrica integration, real-time dashboards, multi-asset</span></p>
       </div>
       <div class="sa-chain-arrow">&rarr;</div>
       <div class="sa-chain-step core">
         <div class="sa-chain-num">04</div>
-        <h5>Scoring Algorithm</h5>
-        <p>CLIMB Score: 14 metrics, 4 pillars, continuous 0-100 rating, real-time updates</p>
-        <span class="sa-chain-ip">CORE IP</span>
+        <h5><span class="lang-fr">Algorithme de Scoring</span><span class="lang-en">Scoring Algorithm</span></h5>
+        <p><span class="lang-fr">CLIMB Score : 14 métriques, 4 piliers, notation continue 0-100, mises à jour en temps réel</span><span class="lang-en">CLIMB Score: 14 metrics, 4 pillars, continuous 0–100 scoring, real-time updates</span></p>
+        <span class="sa-chain-ip"><span class="lang-fr">IP CŒUR</span><span class="lang-en">CORE IP</span></span>
       </div>
       <div class="sa-chain-arrow">&rarr;</div>
       <div class="sa-chain-step core">
         <div class="sa-chain-num">05</div>
-        <h5>Capital Allocation</h5>
-        <p>Pool model, Cohort Factor, score-based %, Elite/Standard tiers, auto-scaling</p>
-        <span class="sa-chain-ip">CORE IP</span>
+        <h5><span class="lang-fr">Allocation du Capital</span><span class="lang-en">Capital Allocation</span></h5>
+        <p><span class="lang-fr">Modèle pool, Facteur Cohorte, % basé sur le score, paliers Elite/Standard, scaling automatique</span><span class="lang-en">Pool model, Cohort Factor, score-based %, Elite/Standard tiers, automatic scaling</span></p>
+        <span class="sa-chain-ip"><span class="lang-fr">IP CŒUR</span><span class="lang-en">CORE IP</span></span>
       </div>
       <div class="sa-chain-arrow">&rarr;</div>
       <div class="sa-chain-step">
         <div class="sa-chain-num">06</div>
-        <h5>Trader Management</h5>
-        <p>Live monitoring, risk alerts, drawdown controls, scoring maintenance, support</p>
+        <h5><span class="lang-fr">Gestion des Traders</span><span class="lang-en">Trader Management</span></h5>
+        <p><span class="lang-fr">Surveillance live, alertes de risque, contrôles du drawdown, maintien du scoring, support</span><span class="lang-en">Live monitoring, risk alerts, drawdown controls, scoring maintenance, support</span></p>
       </div>
       <div class="sa-chain-arrow">&rarr;</div>
       <div class="sa-chain-step">
         <div class="sa-chain-num">07</div>
-        <h5>Payouts &amp; Compliance</h5>
-        <p>RISE WORKS, bi-monthly cycles, $500 min, KYC maintenance, tax documentation</p>
+        <h5><span class="lang-fr">Paiements &amp; Conformité</span><span class="lang-en">Payments &amp; Compliance</span></h5>
+        <p><span class="lang-fr">RISE WORKS, cycles bimensuels, minimum 500$, maintien du KYC, documentation fiscale</span><span class="lang-en">RISE WORKS, bi-monthly cycles, $500 minimum, KYC maintenance, tax documentation</span></p>
       </div>
     </div>
 
     <div class="sa-callout success">
-      <div class="sa-callout-label">Margin Concentration</div>
-      The highest-margin activities are concentrated in stages 3-5 (Evaluation, Scoring, Allocation), which are also the most defensible. Marketing (stage 1) and payouts (stage 7) carry the highest variable costs. <strong>Optimizing the evaluation-to-live conversion rate is the single most impactful lever for profitability.</strong>
+      <div class="sa-callout-label"><span class="lang-fr">Concentration des Marges</span><span class="lang-en">Margin Concentration</span></div>
+      <span class="lang-fr">Les activités à plus forte marge sont concentrées aux étapes 3 à 5 (Évaluation, Scoring, Allocation), qui sont également les plus défendables. Le marketing (étape 1) et les paiements (étape 7) représentent les coûts variables les plus élevés. <strong>Optimiser le taux de conversion évaluation-vers-live est le levier le plus impactant sur la rentabilité.</strong></span>
+      <span class="lang-en">The highest-margin activities are concentrated at steps 3–5 (Evaluation, Scoring, Allocation), which are also the most defensible. Marketing (step 1) and payments (step 7) represent the highest variable costs. <strong>Optimizing the evaluation-to-live conversion rate is the highest-impact lever on profitability.</strong></span>
     </div>
   </section>
 
   <!-- ═══ SECTION 6: TAM/SAM/SOM ═══ -->
   <section id="market-sizing" class="sa-section">
     <div class="sa-section-num">Section 06</div>
-    <h2 class="sa-section-title">TAM / SAM / SOM Market Sizing</h2>
+    <h2 class="sa-section-title"><span class="lang-fr">Dimensionnement du Marché TAM / SAM / SOM</span><span class="lang-en">Market Sizing TAM / SAM / SOM</span></h2>
     <div class="sa-section-divider"></div>
 
-    <p class="sa-text">Bottom-up market sizing based on global retail trader population data, prop firm adoption rates, and Climber Trade's specific addressable segments. Estimates are conservative and based on publicly available industry data.</p>
+    <p class="sa-text lang-fr">Dimensionnement du marché par approche ascendante, basé sur les données de la population mondiale de traders retail, les taux d'adoption des prop firms et les segments spécifiquement adressables par Climber Trade. Les estimations sont conservatrices et fondées sur des données sectorielles publiquement disponibles.</p>
+    <p class="sa-text lang-en">Bottom-up market sizing based on global retail trader population data, prop firm adoption rates, and segments specifically addressable by Climber Trade. Estimates are conservative and based on publicly available industry data.</p>
 
     <div class="sa-tam-visual" style="height:380px;">
       <div class="sa-tam-circle tam">
-        <span class="sa-tam-label">Total Addressable Market</span>
+        <span class="sa-tam-label"><span class="lang-fr">Marché Total Adressable</span><span class="lang-en">Total Addressable Market</span></span>
         <div class="sa-tam-value" style="color:var(--text3);position:absolute;top:48px;">$2.4B</div>
       </div>
       <div class="sa-tam-circle sam">
-        <span class="sa-tam-label">Serviceable Available</span>
+        <span class="sa-tam-label"><span class="lang-fr">Marché Disponible Serviceable</span><span class="lang-en">Serviceable Addressable Market</span></span>
         <div class="sa-tam-value" style="color:var(--green);position:absolute;top:40px;">$480M</div>
       </div>
       <div class="sa-tam-circle som">
-        <span class="sa-tam-label">SOM Y3</span>
+        <span class="sa-tam-label"><span class="lang-fr">SOM An 3</span><span class="lang-en">SOM Year 3</span></span>
         <div class="sa-tam-value" style="color:var(--teal);">$7.2M</div>
       </div>
     </div>
@@ -869,135 +905,139 @@
       <div class="sa-tam-detail">
         <div class="sa-tam-detail-label" style="color:var(--text3);">TAM</div>
         <div class="sa-tam-detail-val">$2.4B</div>
-        <div class="sa-tam-detail-desc">~12M active retail traders globally who would consider prop firm evaluation. Average $200/yr spend assumption.</div>
+        <div class="sa-tam-detail-desc"><span class="lang-fr">~12 millions de traders retail actifs dans le monde susceptibles d'envisager une évaluation prop firm. Hypothèse de dépense moyenne de 200$/an.</span><span class="lang-en">~12 million active retail traders globally likely to consider a prop firm evaluation. Average spend assumption of $200/year.</span></div>
       </div>
       <div class="sa-tam-detail">
         <div class="sa-tam-detail-label" style="color:var(--green);">SAM</div>
         <div class="sa-tam-detail-val">$480M</div>
-        <div class="sa-tam-detail-desc">~2M futures-focused traders in target geographies (NA, EU, MENA). $240/yr average subscription value.</div>
+        <div class="sa-tam-detail-desc"><span class="lang-fr">~2 millions de traders axés futures dans les zones géographiques cibles (NA, EU, MENA). Valeur d'abonnement moyenne de 240$/an.</span><span class="lang-en">~2 million futures-focused traders in target geographies (NA, EU, MENA). Average subscription value of $240/year.</span></div>
       </div>
       <div class="sa-tam-detail">
-        <div class="sa-tam-detail-label" style="color:var(--teal);">SOM (Year 3)</div>
+        <div class="sa-tam-detail-label" style="color:var(--teal);">SOM (<span class="lang-fr">Année 3</span><span class="lang-en">Year 3</span>)</div>
         <div class="sa-tam-detail-val">$7.2M</div>
-        <div class="sa-tam-detail-desc">~3,000 active subscribers at $199/mo. Conservative 0.15% SAM capture with affiliate-driven growth.</div>
+        <div class="sa-tam-detail-desc"><span class="lang-fr">~3 000 abonnés actifs à 199$/mois. Capture conservatrice de 0,15% du SAM avec une croissance portée par les affiliés.</span><span class="lang-en">~3,000 active subscribers at $199/month. Conservative 0.15% SAM capture with affiliate-driven growth.</span></div>
       </div>
     </div>
 
     <div class="sa-callout warn" style="margin-top:32px;">
-      <div class="sa-callout-label">Sensitivity Note</div>
-      The SOM estimate assumes a 30% annual churn rate (industry average is 40-60% for prop firms). If Climber Trade's no-time-limit model reduces churn to 20%, Year 3 ARR could reach <strong>$9.6M</strong> under the same acquisition assumptions. Conversely, a 50% churn rate compresses SOM to <strong>$4.8M</strong>.
+      <div class="sa-callout-label"><span class="lang-fr">Note de Sensibilité</span><span class="lang-en">Sensitivity Note</span></div>
+      <span class="lang-fr">L'estimation du SOM repose sur un taux de churn annuel de 30% (la moyenne du secteur est de 40 à 60% pour les prop firms). Si le modèle sans limite de temps de Climber Trade ramène le churn à 20%, l'ARR en Année 3 pourrait atteindre <strong>9,6 M$</strong> avec les mêmes hypothèses d'acquisition. À l'inverse, un taux de churn de 50% comprime le SOM à <strong>4,8 M$</strong>.</span>
+      <span class="lang-en">The SOM estimate assumes a 30% annual churn rate (industry average is 40–60% for prop firms). If Climber Trade's no-time-limit model brings churn down to 20%, Year 3 ARR could reach <strong>$9.6M</strong> with the same acquisition assumptions. Conversely, a 50% churn rate compresses the SOM to <strong>$4.8M</strong>.</span>
     </div>
   </section>
 
   <!-- ═══ SECTION 7: VALUATION FRAMEWORK ═══ -->
   <section id="valuation-framework" class="sa-section">
     <div class="sa-section-num">Section 07</div>
-    <h2 class="sa-section-title">Valuation Framework</h2>
+    <h2 class="sa-section-title"><span class="lang-fr">Cadre de Valorisation</span><span class="lang-en">Valuation Framework</span></h2>
     <div class="sa-section-divider"></div>
 
-    <p class="sa-text">Four independent valuation approaches applied to Climber Trade at its current pre-revenue stage. All estimates reflect <strong>post-launch potential value</strong> assuming successful market entry within 6 months. Pre-launch fair value carries a standard 60-70% illiquidity and execution risk discount.</p>
+    <p class="sa-text lang-fr">Quatre approches de valorisation indépendantes appliquées à Climber Trade dans sa phase actuelle pré-revenu. Toutes les estimations reflètent la <strong>valeur potentielle post-lancement</strong> en supposant une entrée sur le marché réussie dans les 6 mois. La juste valeur pré-lancement porte une décote standard de 60 à 70% pour illiquidité et risque d'exécution.</p>
+    <p class="sa-text lang-en">Four independent valuation approaches applied to Climber Trade in its current pre-revenue phase. All estimates reflect <strong>potential post-launch value</strong> assuming successful market entry within 6 months. Pre-launch fair value carries a standard 60–70% discount for illiquidity and execution risk.</p>
 
     <div class="sa-val-grid">
       <!-- Revenue Multiple -->
       <div class="sa-val-card">
-        <div class="sa-val-method">Revenue Multiple (SaaS)</div>
+        <div class="sa-val-method"><span class="lang-fr">Multiple de Revenus (SaaS)</span><span class="lang-en">Revenue Multiple (SaaS)</span></div>
         <div class="sa-val-estimate" style="color:var(--teal);">$36M &ndash; $144M</div>
-        <div class="sa-val-basis">Based on Year 3 projected ARR of $7.2M at 5-20x revenue multiple. Fintech SaaS benchmarks range 10-20x for high-growth companies. Discounted to 5-10x given pre-revenue status.</div>
+        <div class="sa-val-basis"><span class="lang-fr">Basé sur l'ARR projeté en Année 3 de 7,2 M$ à un multiple de revenus de 5 à 20x. Les benchmarks SaaS fintech varient de 10 à 20x pour les entreprises à forte croissance. Décoté à 5-10x compte tenu du statut pré-revenu.</span><span class="lang-en">Based on projected Year 3 ARR of $7.2M at a revenue multiple of 5–20x. Fintech SaaS benchmarks range from 10–20x for high-growth companies. Discounted to 5–10x given pre-revenue status.</span></div>
         <div class="sa-val-range" style="margin-top:16px;">
           <div class="sa-val-range-bar">
             <div class="sa-val-range-fill" style="left:15%;width:55%;background:linear-gradient(90deg,var(--teal),#10B981);border-radius:4px;"></div>
           </div>
-          <div class="sa-val-range-labels"><span>$0</span><span>$36M</span><span>$144M</span><span>$200M+</span></div>
+          <div class="sa-val-range-labels"><span>0$</span><span>36 M$</span><span>144 M$</span><span>200 M$+</span></div>
         </div>
       </div>
 
       <!-- User-Based -->
       <div class="sa-val-card">
-        <div class="sa-val-method">User-Based Valuation</div>
+        <div class="sa-val-method"><span class="lang-fr">Valorisation par Utilisateur</span><span class="lang-en">User-Based Valuation</span></div>
         <div class="sa-val-estimate" style="color:var(--green);">$1.5M &ndash; $6M</div>
-        <div class="sa-val-basis">Based on Year 3 target of 3,000 active subscribers at $500-$2,000 per active trader (industry benchmark for prop firms with live funding capability).</div>
+        <div class="sa-val-basis"><span class="lang-fr">Basé sur l'objectif de 3 000 abonnés actifs en Année 3, à 500-2 000$ par trader actif (benchmark sectoriel pour les prop firms avec capacité de financement live).</span><span class="lang-en">Based on target of 3,000 active subscribers in Year 3, at $500–$2,000 per active trader (industry benchmark for prop firms with live funding capability).</span></div>
         <div class="sa-val-range" style="margin-top:16px;">
           <div class="sa-val-range-bar">
             <div class="sa-val-range-fill" style="left:5%;width:25%;background:linear-gradient(90deg,var(--green),#6ee7b7);border-radius:4px;"></div>
           </div>
-          <div class="sa-val-range-labels"><span>$0</span><span>$1.5M</span><span>$6M</span><span>$20M+</span></div>
+          <div class="sa-val-range-labels"><span>0$</span><span>1,5 M$</span><span>6 M$</span><span>20 M$+</span></div>
         </div>
       </div>
 
       <!-- DCF -->
       <div class="sa-val-card">
-        <div class="sa-val-method">DCF (5-Year Projection)</div>
+        <div class="sa-val-method"><span class="lang-fr">DCF (Projection sur 5 ans)</span><span class="lang-en">DCF (5-Year Projection)</span></div>
         <div class="sa-val-estimate" style="color:var(--amber);">$8M &ndash; $22M</div>
-        <div class="sa-val-basis">5-year free cash flow projection with 30% WACC (reflecting early-stage risk). Terminal growth rate 3%. Assumes breakeven in Month 18 and 25% EBITDA margin by Year 5.</div>
+        <div class="sa-val-basis"><span class="lang-fr">Projection des flux de trésorerie disponibles sur 5 ans avec un WACC de 30% (reflétant le risque lié à la phase de démarrage). Taux de croissance terminal de 3%. Suppose un point mort atteint au Mois 18 et une marge EBITDA de 25% en Année 5.</span><span class="lang-en">5-year free cash flow projection with a 30% WACC (reflecting startup-phase risk). 3% terminal growth rate. Assumes breakeven reached at Month 18 and 25% EBITDA margin by Year 5.</span></div>
         <div class="sa-val-range" style="margin-top:16px;">
           <div class="sa-val-range-bar">
             <div class="sa-val-range-fill" style="left:10%;width:40%;background:linear-gradient(90deg,var(--amber),#fbbf24);border-radius:4px;"></div>
           </div>
-          <div class="sa-val-range-labels"><span>$0</span><span>$8M</span><span>$22M</span><span>$50M+</span></div>
+          <div class="sa-val-range-labels"><span>0$</span><span>8 M$</span><span>22 M$</span><span>50 M$+</span></div>
         </div>
       </div>
 
       <!-- Comparable Transactions -->
       <div class="sa-val-card">
-        <div class="sa-val-method">Comparable Transactions</div>
+        <div class="sa-val-method"><span class="lang-fr">Transactions Comparables</span><span class="lang-en">Comparable Transactions</span></div>
         <div class="sa-val-estimate" style="color:var(--purple);">$5M &ndash; $15M</div>
-        <div class="sa-val-basis">Based on comparable prop firm transactions and rumored valuations. FTMO reportedly valued at $100M+ with ~$100M revenue. Adjusted for Climber Trade's pre-revenue stage and smaller scale. Darwinex Zero provides a closer analog.</div>
+        <div class="sa-val-basis"><span class="lang-fr">Basé sur des transactions comparables dans le secteur des prop firms et des valorisations estimées. FTMO serait valorisé à plus de 100 M$ pour un chiffre d'affaires d'environ 100 M$. Ajusté pour le stade pré-revenu et la taille plus réduite de Climber Trade. Darwinex Zero constitue un analogue plus proche.</span><span class="lang-en">Based on comparable transactions in the prop firm sector and estimated valuations. FTMO is reportedly valued at over $100M on ~$100M revenue. Adjusted for Climber Trade's pre-revenue stage and smaller scale. Darwinex Zero is a closer analogue.</span></div>
         <div class="sa-val-range" style="margin-top:16px;">
           <div class="sa-val-range-bar">
             <div class="sa-val-range-fill" style="left:8%;width:30%;background:linear-gradient(90deg,var(--purple),#a78bfa);border-radius:4px;"></div>
           </div>
-          <div class="sa-val-range-labels"><span>$0</span><span>$5M</span><span>$15M</span><span>$50M+</span></div>
+          <div class="sa-val-range-labels"><span>0$</span><span>5 M$</span><span>15 M$</span><span>50 M$+</span></div>
         </div>
       </div>
     </div>
 
     <div class="sa-callout info">
-      <div class="sa-callout-label">Valuation Summary</div>
-      <strong>Pre-launch indicative range: $2M &ndash; $6M</strong> (applying a 60-70% execution risk discount to the DCF and comparable transaction midpoints). This represents the IP value of the scoring system, legal framework, platform architecture, and brand assets. Post-launch with 500+ subscribers and proven unit economics, the valuation range shifts to <strong>$10M &ndash; $25M</strong>.
+      <div class="sa-callout-label"><span class="lang-fr">Synthèse de la Valorisation</span><span class="lang-en">Valuation Summary</span></div>
+      <span class="lang-fr"><strong>Fourchette indicative pré-lancement : 2 M$ &ndash; 6 M$</strong> (en appliquant une décote de 60 à 70% pour risque d'exécution aux points médians du DCF et des transactions comparables). Cette valorisation représente la valeur de la propriété intellectuelle du système de scoring, du cadre juridique, de l'architecture de la plateforme et des actifs de marque. Post-lancement, avec plus de 500 abonnés et des économies unitaires prouvées, la fourchette de valorisation se déplace vers <strong>10 M$ &ndash; 25 M$</strong>.</span>
+      <span class="lang-en"><strong>Indicative pre-launch range: $2M &ndash; $6M</strong> (applying a 60–70% execution risk discount to DCF and comparable transaction midpoints). This valuation reflects the value of the scoring system IP, legal framework, platform architecture, and brand assets. Post-launch, with 500+ subscribers and proven unit economics, the valuation range shifts to <strong>$10M &ndash; $25M</strong>.</span>
     </div>
   </section>
 
   <!-- ═══ SECTION 8: M&A ATTRACTIVENESS ═══ -->
   <section id="ma-attractiveness" class="sa-section">
     <div class="sa-section-num">Section 08</div>
-    <h2 class="sa-section-title">M&amp;A Attractiveness Score</h2>
+    <h2 class="sa-section-title"><span class="lang-fr">Score d'Attractivité M&amp;A</span><span class="lang-en">M&amp;A Attractiveness Score</span></h2>
     <div class="sa-section-divider"></div>
 
-    <p class="sa-text">Assessment of Climber Trade across seven key dimensions that institutional acquirers and financial investors evaluate during M&amp;A screening. Each criterion is rated 0-100.</p>
+    <p class="sa-text lang-fr">Évaluation de Climber Trade selon sept dimensions clés que les acquéreurs institutionnels et les investisseurs financiers examinent lors du screening M&amp;A. Chaque critère est noté de 0 à 100.</p>
+    <p class="sa-text lang-en">Assessment of Climber Trade across seven key dimensions that institutional acquirers and financial investors examine during M&amp;A screening. Each criterion is scored from 0 to 100.</p>
 
     <div class="sa-ma-grid">
       <div class="sa-ma-row">
-        <div class="sa-ma-label">Revenue Quality</div>
+        <div class="sa-ma-label"><span class="lang-fr">Qualité des Revenus</span><span class="lang-en">Revenue Quality</span></div>
         <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:85%;background:var(--green);"></div></div>
         <div class="sa-ma-score" style="color:var(--green);">85</div>
       </div>
       <div class="sa-ma-row">
-        <div class="sa-ma-label">IP Moat</div>
+        <div class="sa-ma-label"><span class="lang-fr">Fossé de Propriété Intellectuelle</span><span class="lang-en">IP Moat</span></div>
         <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:78%;background:var(--teal);"></div></div>
         <div class="sa-ma-score" style="color:var(--teal);">78</div>
       </div>
       <div class="sa-ma-row">
-        <div class="sa-ma-label">Scalability</div>
+        <div class="sa-ma-label"><span class="lang-fr">Scalabilité</span><span class="lang-en">Scalability</span></div>
         <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:82%;background:var(--green);"></div></div>
         <div class="sa-ma-score" style="color:var(--green);">82</div>
       </div>
       <div class="sa-ma-row">
-        <div class="sa-ma-label">Team Quality</div>
+        <div class="sa-ma-label"><span class="lang-fr">Qualité de l'Équipe</span><span class="lang-en">Team Quality</span></div>
         <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:45%;background:var(--amber);"></div></div>
         <div class="sa-ma-score" style="color:var(--amber);">45</div>
       </div>
       <div class="sa-ma-row">
-        <div class="sa-ma-label">Growth Trajectory</div>
+        <div class="sa-ma-label"><span class="lang-fr">Trajectoire de Croissance</span><span class="lang-en">Growth Trajectory</span></div>
         <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:70%;background:var(--teal);"></div></div>
         <div class="sa-ma-score" style="color:var(--teal);">70</div>
       </div>
       <div class="sa-ma-row">
-        <div class="sa-ma-label">Regulatory Exposure</div>
+        <div class="sa-ma-label"><span class="lang-fr">Exposition Réglementaire</span><span class="lang-en">Regulatory Exposure</span></div>
         <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:40%;background:var(--red);"></div></div>
         <div class="sa-ma-score" style="color:var(--red);">40</div>
       </div>
       <div class="sa-ma-row">
-        <div class="sa-ma-label">Integration Complexity</div>
+        <div class="sa-ma-label"><span class="lang-fr">Complexité d'Intégration</span><span class="lang-en">Integration Complexity</span></div>
         <div class="sa-ma-bar"><div class="sa-ma-bar-fill" style="width:72%;background:var(--teal);"></div></div>
         <div class="sa-ma-score" style="color:var(--teal);">72</div>
       </div>
@@ -1005,89 +1045,95 @@
 
     <!-- Aggregate -->
     <div class="sa-ma-aggregate">
-      <div class="sa-ma-aggregate-label">Composite M&amp;A Attractiveness Score</div>
+      <div class="sa-ma-aggregate-label"><span class="lang-fr">Score Composite d'Attractivité M&amp;A</span><span class="lang-en">Composite M&amp;A Attractiveness Score</span></div>
       <div class="sa-ma-aggregate-score">67.4</div>
-      <div class="sa-ma-aggregate-sub">Weighted average across 7 dimensions (Team and Regulatory given 1.5x weight)</div>
-      <div class="sa-ma-aggregate-verdict">MODERATELY ATTRACTIVE &mdash; MONITOR</div>
+      <div class="sa-ma-aggregate-sub"><span class="lang-fr">Moyenne pondérée sur 7 dimensions (Équipe et Réglementaire avec coefficient 1,5x)</span><span class="lang-en">Weighted average across 7 dimensions (Team and Regulatory with 1.5x coefficient)</span></div>
+      <div class="sa-ma-aggregate-verdict"><span class="lang-fr">MODÉRÉMENT ATTRACTIF &mdash; À SURVEILLER</span><span class="lang-en">MODERATELY ATTRACTIVE &mdash; WATCH LIST</span></div>
     </div>
 
-    <p class="sa-text"><strong>Revenue Quality (85):</strong> Recurring subscription model with predictable monthly cash flows. Auto-renewal reduces churn friction. Reset fees and profit-share commissions provide secondary revenue diversification. Strong unit economics if LTV/CAC exceeds 3x.</p>
+    <p class="sa-text lang-fr"><strong>Qualité des Revenus (85) :</strong> Modèle d'abonnement récurrent avec des flux de trésorerie mensuels prévisibles. Le renouvellement automatique réduit la friction liée au churn. Les frais de reset et les commissions sur partage des profits assurent une diversification des revenus secondaires. Économies unitaires solides si LTV/CAC dépasse 3x.</p>
+    <p class="sa-text lang-en"><strong>Revenue Quality (85):</strong> Recurring subscription model with predictable monthly cash flows. Auto-renewal reduces churn friction. Reset fees and profit-share commissions provide secondary revenue diversification. Strong unit economics if LTV/CAC exceeds 3x.</p>
 
-    <p class="sa-text"><strong>IP Moat (78):</strong> The CLIMB Score algorithm with 14 metrics, non-linear baremes, and multi-layer weighting represents genuine intellectual property. The cohort factor and pool allocation formulas are mathematically novel. However, the methodology is documented rather than patented, leaving it vulnerable to replication by well-resourced competitors.</p>
+    <p class="sa-text lang-fr"><strong>Fossé de Propriété Intellectuelle (78) :</strong> L'algorithme CLIMB Score avec ses 14 métriques, ses barèmes non linéaires et sa pondération multicouche constitue une véritable propriété intellectuelle. Le Facteur Cohorte et les formules d'allocation du pool sont mathématiquement originaux. Cependant, la méthodologie est documentée plutôt que brevetée, ce qui la rend vulnérable à la réplication par des concurrents bien dotés en ressources.</p>
+    <p class="sa-text lang-en"><strong>IP Moat (78):</strong> The CLIMB Score algorithm with its 14 metrics, non-linear scales, and multi-layer weighting constitutes genuine intellectual property. The Cohort Factor and pool allocation formulas are mathematically original. However, the methodology is documented rather than patented, making it vulnerable to replication by well-resourced competitors.</p>
 
-    <p class="sa-text"><strong>Scalability (82):</strong> Pure platform model with near-zero marginal cost per additional subscriber during evaluation phase. Pool model auto-scales via Cohort Factor. Multi-asset expansion requires configuration, not architecture changes. Geographic expansion requires localization but no fundamental platform modifications.</p>
+    <p class="sa-text lang-fr"><strong>Scalabilité (82) :</strong> Modèle de plateforme pure avec un coût marginal quasi nul par abonné supplémentaire en phase d'évaluation. Le pool s'adapte automatiquement via le Facteur Cohorte. L'expansion multi-actifs nécessite de la configuration, non des changements d'architecture. L'expansion géographique requiert une localisation mais pas de modifications fondamentales de la plateforme.</p>
+    <p class="sa-text lang-en"><strong>Scalability (82):</strong> Pure platform model with near-zero marginal cost per additional subscriber in the evaluation phase. The pool scales automatically via the Cohort Factor. Multi-asset expansion requires configuration, not architecture changes. Geographic expansion requires localization but no fundamental platform modifications.</p>
 
-    <p class="sa-text"><strong>Team Quality (45):</strong> Critical weakness. A 2-person team creates severe key-person risk. No dedicated compliance, marketing, or customer support functions. An acquirer would need to immediately invest in team expansion. However, the founder's product vision and the developer's implementation capability are clearly demonstrated in the existing deliverables.</p>
+    <p class="sa-text lang-fr"><strong>Qualité de l'Équipe (45) :</strong> Faiblesse critique. Une équipe de 2 personnes crée un risque de dépendance aux personnes clés sévère. Aucune fonction dédiée à la conformité, au marketing ou au support client. Un acquéreur devrait immédiatement investir dans le renforcement de l'équipe. Cependant, la vision produit du fondateur et la capacité d'implémentation du développeur sont clairement démontrées dans les livrables existants.</p>
+    <p class="sa-text lang-en"><strong>Team Quality (45):</strong> Critical weakness. A 2-person team creates severe key-person dependency risk. No dedicated compliance, marketing, or customer support functions. An acquirer would need to immediately invest in team strengthening. However, the founder's product vision and the developer's implementation capability are clearly demonstrated in existing deliverables.</p>
 
-    <p class="sa-text"><strong>Regulatory Exposure (40):</strong> The prop firm industry operates in a regulatory gray area. Climber Trade has proactively structured trader relationships as independent contractor agreements, but the lack of a financial services license in any jurisdiction represents material risk. Evolving regulations could require significant compliance investment.</p>
+    <p class="sa-text lang-fr"><strong>Exposition Réglementaire (40) :</strong> Le secteur des prop firms opère dans une zone grise réglementaire. Climber Trade a proactivement structuré les relations avec les traders comme des contrats de prestataire indépendant, mais l'absence de licence de services financiers dans toute juridiction représente un risque matériel. L'évolution de la réglementation pourrait nécessiter un investissement de mise en conformité significatif.</p>
+    <p class="sa-text lang-en"><strong>Regulatory Exposure (40):</strong> The prop firm sector operates in a regulatory grey zone. Climber Trade has proactively structured trader relationships as independent contractor agreements, but the absence of a financial services license in any jurisdiction represents a material risk. Evolving regulation could require significant compliance investment.</p>
   </section>
 
   <!-- ═══ SECTION 9: STRATEGIC RECOMMENDATIONS ═══ -->
   <section id="strategic-recommendations" class="sa-section">
     <div class="sa-section-num">Section 09</div>
-    <h2 class="sa-section-title">Strategic Recommendations</h2>
+    <h2 class="sa-section-title"><span class="lang-fr">Recommandations Stratégiques</span><span class="lang-en">Strategic Recommendations</span></h2>
     <div class="sa-section-divider"></div>
 
-    <p class="sa-text">Phased strategic roadmap designed to maximize enterprise value and acquisition attractiveness. Each phase builds on the prior, with clear milestones and KPIs.</p>
+    <p class="sa-text lang-fr">Feuille de route stratégique phasée visant à maximiser la valeur d'entreprise et l'attractivité à l'acquisition. Chaque phase s'appuie sur la précédente, avec des jalons et des KPI clairs.</p>
+    <p class="sa-text lang-en">Phased strategic roadmap aimed at maximizing enterprise value and acquisition attractiveness. Each phase builds on the previous one, with clear milestones and KPIs.</p>
 
     <div class="sa-rec-timeline">
       <!-- Short Term -->
       <div class="sa-rec-phase short">
         <div class="sa-rec-phase-header">
-          <span class="sa-rec-phase-badge">0 &ndash; 6 Months</span>
-          <h4>Product-Market Fit &amp; Launch</h4>
+          <span class="sa-rec-phase-badge"><span class="lang-fr">0 &ndash; 6 Mois</span><span class="lang-en">0 &ndash; 6 Months</span></span>
+          <h4><span class="lang-fr">Adéquation Produit-Marché &amp; Lancement</span><span class="lang-en">Product-Market Fit &amp; Launch</span></h4>
         </div>
         <ul class="sa-rec-list">
-          <li>Launch closed beta with 50-100 traders; validate scoring system on live data</li>
-          <li>Reconcile dual profit split grids and finalize all spec ambiguities</li>
-          <li>Confirm Volumetrica contract terms; identify backup platform</li>
-          <li>Achieve first 500 paying subscribers (primary KPI)</li>
-          <li>Establish baseline unit economics: CAC, LTV, churn rate, conversion rate</li>
-          <li>Activate affiliate program; onboard 10 trading educators as affiliates</li>
-          <li>Implement basic customer support infrastructure (ticket system + Discord)</li>
-          <li>Complete GDPR compliance audit for EU trader data handling</li>
-          <li>Apply for CIR tax credit on R&amp;D expenditures</li>
-          <li>Build an analytics pipeline to track all 14 CLIMB Score metrics in production</li>
+          <li><span class="lang-fr">Lancer la bêta fermée avec 50 à 100 traders ; valider le système de scoring sur des données live</span><span class="lang-en">Launch closed beta with 50–100 traders; validate scoring system on live data</span></li>
+          <li><span class="lang-fr">Réconcilier les deux grilles de partage des profits et finaliser toutes les ambiguïtés de spécification</span><span class="lang-en">Reconcile the two profit split grids and finalize all specification ambiguities</span></li>
+          <li><span class="lang-fr">Confirmer les termes du contrat Volumetrica ; identifier une plateforme de secours</span><span class="lang-en">Confirm Volumetrica contract terms; identify a backup platform</span></li>
+          <li><span class="lang-fr">Atteindre les 500 premiers abonnés payants (KPI principal)</span><span class="lang-en">Reach the first 500 paying subscribers (primary KPI)</span></li>
+          <li><span class="lang-fr">Établir les économies unitaires de base : CAC, LTV, taux de churn, taux de conversion</span><span class="lang-en">Establish baseline unit economics: CAC, LTV, churn rate, conversion rate</span></li>
+          <li><span class="lang-fr">Activer le programme d'affiliation ; intégrer 10 formateurs en trading comme affiliés</span><span class="lang-en">Activate affiliate program; onboard 10 trading educators as affiliates</span></li>
+          <li><span class="lang-fr">Mettre en place une infrastructure de support client basique (système de tickets + Discord)</span><span class="lang-en">Set up basic customer support infrastructure (ticket system + Discord)</span></li>
+          <li><span class="lang-fr">Réaliser un audit de conformité RGPD pour la gestion des données des traders EU</span><span class="lang-en">Conduct GDPR compliance audit for EU trader data management</span></li>
+          <li><span class="lang-fr">Déposer une demande de crédit d'impôt CIR sur les dépenses de R&amp;D</span><span class="lang-en">File CIR R&amp;D tax credit claim on qualifying expenditures</span></li>
+          <li><span class="lang-fr">Construire un pipeline analytique pour suivre les 14 métriques du CLIMB Score en production</span><span class="lang-en">Build an analytics pipeline to monitor all 14 CLIMB Score metrics in production</span></li>
         </ul>
       </div>
 
       <!-- Medium Term -->
       <div class="sa-rec-phase medium">
         <div class="sa-rec-phase-header">
-          <span class="sa-rec-phase-badge">6 &ndash; 18 Months</span>
-          <h4>Scale &amp; Regulatory Positioning</h4>
+          <span class="sa-rec-phase-badge"><span class="lang-fr">6 &ndash; 18 Mois</span><span class="lang-en">6 &ndash; 18 Months</span></span>
+          <h4><span class="lang-fr">Montée en Charge &amp; Positionnement Réglementaire</span><span class="lang-en">Scale-Up &amp; Regulatory Positioning</span></h4>
         </div>
         <ul class="sa-rec-list">
-          <li>Scale to 1,500-3,000 active subscribers through paid acquisition and affiliates</li>
-          <li>Hire 3-5 key positions: compliance officer, marketing lead, 2 engineers, support</li>
-          <li>Engage regulatory counsel; begin licensing process in a favorable jurisdiction</li>
-          <li>Launch Forex and equity CFD instruments on the platform</li>
-          <li>Develop mobile-responsive dashboard (PWA or native app)</li>
-          <li>Implement AI/ML layer for scoring refinement using accumulated trader data</li>
-          <li>Build B2B pitch deck for CLIMB Score licensing opportunities</li>
-          <li>Establish board of advisors (fintech, regulation, trading industry)</li>
-          <li>Achieve breakeven or cash flow positive status</li>
-          <li>Commission third-party security audit and SOC 2 compliance pathway</li>
+          <li><span class="lang-fr">Scaler à 1 500-3 000 abonnés actifs via l'acquisition payante et les affiliés</span><span class="lang-en">Scale to 1,500–3,000 active subscribers via paid acquisition and affiliates</span></li>
+          <li><span class="lang-fr">Recruter 3 à 5 postes clés : responsable conformité, directeur marketing, 2 ingénieurs, support</span><span class="lang-en">Hire 3–5 key roles: compliance officer, marketing director, 2 engineers, support</span></li>
+          <li><span class="lang-fr">Consulter un conseil juridique spécialisé en réglementation ; initier le processus de licence dans une juridiction favorable</span><span class="lang-en">Engage regulatory legal counsel; initiate licensing process in a favorable jurisdiction</span></li>
+          <li><span class="lang-fr">Lancer les instruments Forex et CFD actions sur la plateforme</span><span class="lang-en">Launch Forex and equity CFD instruments on the platform</span></li>
+          <li><span class="lang-fr">Développer un tableau de bord mobile responsive (PWA ou application native)</span><span class="lang-en">Develop responsive mobile dashboard (PWA or native app)</span></li>
+          <li><span class="lang-fr">Implémenter une couche IA/ML pour l'affinement du scoring en utilisant les données traders accumulées</span><span class="lang-en">Implement an AI/ML layer for scoring refinement using accumulated trader data</span></li>
+          <li><span class="lang-fr">Construire un pitch deck B2B pour les opportunités de licence du CLIMB Score</span><span class="lang-en">Build a B2B pitch deck for CLIMB Score licensing opportunities</span></li>
+          <li><span class="lang-fr">Constituer un conseil d'administration consultatif (fintech, réglementation, secteur du trading)</span><span class="lang-en">Establish an advisory board (fintech, regulation, trading industry)</span></li>
+          <li><span class="lang-fr">Atteindre le point mort ou une situation de cash flow positif</span><span class="lang-en">Achieve breakeven or positive cash flow</span></li>
+          <li><span class="lang-fr">Mandater un audit de sécurité par un tiers et définir un parcours de conformité SOC 2</span><span class="lang-en">Commission a third-party security audit and define a SOC 2 compliance pathway</span></li>
         </ul>
       </div>
 
       <!-- Long Term -->
       <div class="sa-rec-phase long">
         <div class="sa-rec-phase-header">
-          <span class="sa-rec-phase-badge">18 &ndash; 36 Months</span>
-          <h4>International Expansion &amp; Exit Readiness</h4>
+          <span class="sa-rec-phase-badge"><span class="lang-fr">18 &ndash; 36 Mois</span><span class="lang-en">18 &ndash; 36 Months</span></span>
+          <h4><span class="lang-fr">Expansion Internationale &amp; Préparation à la Sortie</span><span class="lang-en">International Expansion &amp; Exit Preparation</span></h4>
         </div>
         <ul class="sa-rec-list">
-          <li>Expand to Asia-Pacific and Latin American markets with localized pricing</li>
-          <li>Launch multi-currency accounts (EUR, GBP, AUD, SGD)</li>
-          <li>Pursue Series A funding ($5-15M) for accelerated growth</li>
-          <li>Develop white-label offering for institutional clients</li>
-          <li>Build API ecosystem for third-party integrations</li>
-          <li>Target 10,000+ active subscribers and $20M+ ARR</li>
-          <li>Explore strategic partnerships with exchanges or brokers</li>
-          <li>Prepare full data room for potential exit or strategic acquisition</li>
-          <li>Consider secondary market for early employee/investor equity</li>
-          <li>Evaluate IPO readiness or strategic sale to financial services conglomerate</li>
+          <li><span class="lang-fr">S'étendre vers les marchés Asie-Pacifique et Amérique Latine avec une tarification localisée</span><span class="lang-en">Expand into Asia-Pacific and Latin America with localized pricing</span></li>
+          <li><span class="lang-fr">Lancer des comptes multi-devises (EUR, GBP, AUD, SGD)</span><span class="lang-en">Launch multi-currency accounts (EUR, GBP, AUD, SGD)</span></li>
+          <li><span class="lang-fr">Lever une Série A (5 à 15 M$) pour accélérer la croissance</span><span class="lang-en">Raise a Series A ($5–$15M) to accelerate growth</span></li>
+          <li><span class="lang-fr">Développer une offre en marque blanche pour les clients institutionnels</span><span class="lang-en">Develop a white-label offering for institutional clients</span></li>
+          <li><span class="lang-fr">Construire un écosystème API pour les intégrations tierces</span><span class="lang-en">Build an API ecosystem for third-party integrations</span></li>
+          <li><span class="lang-fr">Viser plus de 10 000 abonnés actifs et un ARR supérieur à 20 M$</span><span class="lang-en">Target 10,000+ active subscribers and ARR above $20M</span></li>
+          <li><span class="lang-fr">Explorer des partenariats stratégiques avec des bourses ou des courtiers</span><span class="lang-en">Explore strategic partnerships with exchanges or brokers</span></li>
+          <li><span class="lang-fr">Préparer une data room complète en vue d'une sortie ou d'une acquisition stratégique potentielle</span><span class="lang-en">Prepare a full data room for a potential exit or strategic acquisition</span></li>
+          <li><span class="lang-fr">Envisager un marché secondaire pour les actions des premiers employés et investisseurs</span><span class="lang-en">Consider a secondary market for early employee and investor shares</span></li>
+          <li><span class="lang-fr">Évaluer la maturité pour une introduction en bourse ou une cession stratégique à un conglomérat de services financiers</span><span class="lang-en">Assess readiness for an IPO or strategic sale to a financial services conglomerate</span></li>
         </ul>
       </div>
     </div>
@@ -1096,26 +1142,27 @@
   <!-- ═══ SECTION 10: DUE DILIGENCE CHECKLIST ═══ -->
   <section id="due-diligence" class="sa-section">
     <div class="sa-section-num">Section 10</div>
-    <h2 class="sa-section-title">Due Diligence Checklist</h2>
+    <h2 class="sa-section-title"><span class="lang-fr">Checklist de Due Diligence</span><span class="lang-en">Due Diligence Checklist</span></h2>
     <div class="sa-section-divider"></div>
 
-    <p class="sa-text">Comprehensive checklist that a prospective buyer, investor, or strategic partner would evaluate during due diligence. Items are categorized by domain and rated by criticality.</p>
+    <p class="sa-text lang-fr">Checklist complète qu'un acquéreur potentiel, un investisseur ou un partenaire stratégique évaluerait lors d'une due diligence. Les éléments sont catégorisés par domaine et classés selon leur criticité.</p>
+    <p class="sa-text lang-en">Comprehensive checklist that a potential acquirer, investor, or strategic partner would assess during due diligence. Items are categorized by domain and ranked by criticality.</p>
 
     <div class="sa-dd-grid">
       <!-- Legal & IP -->
       <div class="sa-dd-card">
         <div class="sa-dd-card-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Legal &amp; IP
+          <span class="lang-fr">Juridique &amp; PI</span><span class="lang-en">Legal &amp; IP</span>
         </div>
         <ul class="sa-dd-list">
-          <li><span class="sa-dd-check"></span>Corporate structure and entity registration<span class="sa-dd-status critical">Critical</span></li>
-          <li><span class="sa-dd-check"></span>IP ownership of CLIMB Score algorithm<span class="sa-dd-status critical">Critical</span></li>
-          <li><span class="sa-dd-check"></span>Trademark registration (Climber Trade, CLIMB Score)<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Trader contract enforceability across jurisdictions<span class="sa-dd-status critical">Critical</span></li>
-          <li><span class="sa-dd-check"></span>NDA and non-compete clauses validity<span class="sa-dd-status standard">Standard</span></li>
-          <li><span class="sa-dd-check"></span>CGV/Terms of service compliance with EU law<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Independent contractor classification risk<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Structure juridique et enregistrement de l'entité</span><span class="lang-en">Legal structure and entity registration</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Propriété de la PI de l'algorithme CLIMB Score</span><span class="lang-en">CLIMB Score algorithm IP ownership</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Enregistrement des marques (Climber Trade, CLIMB Score)</span><span class="lang-en">Trademark registration (Climber Trade, CLIMB Score)</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Opposabilité des contrats traders entre juridictions</span><span class="lang-en">Enforceability of trader contracts across jurisdictions</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Validité des clauses NDA et non-concurrence</span><span class="lang-en">Validity of NDA and non-compete clauses</span><span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Conformité des CGV au droit de l'UE</span><span class="lang-en">T&amp;Cs compliance with EU law</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Risque de requalification du statut de prestataire indépendant</span><span class="lang-en">Independent contractor status reclassification risk</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
         </ul>
       </div>
 
@@ -1123,16 +1170,16 @@
       <div class="sa-dd-card">
         <div class="sa-dd-card-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-          Financial Model
+          <span class="lang-fr">Modèle Financier</span><span class="lang-en">Financial Model</span>
         </div>
         <ul class="sa-dd-list">
-          <li><span class="sa-dd-check"></span>Pool model financial sustainability analysis<span class="sa-dd-status critical">Critical</span></li>
-          <li><span class="sa-dd-check"></span>Unit economics validation (LTV/CAC > 3x)<span class="sa-dd-status critical">Critical</span></li>
-          <li><span class="sa-dd-check"></span>Break-even analysis and cash runway<span class="sa-dd-status critical">Critical</span></li>
-          <li><span class="sa-dd-check"></span>Churn rate benchmarking vs. industry<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Profit split impact modeling under stress scenarios<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Cohort Factor effectiveness at scale (1K, 10K, 50K traders)<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Payment processor terms and chargeback exposure<span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Analyse de la viabilité financière du modèle pool</span><span class="lang-en">Pool model financial viability analysis</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Validation des économies unitaires (LTV/CAC &gt; 3x)</span><span class="lang-en">Unit economics validation (LTV/CAC &gt; 3x)</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Analyse du point mort et trésorerie disponible</span><span class="lang-en">Breakeven analysis and available cash</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Benchmark du taux de churn vs. secteur</span><span class="lang-en">Churn rate benchmark vs. industry</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Modélisation de l'impact du profit split en scénarios de stress</span><span class="lang-en">Profit split impact modeling under stress scenarios</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Efficacité du Facteur Cohorte à grande échelle (1K, 10K, 50K traders)</span><span class="lang-en">Cohort Factor effectiveness at scale (1K, 10K, 50K traders)</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Conditions des processeurs de paiement et exposition aux chargebacks</span><span class="lang-en">Payment processor terms and chargeback exposure</span><span class="sa-dd-status standard">Standard</span></li>
         </ul>
       </div>
 
@@ -1140,16 +1187,16 @@
       <div class="sa-dd-card">
         <div class="sa-dd-card-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          Technology &amp; Platform
+          <span class="lang-fr">Technologie &amp; Plateforme</span><span class="lang-en">Technology &amp; Platform</span>
         </div>
         <ul class="sa-dd-list">
-          <li><span class="sa-dd-check"></span>Codebase quality audit and technical debt assessment<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Volumetrica dependency and vendor lock-in analysis<span class="sa-dd-status critical">Critical</span></li>
-          <li><span class="sa-dd-check"></span>Database schema and data migration capability<span class="sa-dd-status standard">Standard</span></li>
-          <li><span class="sa-dd-check"></span>Security audit (penetration testing, OWASP)<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Scoring algorithm accuracy validation (backtest)<span class="sa-dd-status critical">Critical</span></li>
-          <li><span class="sa-dd-check"></span>Scalability testing (concurrent users, data throughput)<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Disaster recovery and business continuity plan<span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Audit qualité du code et évaluation de la dette technique</span><span class="lang-en">Code quality audit and technical debt assessment</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Analyse de la dépendance Volumetrica et du risque de verrouillage fournisseur</span><span class="lang-en">Volumetrica dependency analysis and vendor lock-in risk</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Schéma de base de données et capacité de migration des données</span><span class="lang-en">Database schema and data migration capability</span><span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Audit de sécurité (tests de pénétration, OWASP)</span><span class="lang-en">Security audit (penetration testing, OWASP)</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Validation de la précision de l'algorithme de scoring (backtest)</span><span class="lang-en">Scoring algorithm accuracy validation (backtesting)</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Tests de scalabilité (utilisateurs simultanés, débit des données)</span><span class="lang-en">Scalability testing (concurrent users, data throughput)</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Plan de reprise après sinistre et de continuité d'activité</span><span class="lang-en">Disaster recovery and business continuity plan</span><span class="sa-dd-status standard">Standard</span></li>
         </ul>
       </div>
 
@@ -1157,16 +1204,16 @@
       <div class="sa-dd-card">
         <div class="sa-dd-card-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-          Regulatory &amp; Compliance
+          <span class="lang-fr">Réglementaire &amp; Conformité</span><span class="lang-en">Regulatory &amp; Compliance</span>
         </div>
         <ul class="sa-dd-list">
-          <li><span class="sa-dd-check"></span>Regulatory classification analysis (per jurisdiction)<span class="sa-dd-status critical">Critical</span></li>
-          <li><span class="sa-dd-check"></span>AML/KYC compliance framework<span class="sa-dd-status critical">Critical</span></li>
-          <li><span class="sa-dd-check"></span>GDPR/data protection compliance<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Cross-border tax implications (trader payouts)<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Consumer protection law compliance (14-day cooling-off)<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Sanctions screening capabilities<span class="sa-dd-status standard">Standard</span></li>
-          <li><span class="sa-dd-check"></span>Regulatory horizon scan (pending prop firm legislation)<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Analyse de classification réglementaire (par juridiction)</span><span class="lang-en">Regulatory classification analysis (by jurisdiction)</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Cadre de conformité LCB-FT/KYC</span><span class="lang-en">AML/KYC compliance framework</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Conformité RGPD/protection des données</span><span class="lang-en">GDPR/data protection compliance</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Implications fiscales transfrontalières (paiements aux traders)</span><span class="lang-en">Cross-border tax implications (trader payments)</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Conformité au droit de la consommation (délai de rétractation 14 jours)</span><span class="lang-en">Consumer law compliance (14-day withdrawal right)</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Capacités de filtrage des sanctions</span><span class="lang-en">Sanctions screening capabilities</span><span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Veille réglementaire (législation sur les prop firms en cours d'élaboration)</span><span class="lang-en">Regulatory monitoring (prop firm legislation in development)</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
         </ul>
       </div>
 
@@ -1174,16 +1221,16 @@
       <div class="sa-dd-card">
         <div class="sa-dd-card-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-          Operational
+          <span class="lang-fr">Opérationnel</span><span class="lang-en">Operational</span>
         </div>
         <ul class="sa-dd-list">
-          <li><span class="sa-dd-check"></span>Key-person risk mitigation plan<span class="sa-dd-status critical">Critical</span></li>
-          <li><span class="sa-dd-check"></span>Customer support SLA and escalation procedures<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Historical trader performance data (once available)<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Customer satisfaction metrics (NPS, CSAT)<span class="sa-dd-status standard">Standard</span></li>
-          <li><span class="sa-dd-check"></span>Insurance coverage (D&amp;O, E&amp;O, cyber)<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Third-party vendor contracts and terms<span class="sa-dd-status standard">Standard</span></li>
-          <li><span class="sa-dd-check"></span>Employee/contractor agreements and IP assignment<span class="sa-dd-status critical">Critical</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Plan de mitigation du risque de dépendance aux personnes clés</span><span class="lang-en">Key-person dependency risk mitigation plan</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">SLA du support client et procédures d'escalade</span><span class="lang-en">Customer support SLA and escalation procedures</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Données historiques de performance des traders (une fois disponibles)</span><span class="lang-en">Historical trader performance data (once available)</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Métriques de satisfaction client (NPS, CSAT)</span><span class="lang-en">Customer satisfaction metrics (NPS, CSAT)</span><span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Couverture d'assurance (D&amp;O, RC Pro, cyber)</span><span class="lang-en">Insurance coverage (D&amp;O, professional liability, cyber)</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Contrats et conditions des fournisseurs tiers</span><span class="lang-en">Third-party vendor contracts and terms</span><span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Accords avec les employés/prestataires et cession de propriété intellectuelle</span><span class="lang-en">Employee/contractor agreements and IP assignment</span><span class="sa-dd-status critical"><span class="lang-fr">Critique</span><span class="lang-en">Critical</span></span></li>
         </ul>
       </div>
 
@@ -1191,32 +1238,36 @@
       <div class="sa-dd-card">
         <div class="sa-dd-card-title">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-          Market &amp; Commercial
+          <span class="lang-fr">Marché &amp; Commercial</span><span class="lang-en">Market &amp; Commercial</span>
         </div>
         <ul class="sa-dd-list">
-          <li><span class="sa-dd-check"></span>Competitive moat sustainability analysis<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Customer acquisition channel diversification<span class="sa-dd-status required">Required</span></li>
-          <li><span class="sa-dd-check"></span>Affiliate program economics and top affiliate dependency<span class="sa-dd-status standard">Standard</span></li>
-          <li><span class="sa-dd-check"></span>Brand perception and online reputation audit<span class="sa-dd-status standard">Standard</span></li>
-          <li><span class="sa-dd-check"></span>SEO/content asset valuation (50+ articles)<span class="sa-dd-status standard">Standard</span></li>
-          <li><span class="sa-dd-check"></span>Geographic revenue concentration risk<span class="sa-dd-status standard">Standard</span></li>
-          <li><span class="sa-dd-check"></span>Pricing power analysis and competitive pricing trends<span class="sa-dd-status required">Required</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Analyse de la durabilité du fossé concurrentiel</span><span class="lang-en">Competitive moat sustainability analysis</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Diversification des canaux d'acquisition clients</span><span class="lang-en">Customer acquisition channel diversification</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Économie du programme d'affiliation et dépendance aux principaux affiliés</span><span class="lang-en">Affiliate program economics and key affiliate dependency</span><span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Audit de la perception de la marque et de la réputation en ligne</span><span class="lang-en">Brand perception and online reputation audit</span><span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Valorisation des actifs SEO/contenu (50+ articles)</span><span class="lang-en">SEO/content asset valuation (50+ articles)</span><span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Risque de concentration géographique des revenus</span><span class="lang-en">Geographic revenue concentration risk</span><span class="sa-dd-status standard">Standard</span></li>
+          <li><span class="sa-dd-check"></span><span class="lang-fr">Analyse du pouvoir de tarification et tendances tarifaires concurrentielles</span><span class="lang-en">Pricing power analysis and competitive pricing trends</span><span class="sa-dd-status required"><span class="lang-fr">Requis</span><span class="lang-en">Required</span></span></li>
         </ul>
       </div>
     </div>
 
     <div class="sa-callout warn" style="margin-top:16px;">
-      <div class="sa-callout-label">Priority Items for Pre-Investment</div>
-      The four highest-priority due diligence items are: (1) <strong>IP ownership documentation</strong> for the CLIMB Score algorithm, (2) <strong>pool model stress testing</strong> under adverse scenarios, (3) <strong>regulatory classification opinion</strong> from qualified counsel, and (4) <strong>Volumetrica vendor dependency mitigation</strong> strategy. These should be addressed before any investment or acquisition discussions proceed.
+      <div class="sa-callout-label"><span class="lang-fr">Points Prioritaires Pré-Investissement</span><span class="lang-en">Pre-Investment Priority Items</span></div>
+      <span class="lang-fr">Les quatre points de due diligence les plus prioritaires sont : (1) la <strong>documentation de propriété de la PI</strong> de l'algorithme CLIMB Score, (2) les <strong>tests de stress du modèle pool</strong> en scénarios adverses, (3) un <strong>avis de classification réglementaire</strong> d'un conseil qualifié, et (4) la stratégie de <strong>mitigation de la dépendance fournisseur Volumetrica</strong>. Ces points doivent être traités avant d'engager toute discussion d'investissement ou d'acquisition.</span>
+      <span class="lang-en">The four highest-priority due diligence items are: (1) <strong>IP ownership documentation</strong> for the CLIMB Score algorithm, (2) <strong>pool model stress testing</strong> under adverse scenarios, (3) a <strong>regulatory classification opinion</strong> from qualified counsel, and (4) the <strong>Volumetrica vendor dependency mitigation strategy</strong>. These must be addressed before engaging in any investment or acquisition discussions.</span>
     </div>
   </section>
 
   <!-- Document Footer -->
   <div style="margin-top:80px;padding-top:40px;border-top:1px solid var(--border);text-align:center;">
     <p style="font-size:11px;color:var(--text3);line-height:1.8;">
-      STRICTLY CONFIDENTIAL &mdash; This document contains proprietary analysis and forward-looking projections.<br>
-      Not for distribution outside of authorized Climber Trade management.<br>
-      Prepared by M&amp;A Advisory Team &mdash; March 2026
+      <span class="lang-fr">STRICTEMENT CONFIDENTIEL &mdash; Ce document contient des analyses propriétaires et des projections prospectives.<br>
+      Ne pas distribuer en dehors de la direction autorisée de Climber Trade.<br>
+      Préparé par l'Équipe Advisory M&amp;A &mdash; Mars 2026</span>
+      <span class="lang-en">STRICTLY CONFIDENTIAL &mdash; This document contains proprietary analyses and forward-looking projections.<br>
+      Do not distribute outside authorized Climber Trade management.<br>
+      Prepared by the M&amp;A Advisory Team &mdash; March 2026</span>
     </p>
   </div>
 
@@ -1251,6 +1302,18 @@
   }, {rootMargin:'-20% 0px -60% 0px', threshold:0});
 
   sections.forEach(s => observer.observe(s));
+})();
+
+// Language toggle
+function setLang(lang) {
+  document.body.classList.toggle('en', lang === 'en');
+  document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  localStorage.setItem('climber-lang', lang);
+}
+(function(){
+  const lang = localStorage.getItem('climber-lang') || 'fr';
+  setLang(lang);
 })();
 </script>
 

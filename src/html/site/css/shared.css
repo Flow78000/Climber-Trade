@@ -104,14 +104,16 @@ h5{font-size:16px;}
   position:fixed;top:0;left:0;right:0;z-index:1000;
   height:var(--nav-h);
   display:flex;align-items:center;
+  background:transparent;
+  backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px);
+  border-bottom:1px solid transparent;
+  transition:background .4s ease,box-shadow .4s ease,backdrop-filter .4s ease,border-color .4s ease;
+}
+.navbar.scrolled{
   background:rgba(10,10,10,.88);
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
-  transition:background .3s,box-shadow .3s;
-}
-.navbar.scrolled{
-  background:rgba(10,10,10,.96);
-  box-shadow:0 1px 20px rgba(0,0,0,.5);
+  box-shadow:0 1px 24px rgba(0,0,0,.5);
 }
 .nav-inner{
   display:flex;align-items:center;justify-content:space-between;
@@ -217,6 +219,37 @@ h5{font-size:16px;}
 }
 .footer-social:hover{color:var(--teal);border-color:var(--teal);background:#00D4FF08;}
 .footer-social svg{width:16px;height:16px;}
+
+/* ─── TOOLTIP INLINE ─── */
+.tip{
+  position:relative;display:inline-flex;align-items:center;
+  vertical-align:middle;margin-left:4px;cursor:help;
+}
+.tip-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:15px;height:15px;border-radius:50%;
+  background:#1e1e1e;border:1px solid var(--border2);
+  color:var(--text3);font-size:9px;font-weight:700;
+  flex-shrink:0;line-height:1;
+}
+.tip-box{
+  position:absolute;bottom:calc(100% + 8px);left:50%;
+  transform:translateX(-50%);
+  background:#1a1a1a;border:1px solid var(--border2);
+  border-radius:10px;padding:12px 14px;
+  font-size:12px;color:var(--text2);line-height:1.65;
+  width:280px;z-index:200;
+  opacity:0;pointer-events:none;
+  transition:opacity .15s;white-space:normal;
+  box-shadow:0 8px 24px rgba(0,0,0,.5);
+}
+.tip:hover .tip-box,.tip:focus-within .tip-box{opacity:1;}
+.tip-box strong{color:var(--text);font-weight:700;}
+.tip-box::after{
+  content:'';position:absolute;top:100%;left:50%;
+  transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:#1a1a1a;
+}
 
 /* ─── BUTTONS ─── */
 .btn{
