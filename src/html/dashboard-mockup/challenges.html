@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="../fonts/fonts.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Climber Trade — Challenges</title>
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Climber Trade — Challenges</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -19,6 +17,8 @@
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;overflow:hidden;}
 .app{display:flex;height:100vh;overflow:hidden;}
+
+/* ─── SIDEBAR ─────────────────────────────────────────────── */
 .sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;height:100vh;overflow:hidden;position:relative;z-index:10;}
 .sidebar-logo{display:flex;align-items:center;gap:10px;padding:18px 20px 16px;border-bottom:1px solid var(--border);}
 .logo-icon svg{display:block;}
@@ -38,6 +38,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 .user-info{overflow:hidden;}
 .user-id{font-size:11px;font-weight:600;color:var(--text);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .user-badge{font-size:10px;font-weight:700;color:var(--teal);letter-spacing:.3px;margin-top:1px;}
+
+/* ─── MAIN ─────────────────────────────────────────────────── */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
 .topbar{height:var(--header-h);flex-shrink:0;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px 0 24px;gap:16px;}
 .topbar-left h1{font-size:18px;font-weight:700;color:var(--text);}
@@ -51,27 +53,220 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 .pool-icon{width:28px;height:28px;border-radius:7px;background:rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;}
 .pool-info{line-height:1.2;}
 .pool-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:rgba(0,0,0,.6);}
-.pool-amount{font-size:15px;font-weight:800;color:#000;font-family:var(--mono);}
 .pool-dot{width:6px;height:6px;border-radius:50%;background:#0a0a0a;margin-right:2px;display:inline-block;animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
-.content{flex:1;overflow-y:auto;padding:22px 24px 40px;scrollbar-width:thin;scrollbar-color:var(--border2) transparent;display:flex;align-items:center;justify-content:center;}
+.pool-amount{font-size:15px;font-weight:800;color:#000;font-family:var(--mono);}
+.content{flex:1;overflow-y:auto;padding:22px 28px 48px;scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
+.content::-webkit-scrollbar{width:6px;}
+.content::-webkit-scrollbar-track{background:transparent;}
+.content::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
 
-/* COMING SOON */
-@keyframes pulse-border{0%,100%{border-color:#00D4FF30;box-shadow:0 0 0 0 #00D4FF00;}50%{border-color:#00D4FF88;box-shadow:0 0 0 8px #00D4FF08;}}
-.coming-soon-card{
-  background:var(--card);border:2px solid #00D4FF30;border-radius:20px;
-  padding:56px 60px;text-align:center;max-width:480px;width:100%;
-  animation:pulse-border 3s ease-in-out infinite;
+/* ─── PAGE LAYOUT ────────────────────────────────────────── */
+.page-layout{display:grid;grid-template-columns:1fr 268px;gap:20px;align-items:start;}
+
+/* ─── SPRINT BANNER ──────────────────────────────────────── */
+.sprint-banner{
+  background:linear-gradient(135deg,#00D4FF18 0%,#00D4FF08 50%,#8B5CF610 100%);
+  border:1px solid #00D4FF44;border-radius:var(--r2);padding:22px 26px;margin-bottom:20px;
+  position:relative;overflow:hidden;
 }
-.cs-icon{width:72px;height:72px;border-radius:20px;background:var(--teal-dim);border:1px solid #00D4FF22;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;}
-.cs-title{font-size:26px;font-weight:800;color:var(--text);margin-bottom:10px;}
-.cs-subtitle{font-size:14px;color:var(--text2);line-height:1.7;}
-.cs-badge{display:inline-block;background:var(--teal-dim);border:1px solid #00D4FF22;border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.4px;margin-top:20px;text-transform:uppercase;}
+.sprint-banner::before{
+  content:'';position:absolute;top:-50px;right:-50px;width:220px;height:220px;
+  border-radius:50%;background:radial-gradient(circle,#00D4FF0C 0%,transparent 70%);
+  pointer-events:none;
+}
+.sprint-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px;}
+.sprint-left{}
+.sprint-eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.sprint-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--teal);background:#00D4FF18;border:1px solid #00D4FF33;padding:3px 10px;border-radius:4px;}
+.sprint-live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.4s infinite;flex-shrink:0;}
+.sprint-live-text{font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;}
+.sprint-title{font-size:19px;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:.2px;}
+.sprint-desc{font-size:13px;color:var(--text2);line-height:1.65;max-width:520px;}
+.sprint-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;}
+.sprint-btn{background:var(--teal);color:#000;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--sans);white-space:nowrap;transition:filter .15s;}
+.sprint-btn:hover{filter:brightness(1.1);}
+.sprint-meta{display:flex;gap:20px;}
+.sprint-meta-item{text-align:right;}
+.sprint-meta-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);}
+.sprint-meta-val{font-size:16px;font-weight:800;font-family:var(--mono);color:var(--text);}
+.sprint-meta-val.teal{color:var(--teal);}
+.sprint-bottom{display:flex;align-items:center;gap:18px;}
+.sprint-progress-wrap{flex:1;}
+.sprint-progress-labels{display:flex;justify-content:space-between;margin-bottom:6px;}
+.sprint-progress-label{font-size:11px;color:var(--text2);}
+.sprint-progress-label strong{color:var(--text);font-family:var(--mono);}
+.sprint-progress-bar{height:6px;background:#0c0c0e;border-radius:3px;overflow:hidden;}
+.sprint-progress-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--teal),#6EE7FF);}
+.sprint-countdown{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.countdown-block{background:#0c0c0e;border:1px solid var(--border);border-radius:8px;padding:7px 11px;text-align:center;min-width:46px;}
+.countdown-val{font-size:18px;font-weight:800;font-family:var(--mono);color:var(--text);line-height:1;}
+.countdown-unit{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);margin-top:2px;}
+.countdown-sep{font-size:18px;font-weight:700;color:var(--text3);margin-bottom:10px;}
+
+/* ─── STATS ROW ─────────────────────────────────────────── */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:16px 18px;display:flex;align-items:center;gap:14px;}
+.stat-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.stat-icon.green{background:#10B98118;border:1px solid #10B98130;}
+.stat-icon.teal{background:#00D4FF18;border:1px solid #00D4FF30;}
+.stat-icon.amber{background:#F59E0B18;border:1px solid #F59E0B30;}
+.stat-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.3px;color:var(--text2);margin-bottom:3px;}
+.stat-value{font-size:22px;font-weight:800;font-family:var(--mono);line-height:1;}
+.stat-value.green{color:var(--green);}
+.stat-value.teal{color:var(--teal);}
+.stat-value.amber{color:var(--amber);}
+.stat-sub{font-size:10px;color:var(--text3);margin-top:3px;}
+
+/* ─── TABS ───────────────────────────────────────────────── */
+.tabs-row{display:flex;gap:2px;margin-bottom:20px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:4px;width:fit-content;}
+.tab-btn{padding:7px 20px;border-radius:7px;font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;transition:.15s;border:none;background:transparent;font-family:var(--sans);}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{background:var(--amber);color:#000;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* ─── CHALLENGE CARDS GRID ───────────────────────────────── */
+.challenges-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.challenge-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:18px 20px;display:flex;flex-direction:column;gap:12px;transition:border-color .15s;}
+.challenge-card:hover{border-color:var(--border2);}
+.challenge-card.featured{border-color:#00D4FF33;background:linear-gradient(160deg,#00D4FF0A 0%,#16161a 60%);}
+.challenge-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+.challenge-badges{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.cat-badge{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:2px 8px;border-radius:4px;}
+.cat-risk{background:#EF444420;color:var(--red);border:1px solid #EF444440;}
+.cat-performance{background:#00D4FF18;color:var(--teal);border:1px solid #00D4FF33;}
+.cat-consistency{background:#10B98118;color:var(--green);border:1px solid #10B98130;}
+.cat-quality{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}
+.diff-pill{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;padding:2px 9px;border-radius:20px;}
+.diff-easy{background:#10B98120;color:var(--green);}
+.diff-medium{background:#F59E0B20;color:var(--amber);}
+.diff-expert{background:#EF444420;color:var(--red);}
+.challenge-title{font-size:14px;font-weight:700;color:var(--text);}
+.challenge-desc{font-size:12px;color:var(--text2);line-height:1.65;}
+.challenge-reward{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--card2);border-radius:8px;border:1px solid var(--border);}
+.reward-icon{font-size:16px;flex-shrink:0;}
+.reward-body{flex:1;}
+.reward-pts{font-size:13px;font-weight:800;color:var(--amber);}
+.reward-pool{font-size:11px;font-weight:700;color:var(--teal);margin-top:1px;}
+.reward-tag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text3);}
+.challenge-progress{}
+.progress-labels{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.progress-label-left{font-size:11px;color:var(--text2);}
+.progress-pct{font-size:12px;font-weight:700;font-family:var(--mono);color:var(--text);}
+.progress-bar{height:5px;background:var(--bg);border-radius:3px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:3px;}
+.fill-green{background:var(--green);}
+.fill-teal{background:linear-gradient(90deg,var(--teal),#6EE7FF);}
+.fill-amber{background:var(--amber);}
+.fill-purple{background:var(--purple);}
+.challenge-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.challenge-meta{display:flex;align-items:center;gap:10px;}
+.meta-item{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text3);}
+.challenge-action-btn{padding:7px 16px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--sans);border:none;transition:.15s;white-space:nowrap;}
+.btn-join{background:var(--teal);color:#000;}
+.btn-join:hover{filter:brightness(1.1);}
+.btn-active{background:#10B98120;color:var(--green);border:1px solid #10B98140;}
+.btn-active:hover{background:#10B98130;}
+
+/* ─── TAB 2: UPCOMING ────────────────────────────────────── */
+.upcoming-list{display:flex;flex-direction:column;gap:10px;}
+.upcoming-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:16px 20px;display:flex;align-items:center;gap:16px;transition:border-color .15s;}
+.upcoming-card:hover{border-color:var(--border2);}
+.upcoming-date-block{text-align:center;min-width:50px;flex-shrink:0;}
+.upcoming-day{font-size:22px;font-weight:900;font-family:var(--mono);color:var(--text);line-height:1;}
+.upcoming-month{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);}
+.upcoming-divider{width:1px;height:48px;background:var(--border);flex-shrink:0;}
+.upcoming-info{flex:1;}
+.upcoming-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:5px;}
+.upcoming-meta-row{display:flex;align-items:center;gap:6px;margin-bottom:5px;}
+.upcoming-desc-text{font-size:12px;color:var(--text2);line-height:1.55;}
+.upcoming-right{display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0;}
+.upcoming-reward{font-size:13px;font-weight:800;color:var(--amber);}
+.upcoming-reward .pool-share{font-size:11px;font-weight:700;color:var(--teal);}
+.upcoming-notify-btn{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--sans);background:var(--card2);border:1px solid var(--border2);color:var(--text2);transition:.15s;}
+.upcoming-notify-btn:hover{border-color:var(--teal);color:var(--teal);}
+
+/* ─── TAB 3: HISTORY TABLE ───────────────────────────────── */
+.history-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;}
+.history-table{width:100%;border-collapse:collapse;}
+.history-table thead tr{border-bottom:1px solid var(--border);}
+.history-table th{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text3);padding:10px 14px;text-align:left;}
+.history-table td{padding:13px 14px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2);}
+.history-table tr:last-child td{border-bottom:none;}
+.history-table tbody tr:hover td{background:#ffffff03;}
+.history-name{font-weight:700;color:var(--text);margin-bottom:4px;}
+.history-score-val{font-family:var(--mono);font-weight:700;}
+.history-score-val.high{color:var(--green);}
+.history-score-val.med{color:var(--amber);}
+.history-rank-pill{display:inline-flex;align-items:center;gap:4px;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;font-family:var(--mono);}
+.rank-gold{background:#F59E0B20;border:1px solid #F59E0B44;color:var(--amber);}
+.rank-silver{background:#8A8A9A20;border:1px solid #8A8A9A44;color:var(--text2);}
+.rank-bronze{background:#cd7f3220;border:1px solid #cd7f3244;color:#cd7f32;}
+.reward-earned{font-weight:700;color:var(--teal);font-family:var(--mono);}
+.date-text{font-size:11px;font-family:var(--mono);}
+.completed-badge{display:inline-flex;align-items:center;gap:4px;background:#10B98118;border:1px solid #10B98130;color:var(--green);font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;}
+
+/* ─── TAB 4: RÉSULTATS ───────────────────────────────────── */
+.results-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:18px 20px;}
+.results-card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);margin-bottom:14px;display:flex;align-items:center;gap:7px;}
+.results-card-title::before{content:'';width:3px;height:12px;border-radius:2px;background:var(--amber);display:block;}
+.mini-lb-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;transition:.15s;}
+.mini-lb-row:hover{background:var(--card2);}
+.mini-lb-row.me{background:#00D4FF0A;border:1px solid #00D4FF22;}
+.mini-lb-pos{width:22px;font-size:11px;font-weight:700;font-family:var(--mono);color:var(--text3);text-align:center;flex-shrink:0;}
+.pos-1{color:#F59E0B;}
+.pos-2{color:#8A8A9A;}
+.pos-3{color:#cd7f32;}
+.mini-lb-avatar{width:28px;height:28px;border-radius:8px;background:var(--card2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text2);flex-shrink:0;}
+.mini-lb-avatar.me-av{background:linear-gradient(135deg,#00D4FF22,#8B5CF622);border-color:#00D4FF33;color:var(--teal);}
+.mini-lb-name{flex:1;font-size:13px;font-weight:600;color:var(--text);}
+.mini-lb-name.me{color:var(--teal);}
+.mini-lb-pts{font-size:12px;font-weight:800;font-family:var(--mono);color:var(--amber);flex-shrink:0;}
+.lb-separator{height:1px;background:var(--border);margin:6px 0;}
+.rewards-summary{display:flex;flex-direction:column;gap:9px;}
+.reward-summary-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--card2);border-radius:8px;}
+.reward-summary-label{font-size:12px;color:var(--text2);}
+.reward-summary-val{font-size:14px;font-weight:800;font-family:var(--mono);}
+.rsv-teal{color:var(--teal);}
+.rsv-amber{color:var(--amber);}
+.rsv-green{color:var(--green);}
+.best-badge-card{background:linear-gradient(135deg,#F59E0B14,#F59E0B06);border:1px solid #F59E0B33;border-radius:var(--r2);padding:18px 20px;grid-column:1/-1;}
+.best-badge-inner{display:flex;align-items:center;gap:16px;}
+.best-badge-trophy{font-size:42px;flex-shrink:0;}
+.best-badge-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px;}
+.best-badge-name{font-size:18px;font-weight:800;color:var(--amber);}
+.best-badge-desc{font-size:11px;color:var(--text2);margin-top:4px;line-height:1.55;}
+
+/* ─── SIDEBAR RULES ──────────────────────────────────────── */
+.rules-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:18px 20px;}
+.rules-card-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:14px;display:flex;align-items:center;gap:7px;}
+.rules-card-title svg{color:var(--amber);flex-shrink:0;}
+.rule-item{display:flex;align-items:flex-start;gap:9px;margin-bottom:11px;}
+.rule-bullet{width:5px;height:5px;border-radius:50%;background:var(--border2);flex-shrink:0;margin-top:7px;}
+.rule-text{font-size:12px;color:var(--text2);line-height:1.6;}
+.rule-text strong{color:var(--text);}
+.rules-link{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--teal);cursor:pointer;padding-top:14px;border-top:1px solid var(--border);margin-top:4px;text-decoration:none;}
+.rules-link:hover{opacity:.75;}
+.your-position-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:16px 20px;margin-top:12px;}
+.yp-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:12px;}
+.yp-rank-row{display:flex;align-items:flex-end;gap:10px;margin-bottom:10px;}
+.yp-rank-num{font-size:32px;font-weight:900;font-family:var(--mono);color:var(--amber);line-height:1;}
+.yp-rank-info{padding-bottom:3px;}
+.yp-rank-label{font-size:11px;color:var(--text2);}
+.yp-rank-sub{font-size:10px;color:var(--text3);margin-top:1px;}
+.yp-progress-bar{height:4px;background:var(--card2);border-radius:2px;overflow:hidden;}
+.yp-progress-fill{height:100%;background:var(--amber);border-radius:2px;width:56%;}
+.yp-progress-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:4px;}
+.yp-streak{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--green);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);}
+.yp-streak svg{flex-shrink:0;}
 </style>
 </head>
 <body>
 <div class="app">
 
+  <!-- ─── SIDEBAR ─────────────────────────────────────────── -->
   <aside class="sidebar">
     <div class="sidebar-logo">
       <div class="logo-icon">
@@ -93,7 +288,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
       </a>
       <a class="nav-item" href="my-performance.html">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        My Performance
+        My Stats
       </a>
       <a class="nav-item" href="score-lab.html">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 20h.01M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
@@ -148,11 +343,12 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
     </div>
   </aside>
 
+  <!-- ─── MAIN ─────────────────────────────────────────────── -->
   <div class="main">
     <header class="topbar">
       <div class="topbar-left">
         <h1>Challenges</h1>
-        <p>Community trading challenges &amp; leaderboard</p>
+        <p>Défis communautaires · Bonus CLIMB Score · Prizes du pool</p>
       </div>
       <div class="topbar-right">
         <div class="lang-switcher">
@@ -164,23 +360,596 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
           <div class="pool-icon">$</div>
           <div class="pool-info">
             <div class="pool-label"><span class="pool-dot"></span>Climber Liquidity Pool</div>
-            <div class="pool-amount">$250.00</div>
+            <div class="pool-amount">$2.84M</div>
           </div>
         </div>
       </div>
     </header>
 
     <div class="content">
-      <div class="coming-soon-card">
-        <div class="cs-icon">
-          <svg width="34" height="34" fill="none" stroke="#00D4FF" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+      <div class="page-layout">
+
+        <!-- ─── MAIN COLUMN ────────────────────────────────── -->
+        <div>
+
+          <!-- Sprint Banner -->
+          <div class="sprint-banner">
+            <div class="sprint-top">
+              <div class="sprint-left">
+                <div class="sprint-eyebrow">
+                  <span class="sprint-label">Sprint Challenge</span>
+                  <span class="sprint-live-dot"></span>
+                  <span class="sprint-live-text">En cours</span>
+                </div>
+                <div class="sprint-title">SPRINT CHALLENGE — MARS 2026</div>
+                <div class="sprint-desc">Maximisez votre Profit Factor au-dessus de 2.5 pendant 7 jours de trading consécutifs. Prouvez que votre edge est réel et systématique — pas de la chance.</div>
+              </div>
+              <div class="sprint-right">
+                <div class="sprint-meta">
+                  <div class="sprint-meta-item">
+                    <div class="sprint-meta-label">Prize Pool</div>
+                    <div class="sprint-meta-val teal">$2 500</div>
+                  </div>
+                  <div class="sprint-meta-item">
+                    <div class="sprint-meta-label">Participants</div>
+                    <div class="sprint-meta-val">847</div>
+                  </div>
+                </div>
+                <button class="sprint-btn">Voir les détails →</button>
+              </div>
+            </div>
+            <div class="sprint-bottom">
+              <div class="sprint-progress-wrap">
+                <div class="sprint-progress-labels">
+                  <span class="sprint-progress-label">Votre progression — PF actuel: <strong>2.18</strong> / objectif: <strong>2.50</strong></span>
+                  <span class="sprint-progress-label" style="color:var(--teal);font-weight:700;">72%</span>
+                </div>
+                <div class="sprint-progress-bar">
+                  <div class="sprint-progress-fill" style="width:72%;"></div>
+                </div>
+              </div>
+              <div class="sprint-countdown">
+                <div class="countdown-block">
+                  <div class="countdown-val">01</div>
+                  <div class="countdown-unit">Jour</div>
+                </div>
+                <span class="countdown-sep">:</span>
+                <div class="countdown-block">
+                  <div class="countdown-val">18</div>
+                  <div class="countdown-unit">Heure</div>
+                </div>
+                <span class="countdown-sep">:</span>
+                <div class="countdown-block">
+                  <div class="countdown-val">43</div>
+                  <div class="countdown-unit">Min</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Row -->
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-icon green">
+                <svg width="18" height="18" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <div class="stat-label">Challenges complétés</div>
+                <div class="stat-value green">3</div>
+                <div class="stat-sub">Ce trimestre</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon teal">
+                <svg width="18" height="18" fill="none" stroke="#00D4FF" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <div>
+                <div class="stat-label">Points bonus CLIMB gagnés</div>
+                <div class="stat-value teal">+12 pts</div>
+                <div class="stat-sub">Score actuel: 87.4</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon amber">
+                <svg width="18" height="18" fill="none" stroke="#F59E0B" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+              </div>
+              <div>
+                <div class="stat-label">Rang actuel ce mois</div>
+                <div class="stat-value amber">#47</div>
+                <div class="stat-sub">Sur 847 participants</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabs -->
+          <div class="tabs-row">
+            <button class="tab-btn active" onclick="switchTab('tab-active',this)">En cours</button>
+            <button class="tab-btn" onclick="switchTab('tab-upcoming',this)">À venir</button>
+            <button class="tab-btn" onclick="switchTab('tab-history',this)">Terminés</button>
+            <button class="tab-btn" onclick="switchTab('tab-results',this)">Mes résultats</button>
+          </div>
+
+          <!-- ─── TAB 1: EN COURS ────────────────────────── -->
+          <div id="tab-active" class="tab-panel active">
+            <div class="challenges-grid">
+
+              <!-- Card 1: Drawdown Maître -->
+              <div class="challenge-card">
+                <div class="challenge-card-top">
+                  <div class="challenge-badges">
+                    <span class="cat-badge cat-risk">Risk</span>
+                    <span class="diff-pill diff-medium">Moyen</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="challenge-title">Drawdown Maître</div>
+                  <div class="challenge-desc" style="margin-top:5px;">Maintenez un drawdown total inférieur à 1% pendant 5 jours de trading consécutifs. La discipline seule vous distingue.</div>
+                </div>
+                <div class="challenge-reward">
+                  <div class="reward-icon">⭐</div>
+                  <div class="reward-body">
+                    <div class="reward-pts">+3 pts CLIMB</div>
+                  </div>
+                  <div class="reward-tag">Récompense</div>
+                </div>
+                <div class="challenge-progress">
+                  <div class="progress-labels">
+                    <span class="progress-label-left">3 / 5 jours validés</span>
+                    <span class="progress-pct">60%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill fill-green" style="width:60%;"></div>
+                  </div>
+                </div>
+                <div class="challenge-footer">
+                  <div class="challenge-meta">
+                    <div class="meta-item">
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                      <span>1 204</span>
+                    </div>
+                    <div class="meta-item">
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <span>2 jours restants</span>
+                    </div>
+                  </div>
+                  <button class="challenge-action-btn btn-active">● En cours</button>
+                </div>
+              </div>
+
+              <!-- Card 2: Profit Factor Elite (featured) -->
+              <div class="challenge-card featured">
+                <div class="challenge-card-top">
+                  <div class="challenge-badges">
+                    <span class="cat-badge cat-performance">Performance</span>
+                    <span class="diff-pill diff-expert">Expert</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="challenge-title">Profit Factor Elite</div>
+                  <div class="challenge-desc" style="margin-top:5px;">Atteignez un Profit Factor supérieur à 2.5 et maintenez-le 7 jours consécutifs. Réservé aux traders les plus consistants du pool.</div>
+                </div>
+                <div class="challenge-reward">
+                  <div class="reward-icon">🏆</div>
+                  <div class="reward-body">
+                    <div class="reward-pts">+5 pts CLIMB</div>
+                    <div class="reward-pool">+ Part du pool $500</div>
+                  </div>
+                  <div class="reward-tag">Récompense</div>
+                </div>
+                <div class="challenge-progress">
+                  <div class="progress-labels">
+                    <span class="progress-label-left">PF actuel: 2.18 / 2.50 — Jour 2/7</span>
+                    <span class="progress-pct">28%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill fill-teal" style="width:28%;"></div>
+                  </div>
+                </div>
+                <div class="challenge-footer">
+                  <div class="challenge-meta">
+                    <div class="meta-item">
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                      <span>847</span>
+                    </div>
+                    <div class="meta-item">
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <span>1 j 18 h restants</span>
+                    </div>
+                  </div>
+                  <button class="challenge-action-btn btn-active">● En cours</button>
+                </div>
+              </div>
+
+              <!-- Card 3: Régularité Absolue -->
+              <div class="challenge-card">
+                <div class="challenge-card-top">
+                  <div class="challenge-badges">
+                    <span class="cat-badge cat-consistency">Consistency</span>
+                    <span class="diff-pill diff-easy">Facile</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="challenge-title">Régularité Absolue</div>
+                  <div class="challenge-desc" style="margin-top:5px;">Atteignez un Win Rate supérieur à 60% sur un minimum de 30 trades exécutés. La constance distingue les pros des amateurs.</div>
+                </div>
+                <div class="challenge-reward">
+                  <div class="reward-icon">⭐</div>
+                  <div class="reward-body">
+                    <div class="reward-pts">+2 pts CLIMB</div>
+                  </div>
+                  <div class="reward-tag">Récompense</div>
+                </div>
+                <div class="challenge-progress">
+                  <div class="progress-labels">
+                    <span class="progress-label-left">24 / 30 trades — Win Rate: 67%</span>
+                    <span class="progress-pct">80%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill fill-green" style="width:80%;"></div>
+                  </div>
+                </div>
+                <div class="challenge-footer">
+                  <div class="challenge-meta">
+                    <div class="meta-item">
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                      <span>2 831</span>
+                    </div>
+                    <div class="meta-item">
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <span>5 jours restants</span>
+                    </div>
+                  </div>
+                  <button class="challenge-action-btn btn-active">● En cours</button>
+                </div>
+              </div>
+
+              <!-- Card 4: Lot Sizing Pro -->
+              <div class="challenge-card">
+                <div class="challenge-card-top">
+                  <div class="challenge-badges">
+                    <span class="cat-badge cat-quality">Quality</span>
+                    <span class="diff-pill diff-medium">Moyen</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="challenge-title">Lot Sizing Pro</div>
+                  <div class="challenge-desc" style="margin-top:5px;">Maintenez un LSR (Lot Stability Ratio) supérieur à 3.5 sur un minimum de 20 trades. La régularité du sizing est la signature des professionnels.</div>
+                </div>
+                <div class="challenge-reward">
+                  <div class="reward-icon">⭐</div>
+                  <div class="reward-body">
+                    <div class="reward-pts">+3 pts CLIMB</div>
+                  </div>
+                  <div class="reward-tag">Récompense</div>
+                </div>
+                <div class="challenge-progress">
+                  <div class="progress-labels">
+                    <span class="progress-label-left">9 / 20 trades — LSR actuel: 3.2</span>
+                    <span class="progress-pct">45%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill fill-purple" style="width:45%;"></div>
+                  </div>
+                </div>
+                <div class="challenge-footer">
+                  <div class="challenge-meta">
+                    <div class="meta-item">
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                      <span>593</span>
+                    </div>
+                    <div class="meta-item">
+                      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <span>3 jours restants</span>
+                    </div>
+                  </div>
+                  <button class="challenge-action-btn btn-join">Participer</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ─── TAB 2: À VENIR ─────────────────────────── -->
+          <div id="tab-upcoming" class="tab-panel">
+            <div class="upcoming-list">
+
+              <div class="upcoming-card">
+                <div class="upcoming-date-block">
+                  <div class="upcoming-day">01</div>
+                  <div class="upcoming-month">Avr</div>
+                </div>
+                <div class="upcoming-divider"></div>
+                <div class="upcoming-info">
+                  <div class="upcoming-title">Sharpe Ratio Master</div>
+                  <div class="upcoming-meta-row">
+                    <span class="cat-badge cat-performance">Performance</span>
+                    <span class="diff-pill diff-expert">Expert</span>
+                  </div>
+                  <div class="upcoming-desc-text">Atteignez un Sharpe Ratio ≥ 2.0 maintenu sur 14 jours de trading. La récompense ultime de la performance ajustée au risque.</div>
+                </div>
+                <div class="upcoming-right">
+                  <div class="upcoming-reward">+4 pts CLIMB</div>
+                  <button class="upcoming-notify-btn">
+                    <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                    Me notifier
+                  </button>
+                </div>
+              </div>
+
+              <div class="upcoming-card">
+                <div class="upcoming-date-block">
+                  <div class="upcoming-day">07</div>
+                  <div class="upcoming-month">Avr</div>
+                </div>
+                <div class="upcoming-divider"></div>
+                <div class="upcoming-info">
+                  <div class="upcoming-title">Consistency Week</div>
+                  <div class="upcoming-meta-row">
+                    <span class="cat-badge cat-consistency">Consistency</span>
+                    <span class="diff-pill diff-medium">Moyen</span>
+                  </div>
+                  <div class="upcoming-desc-text">Tradez 5 jours consécutifs avec un Gain Days ratio ≥ 80%. Récompense la régularité quotidienne et l'absence de journées perdantes.</div>
+                </div>
+                <div class="upcoming-right">
+                  <div class="upcoming-reward">+3 pts <span class="pool-share">+ pool share</span></div>
+                  <button class="upcoming-notify-btn">
+                    <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                    Me notifier
+                  </button>
+                </div>
+              </div>
+
+              <div class="upcoming-card">
+                <div class="upcoming-date-block">
+                  <div class="upcoming-day">14</div>
+                  <div class="upcoming-month">Avr</div>
+                </div>
+                <div class="upcoming-divider"></div>
+                <div class="upcoming-info">
+                  <div class="upcoming-title">Zero Drawdown Day</div>
+                  <div class="upcoming-meta-row">
+                    <span class="cat-badge cat-risk">Risk</span>
+                    <span class="diff-pill diff-expert">Expert</span>
+                  </div>
+                  <div class="upcoming-desc-text">Terminez 3 journées de trading sans aucun drawdown intraday — chaque trade doit être rentable immédiatement. Défi réservé aux experts.</div>
+                </div>
+                <div class="upcoming-right">
+                  <div class="upcoming-reward">+6 pts CLIMB</div>
+                  <button class="upcoming-notify-btn">
+                    <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                    Me notifier
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ─── TAB 3: TERMINÉS ────────────────────────── -->
+          <div id="tab-history" class="tab-panel">
+            <div class="history-wrap">
+              <table class="history-table">
+                <thead>
+                  <tr>
+                    <th>Challenge</th>
+                    <th>Score final</th>
+                    <th>Rang</th>
+                    <th>Récompense</th>
+                    <th>Statut</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="history-name">Risk Master — Fév 2026</div>
+                      <div style="display:flex;align-items:center;gap:5px;margin-top:4px;">
+                        <span class="cat-badge cat-risk">Risk</span>
+                        <span class="diff-pill diff-medium">Moyen</span>
+                      </div>
+                    </td>
+                    <td><span class="history-score-val high">94.2 / 100</span></td>
+                    <td><span class="history-rank-pill rank-gold">🥇 #12</span></td>
+                    <td><span class="reward-earned">+4 pts · $120</span></td>
+                    <td><span class="completed-badge">✓ Complété</span></td>
+                    <td><span class="date-text">28 Fév 2026</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="history-name">Consistency Sprint — Jan 2026</div>
+                      <div style="display:flex;align-items:center;gap:5px;margin-top:4px;">
+                        <span class="cat-badge cat-consistency">Consistency</span>
+                        <span class="diff-pill diff-easy">Facile</span>
+                      </div>
+                    </td>
+                    <td><span class="history-score-val high">88.7 / 100</span></td>
+                    <td><span class="history-rank-pill rank-silver">🥈 #34</span></td>
+                    <td><span class="reward-earned">+2 pts</span></td>
+                    <td><span class="completed-badge">✓ Complété</span></td>
+                    <td><span class="date-text">31 Jan 2026</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="history-name">Drawdown Zero — Jan 2026</div>
+                      <div style="display:flex;align-items:center;gap:5px;margin-top:4px;">
+                        <span class="cat-badge cat-risk">Risk</span>
+                        <span class="diff-pill diff-expert">Expert</span>
+                      </div>
+                    </td>
+                    <td><span class="history-score-val med">76.1 / 100</span></td>
+                    <td><span class="history-rank-pill rank-bronze">🥉 #89</span></td>
+                    <td><span class="reward-earned">+6 pts</span></td>
+                    <td><span class="completed-badge">✓ Complété</span></td>
+                    <td><span class="date-text">14 Jan 2026</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ─── TAB 4: MES RÉSULTATS ───────────────────── -->
+          <div id="tab-results" class="tab-panel">
+            <div class="results-layout">
+
+              <!-- Mini Leaderboard -->
+              <div class="results-card">
+                <div class="results-card-title">Classement du mois</div>
+                <div class="mini-lb-row">
+                  <span class="mini-lb-pos pos-1">1</span>
+                  <div class="mini-lb-avatar">T</div>
+                  <span class="mini-lb-name">TR-Maxime</span>
+                  <span class="mini-lb-pts">+18 pts</span>
+                </div>
+                <div class="mini-lb-row">
+                  <span class="mini-lb-pos pos-2">2</span>
+                  <div class="mini-lb-avatar">A</div>
+                  <span class="mini-lb-name">AlphaEdge</span>
+                  <span class="mini-lb-pts">+16 pts</span>
+                </div>
+                <div class="mini-lb-row">
+                  <span class="mini-lb-pos pos-3">3</span>
+                  <div class="mini-lb-avatar">J</div>
+                  <span class="mini-lb-name">JFX_Pro</span>
+                  <span class="mini-lb-pts">+15 pts</span>
+                </div>
+                <div class="mini-lb-row">
+                  <span class="mini-lb-pos">4</span>
+                  <div class="mini-lb-avatar">S</div>
+                  <span class="mini-lb-name">Swift_Scalp</span>
+                  <span class="mini-lb-pts">+14 pts</span>
+                </div>
+                <div class="mini-lb-row">
+                  <span class="mini-lb-pos">5</span>
+                  <div class="mini-lb-avatar">R</div>
+                  <span class="mini-lb-name">RatioKing</span>
+                  <span class="mini-lb-pts">+13 pts</span>
+                </div>
+                <div class="lb-separator"></div>
+                <div class="mini-lb-row me">
+                  <span class="mini-lb-pos" style="color:var(--teal);">47</span>
+                  <div class="mini-lb-avatar me-av">C</div>
+                  <span class="mini-lb-name me">Vous</span>
+                  <span class="mini-lb-pts">+8 pts</span>
+                </div>
+              </div>
+
+              <!-- Rewards Summary -->
+              <div class="results-card">
+                <div class="results-card-title">Récompenses ce mois</div>
+                <div class="rewards-summary">
+                  <div class="reward-summary-row">
+                    <span class="reward-summary-label">Points CLIMB bonus</span>
+                    <span class="reward-summary-val rsv-teal">+8 pts</span>
+                  </div>
+                  <div class="reward-summary-row">
+                    <span class="reward-summary-label">Gains pool</span>
+                    <span class="reward-summary-val rsv-amber">$0.00</span>
+                  </div>
+                  <div class="reward-summary-row">
+                    <span class="reward-summary-label">Challenges actifs</span>
+                    <span class="reward-summary-val rsv-green">4 / 4</span>
+                  </div>
+                  <div class="reward-summary-row">
+                    <span class="reward-summary-label">Taux de complétion</span>
+                    <span class="reward-summary-val" style="color:var(--text);">75%</span>
+                  </div>
+                  <div class="reward-summary-row">
+                    <span class="reward-summary-label">Meilleur rang obtenu</span>
+                    <span class="reward-summary-val rsv-amber">#12</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Best Performance Badge -->
+              <div class="best-badge-card">
+                <div class="best-badge-inner">
+                  <div class="best-badge-trophy">🏅</div>
+                  <div>
+                    <div class="best-badge-title">Meilleure performance obtenue</div>
+                    <div class="best-badge-name">Risk Master — Top 1%</div>
+                    <div class="best-badge-desc">Obtenu le 28 Fév 2026 · Rang #12 sur 1 640 participants · Score 94.2 / 100 · Récompense: +4 pts CLIMB + $120 du pool de liquidité</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
-        <div class="cs-title">Coming Soon</div>
-        <div class="cs-subtitle">Community Challenges are currently in development. Compete with other traders, earn bonus points, and rise in the rankings. Check back soon for updates.</div>
-        <div class="cs-badge">In Development</div>
+
+        <!-- ─── SIDEBAR COLUMN ─────────────────────────────── -->
+        <div>
+
+          <!-- Rules Card -->
+          <div class="rules-card">
+            <div class="rules-card-title">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Règles des Challenges
+            </div>
+            <div class="rule-item">
+              <div class="rule-bullet"></div>
+              <div class="rule-text"><strong>Scores réels uniquement.</strong> Les métriques sont calculées sur vos trades enregistrés en temps réel dans la plateforme.</div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-bullet"></div>
+              <div class="rule-text"><strong>Pas de reset pendant un challenge.</strong> Tout reset de compte annule automatiquement votre participation en cours.</div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-bullet"></div>
+              <div class="rule-text"><strong>Vérification à la clôture.</strong> Les résultats sont consolidés et audités à la fin de la période officielle du challenge.</div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-bullet"></div>
+              <div class="rule-text"><strong>Bonus CLIMB Score.</strong> Les points sont crédités automatiquement dans les 24h suivant la vérification finale.</div>
+            </div>
+            <div class="rule-item">
+              <div class="rule-bullet"></div>
+              <div class="rule-text"><strong>Paiements pool.</strong> Les gains monétaires sont versés sur votre Wallet Climber sous 5 jours ouvrés après clôture.</div>
+            </div>
+            <a class="rules-link" href="knowledge-hub.html">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+              Voir le règlement complet
+            </a>
+          </div>
+
+          <!-- Your Position Card -->
+          <div class="your-position-card">
+            <div class="yp-title">Votre position ce mois</div>
+            <div class="yp-rank-row">
+              <div class="yp-rank-num">#47</div>
+              <div class="yp-rank-info">
+                <div class="yp-rank-label">Rang global</div>
+                <div class="yp-rank-sub">Sur 847 participants actifs</div>
+              </div>
+            </div>
+            <div class="yp-progress-bar">
+              <div class="yp-progress-fill"></div>
+            </div>
+            <div class="yp-progress-labels">
+              <span>#1</span>
+              <span>#47</span>
+              <span>#847</span>
+            </div>
+            <div class="yp-streak">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              4 challenges consécutifs complétés
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </div>
   </div>
 </div>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
 </body>
 </html>

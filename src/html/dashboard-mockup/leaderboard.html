@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="../fonts/fonts.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Climber Trade — Leaderboard</title>
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Climber Trade — Leaderboard</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -19,6 +17,8 @@
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;overflow:hidden;}
 .app{display:flex;height:100vh;overflow:hidden;}
+
+/* ─── SIDEBAR ─────────────────────────────────────────────────── */
 .sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;height:100vh;overflow:hidden;position:relative;z-index:10;}
 .sidebar-logo{display:flex;align-items:center;gap:10px;padding:18px 20px 16px;border-bottom:1px solid var(--border);}
 .logo-icon svg{display:block;}
@@ -38,6 +38,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 .user-info{overflow:hidden;}
 .user-id{font-size:11px;font-weight:600;color:var(--text);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .user-badge{font-size:10px;font-weight:700;color:var(--teal);letter-spacing:.3px;margin-top:1px;}
+
+/* ─── MAIN ────────────────────────────────────────────────────── */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
 .topbar{height:var(--header-h);flex-shrink:0;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px 0 24px;gap:16px;}
 .topbar-left h1{font-size:18px;font-weight:700;color:var(--text);}
@@ -51,26 +53,190 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 .pool-icon{width:28px;height:28px;border-radius:7px;background:rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;}
 .pool-info{line-height:1.2;}
 .pool-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:rgba(0,0,0,.6);}
-.pool-amount{font-size:15px;font-weight:800;color:#000;font-family:var(--mono);}
 .pool-dot{width:6px;height:6px;border-radius:50%;background:#0a0a0a;margin-right:2px;display:inline-block;animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
-.content{flex:1;overflow-y:auto;padding:22px 24px 40px;scrollbar-width:thin;scrollbar-color:var(--border2) transparent;display:flex;align-items:center;justify-content:center;}
+.pool-amount{font-size:15px;font-weight:800;color:#000;font-family:var(--mono);}
 
-@keyframes pulse-border{0%,100%{border-color:#00D4FF30;box-shadow:0 0 0 0 #00D4FF00;}50%{border-color:#00D4FF88;box-shadow:0 0 0 8px #00D4FF08;}}
-.coming-soon-card{
-  background:var(--card);border:2px solid #00D4FF30;border-radius:20px;
-  padding:56px 60px;text-align:center;max-width:480px;width:100%;
-  animation:pulse-border 3s ease-in-out infinite;
+/* ─── CONTENT ─────────────────────────────────────────────────── */
+.content{flex:1;overflow-y:auto;padding:24px 28px 48px;scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
+.content::-webkit-scrollbar{width:6px;}
+.content::-webkit-scrollbar-track{background:transparent;}
+.content::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+
+/* ─── PODIUM ──────────────────────────────────────────────────── */
+.podium-section{
+  background:linear-gradient(160deg,#111116 0%,#0e0e12 60%,#111116 100%);
+  border:1px solid var(--border);border-radius:var(--r2);padding:32px 28px 0;
+  margin-bottom:20px;position:relative;overflow:hidden;
 }
-.cs-icon{width:72px;height:72px;border-radius:20px;background:var(--teal-dim);border:1px solid #00D4FF22;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;}
-.cs-title{font-size:26px;font-weight:800;color:var(--text);margin-bottom:10px;}
-.cs-subtitle{font-size:14px;color:var(--text2);line-height:1.7;}
-.cs-badge{display:inline-block;background:var(--teal-dim);border:1px solid #00D4FF22;border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.4px;margin-top:20px;text-transform:uppercase;}
+.podium-section::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:500px;height:200px;
+  background:radial-gradient(ellipse at center top,#00D4FF08 0%,transparent 70%);
+  pointer-events:none;
+}
+.podium-eyebrow{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
+.podium-title{font-size:13px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;display:flex;align-items:center;gap:8px;}
+.podium-title svg{color:var(--amber);}
+.podium-period{font-size:11px;font-weight:600;color:var(--text3);background:var(--card2);border:1px solid var(--border2);border-radius:5px;padding:3px 10px;}
+
+.podium-stage{display:flex;align-items:flex-end;justify-content:center;gap:16px;position:relative;}
+
+.pedestal{display:flex;flex-direction:column;align-items:center;position:relative;}
+.pedestal-avatar{width:58px;height:58px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;margin-bottom:10px;position:relative;flex-shrink:0;}
+.pedestal-avatar .crown{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:18px;line-height:1;}
+.pedestal-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;white-space:nowrap;}
+.pedestal-score{font-size:20px;font-weight:800;font-family:var(--mono);margin-bottom:6px;}
+.pedestal-rank-badge{margin-bottom:12px;}
+.pedestal-block{width:100%;border-radius:10px 10px 0 0;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;font-family:var(--mono);color:rgba(0,0,0,.35);padding-top:16px;}
+
+/* 1st */
+.ped-1{width:140px;}
+.ped-1 .pedestal-avatar{background:linear-gradient(135deg,#F59E0B22,#F59E0B44);border:2px solid #F59E0B66;color:#F59E0B;box-shadow:0 0 0 4px #F59E0B10;}
+.ped-1 .pedestal-score{color:#F59E0B;}
+.ped-1 .pedestal-block{height:110px;background:linear-gradient(180deg,#F59E0B22 0%,#F59E0B0A 100%);border:1px solid #F59E0B33;border-bottom:none;}
+
+/* 2nd */
+.ped-2{width:120px;}
+.ped-2 .pedestal-avatar{background:linear-gradient(135deg,#9CA3AF22,#9CA3AF44);border:2px solid #9CA3AF55;color:#9CA3AF;box-shadow:0 0 0 4px #9CA3AF0C;}
+.ped-2 .pedestal-score{color:#C4C4CC;}
+.ped-2 .pedestal-block{height:84px;background:linear-gradient(180deg,#9CA3AF1A 0%,#9CA3AF08 100%);border:1px solid #9CA3AF2A;border-bottom:none;}
+
+/* 3rd */
+.ped-3{width:120px;}
+.ped-3 .pedestal-avatar{background:linear-gradient(135deg,#CD7F3222,#CD7F3244);border:2px solid #CD7F3255;color:#CD7F32;box-shadow:0 0 0 4px #CD7F320C;}
+.ped-3 .pedestal-score{color:#CD7F32;}
+.ped-3 .pedestal-block{height:64px;background:linear-gradient(180deg,#CD7F321A 0%,#CD7F3208 100%);border:1px solid #CD7F322A;border-bottom:none;}
+
+/* ─── RANK BADGE PILL ─────────────────────────────────────────── */
+.rank-pill{display:inline-flex;align-items:center;gap:5px;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;white-space:nowrap;}
+.rank-pill.diamond{background:#00D4FF18;color:var(--teal);border:1px solid #00D4FF33;}
+.rank-pill.platinum{background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF633;}
+.rank-pill.gold{background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B33;}
+.rank-pill.silver{background:#6B7280;color:#E5E7EB;border:1px solid #9CA3AF33;background:rgba(107,114,128,.18);}
+.rank-pill.bronze{background:rgba(180,100,40,.18);color:#CD7F32;border:1px solid rgba(180,100,40,.3);}
+.rank-pill.norank{background:var(--card2);color:var(--text3);border:1px solid var(--border2);}
+.rank-pill .dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.rank-pill.diamond .dot{background:var(--teal);}
+.rank-pill.platinum .dot{background:var(--purple);}
+.rank-pill.gold .dot{background:var(--amber);}
+.rank-pill.silver .dot{background:#9CA3AF;}
+.rank-pill.bronze .dot{background:#CD7F32;}
+
+/* ─── YOUR POSITION ───────────────────────────────────────────── */
+.my-position{
+  background:linear-gradient(135deg,#00D4FF0C 0%,#00D4FF04 100%);
+  border:1px solid #00D4FF2A;border-radius:var(--r2);padding:18px 22px;
+  margin-bottom:18px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+}
+.my-pos-rank{display:flex;flex-direction:column;align-items:center;min-width:60px;}
+.my-pos-rank-num{font-size:28px;font-weight:900;font-family:var(--mono);color:var(--teal);line-height:1;}
+.my-pos-rank-label{font-size:10px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+.my-pos-divider{width:1px;height:44px;background:var(--border2);flex-shrink:0;}
+.my-pos-center{flex:1;min-width:160px;}
+.my-pos-score-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.my-pos-score{font-size:22px;font-weight:800;font-family:var(--mono);color:var(--text);}
+.my-pos-progress{display:flex;align-items:center;gap:8px;}
+.my-pos-progress-bar{flex:1;height:4px;background:var(--border2);border-radius:2px;overflow:hidden;max-width:180px;}
+.my-pos-progress-fill{height:100%;background:linear-gradient(90deg,var(--amber),#FFB020);border-radius:2px;transition:width .4s;}
+.my-pos-hint{font-size:11px;color:var(--text2);white-space:nowrap;}
+.my-pos-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.my-pos-change{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--green);}
+.my-pos-change svg{flex-shrink:0;}
+
+/* ─── FILTER BAR ──────────────────────────────────────────────── */
+.filter-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.search-wrap{position:relative;flex:1;min-width:180px;max-width:280px;}
+.search-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none;}
+.search-input{width:100%;padding:8px 12px 8px 34px;background:var(--card);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:var(--sans);font-size:13px;outline:none;transition:.15s;}
+.search-input::placeholder{color:var(--text3);}
+.search-input:focus{border-color:#00D4FF44;background:var(--card2);}
+.filter-tabs{display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
+.filter-tab{padding:6px 13px;border-radius:7px;font-size:12px;font-weight:600;background:transparent;border:1px solid var(--border2);color:var(--text2);cursor:pointer;transition:.15s;white-space:nowrap;}
+.filter-tab:hover{background:var(--card);color:var(--text);}
+.filter-tab.active{background:var(--card2);color:var(--text);border-color:var(--border);}
+.filter-right{display:flex;align-items:center;gap:8px;margin-left:auto;}
+.period-tabs{display:flex;align-items:center;background:var(--card);border:1px solid var(--border2);border-radius:7px;overflow:hidden;}
+.period-tab{padding:6px 13px;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:.15s;white-space:nowrap;border:none;background:transparent;}
+.period-tab:hover{color:var(--text);}
+.period-tab.active{background:var(--card2);color:var(--text);}
+.trader-count{font-size:12px;color:var(--text2);white-space:nowrap;padding:6px 12px;background:var(--card);border:1px solid var(--border2);border-radius:7px;}
+.trader-count strong{color:var(--text);font-family:var(--mono);font-size:13px;}
+
+/* ─── TABLE ───────────────────────────────────────────────────── */
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:20px;}
+.lb-table{width:100%;border-collapse:collapse;}
+.lb-table thead tr{background:var(--card2);border-bottom:1px solid var(--border2);}
+.lb-table th{padding:10px 14px;font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;text-align:left;white-space:nowrap;}
+.lb-table th.center{text-align:center;}
+.lb-table tbody tr{border-bottom:1px solid var(--border);transition:background .12s;cursor:default;}
+.lb-table tbody tr:last-child{border-bottom:none;}
+.lb-table tbody tr:hover{background:var(--card2);}
+.lb-table td{padding:11px 14px;font-size:13px;vertical-align:middle;}
+.lb-table td.center{text-align:center;}
+
+/* rank number cell */
+.rank-num{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;font-size:13px;font-weight:700;font-family:var(--mono);}
+.rank-num.gold-medal{background:#F59E0B22;color:#F59E0B;border:1px solid #F59E0B44;}
+.rank-num.silver-medal{background:#9CA3AF1A;color:#C4C4CC;border:1px solid #9CA3AF33;}
+.rank-num.bronze-medal{background:#CD7F321A;color:#CD7F32;border:1px solid #CD7F3233;}
+.rank-num.regular{background:var(--card2);color:var(--text2);border:1px solid var(--border2);}
+.rank-num.me{background:#00D4FF18;color:var(--teal);border:1px solid #00D4FF44;}
+
+/* trader cell */
+.trader-cell{display:flex;align-items:center;gap:10px;}
+.trader-icon{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;}
+.trader-name{font-size:13px;font-weight:600;color:var(--text);font-family:var(--mono);}
+.trader-days{font-size:11px;color:var(--text3);margin-top:1px;}
+.badge-vous{display:inline-flex;align-items:center;gap:4px;background:#00D4FF22;color:var(--teal);border:1px solid #00D4FF44;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:800;letter-spacing:.3px;margin-left:6px;text-transform:uppercase;}
+
+/* score cell */
+.score-val{font-size:14px;font-weight:800;font-family:var(--mono);color:var(--text);}
+.score-bar{height:3px;border-radius:2px;margin-top:4px;background:var(--border2);overflow:hidden;}
+.score-bar-fill{height:100%;border-radius:2px;}
+
+/* variation */
+.var-up{color:var(--green);display:flex;align-items:center;gap:3px;font-size:12px;font-weight:700;font-family:var(--mono);}
+.var-down{color:var(--red);display:flex;align-items:center;gap:3px;font-size:12px;font-weight:700;font-family:var(--mono);}
+.var-flat{color:var(--text3);font-size:12px;font-weight:600;font-family:var(--mono);}
+
+/* status */
+.status-live{display:inline-flex;align-items:center;gap:5px;background:#10B98118;color:var(--green);border:1px solid #10B98133;border-radius:5px;padding:3px 9px;font-size:11px;font-weight:700;}
+.status-live-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite;}
+.status-eval{display:inline-flex;align-items:center;gap:5px;background:var(--card2);color:var(--text2);border:1px solid var(--border2);border-radius:5px;padding:3px 9px;font-size:11px;font-weight:600;}
+
+/* row-me highlight */
+.row-me{background:#00D4FF08 !important;}
+.row-me:hover{background:#00D4FF12 !important;}
+
+/* ─── DISTRIBUTION CHART ──────────────────────────────────────── */
+.dist-section{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:22px 22px 20px;margin-bottom:20px;}
+.dist-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.dist-title{font-size:13px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:8px;}
+.dist-subtitle{font-size:11px;color:var(--text2);}
+.dist-chart{display:flex;align-items:flex-end;gap:10px;height:120px;padding-bottom:28px;position:relative;}
+.dist-chart::after{content:'';position:absolute;bottom:28px;left:0;right:0;height:1px;background:var(--border);pointer-events:none;}
+.dist-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;position:relative;}
+.dist-bar{width:100%;border-radius:4px 4px 0 0;transition:opacity .2s;position:relative;cursor:default;}
+.dist-bar:hover{opacity:.85;}
+.dist-bar-pct{position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:700;font-family:var(--mono);white-space:nowrap;}
+.dist-bar-label{position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:600;color:var(--text2);white-space:nowrap;}
+
+/* ─── STATS FOOTER ────────────────────────────────────────────── */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:4px;}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;display:flex;flex-direction:column;gap:6px;}
+.stat-card-label{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:6px;}
+.stat-card-value{font-size:24px;font-weight:800;font-family:var(--mono);color:var(--text);}
+.stat-card-sub{font-size:11px;color:var(--text3);}
+
+/* hidden row utility */
+.lb-row.hidden{display:none;}
 </style>
 </head>
 <body>
 <div class="app">
 
+  <!-- ─── SIDEBAR ───────────────────────────────────────────── -->
   <aside class="sidebar">
     <div class="sidebar-logo">
       <div class="logo-icon">
@@ -92,7 +258,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
       </a>
       <a class="nav-item" href="my-performance.html">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        My Performance
+        My Stats
       </a>
       <a class="nav-item" href="score-lab.html">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 20h.01M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
@@ -147,39 +313,820 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
     </div>
   </aside>
 
+  <!-- ─── MAIN ──────────────────────────────────────────────── -->
   <div class="main">
     <header class="topbar">
       <div class="topbar-left">
         <h1>Leaderboard</h1>
-        <p>Top traders ranked by CLIMB Score</p>
+        <p>Classement global des traders Climber Trade par CLIMB Score</p>
       </div>
       <div class="topbar-right">
         <div class="lang-switcher">
-          <button class="lang-btn active">EN</button>
-          <button class="lang-btn">FR</button>
+          <button class="lang-btn">EN</button>
+          <button class="lang-btn active">FR</button>
           <button class="lang-btn">ES</button>
         </div>
         <div class="pool-badge">
           <div class="pool-icon">$</div>
           <div class="pool-info">
             <div class="pool-label"><span class="pool-dot"></span>Climber Liquidity Pool</div>
-            <div class="pool-amount">$250.00</div>
+            <div class="pool-amount">$2.84M</div>
           </div>
         </div>
       </div>
     </header>
 
     <div class="content">
-      <div class="coming-soon-card">
-        <div class="cs-icon">
-          <svg width="34" height="34" fill="none" stroke="#00D4FF" stroke-width="1.5" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+
+      <!-- ─── PODIUM ────────────────────────────────────────── -->
+      <div class="podium-section">
+        <div class="podium-eyebrow">
+          <div class="podium-title">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            Top 3 Traders — Ce mois
+          </div>
+          <div class="podium-period">Période : Mars 2026</div>
         </div>
-        <div class="cs-title">Coming Soon</div>
-        <div class="cs-subtitle">The Leaderboard is currently in development. Track your rank among all Climber Trade traders, view score distributions, and see who leads the pack. Check back soon.</div>
-        <div class="cs-badge">In Development</div>
+
+        <div class="podium-stage">
+
+          <!-- 2nd place -->
+          <div class="pedestal ped-2">
+            <div class="pedestal-avatar">
+              <span class="crown">🥈</span>
+              M
+            </div>
+            <div class="pedestal-name">M*****7</div>
+            <div class="pedestal-score">95.2</div>
+            <div class="pedestal-rank-badge">
+              <span class="rank-pill diamond"><span class="dot"></span>Diamond</span>
+            </div>
+            <div class="pedestal-block" style="width:120px;">#2</div>
+          </div>
+
+          <!-- 1st place -->
+          <div class="pedestal ped-1" style="margin-bottom:0;">
+            <div class="pedestal-avatar">
+              <span class="crown">👑</span>
+              J
+            </div>
+            <div class="pedestal-name">J*****k</div>
+            <div class="pedestal-score">97.8</div>
+            <div class="pedestal-rank-badge">
+              <span class="rank-pill diamond"><span class="dot"></span>Diamond</span>
+            </div>
+            <div class="pedestal-block" style="width:140px;">#1</div>
+          </div>
+
+          <!-- 3rd place -->
+          <div class="pedestal ped-3">
+            <div class="pedestal-avatar">
+              <span class="crown">🥉</span>
+              A
+            </div>
+            <div class="pedestal-name">A*****n</div>
+            <div class="pedestal-score">94.1</div>
+            <div class="pedestal-rank-badge">
+              <span class="rank-pill platinum"><span class="dot"></span>Platinum</span>
+            </div>
+            <div class="pedestal-block" style="width:120px;">#3</div>
+          </div>
+
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+
+      <!-- ─── YOUR POSITION ─────────────────────────────────── -->
+      <div class="my-position">
+        <div class="my-pos-rank">
+          <div class="my-pos-rank-num">#47</div>
+          <div class="my-pos-rank-label">Votre rang</div>
+        </div>
+        <div class="my-pos-divider"></div>
+        <div class="my-pos-center">
+          <div class="my-pos-score-row">
+            <div class="my-pos-score">82.4</div>
+            <span class="rank-pill gold"><span class="dot"></span>Gold</span>
+          </div>
+          <div class="my-pos-progress">
+            <div class="my-pos-progress-bar">
+              <div class="my-pos-progress-fill" style="width:82.4%;"></div>
+            </div>
+            <div class="my-pos-hint">+2.6 pts pour atteindre <strong style="color:var(--purple)">Platinum</strong> (85)</div>
+          </div>
+        </div>
+        <div class="my-pos-divider"></div>
+        <div class="my-pos-right">
+          <div class="my-pos-change">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+            ▲ +3 places ce mois
+          </div>
+          <div style="font-size:11px;color:var(--text3);">Depuis le 01 mars 2026</div>
+        </div>
+      </div>
+
+      <!-- ─── FILTER BAR ─────────────────────────────────────── -->
+      <div class="filter-bar">
+        <div class="search-wrap">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input class="search-input" id="searchInput" type="text" placeholder="Rechercher un trader...">
+        </div>
+        <div class="filter-tabs" id="filterTabs">
+          <button class="filter-tab active" data-filter="all">Tous</button>
+          <button class="filter-tab" data-filter="diamond">
+            <span style="color:var(--teal);margin-right:3px;">◆</span>Diamond
+          </button>
+          <button class="filter-tab" data-filter="platinum">
+            <span style="color:var(--purple);margin-right:3px;">◆</span>Platinum
+          </button>
+          <button class="filter-tab" data-filter="gold">
+            <span style="color:var(--amber);margin-right:3px;">◆</span>Gold
+          </button>
+          <button class="filter-tab" data-filter="live">Évaluation Live</button>
+        </div>
+        <div class="filter-right">
+          <div class="period-tabs">
+            <button class="period-tab active">Ce mois</button>
+            <button class="period-tab">Tout temps</button>
+          </div>
+          <div class="trader-count" id="traderCount"><strong>1 247</strong> traders</div>
+        </div>
+      </div>
+
+      <!-- ─── LEADERBOARD TABLE ──────────────────────────────── -->
+      <div class="table-wrap">
+        <table class="lb-table" id="lbTable">
+          <thead>
+            <tr>
+              <th class="center" style="width:52px;">Rang</th>
+              <th>Trader</th>
+              <th style="width:130px;">Score CLIMB</th>
+              <th class="center" style="width:110px;">Rang</th>
+              <th class="center" style="width:90px;">Variation</th>
+              <th class="center" style="width:110px;">Statut</th>
+              <th class="center" style="width:90px;">Jours actifs</th>
+            </tr>
+          </thead>
+          <tbody id="lbBody">
+
+            <!-- Row 1 — Gold medal -->
+            <tr class="lb-row" data-rank="diamond" data-status="live" data-name="J*****k">
+              <td class="center"><div class="rank-num gold-medal">1</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#F59E0B22;color:#F59E0B;border:1px solid #F59E0B33;">J</div>
+                  <div>
+                    <div class="trader-name">J*****k</div>
+                    <div class="trader-days">Paris, FR</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">97.8</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:97.8%;background:var(--teal);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill diamond"><span class="dot"></span>Diamond</span></td>
+              <td class="center"><span class="var-up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>+1</span></td>
+              <td class="center"><span class="status-live"><span class="status-live-dot"></span>Live</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">247</td>
+            </tr>
+
+            <!-- Row 2 — Silver medal -->
+            <tr class="lb-row" data-rank="diamond" data-status="live" data-name="M*****7">
+              <td class="center"><div class="rank-num silver-medal">2</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#9CA3AF1A;color:#C4C4CC;border:1px solid #9CA3AF33;">M</div>
+                  <div>
+                    <div class="trader-name">M*****7</div>
+                    <div class="trader-days">Berlin, DE</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">95.2</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:95.2%;background:var(--teal);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill diamond"><span class="dot"></span>Diamond</span></td>
+              <td class="center"><span class="var-up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>+4</span></td>
+              <td class="center"><span class="status-live"><span class="status-live-dot"></span>Live</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">312</td>
+            </tr>
+
+            <!-- Row 3 — Bronze medal -->
+            <tr class="lb-row" data-rank="platinum" data-status="live" data-name="A*****n">
+              <td class="center"><div class="rank-num bronze-medal">3</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#CD7F321A;color:#CD7F32;border:1px solid #CD7F3233;">A</div>
+                  <div>
+                    <div class="trader-name">A*****n</div>
+                    <div class="trader-days">Madrid, ES</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">94.1</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:94.1%;background:var(--purple);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill platinum"><span class="dot"></span>Platinum</span></td>
+              <td class="center"><span class="var-down"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>-1</span></td>
+              <td class="center"><span class="status-live"><span class="status-live-dot"></span>Live</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">189</td>
+            </tr>
+
+            <!-- Row 4 -->
+            <tr class="lb-row" data-rank="platinum" data-status="live" data-name="trader_R4***">
+              <td class="center"><div class="rank-num regular">4</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF622;">R</div>
+                  <div>
+                    <div class="trader-name">trader_R4***</div>
+                    <div class="trader-days">London, UK</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">92.7</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:92.7%;background:var(--purple);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill platinum"><span class="dot"></span>Platinum</span></td>
+              <td class="center"><span class="var-up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>+2</span></td>
+              <td class="center"><span class="status-live"><span class="status-live-dot"></span>Live</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">143</td>
+            </tr>
+
+            <!-- Row 5 -->
+            <tr class="lb-row" data-rank="platinum" data-status="live" data-name="trader_S5***">
+              <td class="center"><div class="rank-num regular">5</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF622;">S</div>
+                  <div>
+                    <div class="trader-name">trader_S5***</div>
+                    <div class="trader-days">Zurich, CH</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">91.4</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:91.4%;background:var(--purple);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill platinum"><span class="dot"></span>Platinum</span></td>
+              <td class="center"><span class="var-flat">—</span></td>
+              <td class="center"><span class="status-live"><span class="status-live-dot"></span>Live</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">201</td>
+            </tr>
+
+            <!-- Row 6 -->
+            <tr class="lb-row" data-rank="platinum" data-status="live" data-name="trader_K6***">
+              <td class="center"><div class="rank-num regular">6</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF622;">K</div>
+                  <div>
+                    <div class="trader-name">trader_K6***</div>
+                    <div class="trader-days">Amsterdam, NL</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">90.8</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:90.8%;background:var(--purple);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill platinum"><span class="dot"></span>Platinum</span></td>
+              <td class="center"><span class="var-down"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>-2</span></td>
+              <td class="center"><span class="status-live"><span class="status-live-dot"></span>Live</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">167</td>
+            </tr>
+
+            <!-- Row 7 -->
+            <tr class="lb-row" data-rank="platinum" data-status="live" data-name="trader_L7***">
+              <td class="center"><div class="rank-num regular">7</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF622;">L</div>
+                  <div>
+                    <div class="trader-name">trader_L7***</div>
+                    <div class="trader-days">New York, US</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">89.9</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:89.9%;background:var(--purple);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill platinum"><span class="dot"></span>Platinum</span></td>
+              <td class="center"><span class="var-up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>+5</span></td>
+              <td class="center"><span class="status-live"><span class="status-live-dot"></span>Live</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">88</td>
+            </tr>
+
+            <!-- Row 8 -->
+            <tr class="lb-row" data-rank="platinum" data-status="eval" data-name="trader_P8***">
+              <td class="center"><div class="rank-num regular">8</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF622;">P</div>
+                  <div>
+                    <div class="trader-name">trader_P8***</div>
+                    <div class="trader-days">Dubai, AE</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">88.5</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:88.5%;background:var(--purple);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill platinum"><span class="dot"></span>Platinum</span></td>
+              <td class="center"><span class="var-up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>+3</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">54</td>
+            </tr>
+
+            <!-- Row 9 -->
+            <tr class="lb-row" data-rank="platinum" data-status="eval" data-name="trader_F9***">
+              <td class="center"><div class="rank-num regular">9</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF622;">F</div>
+                  <div>
+                    <div class="trader-name">trader_F9***</div>
+                    <div class="trader-days">Toronto, CA</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">87.1</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:87.1%;background:var(--purple);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill platinum"><span class="dot"></span>Platinum</span></td>
+              <td class="center"><span class="var-flat">—</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">41</td>
+            </tr>
+
+            <!-- Row 10 -->
+            <tr class="lb-row" data-rank="platinum" data-status="eval" data-name="trader_T0***">
+              <td class="center"><div class="rank-num regular">10</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#8B5CF618;color:var(--purple);border:1px solid #8B5CF622;">T</div>
+                  <div>
+                    <div class="trader-name">trader_T0***</div>
+                    <div class="trader-days">Seoul, KR</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">86.0</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:86%;background:var(--purple);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill platinum"><span class="dot"></span>Platinum</span></td>
+              <td class="center"><span class="var-down"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>-1</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">37</td>
+            </tr>
+
+            <!-- Row 11 -->
+            <tr class="lb-row" data-rank="gold" data-status="eval" data-name="trader_B1***">
+              <td class="center"><div class="rank-num regular">11</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B22;">B</div>
+                  <div>
+                    <div class="trader-name">trader_B1***</div>
+                    <div class="trader-days">Sydney, AU</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">84.3</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:84.3%;background:var(--amber);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill gold"><span class="dot"></span>Gold</span></td>
+              <td class="center"><span class="var-up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>+6</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">62</td>
+            </tr>
+
+            <!-- Row 12 -->
+            <tr class="lb-row" data-rank="gold" data-status="eval" data-name="trader_H2***">
+              <td class="center"><div class="rank-num regular">12</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B22;">H</div>
+                  <div>
+                    <div class="trader-name">trader_H2***</div>
+                    <div class="trader-days">Singapore, SG</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">83.1</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:83.1%;background:var(--amber);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill gold"><span class="dot"></span>Gold</span></td>
+              <td class="center"><span class="var-flat">—</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">78</td>
+            </tr>
+
+            <!-- Row 13 -->
+            <tr class="lb-row" data-rank="gold" data-status="eval" data-name="trader_W3***">
+              <td class="center"><div class="rank-num regular">13</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B22;">W</div>
+                  <div>
+                    <div class="trader-name">trader_W3***</div>
+                    <div class="trader-days">Tokyo, JP</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">82.9</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:82.9%;background:var(--amber);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill gold"><span class="dot"></span>Gold</span></td>
+              <td class="center"><span class="var-down"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>-3</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">55</td>
+            </tr>
+
+            <!-- Row 14 -->
+            <tr class="lb-row" data-rank="gold" data-status="eval" data-name="trader_C4***">
+              <td class="center"><div class="rank-num regular">14</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B22;">C</div>
+                  <div>
+                    <div class="trader-name">trader_C4***</div>
+                    <div class="trader-days">Milan, IT</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">81.7</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:81.7%;background:var(--amber);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill gold"><span class="dot"></span>Gold</span></td>
+              <td class="center"><span class="var-up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>+2</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">44</td>
+            </tr>
+
+            <!-- Row 15 -->
+            <tr class="lb-row" data-rank="gold" data-status="eval" data-name="trader_N5***">
+              <td class="center"><div class="rank-num regular">15</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B22;">N</div>
+                  <div>
+                    <div class="trader-name">trader_N5***</div>
+                    <div class="trader-days">Mumbai, IN</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">80.4</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:80.4%;background:var(--amber);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill gold"><span class="dot"></span>Gold</span></td>
+              <td class="center"><span class="var-flat">—</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">33</td>
+            </tr>
+
+            <!-- Row 16 -->
+            <tr class="lb-row" data-rank="gold" data-status="eval" data-name="trader_D6***">
+              <td class="center"><div class="rank-num regular">16</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B22;">D</div>
+                  <div>
+                    <div class="trader-name">trader_D6***</div>
+                    <div class="trader-days">Chicago, US</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">79.2</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:79.2%;background:var(--amber);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill gold"><span class="dot"></span>Gold</span></td>
+              <td class="center"><span class="var-down"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>-2</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">29</td>
+            </tr>
+
+            <!-- Row 17 -->
+            <tr class="lb-row" data-rank="gold" data-status="eval" data-name="trader_V7***">
+              <td class="center"><div class="rank-num regular">17</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B22;">V</div>
+                  <div>
+                    <div class="trader-name">trader_V7***</div>
+                    <div class="trader-days">São Paulo, BR</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">78.6</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:78.6%;background:var(--amber);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill gold"><span class="dot"></span>Gold</span></td>
+              <td class="center"><span class="var-up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>+1</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">71</td>
+            </tr>
+
+            <!-- Row 18 -->
+            <tr class="lb-row" data-rank="gold" data-status="eval" data-name="trader_X8***">
+              <td class="center"><div class="rank-num regular">18</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B22;">X</div>
+                  <div>
+                    <div class="trader-name">trader_X8***</div>
+                    <div class="trader-days">Shanghai, CN</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">77.0</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:77%;background:var(--amber);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill gold"><span class="dot"></span>Gold</span></td>
+              <td class="center"><span class="var-flat">—</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">48</td>
+            </tr>
+
+            <!-- Row 19 -->
+            <tr class="lb-row" data-rank="gold" data-status="eval" data-name="trader_E9***">
+              <td class="center"><div class="rank-num regular">19</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B22;">E</div>
+                  <div>
+                    <div class="trader-name">trader_E9***</div>
+                    <div class="trader-days">Stockholm, SE</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">76.1</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:76.1%;background:var(--amber);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill gold"><span class="dot"></span>Gold</span></td>
+              <td class="center"><span class="var-down"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>-4</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">36</td>
+            </tr>
+
+            <!-- Row 20 -->
+            <tr class="lb-row" data-rank="gold" data-status="eval" data-name="trader_Q0***">
+              <td class="center"><div class="rank-num regular">20</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#F59E0B18;color:var(--amber);border:1px solid #F59E0B22;">Q</div>
+                  <div>
+                    <div class="trader-name">trader_Q0***</div>
+                    <div class="trader-days">Warsaw, PL</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val">75.3</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:75.3%;background:var(--amber);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill gold"><span class="dot"></span>Gold</span></td>
+              <td class="center"><span class="var-up"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>+7</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--text2);font-size:12px;">31</td>
+            </tr>
+
+            <!-- separator row indicating gap -->
+            <tr id="gapRow" style="background:var(--bg);">
+              <td colspan="7" style="text-align:center;padding:7px 14px;font-size:11px;color:var(--text3);font-family:var(--mono);letter-spacing:.5px;">
+                · · · · · · · · · · · · · · · · · · · ·  rangs 21–46  · · · · · · · · · · · · · · · · · · · ·
+              </td>
+            </tr>
+
+            <!-- Row 47 — USER (highlighted) -->
+            <tr class="lb-row row-me" data-rank="gold" data-status="eval" data-name="CTRF1M-000001">
+              <td class="center"><div class="rank-num me">47</div></td>
+              <td>
+                <div class="trader-cell">
+                  <div class="trader-icon" style="background:#00D4FF18;color:var(--teal);border:1px solid #00D4FF33;">C</div>
+                  <div>
+                    <div class="trader-name">
+                      CTRF1M-0001
+                      <span class="badge-vous">VOUS</span>
+                    </div>
+                    <div class="trader-days">Mon compte</div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="score-val" style="color:var(--teal);">82.4</div>
+                <div class="score-bar"><div class="score-bar-fill" style="width:82.4%;background:var(--teal);"></div></div>
+              </td>
+              <td class="center"><span class="rank-pill gold"><span class="dot"></span>Gold</span></td>
+              <td class="center"><span class="var-up" style="color:var(--teal);"><svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>+3</span></td>
+              <td class="center"><span class="status-eval">Évaluation</span></td>
+              <td class="center" style="font-family:var(--mono);color:var(--teal);font-size:12px;">67</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ─── DISTRIBUTION CHART ────────────────────────────── -->
+      <div class="dist-section">
+        <div class="dist-header">
+          <div>
+            <div class="dist-title">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 20h.01M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
+              Distribution des scores — 1 247 traders
+            </div>
+            <div class="dist-subtitle" style="margin-top:4px;">Répartition par niveau de rang · Données en temps réel</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:var(--text2);">
+            <span style="width:8px;height:8px;border-radius:2px;background:var(--teal);display:inline-block;"></span>Diamond / Platinum
+            <span style="width:8px;height:8px;border-radius:2px;background:var(--amber);display:inline-block;margin-left:6px;"></span>Gold
+            <span style="width:8px;height:8px;border-radius:2px;background:#6B7280;display:inline-block;margin-left:6px;"></span>Silver / Bronze / No rank
+          </div>
+        </div>
+
+        <div class="dist-chart">
+
+          <!-- Diamond 3% -->
+          <div class="dist-bar-wrap">
+            <div class="dist-bar" style="height:11%;background:var(--teal);opacity:.9;">
+              <span class="dist-bar-pct" style="color:var(--teal);">3%</span>
+            </div>
+            <span class="dist-bar-label" style="color:var(--teal);">Diamond</span>
+          </div>
+
+          <!-- Platinum 12% -->
+          <div class="dist-bar-wrap">
+            <div class="dist-bar" style="height:44%;background:var(--purple);opacity:.85;">
+              <span class="dist-bar-pct" style="color:var(--purple);">12%</span>
+            </div>
+            <span class="dist-bar-label" style="color:var(--purple);">Platinum</span>
+          </div>
+
+          <!-- Gold 25% -->
+          <div class="dist-bar-wrap">
+            <div class="dist-bar" style="height:91%;background:var(--amber);opacity:.85;">
+              <span class="dist-bar-pct" style="color:var(--amber);">25%</span>
+            </div>
+            <span class="dist-bar-label" style="color:var(--amber);">Gold</span>
+          </div>
+
+          <!-- Silver 35% -->
+          <div class="dist-bar-wrap">
+            <div class="dist-bar" style="height:100%;background:#9CA3AF;opacity:.7;">
+              <span class="dist-bar-pct" style="color:#9CA3AF;">35%</span>
+            </div>
+            <span class="dist-bar-label" style="color:#9CA3AF;">Silver</span>
+          </div>
+
+          <!-- Bronze 18% -->
+          <div class="dist-bar-wrap">
+            <div class="dist-bar" style="height:65%;background:#CD7F32;opacity:.75;">
+              <span class="dist-bar-pct" style="color:#CD7F32;">18%</span>
+            </div>
+            <span class="dist-bar-label" style="color:#CD7F32;">Bronze</span>
+          </div>
+
+          <!-- No Rank 7% -->
+          <div class="dist-bar-wrap">
+            <div class="dist-bar" style="height:25%;background:var(--text3);opacity:.6;">
+              <span class="dist-bar-pct" style="color:var(--text3);">7%</span>
+            </div>
+            <span class="dist-bar-label" style="color:var(--text3);">No Rank</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ─── STATS FOOTER ──────────────────────────────────── -->
+      <div class="stats-row">
+
+        <div class="stat-card">
+          <div class="stat-card-label">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Score moyen global
+          </div>
+          <div class="stat-card-value">64.2</div>
+          <div class="stat-card-sub">Tous niveaux confondus · 1 247 traders</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-label">
+            <span class="status-live-dot" style="display:inline-block;flex-shrink:0;"></span>
+            Traders Live actifs
+          </div>
+          <div class="stat-card-value" style="color:var(--green);">23</div>
+          <div class="stat-card-sub">Capital alloué depuis le pool · 7 Elite</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-label">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            Top scorer ce mois
+          </div>
+          <div class="stat-card-value" style="color:var(--amber);">J*****k</div>
+          <div class="stat-card-sub">Score : 97.8 · Diamond · Live actif</div>
+        </div>
+
+      </div>
+
+    </div><!-- .content -->
+  </div><!-- .main -->
+
+</div><!-- .app -->
+
+<script>
+(function(){
+
+  // ── Filter tabs ──────────────────────────────────────────────
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  const periodTabs = document.querySelectorAll('.period-tab');
+  const searchInput = document.getElementById('searchInput');
+  const rows = document.querySelectorAll('#lbBody .lb-row');
+  const gapRow = document.getElementById('gapRow');
+  const traderCount = document.getElementById('traderCount');
+
+  let activeFilter = 'all';
+  let searchQuery = '';
+
+  function applyFilters(){
+    let visible = 0;
+    rows.forEach(function(row){
+      const rank = row.dataset.rank;
+      const status = row.dataset.status;
+      const name = (row.dataset.name || '').toLowerCase();
+      const isMe = row.classList.contains('row-me');
+
+      let rankMatch = true;
+      if(activeFilter === 'diamond') rankMatch = rank === 'diamond';
+      else if(activeFilter === 'platinum') rankMatch = rank === 'platinum';
+      else if(activeFilter === 'gold') rankMatch = rank === 'gold';
+      else if(activeFilter === 'live') rankMatch = status === 'live';
+
+      let searchMatch = true;
+      if(searchQuery){
+        searchMatch = name.includes(searchQuery) || (isMe && 'ctrf1m-0001'.includes(searchQuery));
+      }
+
+      const show = rankMatch && searchMatch;
+      row.classList.toggle('hidden', !show);
+      if(show) visible++;
+    });
+
+    // Hide gap row when filtering/searching
+    const hideGap = activeFilter !== 'all' || searchQuery !== '';
+    if(gapRow) gapRow.style.display = hideGap ? 'none' : '';
+
+    traderCount.innerHTML = '<strong>' + visible.toLocaleString('fr-FR') + '</strong> traders';
+  }
+
+  filterTabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      filterTabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      activeFilter = tab.dataset.filter;
+      applyFilters();
+    });
+  });
+
+  periodTabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      periodTabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+    });
+  });
+
+  searchInput.addEventListener('input', function(){
+    searchQuery = searchInput.value.trim().toLowerCase();
+    applyFilters();
+  });
+
+  // ── Lang switcher ────────────────────────────────────────────
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+    });
+  });
+
+})();
+</script>
+
 </body>
 </html>
