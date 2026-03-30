@@ -436,7 +436,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
             </div>
             <div class="next-level" style="margin-top:8px;font-size:11px;">
               <span style="color:var(--text3);">Commission :</span> <strong style="color:var(--teal);">15% récurrents à vie</strong>
-              &nbsp;·&nbsp; <span style="color:var(--text3);">ClimbCoins :</span> <strong style="color:var(--amber);">Ȼ 5 / abo / mois</strong>
+              &nbsp;·&nbsp; <span style="color:var(--text3);">SummitCoins :</span> <strong style="color:var(--amber);">Ŝ 2.5 / abo / mois</strong>
             </div>
           </div>
         </div>
@@ -490,7 +490,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
       <div class="tabs-row">
         <button class="tab-btn active" onclick="switchTab('dashboard',this)">Tableau de bord</button>
         <button class="tab-btn" onclick="switchTab('codes',this)">Codes &amp; Promo</button>
-        <button class="tab-btn" onclick="switchTab('giveaway',this)">ClimbCoins</button>
+        <button class="tab-btn" onclick="switchTab('giveaway',this)">SummitCoins</button>
         <button class="tab-btn" onclick="switchTab('ressources',this)">Ressources</button>
       </div>
 
@@ -621,12 +621,12 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
               <div class="gen-icon">🎁</div>
               <div>
                 <h3>Générateur de coupons offerts</h3>
-                <p>Utilisez vos ClimbCoins pour offrir des accès gratuits à vos prospects</p>
+                <p>Utilisez vos SummitCoins pour offrir des accès gratuits à vos prospects</p>
               </div>
             </div>
             <div class="coin-balance">
-              <div class="coin-balance-label">Solde ClimbCoins</div>
-              <div class="coin-balance-val" id="coinBalanceDisp">Ȼ 170.00</div>
+              <div class="coin-balance-label">Solde SummitCoins</div>
+              <div class="coin-balance-val" id="coinBalanceDisp">Ŝ 85.00</div>
             </div>
           </div>
 
@@ -634,9 +634,9 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
             <div class="gen-select-wrap">
               <div class="gen-label">Type de coupon</div>
               <select class="gen-select" id="couponType" onchange="updateGenSummary()">
-                <option value="discovery" data-cost="15">Discovery 30 jours — Ȼ 15</option>
-                <option value="standard1" data-cost="35">Standard 1 mois offert — Ȼ 35</option>
-                <option value="discount20" data-cost="20">Réduction 20% Standard — Ȼ 20</option>
+                <option value="discovery" data-cost="8">Discovery 30 jours — Ŝ 8</option>
+                <option value="standard1" data-cost="18">Standard 1 mois offert — Ŝ 18</option>
+                <option value="discount20" data-cost="10">Réduction 20% Standard — Ŝ 10</option>
               </select>
             </div>
             <div class="gen-qty-wrap">
@@ -651,10 +651,10 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 
           <div class="gen-summary">
             <div class="gen-sum-row"><span>Coupon sélectionné</span><span class="gen-sum-val" id="genSumType">Discovery 30 jours</span></div>
-            <div class="gen-sum-row"><span>Coût unitaire</span><span class="gen-sum-val" id="genSumCost">Ȼ 15</span></div>
+            <div class="gen-sum-row"><span>Coût unitaire</span><span class="gen-sum-val" id="genSumCost">Ŝ 8</span></div>
             <div class="gen-sum-row"><span>Quantité</span><span class="gen-sum-val" id="genSumQty">× 1</span></div>
-            <div class="gen-sum-row total"><span>COÛT TOTAL</span><span class="gen-sum-val" id="genSumTotal">Ȼ 15</span></div>
-            <div class="gen-sum-row remaining"><span>Solde restant après génération</span><span class="gen-sum-val" id="genSumRemaining">Ȼ 155.00</span></div>
+            <div class="gen-sum-row total"><span>COÛT TOTAL</span><span class="gen-sum-val" id="genSumTotal">Ŝ 8</span></div>
+            <div class="gen-sum-row remaining"><span>Solde restant après génération</span><span class="gen-sum-val" id="genSumRemaining">Ŝ 77.00</span></div>
           </div>
 
           <button class="gen-submit" onclick="generateCoupons()">
@@ -715,13 +715,13 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
           <div class="gw-header-left">
             <div class="gw-coin-icon">Ȼ</div>
             <div class="gw-header-text">
-              <h3>Ma tirelire ClimbCoins</h3>
-              <p>Ȼ 5 crédités automatiquement par abonné Standard actif, par mois</p>
+              <h3>Ma tirelire SummitCoins</h3>
+              <p>Ŝ 2.5 crédités automatiquement par abonné Standard actif, par mois</p>
             </div>
           </div>
           <div class="gw-balance-wrap">
             <div class="gw-balance-label">Solde disponible</div>
-            <div class="gw-balance-val">Ȼ 170.00</div>
+            <div class="gw-balance-val">Ŝ 85.00</div>
           </div>
         </div>
 
@@ -736,7 +736,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
             <div class="gw-stat-label">Convertis en abonnés</div>
           </div>
           <div class="gw-stat positive">
-            <div class="gw-stat-val positive">Ȼ +170</div>
+            <div class="gw-stat-val positive">Ŝ +85</div>
             <div class="gw-stat-label">Gagné ce mois</div>
           </div>
         </div>
@@ -744,16 +744,16 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
         <!-- Calculateur ClimbCoins -->
         <div class="calc-card">
           <div class="calc-head">
-            <div class="calc-title">Calculateur ClimbCoins</div>
+            <div class="calc-title">Calculateur SummitCoins</div>
             <select class="calc-level-select" id="gwLevelSelect" onchange="calcCoins()">
-              <option value="1.0">Starter — Ȼ 3/abo/mois</option>
-              <option value="1.25">Ascent — Ȼ 4/abo/mois</option>
-              <option value="1.5" selected>Partner — Ȼ 5/abo/mois</option>
-              <option value="2.0">Pro — Ȼ 6/abo/mois</option>
-              <option value="2.5">Elite — Ȼ 8/abo/mois</option>
+              <option value="1.0">Starter — Ŝ 1/abo/mois</option>
+              <option value="1.5">Ascent — Ŝ 1.5/abo/mois</option>
+              <option value="2.5" selected>Partner — Ŝ 2.5/abo/mois</option>
+              <option value="3.0">Pro — Ŝ 3/abo/mois</option>
+              <option value="4.0">Elite — Ŝ 4/abo/mois</option>
             </select>
           </div>
-          <div class="calc-sub">Ajustez les curseurs pour estimer vos ClimbCoins mensuels</div>
+          <div class="calc-sub">Ajustez les curseurs pour estimer vos SummitCoins mensuels</div>
           <div class="calc-products">
             <div class="calc-product">
               <div class="calc-product-label label-standard">Standard $199/mo</div>
@@ -794,8 +794,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
           </div>
           <div class="calc-results">
             <div class="calc-result-card">
-              <div class="calc-result-val" id="calcCoinsTotal">Ȼ 0</div>
-              <div class="calc-result-label">ClimbCoins générés/mois</div>
+              <div class="calc-result-val" id="calcCoinsTotal">Ŝ 0</div>
+              <div class="calc-result-label">SummitCoins générés/mois</div>
             </div>
             <div class="calc-result-card">
               <div class="calc-result-val" id="calcSalesTotal">0</div>
@@ -810,20 +810,20 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 
         <!-- Ce que vous pouvez offrir -->
         <div class="offer-section">
-          <div class="offer-title">Ce que vous pouvez offrir avec vos ClimbCoins</div>
+          <div class="offer-title">Ce que vous pouvez offrir avec vos SummitCoins</div>
           <div class="offer-grid">
             <div class="offer-item">
-              <div class="offer-cost">Ȼ 15</div>
+              <div class="offer-cost">Ŝ 8</div>
               <div class="offer-name">Discovery gratuit</div>
               <div class="offer-desc">30 jours d'évaluation offerts — idéal pour convaincre</div>
             </div>
             <div class="offer-item">
-              <div class="offer-cost">Ȼ 20</div>
+              <div class="offer-cost">Ŝ 10</div>
               <div class="offer-name">Réduction 20%</div>
               <div class="offer-desc">Code -20% sur le premier mois Standard ($199 → $159)</div>
             </div>
             <div class="offer-item">
-              <div class="offer-cost">Ȼ 35</div>
+              <div class="offer-cost">Ŝ 18</div>
               <div class="offer-name">Standard 1 mois offert</div>
               <div class="offer-desc">Un mois complet Standard offert à votre prospect</div>
             </div>
@@ -896,14 +896,14 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
             <div class="rc-slider-item">
               <div class="rc-slider-label">Visiteurs mensuels</div>
               <div class="rc-slider-val" id="rcVisitors">1 000</div>
-              <input type="range" class="slider-input" min="100" max="50000" step="100" value="1000" id="slVisitors" oninput="calcRevenue()">
-              <div class="rc-slider-bounds"><span>100</span><span>50 000</span></div>
+              <input type="range" class="slider-input" min="100" max="20000" step="100" value="1000" id="slVisitors" oninput="calcRevenue()">
+              <div class="rc-slider-bounds"><span>100</span><span>20 000</span></div>
             </div>
             <div class="rc-slider-item">
               <div class="rc-slider-label">Taux de conversion</div>
               <div class="rc-slider-val" id="rcConversion">2%</div>
-              <input type="range" class="slider-input" min="1" max="15" step="0.5" value="2" id="slConversion" oninput="calcRevenue()">
-              <div class="rc-slider-bounds"><span>1%</span><span>15%</span></div>
+              <input type="range" class="slider-input" min="0.5" max="8" step="0.5" value="2" id="slConversion" oninput="calcRevenue()">
+              <div class="rc-slider-bounds"><span>0.5%</span><span>8%</span></div>
             </div>
             <div class="rc-slider-item">
               <div class="rc-slider-label">Panier moyen</div>
@@ -1021,7 +1021,7 @@ function copyCode(){
 function toggleAff(){}
 
 /* ─── COUPON GENERATOR ──────────────────────────────────── */
-const COIN_BALANCE = 170;
+const COIN_BALANCE = 85;
 let couponQty = 1;
 function changeQty(d){ couponQty = Math.max(1, Math.min(10, couponQty+d)); document.getElementById('qtyVal').textContent=couponQty; updateGenSummary(); }
 function updateGenSummary(){
@@ -1030,18 +1030,18 @@ function updateGenSummary(){
   const names = {discovery:'Discovery 30 jours', standard1:'Standard 1 mois offert', discount20:'Réduction 20% Standard'};
   const total = cost * couponQty;
   document.getElementById('genSumType').textContent = names[sel.value] || sel.value;
-  document.getElementById('genSumCost').textContent = 'Ȼ ' + cost;
+  document.getElementById('genSumCost').textContent = 'Ŝ ' + cost;
   document.getElementById('genSumQty').textContent = '× ' + couponQty;
-  document.getElementById('genSumTotal').textContent = 'Ȼ ' + total;
+  document.getElementById('genSumTotal').textContent = 'Ŝ ' + total;
   const rem = COIN_BALANCE - total;
-  document.getElementById('genSumRemaining').textContent = rem >= 0 ? 'Ȼ ' + rem.toFixed(2) : '⚠ Solde insuffisant';
+  document.getElementById('genSumRemaining').textContent = rem >= 0 ? 'Ŝ ' + rem.toFixed(2) : '⚠ Solde insuffisant';
 }
 
 function generateCoupons(){
   const sel = document.getElementById('couponType');
   const cost = parseInt(sel.selectedOptions[0].dataset.cost);
   const total = cost * couponQty;
-  if(total > COIN_BALANCE){ alert('Solde ClimbCoins insuffisant.'); return; }
+  if(total > COIN_BALANCE){ alert('Solde SummitCoins insuffisant.'); return; }
   const tags = {discovery:'tag-discovery',standard1:'tag-standard',discount20:'tag-standard'};
   const typeLabels = {discovery:'Discovery',standard1:'Standard 1 mois',discount20:'Réd. 20%'};
   const list = document.getElementById('couponsList');
@@ -1056,8 +1056,8 @@ function generateCoupons(){
   countBadge.textContent = list.children.length;
 }
 
-/* ─── CLIMBCOINS CALCULATOR ─────────────────────────────── */
-const COIN_RATES = {starter:3, ascent:4, partner:5, pro:6, elite:8};
+/* ─── SUMMITCOINS CALCULATOR ────────────────────────────── */
+const COIN_RATES = {starter:1, ascent:1.5, partner:2.5, pro:3, elite:4};
 function calcCoins(){
   const sel = document.getElementById('gwLevelSelect');
   const rate = parseFloat(sel.value); // coins per std sub per month
@@ -1072,10 +1072,10 @@ function calcCoins(){
     const el = document.getElementById('sl'+id);
     document.getElementById('val'+id).textContent = el.value;
   });
-  const coins = Math.round(std * rate + disc * 1); // discovery earns 1 coin each
+  const coins = (std * rate + disc * 0.5).toFixed(1); // discovery earns 0.5 SC each
   const sales = std + disc;
   const volume = std * 199 + disc * 49;
-  document.getElementById('calcCoinsTotal').textContent = 'Ȼ ' + coins;
+  document.getElementById('calcCoinsTotal').textContent = 'Ŝ ' + coins;
   document.getElementById('calcSalesTotal').textContent = sales;
   document.getElementById('calcVolumeTotal').textContent = '$' + volume.toLocaleString();
 }
