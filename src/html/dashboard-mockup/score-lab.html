@@ -114,38 +114,46 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 .chart-period-btn:hover{color:var(--text);}
 .chart-period-btn.active{background:var(--card);color:var(--teal);border:1px solid var(--border2);}
 .chart-wrap{position:relative;height:280px;}
-.chart-legend{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px;}
-.chart-legend-item{display:flex;flex-direction:column;gap:3px;background:var(--card2);border:1px solid var(--border2);border-radius:8px;padding:8px 10px;cursor:default;transition:.15s;}
-.chart-legend-item:hover{border-color:var(--border);}
-.chart-legend-top{display:flex;align-items:center;gap:6px;}
-.legend-line{width:18px;height:2px;border-radius:1px;flex-shrink:0;}
-.legend-name{font-size:10px;font-weight:600;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.legend-vals{display:flex;align-items:center;justify-content:space-between;gap:4px;}
-.legend-score{font-size:15px;font-weight:800;font-family:var(--mono);color:var(--text);}
-.legend-trend{font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;}
-.legend-trend.up{color:var(--green);background:#10B98118;}
-.legend-trend.down{color:var(--red);background:#EF444418;}
 .chart-threshold-label{font-size:10px;color:#00D4FF88;margin-top:4px;display:flex;align-items:center;gap:5px;}
 .chart-threshold-label::before{content:'';width:18px;height:1px;border-top:1.5px dashed #00D4FF66;display:inline-block;}
 
+/* ── SCORE BADGE OVERLAY ── */
+.score-badge-overlay{position:absolute;top:10px;right:10px;z-index:5;background:rgba(12,12,14,0.9);border:1px solid #2a2a32;border-radius:10px;padding:10px 14px;text-align:right;pointer-events:none;}
+.score-badge-overlay .sbo-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text2);}
+.score-badge-overlay .sbo-value{font-size:32px;font-weight:900;color:var(--teal);line-height:1.1;font-family:var(--mono);}
+.score-badge-overlay .sbo-rank{font-size:11px;font-weight:700;color:var(--amber);}
+.score-badge-overlay .sbo-delta{font-size:10px;color:var(--green);}
+
+/* ── PILLAR SPARKLINE GRID ── */
+.pillar-sparkline-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px;}
+.pillar-spark-card{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
+.psc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.psc-name{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);}
+.psc-coef{font-size:9px;color:var(--text3);font-family:var(--mono);}
+.psc-canvas-wrap{margin-bottom:6px;}
+.psc-footer{display:flex;align-items:center;justify-content:space-between;}
+.psc-score{font-size:18px;font-weight:800;font-family:var(--mono);}
+.psc-trend{font-size:10px;font-weight:700;padding:2px 5px;border-radius:4px;}
+.psc-trend.up{color:var(--green);background:#10B98118;}
+.psc-trend.down{color:var(--red);background:#EF444418;}
+
 /* ── METRICS SECTION ── */
 .metrics-section-title{font-size:14px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-.metrics-section-score{font-size:22px;font-weight:800;font-family:var(--mono);color:var(--red);}
+.metrics-section-score{font-size:22px;font-weight:800;font-family:var(--mono);}
 .metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .metric-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:16px;}
-.metric-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;}
+.metric-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px;}
 .metric-card-name{font-size:12px;font-weight:700;color:var(--text);}
 .metric-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;}
 .metric-badge.good{background:#00D4FF18;color:var(--teal);}
 .metric-badge.excellent{background:#10B98118;color:var(--green);}
 .metric-badge.average{background:#F59E0B18;color:var(--amber);}
-.metric-card-body{display:flex;align-items:center;gap:12px;}
-.metric-mini-gauge{width:44px;height:44px;position:relative;flex-shrink:0;}
-.metric-mini-gauge canvas{position:absolute;top:0;left:0;}
-.metric-mini-value{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;font-weight:700;font-family:var(--mono);color:var(--text);}
-.metric-score-info{flex:1;}
-.metric-score-big{font-size:24px;font-weight:800;font-family:var(--mono);color:var(--text);}
-.metric-score-denom{font-size:11px;color:var(--text2);}
+.metric-badge.poor{background:#EF444418;color:var(--red);}
+.metric-raw-val{font-size:24px;font-weight:800;color:var(--text);margin:4px 0 12px;}
+.metric-gauge-center-wrap{position:relative;width:100px;height:100px;margin:0 auto 14px;}
+.metric-gauge-center-wrap canvas{position:absolute;top:0;left:0;}
+.mgc-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);font-size:26px;font-weight:800;font-family:var(--mono);color:var(--text);line-height:1;}
+.mgc-sub{position:absolute;top:50%;left:50%;transform:translate(-50%,16px);font-size:10px;color:var(--text3);}
 .metric-collapsible{margin-top:10px;padding-top:10px;border-top:1px solid var(--border);}
 .metric-collapsible-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:6px;}
 .metric-collapsible-body{font-size:11px;color:var(--text2);margin-top:8px;line-height:1.6;}
@@ -345,45 +353,76 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
         </div>
       </div>
 
-      <!-- Score Evolution Chart -->
+      <!-- Score Journey Chart -->
       <div class="chart-section">
         <div class="chart-section-header">
           <div class="chart-section-title">
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-            Évolution du Score CLIMB
+            Score Journey — CLIMB Score Evolution
           </div>
           <div style="display:flex;align-items:center;gap:12px;">
             <div class="chart-threshold-label">Seuil Live (85)</div>
             <div class="chart-period-tabs">
+              <button class="chart-period-btn" onclick="setChartPeriod(7,this)">7j</button>
               <button class="chart-period-btn" onclick="setChartPeriod(30,this)">30j</button>
-              <button class="chart-period-btn" onclick="setChartPeriod(60,this)">60j</button>
               <button class="chart-period-btn active" onclick="setChartPeriod(90,this)">90j</button>
             </div>
           </div>
         </div>
         <div class="chart-wrap">
           <canvas id="evolutionChart"></canvas>
+          <div class="score-badge-overlay">
+            <div class="sbo-label">CLIMB SCORE</div>
+            <div class="sbo-value">82</div>
+            <div class="sbo-rank">● GOLD</div>
+            <div class="sbo-delta">▲ +44 pts / 90j</div>
+          </div>
         </div>
-        <div class="chart-legend">
-          <div class="chart-legend-item">
-            <div class="chart-legend-top"><div class="legend-line" style="background:#00D4FF;height:3px;"></div><span class="legend-name">CLIMB Score</span></div>
-            <div class="legend-vals"><span class="legend-score" id="lv-climb" style="color:var(--teal);">63</span><span class="legend-trend up" id="lt-climb">▲ +5</span></div>
+        <!-- Pillar sparklines -->
+        <div class="pillar-sparkline-grid">
+          <div class="pillar-spark-card">
+            <div class="psc-header">
+              <span class="psc-name">Risk Mgmt</span>
+              <span class="psc-coef">×4</span>
+            </div>
+            <div class="psc-canvas-wrap"><canvas id="spark-risk" width="80" height="28"></canvas></div>
+            <div class="psc-footer">
+              <span class="psc-score" style="color:#EF4444;">64</span>
+              <span class="psc-trend up">▲ +22</span>
+            </div>
           </div>
-          <div class="chart-legend-item">
-            <div class="chart-legend-top"><div class="legend-line" style="background:#10B981;"></div><span class="legend-name">Quality Exec.</span></div>
-            <div class="legend-vals"><span class="legend-score" id="lv-qe">72</span><span class="legend-trend up" id="lt-qe">▲ +4</span></div>
+          <div class="pillar-spark-card">
+            <div class="psc-header">
+              <span class="psc-name">Performance</span>
+              <span class="psc-coef">×4</span>
+            </div>
+            <div class="psc-canvas-wrap"><canvas id="spark-perf" width="80" height="28"></canvas></div>
+            <div class="psc-footer">
+              <span class="psc-score" style="color:#6366F1;">57</span>
+              <span class="psc-trend up">▲ +29</span>
+            </div>
           </div>
-          <div class="chart-legend-item">
-            <div class="chart-legend-top"><div class="legend-line" style="background:#EF4444;"></div><span class="legend-name">Risk Mgmt</span></div>
-            <div class="legend-vals"><span class="legend-score" id="lv-rm">64</span><span class="legend-trend up" id="lt-rm">▲ +7</span></div>
+          <div class="pillar-spark-card">
+            <div class="psc-header">
+              <span class="psc-name">Consistency</span>
+              <span class="psc-coef">×3</span>
+            </div>
+            <div class="psc-canvas-wrap"><canvas id="spark-cons" width="80" height="28"></canvas></div>
+            <div class="psc-footer">
+              <span class="psc-score" style="color:#F59E0B;">55</span>
+              <span class="psc-trend up">▲ +33</span>
+            </div>
           </div>
-          <div class="chart-legend-item">
-            <div class="chart-legend-top"><div class="legend-line" style="background:#6366F1;"></div><span class="legend-name">Performance</span></div>
-            <div class="legend-vals"><span class="legend-score" id="lv-perf">57</span><span class="legend-trend down" id="lt-perf">▼ -2</span></div>
-          </div>
-          <div class="chart-legend-item">
-            <div class="chart-legend-top"><div class="legend-line" style="background:#F59E0B;"></div><span class="legend-name">Consistency</span></div>
-            <div class="legend-vals"><span class="legend-score" id="lv-cons">55</span><span class="legend-trend up" id="lt-cons">▲ +3</span></div>
+          <div class="pillar-spark-card">
+            <div class="psc-header">
+              <span class="psc-name">Quality Exec.</span>
+              <span class="psc-coef">×4</span>
+            </div>
+            <div class="psc-canvas-wrap"><canvas id="spark-qe" width="80" height="28"></canvas></div>
+            <div class="psc-footer">
+              <span class="psc-score" style="color:#10B981;">72</span>
+              <span class="psc-trend up">▲ +17</span>
+            </div>
           </div>
         </div>
       </div>
@@ -392,7 +431,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
       <div style="margin-bottom:14px;">
         <div class="metrics-section-title">
           <svg width="16" height="16" fill="none" stroke="#EF4444" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Risk Management &nbsp;<span class="metrics-section-score">60/100</span>
+          Risk Management &nbsp;<span class="metrics-section-score" style="color:#EF4444;">60/100</span>
         </div>
         <div class="metrics-grid">
 
@@ -402,15 +441,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
               <div class="metric-card-name">Absolute Net Profit</div>
               <div class="metric-badge good">Good</div>
             </div>
-            <div class="metric-card-body">
-              <div class="metric-mini-gauge">
-                <canvas id="mg1" width="44" height="44"></canvas>
-                <div class="metric-mini-value">54</div>
-              </div>
-              <div class="metric-score-info">
-                <div class="metric-score-big">54</div>
-                <div class="metric-score-denom">/100</div>
-              </div>
+            <div class="metric-raw-val">+0.72%</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg1" width="100" height="100"></canvas>
+              <div class="mgc-num">54</div>
+              <div class="mgc-sub">/100</div>
             </div>
             <div class="metric-collapsible">
               <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
@@ -425,15 +460,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
               <div class="metric-card-name">Initial Net Profit</div>
               <div class="metric-badge excellent">Excellent</div>
             </div>
-            <div class="metric-card-body">
-              <div class="metric-mini-gauge">
-                <canvas id="mg2" width="44" height="44"></canvas>
-                <div class="metric-mini-value">77</div>
-              </div>
-              <div class="metric-score-info">
-                <div class="metric-score-big">77</div>
-                <div class="metric-score-denom">/100</div>
-              </div>
+            <div class="metric-raw-val">-2.31%</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg2" width="100" height="100"></canvas>
+              <div class="mgc-num">77</div>
+              <div class="mgc-sub">/100</div>
             </div>
             <div class="metric-collapsible">
               <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
@@ -448,15 +479,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
               <div class="metric-card-name">Recovery Time After Drawdown</div>
               <div class="metric-badge average">Average</div>
             </div>
-            <div class="metric-card-body">
-              <div class="metric-mini-gauge">
-                <canvas id="mg3" width="44" height="44"></canvas>
-                <div class="metric-mini-value">50</div>
-              </div>
-              <div class="metric-score-info">
-                <div class="metric-score-big">50</div>
-                <div class="metric-score-denom">/100</div>
-              </div>
+            <div class="metric-raw-val">12 days</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg3" width="100" height="100"></canvas>
+              <div class="mgc-num">50</div>
+              <div class="mgc-sub">/100</div>
             </div>
             <div class="metric-collapsible">
               <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
@@ -471,15 +498,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
               <div class="metric-card-name">Average Lot / Leverage</div>
               <div class="metric-badge average">Average</div>
             </div>
-            <div class="metric-card-body">
-              <div class="metric-mini-gauge">
-                <canvas id="mg4" width="44" height="44"></canvas>
-                <div class="metric-mini-value">60</div>
-              </div>
-              <div class="metric-score-info">
-                <div class="metric-score-big">60</div>
-                <div class="metric-score-denom">/100</div>
-              </div>
+            <div class="metric-raw-val">10× leverage</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg4" width="100" height="100"></canvas>
+              <div class="mgc-num">60</div>
+              <div class="mgc-sub">/100</div>
             </div>
             <div class="metric-collapsible">
               <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
@@ -491,12 +514,236 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
         </div>
       </div>
 
-    </div>
+      <!-- Performance Metrics -->
+      <div style="margin-bottom:14px;">
+        <div class="metrics-section-title">
+          <svg width="16" height="16" fill="none" stroke="#6366F1" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          Performance &nbsp;<span class="metrics-section-score" style="color:#6366F1;">38/100</span>
+        </div>
+        <div class="metrics-grid">
+
+          <!-- Metric 5 — Profit Factor -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="metric-card-name">Profit Factor (PI3)</div>
+              <div class="metric-badge average">Average</div>
+            </div>
+            <div class="metric-raw-val">1.19</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg5" width="100" height="100"></canvas>
+              <div class="mgc-num">25</div>
+              <div class="mgc-sub">/100</div>
+            </div>
+            <div class="metric-collapsible">
+              <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
+              <div class="metric-collapsible-body">Ratio des profits bruts sur les pertes brutes. Une valeur > 1.5 indique un trading profitable. Votre ratio actuel de 1.19 est légèrement au-dessus du seuil de rentabilité.</div>
+              <div class="metric-tip">💡 Tip: Augmentez votre ratio gain/perte en laissant courir vos winners et en coupant rapidement vos pertes.</div>
+            </div>
+          </div>
+
+          <!-- Metric 6 — Sharpe Ratio -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="metric-card-name">Sharpe Ratio (PI1)</div>
+              <div class="metric-badge poor">Poor</div>
+            </div>
+            <div class="metric-raw-val">-0.04</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg6" width="100" height="100"></canvas>
+              <div class="mgc-num">0</div>
+              <div class="mgc-sub">/100</div>
+            </div>
+            <div class="metric-collapsible">
+              <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
+              <div class="metric-collapsible-body">Rendement ajusté au risque. Mesure le rendement par unité de risque. Valeur négative = rendement insuffisant pour le risque pris.</div>
+              <div class="metric-tip">💡 Tip: Réduisez la volatilité de votre trading en améliorant la constance de vos gains journaliers.</div>
+            </div>
+          </div>
+
+          <!-- Metric 7 — Yield/Y -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="metric-card-name">Yield / Annualized Return (PI2)</div>
+              <div class="metric-badge average">Average</div>
+            </div>
+            <div class="metric-raw-val">57%</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg7" width="100" height="100"></canvas>
+              <div class="mgc-num">50</div>
+              <div class="mgc-sub">/100</div>
+            </div>
+            <div class="metric-collapsible">
+              <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
+              <div class="metric-collapsible-body">Rendement annualisé basé sur votre performance actuelle. 50/100 correspond au benchmark marché (8%/an). Votre performance équivaut à environ 8% annualisé.</div>
+              <div class="metric-tip">💡 Tip: Maintenez votre régularité tout en cherchant à améliorer votre Profit Factor pour augmenter ce rendement.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Consistency & Trading Style Metrics -->
+      <div style="margin-bottom:14px;">
+        <div class="metrics-section-title">
+          <svg width="16" height="16" fill="none" stroke="#F59E0B" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Consistency &amp; Trading Style &nbsp;<span class="metrics-section-score" style="color:#F59E0B;">32/100</span>
+        </div>
+        <div class="metrics-grid">
+
+          <!-- Metric 8 — Win Rate -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="metric-card-name">Win Rate (CT1)</div>
+              <div class="metric-badge poor">Poor</div>
+            </div>
+            <div class="metric-raw-val">95%</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg8" width="100" height="100"></canvas>
+              <div class="mgc-num">21</div>
+              <div class="mgc-sub">/100</div>
+            </div>
+            <div class="metric-collapsible">
+              <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
+              <div class="metric-collapsible-body">Un win rate de 95% TROP élevé pénalise le score car il signale souvent un ratio R/R défavorable (petits gains, grosses pertes). L'optimal est 55-70%.</div>
+              <div class="metric-tip">💡 Tip: Cherchez un win rate de 55-70% avec un meilleur ratio gain moyen / perte moyenne.</div>
+            </div>
+          </div>
+
+          <!-- Metric 9 — Lot Stability Ratio -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="metric-card-name">Lot Stability Ratio (CT5)</div>
+              <div class="metric-badge poor">Poor</div>
+            </div>
+            <div class="metric-raw-val">0.742</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg9" width="100" height="100"></canvas>
+              <div class="mgc-num">8</div>
+              <div class="mgc-sub">/100</div>
+            </div>
+            <div class="metric-collapsible">
+              <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
+              <div class="metric-collapsible-body">Mesure la cohérence de votre sizing (Moyenne lots / Écart-type lots). Valeur < 1 = sizing très irrégulier.</div>
+              <div class="metric-tip">💡 Tip: Adoptez un modèle de sizing fixe (% risque constant) pour éliminer les variations émotionnelles.</div>
+            </div>
+          </div>
+
+          <!-- Metric 10 — Gain Days -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="metric-card-name">Gain Days (CT2)</div>
+              <div class="metric-badge excellent">Excellent</div>
+            </div>
+            <div class="metric-raw-val">4 / 4 days</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg10" width="100" height="100"></canvas>
+              <div class="mgc-num">100</div>
+              <div class="mgc-sub">/100</div>
+            </div>
+            <div class="metric-collapsible">
+              <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
+              <div class="metric-collapsible-body">Pourcentage de jours de trading avec résultat positif. 100/100 = tous vos jours de trading sont gagnants.</div>
+              <div class="metric-tip">💡 Tip: Excellent résultat — maintenez cette discipline journalière et ne la sacrifiez pas pour des trades risqués.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Quality Execution Metrics -->
+      <div style="margin-bottom:14px;">
+        <div class="metrics-section-title">
+          <svg width="16" height="16" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Quality Execution &nbsp;<span class="metrics-section-score" style="color:#10B981;">69/100</span>
+          <span style="font-size:11px;color:var(--text3);font-family:var(--mono);font-weight:400;margin-left:4px;">Multiplicateur × 0.90–1.10</span>
+        </div>
+        <div class="metrics-grid">
+
+          <!-- Metric 11 — Asymmetry / Skew -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="metric-card-name">Asymmetry / Skew (OF1)</div>
+              <div class="metric-badge excellent">Excellent</div>
+            </div>
+            <div class="metric-raw-val">0.53</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg11" width="100" height="100"></canvas>
+              <div class="mgc-num">100</div>
+              <div class="mgc-sub">/100</div>
+            </div>
+            <div class="metric-collapsible">
+              <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
+              <div class="metric-collapsible-body">Asymétrie de la distribution des rendements. Une valeur positive faible (0.0–0.5) indique des gains biaisés vers le haut — idéal.</div>
+              <div class="metric-tip">💡 Tip: Continuez à favoriser les setups asymétriques où le gain potentiel dépasse largement la perte potentielle.</div>
+            </div>
+          </div>
+
+          <!-- Metric 12 — Kurtosis -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="metric-card-name">Kurtosis (OF2)</div>
+              <div class="metric-badge excellent">Excellent</div>
+            </div>
+            <div class="metric-raw-val">0.43</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg12" width="100" height="100"></canvas>
+              <div class="mgc-num">100</div>
+              <div class="mgc-sub">/100</div>
+            </div>
+            <div class="metric-collapsible">
+              <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
+              <div class="metric-collapsible-body">"Queues" de la distribution des rendements. Valeur faible = peu d'outliers extrêmes, performance prévisible.</div>
+              <div class="metric-tip">💡 Tip: Évitez les prises de risque excessives qui génèrent des résultats extrêmes et dégradent ce score.</div>
+            </div>
+          </div>
+
+          <!-- Metric 13 — Max/Min Extreme Performance -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="metric-card-name">Max/Min Extreme Performance (OF3)</div>
+              <div class="metric-badge good">Good</div>
+            </div>
+            <div class="metric-raw-val">267%</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg13" width="100" height="100"></canvas>
+              <div class="mgc-num">74</div>
+              <div class="mgc-sub">/100</div>
+            </div>
+            <div class="metric-collapsible">
+              <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
+              <div class="metric-collapsible-body">Ratio entre votre meilleure/pire journée et votre P&amp;L journalier moyen. Valeur de 267% = vos extremes sont 2.67× votre moyenne.</div>
+              <div class="metric-tip">💡 Tip: Implémentez des limites de perte journalière strictes pour éviter les journées catastrophiques.</div>
+            </div>
+          </div>
+
+          <!-- Metric 14 — Best/Worst Daily Ratio -->
+          <div class="metric-card">
+            <div class="metric-card-header">
+              <div class="metric-card-name">Best/Worst Daily Ratio (OF4)</div>
+              <div class="metric-badge poor">Poor</div>
+            </div>
+            <div class="metric-raw-val">+$17,230</div>
+            <div class="metric-gauge-center-wrap">
+              <canvas id="mg14" width="100" height="100"></canvas>
+              <div class="mgc-num">0</div>
+              <div class="mgc-sub">/100</div>
+            </div>
+            <div class="metric-collapsible">
+              <div class="metric-collapsible-title">▸ Understanding &amp; Improvement</div>
+              <div class="metric-collapsible-body">Ratio entre votre meilleure journée et votre pire journée. Score 0 indique un déséquilibre extrême — votre meilleure journée est disproportionnée.</div>
+              <div class="metric-tip">💡 Tip: Analysez vos meilleures journées pour identifier et reproduire les conditions gagnantes de façon régulière.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- end content -->
   </div>
 </div>
 
 <script>
-// Gauge
+// ── MAIN GAUGE ──────────────────────────────────────────────────
 (function(){
   const c=document.getElementById('gaugeCanvas');
   if(!c)return;
@@ -510,275 +757,301 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
   ctx.strokeStyle='#F59E0B';ctx.lineWidth=12;ctx.lineCap='round';ctx.stroke();
 })();
 
-// ── EVOLUTION CHART ────────────────────────────────────────
+// ── SCORE JOURNEY CHART ─────────────────────────────────────────
 (function(){
   const canvas = document.getElementById('evolutionChart');
   if(!canvas) return;
 
-  // Fixed deterministic data — 19 points covering 90 days (step 5)
-  // [−90d … −5d … Today]  index 0 = oldest, 18 = Today
-  const ALL_DATA = {
-    qe:   [55,57,60,58,54,50,47,51,57,62,66,63,60,62,65,68,70,73,72],
-    rm:   [42,44,47,51,48,43,39,42,49,54,57,55,52,56,60,63,62,65,64],
-    perf: [28,31,34,37,41,39,35,37,43,49,52,50,47,51,55,57,59,58,57],
-    cons: [22,25,28,31,34,37,35,31,37,43,47,51,54,52,49,53,56,55,55],
-  };
-  // CLIMB Score = weighted average (Risk×4 + Perf×4 + Cons×3 + QE×4) / 15
-  ALL_DATA.climb = ALL_DATA.qe.map((_,i)=>
-    Math.round((ALL_DATA.rm[i]*4 + ALL_DATA.perf[i]*4 + ALL_DATA.cons[i]*3 + ALL_DATA.qe[i]*4)/15));
-
-  function makeLabels(days){
-    const labs=[], step=days<=30?2:5, pts=Math.round(days/step)+1;
-    for(let i=pts-1;i>=0;i--){labs.push(i===0?'Auj.':`-${i*step}j`);}
-    return labs;
+  // Deterministic 90-point series
+  // base(i) = 38 + 44*(i/89)  wave = 2.5*sin(i*0.15) - 1.5*sin(i*0.3)
+  function makeSeries90(startVal, endVal){
+    const pts=[];
+    for(let i=0;i<90;i++){
+      const base = startVal + (endVal - startVal)*(i/89);
+      const wave = 2.5*Math.sin(i*0.15) - 1.5*Math.sin(i*0.3);
+      pts.push(Math.round(Math.max(0, Math.min(100, base + wave))));
+    }
+    return pts;
   }
-  function sliceLast(arr, n){ return arr.slice(-n); }
 
-  // Gradient helper — called inside Chart.js backgroundColor callback
+  const CLIMB_90 = makeSeries90(38, 82);
+  // Pillar series for sparklines (used in sparkline drawing below)
+  window._sparkData = {
+    risk: makeSeries90(42, 64),
+    perf: makeSeries90(28, 57),
+    cons: makeSeries90(22, 55),
+    qe:   makeSeries90(55, 72),
+  };
+
+  function makeLabels(n){
+    const labels=[];
+    for(let i=n-1;i>=0;i--){
+      labels.push(i===0 ? 'Auj.' : `-${i}j`);
+    }
+    return labels;
+  }
+
+  let currentChart = null;
   const gradCache = {};
-  function getGrad(ctx, chartArea, hex, alpha1, alpha2){
-    const key = hex+chartArea.bottom;
+
+  function getGrad(ctx, chartArea, hex){
+    const key = hex + chartArea.bottom;
     if(gradCache[key]) return gradCache[key];
     const g = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-    g.addColorStop(0, hex + alpha1);
-    g.addColorStop(0.6, hex + alpha2);
+    g.addColorStop(0, hex + '55');
+    g.addColorStop(0.5, hex + '18');
     g.addColorStop(1, hex + '00');
     gradCache[key] = g;
     return g;
   }
 
-  // Point radius array: only last point visible
-  function pts(n){ return Array(n-1).fill(0).concat([5]); }
-  function ptHov(n){ return Array(n-1).fill(0).concat([7]); }
+  // Rank zone plugin
+  const rankZonesPlugin = {
+    id: 'rankZones',
+    beforeDatasetsDraw(chart){
+      const {ctx, chartArea, scales} = chart;
+      if(!chartArea) return;
+      const {left, right, top, bottom} = chartArea;
+      const yScale = scales.y;
 
-  let currentChart = null;
+      const zones = [
+        {min:95, max:100, color:'rgba(0,212,255,0.07)',   label:'DIAMOND'},
+        {min:85, max:95,  color:'rgba(139,92,246,0.07)',  label:'PLATINUM'},
+        {min:70, max:85,  color:'rgba(245,158,11,0.06)',  label:'GOLD'},
+        {min:50, max:70,  color:'rgba(100,116,139,0.05)', label:'SILVER'},
+        {min:0,  max:50,  color:'rgba(255,255,255,0.02)', label:'BRONZE'},
+      ];
+
+      ctx.save();
+
+      zones.forEach(z=>{
+        const yTop    = yScale.getPixelForValue(z.max);
+        const yBottom = yScale.getPixelForValue(z.min);
+        const clampedTop    = Math.max(yTop, top);
+        const clampedBottom = Math.min(yBottom, bottom);
+        if(clampedBottom <= clampedTop) return;
+
+        // Zone fill
+        ctx.fillStyle = z.color;
+        ctx.fillRect(left, clampedTop, right-left, clampedBottom-clampedTop);
+
+        // Separator line at bottom of zone (except lowest)
+        if(z.min > 0){
+          ctx.beginPath();
+          ctx.strokeStyle = z.color.replace('0.07','0.35').replace('0.06','0.3').replace('0.05','0.25').replace('0.02','0.15');
+          ctx.lineWidth = 1;
+          ctx.setLineDash([4,4]);
+          ctx.moveTo(left, clampedBottom);
+          ctx.lineTo(right, clampedBottom);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+
+        // Label on right
+        const labelY = (clampedTop + clampedBottom) / 2;
+        ctx.font = '500 9px Outfit, sans-serif';
+        ctx.fillStyle = 'rgba(240,240,240,0.2)';
+        ctx.textAlign = 'right';
+        ctx.fillText(z.label, right - 6, labelY + 3);
+      });
+
+      // Live threshold line at 85 — purple dashed
+      const y85 = yScale.getPixelForValue(85);
+      ctx.beginPath();
+      ctx.strokeStyle = '#8B5CF6';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([8,5]);
+      ctx.moveTo(left, y85);
+      ctx.lineTo(right, y85);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // "Seuil Live" label
+      ctx.font = '700 9px Outfit, sans-serif';
+      ctx.fillStyle = '#8B5CF6';
+      ctx.textAlign = 'left';
+      ctx.fillText('SEUIL LIVE', left + 6, y85 - 5);
+
+      ctx.restore();
+    }
+  };
 
   function buildChart(days){
     if(currentChart) currentChart.destroy();
-    const n = Math.round(days/5)+1;
-    const labels = makeLabels(days);
-    const qe   = sliceLast(ALL_DATA.qe,   n);
-    const rm   = sliceLast(ALL_DATA.rm,   n);
-    const perf = sliceLast(ALL_DATA.perf, n);
-    const cons = sliceLast(ALL_DATA.cons, n);
-    const clmb = sliceLast(ALL_DATA.climb,n);
-    const threshold = Array(n).fill(85);
+    Object.keys(gradCache).forEach(k=>delete gradCache[k]);
 
-    // Update legend values
-    const last = (arr)=>arr[arr.length-1];
-    const trend = (arr)=>{ const d=arr[arr.length-1]-arr[arr.length-Math.min(5,arr.length)]; return (d>=0?'▲ +':'▼ ')+Math.abs(Math.round(d)); };
-    const tClass = (arr)=>arr[arr.length-1]>=arr[arr.length-Math.min(5,arr.length)]?'up':'down';
-    [['climb',clmb],['qe',qe],['rm',rm],['perf',perf],['cons',cons]].forEach(([id,arr])=>{
-      const sv=document.getElementById('lv-'+id), st=document.getElementById('lt-'+id);
-      if(sv) sv.textContent=last(arr);
-      if(st){st.textContent=trend(arr); st.className='legend-trend '+tClass(arr);}
-    });
+    const series = CLIMB_90.slice(-days);
+    const n = series.length;
+    const labels = makeLabels(n);
 
-    currentChart = new Chart(canvas,{
-      type:'line',
-      data:{
+    // pointRadius: 0 everywhere except last point = 6
+    const pRadius = Array(n-1).fill(0).concat([6]);
+    const pHover  = Array(n-1).fill(0).concat([8]);
+
+    currentChart = new Chart(canvas, {
+      type: 'line',
+      plugins: [rankZonesPlugin],
+      data: {
         labels,
-        datasets:[
-          // Threshold line — Live seuil
-          {
-            label:'Seuil Live',
-            data: threshold,
-            borderColor:'#00D4FF44',
-            borderWidth:1.5,
-            borderDash:[6,4],
-            pointRadius:0,
-            fill:false,
-            backgroundColor:'transparent',
-            tension:0,
-            order:10,
+        datasets: [{
+          label: 'CLIMB Score',
+          data: series,
+          borderColor: '#00D4FF',
+          borderWidth: 3,
+          pointRadius: pRadius,
+          pointHoverRadius: pHover,
+          pointBackgroundColor: '#00D4FF',
+          pointBorderColor: '#0c0c0e',
+          pointBorderWidth: 2,
+          tension: 0.4,
+          fill: true,
+          backgroundColor: (ctx2)=>{
+            const {chart}=ctx2; if(!chart.chartArea) return 'transparent';
+            return getGrad(chart.ctx, chart.chartArea, '#00D4FF');
           },
-          // CLIMB Score Global — bold + fill
-          {
-            label:'CLIMB Score',
-            data: clmb,
-            borderColor:'#00D4FF',
-            borderWidth:3,
-            pointRadius: pts(n),
-            pointHoverRadius: ptHov(n),
-            pointBackgroundColor:'#00D4FF',
-            pointBorderColor:'#0c0c0e',
-            pointBorderWidth:2,
-            tension:.45,
-            fill:true,
-            backgroundColor:(ctx)=>{
-              const {chart}=ctx; if(!chart.chartArea) return 'transparent';
-              return getGrad(chart.ctx,chart.chartArea,'#00D4FF','45','18');
-            },
-            order:1,
-          },
-          // Quality Execution
-          {
-            label:'Quality Execution',
-            data: qe,
-            borderColor:'#10B981',
-            borderWidth:2,
-            pointRadius: pts(n),
-            pointHoverRadius: ptHov(n),
-            pointBackgroundColor:'#10B981',
-            pointBorderColor:'#0c0c0e',
-            pointBorderWidth:2,
-            tension:.45,
-            fill:true,
-            backgroundColor:(ctx)=>{
-              const {chart}=ctx; if(!chart.chartArea) return 'transparent';
-              return getGrad(chart.ctx,chart.chartArea,'#10B981','28','08');
-            },
-            order:2,
-          },
-          // Risk Management
-          {
-            label:'Risk Management',
-            data: rm,
-            borderColor:'#EF4444',
-            borderWidth:2,
-            pointRadius: pts(n),
-            pointHoverRadius: ptHov(n),
-            pointBackgroundColor:'#EF4444',
-            pointBorderColor:'#0c0c0e',
-            pointBorderWidth:2,
-            tension:.45,
-            fill:true,
-            backgroundColor:(ctx)=>{
-              const {chart}=ctx; if(!chart.chartArea) return 'transparent';
-              return getGrad(chart.ctx,chart.chartArea,'#EF4444','25','08');
-            },
-            order:3,
-          },
-          // Performance
-          {
-            label:'Performance',
-            data: perf,
-            borderColor:'#6366F1',
-            borderWidth:2,
-            pointRadius: pts(n),
-            pointHoverRadius: ptHov(n),
-            pointBackgroundColor:'#6366F1',
-            pointBorderColor:'#0c0c0e',
-            pointBorderWidth:2,
-            tension:.45,
-            fill:true,
-            backgroundColor:(ctx)=>{
-              const {chart}=ctx; if(!chart.chartArea) return 'transparent';
-              return getGrad(chart.ctx,chart.chartArea,'#6366F1','25','08');
-            },
-            order:4,
-          },
-          // Consistency
-          {
-            label:'Consistency',
-            data: cons,
-            borderColor:'#F59E0B',
-            borderWidth:2,
-            pointRadius: pts(n),
-            pointHoverRadius: ptHov(n),
-            pointBackgroundColor:'#F59E0B',
-            pointBorderColor:'#0c0c0e',
-            pointBorderWidth:2,
-            tension:.45,
-            fill:true,
-            backgroundColor:(ctx)=>{
-              const {chart}=ctx; if(!chart.chartArea) return 'transparent';
-              return getGrad(chart.ctx,chart.chartArea,'#F59E0B','25','08');
-            },
-            order:5,
-          },
-        ]
+        }]
       },
-      options:{
-        responsive:true,
-        maintainAspectRatio:false,
-        interaction:{ mode:'index', intersect:false },
-        plugins:{
-          legend:{ display:false },
-          tooltip:{
-            backgroundColor:'#16161a',
-            borderColor:'#2a2a32',
-            borderWidth:1,
-            padding:12,
-            titleColor:'#F0F0F0',
-            titleFont:{size:11,weight:'700'},
-            bodyColor:'#8A8A9A',
-            bodyFont:{size:11},
-            callbacks:{
-              title:(items)=>items[0].label,
-              label:(item)=>{
-                if(item.datasetIndex===0) return null; // hide threshold
-                const colors={1:'#00D4FF',2:'#10B981',3:'#EF4444',4:'#6366F1',5:'#F59E0B'};
-                const names={1:'CLIMB Score',2:'Quality Exec.',3:'Risk Mgmt',4:'Performance',5:'Consistency'};
-                const idx=item.datasetIndex;
-                return `  ${names[idx]}  ${item.raw}/100`;
-              },
-              labelColor:(item)=>{
-                const colors={1:'#00D4FF',2:'#10B981',3:'#EF4444',4:'#6366F1',5:'#F59E0B'};
-                const c=colors[item.datasetIndex]||'#8A8A9A';
-                return{borderColor:c,backgroundColor:c,borderWidth:2,borderRadius:2};
-              },
-              afterBody:()=>['','  — Seuil Live : 85/100 ——']
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode:'index', intersect:false },
+        plugins: {
+          legend: { display:false },
+          tooltip: {
+            backgroundColor: '#16161a',
+            borderColor: '#2a2a32',
+            borderWidth: 1,
+            padding: 12,
+            titleColor: '#F0F0F0',
+            titleFont: {size:11, weight:'700'},
+            bodyColor: '#8A8A9A',
+            bodyFont: {size:11},
+            callbacks: {
+              label: (item)=>`  CLIMB Score  ${item.raw}/100`,
+              labelColor: ()=>({borderColor:'#00D4FF',backgroundColor:'#00D4FF',borderWidth:2,borderRadius:2}),
+              afterBody: ()=>['','  — Seuil Live : 85/100 ——']
             }
           }
         },
-        scales:{
-          x:{
-            grid:{color:'#1e1e24',drawTicks:false},
-            border:{color:'#222228'},
-            ticks:{
-              color:'#55556A',
-              font:{size:10,family:"'Outfit',sans-serif"},
-              maxTicksLimit:10,
-              padding:6
+        scales: {
+          x: {
+            grid: {color:'#1e1e24', drawTicks:false},
+            border: {color:'#222228'},
+            ticks: {
+              color: '#55556A',
+              font: {size:10, family:"'Outfit',sans-serif"},
+              maxTicksLimit: 10,
+              padding: 6
             }
           },
-          y:{
-            min:0, max:100,
-            grid:{color:'#1e1e24',drawTicks:false},
-            border:{color:'#222228',dash:[4,4]},
-            ticks:{
-              color:'#55556A',
-              font:{size:10,family:"'Outfit',sans-serif"},
-              stepSize:20,
-              padding:8,
-              callback:(v)=> v===85 ? '' : v
+          y: {
+            min: 0, max: 100,
+            grid: {color:'#1e1e24', drawTicks:false},
+            border: {color:'#222228', dash:[4,4]},
+            ticks: {
+              color: '#55556A',
+              font: {size:10, family:"'Outfit',sans-serif"},
+              stepSize: 10,
+              padding: 8,
             }
           }
         },
-        animation:{ duration:600, easing:'easeInOutQuart' }
+        animation: { duration:600, easing:'easeInOutQuart' }
       }
     });
   }
 
-  // Period switcher
   window.setChartPeriod = function(days, btn){
     document.querySelectorAll('.chart-period-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    Object.keys(gradCache).forEach(k=>delete gradCache[k]); // clear gradient cache
     buildChart(days);
   };
 
   buildChart(90);
 })();
 
-// Mini gauges
-function miniGauge(id,score,color){
-  const c=document.getElementById(id);
-  if(!c)return;
-  const ctx=c.getContext('2d');
-  const start=Math.PI*.75,end=Math.PI*2.25;
-  ctx.clearRect(0,0,44,44);
-  ctx.beginPath();ctx.arc(22,22,16,start,end);
-  ctx.strokeStyle='#222228';ctx.lineWidth=4;ctx.stroke();
-  const p=start+(end-start)*(score/100);
-  ctx.beginPath();ctx.arc(22,22,16,start,p);
-  ctx.strokeStyle=color;ctx.lineWidth=4;ctx.lineCap='round';ctx.stroke();
+// ── SPARKLINES (canvas 2D pur) ───────────────────────────────────
+function drawSparkline(canvasId, data, color){
+  const c = document.getElementById(canvasId);
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height;
+  ctx.clearRect(0,0,W,H);
+  const min = Math.min(...data), max = Math.max(...data);
+  const range = (max - min) || 1;
+  const pts = data.map((v,i)=>({
+    x: (i/(data.length-1))*W,
+    y: H - ((v-min)/range)*(H-4) - 2
+  }));
+  // Fill gradient
+  const grad = ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0, color + '40');
+  grad.addColorStop(1, color + '00');
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, H);
+  pts.forEach(p=>ctx.lineTo(p.x, p.y));
+  ctx.lineTo(pts[pts.length-1].x, H);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+  // Line
+  ctx.beginPath();
+  pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
 }
-miniGauge('mg1',54,'#00D4FF');
-miniGauge('mg2',77,'#10B981');
-miniGauge('mg3',50,'#F59E0B');
-miniGauge('mg4',60,'#F59E0B');
+
+// ── MINI GAUGE (supporte small 44px et large 100px) ─────────────
+function miniGauge(id, score, color, large){
+  const c = document.getElementById(id);
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  const sz = large ? 100 : 44;
+  const r  = large ? 38  : 16;
+  const lw = large ? 8   : 4;
+  const start = Math.PI * 0.75, end = Math.PI * 2.25;
+  ctx.clearRect(0,0,sz,sz);
+  ctx.beginPath(); ctx.arc(sz/2, sz/2, r, start, end);
+  ctx.strokeStyle = '#222228'; ctx.lineWidth = lw; ctx.stroke();
+  const p = start + (end - start) * (Math.max(0, score) / 100);
+  ctx.beginPath(); ctx.arc(sz/2, sz/2, r, start, p);
+  ctx.strokeStyle = color; ctx.lineWidth = lw; ctx.lineCap = 'round'; ctx.stroke();
+}
+
+window.addEventListener('load', function(){
+  // Sparklines
+  if(window._sparkData){
+    const sd = window._sparkData;
+    // Use last 30 points for sparklines
+    drawSparkline('spark-risk', sd.risk.slice(-30), '#EF4444');
+    drawSparkline('spark-perf', sd.perf.slice(-30), '#6366F1');
+    drawSparkline('spark-cons', sd.cons.slice(-30), '#F59E0B');
+    drawSparkline('spark-qe',   sd.qe.slice(-30),   '#10B981');
+  }
+
+  // Mini gauges — Risk Management (large)
+  miniGauge('mg1',  54, '#00D4FF', true);
+  miniGauge('mg2',  77, '#10B981', true);
+  miniGauge('mg3',  50, '#F59E0B', true);
+  miniGauge('mg4',  60, '#F59E0B', true);
+
+  // Mini gauges — Performance (large)
+  miniGauge('mg5',  25, '#6366F1', true);
+  miniGauge('mg6',   0, '#6366F1', true);
+  miniGauge('mg7',  50, '#6366F1', true);
+
+  // Mini gauges — Consistency (large)
+  miniGauge('mg8',  21, '#F59E0B', true);
+  miniGauge('mg9',   8, '#F59E0B', true);
+  miniGauge('mg10',100, '#10B981', true);
+
+  // Mini gauges — Quality Execution (large)
+  miniGauge('mg11',100, '#10B981', true);
+  miniGauge('mg12',100, '#10B981', true);
+  miniGauge('mg13', 74, '#00D4FF', true);
+  miniGauge('mg14',  0, '#EF4444', true);
+});
 </script>
 </body>
 </html>
