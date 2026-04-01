@@ -107,11 +107,26 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 
 /* ── CHART SECTION ── */
 .chart-section{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:20px 24px;margin-bottom:20px;}
-.chart-section-title{font-size:14px;font-weight:700;color:var(--teal);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-.chart-wrap{position:relative;height:220px;}
-.chart-legend{display:flex;align-items:center;gap:20px;margin-top:12px;flex-wrap:wrap;}
-.chart-legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2);}
-.legend-dot{width:10px;height:10px;border-radius:50%;}
+.chart-section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
+.chart-section-title{font-size:14px;font-weight:700;color:var(--teal);display:flex;align-items:center;gap:8px;margin:0;}
+.chart-period-tabs{display:flex;gap:2px;background:var(--card2);border:1px solid var(--border2);border-radius:7px;padding:3px;}
+.chart-period-btn{padding:4px 12px;border-radius:5px;font-size:11px;font-weight:600;color:var(--text2);cursor:pointer;border:none;background:transparent;font-family:var(--sans);transition:.15s;}
+.chart-period-btn:hover{color:var(--text);}
+.chart-period-btn.active{background:var(--card);color:var(--teal);border:1px solid var(--border2);}
+.chart-wrap{position:relative;height:280px;}
+.chart-legend{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px;}
+.chart-legend-item{display:flex;flex-direction:column;gap:3px;background:var(--card2);border:1px solid var(--border2);border-radius:8px;padding:8px 10px;cursor:default;transition:.15s;}
+.chart-legend-item:hover{border-color:var(--border);}
+.chart-legend-top{display:flex;align-items:center;gap:6px;}
+.legend-line{width:18px;height:2px;border-radius:1px;flex-shrink:0;}
+.legend-name{font-size:10px;font-weight:600;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.legend-vals{display:flex;align-items:center;justify-content:space-between;gap:4px;}
+.legend-score{font-size:15px;font-weight:800;font-family:var(--mono);color:var(--text);}
+.legend-trend{font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;}
+.legend-trend.up{color:var(--green);background:#10B98118;}
+.legend-trend.down{color:var(--red);background:#EF444418;}
+.chart-threshold-label{font-size:10px;color:#00D4FF88;margin-top:4px;display:flex;align-items:center;gap:5px;}
+.chart-threshold-label::before{content:'';width:18px;height:1px;border-top:1.5px dashed #00D4FF66;display:inline-block;}
 
 /* ── METRICS SECTION ── */
 .metrics-section-title{font-size:14px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;margin-bottom:14px;}
@@ -332,18 +347,44 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
 
       <!-- Score Evolution Chart -->
       <div class="chart-section">
-        <div class="chart-section-title">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-          Score Evolution (90 Days)
+        <div class="chart-section-header">
+          <div class="chart-section-title">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            Évolution du Score CLIMB
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div class="chart-threshold-label">Seuil Live (85)</div>
+            <div class="chart-period-tabs">
+              <button class="chart-period-btn" onclick="setChartPeriod(30,this)">30j</button>
+              <button class="chart-period-btn" onclick="setChartPeriod(60,this)">60j</button>
+              <button class="chart-period-btn active" onclick="setChartPeriod(90,this)">90j</button>
+            </div>
+          </div>
         </div>
         <div class="chart-wrap">
           <canvas id="evolutionChart"></canvas>
         </div>
         <div class="chart-legend">
-          <div class="chart-legend-item"><div class="legend-dot" style="background:#10B981;"></div>Quality Execution</div>
-          <div class="chart-legend-item"><div class="legend-dot" style="background:#EF4444;"></div>Risk Management</div>
-          <div class="chart-legend-item"><div class="legend-dot" style="background:#6366F1;"></div>Performance</div>
-          <div class="chart-legend-item"><div class="legend-dot" style="background:#F59E0B;"></div>Consistency</div>
+          <div class="chart-legend-item">
+            <div class="chart-legend-top"><div class="legend-line" style="background:#00D4FF;height:3px;"></div><span class="legend-name">CLIMB Score</span></div>
+            <div class="legend-vals"><span class="legend-score" id="lv-climb" style="color:var(--teal);">63</span><span class="legend-trend up" id="lt-climb">▲ +5</span></div>
+          </div>
+          <div class="chart-legend-item">
+            <div class="chart-legend-top"><div class="legend-line" style="background:#10B981;"></div><span class="legend-name">Quality Exec.</span></div>
+            <div class="legend-vals"><span class="legend-score" id="lv-qe">72</span><span class="legend-trend up" id="lt-qe">▲ +4</span></div>
+          </div>
+          <div class="chart-legend-item">
+            <div class="chart-legend-top"><div class="legend-line" style="background:#EF4444;"></div><span class="legend-name">Risk Mgmt</span></div>
+            <div class="legend-vals"><span class="legend-score" id="lv-rm">64</span><span class="legend-trend up" id="lt-rm">▲ +7</span></div>
+          </div>
+          <div class="chart-legend-item">
+            <div class="chart-legend-top"><div class="legend-line" style="background:#6366F1;"></div><span class="legend-name">Performance</span></div>
+            <div class="legend-vals"><span class="legend-score" id="lv-perf">57</span><span class="legend-trend down" id="lt-perf">▼ -2</span></div>
+          </div>
+          <div class="chart-legend-item">
+            <div class="chart-legend-top"><div class="legend-line" style="background:#F59E0B;"></div><span class="legend-name">Consistency</span></div>
+            <div class="legend-vals"><span class="legend-score" id="lv-cons">55</span><span class="legend-trend up" id="lt-cons">▲ +3</span></div>
+          </div>
         </div>
       </div>
 
@@ -469,33 +510,256 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--s
   ctx.strokeStyle='#F59E0B';ctx.lineWidth=12;ctx.lineCap='round';ctx.stroke();
 })();
 
-// Evolution Chart
+// ── EVOLUTION CHART ────────────────────────────────────────
 (function(){
-  const canvas=document.getElementById('evolutionChart');
-  if(!canvas)return;
-  const labels=[];
-  for(let i=90;i>=0;i-=5){labels.push(i===0?'Today':`-${i}d`);}
-  function genLine(base,variance){return labels.map((_,i)=>Math.max(0,Math.min(100,base+i*(50-base)/labels.length+Math.sin(i)*variance+(Math.random()-.5)*5)));}
-  new Chart(canvas,{
-    type:'line',
-    data:{
-      labels,
-      datasets:[
-        {label:'Quality Execution',data:genLine(55,8),borderColor:'#10B981',backgroundColor:'#10B98115',borderWidth:2,pointRadius:0,tension:.4,fill:false},
-        {label:'Risk Management',data:genLine(40,12),borderColor:'#EF4444',backgroundColor:'transparent',borderWidth:2,pointRadius:0,tension:.4,fill:false},
-        {label:'Performance',data:genLine(25,10),borderColor:'#6366F1',backgroundColor:'transparent',borderWidth:2,pointRadius:0,tension:.4,fill:false},
-        {label:'Consistency',data:genLine(20,8),borderColor:'#F59E0B',backgroundColor:'transparent',borderWidth:2,pointRadius:0,tension:.4,fill:false},
-      ]
-    },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false}},
-      scales:{
-        x:{grid:{color:'#222228'},ticks:{color:'#8A8A9A',font:{size:10},maxTicksLimit:10}},
-        y:{min:0,max:100,grid:{color:'#222228'},ticks:{color:'#8A8A9A',font:{size:10}}}
+  const canvas = document.getElementById('evolutionChart');
+  if(!canvas) return;
+
+  // Fixed deterministic data — 19 points covering 90 days (step 5)
+  // [−90d … −5d … Today]  index 0 = oldest, 18 = Today
+  const ALL_DATA = {
+    qe:   [55,57,60,58,54,50,47,51,57,62,66,63,60,62,65,68,70,73,72],
+    rm:   [42,44,47,51,48,43,39,42,49,54,57,55,52,56,60,63,62,65,64],
+    perf: [28,31,34,37,41,39,35,37,43,49,52,50,47,51,55,57,59,58,57],
+    cons: [22,25,28,31,34,37,35,31,37,43,47,51,54,52,49,53,56,55,55],
+  };
+  // CLIMB Score = weighted average (Risk×4 + Perf×4 + Cons×3 + QE×4) / 15
+  ALL_DATA.climb = ALL_DATA.qe.map((_,i)=>
+    Math.round((ALL_DATA.rm[i]*4 + ALL_DATA.perf[i]*4 + ALL_DATA.cons[i]*3 + ALL_DATA.qe[i]*4)/15));
+
+  function makeLabels(days){
+    const labs=[], step=days<=30?2:5, pts=Math.round(days/step)+1;
+    for(let i=pts-1;i>=0;i--){labs.push(i===0?'Auj.':`-${i*step}j`);}
+    return labs;
+  }
+  function sliceLast(arr, n){ return arr.slice(-n); }
+
+  // Gradient helper — called inside Chart.js backgroundColor callback
+  const gradCache = {};
+  function getGrad(ctx, chartArea, hex, alpha1, alpha2){
+    const key = hex+chartArea.bottom;
+    if(gradCache[key]) return gradCache[key];
+    const g = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+    g.addColorStop(0, hex + alpha1);
+    g.addColorStop(0.6, hex + alpha2);
+    g.addColorStop(1, hex + '00');
+    gradCache[key] = g;
+    return g;
+  }
+
+  // Point radius array: only last point visible
+  function pts(n){ return Array(n-1).fill(0).concat([5]); }
+  function ptHov(n){ return Array(n-1).fill(0).concat([7]); }
+
+  let currentChart = null;
+
+  function buildChart(days){
+    if(currentChart) currentChart.destroy();
+    const n = Math.round(days/5)+1;
+    const labels = makeLabels(days);
+    const qe   = sliceLast(ALL_DATA.qe,   n);
+    const rm   = sliceLast(ALL_DATA.rm,   n);
+    const perf = sliceLast(ALL_DATA.perf, n);
+    const cons = sliceLast(ALL_DATA.cons, n);
+    const clmb = sliceLast(ALL_DATA.climb,n);
+    const threshold = Array(n).fill(85);
+
+    // Update legend values
+    const last = (arr)=>arr[arr.length-1];
+    const trend = (arr)=>{ const d=arr[arr.length-1]-arr[arr.length-Math.min(5,arr.length)]; return (d>=0?'▲ +':'▼ ')+Math.abs(Math.round(d)); };
+    const tClass = (arr)=>arr[arr.length-1]>=arr[arr.length-Math.min(5,arr.length)]?'up':'down';
+    [['climb',clmb],['qe',qe],['rm',rm],['perf',perf],['cons',cons]].forEach(([id,arr])=>{
+      const sv=document.getElementById('lv-'+id), st=document.getElementById('lt-'+id);
+      if(sv) sv.textContent=last(arr);
+      if(st){st.textContent=trend(arr); st.className='legend-trend '+tClass(arr);}
+    });
+
+    currentChart = new Chart(canvas,{
+      type:'line',
+      data:{
+        labels,
+        datasets:[
+          // Threshold line — Live seuil
+          {
+            label:'Seuil Live',
+            data: threshold,
+            borderColor:'#00D4FF44',
+            borderWidth:1.5,
+            borderDash:[6,4],
+            pointRadius:0,
+            fill:false,
+            backgroundColor:'transparent',
+            tension:0,
+            order:10,
+          },
+          // CLIMB Score Global — bold + fill
+          {
+            label:'CLIMB Score',
+            data: clmb,
+            borderColor:'#00D4FF',
+            borderWidth:3,
+            pointRadius: pts(n),
+            pointHoverRadius: ptHov(n),
+            pointBackgroundColor:'#00D4FF',
+            pointBorderColor:'#0c0c0e',
+            pointBorderWidth:2,
+            tension:.45,
+            fill:true,
+            backgroundColor:(ctx)=>{
+              const {chart}=ctx; if(!chart.chartArea) return 'transparent';
+              return getGrad(chart.ctx,chart.chartArea,'#00D4FF','45','18');
+            },
+            order:1,
+          },
+          // Quality Execution
+          {
+            label:'Quality Execution',
+            data: qe,
+            borderColor:'#10B981',
+            borderWidth:2,
+            pointRadius: pts(n),
+            pointHoverRadius: ptHov(n),
+            pointBackgroundColor:'#10B981',
+            pointBorderColor:'#0c0c0e',
+            pointBorderWidth:2,
+            tension:.45,
+            fill:true,
+            backgroundColor:(ctx)=>{
+              const {chart}=ctx; if(!chart.chartArea) return 'transparent';
+              return getGrad(chart.ctx,chart.chartArea,'#10B981','28','08');
+            },
+            order:2,
+          },
+          // Risk Management
+          {
+            label:'Risk Management',
+            data: rm,
+            borderColor:'#EF4444',
+            borderWidth:2,
+            pointRadius: pts(n),
+            pointHoverRadius: ptHov(n),
+            pointBackgroundColor:'#EF4444',
+            pointBorderColor:'#0c0c0e',
+            pointBorderWidth:2,
+            tension:.45,
+            fill:true,
+            backgroundColor:(ctx)=>{
+              const {chart}=ctx; if(!chart.chartArea) return 'transparent';
+              return getGrad(chart.ctx,chart.chartArea,'#EF4444','25','08');
+            },
+            order:3,
+          },
+          // Performance
+          {
+            label:'Performance',
+            data: perf,
+            borderColor:'#6366F1',
+            borderWidth:2,
+            pointRadius: pts(n),
+            pointHoverRadius: ptHov(n),
+            pointBackgroundColor:'#6366F1',
+            pointBorderColor:'#0c0c0e',
+            pointBorderWidth:2,
+            tension:.45,
+            fill:true,
+            backgroundColor:(ctx)=>{
+              const {chart}=ctx; if(!chart.chartArea) return 'transparent';
+              return getGrad(chart.ctx,chart.chartArea,'#6366F1','25','08');
+            },
+            order:4,
+          },
+          // Consistency
+          {
+            label:'Consistency',
+            data: cons,
+            borderColor:'#F59E0B',
+            borderWidth:2,
+            pointRadius: pts(n),
+            pointHoverRadius: ptHov(n),
+            pointBackgroundColor:'#F59E0B',
+            pointBorderColor:'#0c0c0e',
+            pointBorderWidth:2,
+            tension:.45,
+            fill:true,
+            backgroundColor:(ctx)=>{
+              const {chart}=ctx; if(!chart.chartArea) return 'transparent';
+              return getGrad(chart.ctx,chart.chartArea,'#F59E0B','25','08');
+            },
+            order:5,
+          },
+        ]
+      },
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        interaction:{ mode:'index', intersect:false },
+        plugins:{
+          legend:{ display:false },
+          tooltip:{
+            backgroundColor:'#16161a',
+            borderColor:'#2a2a32',
+            borderWidth:1,
+            padding:12,
+            titleColor:'#F0F0F0',
+            titleFont:{size:11,weight:'700'},
+            bodyColor:'#8A8A9A',
+            bodyFont:{size:11},
+            callbacks:{
+              title:(items)=>items[0].label,
+              label:(item)=>{
+                if(item.datasetIndex===0) return null; // hide threshold
+                const colors={1:'#00D4FF',2:'#10B981',3:'#EF4444',4:'#6366F1',5:'#F59E0B'};
+                const names={1:'CLIMB Score',2:'Quality Exec.',3:'Risk Mgmt',4:'Performance',5:'Consistency'};
+                const idx=item.datasetIndex;
+                return `  ${names[idx]}  ${item.raw}/100`;
+              },
+              labelColor:(item)=>{
+                const colors={1:'#00D4FF',2:'#10B981',3:'#EF4444',4:'#6366F1',5:'#F59E0B'};
+                const c=colors[item.datasetIndex]||'#8A8A9A';
+                return{borderColor:c,backgroundColor:c,borderWidth:2,borderRadius:2};
+              },
+              afterBody:()=>['','  — Seuil Live : 85/100 ——']
+            }
+          }
+        },
+        scales:{
+          x:{
+            grid:{color:'#1e1e24',drawTicks:false},
+            border:{color:'#222228'},
+            ticks:{
+              color:'#55556A',
+              font:{size:10,family:"'Outfit',sans-serif"},
+              maxTicksLimit:10,
+              padding:6
+            }
+          },
+          y:{
+            min:0, max:100,
+            grid:{color:'#1e1e24',drawTicks:false},
+            border:{color:'#222228',dash:[4,4]},
+            ticks:{
+              color:'#55556A',
+              font:{size:10,family:"'Outfit',sans-serif"},
+              stepSize:20,
+              padding:8,
+              callback:(v)=> v===85 ? '' : v
+            }
+          }
+        },
+        animation:{ duration:600, easing:'easeInOutQuart' }
       }
-    }
-  });
+    });
+  }
+
+  // Period switcher
+  window.setChartPeriod = function(days, btn){
+    document.querySelectorAll('.chart-period-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    Object.keys(gradCache).forEach(k=>delete gradCache[k]); // clear gradient cache
+    buildChart(days);
+  };
+
+  buildChart(90);
 })();
 
 // Mini gauges
