@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Système de Rangs — Climber Trade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0A0A0A;
+      --card: #1A1A1A;
+      --card-alt: #111118;
+      --border: #1E1E28;
+      --teal: #00D4FF;
+      --green: #10B981;
+      --red: #EF4444;
+      --amber: #F59E0B;
+      --purple: #8B5CF6;
+      --text: #F0F0F0;
+      --text2: #8A8A9A;
+      --text3: #555565;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-wordmark {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.5px;
+    }
+
+    .logo-wordmark span {
+      color: var(--teal);
+    }
+
+    header nav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    header nav a {
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    header nav a:hover { color: var(--text); }
+
+    .btn-primary {
+      background: var(--teal);
+      color: #000;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    /* ─── HERO ─── */
+    .hero {
+      text-align: center;
+      padding: 80px 40px 56px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span { color: var(--teal); }
+
+    .hero p {
+      color: var(--text2);
+      font-size: 17px;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ─── BADGES GRID ─── */
+    .badges-section {
+      padding: 0 32px 80px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .badges-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .badge-card {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 20px 24px;
+      text-align: center;
+      width: 200px;
+      cursor: pointer;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .badge-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--card-accent, transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .badge-card:hover { transform: translateY(-6px); }
+    .badge-card:hover::before { opacity: 1; }
+
+    .badge-card.rank-norank:hover  { border-color: #353545; box-shadow: 0 12px 40px rgba(53,53,69,0.3); --card-accent: #353545; }
+    .badge-card.rank-bronze:hover  { border-color: #CD7F32; box-shadow: 0 12px 40px rgba(205,127,50,0.2); --card-accent: #CD7F32; }
+    .badge-card.rank-silver:hover  { border-color: #CBD5E1; box-shadow: 0 12px 40px rgba(203,213,225,0.2); --card-accent: #CBD5E1; }
+    .badge-card.rank-gold:hover    { border-color: #F59E0B; box-shadow: 0 12px 40px rgba(245,158,11,0.25); --card-accent: #F59E0B; }
+    .badge-card.rank-platinum:hover{ border-color: #A78BFA; box-shadow: 0 12px 40px rgba(167,139,250,0.25); --card-accent: #A78BFA; }
+    .badge-card.rank-diamond:hover { border-color: #67E8F9; box-shadow: 0 12px 40px rgba(103,232,249,0.3); --card-accent: #67E8F9; }
+
+    .badge-card svg {
+      display: block;
+      margin: 0 auto 16px;
+    }
+
+    .badge-card .rank-name {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .rank-norank   .rank-name { color: #555565; }
+    .rank-bronze   .rank-name { color: #CD7F32; }
+    .rank-silver   .rank-name { color: #CBD5E1; }
+    .rank-gold     .rank-name { color: #F59E0B; }
+    .rank-platinum .rank-name { color: #A78BFA; }
+    .rank-diamond  .rank-name { color: #67E8F9; }
+
+    .score-pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .rank-norank   .score-pill { background: rgba(53,53,69,0.4);   color: #555565; border: 1px solid #252530; }
+    .rank-bronze   .score-pill { background: rgba(205,127,50,0.12); color: #CD7F32; border: 1px solid rgba(205,127,50,0.3); }
+    .rank-silver   .score-pill { background: rgba(203,213,225,0.1); color: #CBD5E1; border: 1px solid rgba(203,213,225,0.25); }
+    .rank-gold     .score-pill { background: rgba(245,158,11,0.1);  color: #F59E0B; border: 1px solid rgba(245,158,11,0.3); }
+    .rank-platinum .score-pill { background: rgba(167,139,250,0.1); color: #A78BFA; border: 1px solid rgba(167,139,250,0.3); }
+    .rank-diamond  .score-pill { background: rgba(103,232,249,0.1); color: #67E8F9; border: 1px solid rgba(103,232,249,0.3); }
+
+    .rank-tagline {
+      font-size: 11px;
+      font-style: italic;
+      color: var(--text2);
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    .rank-bullets {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 16px;
+    }
+
+    .rank-bullets li {
+      font-size: 11px;
+      color: var(--text2);
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.4;
+    }
+
+    .rank-bullets li:last-child { border-bottom: none; }
+
+    .bullet-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .rank-norank   .bullet-dot { background: #353545; }
+    .rank-bronze   .bullet-dot { background: #CD7F32; }
+    .rank-silver   .bullet-dot { background: #9CA3AF; }
+    .rank-gold     .bullet-dot { background: #F59E0B; }
+    .rank-platinum .bullet-dot { background: #A78BFA; }
+    .rank-diamond  .bullet-dot { background: #67E8F9; }
+
+    .split-badge {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .rank-norank   .split-badge { background: #111118; color: #353545; border: 1px solid #252530; }
+    .rank-bronze   .split-badge { background: #111118; color: #353545; border: 1px solid #252530; }
+    .rank-silver   .split-badge { background: #111118; color: #353545; border: 1px solid #252530; }
+    .rank-gold     .split-badge { background: rgba(245,158,11,0.1); color: #F59E0B; border: 1px solid rgba(245,158,11,0.2); }
+    .rank-platinum .split-badge { background: rgba(167,139,250,0.1); color: #A78BFA; border: 1px solid rgba(167,139,250,0.2); }
+    .rank-diamond  .split-badge { background: rgba(103,232,249,0.1); color: #67E8F9; border: 1px solid rgba(103,232,249,0.2); }
+
+    /* ─── COMPARISON TABLE ─── */
+    .comparison-section {
+      max-width: 1000px;
+      margin: 0 auto 80px;
+      padding: 0 32px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .section-header p {
+      color: var(--text2);
+      font-size: 15px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .comparison-table th {
+      background: #0F0F16;
+      color: var(--text2);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison-table td {
+      padding: 14px 18px;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      vertical-align: middle;
+    }
+
+    .comparison-table tr:last-child td { border-bottom: none; }
+
+    .comparison-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .rank-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .rank-dot-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .check-icon { color: var(--green); font-size: 15px; }
+    .cross-icon { color: var(--text3); font-size: 15px; }
+
+    /* ─── HOW IT WORKS ─── */
+    .how-section {
+      max-width: 1000px;
+      margin: 0 auto 80px;
+      padding: 0 32px;
+    }
+
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .step-card {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 16px;
+    }
+
+    .step-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    /* ─── PROGRESS BAR ─── */
+    .progress-section {
+      max-width: 1000px;
+      margin: 0 auto 80px;
+      padding: 0 32px;
+    }
+
+    .progress-track {
+      background: #0F0F16;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+    }
+
+    .progress-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text2);
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .progress-bar-bg {
+      height: 8px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.05);
+      position: relative;
+      overflow: visible;
+      margin-bottom: 16px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg,
+        #353545 0%,
+        #CD7F32 30%,
+        #CBD5E1 50%,
+        #F59E0B 70%,
+        #A78BFA 85%,
+        #67E8F9 100%
+      );
+      position: relative;
+    }
+
+    .progress-markers {
+      display: flex;
+      position: relative;
+      margin-top: 4px;
+    }
+
+    .progress-marker {
+      position: absolute;
+      top: -24px;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 16px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .progress-ticks {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .progress-tick {
+      font-size: 11px;
+      color: var(--text3);
+      text-align: center;
+      flex: 1;
+    }
+
+    .progress-tick.active { color: var(--text2); }
+    .progress-tick strong { display: block; font-size: 10px; color: var(--text3); }
+
+    /* ─── SIMULATOR ─── */
+    .simulator-section {
+      max-width: 700px;
+      margin: 0 auto 80px;
+      padding: 0 32px;
+    }
+
+    .simulator-card {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .simulator-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .simulator-card > p {
+      color: var(--text2);
+      font-size: 13px;
+      margin-bottom: 28px;
+    }
+
+    .sim-score-display {
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 4px;
+      transition: color 0.3s;
+      letter-spacing: -2px;
+    }
+
+    .sim-score-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-bottom: 24px;
+    }
+
+    .sim-badge-display {
+      margin: 0 auto 20px;
+      width: 160px;
+      height: 178px;
+      position: relative;
+    }
+
+    .sim-badge-display svg {
+      transition: transform 0.3s ease;
+    }
+
+    .sim-badge-display:hover svg { transform: scale(1.05); }
+
+    .sim-rank-name {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      transition: color 0.3s;
+    }
+
+    .sim-rank-desc {
+      font-size: 13px;
+      color: var(--text2);
+      margin-bottom: 24px;
+    }
+
+    .slider-container {
+      padding: 0 8px;
+      margin-bottom: 12px;
+    }
+
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.06);
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--teal);
+      cursor: pointer;
+      box-shadow: 0 0 0 4px rgba(0,212,255,0.15);
+      transition: box-shadow 0.2s;
+    }
+
+    input[type=range]::-webkit-slider-thumb:hover {
+      box-shadow: 0 0 0 6px rgba(0,212,255,0.25);
+    }
+
+    input[type=range]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--teal);
+      cursor: pointer;
+      border: none;
+    }
+
+    .slider-minmax {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text3);
+      padding: 0 8px;
+    }
+
+    /* ─── ELIGIBILITY BANNER ─── */
+    .eligibility-banner {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid;
+      transition: all 0.3s;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: gap;
+      gap: 16px;
+    }
+
+    footer .logo-wordmark { font-size: 16px; font-weight: 700; }
+    footer .logo-wordmark span { color: var(--teal); }
+
+    footer p {
+      font-size: 12px;
+      color: var(--text3);
+    }
+
+    footer nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    footer nav a {
+      font-size: 12px;
+      color: var(--text3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer nav a:hover { color: var(--text2); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .badge-card {
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .badge-card:nth-child(1) { animation-delay: 0.05s; }
+    .badge-card:nth-child(2) { animation-delay: 0.10s; }
+    .badge-card:nth-child(3) { animation-delay: 0.15s; }
+    .badge-card:nth-child(4) { animation-delay: 0.20s; }
+    .badge-card:nth-child(5) { animation-delay: 0.25s; }
+    .badge-card:nth-child(6) { animation-delay: 0.30s; }
+
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 32px 60px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <a href="#" class="logo">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 3 L29 10.5 L29 21.5 L16 29 L3 21.5 L3 10.5 Z" fill="none" stroke="#00D4FF" stroke-width="1.5"/>
+      <path d="M16 8 L24 12.5 L24 19.5 L16 24 L8 19.5 L8 12.5 Z" fill="none" stroke="#00D4FF" stroke-width="1" opacity="0.5"/>
+      <path d="M10,20 L16,10 L22,20" stroke="#00D4FF" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="M14,15 L16,10 L18,15" fill="#00D4FF" opacity="0.7"/>
+    </svg>
+    <span class="logo-wordmark">CLIMBER <span>TRADE</span></span>
+  </a>
+  <nav>
+    <a href="#">Évaluation</a>
+    <a href="#">Rangs</a>
+    <a href="#">Pool Live</a>
+    <a href="#simulator">Simulateur</a>
+  </nav>
+  <a href="#" class="btn-primary">Commencer</a>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-eyebrow">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="6,1 11,3.5 11,8.5 6,11 1,8.5 1,3.5" stroke="#00D4FF" stroke-width="1.5" fill="none"/></svg>
+    CLIMB Score — Système de Rangs
+  </div>
+  <h1>Ton niveau.<br/><span>Ton capital.</span></h1>
+  <p>6 rangs distincts basés sur le CLIMB Score. Un algorithme à 4 piliers qui évalue objectivement chaque trader — sans favoritisme, sans subjectivité.</p>
+</div>
+
+<!-- ═══ BADGE CARDS ═══ -->
+<section class="badges-section">
+  <div class="badges-row">
+
+    <!-- NO RANK -->
+    <div class="badge-card rank-norank">
+      <svg width="160" height="178" viewBox="0 0 160 178" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="nr-fillGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0D0D14"/>
+            <stop offset="100%" stop-color="#0D0D14"/>
+          </linearGradient>
+        </defs>
+        <!-- Outer hex, dashed stroke -->
+        <polygon points="80,11 148,50 148,128 80,167 12,128 12,50"
+                 fill="url(#nr-fillGrad)"
+                 stroke="#252530" stroke-width="2"
+                 stroke-dasharray="6,4"/>
+        <!-- Dash symbol -->
+        <line x1="62" y1="89" x2="98" y2="89"
+              stroke="#2A2A38" stroke-width="4" stroke-linecap="round"/>
+        <!-- Sub-text -->
+        <text x="80" y="150" text-anchor="middle" font-family="Outfit,sans-serif"
+              font-size="9" font-weight="700" fill="#252530" letter-spacing="3">NO RANK</text>
+      </svg>
+      <div class="rank-name">No Rank</div>
+      <div class="score-pill">0 – 29</div>
+      <div class="rank-tagline">En exploration</div>
+      <ul class="rank-bullets">
+        <li><span class="bullet-dot"></span>Pas encore de rang officiel</li>
+        <li><span class="bullet-dot"></span>Affine ta stratégie</li>
+        <li><span class="bullet-dot"></span>Capital fictif $1M disponible</li>
+      </ul>
+      <div class="split-badge">Aucun split</div>
+    </div>
+
+    <!-- BRONZE -->
+    <div class="badge-card rank-bronze">
+      <svg width="160" height="178" viewBox="0 0 160 178" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bz-fillGrad" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0%" stop-color="#1A0A02"/>
+            <stop offset="100%" stop-color="#2D1206"/>
+          </linearGradient>
+          <linearGradient id="bz-strokeOuter" x1="0" y1="0" x2="0" y2="1" gradientUnits="userSpaceOnUse" y1="11" y2="167">
+            <stop offset="0%" stop-color="#8B4513"/>
+            <stop offset="100%" stop-color="#CD7F32"/>
+          </linearGradient>
+        </defs>
+        <!-- Hex layer 1 (r=78) — main fill -->
+        <polygon points="80,11 148,50 148,128 80,167 12,128 12,50"
+                 fill="url(#bz-fillGrad)" stroke="url(#bz-strokeOuter)" stroke-width="2.5"/>
+        <!-- Hex layer 2 (r=70) — inner ring -->
+        <polygon points="80,19 141,54 141,124 80,159 19,124 19,54"
+                 fill="none" stroke="#6B3010" stroke-width="1" opacity="0.6"/>
+        <!-- Mountain symbol -->
+        <polygon points="52,112 80,58 108,112"
+                 stroke="#CD7F32" stroke-width="2" fill="#CD7F3215"/>
+        <!-- Sub-text -->
+        <text x="80" y="150" text-anchor="middle" font-family="Outfit,sans-serif"
+              font-size="9" font-weight="700" fill="#CD7F32" letter-spacing="3">BRONZE</text>
+      </svg>
+      <div class="rank-name">Bronze</div>
+      <div class="score-pill">30 – 49</div>
+      <div class="rank-tagline">Premier pas</div>
+      <ul class="rank-bullets">
+        <li><span class="bullet-dot"></span>Métriques de base actives</li>
+        <li><span class="bullet-dot"></span>Historique archivé</li>
+        <li><span class="bullet-dot"></span>Construis une track record</li>
+      </ul>
+      <div class="split-badge">Aucun split</div>
+    </div>
+
+    <!-- SILVER -->
+    <div class="badge-card rank-silver">
+      <svg width="160" height="178" viewBox="0 0 160 178" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sv-fillGrad" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0%" stop-color="#111120"/>
+            <stop offset="100%" stop-color="#1A1A2A"/>
+          </linearGradient>
+          <linearGradient id="sv-strokeOuter" x1="0" y1="11" x2="0" y2="167" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#9CA3AF"/>
+            <stop offset="100%" stop-color="#E2E8F0"/>
+          </linearGradient>
+        </defs>
+        <!-- Hex layer 1 (r=78) -->
+        <polygon points="80,11 148,50 148,128 80,167 12,128 12,50"
+                 fill="url(#sv-fillGrad)" stroke="url(#sv-strokeOuter)" stroke-width="2.5"/>
+        <!-- Hex layer 2 (r=70) -->
+        <polygon points="80,19 141,54 141,124 80,159 19,124 19,54"
+                 fill="none" stroke="#6B7280" stroke-width="1.5" opacity="0.8"/>
+        <!-- Hex layer 3 (r=62) -->
+        <polygon points="80,27 134,58 134,120 80,151 26,120 26,58"
+                 fill="none" stroke="#374151" stroke-width="1" opacity="0.5"/>
+        <!-- Mountain body -->
+        <polygon points="50,112 80,55 110,112"
+                 stroke="#9CA3AF" stroke-width="2" fill="#9CA3AF12"/>
+        <!-- Snow cap -->
+        <polygon points="72,68 80,55 88,68" fill="#E2E8F0" opacity="0.9"/>
+        <!-- Vertex ornaments: 6 small circles at r=78 vertices -->
+        <circle cx="80"  cy="11"  r="3" fill="#6B7280"/>
+        <circle cx="148" cy="50"  r="3" fill="#6B7280"/>
+        <circle cx="148" cy="128" r="3" fill="#6B7280"/>
+        <circle cx="80"  cy="167" r="3" fill="#6B7280"/>
+        <circle cx="12"  cy="128" r="3" fill="#6B7280"/>
+        <circle cx="12"  cy="50"  r="3" fill="#6B7280"/>
+        <!-- Sub-text -->
+        <text x="80" y="150" text-anchor="middle" font-family="Outfit,sans-serif"
+              font-size="9" font-weight="700" fill="#CBD5E1" letter-spacing="3">SILVER</text>
+      </svg>
+      <div class="rank-name">Silver</div>
+      <div class="score-pill">50 – 69</div>
+      <div class="rank-tagline">Dans la course</div>
+      <ul class="rank-bullets">
+        <li><span class="bullet-dot"></span>Intègre la cohorte statistique</li>
+        <li><span class="bullet-dot"></span>Score compte réellement</li>
+        <li><span class="bullet-dot"></span>Améliore ta consistance</li>
+      </ul>
+      <div class="split-badge">Aucun split</div>
+    </div>
+
+    <!-- GOLD -->
+    <div class="badge-card rank-gold">
+      <svg width="160" height="178" viewBox="0 0 160 178" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gd-fillGrad" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0%" stop-color="#1A1000"/>
+            <stop offset="100%" stop-color="#2A1A02"/>
+          </linearGradient>
+          <linearGradient id="gd-strokeOuter" x1="0" y1="11" x2="0" y2="167" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#D97706"/>
+            <stop offset="100%" stop-color="#FCD34D"/>
+          </linearGradient>
+        </defs>
+        <!-- Hex layer 1 (r=78) -->
+        <polygon points="80,11 148,50 148,128 80,167 12,128 12,50"
+                 fill="url(#gd-fillGrad)" stroke="url(#gd-strokeOuter)" stroke-width="3"/>
+        <!-- Hex layer 2 (r=70) -->
+        <polygon points="80,19 141,54 141,124 80,159 19,124 19,54"
+                 fill="none" stroke="#B45309" stroke-width="1.5" opacity="0.8"/>
+        <!-- Hex layer 3 (r=62) -->
+        <polygon points="80,27 134,58 134,120 80,151 26,120 26,58"
+                 fill="none" stroke="#92400E" stroke-width="1" opacity="0.6"/>
+        <!-- Hex layer 4 (r=54) -->
+        <polygon points="80,35 127,62 127,116 80,143 33,116 33,62"
+                 fill="none" stroke="#78350F" stroke-width="1" opacity="0.4"/>
+        <!-- Mountain -->
+        <polygon points="50,108 80,52 110,108"
+                 stroke="#F59E0B" stroke-width="2" fill="#F59E0B12"/>
+        <!-- Star above mountain -->
+        <path d="M 80,34 L 82,41 L 89,41 L 83,45 L 86,52 L 80,48 L 74,52 L 77,45 L 71,41 L 78,41 Z"
+              fill="#F59E0B"/>
+        <!-- Vertex ornaments: 6 diamonds at r=78 vertices -->
+        <!-- (80,11) -->
+        <polygon points="80,6 83.5,11 80,16 76.5,11" fill="#F59E0B"/>
+        <!-- (148,50) -->
+        <polygon points="148,45 151.5,50 148,55 144.5,50" fill="#F59E0B"/>
+        <!-- (148,128) -->
+        <polygon points="148,123 151.5,128 148,133 144.5,128" fill="#F59E0B"/>
+        <!-- (80,167) -->
+        <polygon points="80,162 83.5,167 80,172 76.5,167" fill="#F59E0B"/>
+        <!-- (12,128) -->
+        <polygon points="12,123 15.5,128 12,133 8.5,128" fill="#F59E0B"/>
+        <!-- (12,50) -->
+        <polygon points="12,45 15.5,50 12,55 8.5,50" fill="#F59E0B"/>
+        <!-- Sub-text -->
+        <text x="80" y="150" text-anchor="middle" font-family="Outfit,sans-serif"
+              font-size="9" font-weight="700" fill="#F59E0B" letter-spacing="3">GOLD</text>
+      </svg>
+      <div class="rank-name">Gold</div>
+      <div class="score-pill">70 – 84</div>
+      <div class="rank-tagline">Niveau confirmé</div>
+      <ul class="rank-bullets">
+        <li><span class="bullet-dot"></span>Zone de surveillance Live</li>
+        <li><span class="bullet-dot"></span>Travaille les 4 piliers</li>
+        <li><span class="bullet-dot"></span>Score solide et reconnu</li>
+      </ul>
+      <div class="split-badge">Split 40% si Live</div>
+    </div>
+
+    <!-- PLATINUM -->
+    <div class="badge-card rank-platinum">
+      <svg width="160" height="178" viewBox="0 0 160 178" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="pt-fillGrad" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0%" stop-color="#140826"/>
+            <stop offset="100%" stop-color="#1E0E38"/>
+          </linearGradient>
+          <linearGradient id="pt-strokeOuter" x1="0" y1="11" x2="0" y2="167" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#7C3AED"/>
+            <stop offset="100%" stop-color="#C4B5FD"/>
+          </linearGradient>
+          <linearGradient id="pt-crownFill" x1="0" y1="0" x2="0" y2="1" gradientUnits="userSpaceOnUse" y1="80" y2="112">
+            <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.13"/>
+            <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.2"/>
+          </linearGradient>
+        </defs>
+        <!-- Hex layer 1 (r=78) -->
+        <polygon points="80,11 148,50 148,128 80,167 12,128 12,50"
+                 fill="url(#pt-fillGrad)" stroke="url(#pt-strokeOuter)" stroke-width="3"/>
+        <!-- Hex layer 2 (r=70) -->
+        <polygon points="80,19 141,54 141,124 80,159 19,124 19,54"
+                 fill="none" stroke="#6D28D9" stroke-width="2" opacity="0.9"/>
+        <!-- Hex layer 3 (r=62) -->
+        <polygon points="80,27 134,58 134,120 80,151 26,120 26,58"
+                 fill="none" stroke="#5B21B6" stroke-width="1.5" opacity="0.7"/>
+        <!-- Hex layer 4 (r=54) -->
+        <polygon points="80,35 127,62 127,116 80,143 33,116 33,62"
+                 fill="none" stroke="#4C1D95" stroke-width="1" opacity="0.5"/>
+        <!-- Hex layer 5 (r=46) -->
+        <polygon points="80,43 120,66 120,112 80,135 40,112 40,65"
+                 fill="none" stroke="#3B1572" stroke-width="1" opacity="0.3"/>
+        <!-- Crown -->
+        <path d="M 58,98 L 58,112 L 102,112 L 102,98 L 94,80 L 87,93 L 80,80 L 73,93 L 66,80 Z"
+              fill="url(#pt-crownFill)" stroke="#A78BFA" stroke-width="1.5" stroke-linejoin="round"/>
+        <!-- Crown gem dots -->
+        <circle cx="66" cy="80" r="4" fill="#C4B5FD"/>
+        <circle cx="80" cy="80" r="4" fill="#C4B5FD"/>
+        <circle cx="94" cy="80" r="4" fill="#C4B5FD"/>
+        <!-- Vertex ornaments: diamond + inner dot -->
+        <!-- (80,11) -->
+        <polygon points="80,4 84.5,11 80,18 75.5,11" fill="#8B5CF6"/>
+        <circle cx="80" cy="11" r="1.5" fill="#C4B5FD"/>
+        <!-- (148,50) -->
+        <polygon points="148,43 152.5,50 148,57 143.5,50" fill="#8B5CF6"/>
+        <circle cx="148" cy="50" r="1.5" fill="#C4B5FD"/>
+        <!-- (148,128) -->
+        <polygon points="148,121 152.5,128 148,135 143.5,128" fill="#8B5CF6"/>
+        <circle cx="148" cy="128" r="1.5" fill="#C4B5FD"/>
+        <!-- (80,167) -->
+        <polygon points="80,160 84.5,167 80,174 75.5,167" fill="#8B5CF6"/>
+        <circle cx="80" cy="167" r="1.5" fill="#C4B5FD"/>
+        <!-- (12,128) -->
+        <polygon points="12,121 16.5,128 12,135 7.5,128" fill="#8B5CF6"/>
+        <circle cx="12" cy="128" r="1.5" fill="#C4B5FD"/>
+        <!-- (12,50) -->
+        <polygon points="12,43 16.5,50 12,57 7.5,50" fill="#8B5CF6"/>
+        <circle cx="12" cy="50" r="1.5" fill="#C4B5FD"/>
+        <!-- Sub-text -->
+        <text x="80" y="150" text-anchor="middle" font-family="Outfit,sans-serif"
+              font-size="9" font-weight="700" fill="#A78BFA" letter-spacing="3">PLATINUM</text>
+      </svg>
+      <div class="rank-name">Platinum</div>
+      <div class="score-pill">85 – 94</div>
+      <div class="rank-tagline">Live eligible ✦</div>
+      <ul class="rank-bullets">
+        <li><span class="bullet-dot"></span>Passage Live activé</li>
+        <li><span class="bullet-dot"></span>Capital réel du pool</li>
+        <li><span class="bullet-dot"></span>Standard / Expert</li>
+      </ul>
+      <div class="split-badge">Split 50–55%</div>
+    </div>
+
+    <!-- DIAMOND -->
+    <div class="badge-card rank-diamond">
+      <svg width="160" height="178" viewBox="0 0 160 178" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="dm-fillGrad" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0%" stop-color="#021422"/>
+            <stop offset="100%" stop-color="#041E30"/>
+          </linearGradient>
+          <linearGradient id="dm-strokeOuter" x1="0" y1="11" x2="0" y2="167" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0EA5E9"/>
+            <stop offset="100%" stop-color="#67E8F9"/>
+          </linearGradient>
+          <filter id="dm-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <!-- Hex layer 1 (r=78) — WITH glow -->
+        <polygon points="80,11 148,50 148,128 80,167 12,128 12,50"
+                 fill="url(#dm-fillGrad)"
+                 stroke="url(#dm-strokeOuter)" stroke-width="3"
+                 filter="url(#dm-glow)"/>
+        <!-- Hex layer 2 (r=70) -->
+        <polygon points="80,19 141,54 141,124 80,159 19,124 19,54"
+                 fill="none" stroke="#0891B2" stroke-width="2" opacity="0.9"/>
+        <!-- Hex layer 3 (r=62) -->
+        <polygon points="80,27 134,58 134,120 80,151 26,120 26,58"
+                 fill="none" stroke="#0369A1" stroke-width="1.5" opacity="0.7"/>
+        <!-- Hex layer 4 (r=54) -->
+        <polygon points="80,35 127,62 127,116 80,143 33,116 33,62"
+                 fill="none" stroke="#0284C7" stroke-width="1" opacity="0.5"/>
+        <!-- Hex layer 5 (r=46) -->
+        <polygon points="80,43 120,66 120,112 80,135 40,112 40,65"
+                 fill="none" stroke="#0369A1" stroke-width="1" opacity="0.35"/>
+        <!-- Hex layer 6 (r=38) -->
+        <polygon points="80,51 113,70 113,108 80,127 47,108 47,70"
+                 fill="none" stroke="#0C4A6E" stroke-width="1" opacity="0.2"/>
+        <!-- Inner ring dots (12 dots at r=42, between r=46 and r=38) -->
+        <circle cx="80"  cy="47"  r="1.5" fill="#00D4FF44"/>
+        <circle cx="101" cy="52"  r="1.5" fill="#00D4FF44"/>
+        <circle cx="117" cy="65"  r="1.5" fill="#00D4FF44"/>
+        <circle cx="122" cy="84"  r="1.5" fill="#00D4FF44"/>
+        <circle cx="117" cy="103" r="1.5" fill="#00D4FF44"/>
+        <circle cx="101" cy="116" r="1.5" fill="#00D4FF44"/>
+        <circle cx="80"  cy="121" r="1.5" fill="#00D4FF44"/>
+        <circle cx="59"  cy="116" r="1.5" fill="#00D4FF44"/>
+        <circle cx="43"  cy="103" r="1.5" fill="#00D4FF44"/>
+        <circle cx="38"  cy="84"  r="1.5" fill="#00D4FF44"/>
+        <circle cx="43"  cy="65"  r="1.5" fill="#00D4FF44"/>
+        <circle cx="59"  cy="52"  r="1.5" fill="#00D4FF44"/>
+        <!-- Diamond gem facets -->
+        <!-- Main outline -->
+        <polygon points="80,44 110,80 80,120 50,80" fill="#00D4FF12" stroke="#67E8F9" stroke-width="2"/>
+        <!-- Vertical center line -->
+        <line x1="80" y1="44" x2="80" y2="80" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <!-- Horizontal center line -->
+        <line x1="50" y1="80" x2="110" y2="80" stroke="#67E8F9" stroke-width="1.5" opacity="0.7"/>
+        <!-- Upper facets -->
+        <polyline points="65,68 80,80 95,68" fill="none" stroke="#00D4FF" stroke-width="1" opacity="0.5"/>
+        <!-- Lower facets -->
+        <polyline points="64,92 80,80 96,92" fill="none" stroke="#00D4FF" stroke-width="1" opacity="0.5"/>
+        <!-- Vertex ornaments: elaborate diamonds with ticks -->
+        <!-- (80,11) -->
+        <polygon points="80,2 86,11 80,20 74,11" fill="#00D4FF44" stroke="#67E8F9" stroke-width="1"/>
+        <line x1="67" y1="11" x2="71" y2="11" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <line x1="89" y1="11" x2="93" y2="11" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <line x1="80" y1="0"  x2="80" y2="4"  stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <circle cx="80" cy="11" r="2" fill="#67E8F9"/>
+        <!-- (148,50) -->
+        <polygon points="148,41 154,50 148,59 142,50" fill="#00D4FF44" stroke="#67E8F9" stroke-width="1"/>
+        <line x1="135" y1="50" x2="139" y2="50" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <line x1="157" y1="50" x2="161" y2="50" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <line x1="148" y1="37" x2="148" y2="41" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <circle cx="148" cy="50" r="2" fill="#67E8F9"/>
+        <!-- (148,128) -->
+        <polygon points="148,119 154,128 148,137 142,128" fill="#00D4FF44" stroke="#67E8F9" stroke-width="1"/>
+        <line x1="135" y1="128" x2="139" y2="128" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <line x1="157" y1="128" x2="161" y2="128" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <line x1="148" y1="141" x2="148" y2="137" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <circle cx="148" cy="128" r="2" fill="#67E8F9"/>
+        <!-- (80,167) -->
+        <polygon points="80,158 86,167 80,176 74,167" fill="#00D4FF44" stroke="#67E8F9" stroke-width="1"/>
+        <line x1="67" y1="167" x2="71" y2="167" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <line x1="89" y1="167" x2="93" y2="167" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <line x1="80" y1="178" x2="80" y2="174" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <circle cx="80" cy="167" r="2" fill="#67E8F9"/>
+        <!-- (12,128) -->
+        <polygon points="12,119 18,128 12,137 6,128" fill="#00D4FF44" stroke="#67E8F9" stroke-width="1"/>
+        <line x1="-1" y1="128" x2="3"  y2="128" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <line x1="21" y1="128" x2="25" y2="128" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <line x1="12" y1="141" x2="12" y2="137" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <circle cx="12" cy="128" r="2" fill="#67E8F9"/>
+        <!-- (12,50) -->
+        <polygon points="12,41 18,50 12,59 6,50" fill="#00D4FF44" stroke="#67E8F9" stroke-width="1"/>
+        <line x1="-1" y1="50" x2="3"  y2="50" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <line x1="21" y1="50" x2="25" y2="50" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <line x1="12" y1="37" x2="12" y2="41" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+        <circle cx="12" cy="50" r="2" fill="#67E8F9"/>
+        <!-- Sub-text -->
+        <text x="80" y="150" text-anchor="middle" font-family="Outfit,sans-serif"
+              font-size="9" font-weight="700" fill="#67E8F9" letter-spacing="3">DIAMOND</text>
+      </svg>
+      <div class="rank-name">Diamond</div>
+      <div class="score-pill">95 – 100</div>
+      <div class="rank-tagline">Élite absolue ★</div>
+      <ul class="rank-bullets">
+        <li><span class="bullet-dot"></span>Pool Elite (10% du capital)</li>
+        <li><span class="bullet-dot"></span>Double allocation</li>
+        <li><span class="bullet-dot"></span>Profit split maximum</li>
+      </ul>
+      <div class="split-badge">Split 60% Elite</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ PROGRESSION BAR ═══ -->
+<section class="progress-section">
+  <div class="progress-track">
+    <div class="progress-label">Parcours de progression</div>
+    <div class="progress-bar-bg">
+      <div class="progress-fill" style="width:100%"></div>
+    </div>
+    <div class="progress-ticks">
+      <div class="progress-tick">
+        <strong>No Rank</strong>0–29
+      </div>
+      <div class="progress-tick">
+        <strong>Bronze</strong>30–49
+      </div>
+      <div class="progress-tick">
+        <strong>Silver</strong>50–69
+      </div>
+      <div class="progress-tick">
+        <strong>Gold</strong>70–84
+      </div>
+      <div class="progress-tick active">
+        <strong>Platinum</strong>85–94
+      </div>
+      <div class="progress-tick" style="color: #67E8F9;">
+        <strong style="color:#67E8F9;">Diamond</strong>95–100
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ═══ COMPARISON TABLE ═══ -->
+<section class="comparison-section">
+  <div class="section-header">
+    <h2>Comparatif complet</h2>
+    <p>Tous les avantages par rang, en un coup d'œil.</p>
+  </div>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Rang</th>
+        <th>Score</th>
+        <th>Cohorte</th>
+        <th>Live Trading</th>
+        <th>Pool</th>
+        <th>Profit Split</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <span class="rank-dot">
+            <span class="rank-dot-circle" style="background:#353545"></span>
+            <span style="color:#555565">No Rank</span>
+          </span>
+        </td>
+        <td style="color:var(--text2)">0–29</td>
+        <td><span class="cross-icon">—</span></td>
+        <td><span class="cross-icon">—</span></td>
+        <td><span class="cross-icon">—</span></td>
+        <td style="color:var(--text3)">Aucun</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="rank-dot">
+            <span class="rank-dot-circle" style="background:#CD7F32"></span>
+            <span style="color:#CD7F32">Bronze</span>
+          </span>
+        </td>
+        <td style="color:var(--text2)">30–49</td>
+        <td><span class="cross-icon">—</span></td>
+        <td><span class="cross-icon">—</span></td>
+        <td><span class="cross-icon">—</span></td>
+        <td style="color:var(--text3)">Aucun</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="rank-dot">
+            <span class="rank-dot-circle" style="background:#9CA3AF"></span>
+            <span style="color:#CBD5E1">Silver</span>
+          </span>
+        </td>
+        <td style="color:var(--text2)">50–69</td>
+        <td><span class="check-icon">✓</span></td>
+        <td><span class="cross-icon">—</span></td>
+        <td><span class="cross-icon">—</span></td>
+        <td style="color:var(--text3)">Aucun</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="rank-dot">
+            <span class="rank-dot-circle" style="background:#F59E0B"></span>
+            <span style="color:#F59E0B">Gold</span>
+          </span>
+        </td>
+        <td style="color:var(--text2)">70–84</td>
+        <td><span class="check-icon">✓</span></td>
+        <td style="color:var(--amber);font-size:12px">Surveillance</td>
+        <td><span class="cross-icon">—</span></td>
+        <td style="color:#F59E0B">40% si Live</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="rank-dot">
+            <span class="rank-dot-circle" style="background:#8B5CF6"></span>
+            <span style="color:#A78BFA">Platinum</span>
+          </span>
+        </td>
+        <td style="color:var(--text2)">85–94</td>
+        <td><span class="check-icon">✓</span></td>
+        <td style="color:var(--green);font-size:12px">Standard/Expert</td>
+        <td style="color:var(--text2);font-size:12px">Standard 90%</td>
+        <td style="color:#A78BFA">50–55%</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="rank-dot">
+            <span class="rank-dot-circle" style="background:#67E8F9"></span>
+            <span style="color:#67E8F9">Diamond</span>
+          </span>
+        </td>
+        <td style="color:var(--text2)">95–100</td>
+        <td><span class="check-icon">✓</span></td>
+        <td style="color:#67E8F9;font-size:12px">Elite</td>
+        <td style="color:#67E8F9;font-size:12px">Elite 10% + Standard</td>
+        <td style="color:#67E8F9">60% Elite</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="divider"/>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how-section">
+  <div class="section-header">
+    <h2>Comment progresser</h2>
+    <p>5 étapes claires pour atteindre le Live Trading.</p>
+  </div>
+  <div class="steps-row">
+    <div class="step-card">
+      <div class="step-num">Étape 01</div>
+      <div class="step-title">Inscription</div>
+      <div class="step-desc">Ouvre ton compte, choisis ta formule, accès immédiat au capital fictif $1M.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Étape 02</div>
+      <div class="step-title">Évaluation</div>
+      <div class="step-desc">Trade sur Volumetrica. Le CLIMB Score se calcule en temps réel selon 4 piliers.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Étape 03</div>
+      <div class="step-title">Rang Platinum</div>
+      <div class="step-desc">Atteins 85/100 maintenu 7 jours consécutifs. KYC validé. 30 jours min.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Étape 04</div>
+      <div class="step-title">Live Trading</div>
+      <div class="step-desc">Capital réel alloué depuis le pool de liquidité. Retraits dès 500$.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Étape 05</div>
+      <div class="step-title">Croissance</div>
+      <div class="step-desc">Scaling mensuel automatique. Aucun plafond. Diamond Elite à 95/100.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ═══ SCORE SIMULATOR ═══ -->
+<section class="simulator-section" id="simulator">
+  <div class="simulator-card">
+    <h3>Simulateur de Rang</h3>
+    <p>Déplace le curseur pour voir quel rang correspond à ton score.</p>
+
+    <div class="sim-score-display" id="simScoreNum" style="color: #555565;">0</div>
+    <div class="sim-score-label">/ 100 CLIMB SCORE</div>
+
+    <!-- Badge display -->
+    <div class="sim-badge-display" id="simBadgeDisplay">
+      <!-- injected by JS -->
+    </div>
+
+    <div class="sim-rank-name" id="simRankName" style="color: #555565;">No Rank</div>
+    <div class="sim-rank-desc" id="simRankDesc" style="color: var(--text2);">Continue de trader et d'affiner ta stratégie.</div>
+
+    <div class="slider-container">
+      <input type="range" id="scoreSlider" min="0" max="100" value="0" />
+    </div>
+    <div class="slider-minmax">
+      <span>0</span>
+      <span>100</span>
+    </div>
+
+    <div class="eligibility-banner" id="eligBanner" style="background:rgba(53,53,69,0.2); border-color:#252530; color:#555565; margin-top:16px;">
+      Évaluation uniquement — Pas d'accès Live
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div>
+    <span class="logo-wordmark">CLIMBER <span>TRADE</span></span>
+    <p style="margin-top:6px">© 2026 Climber Trade · contact@climbertrade.com</p>
+  </div>
+  <nav>
+    <a href="#">Règlement</a>
+    <a href="#">CGV</a>
+    <a href="#">Mentions légales</a>
+    <a href="#">Pool de liquidité</a>
+  </nav>
+</footer>
+
+<!-- ═══ JAVASCRIPT SIMULATOR ═══ -->
+<script>
+(function() {
+
+  // ── Rank definitions ──
+  const RANKS = [
+    {
+      id: 'norank',
+      name: 'No Rank',
+      min: 0, max: 29,
+      color: '#555565',
+      desc: "Continue de trader et d'affiner ta stratégie.",
+      banner: "Évaluation uniquement — Pas d'accès Live",
+      bannerBg: 'rgba(53,53,69,0.2)', bannerBorder: '#252530', bannerColor: '#555565'
+    },
+    {
+      id: 'bronze',
+      name: 'Bronze',
+      min: 30, max: 49,
+      color: '#CD7F32',
+      desc: "Tu entres dans le système de notation. Construis ton historique.",
+      banner: "Évaluation + Historique archivé — Pas d'accès Live",
+      bannerBg: 'rgba(205,127,50,0.1)', bannerBorder: 'rgba(205,127,50,0.3)', bannerColor: '#CD7F32'
+    },
+    {
+      id: 'silver',
+      name: 'Silver',
+      min: 50, max: 69,
+      color: '#CBD5E1',
+      desc: "Tu intègres la cohorte statistique. Ton score compte réellement.",
+      banner: "Cohorte statistique active — Pas d'accès Live",
+      bannerBg: 'rgba(203,213,225,0.08)', bannerBorder: 'rgba(203,213,225,0.25)', bannerColor: '#CBD5E1'
+    },
+    {
+      id: 'gold',
+      name: 'Gold',
+      min: 70, max: 84,
+      color: '#F59E0B',
+      desc: "Score solide. En zone de surveillance pour le passage Live.",
+      banner: "Surveillance Live — Split 40% si passage Live",
+      bannerBg: 'rgba(245,158,11,0.1)', bannerBorder: 'rgba(245,158,11,0.3)', bannerColor: '#F59E0B'
+    },
+    {
+      id: 'platinum',
+      name: 'Platinum',
+      min: 85, max: 94,
+      color: '#A78BFA',
+      desc: "Score ≥ 85 : accès au Live Trading avec du capital réel du pool.",
+      banner: "✦ Live Trading ELIGIBLE — Standard / Expert — Split 50–55%",
+      bannerBg: 'rgba(167,139,250,0.1)', bannerBorder: 'rgba(167,139,250,0.3)', bannerColor: '#A78BFA'
+    },
+    {
+      id: 'diamond',
+      name: 'Diamond',
+      min: 95, max: 100,
+      color: '#67E8F9',
+      desc: "Élite absolue. Pool Elite (10%), double allocation, split maximum.",
+      banner: "★ ÉLITE — Pool Elite 10% + Standard — Split 60%",
+      bannerBg: 'rgba(103,232,249,0.1)', bannerBorder: 'rgba(103,232,249,0.3)', bannerColor: '#67E8F9'
+    }
+  ];
+
+  // ── Inline SVG builders ──
+
+  function svgNoRank() {
+    return `<svg width="160" height="178" viewBox="0 0 160 178" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sim-nr-fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#0D0D14"/>
+          <stop offset="100%" stop-color="#0D0D14"/>
+        </linearGradient>
+      </defs>
+      <polygon points="80,11 148,50 148,128 80,167 12,128 12,50"
+               fill="url(#sim-nr-fill)" stroke="#252530" stroke-width="2" stroke-dasharray="6,4"/>
+      <line x1="62" y1="89" x2="98" y2="89" stroke="#2A2A38" stroke-width="4" stroke-linecap="round"/>
+      <text x="80" y="150" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" font-weight="700" fill="#252530" letter-spacing="3">NO RANK</text>
+    </svg>`;
+  }
+
+  function svgBronze() {
+    return `<svg width="160" height="178" viewBox="0 0 160 178" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sim-bz-fill" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+          <stop offset="0%" stop-color="#1A0A02"/><stop offset="100%" stop-color="#2D1206"/>
+        </linearGradient>
+        <linearGradient id="sim-bz-str" x1="0" y1="11" x2="0" y2="167" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#8B4513"/><stop offset="100%" stop-color="#CD7F32"/>
+        </linearGradient>
+      </defs>
+      <polygon points="80,11 148,50 148,128 80,167 12,128 12,50" fill="url(#sim-bz-fill)" stroke="url(#sim-bz-str)" stroke-width="2.5"/>
+      <polygon points="80,19 141,54 141,124 80,159 19,124 19,54" fill="none" stroke="#6B3010" stroke-width="1" opacity="0.6"/>
+      <polygon points="52,112 80,58 108,112" stroke="#CD7F32" stroke-width="2" fill="#CD7F3215"/>
+      <text x="80" y="150" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" font-weight="700" fill="#CD7F32" letter-spacing="3">BRONZE</text>
+    </svg>`;
+  }
+
+  function svgSilver() {
+    return `<svg width="160" height="178" viewBox="0 0 160 178" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sim-sv-fill" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+          <stop offset="0%" stop-color="#111120"/><stop offset="100%" stop-color="#1A1A2A"/>
+        </linearGradient>
+        <linearGradient id="sim-sv-str" x1="0" y1="11" x2="0" y2="167" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#9CA3AF"/><stop offset="100%" stop-color="#E2E8F0"/>
+        </linearGradient>
+      </defs>
+      <polygon points="80,11 148,50 148,128 80,167 12,128 12,50" fill="url(#sim-sv-fill)" stroke="url(#sim-sv-str)" stroke-width="2.5"/>
+      <polygon points="80,19 141,54 141,124 80,159 19,124 19,54" fill="none" stroke="#6B7280" stroke-width="1.5" opacity="0.8"/>
+      <polygon points="80,27 134,58 134,120 80,151 26,120 26,58" fill="none" stroke="#374151" stroke-width="1" opacity="0.5"/>
+      <polygon points="50,112 80,55 110,112" stroke="#9CA3AF" stroke-width="2" fill="#9CA3AF12"/>
+      <polygon points="72,68 80,55 88,68" fill="#E2E8F0" opacity="0.9"/>
+      <circle cx="80" cy="11" r="3" fill="#6B7280"/>
+      <circle cx="148" cy="50" r="3" fill="#6B7280"/>
+      <circle cx="148" cy="128" r="3" fill="#6B7280"/>
+      <circle cx="80" cy="167" r="3" fill="#6B7280"/>
+      <circle cx="12" cy="128" r="3" fill="#6B7280"/>
+      <circle cx="12" cy="50" r="3" fill="#6B7280"/>
+      <text x="80" y="150" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" font-weight="700" fill="#CBD5E1" letter-spacing="3">SILVER</text>
+    </svg>`;
+  }
+
+  function svgGold() {
+    return `<svg width="160" height="178" viewBox="0 0 160 178" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sim-gd-fill" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+          <stop offset="0%" stop-color="#1A1000"/><stop offset="100%" stop-color="#2A1A02"/>
+        </linearGradient>
+        <linearGradient id="sim-gd-str" x1="0" y1="11" x2="0" y2="167" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#D97706"/><stop offset="100%" stop-color="#FCD34D"/>
+        </linearGradient>
+      </defs>
+      <polygon points="80,11 148,50 148,128 80,167 12,128 12,50" fill="url(#sim-gd-fill)" stroke="url(#sim-gd-str)" stroke-width="3"/>
+      <polygon points="80,19 141,54 141,124 80,159 19,124 19,54" fill="none" stroke="#B45309" stroke-width="1.5" opacity="0.8"/>
+      <polygon points="80,27 134,58 134,120 80,151 26,120 26,58" fill="none" stroke="#92400E" stroke-width="1" opacity="0.6"/>
+      <polygon points="80,35 127,62 127,116 80,143 33,116 33,62" fill="none" stroke="#78350F" stroke-width="1" opacity="0.4"/>
+      <polygon points="50,108 80,52 110,108" stroke="#F59E0B" stroke-width="2" fill="#F59E0B12"/>
+      <path d="M 80,34 L 82,41 L 89,41 L 83,45 L 86,52 L 80,48 L 74,52 L 77,45 L 71,41 L 78,41 Z" fill="#F59E0B"/>
+      <polygon points="80,6 83.5,11 80,16 76.5,11" fill="#F59E0B"/>
+      <polygon points="148,45 151.5,50 148,55 144.5,50" fill="#F59E0B"/>
+      <polygon points="148,123 151.5,128 148,133 144.5,128" fill="#F59E0B"/>
+      <polygon points="80,162 83.5,167 80,172 76.5,167" fill="#F59E0B"/>
+      <polygon points="12,123 15.5,128 12,133 8.5,128" fill="#F59E0B"/>
+      <polygon points="12,45 15.5,50 12,55 8.5,50" fill="#F59E0B"/>
+      <text x="80" y="150" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" font-weight="700" fill="#F59E0B" letter-spacing="3">GOLD</text>
+    </svg>`;
+  }
+
+  function svgPlatinum() {
+    return `<svg width="160" height="178" viewBox="0 0 160 178" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sim-pt-fill" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+          <stop offset="0%" stop-color="#140826"/><stop offset="100%" stop-color="#1E0E38"/>
+        </linearGradient>
+        <linearGradient id="sim-pt-str" x1="0" y1="11" x2="0" y2="167" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#C4B5FD"/>
+        </linearGradient>
+        <linearGradient id="sim-pt-crown" x1="0" y1="80" x2="0" y2="112" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.13"/>
+          <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.2"/>
+        </linearGradient>
+      </defs>
+      <polygon points="80,11 148,50 148,128 80,167 12,128 12,50" fill="url(#sim-pt-fill)" stroke="url(#sim-pt-str)" stroke-width="3"/>
+      <polygon points="80,19 141,54 141,124 80,159 19,124 19,54" fill="none" stroke="#6D28D9" stroke-width="2" opacity="0.9"/>
+      <polygon points="80,27 134,58 134,120 80,151 26,120 26,58" fill="none" stroke="#5B21B6" stroke-width="1.5" opacity="0.7"/>
+      <polygon points="80,35 127,62 127,116 80,143 33,116 33,62" fill="none" stroke="#4C1D95" stroke-width="1" opacity="0.5"/>
+      <polygon points="80,43 120,66 120,112 80,135 40,112 40,65" fill="none" stroke="#3B1572" stroke-width="1" opacity="0.3"/>
+      <path d="M 58,98 L 58,112 L 102,112 L 102,98 L 94,80 L 87,93 L 80,80 L 73,93 L 66,80 Z"
+            fill="url(#sim-pt-crown)" stroke="#A78BFA" stroke-width="1.5" stroke-linejoin="round"/>
+      <circle cx="66" cy="80" r="4" fill="#C4B5FD"/>
+      <circle cx="80" cy="80" r="4" fill="#C4B5FD"/>
+      <circle cx="94" cy="80" r="4" fill="#C4B5FD"/>
+      <polygon points="80,4 84.5,11 80,18 75.5,11" fill="#8B5CF6"/>
+      <circle cx="80" cy="11" r="1.5" fill="#C4B5FD"/>
+      <polygon points="148,43 152.5,50 148,57 143.5,50" fill="#8B5CF6"/>
+      <circle cx="148" cy="50" r="1.5" fill="#C4B5FD"/>
+      <polygon points="148,121 152.5,128 148,135 143.5,128" fill="#8B5CF6"/>
+      <circle cx="148" cy="128" r="1.5" fill="#C4B5FD"/>
+      <polygon points="80,160 84.5,167 80,174 75.5,167" fill="#8B5CF6"/>
+      <circle cx="80" cy="167" r="1.5" fill="#C4B5FD"/>
+      <polygon points="12,121 16.5,128 12,135 7.5,128" fill="#8B5CF6"/>
+      <circle cx="12" cy="128" r="1.5" fill="#C4B5FD"/>
+      <polygon points="12,43 16.5,50 12,57 7.5,50" fill="#8B5CF6"/>
+      <circle cx="12" cy="50" r="1.5" fill="#C4B5FD"/>
+      <text x="80" y="150" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" font-weight="700" fill="#A78BFA" letter-spacing="3">PLATINUM</text>
+    </svg>`;
+  }
+
+  function svgDiamond() {
+    return `<svg width="160" height="178" viewBox="0 0 160 178" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sim-dm-fill" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+          <stop offset="0%" stop-color="#021422"/><stop offset="100%" stop-color="#041E30"/>
+        </linearGradient>
+        <linearGradient id="sim-dm-str" x1="0" y1="11" x2="0" y2="167" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#0EA5E9"/><stop offset="100%" stop-color="#67E8F9"/>
+        </linearGradient>
+        <filter id="sim-dm-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <polygon points="80,11 148,50 148,128 80,167 12,128 12,50"
+               fill="url(#sim-dm-fill)" stroke="url(#sim-dm-str)" stroke-width="3" filter="url(#sim-dm-glow)"/>
+      <polygon points="80,19 141,54 141,124 80,159 19,124 19,54" fill="none" stroke="#0891B2" stroke-width="2" opacity="0.9"/>
+      <polygon points="80,27 134,58 134,120 80,151 26,120 26,58" fill="none" stroke="#0369A1" stroke-width="1.5" opacity="0.7"/>
+      <polygon points="80,35 127,62 127,116 80,143 33,116 33,62" fill="none" stroke="#0284C7" stroke-width="1" opacity="0.5"/>
+      <polygon points="80,43 120,66 120,112 80,135 40,112 40,65" fill="none" stroke="#0369A1" stroke-width="1" opacity="0.35"/>
+      <polygon points="80,51 113,70 113,108 80,127 47,108 47,70" fill="none" stroke="#0C4A6E" stroke-width="1" opacity="0.2"/>
+      <circle cx="80" cy="47" r="1.5" fill="#00D4FF44"/>
+      <circle cx="101" cy="52" r="1.5" fill="#00D4FF44"/>
+      <circle cx="117" cy="65" r="1.5" fill="#00D4FF44"/>
+      <circle cx="122" cy="84" r="1.5" fill="#00D4FF44"/>
+      <circle cx="117" cy="103" r="1.5" fill="#00D4FF44"/>
+      <circle cx="101" cy="116" r="1.5" fill="#00D4FF44"/>
+      <circle cx="80" cy="121" r="1.5" fill="#00D4FF44"/>
+      <circle cx="59" cy="116" r="1.5" fill="#00D4FF44"/>
+      <circle cx="43" cy="103" r="1.5" fill="#00D4FF44"/>
+      <circle cx="38" cy="84" r="1.5" fill="#00D4FF44"/>
+      <circle cx="43" cy="65" r="1.5" fill="#00D4FF44"/>
+      <circle cx="59" cy="52" r="1.5" fill="#00D4FF44"/>
+      <polygon points="80,44 110,80 80,120 50,80" fill="#00D4FF12" stroke="#67E8F9" stroke-width="2"/>
+      <line x1="80" y1="44" x2="80" y2="80" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="50" y1="80" x2="110" y2="80" stroke="#67E8F9" stroke-width="1.5" opacity="0.7"/>
+      <polyline points="65,68 80,80 95,68" fill="none" stroke="#00D4FF" stroke-width="1" opacity="0.5"/>
+      <polyline points="64,92 80,80 96,92" fill="none" stroke="#00D4FF" stroke-width="1" opacity="0.5"/>
+      <polygon points="80,2 86,11 80,20 74,11" fill="#00D4FF44" stroke="#67E8F9" stroke-width="1"/>
+      <line x1="67" y1="11" x2="71" y2="11" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="89" y1="11" x2="93" y2="11" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="80" y1="0" x2="80" y2="4" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <circle cx="80" cy="11" r="2" fill="#67E8F9"/>
+      <polygon points="148,41 154,50 148,59 142,50" fill="#00D4FF44" stroke="#67E8F9" stroke-width="1"/>
+      <line x1="135" y1="50" x2="139" y2="50" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="157" y1="50" x2="161" y2="50" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="148" y1="37" x2="148" y2="41" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <circle cx="148" cy="50" r="2" fill="#67E8F9"/>
+      <polygon points="148,119 154,128 148,137 142,128" fill="#00D4FF44" stroke="#67E8F9" stroke-width="1"/>
+      <line x1="135" y1="128" x2="139" y2="128" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="157" y1="128" x2="161" y2="128" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="148" y1="141" x2="148" y2="137" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <circle cx="148" cy="128" r="2" fill="#67E8F9"/>
+      <polygon points="80,158 86,167 80,176 74,167" fill="#00D4FF44" stroke="#67E8F9" stroke-width="1"/>
+      <line x1="67" y1="167" x2="71" y2="167" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="89" y1="167" x2="93" y2="167" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="80" y1="178" x2="80" y2="174" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <circle cx="80" cy="167" r="2" fill="#67E8F9"/>
+      <polygon points="12,119 18,128 12,137 6,128" fill="#00D4FF44" stroke="#67E8F9" stroke-width="1"/>
+      <line x1="-1" y1="128" x2="3" y2="128" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="21" y1="128" x2="25" y2="128" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="12" y1="141" x2="12" y2="137" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <circle cx="12" cy="128" r="2" fill="#67E8F9"/>
+      <polygon points="12,41 18,50 12,59 6,50" fill="#00D4FF44" stroke="#67E8F9" stroke-width="1"/>
+      <line x1="-1" y1="50" x2="3" y2="50" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="21" y1="50" x2="25" y2="50" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <line x1="12" y1="37" x2="12" y2="41" stroke="#00D4FF" stroke-width="1" opacity="0.6"/>
+      <circle cx="12" cy="50" r="2" fill="#67E8F9"/>
+      <text x="80" y="150" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" font-weight="700" fill="#67E8F9" letter-spacing="3">DIAMOND</text>
+    </svg>`;
+  }
+
+  const SVG_FNS = [svgNoRank, svgBronze, svgSilver, svgGold, svgPlatinum, svgDiamond];
+
+  // ── DOM refs ──
+  const slider      = document.getElementById('scoreSlider');
+  const scoreNum    = document.getElementById('simScoreNum');
+  const badgeDisp   = document.getElementById('simBadgeDisplay');
+  const rankName    = document.getElementById('simRankName');
+  const rankDesc    = document.getElementById('simRankDesc');
+  const eligBanner  = document.getElementById('eligBanner');
+
+  function getRankIndex(score) {
+    for (let i = RANKS.length - 1; i >= 0; i--) {
+      if (score >= RANKS[i].min) return i;
+    }
+    return 0;
+  }
+
+  let lastIdx = -1;
+
+  function updateSimulator(val) {
+    const score = parseInt(val, 10);
+    const idx   = getRankIndex(score);
+    const rank  = RANKS[idx];
+
+    scoreNum.textContent = score;
+    scoreNum.style.color = rank.color;
+
+    rankName.textContent  = rank.name;
+    rankName.style.color  = rank.color;
+    rankDesc.textContent  = rank.desc;
+
+    eligBanner.textContent                = rank.banner;
+    eligBanner.style.background           = rank.bannerBg;
+    eligBanner.style.borderColor          = rank.bannerBorder;
+    eligBanner.style.color                = rank.bannerColor;
+
+    if (idx !== lastIdx) {
+      lastIdx = idx;
+      badgeDisp.innerHTML = SVG_FNS[idx]();
+    }
+
+    // Update slider track gradient
+    const pct = (score / 100) * 100;
+    const stops = [
+      [0,   '#353545'],
+      [30,  '#CD7F32'],
+      [50,  '#CBD5E1'],
+      [70,  '#F59E0B'],
+      [85,  '#A78BFA'],
+      [95,  '#67E8F9'],
+      [100, '#67E8F9'],
+    ];
+
+    let gradParts = [];
+    for (const [p, c] of stops) {
+      gradParts.push(`${c} ${p}%`);
+    }
+
+    slider.style.background =
+      `linear-gradient(90deg, ${gradParts.join(', ')}) 0/100% 100% no-repeat, rgba(255,255,255,0.06)`;
+  }
+
+  slider.addEventListener('input', function() {
+    updateSimulator(this.value);
+  });
+
+  // Initial render
+  updateSimulator(0);
+
+})();
+</script>
+
+</body>
+</html>
