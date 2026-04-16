@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLO.W — SPX 0DTE Credit Spread Scanner</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0c0c0e;--bg2:#111114;--sidebar:#0a0a0c;--card:#16161a;--card2:#1c1c22;
+  --border:#222228;--border2:#2a2a32;--teal:#00D4FF;--teal-dim:#00D4FF18;
+  --green:#10B981;--green-dim:#10B98118;--red:#EF4444;--red-dim:#EF444418;
+  --amber:#F59E0B;--amber-dim:#F59E0B18;--blue:#6366F1;--purple:#8B5CF6;
+  --text:#F0F0F0;--text2:#8A8A9A;--text3:#44444E;
+  --mono:'JetBrains Mono',monospace;--sans:'Outfit',sans-serif;
+  --sidebar-w:220px;--header-h:62px;--r:10px;--r2:14px;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;overflow:hidden;}
+.app{display:flex;height:100vh;overflow:hidden;}
+
+/* ============ SIDEBAR ============ */
+.sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;height:100vh;overflow:hidden;position:relative;z-index:10;}
+.sidebar-logo{display:flex;align-items:center;gap:10px;padding:18px 20px 16px;border-bottom:1px solid var(--border);}
+.logo-icon svg{display:block;}
+.logo-text{font-size:15px;font-weight:800;letter-spacing:.5px;color:var(--text);}
+.logo-text span{color:var(--teal);}
+.workspace-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;color:var(--teal);background:var(--teal-dim);padding:2px 6px;border-radius:4px;margin-left:6px;vertical-align:middle;}
+.nav{flex:1;overflow-y:auto;padding:10px 0;scrollbar-width:none;}
+.nav::-webkit-scrollbar{display:none;}
+.nav-section{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text3);padding:14px 18px 6px;}
+.nav-item{display:flex;align-items:center;gap:12px;padding:9px 16px 9px 18px;border-radius:8px;margin:1px 8px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;transition:all .15s;text-decoration:none;position:relative;}
+.nav-item:hover{background:var(--card);color:var(--text);}
+.nav-item.active{background:#00D4FF14;color:var(--teal);font-weight:600;}
+.nav-item.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:20px;background:var(--teal);border-radius:0 3px 3px 0;}
+.nav-item svg{flex-shrink:0;opacity:.7;}
+.nav-item.active svg{opacity:1;}
+.nav-badge{margin-left:auto;font-size:9px;font-weight:700;background:var(--green-dim);color:var(--green);padding:2px 6px;border-radius:4px;}
+.nav-separator{height:1px;background:var(--border);margin:8px 16px;}
+.sidebar-user{padding:14px 16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+.user-avatar{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#00D4FF22,#8B5CF622);border:1px solid #00D4FF33;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;font-weight:700;color:var(--teal);}
+.user-info{overflow:hidden;}
+.user-id{font-size:11px;font-weight:600;color:var(--text);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.user-badge{font-size:10px;font-weight:700;color:var(--teal);letter-spacing:.3px;margin-top:1px;}
+
+/* ============ MAIN ============ */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{height:var(--header-h);flex-shrink:0;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px 0 24px;gap:16px;}
+.topbar-left h1{font-size:18px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px;}
+.topbar-left p{font-size:12px;color:var(--text2);margin-top:1px;}
+.live-pill{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;background:var(--green-dim);color:var(--green);padding:3px 8px;border-radius:6px;letter-spacing:.5px;}
+.live-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 1.6s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.refresh-btn{display:flex;align-items:center;gap:8px;background:var(--card2);border:1px solid var(--border2);color:var(--text);font-size:12px;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;font-family:var(--sans);}
+.refresh-btn:hover{background:var(--card);}
+.countdown-pill{display:flex;align-items:center;gap:8px;background:var(--amber-dim);border:1px solid #F59E0B33;padding:8px 14px;border-radius:8px;}
+.countdown-pill .label{font-size:9px;font-weight:700;text-transform:uppercase;color:var(--amber);letter-spacing:.5px;}
+.countdown-pill .value{font-family:var(--mono);font-size:14px;font-weight:800;color:var(--amber);}
+
+.content{flex:1;overflow-y:auto;padding:22px 24px 40px;scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
+.content::-webkit-scrollbar{width:6px;}
+.content::-webkit-scrollbar-track{background:transparent;}
+.content::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+
+/* ============ MARKET CONTEXT BAR ============ */
+.context-bar{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--border);border-radius:var(--r2);padding:16px 20px;margin-bottom:20px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.3fr;gap:24px;align-items:center;}
+.ctx-item{display:flex;flex-direction:column;gap:3px;}
+.ctx-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);}
+.ctx-value{font-family:var(--mono);font-size:22px;font-weight:800;color:var(--text);line-height:1.1;}
+.ctx-sub{font-size:11px;color:var(--text2);font-family:var(--mono);}
+.ctx-sub.up{color:var(--green);}
+.ctx-sub.down{color:var(--red);}
+.ctx-sep{width:1px;background:var(--border);height:42px;}
+.ctx-em{display:flex;align-items:center;gap:8px;}
+.ctx-em-bar{flex:1;height:8px;background:var(--bg2);border-radius:4px;position:relative;overflow:hidden;}
+.ctx-em-fill{position:absolute;top:0;height:100%;background:linear-gradient(90deg,var(--green),var(--amber),var(--red));border-radius:4px;}
+.ctx-em-marker{position:absolute;top:-3px;width:2px;height:14px;background:var(--text);}
+
+/* ============ FILTER BAR ============ */
+.filter-bar{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.filter-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);}
+.filter-group{display:flex;align-items:center;gap:8px;}
+.filter-input{background:var(--bg2);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:12px;font-weight:600;padding:6px 10px;border-radius:6px;width:70px;}
+.filter-input.locked{border-color:var(--teal);background:var(--teal-dim);color:var(--teal);}
+.filter-select{background:var(--bg2);border:1px solid var(--border2);color:var(--text);font-family:var(--sans);font-size:12px;font-weight:600;padding:6px 10px;border-radius:6px;cursor:pointer;}
+.filter-tag{font-size:10px;font-weight:700;background:var(--teal-dim);color:var(--teal);padding:3px 8px;border-radius:4px;margin-left:auto;}
+
+/* ============ TWO TOP SETUPS ============ */
+.setups-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.setup-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:20px;position:relative;overflow:hidden;}
+.setup-card.put{border-top:3px solid var(--green);}
+.setup-card.call{border-top:3px solid var(--red);}
+.setup-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.setup-type{display:flex;align-items:center;gap:10px;}
+.setup-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;}
+.setup-icon.put{background:var(--green-dim);color:var(--green);}
+.setup-icon.call{background:var(--red-dim);color:var(--red);}
+.setup-name{font-size:14px;font-weight:700;color:var(--text);line-height:1.2;}
+.setup-bias{font-size:10px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;}
+.setup-flag{font-size:9px;font-weight:800;background:var(--teal);color:#000;padding:4px 8px;border-radius:5px;letter-spacing:.5px;}
+
+.setup-strikes{display:flex;align-items:baseline;gap:10px;margin-bottom:18px;padding:14px;background:var(--bg2);border-radius:10px;border:1px solid var(--border);}
+.strike-block{display:flex;flex-direction:column;gap:2px;}
+.strike-role{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);}
+.strike-val{font-family:var(--mono);font-size:26px;font-weight:800;color:var(--text);line-height:1;}
+.strike-val.short{color:var(--text);}
+.strike-val.long{color:var(--text2);}
+.strike-arrow{color:var(--text3);font-size:18px;font-family:var(--mono);align-self:center;padding:0 6px;}
+.strike-width{margin-left:auto;text-align:right;}
+.strike-width-label{font-size:9px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;}
+.strike-width-val{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--text);}
+
+.pop-row{display:grid;grid-template-columns:1fr 1.2fr;gap:14px;margin-bottom:14px;}
+.pop-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;}
+.pop-label{font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;}
+.pop-gauge{position:relative;width:88px;height:88px;margin:0 auto;}
+.pop-gauge svg{transform:rotate(-90deg);}
+.pop-gauge-track{stroke:var(--border2);}
+.pop-gauge-fill{stroke:var(--green);transition:stroke-dasharray .6s;}
+.pop-gauge-fill.high{stroke:var(--green);}
+.pop-gauge-fill.mid{stroke:var(--amber);}
+.pop-gauge-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.pop-gauge-num{font-family:var(--mono);font-size:20px;font-weight:800;color:var(--text);}
+.pop-gauge-unit{font-size:9px;font-weight:700;color:var(--text2);}
+
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.metric{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;}
+.metric-label{font-size:9px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+.metric-value{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--text);line-height:1.1;}
+.metric-value.green{color:var(--green);}
+.metric-value.red{color:var(--red);}
+.metric-value.amber{color:var(--amber);}
+.metric-sub{font-size:10px;color:var(--text2);font-family:var(--mono);margin-top:2px;}
+
+.action-row{display:flex;gap:8px;margin-top:14px;}
+.act-btn{flex:1;padding:10px 14px;border-radius:8px;font-size:12px;font-weight:700;font-family:var(--sans);cursor:pointer;border:1px solid var(--border2);background:var(--card2);color:var(--text);transition:.15s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.act-btn:hover{background:var(--card);border-color:var(--teal);color:var(--teal);}
+.act-btn.primary{background:var(--teal);color:#000;border-color:var(--teal);}
+.act-btn.primary:hover{filter:brightness(1.1);color:#000;}
+
+/* ============ COMBINED CONDOR ============ */
+.condor-card{background:linear-gradient(135deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:var(--r2);padding:20px;margin-bottom:20px;}
+.condor-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.condor-title{display:flex;align-items:center;gap:10px;}
+.condor-title-text{font-size:14px;font-weight:700;color:var(--text);}
+.condor-title-sub{font-size:11px;color:var(--text2);}
+.condor-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:14px;}
+.cm{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:12px;}
+.cm-label{font-size:9px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
+.cm-value{font-family:var(--mono);font-size:16px;font-weight:800;color:var(--text);}
+.cm-value.green{color:var(--green);}
+.cm-value.amber{color:var(--amber);}
+
+/* ============ CHAIN TABLE ============ */
+.chain-section{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:20px;margin-bottom:20px;}
+.chain-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.chain-title{font-size:14px;font-weight:700;color:var(--text);}
+.chain-tabs{display:flex;gap:4px;background:var(--bg2);padding:3px;border-radius:8px;border:1px solid var(--border);}
+.chain-tab{padding:6px 14px;font-size:11px;font-weight:700;color:var(--text2);cursor:pointer;border-radius:6px;transition:.15s;}
+.chain-tab.active{background:var(--card2);color:var(--text);}
+.chain-tab.put.active{color:var(--green);}
+.chain-tab.call.active{color:var(--red);}
+
+.chain-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12px;}
+.chain-table thead th{font-family:var(--sans);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text2);text-align:right;padding:8px 10px;border-bottom:1px solid var(--border);}
+.chain-table thead th:first-child{text-align:left;}
+.chain-table tbody td{padding:10px;text-align:right;border-bottom:1px solid var(--border);color:var(--text);}
+.chain-table tbody td:first-child{text-align:left;font-weight:700;}
+.chain-table tbody tr:hover{background:var(--card2);}
+.chain-table tbody tr.best{background:var(--teal-dim);}
+.chain-table tbody tr.best td{color:var(--text);font-weight:700;}
+.chain-table tbody tr.below-min td{opacity:.4;}
+.pop-cell{display:inline-flex;align-items:center;gap:6px;justify-content:flex-end;}
+.pop-bar{width:36px;height:5px;background:var(--bg2);border-radius:3px;overflow:hidden;}
+.pop-bar-fill{height:100%;background:var(--green);}
+.pop-bar-fill.amber{background:var(--amber);}
+.tag{display:inline-block;font-size:9px;font-weight:800;padding:2px 6px;border-radius:4px;letter-spacing:.3px;}
+.tag.best{background:var(--teal);color:#000;}
+.tag.ok{background:var(--green-dim);color:var(--green);}
+.tag.skip{background:var(--card2);color:var(--text2);}
+
+/* ============ STRIKE HEATMAP ============ */
+.heatmap-section{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:20px;margin-bottom:20px;}
+.heatmap-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.heatmap-title{font-size:14px;font-weight:700;color:var(--text);}
+.heatmap-legend{display:flex;align-items:center;gap:14px;font-size:11px;color:var(--text2);}
+.legend-dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:middle;}
+.heatmap-rail{position:relative;height:74px;background:var(--bg2);border-radius:10px;border:1px solid var(--border);overflow:hidden;}
+.heatmap-zone{position:absolute;top:0;height:100%;border-left:1px solid #ffffff10;border-right:1px solid #ffffff10;}
+.heatmap-zone.put-safe{background:linear-gradient(90deg,#10B98120,#10B98140);}
+.heatmap-zone.expected-down{background:linear-gradient(90deg,#10B98140,#10B98115);}
+.heatmap-zone.expected-up{background:linear-gradient(90deg,#EF444415,#EF444440);}
+.heatmap-zone.call-safe{background:linear-gradient(90deg,#EF444440,#EF444420);}
+.heatmap-spot{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--text);box-shadow:0 0 0 4px var(--bg2);z-index:3;}
+.heatmap-spot::before{content:'SPOT';position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:800;color:var(--text);font-family:var(--sans);letter-spacing:.5px;}
+.heatmap-strike{position:absolute;top:0;bottom:0;width:1px;background:var(--text2);opacity:.4;z-index:2;}
+.heatmap-strike.short-put{background:var(--green);opacity:1;width:2px;}
+.heatmap-strike.short-call{background:var(--red);opacity:1;width:2px;}
+.heatmap-label{position:absolute;bottom:-20px;font-size:10px;font-family:var(--mono);font-weight:700;color:var(--text2);transform:translateX(-50%);}
+.heatmap-label.short{color:var(--text);}
+.heatmap-axis{display:flex;justify-content:space-between;margin-top:30px;padding:0 4px;font-size:10px;font-family:var(--mono);color:var(--text3);}
+
+/* ============ NOTES ============ */
+.notes{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:16px 20px;font-size:12px;color:var(--text2);line-height:1.7;}
+.notes strong{color:var(--text);font-weight:700;}
+.notes-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text);margin-bottom:8px;}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 40 40" fill="none" width="30" height="30">
+          <path d="M7 28L15 16L21 22L31 10" stroke="#00D4FF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M25 10H31V16" stroke="#00D4FF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">CLI<span>MB</span>ER<span class="workspace-tag">FLO.W</span></div>
+    </div>
+    <nav class="nav">
+      <div class="nav-section">Trading</div>
+      <a class="nav-item" href="../dashboard-mockup/index.html">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        Dashboard
+      </a>
+      <a class="nav-item" href="../dashboard-mockup/trade-desk.html">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Trade Desk
+      </a>
+
+      <div class="nav-section">Signals</div>
+      <a class="nav-item active" href="spx-0dte-credit-spreads.html">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        SPX 0DTE Spreads
+        <span class="nav-badge">LIVE</span>
+      </a>
+      <a class="nav-item" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Setups Library
+      </a>
+      <a class="nav-item" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3v18h18"/><polyline points="7 14 12 9 16 13 21 8"/></svg>
+        Backtest Lab
+      </a>
+      <a class="nav-item" href="#">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        Alerts
+      </a>
+
+      <div class="nav-section">Analysis</div>
+      <a class="nav-item" href="../dashboard-mockup/my-performance.html">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        My Performance
+      </a>
+      <a class="nav-item" href="../dashboard-mockup/score-lab.html">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 20h.01M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
+        Score Lab
+      </a>
+
+      <div class="nav-separator"></div>
+      <a class="nav-item" href="#" style="color:#EF444488;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Logout
+      </a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="user-avatar">F</div>
+      <div class="user-info">
+        <div class="user-id">CTRF1M-000001-000001</div>
+        <div class="user-badge">● FLO.W BETA</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1>SPX 0DTE — Credit Spread Scanner <span class="live-pill"><span class="dot"></span>LIVE</span></h1>
+        <p>Identification temps réel des spreads à plus haute probabilité de réussite — prime minimum $0.30</p>
+      </div>
+      <div class="topbar-right">
+        <div class="countdown-pill">
+          <div>
+            <div class="label">Expiration</div>
+            <div class="value" id="countdown">04:23:17</div>
+          </div>
+        </div>
+        <button class="refresh-btn">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+          Actualiser
+        </button>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- ============ MARKET CONTEXT BAR ============ -->
+      <div class="context-bar">
+        <div class="ctx-item">
+          <div class="ctx-label">SPX Spot</div>
+          <div class="ctx-value">5,847.32</div>
+          <div class="ctx-sub up">+24.18 (+0.42%)</div>
+        </div>
+        <div class="ctx-sep"></div>
+        <div class="ctx-item">
+          <div class="ctx-label">VIX</div>
+          <div class="ctx-value">14.20</div>
+          <div class="ctx-sub down">−0.46 (−3.1%)</div>
+        </div>
+        <div class="ctx-item">
+          <div class="ctx-label">IV 0DTE</div>
+          <div class="ctx-value">13.8%</div>
+          <div class="ctx-sub">ATM annualisé</div>
+        </div>
+        <div class="ctx-item">
+          <div class="ctx-label">Mouvement Attendu (1σ)</div>
+          <div class="ctx-value">±$51</div>
+          <div class="ctx-sub">±0.87% — fourchette 5,796 / 5,898</div>
+        </div>
+        <div class="ctx-item">
+          <div class="ctx-label">Position SPOT vs Range</div>
+          <div class="ctx-em">
+            <div class="ctx-em-bar">
+              <div class="ctx-em-fill" style="left:0;width:100%;"></div>
+              <div class="ctx-em-marker" style="left:55%;"></div>
+            </div>
+          </div>
+          <div class="ctx-sub">SPOT à 55% du range projeté de la séance</div>
+        </div>
+      </div>
+
+      <!-- ============ FILTER BAR ============ -->
+      <div class="filter-bar">
+        <span class="filter-label">Critères :</span>
+        <div class="filter-group">
+          <span style="font-size:11px;color:var(--text2);">Prime min.</span>
+          <input class="filter-input locked" value="$0.30" readonly>
+        </div>
+        <div class="filter-group">
+          <span style="font-size:11px;color:var(--text2);">Largeur</span>
+          <select class="filter-select"><option>5 pts</option><option>10 pts</option><option>25 pts</option></select>
+        </div>
+        <div class="filter-group">
+          <span style="font-size:11px;color:var(--text2);">POP min.</span>
+          <input class="filter-input" value="80%">
+        </div>
+        <div class="filter-group">
+          <span style="font-size:11px;color:var(--text2);">Type</span>
+          <select class="filter-select"><option>Tous</option><option>Put Credit</option><option>Call Credit</option></select>
+        </div>
+        <div class="filter-group">
+          <span style="font-size:11px;color:var(--text2);">Tri</span>
+          <select class="filter-select"><option>POP décroissant</option><option>R/R</option><option>Crédit</option><option>Distance</option></select>
+        </div>
+        <span class="filter-tag">DERNIÈRE MAJ : 14:36:42 EST</span>
+      </div>
+
+      <!-- ============ TWO TOP SETUPS ============ -->
+      <div class="setups-grid">
+
+        <!-- PUT CREDIT SPREAD -->
+        <div class="setup-card put">
+          <div class="setup-head">
+            <div class="setup-type">
+              <div class="setup-icon put">PCS</div>
+              <div>
+                <div class="setup-name">Put Credit Spread</div>
+                <div class="setup-bias">Biais Haussier — SPX > 5,775</div>
+              </div>
+            </div>
+            <span class="setup-flag">★ MEILLEUR POP</span>
+          </div>
+
+          <div class="setup-strikes">
+            <div class="strike-block">
+              <span class="strike-role">Short Put (vendu)</span>
+              <span class="strike-val short">5,775</span>
+            </div>
+            <span class="strike-arrow">/</span>
+            <div class="strike-block">
+              <span class="strike-role">Long Put (acheté)</span>
+              <span class="strike-val long">5,770</span>
+            </div>
+            <div class="strike-width">
+              <div class="strike-width-label">Largeur</div>
+              <div class="strike-width-val">5 pts</div>
+            </div>
+          </div>
+
+          <div class="pop-row">
+            <div class="pop-card">
+              <div class="pop-label">Probabilité de Profit</div>
+              <div class="pop-gauge">
+                <svg width="88" height="88" viewBox="0 0 88 88">
+                  <circle class="pop-gauge-track" cx="44" cy="44" r="38" fill="none" stroke-width="8"/>
+                  <circle class="pop-gauge-fill high" cx="44" cy="44" r="38" fill="none" stroke-width="8" stroke-dasharray="219.6 238.8" stroke-linecap="round"/>
+                </svg>
+                <div class="pop-gauge-text">
+                  <div class="pop-gauge-num">92%</div>
+                  <div class="pop-gauge-unit">POP</div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div class="metric">
+                <div class="metric-label">Crédit net</div>
+                <div class="metric-value green">$0.30</div>
+                <div class="metric-sub">$30 / contrat</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Risque max</div>
+                <div class="metric-value red">−$470</div>
+                <div class="metric-sub">($5 − $0.30) × 100</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric">
+              <div class="metric-label">Risk / Reward</div>
+              <div class="metric-value">1 : 15.7</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Δ Short Put</div>
+              <div class="metric-value">−0.08</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Distance / SPOT</div>
+              <div class="metric-value green">−1.23%</div>
+              <div class="metric-sub">−$72.32 sous le SPOT</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Breakeven</div>
+              <div class="metric-value">5,774.70</div>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="act-btn primary">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Envoyer au Trade Desk
+            </button>
+            <button class="act-btn">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Détails
+            </button>
+          </div>
+        </div>
+
+        <!-- CALL CREDIT SPREAD -->
+        <div class="setup-card call">
+          <div class="setup-head">
+            <div class="setup-type">
+              <div class="setup-icon call">CCS</div>
+              <div>
+                <div class="setup-name">Call Credit Spread</div>
+                <div class="setup-bias">Biais Baissier — SPX < 5,910</div>
+              </div>
+            </div>
+            <span class="setup-flag">★ MEILLEUR POP</span>
+          </div>
+
+          <div class="setup-strikes">
+            <div class="strike-block">
+              <span class="strike-role">Short Call (vendu)</span>
+              <span class="strike-val short">5,910</span>
+            </div>
+            <span class="strike-arrow">/</span>
+            <div class="strike-block">
+              <span class="strike-role">Long Call (acheté)</span>
+              <span class="strike-val long">5,915</span>
+            </div>
+            <div class="strike-width">
+              <div class="strike-width-label">Largeur</div>
+              <div class="strike-width-val">5 pts</div>
+            </div>
+          </div>
+
+          <div class="pop-row">
+            <div class="pop-card">
+              <div class="pop-label">Probabilité de Profit</div>
+              <div class="pop-gauge">
+                <svg width="88" height="88" viewBox="0 0 88 88">
+                  <circle class="pop-gauge-track" cx="44" cy="44" r="38" fill="none" stroke-width="8"/>
+                  <circle class="pop-gauge-fill high" cx="44" cy="44" r="38" fill="none" stroke-width="8" stroke-dasharray="214.8 238.8" stroke-linecap="round"/>
+                </svg>
+                <div class="pop-gauge-text">
+                  <div class="pop-gauge-num">90%</div>
+                  <div class="pop-gauge-unit">POP</div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div class="metric">
+                <div class="metric-label">Crédit net</div>
+                <div class="metric-value green">$0.31</div>
+                <div class="metric-sub">$31 / contrat</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Risque max</div>
+                <div class="metric-value red">−$469</div>
+                <div class="metric-sub">($5 − $0.31) × 100</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric">
+              <div class="metric-label">Risk / Reward</div>
+              <div class="metric-value">1 : 15.1</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Δ Short Call</div>
+              <div class="metric-value">+0.10</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Distance / SPOT</div>
+              <div class="metric-value red">+1.07%</div>
+              <div class="metric-sub">+$62.68 au-dessus du SPOT</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Breakeven</div>
+              <div class="metric-value">5,910.31</div>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="act-btn primary">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              Envoyer au Trade Desk
+            </button>
+            <button class="act-btn">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Détails
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ============ COMBINED IRON CONDOR ============ -->
+      <div class="condor-card">
+        <div class="condor-head">
+          <div class="condor-title">
+            <svg width="22" height="22" fill="none" stroke="#00D4FF" stroke-width="2" viewBox="0 0 24 24"><path d="M2 12l5-9 5 9 5-9 5 9"/><path d="M2 12l5 9 5-9 5 9 5-9"/></svg>
+            <div>
+              <div class="condor-title-text">Iron Condor combiné — Delta-neutre</div>
+              <div class="condor-title-sub">Combinaison des deux meilleurs spreads ci-dessus</div>
+            </div>
+          </div>
+          <span class="setup-flag" style="background:var(--purple);color:#fff;">CONDOR 0DTE</span>
+        </div>
+        <div class="condor-grid">
+          <div class="cm">
+            <div class="cm-label">Structure</div>
+            <div class="cm-value" style="font-size:13px;">5,775P / 5,770P<br>5,910C / 5,915C</div>
+          </div>
+          <div class="cm">
+            <div class="cm-label">Crédit total</div>
+            <div class="cm-value green">$0.61</div>
+          </div>
+          <div class="cm">
+            <div class="cm-label">Risque max</div>
+            <div class="cm-value">−$439</div>
+          </div>
+          <div class="cm">
+            <div class="cm-label">POP combiné</div>
+            <div class="cm-value amber">~84%</div>
+          </div>
+          <div class="cm">
+            <div class="cm-label">Range gagnant</div>
+            <div class="cm-value" style="font-size:13px;">5,774.39<br>↔ 5,910.61</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ STRIKE HEATMAP ============ -->
+      <div class="heatmap-section">
+        <div class="heatmap-head">
+          <div class="heatmap-title">Carte des zones — Strikes & projection 1σ</div>
+          <div class="heatmap-legend">
+            <span><span class="legend-dot" style="background:var(--green);"></span>Zone Put safe</span>
+            <span><span class="legend-dot" style="background:var(--red);"></span>Zone Call safe</span>
+            <span><span class="legend-dot" style="background:var(--text);"></span>SPOT 5,847</span>
+          </div>
+        </div>
+        <div class="heatmap-rail">
+          <!-- Range : 5740 (gauche) à 5950 (droite) = 210 pts -->
+          <!-- Position : (strike - 5740) / 210 * 100 -->
+          <div class="heatmap-zone put-safe" style="left:0%;width:16.7%;"></div>
+          <div class="heatmap-zone expected-down" style="left:16.7%;width:33.3%;"></div>
+          <div class="heatmap-zone expected-up" style="left:50%;width:25.2%;"></div>
+          <div class="heatmap-zone call-safe" style="left:75.2%;width:24.8%;"></div>
+
+          <!-- Strikes -->
+          <div class="heatmap-strike short-put" style="left:14.3%;">
+            <div class="heatmap-label short" style="left:0;">5,770/75</div>
+          </div>
+          <div class="heatmap-strike" style="left:26.7%;">
+            <div class="heatmap-label">5,796</div>
+          </div>
+          <div class="heatmap-spot" style="left:51%;"></div>
+          <div class="heatmap-strike" style="left:74.8%;">
+            <div class="heatmap-label">5,898</div>
+          </div>
+          <div class="heatmap-strike short-call" style="left:81%;">
+            <div class="heatmap-label short" style="left:0;">5,910/15</div>
+          </div>
+        </div>
+        <div class="heatmap-axis">
+          <span>5,740</span>
+          <span>5,790</span>
+          <span>5,840</span>
+          <span>5,890</span>
+          <span>5,940</span>
+        </div>
+      </div>
+
+      <!-- ============ FULL CHAIN TABLE ============ -->
+      <div class="chain-section">
+        <div class="chain-head">
+          <div class="chain-title">Chaîne complète — spreads 5 pts qualifiants</div>
+          <div class="chain-tabs">
+            <div class="chain-tab put active">Put Credit</div>
+            <div class="chain-tab call">Call Credit</div>
+            <div class="chain-tab">Tous</div>
+          </div>
+        </div>
+        <table class="chain-table">
+          <thead>
+            <tr>
+              <th>Setup</th>
+              <th>Short / Long</th>
+              <th>Crédit</th>
+              <th>Risque max</th>
+              <th>R/R</th>
+              <th>Δ Short</th>
+              <th>Distance</th>
+              <th>POP</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="best">
+              <td>PCS-01</td>
+              <td>5,775 / 5,770</td>
+              <td>$0.30</td>
+              <td>−$470</td>
+              <td>1 : 15.7</td>
+              <td>−0.08</td>
+              <td>−1.23%</td>
+              <td><span class="pop-cell"><span class="pop-bar"><span class="pop-bar-fill" style="width:92%;"></span></span>92%</span></td>
+              <td><span class="tag best">★ TOP</span></td>
+            </tr>
+            <tr>
+              <td>PCS-02</td>
+              <td>5,780 / 5,775</td>
+              <td>$0.32</td>
+              <td>−$468</td>
+              <td>1 : 14.6</td>
+              <td>−0.10</td>
+              <td>−1.15%</td>
+              <td><span class="pop-cell"><span class="pop-bar"><span class="pop-bar-fill" style="width:90%;"></span></span>90%</span></td>
+              <td><span class="tag ok">OK</span></td>
+            </tr>
+            <tr>
+              <td>PCS-03</td>
+              <td>5,790 / 5,785</td>
+              <td>$0.42</td>
+              <td>−$458</td>
+              <td>1 : 10.9</td>
+              <td>−0.13</td>
+              <td>−0.98%</td>
+              <td><span class="pop-cell"><span class="pop-bar"><span class="pop-bar-fill" style="width:87%;"></span></span>87%</span></td>
+              <td><span class="tag ok">OK</span></td>
+            </tr>
+            <tr>
+              <td>PCS-04</td>
+              <td>5,800 / 5,795</td>
+              <td>$0.55</td>
+              <td>−$445</td>
+              <td>1 : 8.1</td>
+              <td>−0.17</td>
+              <td>−0.81%</td>
+              <td><span class="pop-cell"><span class="pop-bar"><span class="pop-bar-fill" style="width:83%;"></span></span>83%</span></td>
+              <td><span class="tag ok">OK</span></td>
+            </tr>
+            <tr>
+              <td>PCS-05</td>
+              <td>5,810 / 5,805</td>
+              <td>$0.68</td>
+              <td>−$432</td>
+              <td>1 : 6.4</td>
+              <td>−0.21</td>
+              <td>−0.64%</td>
+              <td><span class="pop-cell"><span class="pop-bar amber" style="width:79%;"></span>79%</span></td>
+              <td><span class="tag skip">&lt; POP min.</span></td>
+            </tr>
+            <tr class="below-min">
+              <td>PCS-06</td>
+              <td>5,765 / 5,760</td>
+              <td>$0.24</td>
+              <td>−$476</td>
+              <td>1 : 19.8</td>
+              <td>−0.06</td>
+              <td>−1.41%</td>
+              <td><span class="pop-cell"><span class="pop-bar"><span class="pop-bar-fill" style="width:94%;"></span></span>94%</span></td>
+              <td><span class="tag skip">&lt; Prime min.</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ============ NOTES ============ -->
+      <div class="notes">
+        <div class="notes-title">Méthodologie</div>
+        <strong>POP (Probabilité de Profit)</strong> calculée à partir du delta de la jambe vendue (short leg) selon la formule POP ≈ 1 − |Δ short|, ajustée par le crédit perçu : POP_ajusté = 1 − |Δ short| + (crédit / largeur). <strong>Filtre prime $0.30</strong> : tout spread dont le crédit net est inférieur est exclu (mais affiché grisé pour transparence). <strong>Mouvement attendu 1σ</strong> = SPX × IV × √(jours/365) — fourchette dans laquelle le SPX a ~68% de chance de clôturer. <strong>Source de données</strong> : flux options CBOE temps réel, refresh 30s. <strong>0DTE</strong> = expiration le jour même (SPXW). Toutes les commissions et frais d'exercice sont à intégrer dans le calcul de R/R réel par le trader.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// Countdown vers 16:00 EST (close US)
+function tickCountdown(){
+  const el = document.getElementById('countdown');
+  if(!el) return;
+  // Mock simple : décrémente
+  let [h,m,s] = el.textContent.split(':').map(Number);
+  s--;
+  if(s<0){s=59;m--;}
+  if(m<0){m=59;h--;}
+  if(h<0){h=0;m=0;s=0;}
+  el.textContent = String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+setInterval(tickCountdown, 1000);
+</script>
+
+</body>
+</html>
