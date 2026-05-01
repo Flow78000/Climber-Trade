@@ -1,0 +1,135 @@
+/* Foresight — custom overrides */
+
+html, body { height: 100%; }
+body { background: radial-gradient(1200px 600px at 80% -200px, rgba(139, 92, 246, 0.10), transparent 60%),
+                  radial-gradient(900px 500px at -100px 100%, rgba(6, 182, 212, 0.08), transparent 60%),
+                  #0B1120; }
+
+.tab-btn.active {
+  color: #f1f5f9;
+  border-bottom-color: #8B5CF6;
+}
+
+.tier-card {
+  background: #111827;
+  border: 1px solid #1F2937;
+  border-radius: 12px;
+  padding: 18px 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.tier-card:hover {
+  border-color: #8B5CF6;
+  transform: translateY(-2px);
+}
+.tier-card.selected {
+  border-color: #8B5CF6;
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.08), transparent);
+}
+
+.market-card {
+  background: #111827;
+  border: 1px solid #1F2937;
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.market-card:hover { border-color: #334155; }
+.market-card .question {
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.price-bar {
+  display: flex;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #1F2937;
+}
+.price-bar .yes { background: #10B981; }
+.price-bar .no  { background: #EF4444; }
+
+.position-card {
+  background: #111827;
+  border: 1px solid #1F2937;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.gate-card {
+  background: #0B1120;
+  border: 1px solid #1F2937;
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.gate-card.pass { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.05); }
+.gate-card.fail { border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.04); }
+.gate-card.pending { border-color: #1F2937; }
+
+.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot.green { background: #10B981; box-shadow: 0 0 0 3px rgba(16,185,129,0.18); }
+.dot.red { background: #EF4444; box-shadow: 0 0 0 3px rgba(239,68,68,0.18); }
+.dot.gray { background: #475569; }
+
+.toast.success { background: #064e3b; border: 1px solid #10B981; color: #d1fae5; }
+.toast.error   { background: #450a0a; border: 1px solid #EF4444; color: #fee2e2; }
+.toast.info    { background: #1e293b; border: 1px solid #475569; color: #e2e8f0; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+.pnl-pos { color: #10B981; }
+.pnl-neg { color: #EF4444; }
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.category-chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #111827;
+  border: 1px solid #1F2937;
+  font-size: 12px;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.category-chip:hover { border-color: #334155; }
+.category-chip.active {
+  background: linear-gradient(135deg, rgba(167,139,250,0.20), rgba(245,158,11,0.10));
+  border-color: #A78BFA;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.overview-card {
+  background: #111827;
+  border: 1px solid #1F2937;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.overview-card:hover { border-color: #334155; transform: translateY(-2px); }
